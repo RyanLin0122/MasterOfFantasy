@@ -1,5 +1,8 @@
 # MasterOfFantasy
-
+## 前端架構圖:
+https://miro.com/app/board/o9J_l2JEFP0=/
+## 後端架構圖:
+還沒時間畫
 ## 下載方法:
 1. 打開某個資料夾 (>10GB 空間)
 2. 輸入cmd,按下enter鍵，開啟命令提示字元
