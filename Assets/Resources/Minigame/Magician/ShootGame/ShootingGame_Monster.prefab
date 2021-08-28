@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7742553960601513614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7742553960601513615}
+  - component: {fileID: 7742553960601513610}
+  - component: {fileID: 7742553960601513613}
+  - component: {fileID: 7742553960601513612}
+  - component: {fileID: 234927326806819471}
+  - component: {fileID: 3694059246111804721}
+  m_Layer: 5
+  m_Name: ShootingGame_Monster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7742553960601513615
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 450, y: 133.80406}
+  m_SizeDelta: {x: 63, y: 62}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7742553960601513610
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_CullTransparentMesh: 0
+--- !u!114 &7742553960601513613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7472593864144186385, guid: b063dc15c4a4477479a8836a53fa372b,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7742553960601513612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b809000a4f73a498f8dd3173faa52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  Speed: 8.33168
+  Direction: 1
+  Height: 0
+  MonsterSprites:
+  - {fileID: -7472593864144186385, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -5664711354220806681, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -4395220659136167908, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -7854904096405626009, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  GrimReaperSprites:
+  - {fileID: -2211599648156985246, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -6606358542550932526, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -3099831266681218323, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -8092712726504192382, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  BombSprites:
+  - {fileID: -3796466821657815826, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: 5981873288496967360, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  MonsterSprites_Death:
+  - {fileID: 7079905902259076566, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -9109539404918722445, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -4240445985510531541, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  GrimReaperSprites_Death:
+  - {fileID: -7833835409084931636, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -7567766803234966881, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: 4359293269729860332, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  BombSprites_Death:
+  - {fileID: 4109909061968043640, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: 3071577232612150983, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -8554026705583198098, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  CurrentSprites:
+  - {fileID: -7472593864144186385, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -5664711354220806681, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -4395220659136167908, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -7854904096405626009, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  CurrentDeathSprites:
+  - {fileID: 7079905902259076566, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -9109539404918722445, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  - {fileID: -4240445985510531541, guid: b063dc15c4a4477479a8836a53fa372b, type: 3}
+  IsStart: 1
+  IsDeath: 0
+  AnimSpeed: 5
+  AnimTimeInterval: 0.2
+  FrameIndex: 0
+--- !u!58 &234927326806819471
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 33
+--- !u!50 &3694059246111804721
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742553960601513614}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

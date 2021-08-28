@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <item ID="0001">
+    <MapName>翻牌遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_Card</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0002">
+    <MapName>射箭遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>ArcheryGame</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0003">
+    <MapName>飛鏢遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>ShurikenGame</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0004">
+    <MapName>拼圖遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_Puzzle</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0005">
+    <MapName>射擊遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_Shoot</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+	<item ID="0006">
+		<MapName>功夫遊戲</MapName>
+		<Location>RibiTown</Location>
+		<SceneName>MiniGame_KungFu</SceneName>
+		<PlayerBornPos>0,0</PlayerBornPos>
+		<Islimited>1</Islimited>
+		<IsVillage>1</IsVillage>
+		<MonsterMax>0</MonsterMax>
+		<BornTime>0</BornTime>
+	</item>
+	<item ID="0007">
+		<MapName>木人遊戲</MapName>
+		<Location>RibiTown</Location>
+		<SceneName>MiniGame_Dummy</SceneName>
+		<PlayerBornPos>0,0</PlayerBornPos>
+		<Islimited>1</Islimited>
+		<IsVillage>1</IsVillage>
+		<MonsterMax>0</MonsterMax>
+		<BornTime>0</BornTime>
+	</item>
+	<item ID="0008">
+		<MapName>治病遊戲</MapName>
+		<Location>RibiTown</Location>
+		<SceneName>MiniGame_Cure</SceneName>
+		<PlayerBornPos>0,0</PlayerBornPos>
+		<Islimited>1</Islimited>
+		<IsVillage>1</IsVillage>
+		<MonsterMax>0</MonsterMax>
+		<BornTime>0</BornTime>
+	</item>
+	
+  <item ID="1000">
+    <MapName>學習之路程</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Studyway</SceneName>
+    <PlayerBornPos>0,-128</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>50</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1001">
+    <MapName>學院Academy</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Academy</SceneName>
+    <PlayerBornPos>100,-100</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1002">
+    <MapName>新手訓練場</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>TrainingArea2</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1003">
+    <MapName>新手訓練場</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>TrainingArea1</SceneName>
+    <PlayerBornPos>154,-56</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1004">
+    <MapName>中央廣場</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>CentralSquare</SceneName>
+    <PlayerBornPos>257,62</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1005">
+    <MapName>港口</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Harbour</SceneName>
+    <PlayerBornPos>1348,-152</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1006">
+    <MapName>弓術教室</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>BowClassroom</SceneName>
+    <PlayerBornPos>-401,-235</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1007">
+    <MapName>劍術教室</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>SwordClassroom</SceneName>
+    <PlayerBornPos>-264,-155</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1008">
+    <MapName>魔法教室</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MagicClassroom</SceneName>
+    <PlayerBornPos>-383,-231</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1009">
+    <MapName>神學教室</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>TheologyClassroom</SceneName>
+    <PlayerBornPos>-355,-185</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1010">
+    <MapName>旅者之路</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>TravellerStreet</SceneName>
+    <PlayerBornPos>568,-248</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1011">
+    <MapName>匠人之路</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>ArtisanWay</SceneName>
+    <PlayerBornPos>-40,-145</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1012">
+    <MapName>酒吧</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Pubs</SceneName>
+    <PlayerBornPos>-54,-118</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1013">
+    <MapName>儲藏室</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Storage</SceneName>
+    <PlayerBornPos>70,-45</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1014">
+    <MapName>盜賊公會</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>ThiefGuild</SceneName>
+    <PlayerBornPos>-20,-85</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1015">
+    <MapName>雜貨店</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Grocery</SceneName>
+    <PlayerBornPos>-55,-113</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1016">
+    <MapName>鍛造工房</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Forge</SceneName>
+    <PlayerBornPos>-102,-98</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="1017">
+    <MapName>市場</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>Market</SceneName>
+    <PlayerBornPos>-397,-66</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>24</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2001">
+    <MapName>弓箭手之路</MapName>
+    <EnglishName>Archer's Way</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>1</MonsterMax>
+    <BornTime>10</BornTime>
+    <MonsterPoints>1#-2058,-28</MonsterPoints>
+  </item>
+  <item ID="2002">
+    <MapName>戰士之路</MapName>
+    <EnglishName>Soldier's Way</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2003">
+    <MapName>魔法之山丘</MapName>
+    <EnglishName>Magic Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2004">
+    <MapName>漢堡之山丘</MapName>
+    <EnglishName>Hamburger Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2005">
+    <MapName>追月之山丘</MapName>
+    <EnglishName>Moon Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2006">
+    <MapName>兔腳山丘</MapName>
+    <EnglishName>Rabbit Foot Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2007">
+    <MapName>日落山丘</MapName>
+    <EnglishName>Sunset Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2008">
+    <MapName>朝霞山丘</MapName>
+    <EnglishName>Glow Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2009">
+    <MapName>伐木場</MapName>
+    <EnglishName>Choreman</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2010">
+    <MapName>達連廢礦入口</MapName>
+    <EnglishName>Entrance of Daren Mine</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2011">
+    <MapName>龍山丘</MapName>
+    <EnglishName>Dragon Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2012">
+    <MapName>廢礦監視塔</MapName>
+    <EnglishName>Mine Post</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2013">
+    <MapName>綠山丘</MapName>
+    <EnglishName>Green Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="2014">
+    <MapName>烏龜山丘</MapName>
+    <EnglishName>Turtle Hill</EnglishName>
+    <Location>GreenLawn</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3002">
+    <MapName>小派貝羅平原</MapName>
+    <EnglishName>Small Papilo Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3003">
+    <MapName>艾利須平原</MapName>
+    <EnglishName> Ailish Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3004">
+    <MapName>雲橋溪谷</MapName>
+    <EnglishName>Viaduct Valley</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3005">
+    <MapName>雲橋峽谷</MapName>
+    <EnglishName>Viaduct Gorge</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3006">
+    <MapName>妖精之平原</MapName>
+    <EnglishName>Fairy Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3007">
+    <MapName>霧橋溪谷</MapName>
+    <EnglishName>Fog Bridge Valley</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3008">
+    <MapName>秘密洞窟入口</MapName>
+    <EnglishName>Bibos Town</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3009">
+    <MapName>隱藏之平原</MapName>
+    <EnglishName>Hide Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3010">
+    <MapName>平原監視塔</MapName>
+    <EnglishName>Plain Post</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3011">
+    <MapName>冬天之平原</MapName>
+    <EnglishName>Mirrio Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3012">
+    <MapName>賢者之平原</MapName>
+    <EnglishName>Ghost Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3013">
+    <MapName>遙遠之平原</MapName>
+    <EnglishName>Fartest Plain</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3014">
+    <MapName>西部監視塔</MapName>
+    <EnglishName>West Post</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3015">
+    <MapName>西部監視塔</MapName>
+    <EnglishName>West Post</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="3016">
+    <MapName>獵人比爾廢墟1層</MapName>
+    <EnglishName>Hunter Ruin's 1F</EnglishName>
+    <Location>Goldylan</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4001">
+    <MapName>戰場</MapName>
+    <EnglishName>Battle Field</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4002">
+    <MapName>春天原野</MapName>
+    <EnglishName>Spring Field</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4003">
+    <MapName>牛仔原野</MapName>
+    <EnglishName>Cowboy Field</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4004">
+    <MapName>洛倫之花床</MapName>
+    <EnglishName>Rolans Flower Bed</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4005">
+    <MapName>南部接界地</MapName>
+    <EnglishName>South Frontier</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4006">
+    <MapName>生命之沼澤</MapName>
+    <EnglishName>Life's Marsh</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4007">
+    <MapName>西邊岔路</MapName>
+    <EnglishName>West Way</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4008">
+    <MapName>往海岸去的路1</MapName>
+    <EnglishName>The Way of Seashore 1</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4009">
+    <MapName>往海岸去的路2</MapName>
+    <EnglishName>The Way of Seashore 2</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4010">
+    <MapName>珀拉堤內海岸1</MapName>
+    <EnglishName>Philiteni Seashore 1</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4011">
+    <MapName>海岸洞窟 西邊入口</MapName>
+    <EnglishName>West Entrance of Seashore Cave</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4012">
+    <MapName>珀拉堤內海岸2</MapName>
+    <EnglishName>Philiteni Seashore 2</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4013">
+    <MapName>古代人之休息地</MapName>
+    <EnglishName>Ancients Harbour</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4014">
+    <MapName>東邊岔路</MapName>
+    <EnglishName>East Way</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4015">
+    <MapName>藤蔓梗樹林</MapName>
+    <EnglishName>Bine Grove</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4016">
+    <MapName>雨林監視塔</MapName>
+    <EnglishName>Forest Post</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="4017">
+    <MapName>影子樹林</MapName>
+    <EnglishName>Shadow Grove</EnglishName>
+    <Location>GlanWood</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5001">
+    <MapName>黑暗樂園山麓1</MapName>
+    <EnglishName>Dark Edge 1</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5002">
+    <MapName>黑暗樂園山麓2</MapName>
+    <EnglishName>Dark Edge 2</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5003">
+    <MapName>黑暗樂園山麓3</MapName>
+    <EnglishName>Dark Edge 3</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5004">
+    <MapName>黑暗樂園山麓4</MapName>
+    <EnglishName>Dark Edge 4</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5005">
+    <MapName>得到詛咒之地</MapName>
+    <EnglishName>Dark Edge 1</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5006">
+    <MapName>黑暗之樹林1</MapName>
+    <EnglishName>Dark Bridge</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5007">
+    <MapName>黑暗之樹林2</MapName>
+    <EnglishName>Dark Forest 1</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5008">
+    <MapName>黑暗之樹林3</MapName>
+    <EnglishName>Dark Forest 2</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5009">
+    <MapName>集結地</MapName>
+    <EnglishName>Assembly Area</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5010">
+    <MapName>絕望之地基</MapName>
+    <EnglishName>Despair Site</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5011">
+    <MapName>黑暗之塔入口</MapName>
+    <EnglishName>Dark Tower Entrance</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5012">
+    <MapName>黑暗之塔 1樓</MapName>
+    <EnglishName>Dark Tower 1F</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5013">
+    <MapName>惡靈之地</MapName>
+    <EnglishName>Evil Site</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5014">
+    <MapName>北部前哨基地</MapName>
+    <EnglishName>North Post</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5015">
+    <MapName>黑暗鳥巢</MapName>
+    <EnglishName>Dark Nest</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5016">
+    <MapName>古代共同墓地2</MapName>
+    <EnglishName>Dark Cemetery Entrance 2</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5017">
+    <MapName>古代共同墓地1</MapName>
+    <EnglishName>Dark Cemetery Entrance 1</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="5018">
+    <MapName>古代共同墓地入口</MapName>
+    <EnglishName>Dark Cemetery Entrance</EnglishName>
+    <Location>DarkPila</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6001">
+    <MapName>善惡地帶入口</MapName>
+    <EnglishName>Good and Evil Region Entrance</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6002">
+    <MapName>交岔路</MapName>
+    <EnglishName>CrossWay</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6003">
+    <MapName>狸貓山丘</MapName>
+    <EnglishName>Wildcat Hill</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6004">
+    <MapName>紅尾巴山丘</MapName>
+    <EnglishName>Red Tail Hill</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6005">
+    <MapName>火花飛彈之路</MapName>
+    <EnglishName>Silks Road</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6006">
+    <MapName>朝霞光之山丘</MapName>
+    <EnglishName>Glow Hill</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6007">
+    <MapName>紅色之山坡</MapName>
+    <EnglishName>Red Hill Side</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6008">
+    <MapName>火山監視塔</MapName>
+    <EnglishName>Volcano Post</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6009">
+    <MapName>火山入口</MapName>
+    <EnglishName>Volcano Entrance</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6010">
+    <MapName>熔岩石地方</MapName>
+    <EnglishName>Lava Rock</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6011">
+    <MapName>火花山丘3</MapName>
+    <EnglishName>Fire Hill 3</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6012">
+    <MapName>火花山丘2</MapName>
+    <EnglishName>Fire Hill 2</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6013">
+    <MapName>哈倫城堡入口</MapName>
+    <EnglishName>Entrance of Haron's Castle</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6014">
+    <MapName>火花山丘1</MapName>
+    <EnglishName>Fire Hill 1</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6015">
+    <MapName>紅色之路</MapName>
+    <EnglishName>Red Road</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6016">
+    <MapName>休火山入口</MapName>
+    <EnglishName>Domart Volcano</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+  <item ID="6017">
+    <MapName>火山洞窟1樓</MapName>
+    <EnglishName>Volcano Cave 1F</EnglishName>
+    <Location>CranVill</Location>
+    <SceneName>ArcherWay</SceneName>
+    <PlayerBornPos>-2170,-139</PlayerBornPos>
+    <Islimited>0</Islimited>
+    <IsVillage>0</IsVillage>
+    <MonsterMax>30</MonsterMax>
+    <BornTime>10</BornTime>
+  </item>
+
+</root>
