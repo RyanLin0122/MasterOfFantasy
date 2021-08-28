@@ -53,7 +53,10 @@ namespace PEProtocal
         ///43:RecycleItems回收道具
         ///44:MiniGameSetting小遊戲設定
         ///45:Rewards獎品
+        ///46:CashShopRequest商城請求
+        ///47:CashShopResponse商城回應
         ///
+
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -165,8 +168,10 @@ namespace PEProtocal
         public MiniGameSetting miniGameSetting { get; set; }
         [ProtoMember(54, IsRequired = false)]
         public Rewards rewards { get; set; }
-
-
+        [ProtoMember(54, IsRequired = false)]
+        public CashShopRequest cashShopRequest { get; set; }
+        [ProtoMember(54, IsRequired = false)]
+        public CashShopResponse cashShopResponse { get; set; }
 
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
@@ -1228,7 +1233,7 @@ namespace PEProtocal
 
         [ProtoMember(5, IsRequired = false)]
         public TimeSpan RestTime { get; set; }
-        
+
         [ProtoMember(9, IsRequired = false)]
         public TimeSpan RestAcceptableTime { get; set; }
         [ProtoMember(10, IsRequired = false)]
@@ -1288,7 +1293,7 @@ namespace PEProtocal
 
         [ProtoMember(4, IsRequired = false)]
         public TimeSpan MaxRestTime { get; set; }
-        
+
         [ProtoMember(20, IsRequired = false)]
         public int MaxAcceptableTimes { get; set; }
     }
@@ -1325,5 +1330,35 @@ namespace PEProtocal
         public Dictionary<int, Item> MailBoxItems { get; set; }
     }
 
+    [ProtoContract]
+    public class CashShopRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public long Cash { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public long TotalPrice { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        List<string> Cata { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        List<string> Tag { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        List<int> ID { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        List<int> Amount { get; set; }
+    }
 
+    [ProtoContract]
+    public class CashShopResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public long Cash { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public long TotalPrice { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public Dictionary<int, Item> Items { get; set; } // position, Item
+        [ProtoMember(4, IsRequired = false)]
+        public int ErrorLogType { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public bool IsSuccess { get; set; }
+    }
 }
