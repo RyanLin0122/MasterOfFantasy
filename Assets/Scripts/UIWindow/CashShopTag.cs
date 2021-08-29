@@ -14,7 +14,14 @@ public class CashShopTag : MonoBehaviour
         TagName = s;
         Catagory = cata;
     }
-
+    public float GetWidth()
+    {
+        return GetComponent<Text>().rectTransform.rect.width;
+    }
+    public float GetHeight()
+    {
+        return GetComponent<Text>().rectTransform.rect.height;
+    }
 }
 
 

@@ -24,8 +24,8 @@ public class CashShopWnd : Inventory
     public Button CloseBtn;
     public Button FashionBtnL;
     public Button OtherBtnL;
-    public GameObject panel1L;
-    public GameObject panel2L;
+    //public GameObject panel1L;
+    //public GameObject panel2L;
     public Sprite PanelSprite1;
     public Sprite PanelSprite2;
     //public Text txtCoin;
@@ -58,31 +58,17 @@ public class CashShopWnd : Inventory
     public Button Backward;
     int TotalPage;
     public Text TotPTex;
-    
 
-
-protected override void InitWnd()
+    protected override void InitWnd()
     {
-    //slotLists.Add(Battlepanel.GetComponentsInChildren<EquipSlot>());
-    //slotLists.Add(Fashionpanel.GetComponentsInChildren<EquipSlot>());
-
-    //txtCoin.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
-    //MainCitySys.Instance.dialogueWnd.ImportNpcShopItems();
-    illustration.InitIllustration();
-    MainCitySys.Instance.InfoWnd.illustration.InitIllustration();
-    PressFashion1();
-    PressNewBtn();
-    
-
-    SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-    illustration.SetGenderAge(true, IsPutOff, GameRoot.Instance.ActivePlayer);
-    base.InitWnd();
-    }
-
-    public void LoadWnd()
-    {
-        InitWnd();
+        illustration.InitIllustration();
+        MainCitySys.Instance.InfoWnd.illustration.InitIllustration();
+        PressFashion1();
+        PressNewBtn();
+        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
         InitDemo();
+        illustration.SetGenderAge(true, IsPutOff, GameRoot.Instance.ActivePlayer);
+        base.InitWnd();
     }
 
     private void InitDemo()
@@ -108,12 +94,10 @@ protected override void InitWnd()
 
     public void openCloseWnd()
     {
-
         if (IsOpen == true)
         {
             MainCitySys.Instance.CloseShopWnd();
             IsOpen = false;
-
         }
         else
         {
@@ -138,17 +122,14 @@ protected override void InitWnd()
         //panel2L.SetActive(true);
         FashionBtnL.GetComponent<Image>().sprite = PanelSprite2;
         OtherBtnL.GetComponent<Image>().sprite = PanelSprite1;
-
     }
 
     public void PressNewBtn()
     {
-
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
         ClearTags();
         cata = "新商品";
         SetItemTags(cata);
-
 
         NewBtn.GetComponent<Image>().sprite = PanelSprite2;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
@@ -163,18 +144,14 @@ protected override void InitWnd()
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         NewBtn.transform.SetAsLastSibling();
-
     }
 
     public void PressPopBtn()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
- 
         ClearTags();
         cata = "人氣商品";
         SetItemTags(cata);
-        
-
 
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite2;
@@ -182,8 +159,6 @@ protected override void InitWnd()
         PetBtn.GetComponent<Image>().sprite = PanelSprite1;
         ConBtn.GetComponent<Image>().sprite = PanelSprite1;
         CartBtn.GetComponent<Image>().sprite = PanelSprite1;
-
-
 
         panel1Text.text = "<color=#4F0D0D>新商品</color>";
         panel2Text.text = "<color=#ffffff>人氣商品</color>";
@@ -202,7 +177,7 @@ protected override void InitWnd()
         ClearTags();
         cata = "時尚";
         SetItemTags(cata);
- 
+
 
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
@@ -218,7 +193,6 @@ protected override void InitWnd()
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         FashionR.transform.SetAsLastSibling();
     }
-     
     public void PressPetBtn()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
@@ -250,7 +224,7 @@ protected override void InitWnd()
         cata = "消耗品";
 
         SetItemTags(cata);
-        
+
 
 
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
@@ -268,7 +242,6 @@ protected override void InitWnd()
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         ConBtn.transform.SetAsLastSibling();
     }
-
     public void PressCartBtn()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
@@ -291,7 +264,6 @@ protected override void InitWnd()
         CartBtn.transform.SetAsLastSibling();
 
     }
-
     public void ReadCharacterEquipment(PlayerEquipments equips)
     {
         Dictionary<int, Item> Equipments = InventoryManager.Instance.PlayerEquipments2Dic(equips);
@@ -314,14 +286,10 @@ protected override void InitWnd()
                     }
                     //裝武器
                 }
-
             }
-
         }
         illustration.SetGenderAge(true, IsPutOff, GameRoot.Instance.ActivePlayer);
-    } //Ok
-
-
+    }
     private void PutOffEquipment(int pos, PlayerEquipments pq)
     {
         switch (pos)
@@ -591,7 +559,6 @@ protected override void InitWnd()
             KnapsackWnd.Instance.StoreItem(exitItem, 1);
         }
     }
-
     public void PutOn(Item item)
     {
         Item exitItem = null;
@@ -707,26 +674,21 @@ protected override void InitWnd()
     {
         illustration.SetGenderAge(true, false, GameRoot.Instance.ActivePlayer);
     }
-
-    public void SetItemTags(string Cata)//""cata = 新商品
+    public void SetItemTags(string Cata)
     {
-
         List<string> TagList = new List<string>();
         List<GameObject> TagObjectList = new List<GameObject>();
-
-        
         foreach (var s in ResSvc.Instance.CashShopDic[Cata].Keys)
         {
-            TagList.Add(s);//TagList = ["特價中","活動"]
+            TagList.Add(s);
         }
-        var x = 110;
+        float Offset_x = 0;
+        float BtnGroupWidth = ButtonGroup.GetComponent<RectTransform>().rect.width;
         foreach (var tag in TagList)
         {
             int length = tag.Length;
             CashShopTag cashShopTag = ((GameObject)Instantiate(Resources.Load("Prefabs/CashShopTag"))).transform.GetComponent<CashShopTag>();
-            //
             Button TagBtn = cashShopTag.transform.GetComponent<Button>();
-
             TagBtn.onClick.AddListener(() =>
             {
                 CurrentTag = tag;
@@ -737,8 +699,7 @@ protected override void InitWnd()
                 SetButtonColor();
                 TagBtn.GetComponent<Text>().color = Color.black;
                 List<CashShopData> Items = ResSvc.Instance.CashShopDic[Cata][CurrentTag];
-
-                TotalPage = (Items.Count / 7)+1;
+                TotalPage = (Items.Count / 7) + 1;
                 TotPTex.text = (TotalPage).ToString();
                 if (TotalPage == 1)
                 {
@@ -749,45 +710,33 @@ protected override void InitWnd()
                     Backward.interactable = true;
                 }
             });
-
-           
-            
-            if (tag== TagList[0])
+            if (tag == TagList[0])
             {
                 TagBtn.onClick.Invoke();
-
             }
-             
-            
             TagObjectList.Add(cashShopTag.gameObject);
-            cashShopTag.transform.SetParent ( ButtonGroup.transform);//cashshop物件的父母是ButtonGroup
+            cashShopTag.transform.SetParent(ButtonGroup.transform);
             cashShopTag.SetText(tag, Cata);
-            
-
-
-            var position = new Vector3(x,90, 0);
-            
-            //cashShopTag.transform.localPosition = 
-            cashShopTag.transform.position = position;
-            x = x + length*15+5;
+            var position = new Vector3(Offset_x, 90, 0);
+            cashShopTag.transform.localPosition = position;
+            GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash"));
+            slash.transform.SetParent(ButtonGroup.transform);
+            slash.transform.localScale = Vector3.one;
+            slash.transform.localPosition = new Vector3(Offset_x + cashShopTag.GetWidth(),0,0);
+            Offset_x = Offset_x + cashShopTag.GetWidth() + (slash.GetComponent<RectTransform>().rect.width);
         }
-        
     }
-
     public void ClearTags()
     {
         int childCount = ButtonGroup.transform.childCount;
-        for(int i = 0; i < childCount; i++)
+        for (int i = 0; i < childCount; i++)
         {
             Destroy(ButtonGroup.transform.GetChild(i).gameObject);
         }
     }
-
-
-
     public void SetSellItems(int Page)
     {
- 
+
 
         ClearSellItems();
         List<CashShopData> Items = ResSvc.Instance.CashShopDic[cata][CurrentTag];
@@ -798,14 +747,14 @@ protected override void InitWnd()
             {
                 break;
             }
-        
+
             InstantiateItem(Items[i].ItemID, Items[i].SellPrice);
         }
     }
 
     public GameObject SellItemGroup;
 
-    public void InstantiateItem(int ItemID,int SellPrice)
+    public void InstantiateItem(int ItemID, int SellPrice)
     {
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
@@ -819,7 +768,6 @@ protected override void InitWnd()
             Destroy(SellItemGroup.transform.GetChild(i).gameObject);
         }
     }
-
     public void SetButtonColor()
     {
         int childCount = ButtonGroup.transform.childCount;
@@ -828,13 +776,9 @@ protected override void InitWnd()
             ButtonGroup.transform.GetChild(i).gameObject.GetComponent<Text>().color = Color.white;
         }
     }
-
-
-    
-
     public void PressForward()
     {
-        if(CurrentPage != 0)
+        if (CurrentPage != 0)
         {
             CurrentPage -= 1;
             Backward.interactable = true;
@@ -845,13 +789,10 @@ protected override void InitWnd()
                 Forward.interactable = false;
             }
         }
-        
-
     }
-
     public void PressBackward()
     {
-        if(CurrentPage != TotalPage-1)
+        if (CurrentPage != TotalPage - 1)
         {
             CurrentPage += 1;
             Forward.interactable = true;
@@ -862,10 +803,7 @@ protected override void InitWnd()
                 Backward.interactable = false;
             }
         }
-
-   
-
     }
 
-    
+
 }
