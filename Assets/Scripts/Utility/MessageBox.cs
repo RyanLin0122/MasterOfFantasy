@@ -3,10 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CenterMessageBox : MonoBehaviour
+public class MessageBox : MonoBehaviour
 {
     public Text msgtxt;
-    public bool IsMessageBox = false;
+
+    public static bool CheckIsMessageBox()
+    {
+        if (GameRoot.Instance.NearCanvas == null)
+        {
+            GameRoot.AddTips("Near Canvas is null");
+            return false;
+        }
+        try
+        {
+            Canvas nearCanvas = GameRoot.Instance.NearCanvas;
+            var messageBoxes = nearCanvas.GetComponentsInChildren<MessageBox>();
+            if (messageBoxes.Length == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        catch (System.Exception e)
+        {
+            print(e.Message);
+        }
+        return false;
+    }
+    public static bool IsMessageBox 
+    { 
+        get 
+        {
+            return CheckIsMessageBox(); 
+        } 
+    } 
+    public static void Show(string str)
+    {
+
+    }
     private void Update()
     {
         if (this.gameObject.activeInHierarchy == true)
@@ -18,7 +55,7 @@ public class CenterMessageBox : MonoBehaviour
             }
         }
     }
-    public void ShowMessageBox(string msg)
+    public void ShowMessageBox(string msg, MessageBoxType Type = MessageBoxType.Simple)
     {
         try
         {
@@ -29,7 +66,6 @@ public class CenterMessageBox : MonoBehaviour
 
             throw;
         }
-        IsMessageBox = true;
         msgtxt.text = msg;
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         this.gameObject.SetActive(true);
@@ -45,8 +81,12 @@ public class CenterMessageBox : MonoBehaviour
 
             throw;
         }
-        IsMessageBox = false;
         this.gameObject.SetActive(false);
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
+}
+public enum MessageBoxType
+{
+    Simple,
+    Confirm
 }

@@ -13,13 +13,12 @@ public class GameRoot : MonoBehaviour
     public Player ActivePlayer;
     public string Account;
     public string Password;
-    public CenterMessageBox messageBox;
     public WindowLock windowLock;
     public Dictionary<int, List<Player>> PlayersDic = new Dictionary<int, List<Player>>();
     public PlayerData CurrentPlayerData = null;
     public PlayerStatus CurrentPlayerStatus = PlayerStatus.Normal;
     public Dictionary<string, OtherPeopleCtrl> otherPlayers = new Dictionary<string, OtherPeopleCtrl>();
-
+    public Canvas NearCanvas;
     public bool IsChangeOK = false;
     public static GameRoot Instance = null;
     public PlayerCtrl PlayerControl;
@@ -130,18 +129,7 @@ public class GameRoot : MonoBehaviour
     {
         Instance.dynamicWnd.AddTips(tips);
     }
-    public void SetMessageBoxCanvas()
-    {
-        messageBox.transform.parent.GetComponent<Canvas>().worldCamera = Camera.main;
-    }
-    public void ShowMessageBox(string msg)
-    {
-        messageBox.ShowMessageBox(msg);
-    }
-    public void CloseMessageBox()
-    {
-        messageBox.CloseMessageBox();
-    }
+
     public void WindowLock(string s = "")
     {
         if (windowLock != null)

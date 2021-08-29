@@ -82,7 +82,7 @@ public class ChatWnd : WindowRoot
         {
             if (iptChat.text.Length > 24)
             {
-                GameRoot.Instance.ShowMessageBox("輸入內容不可超過24個字");
+                GameRoot.AddTips("輸入內容不可超過24個字");
             }
             else
             {

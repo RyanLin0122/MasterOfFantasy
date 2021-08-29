@@ -282,7 +282,6 @@ public class MainCitySys : SystemRoot
     #region 加載角色
     private void LoadPlayer(MapCfg mapData, Vector2 position) //傳點傳送
     {
-        GameRoot.Instance.SetMessageBoxCanvas();
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, GameObject.Find("Canvas2").transform, new Vector3(position.x, position.y, 200f));
         GameRoot.Instance.PlayerControl = player.GetComponent<PlayerCtrl>();
         GameRoot.Instance.PlayerControl.SetTitle(GameRoot.Instance.ActivePlayer.Title);

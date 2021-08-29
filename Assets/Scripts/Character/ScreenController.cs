@@ -200,7 +200,7 @@ public class ScreenController : MonoBehaviour
                 Debug.Log(e.Message);
             }
         }
-        if (!GameRoot.Instance.messageBox.IsMessageBox)
+        if (!MessageBox.IsMessageBox)
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
