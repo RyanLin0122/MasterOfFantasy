@@ -23,7 +23,7 @@ public class GameRoot : MonoBehaviour
     public static GameRoot Instance = null;
     public PlayerCtrl PlayerControl;
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
-
+    public bool CanInput;
     public string ScreenSavingFolder = "C:/Users/";
 
     public MOFOption AccountOption = null;

@@ -168,9 +168,9 @@ namespace PEProtocal
         public MiniGameSetting miniGameSetting { get; set; }
         [ProtoMember(54, IsRequired = false)]
         public Rewards rewards { get; set; }
-        [ProtoMember(54, IsRequired = false)]
+        [ProtoMember(55, IsRequired = false)]
         public CashShopRequest cashShopRequest { get; set; }
-        [ProtoMember(54, IsRequired = false)]
+        [ProtoMember(56, IsRequired = false)]
         public CashShopResponse cashShopResponse { get; set; }
 
         //Serialize

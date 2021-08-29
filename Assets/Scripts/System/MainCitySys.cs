@@ -290,6 +290,7 @@ public class MainCitySys : SystemRoot
         player.GetComponent<Namebox>().SetNameBox(GameRoot.Instance.ActivePlayer.Name);
         GameObject canvas = GameObject.Find("Canvas");
         canvas.GetComponent<Canvas>().worldCamera = Camera.main;
+        GameRoot.Instance.NearCanvas.worldCamera = canvas.GetComponent<Canvas>().worldCamera;
         GameObject.Find("MainCharacter(Clone)").GetComponent<Transform>().SetAsLastSibling();
         equipmentWnd.SetAllEquipment(GameRoot.Instance.ActivePlayer);
         equipmentWnd.SetFace(GameRoot.Instance.ActivePlayer);

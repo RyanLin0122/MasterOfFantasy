@@ -36,13 +36,11 @@ public class ScreenController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         float tempx = transform.position.x; //+ Offset.x;
 
         float tempy = transform.position.y; //+ Offset.y;
         Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound),
                                           Mathf.Clamp(tempy, DownBound, UpBound), camera.transform.position.z);
-
         camera.transform.position = tempPosition;//+ new Vector3(Offset.x,Offset.y,0);
                                                  //攝影機座標 = 玩家座標+相對位移
     }
@@ -80,13 +78,14 @@ public class ScreenController : MonoBehaviour
                 }
 
             }
+
             if (Input.GetKeyDown(KeyCode.J))
             {
-                MainCitySys.Instance.baseUI.MinusHp(13);
+                print(MessageBox.IsMessageBox);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                MainCitySys.Instance.baseUI.MinusMp(16);
+                MessageBox.Show("haha");
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
@@ -200,7 +199,7 @@ public class ScreenController : MonoBehaviour
                 Debug.Log(e.Message);
             }
         }
-        if (!MessageBox.IsMessageBox)
+        if (GameRoot.Instance.CanInput)
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
