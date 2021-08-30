@@ -1345,6 +1345,10 @@ namespace PEProtocal
         List<int> ID { get; set; }
         [ProtoMember(6, IsRequired = false)]
         List<int> Amount { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        [ProtoMember(8, IsRequired = false)]
+        public string GiftPlayerName { get; set; }
     }
 
     [ProtoContract]
@@ -1357,8 +1361,12 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public Dictionary<int, Item> Items { get; set; } // position, Item
         [ProtoMember(4, IsRequired = false)]
-        public int ErrorLogType { get; set; }
+        public int ErrorLogType { get; set; } 
         [ProtoMember(5, IsRequired = false)]
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        [ProtoMember(6, IsRequired = false)]
+        public string GiftPlayerName { get; set; }
+        [ProtoMember(7, IsRequired = false)] //
         public bool IsSuccess { get; set; }
     }
 }

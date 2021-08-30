@@ -683,6 +683,7 @@ public class CashShopWnd : Inventory
             TagList.Add(s);
         }
         float Offset_x = 0;
+        float Offset_y = 0;
         float BtnGroupWidth = ButtonGroup.GetComponent<RectTransform>().rect.width;
         foreach (var tag in TagList)
         {
@@ -717,14 +718,25 @@ public class CashShopWnd : Inventory
             TagObjectList.Add(cashShopTag.gameObject);
             cashShopTag.transform.SetParent(ButtonGroup.transform);
             cashShopTag.SetText(tag, Cata);
-            var position = new Vector3(Offset_x, 90, 0);
+            var position = new Vector3(Offset_x, Offset_y, 0);
+            if (Offset_x + cashShopTag.GetWidth() > BtnGroupWidth)
+            {
+                Offset_x = 0;
+                Offset_y = cashShopTag.GetHeight();
+            }
             cashShopTag.transform.localPosition = position;
-            GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash"));
-            slash.transform.SetParent(ButtonGroup.transform);
+            ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
+
+            GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash"));            slash.transform.SetParent(ButtonGroup.transform);
             slash.transform.localScale = Vector3.one;
             slash.transform.localPosition = new Vector3(Offset_x + cashShopTag.GetWidth(),0,0);
+            ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
             Offset_x = Offset_x + cashShopTag.GetWidth() + (slash.GetComponent<RectTransform>().rect.width);
         }
+        ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
     }
     public void ClearTags()
     {
