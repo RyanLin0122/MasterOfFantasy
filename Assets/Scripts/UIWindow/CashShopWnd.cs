@@ -685,6 +685,8 @@ public class CashShopWnd : Inventory
         float Offset_x = 0;
         float Offset_y = 0;
         float BtnGroupWidth = ButtonGroup.GetComponent<RectTransform>().rect.width;
+        RectTransform ButtonGroup_Rect = ButtonGroup.GetComponent<RectTransform>();
+        HorizontalLayoutGroup ButtonGroup_Horizontal = ButtonGroup.GetComponent<HorizontalLayoutGroup>();
         foreach (var tag in TagList)
         {
             int length = tag.Length;
@@ -725,18 +727,20 @@ public class CashShopWnd : Inventory
                 Offset_y = cashShopTag.GetHeight();
             }
             cashShopTag.transform.localPosition = position;
-            ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
+            //強制更新ButttonGroup的layout
+            ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
 
+            //加上 "/"
             GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash"));            slash.transform.SetParent(ButtonGroup.transform);
             slash.transform.localScale = Vector3.one;
             slash.transform.localPosition = new Vector3(Offset_x + cashShopTag.GetWidth(),0,0);
-            ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
+            ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
             Offset_x = Offset_x + cashShopTag.GetWidth() + (slash.GetComponent<RectTransform>().rect.width);
         }
-        ButtonGroup.GetComponent<HorizontalLayoutGroup>().CalculateLayoutInputHorizontal();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup.GetComponent<RectTransform>());
+        ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
     }
     public void ClearTags()
     {
