@@ -105,7 +105,6 @@ public class CashShopWnd : Inventory
             IsOpen = true;
         }
     }
-
     public void PressFashion1()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
@@ -124,13 +123,14 @@ public class CashShopWnd : Inventory
         OtherBtnL.GetComponent<Image>().sprite = PanelSprite1;
     }
 
+    #region Press Catagories Button
+
     public void PressNewBtn()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ClearTags();
         cata = "新商品";
         SetItemTags(cata);
-
         NewBtn.GetComponent<Image>().sprite = PanelSprite2;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
         FashionR.GetComponent<Image>().sprite = PanelSprite1;
@@ -144,22 +144,25 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         NewBtn.transform.SetAsLastSibling();
+        NewBtn.GetComponent<Image>().raycastTarget = false;
+        PopBtn.GetComponent<Image>().raycastTarget = true;
+        FashionR.GetComponent<Image>().raycastTarget = true;
+        PetBtn.GetComponent<Image>().raycastTarget = true;
+        ConBtn.GetComponent<Image>().raycastTarget = true;
+        CartBtn.GetComponent<Image>().raycastTarget = true;
     }
-
     public void PressPopBtn()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ClearTags();
         cata = "人氣商品";
         SetItemTags(cata);
-
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite2;
         FashionR.GetComponent<Image>().sprite = PanelSprite1;
         PetBtn.GetComponent<Image>().sprite = PanelSprite1;
         ConBtn.GetComponent<Image>().sprite = PanelSprite1;
         CartBtn.GetComponent<Image>().sprite = PanelSprite1;
-
         panel1Text.text = "<color=#4F0D0D>新商品</color>";
         panel2Text.text = "<color=#ffffff>人氣商品</color>";
         panel3Text.text = "<color=#4F0D0D>時尚</color>";
@@ -167,18 +170,19 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         PopBtn.transform.SetAsLastSibling();
-
+        NewBtn.GetComponent<Image>().raycastTarget = true;
+        PopBtn.GetComponent<Image>().raycastTarget = false;
+        FashionR.GetComponent<Image>().raycastTarget = true;
+        PetBtn.GetComponent<Image>().raycastTarget = true;
+        ConBtn.GetComponent<Image>().raycastTarget = true;
+        CartBtn.GetComponent<Image>().raycastTarget = true;
     }
-
     public void PressFashionBtn2()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ClearTags();
         cata = "時尚";
         SetItemTags(cata);
-
-
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
         FashionR.GetComponent<Image>().sprite = PanelSprite2;
@@ -192,16 +196,20 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         FashionR.transform.SetAsLastSibling();
+        NewBtn.GetComponent<Image>().raycastTarget = true;
+        PopBtn.GetComponent<Image>().raycastTarget = true;
+        FashionR.GetComponent<Image>().raycastTarget = false;
+        PetBtn.GetComponent<Image>().raycastTarget = true;
+        ConBtn.GetComponent<Image>().raycastTarget = true;
+        CartBtn.GetComponent<Image>().raycastTarget = true;
     }
     public void PressPetBtn()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
 
         ClearTags();
         cata = "寵物";
         SetItemTags(cata);
-
-
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
         FashionR.GetComponent<Image>().sprite = PanelSprite1;
@@ -215,17 +223,19 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         PetBtn.transform.SetAsLastSibling();
-
+        NewBtn.GetComponent<Image>().raycastTarget = true;
+        PopBtn.GetComponent<Image>().raycastTarget = true;
+        FashionR.GetComponent<Image>().raycastTarget = true;
+        PetBtn.GetComponent<Image>().raycastTarget = false;
+        ConBtn.GetComponent<Image>().raycastTarget = true;
+        CartBtn.GetComponent<Image>().raycastTarget = true;
     }
     public void PressConBtn()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ClearTags();
         cata = "消耗品";
-
         SetItemTags(cata);
-
-
 
         NewBtn.GetComponent<Image>().sprite = PanelSprite1;
         PopBtn.GetComponent<Image>().sprite = PanelSprite1;
@@ -241,10 +251,16 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#ffffff>消耗品</color>";
         panel6Text.text = "<color=#4F0D0D>購物車</color>";
         ConBtn.transform.SetAsLastSibling();
+        NewBtn.GetComponent<Image>().raycastTarget = true;
+        PopBtn.GetComponent<Image>().raycastTarget = true;
+        FashionR.GetComponent<Image>().raycastTarget = true;
+        PetBtn.GetComponent<Image>().raycastTarget = true;
+        ConBtn.GetComponent<Image>().raycastTarget = false;
+        CartBtn.GetComponent<Image>().raycastTarget = true;
     }
     public void PressCartBtn()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ClearTags();
         ClearSellItems();
 
@@ -262,8 +278,17 @@ public class CashShopWnd : Inventory
         panel5Text.text = "<color=#4F0D0D>消耗品</color>";
         panel6Text.text = "<color=#ffffff>購物車</color>";
         CartBtn.transform.SetAsLastSibling();
-
+        NewBtn.GetComponent<Image>().raycastTarget = true;
+        PopBtn.GetComponent<Image>().raycastTarget = true;
+        FashionR.GetComponent<Image>().raycastTarget = true;
+        PetBtn.GetComponent<Image>().raycastTarget = true;
+        ConBtn.GetComponent<Image>().raycastTarget = true;
+        CartBtn.GetComponent<Image>().raycastTarget = false;
     }
+
+    #endregion
+
+    #region Illustration and Demo
     public void ReadCharacterEquipment(PlayerEquipments equips)
     {
         Dictionary<int, Item> Equipments = InventoryManager.Instance.PlayerEquipments2Dic(equips);
@@ -674,6 +699,9 @@ public class CashShopWnd : Inventory
     {
         illustration.SetGenderAge(true, false, GameRoot.Instance.ActivePlayer);
     }
+
+    #endregion
+
     public void SetItemTags(string Cata)
     {
         List<string> TagList = new List<string>();
@@ -686,7 +714,6 @@ public class CashShopWnd : Inventory
         float Offset_y = 0;
         float BtnGroupWidth = ButtonGroup.GetComponent<RectTransform>().rect.width;
         RectTransform ButtonGroup_Rect = ButtonGroup.GetComponent<RectTransform>();
-        HorizontalLayoutGroup ButtonGroup_Horizontal = ButtonGroup.GetComponent<HorizontalLayoutGroup>();
         foreach (var tag in TagList)
         {
             int length = tag.Length;
@@ -720,27 +747,22 @@ public class CashShopWnd : Inventory
             TagObjectList.Add(cashShopTag.gameObject);
             cashShopTag.transform.SetParent(ButtonGroup.transform);
             cashShopTag.SetText(tag, Cata);
-            var position = new Vector3(Offset_x, Offset_y, 0);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(cashShopTag.GetComponent<RectTransform>());
             if (Offset_x + cashShopTag.GetWidth() > BtnGroupWidth)
             {
                 Offset_x = 0;
-                Offset_y = cashShopTag.GetHeight();
+                Offset_y = -cashShopTag.GetHeight() * 0.9f;
             }
+            var position = new Vector3(Offset_x, Offset_y, 0);
             cashShopTag.transform.localPosition = position;
-            //強制更新ButttonGroup的layout
-            ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
 
             //加上 "/"
-            GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash"));            slash.transform.SetParent(ButtonGroup.transform);
+            GameObject slash = (GameObject)Instantiate(Resources.Load("Prefabs/Slash")); slash.transform.SetParent(ButtonGroup.transform);
             slash.transform.localScale = Vector3.one;
-            slash.transform.localPosition = new Vector3(Offset_x + cashShopTag.GetWidth(),0,0);
-            ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
+            slash.transform.localPosition = new Vector3(Offset_x + cashShopTag.GetWidth(), Offset_y, 0);
             Offset_x = Offset_x + cashShopTag.GetWidth() + (slash.GetComponent<RectTransform>().rect.width);
         }
-        ButtonGroup_Horizontal.CalculateLayoutInputHorizontal();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(ButtonGroup_Rect);
+
     }
     public void ClearTags()
     {
