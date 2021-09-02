@@ -281,7 +281,21 @@ namespace PEProtocal
         public Dictionary<int, Item> LockerServer3 { get; set; }
         [ProtoMember(9, IsRequired = false)]
         public string PrivateKey { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public AccountData accountData { get; set; }
     }
+    [ProtoContract]
+    public class AccountData 
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string Account { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string Password { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public long Cash { get; set; }
+    }
+
+
     [ProtoContract]
     public class GameServerStatus
     {
@@ -1338,13 +1352,13 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public long TotalPrice { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        List<string> Cata { get; set; }
+        public List<string> Cata { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        List<string> Tag { get; set; }
+        public List<string> Tag { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        List<int> ID { get; set; }
+        public List<int> ID { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        List<int> Amount { get; set; }
+        public List<int> Amount { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
         [ProtoMember(8, IsRequired = false)]
@@ -1361,7 +1375,7 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public Dictionary<int, Item> Items { get; set; } // position, Item
         [ProtoMember(4, IsRequired = false)]
-        public int ErrorLogType { get; set; } 
+        public int ErrorLogType { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
         [ProtoMember(6, IsRequired = false)]

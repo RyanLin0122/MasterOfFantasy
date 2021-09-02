@@ -11,6 +11,7 @@ public class GameRoot : MonoBehaviour
     public int ActiveChannel = 1;
     public int ActiveServer = 0;
     public Player ActivePlayer;
+    public AccountData AccountData = null;
     public string Account;
     public string Password;
     public WindowLock windowLock;

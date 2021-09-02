@@ -482,3 +482,63 @@ public class MiniGameSettingSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class CashShopSender : BaseSender
+{
+    /// <summary>
+    /// 買東西
+    /// </summary>
+    /// <param name="Operation"></param>
+    /// <param name="Cata"></param>
+    /// <param name="Tag"></param>
+    /// <param name="ID"></param>
+    /// <param name="Amount"></param>
+    /// <param name="TotalPrice"></param>
+    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> ID, List<int> Amount, int TotalPrice)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 46,
+            cashShopRequest = new CashShopRequest
+            {
+                OperationType = 1,
+                Cash = GameRoot.Instance.AccountData.Cash,
+                TotalPrice = TotalPrice,
+                Cata = Cata,
+                Tag = Tag,
+                ID = ID,
+                Amount = Amount
+            }
+        };
+        base.SendMsg(msg);
+    }
+    /// <summary>
+    /// 送禮
+    /// </summary>
+    /// <param name="Operation"></param>
+    /// <param name="Cata"></param>
+    /// <param name="Tag"></param>
+    /// <param name="ID"></param>
+    /// <param name="Amount"></param>
+    /// <param name="TotalPrice"></param>
+    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> ID, List<int> Amount, int TotalPrice, string GiftPlayerName)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 46,
+            cashShopRequest = new CashShopRequest
+            {
+                OperationType = 2,
+                Cash = GameRoot.Instance.AccountData.Cash,
+                TotalPrice = TotalPrice,
+                Cata = Cata,
+                Tag = Tag,
+                ID = ID,
+                Amount = Amount,
+                GiftPlayerName = GiftPlayerName
+            }
+        };
+        base.SendMsg(msg);
+    }
+
+}

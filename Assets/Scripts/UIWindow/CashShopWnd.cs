@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 using System.Linq;
-
+using System.Globalization;
 public class CashShopWnd : Inventory
 {
     private static CashShopWnd _instance;
@@ -28,7 +28,7 @@ public class CashShopWnd : Inventory
     //public GameObject panel2L;
     public Sprite PanelSprite1;
     public Sprite PanelSprite2;
-    //public Text txtCoin;
+    public Text CashText;
 
     public Button NewBtn;
     public Button PopBtn;
@@ -68,6 +68,7 @@ public class CashShopWnd : Inventory
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
         InitDemo();
         illustration.SetGenderAge(true, IsPutOff, GameRoot.Instance.ActivePlayer);
+        CashText.text = long.Parse(GameRoot.Instance.AccountData.Cash.ToString(), NumberStyles.AllowThousands).ToString();
         base.InitWnd();
     }
 
@@ -843,5 +844,12 @@ public class CashShopWnd : Inventory
         }
     }
 
+
+    #region Logic
+    public void ProcessCashShopResponse(CashShopResponse rsp)
+    {
+
+    }
+    #endregion
 
 }

@@ -152,7 +152,13 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         LockerServer1 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer1"].AsBsonArray),
                         LockerServer2 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer2"].AsBsonArray),
                         LockerServer3 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer3"].AsBsonArray),
-                        PrivateKey = ServerConstants.PrivateKey
+                        PrivateKey = ServerConstants.PrivateKey,
+                        accountData = new AccountData
+                        {
+                            Account = msg.Account,
+                            Password = msg.loginRequest.Password,
+                            Cash = check.Item2["Cash"].AsInt64
+                        }
                     },
                     players = characters
                 };

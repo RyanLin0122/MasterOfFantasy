@@ -157,6 +157,9 @@ public class NetSvc : MonoBehaviour
             case 45:
                 DoRewards(msg);
                 break;
+            case 47:
+                DoCashShopResponse(msg);
+                break;
         }
     }
     private void ProcessMsg(MOFMsg msg)
@@ -201,6 +204,14 @@ public class NetSvc : MonoBehaviour
         if (msg.players != null)
         {
             GameRoot.Instance.SetPlayers(msg.players);
+        }
+        if (msg.loginResponse.accountData != null)
+        {
+            GameRoot.Instance.AccountData = msg.loginResponse.accountData;
+        }
+        else
+        {
+            print("Account Data is null");
         }
         LoginSys.Instance.EnterServerWnd();
         LoginSys.Instance.serverWnd.ProcessChannelStat(msg.loginResponse.ServerStatus);
@@ -577,6 +588,11 @@ public class NetSvc : MonoBehaviour
         {
             InventoryManager.Instance.RecieveRewards(msg.rewards);
         }
+    }
+
+    public void DoCashShopResponse(ProtoMsg msg)
+    {
+        CashShopWnd.Instance.ProcessCashShopResponse(msg.cashShopResponse);
     }
     #endregion
 

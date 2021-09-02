@@ -47,7 +47,7 @@ public class DBMgr
                     {"Password", msg.loginRequest.Password},
                     {"Mac",msg.loginRequest.MAC },
                     {"GMLevel", 0 },
-                    {"Cash", 0 },
+                    {"Cash", 0L },
                     {"LastLoginTime",DateTime.Now.ToString("MM-dd-HH-mm-yyyy") },
                     {"LastLogoutTime", ""},
                     {"Players", new BsonArray() },
