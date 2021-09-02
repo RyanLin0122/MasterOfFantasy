@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System;
-using LogLib;
-using System.Configuration;
+﻿using PEProtocal;
+using System.Threading.Tasks;
 using System.Threading;
 public class ServerRoot
 {
     Thread Tick_thread;
     private static ServerRoot instance = null;
+    public TaskFactory taskFactory = null;
     public static ServerRoot Instance
     {
         get
@@ -20,7 +19,7 @@ public class ServerRoot
     }
     public void Init()
     {
-
+        taskFactory = new TaskFactory();
         //Service layer
         LogSvc.Init();
         TimerSvc.Instance.Init();

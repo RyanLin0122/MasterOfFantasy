@@ -241,6 +241,8 @@
     <Compile Include="Channel\PlayerStorage.cs" />
     <Compile Include="Common\LifeCycle.cs" />
     <Compile Include="Common\ObjectManager.cs" />
+    <Compile Include="Handler\CashShopHandler.cs" />
+    <Compile Include="Server\GameHandler.cs" />
     <Compile Include="Service\LogService\LogSvc.cs" />
     <Compile Include="Service\NetService\ByteArray.cs" />
     <Compile Include="Common\ServerConstants.cs" />

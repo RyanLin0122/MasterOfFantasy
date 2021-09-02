@@ -213,6 +213,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                         session.WriteAndFlush(msg);
                     }
                     break;
+                case 46: //商城請求
+                    CashShopHandler cashShopHandler = new CashShopHandler();
+                    Task CashShopTask = cashShopHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)
@@ -221,6 +225,7 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
 
     }
+
     public MOFMap GetMap(ServerSession session)
     {
         try
