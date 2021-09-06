@@ -593,12 +593,10 @@ public class CacheSvc
                 int minDamage = (int)(jo["MinDamage"].n);
                 int maxDamage = (int)(jo["MaxDamage"].n);
                 int attackRange = (int)(jo["AttackRange"].n);
-                float accuracy = (float)(jo["Accuracy"].n);
-                float avoid = (float)(jo["Avoid"].n);
-                float critical = (float)(jo["Critical"].n);
-                float magicdefense = (float)(jo["MagicDefense"].n);
-                string AttackSound = jo["AttackSound"].str;
-                string DeathSound = jo["DeathSound"].str;
+                float accuracy = (jo["Accuracy"].n);
+                float avoid = (jo["Avoid"].n);
+                float critical = (jo["Critical"].n);
+                float magicdefense = (jo["MagicDefense"].n);
                 Dictionary<int, float> DropItems = new Dictionary<int, float>();
                 string drop = jo["Drop"].str;
                 string[] drops = drop.Split(new char[] { '_' });
