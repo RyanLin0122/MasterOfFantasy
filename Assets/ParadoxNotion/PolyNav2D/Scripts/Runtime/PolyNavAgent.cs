@@ -199,7 +199,7 @@ namespace PolyNav
             //check if goal is valid
             if ( !map.PointIsValid(goal) ) {
                 if ( closerPointOnInvalid ) {
-                    SetDestination(map.GetCloserEdgePoint(goal), callback);
+                    SetDestination(map.GetCloserEdgePoint(goal, transform.position), callback);
                     return true;
                 } else {
                     OnInvalid();
@@ -485,7 +485,7 @@ namespace PolyNav
             }
 
             if ( !map.PointIsValid(position) ) {
-                position = map.GetCloserEdgePoint(position);
+                position = map.GetCloserEdgePoint(position, transform.position);
             }
         }
 
