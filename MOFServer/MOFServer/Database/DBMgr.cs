@@ -53,9 +53,15 @@ public class DBMgr
                     {"Players", new BsonArray() },
                     {"LockerServer1",new BsonArray() },
                     {"LockerServer2",new BsonArray() },
-                    {"LockerServer3",new BsonArray() }
-
-
+                    {"LockerServer3",new BsonArray() },
+                    {"CashShopBuyPanelFashionServer1", new BsonArray()},
+                    {"CashShopBuyPanelFashionServer2", new BsonArray()},
+                    {"CashShopBuyPanelFashionServer3", new BsonArray()},
+                    {"CashShopBuyPanelOtherServer1", new BsonArray()},
+                    {"CashShopBuyPanelOtherServer2", new BsonArray()},
+                    {"CashShopBuyPanelOtherServer3", new BsonArray()},
+                    {"Friends", new BsonArray() },
+                    {"BlockedPeople", new BsonArray() }
             };
             CacheSvc.Instance.AccountTempData.Add(msg.Account, doc);
             AccCollection.InsertOne(doc);
@@ -64,7 +70,6 @@ public class DBMgr
         {
             Console.WriteLine("Insert Account error: " + e.Message);
         }
-
     }
     public Tuple<bool, BsonDocument> QueryAccountData(string Account)
     {
@@ -111,7 +116,7 @@ public class DBMgr
                     {"CoupleName","" },
                     {"Title","" },
                     {"MapID",1000 },
-                    {"PlayerEquipment",new BsonArray().Add(ItemToBson(CacheSvc.Instance.GetEquipmentByID(Info.Fashionchest))).Add(ItemToBson(CacheSvc.Instance.GetEquipmentByID(Info.Fashionpant))).Add(ItemToBson(CacheSvc.Instance.GetEquipmentByID(Info.Fashionshoes)))},
+                    {"PlayerEquipment",new BsonArray().Add(ItemToBson(Utility.GetEquipmentByID(Info.Fashionchest))).Add(ItemToBson(Utility.GetEquipmentByID(Info.Fashionpant))).Add(ItemToBson(Utility.GetEquipmentByID(Info.Fashionshoes)))},
                     {"Knapsack",new BsonArray() },
                     {"CashKnapsack",new BsonArray() },
                     {"MailBox",new BsonArray() },
@@ -320,7 +325,7 @@ public class DBMgr
                 {
                     {"Type","Consumable" },
                     {"ItemID",item.ItemID },
-                    {"Position",item.Posotion },
+                    {"Position",item.Position },
                     {"Quality",(int)item.Quality },
                     {"Attack",((Consumable)item).Attack },
                     {"Strength",((Consumable)item).Strength },
@@ -346,7 +351,7 @@ public class DBMgr
                 {
                     {"Type","Equipment" },
                     {"ItemID",item.ItemID },
-                    {"Position",item.Posotion },
+                    {"Position",item.Position },
                     {"Quality",(int)item.Quality },
                     {"Attack",((Equipment)item).Attack },
                     {"Strength",((Equipment)item).Strength },
@@ -371,7 +376,7 @@ public class DBMgr
                 {
                     {"Type","Weapon" },
                     {"ItemID",item.ItemID },
-                    {"Position",item.Posotion },
+                    {"Position",item.Position },
                     {"Quality",(int)item.Quality },
                     {"MinDamage",((Weapon)item).MinDamage },
                     {"MaxDamage",((Weapon)item).MaxDamage },
@@ -395,7 +400,7 @@ public class DBMgr
                 {
                     {"Type","EtcItem" },
                     {"ItemID",item.ItemID },
-                    {"Position",item.Posotion },
+                    {"Position",item.Position },
                     {"Quality",(int)item.Quality },
                     {"Count",((EtcItem)item).Count }
                 };
@@ -1321,8 +1326,8 @@ public class DBMgr
                 };
                 if (3000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 1000)
                 {
-                    item.item = CacheSvc.Instance.GetConsumableByID(reader.GetInt32("itemid"));
-                    ((Consumable)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetConsumableByID(reader.GetInt32("itemid"));
+                    ((Consumable)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Consumable)(item.item)).Attack = reader.GetInt32("attack");
                     ((Consumable)(item.item)).Strength = reader.GetInt32("health");
                     ((Consumable)(item.item)).Agility = reader.GetInt32("dex");
@@ -1338,8 +1343,8 @@ public class DBMgr
                 }
                 else if (8000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 3000)
                 {
-                    item.item = CacheSvc.Instance.GetEquipmentByID(reader.GetInt32("itemid"));
-                    ((Equipment)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetEquipmentByID(reader.GetInt32("itemid"));
+                    ((Equipment)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Equipment)(item.item)).Attack = reader.GetInt32("attack");
                     ((Equipment)(item.item)).Strength = reader.GetInt32("health");
                     ((Equipment)(item.item)).Agility = reader.GetInt32("dex");
@@ -1355,8 +1360,8 @@ public class DBMgr
                 }
                 else if (10000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 8000)
                 {
-                    item.item = CacheSvc.Instance.GetWeaponByID(reader.GetInt32("itemid"));
-                    ((Weapon)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetWeaponByID(reader.GetInt32("itemid"));
+                    ((Weapon)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Weapon)(item.item)).Attack = reader.GetInt32("attack");
                     ((Weapon)(item.item)).Strength = reader.GetInt32("health");
                     ((Weapon)(item.item)).Agility = reader.GetInt32("dex");
@@ -1369,7 +1374,7 @@ public class DBMgr
                 }
                 else if (reader.GetInt32("itemid") > 10000)
                 {
-                    item.item = CacheSvc.Instance.GetEtcItemByID(reader.GetInt32("itemid"));
+                    item.item = Utility.GetEtcItemByID(reader.GetInt32("itemid"));
                 }
                 if (!item.item.IsCash)
                 {
@@ -1411,8 +1416,8 @@ public class DBMgr
                 };
                 if (3000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 1000)
                 {
-                    item.item = CacheSvc.Instance.GetConsumableByID(reader.GetInt32("itemid"));
-                    ((Consumable)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetConsumableByID(reader.GetInt32("itemid"));
+                    ((Consumable)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Consumable)(item.item)).Attack = reader.GetInt32("attack");
                     ((Consumable)(item.item)).Strength = reader.GetInt32("health");
                     ((Consumable)(item.item)).Agility = reader.GetInt32("dex");
@@ -1428,8 +1433,8 @@ public class DBMgr
                 }
                 else if (8000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 3000)
                 {
-                    item.item = CacheSvc.Instance.GetEquipmentByID(reader.GetInt32("itemid"));
-                    ((Equipment)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetEquipmentByID(reader.GetInt32("itemid"));
+                    ((Equipment)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Equipment)(item.item)).Attack = reader.GetInt32("attack");
                     ((Equipment)(item.item)).Strength = reader.GetInt32("health");
                     ((Equipment)(item.item)).Agility = reader.GetInt32("dex");
@@ -1445,8 +1450,8 @@ public class DBMgr
                 }
                 else if (10000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 8000)
                 {
-                    item.item = CacheSvc.Instance.GetWeaponByID(reader.GetInt32("itemid"));
-                    ((Weapon)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetWeaponByID(reader.GetInt32("itemid"));
+                    ((Weapon)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Weapon)(item.item)).Attack = reader.GetInt32("attack");
                     ((Weapon)(item.item)).Strength = reader.GetInt32("health");
                     ((Weapon)(item.item)).Agility = reader.GetInt32("dex");
@@ -1459,7 +1464,7 @@ public class DBMgr
                 }
                 else if (reader.GetInt32("itemid") > 10000)
                 {
-                    item.item = CacheSvc.Instance.GetEtcItemByID(reader.GetInt32("itemid"));
+                    item.item = Utility.GetEtcItemByID(reader.GetInt32("itemid"));
                 }
                 EquipmentItems.Add(item.position, item);
             }
@@ -1491,8 +1496,8 @@ public class DBMgr
                 };
                 if (3000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 1000)
                 {
-                    item.item = CacheSvc.Instance.GetConsumableByID(reader.GetInt32("itemid"));
-                    ((Consumable)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetConsumableByID(reader.GetInt32("itemid"));
+                    ((Consumable)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Consumable)(item.item)).Attack = reader.GetInt32("attack");
                     ((Consumable)(item.item)).Strength = reader.GetInt32("health");
                     ((Consumable)(item.item)).Agility = reader.GetInt32("dex");
@@ -1508,8 +1513,8 @@ public class DBMgr
                 }
                 else if (8000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 3000)
                 {
-                    item.item = CacheSvc.Instance.GetEquipmentByID(reader.GetInt32("itemid"));
-                    ((Equipment)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetEquipmentByID(reader.GetInt32("itemid"));
+                    ((Equipment)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Equipment)(item.item)).Attack = reader.GetInt32("attack");
                     ((Equipment)(item.item)).Strength = reader.GetInt32("health");
                     ((Equipment)(item.item)).Agility = reader.GetInt32("dex");
@@ -1525,8 +1530,8 @@ public class DBMgr
                 }
                 else if (10000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 8000)
                 {
-                    item.item = CacheSvc.Instance.GetWeaponByID(reader.GetInt32("itemid"));
-                    ((Weapon)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetWeaponByID(reader.GetInt32("itemid"));
+                    ((Weapon)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Weapon)(item.item)).Attack = reader.GetInt32("attack");
                     ((Weapon)(item.item)).Strength = reader.GetInt32("health");
                     ((Weapon)(item.item)).Agility = reader.GetInt32("dex");
@@ -1539,7 +1544,7 @@ public class DBMgr
                 }
                 else if (reader.GetInt32("itemid") > 10000)
                 {
-                    item.item = CacheSvc.Instance.GetEtcItemByID(reader.GetInt32("itemid"));
+                    item.item = Utility.GetEtcItemByID(reader.GetInt32("itemid"));
                 }
                 if (!item.item.IsCash)
                 {
@@ -1581,8 +1586,8 @@ public class DBMgr
                 };
                 if (3000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 1000)
                 {
-                    item.item = CacheSvc.Instance.GetConsumableByID(reader.GetInt32("itemid"));
-                    ((Consumable)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetConsumableByID(reader.GetInt32("itemid"));
+                    ((Consumable)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Consumable)(item.item)).Attack = reader.GetInt32("attack");
                     ((Consumable)(item.item)).Strength = reader.GetInt32("health");
                     ((Consumable)(item.item)).Agility = reader.GetInt32("dex");
@@ -1598,8 +1603,8 @@ public class DBMgr
                 }
                 else if (8000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 3000)
                 {
-                    item.item = CacheSvc.Instance.GetEquipmentByID(reader.GetInt32("itemid"));
-                    ((Equipment)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetEquipmentByID(reader.GetInt32("itemid"));
+                    ((Equipment)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Equipment)(item.item)).Attack = reader.GetInt32("attack");
                     ((Equipment)(item.item)).Strength = reader.GetInt32("health");
                     ((Equipment)(item.item)).Agility = reader.GetInt32("dex");
@@ -1615,8 +1620,8 @@ public class DBMgr
                 }
                 else if (10000 > reader.GetInt32("itemid") && reader.GetInt32("itemid") > 8000)
                 {
-                    item.item = CacheSvc.Instance.GetWeaponByID(reader.GetInt32("itemid"));
-                    ((Weapon)(item.item)).Quality = CacheSvc.Instance.GetItemQuality(reader.GetInt32("quality"));
+                    item.item = Utility.GetWeaponByID(reader.GetInt32("itemid"));
+                    ((Weapon)(item.item)).Quality = Utility.GetItemQuality(reader.GetInt32("quality"));
                     ((Weapon)(item.item)).Attack = reader.GetInt32("attack");
                     ((Weapon)(item.item)).Strength = reader.GetInt32("health");
                     ((Weapon)(item.item)).Agility = reader.GetInt32("dex");
@@ -1629,7 +1634,7 @@ public class DBMgr
                 }
                 else if (reader.GetInt32("itemid") > 10000)
                 {
-                    item.item = CacheSvc.Instance.GetEtcItemByID(reader.GetInt32("itemid"));
+                    item.item = Utility.GetEtcItemByID(reader.GetInt32("itemid"));
                 }
                 MailBoxItems.Add(item.position, item);
             }

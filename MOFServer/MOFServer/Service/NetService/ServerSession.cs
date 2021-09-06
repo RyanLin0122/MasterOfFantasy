@@ -19,6 +19,7 @@ public class ServerSession
     public int ActiveChannel = -1;
     public int ActiveServer = -1;
     public Player ActivePlayer;
+    public AccountData AccountData;
 
     public ServerSession(IChannel ch,string acc,string pass,string Mac, string IP)
     {
@@ -33,7 +34,7 @@ public class ServerSession
         IChannel channel = context.Channel;
         return channel.GetAttribute(SESSION_KEY).Get();
     }
-
+    
     public static void CloseSession(IChannelHandlerContext context)
     {
         ServerSession session = context.Channel.GetAttribute(SESSION_KEY).Get();

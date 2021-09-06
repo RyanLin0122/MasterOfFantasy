@@ -124,7 +124,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                     int i = 0;
                     foreach (var item in (check.Item2)["Players"].AsBsonArray.Values)
                     {
-                        characters[i] = CacheSvc.Instance.Convert2Player(item.AsBsonDocument);
+                        characters[i] = Utility.Convert2Player(item.AsBsonDocument);
                         i++;
                     }
                     //for(int i = 0; i < CharacterCount; i++)
@@ -148,16 +148,22 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         {
                             ServerStatus = NetSvc.Instance.GameServerStatus,
                             ChannelNums = NetSvc.Instance.ChannelsNum
-                        },
-                        LockerServer1 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer1"].AsBsonArray),
-                        LockerServer2 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer2"].AsBsonArray),
-                        LockerServer3 = CacheSvc.Instance.GetKnapsackFromBson(check.Item2["LockerServer3"].AsBsonArray),
+                        },                        
                         PrivateKey = ServerConstants.PrivateKey,
                         accountData = new AccountData
                         {
                             Account = msg.Account,
                             Password = msg.loginRequest.Password,
-                            Cash = check.Item2["Cash"].AsInt64
+                            Cash = check.Item2["Cash"].AsInt64,
+                            CashShopBuyPanelFashionServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer1"].AsBsonArray),
+                            CashShopBuyPanelFashionServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer2"].AsBsonArray),
+                            CashShopBuyPanelFashionServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer3"].AsBsonArray),
+                            CashShopBuyPanelOtherServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer1"].AsBsonArray),
+                            CashShopBuyPanelOtherServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer2"].AsBsonArray),
+                            CashShopBuyPanelOtherServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer3"].AsBsonArray),
+                            LockerServer1 = Utility.GetInventoryFromBson(check.Item2["LockerServer1"].AsBsonArray),
+                            LockerServer2 = Utility.GetInventoryFromBson(check.Item2["LockerServer2"].AsBsonArray),
+                            LockerServer3 = Utility.GetInventoryFromBson(check.Item2["LockerServer3"].AsBsonArray),
                         }
                     },
                     players = characters

@@ -60,10 +60,10 @@ public class MOFMap
             {
                 //創建MOFPlayer
                 pd = ba[i].AsBsonDocument;
-                Player ActivePlayer = CacheSvc.Instance.Convert2Player(pd); //完整的
+                Player ActivePlayer = Utility.Convert2Player(pd); //完整的
                 ActivePlayer.IsNew = false;
                 ActivePlayer.MapID = mapid;
-                TrimedPlayer trimedPlayer = CacheSvc.Instance.Convert2TrimedPlayer(ActivePlayer); //給別人看的
+                TrimedPlayer trimedPlayer = Utility.Convert2TrimedPlayer(ActivePlayer); //給別人看的
                 trimedPlayer.Position = msg.enterGameReq.Position;
                 characters.TryAdd(msg.enterGameReq.CharacterName, CacheSvc.Instance.MakeCharacter(
                 msg.enterGameReq.Position,

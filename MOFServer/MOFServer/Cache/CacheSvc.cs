@@ -40,477 +40,14 @@ public class CacheSvc
     {
         dbMgr.InsertNewAccount(msg);
     }
-    public Player Convert2Player(BsonDocument Data)
-    {
-        BsonDocument data = Data;
-        Player player = new Player
-        {
-            Name = data["Name"].AsString,
-            Gender = data["Gender"].AsInt32,
-            Job = data["Job"].AsInt32,
-            Level = data["Level"].AsInt32,
-            Exp = data["Exp"].AsInt64,
-            HP = data["HP"].AsInt32,
-            MP = data["MP"].AsInt32,
-            MAXHP = data["MaxHP"].AsInt32,
-            MAXMP = data["MaxMP"].AsInt32,
-            Ribi = data["Ribi"].AsInt64,
-            Att = data["Att"].AsInt32,
-            Strength = data["Strength"].AsInt32,
-            Agility = data["Agility"].AsInt32,
-            Intellect = data["Intellect"].AsInt32,
-            Grade = data["Grade"].AsInt32,
-            IsNew = data["IsNew"].AsBoolean,
-            Guild = data["Guild"].AsString,
-            MailBoxRibi = data["MailBoxRibi"].AsInt64,
-            RestPoint = data["RestPoint"].AsInt32,
-            SwordPoint = data["SwordPoint"].AsInt32,
-            ArcheryPoint = data["ArcheryPoint"].AsInt32,
-            MagicPoint = data["MagicPoint"].AsInt32,
-            TheologyPoint = data["TheologyPoint"].AsInt32,
-            MajorPoint = data["MajorPoint"].AsInt32,
-            CoupleName = data["CoupleName"].AsString,
-            Title = data["Title"].AsString,
-            MapID = data["MapID"].AsInt32,
-            playerEquipments = ToPlayerEquipFromBson(data["PlayerEquipment"].AsBsonArray),
-            Server = data["Server"].AsInt32,
-            CreateTime = data["CreateTime"].AsString,
-            LastLoginTime = data["LastLoginTime"].AsString,
-            NotCashKnapsack = GetKnapsackFromBson(data["Knapsack"].AsBsonArray),
-            CashKnapsack = GetKnapsackFromBson(data["CashKnapsack"].AsBsonArray),
-            MailBoxItems = GetMailBoxFromBson(data["MailBox"].AsBsonArray),
-            MiniGameRatio = data["MiniGameRatio"].AsInt32,
-            MiniGameArr = BsonArr2IntArr(data["MiniGameArr"].AsBsonArray),
-            HighestMiniGameScores = BsonArr2IntArr(data["HighestMiniGameScore"].AsBsonArray),
-            TotalMiniGameScores = BsonArr2IntArr(data["TotalMiniGameScore"].AsBsonArray),
-            EasySuccess = BsonArr2IntArr(data["EasySuccess"].AsBsonArray),
-            EasyFail = BsonArr2IntArr(data["EasyFail"].AsBsonArray),
-            NormalSuccess = BsonArr2IntArr(data["NormalSuccess"].AsBsonArray),
-            NormalFail = BsonArr2IntArr(data["NormalFail"].AsBsonArray),
-            HardSuccess = BsonArr2IntArr(data["HardSuccess"].AsBsonArray),
-            HardFail = BsonArr2IntArr(data["HardFail"].AsBsonArray),
-            CurrentBadge = data["CurrentBadge"].AsInt32,
-            BadgeCollection = BsonArr2IntList(data["Badges"].AsBsonArray),
-            TitleCollection = BsonArr2IntList(data["TitleCollection"].AsBsonArray),
-            diaryInformation = new DiaryInformation { NPC_Info = BsonArr2DiaryInfo(data["DiaryInformation"]["NPC"].AsBsonArray), Monster_Info = BsonArr2DiaryInfo(data["DiaryInformation"]["Monster"].AsBsonArray) },
-            ProcessingQuests = BsonArr2QuestList(data["ProcessingQuests"].AsBsonArray),
-            AcceptableQuests = BsonArr2QuestList(data["AcceptableQuests"].AsBsonArray),
-            FinishedQuests = BsonArr2QuestList(data["FinishedQuests"].AsBsonArray),
-            Honor = data["Honor"].AsInt32
-        };
-        return player;
-    }
-
-
-
+    
     public bool SyncSaveCharacter(string acc, Player player)
     {
         return dbMgr.SyncSaveCharacter(acc, player);
     }
-    public TrimedPlayer Convert2TrimedPlayer(Player p)
-    {
-        TrimedPlayer tp = new TrimedPlayer
-        {
-            Name = p.Name,
-            Gender = p.Gender,
-            Grade = p.Grade,
-            Title = p.Title,
-            Att = p.Att,
-            Agility = p.Agility,
-            Strength = p.Strength,
-            Intellect = p.Intellect,
-            Level = p.Level,
-            Job = p.Job,
-            Exp = p.Exp,
-            HP = p.HP,
-            MP = p.MP,
-            MapID = p.MapID,
-            MAXHP = p.MAXHP,
-            MAXMP = p.MAXMP,
-            Guild = p.Guild,
-            playerEquipments = p.playerEquipments,
-            CoupleName = p.CoupleName,
-            Ribi = p.Ribi,
-            Server = p.Server
-        };
-        return tp;
-    }
+    
 
-    public int[] BsonArr2IntArr(BsonArray bson)
-    {
-        int[] res = new int[bson.Count];
-        for (int i = 0; i < bson.Count; i++)
-        {
-            res[i] = bson[i].AsInt32;
-        }
-        return res;
-    }
-    public List<int> BsonArr2IntList(BsonArray bson)
-    {
-        List<int> r = new List<int>();
-        foreach (var item in bson.Values)
-        {
-            r.Add(item.AsInt32);
-        }
-        return r;
-    }
-    public Dictionary<int, int> BsonArr2DiaryInfo(BsonArray bson)
-    {
-        Dictionary<int, int> r = new Dictionary<int, int>();
-        foreach (var item in bson.Values)
-        {
-            r.Add(item.AsBsonDocument["ID"].AsInt32, item.AsBsonDocument["Level"].AsInt32);
-        }
-        return r;
-    }
-    public Dictionary<int, int> BsonArr2Dic_int_int(BsonArray bson)
-    {
-        Dictionary<int, int> r = new Dictionary<int, int>();
-        foreach (var item in bson.Values)
-        {
-            r.Add(item.AsBsonDocument["ID"].AsInt32, item.AsBsonDocument["Amount"].AsInt32);
-        }
-        return r;
-    }
-    public List<Quest> BsonArr2QuestList(BsonArray bson)
-    {
-        List<Quest> quests = new List<Quest>();
-        foreach (var value in bson.Values)
-        {
-            quests.Add(BsonDoc2Quest(value.AsBsonDocument));
-        }
-        return quests;
-    }
-    public Quest BsonDoc2Quest(BsonDocument doc)
-    {
-        Quest quest = new Quest();
-        quest.questType = (QuestType)Enum.Parse(typeof(QuestType), doc["QuestType"].AsString);
-        BsonArray startDate = doc["StartDate"].AsBsonArray;
-        quest.StartDate = TimerSvc.GetDateTime(startDate[0].AsInt32, startDate[1].AsInt32, startDate[2].AsInt32, startDate[3].AsInt32, startDate[4].AsInt32, startDate[5].AsInt32);
-        quest.HasCollectItems = BsonArr2Dic_int_int(doc["HasCollectItems"].AsBsonArray);
-        quest.QuestID = doc["ID"].AsInt32;
-        quest.questState = (QuestState)Enum.Parse(typeof(QuestState), doc["QuestState"].AsString);
-        quest.HasKilledMonsters = BsonArr2Dic_int_int(doc["HasKilledMonsters"].AsBsonArray);
-        BsonArray restAcceptableTimes = doc["RestAcceptableTime"].AsBsonArray;
-
-        // quest.RestAcceptableTime = doc["RestAcceptableTime"].AsInt32;
-        BsonArray restTime = doc["RestTime"].AsBsonArray;
-        quest.RestTime = TimerSvc.GetTimeSpan(restTime[0].AsInt32, restTime[1].AsInt32, restTime[2].AsInt32, restTime[3].AsInt32);
-        BsonArray finishDate = doc["FinishDate"].AsBsonArray;
-        quest.FinishedDate = TimerSvc.GetDateTime(finishDate[0].AsInt32, finishDate[1].AsInt32, finishDate[2].AsInt32, finishDate[3].AsInt32, finishDate[4].AsInt32, finishDate[5].AsInt32);
-        return quest;
-    }
-    public Dictionary<int, Item> GetKnapsackFromBson(BsonArray array)
-    {
-        Dictionary<int, Item> knapsack = new Dictionary<int, Item>();
-        foreach (var item in array)
-        {
-            if (item["Type"].AsString == ItemType.Equipment.ToString())
-            {
-                Equipment e = GetEquipmentByID(item["ItemID"].AsInt32);
-
-                e.Posotion = item["Position"].AsInt32;
-                e.Quality = GetItemQuality(item["Quality"].AsInt32);
-                e.Attack = item["Attack"].AsInt32;
-                e.Strength = item["Strength"].AsInt32;
-                e.Agility = item["Agility"].AsInt32;
-                e.Intellect = item["Intellect"].AsInt32;
-                e.HP = item["HP"].AsInt32;
-                e.MP = item["MP"].AsInt32;
-                e.Accuracy = (float)item["Accuracy"].AsDouble;
-                e.Avoid = (float)item["Avoid"].AsDouble;
-                e.Critical = (float)item["Critical"].AsDouble;
-                e.Defense = item["Defense"].AsInt32;
-                e.MinDamage = item["MinDamage"].AsInt32;
-                e.MaxDamage = item["MaxDamage"].AsInt32;
-                e.MagicDefense = (float)item["MagicDefense"].AsDouble;
-                e.DropRate = (float)item["DropRate"].AsDouble;
-                e.RestRNum = item["RestRNum"].AsInt32;
-                e.Count = item["Count"].AsInt32;
-                knapsack.Add(e.Posotion, e);
-            }
-            else if (item["Type"].AsString == ItemType.Weapon.ToString())
-            {
-                Weapon w = GetWeaponByID(item["itemID"].AsInt32);
-                w.Posotion = item["Position"].AsInt32;
-                w.Quality = GetItemQuality(item["Quality"].AsInt32);
-                w.MinDamage = item["MinDamage"].AsInt32;
-                w.MaxDamage = item["MaxDamage"].AsInt32;
-                w.AttSpeed = item["AttSpeed"].AsInt32;
-                w.Range = item["Range"].AsInt32;
-                w.Attack = item["Attack"].AsInt32;
-                w.Strength = item["Strength"].AsInt32;
-                w.Agility = item["Agility"].AsInt32;
-                w.Intellect = item["Intellect"].AsInt32;
-                w.Accuracy = (float)item["Accuracy"].AsDouble;
-                w.Avoid = (float)item["Avoid"].AsDouble;
-                w.Critical = (float)item["Critical"].AsDouble;
-                w.DropRate = (float)item["DropRate"].AsDouble;
-                w.RestRNum = item["RestRNum"].AsInt32;
-                w.Property = item["Property"].AsString;
-                w.Count = item["Count"].AsInt32;
-                knapsack.Add(w.Posotion, w);
-            }
-            else if (item["Type"].AsString == ItemType.Consumable.ToString())
-            {
-                Consumable c = GetConsumableByID(item["ItemID"].AsInt32);
-
-                c.Posotion = item["Position"].AsInt32;
-                c.Quality = GetItemQuality(item["Quality"].AsInt32);
-                c.Attack = item["Attack"].AsInt32;
-                c.Strength = item["Strength"].AsInt32;
-                c.Agility = item["Agility"].AsInt32;
-                c.Intellect = item["Intellect"].AsInt32;
-                c.HP = item["HP"].AsInt32;
-                c.MP = item["MP"].AsInt32;
-                c.Accuracy = (float)item["Accuracy"].AsDouble;
-                c.Avoid = (float)item["Avoid"].AsDouble;
-                c.Critical = (float)item["Critical"].AsDouble;
-                c.Defense = item["Defense"].AsInt32;
-                c.MagicDefense = (float)item["MagicDefense"].AsDouble;
-                c.MinDamage = item["MinDamage"].AsInt32;
-                c.MaxDamage = item["MaxDamage"].AsInt32;
-                c.Exp = item["Exp"].AsInt32;
-                c.ExpRate = (float)item["ExpRate"].AsDouble;
-                c.DropRate = (float)item["DropRate"].AsDouble;
-                c.Count = item["Count"].AsInt32;
-                knapsack.Add(c.Posotion, c);
-            }
-            else if (item["Type"].AsString == ItemType.EtcItem.ToString())
-            {
-                EtcItem t = GetEtcItemByID(item["ItemID"].AsInt32);
-                t.Posotion = item["Position"].AsInt32;
-                t.Count = item["Count"].AsInt32;
-                t.Quality = GetItemQuality(item["Quality"].AsInt32);
-                knapsack.Add(t.Posotion, t);
-            }
-        }
-        return knapsack;
-    }
-    public Dictionary<int, Item> GetMailBoxFromBson(BsonArray array)
-    {
-        Dictionary<int, Item> mailbox = new Dictionary<int, Item>();
-        foreach (var item in array)
-        {
-            if (item["Type"].AsString == ItemType.Equipment.ToString())
-            {
-                Equipment e = GetEquipmentByID(item["ItemID"].AsInt32);
-
-                e.Posotion = item["Position"].AsInt32;
-                e.Quality = GetItemQuality(item["Quality"].AsInt32);
-                e.Attack = item["Attack"].AsInt32;
-                e.Strength = item["Strength"].AsInt32;
-                e.Agility = item["Agility"].AsInt32;
-                e.Intellect = item["Intellect"].AsInt32;
-                e.HP = item["HP"].AsInt32;
-                e.MP = item["MP"].AsInt32;
-                e.Accuracy = (float)item["Accuracy"].AsDouble;
-                e.Avoid = (float)item["Avoid"].AsDouble;
-                e.Critical = (float)item["Critical"].AsDouble;
-                e.Defense = item["Defense"].AsInt32;
-                e.MinDamage = item["MinDamage"].AsInt32;
-                e.MaxDamage = item["MaxDamage"].AsInt32;
-                e.MagicDefense = (float)item["MagicDefense"].AsDouble;
-                e.DropRate = (float)item["DropRate"].AsDouble;
-                e.RestRNum = item["RestRNum"].AsInt32;
-                e.Count = item["Count"].AsInt32;
-                mailbox.Add(e.Posotion, e);
-            }
-            else if (item["Type"].AsString == ItemType.Weapon.ToString())
-            {
-                Weapon w = GetWeaponByID(item["itemID"].AsInt32);
-                w.Posotion = item["Position"].AsInt32;
-                w.Quality = GetItemQuality(item["Quality"].AsInt32);
-                w.MinDamage = item["MinDamage"].AsInt32;
-                w.MaxDamage = item["MaxDamage"].AsInt32;
-                w.AttSpeed = item["AttSpeed"].AsInt32;
-                w.Range = item["Range"].AsInt32;
-                w.Attack = item["Attack"].AsInt32;
-                w.Strength = item["Strength"].AsInt32;
-                w.Agility = item["Agility"].AsInt32;
-                w.Intellect = item["Intellect"].AsInt32;
-                w.Accuracy = (float)item["Accuracy"].AsDouble;
-                w.Avoid = (float)item["Avoid"].AsDouble;
-                w.Critical = (float)item["Critical"].AsDouble;
-                w.DropRate = (float)item["DropRate"].AsDouble;
-                w.RestRNum = item["RestRNum"].AsInt32;
-                w.Property = item["Property"].AsString;
-                w.Count = item["Count"].AsInt32;
-                mailbox.Add(w.Posotion, w);
-            }
-            else if (item["Type"].AsString == ItemType.Consumable.ToString())
-            {
-                Consumable c = GetConsumableByID(item["ItemID"].AsInt32);
-
-                c.Posotion = item["Position"].AsInt32;
-                c.Quality = GetItemQuality(item["Quality"].AsInt32);
-                c.Attack = item["Attack"].AsInt32;
-                c.Strength = item["Strength"].AsInt32;
-                c.Agility = item["Agility"].AsInt32;
-                c.Intellect = item["Intellect"].AsInt32;
-                c.HP = item["HP"].AsInt32;
-                c.MP = item["MP"].AsInt32;
-                c.Accuracy = (float)item["Accuracy"].AsDouble;
-                c.Avoid = (float)item["Avoid"].AsDouble;
-                c.Critical = (float)item["Critical"].AsDouble;
-                c.Defense = item["Defense"].AsInt32;
-                c.MagicDefense = (float)item["MagicDefense"].AsDouble;
-                c.MinDamage = item["MinDamage"].AsInt32;
-                c.MaxDamage = item["MaxDamage"].AsInt32;
-                c.Exp = item["Exp"].AsInt32;
-                c.ExpRate = (float)item["ExpRate"].AsDouble;
-                c.DropRate = (float)item["DropRate"].AsDouble;
-                c.Count = item["Count"].AsInt32;
-                mailbox.Add(c.Posotion, c);
-            }
-            else if (item["Type"].AsString == ItemType.EtcItem.ToString())
-            {
-                EtcItem t = GetEtcItemByID(item["ItemID"].AsInt32);
-                t.Count = item["Count"].AsInt32;
-                mailbox.Add(t.Posotion, t);
-            }
-
-        }
-        return mailbox;
-    }
-    public PlayerEquipments ToPlayerEquipFromBson(BsonArray array)
-    {
-        PlayerEquipments r = new PlayerEquipments();
-        foreach (var Equip in array)
-        {
-            if (Equip["Type"].AsString == ItemType.Equipment.ToString())
-            {
-                Equipment e = GetEquipmentByID(Equip["ItemID"].AsInt32);
-                e.Posotion = Equip["Position"].AsInt32;
-                e.Quality = GetItemQuality(Equip["Quality"].AsInt32);
-                e.Attack = Equip["Attack"].AsInt32;
-                e.Strength = Equip["Strength"].AsInt32;
-                e.Agility = Equip["Agility"].AsInt32;
-                e.Intellect = Equip["Intellect"].AsInt32;
-                e.HP = Equip["HP"].AsInt32;
-                e.MP = Equip["MP"].AsInt32;
-                e.Accuracy = (float)Equip["Accuracy"].AsDouble;
-                e.Avoid = (float)Equip["Avoid"].AsDouble;
-                e.Critical = (float)Equip["Critical"].AsDouble;
-                e.Defense = Equip["Defense"].AsInt32;
-                e.MinDamage = Equip["MinDamage"].AsInt32;
-                e.MaxDamage = Equip["MaxDamage"].AsInt32;
-                e.MagicDefense = (float)Equip["MagicDefense"].AsDouble;
-                e.DropRate = (float)Equip["DropRate"].AsDouble;
-                e.RestRNum = Equip["RestRNum"].AsInt32;
-                switch (e.EquipType)
-                {
-                    case EquipmentType.Badge:
-                        r.Badge = e;
-                        break;
-                    case EquipmentType.Head:
-                        r.B_Head = e;
-                        break;
-                    case EquipmentType.Cape:
-                        r.F_Cape = e;
-                        break;
-                    case EquipmentType.Chest:
-                        if (!e.IsCash)
-                        {
-                            r.B_Chest = e;
-                        }
-                        else
-                        {
-                            r.F_Chest = e;
-                        }
-                        break;
-                    case EquipmentType.FaceType:
-                        r.F_FaceType = e;
-                        break;
-                    case EquipmentType.FaceAcc:
-                        r.F_FaceAcc = e;
-                        break;
-                    case EquipmentType.Glasses:
-                        r.F_Glasses = e;
-                        break;
-                    case EquipmentType.ChatBox:
-                        r.F_ChatBox = e;
-                        break;
-                    case EquipmentType.Gloves:
-                        if (!e.IsCash)
-                        {
-                            r.B_Glove = e;
-                        }
-                        else
-                        {
-                            r.F_Glove = e;
-                        }
-                        break;
-                    case EquipmentType.HairAcc:
-                        r.F_Hairacc = e;
-                        break;
-                    case EquipmentType.HairStyle:
-                        r.F_HairStyle = e;
-                        break;
-                    case EquipmentType.NameBox:
-                        r.F_NameBox = e;
-                        break;
-                    case EquipmentType.Neck:
-                        r.B_Neck = e;
-                        break;
-                    case EquipmentType.Ring:
-                        if (e.Posotion == 2)
-                        {
-                            r.B_Ring1 = e;
-                        }
-                        else if (e.Posotion == 4)
-                        {
-                            r.B_Ring2 = e;
-                        }
-                        break;
-                    case EquipmentType.Shield:
-                        r.B_Shield = e;
-                        break;
-                    case EquipmentType.Pant:
-                        if (!e.IsCash)
-                        {
-                            r.B_Pants = e;
-                        }
-                        else
-                        {
-                            r.F_Pants = e;
-                        }
-                        break;
-                    case EquipmentType.Shoes:
-                        if (!e.IsCash)
-                        {
-                            r.B_Shoes = e;
-                        }
-                        else
-                        {
-                            r.F_Shoes = e;
-                        }
-                        break;
-                }
-            }
-            else if (Equip["Type"].AsString == ItemType.Weapon.ToString())
-            {
-                Weapon e = GetWeaponByID(Equip["itemID"].AsInt32);
-                e.Posotion = Equip["Position"].AsInt32;
-                e.Quality = GetItemQuality(Equip["Quality"].AsInt32);
-                e.Attack = Equip["Attack"].AsInt32;
-                e.Strength = Equip["Strength"].AsInt32;
-                e.Agility = Equip["Agility"].AsInt32;
-                e.Intellect = Equip["Intellect"].AsInt32;
-                e.Accuracy = (float)Equip["Accuracy"].AsDouble;
-                e.Avoid = (float)Equip["Avoid"].AsDouble;
-                e.Critical = (float)Equip["Critical"].AsDouble;
-                e.MinDamage = Equip["MinDamage"].AsInt32;
-                e.MaxDamage = Equip["MaxDamage"].AsInt32;
-                e.DropRate = (float)Equip["DropRate"].AsDouble;
-                e.RestRNum = Equip["RestRNum"].AsInt32;
-                r.B_Weapon = e;
-            }
-
-        }
-        return r;
-    }
-
+    
 
     //查詢名字是否存在
     public bool IsNameExist(string name)
@@ -554,9 +91,9 @@ public class CacheSvc
                 MapID = 1000,
                 playerEquipments = new PlayerEquipments
                 {
-                    F_Chest = GetEquipmentByID(info.Fashionchest),
-                    F_Pants = GetEquipmentByID(info.Fashionpant),
-                    F_Shoes = GetEquipmentByID(info.Fashionshoes)
+                    F_Chest = Utility.GetEquipmentByID(info.Fashionchest),
+                    F_Pants = Utility.GetEquipmentByID(info.Fashionpant),
+                    F_Shoes = Utility.GetEquipmentByID(info.Fashionshoes)
                 },
                 CashKnapsack = new Dictionary<int, Item>(),
                 NotCashKnapsack = new Dictionary<int, Item>(),
@@ -669,7 +206,7 @@ public class CacheSvc
 
 
     #region InventorySystem 
-    public Dictionary<int, Item> ItemDic = new Dictionary<int, Item>();
+    public static Dictionary<int, Item> ItemDic = new Dictionary<int, Item>();
     public Dictionary<int, Dictionary<int, EncodedItem>> CharacterLocker = new Dictionary<int, Dictionary<int, EncodedItem>>();
     public Dictionary<int, Dictionary<int, EncodedItem>> CharacterLocker_Cash = new Dictionary<int, Dictionary<int, EncodedItem>>();
     public Dictionary<int, Dictionary<int, EncodedItem>> CharacterMailBox = new Dictionary<int, Dictionary<int, EncodedItem>>();
@@ -811,7 +348,7 @@ public class CacheSvc
                         {
                             ck[ko.NewPosition[0]] = ko.items[0];
                         }
-                        ck[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
+                        ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         ck.Remove(ko.OldPosition[0]);
                     }
                     else
@@ -824,7 +361,7 @@ public class CacheSvc
                         {
                             nk[ko.NewPosition[0]] = ko.items[0];
                         }
-                        nk[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
+                        nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         nk.Remove(ko.OldPosition[0]);
                     }
 
@@ -839,16 +376,16 @@ public class CacheSvc
                             Item item = ck[ko.NewPosition[0]];
                             ck[ko.NewPosition[0]] = ck[ko.OldPosition[0]];
                             ck[ko.OldPosition[0]] = item;
-                            ck[ko.OldPosition[0]].Posotion = ko.OldPosition[0];
-                            ck[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
+                            ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
+                            ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         }
                         else
                         {
                             Item item = nk[ko.NewPosition[0]];
                             nk[ko.NewPosition[0]] = nk[ko.OldPosition[0]];
                             nk[ko.OldPosition[0]] = item;
-                            nk[ko.OldPosition[0]].Posotion = ko.OldPosition[0];
-                            nk[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
+                            nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
+                            nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         }
                         return;
                     }
@@ -859,11 +396,11 @@ public class CacheSvc
                         {
                             if (!item.IsCash)
                             {
-                                nk[item.Posotion] = item;
+                                nk[item.Position] = item;
                             }
                             else
                             {
-                                ck[item.Posotion] = item;
+                                ck[item.Position] = item;
                             }
                         }
                     }
@@ -875,11 +412,11 @@ public class CacheSvc
                 {
                     if (item.IsCash)
                     {
-                        ck.Remove(item.Posotion);
+                        ck.Remove(item.Position);
                     }
                     else
                     {
-                        nk.Remove(item.Posotion);
+                        nk.Remove(item.Position);
                     }
                 }
                 session.WriteAndFlush(msg);
@@ -890,11 +427,11 @@ public class CacheSvc
                 {
                     if (!item.IsCash)
                     {
-                        nk.Add(item.Posotion, item); //這個會錯
+                        nk.Add(item.Position, item); //這個會錯
                     }
                     else
                     {
-                        ck.Add(item.Posotion, item);
+                        ck.Add(item.Position, item);
                     }
                 }
                 session.ActivePlayer.Ribi -= ko.Ribi;
@@ -903,7 +440,7 @@ public class CacheSvc
             case 7:
 
                 break;
-#endregion
+                #endregion
         }
 
     }
@@ -1232,61 +769,7 @@ public class CacheSvc
         */
     }
 
-    public ItemQuality GetItemQuality(int num)
-    {
-        switch (num)
-        {
-            case 0:
-                return ItemQuality.Common;
-            case 1:
-                return ItemQuality.Uncommon;
-            case 2:
-                return ItemQuality.Rare;
-            case 3:
-                return ItemQuality.Epic;
-            case 4:
-                return ItemQuality.Perfect;
-            case 5:
-                return ItemQuality.Legendary;
-            case 6:
-                return ItemQuality.Artifact;
-        }
-        return ItemQuality.Common;
-    }
-    public Consumable GetConsumableByID(int ItemID)
-    {
-        Consumable itemr = (Consumable)ItemDic[ItemID];
-        Consumable item = new Consumable(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
-            itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.HP, itemr.MP, itemr.Defense, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.ExpRate,
-            itemr.Exp, itemr.DropRate, itemr.BuffTime, itemr.ColdTime, itemr.Effect);
-        return item;
 
-    }
-    public Equipment GetEquipmentByID(int ItemID)
-    {
-        Equipment itemr = (Equipment)ItemDic[ItemID];
-        Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
-            itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum);
-
-        return item;
-    }
-    public Weapon GetWeaponByID(int ItemID)
-    {
-        Weapon itemr = (Weapon)ItemDic[ItemID];
-        Weapon item = new Weapon(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
-            itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Level, itemr.MinDamage, itemr.MaxDamage, itemr.AttSpeed, itemr.Range, itemr.Property, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum);
-        return item;
-    }
-    public EtcItem GetEtcItemByID(int ItemID)
-    {
-        EtcItem itemr = (EtcItem)ItemDic[ItemID];
-        EtcItem item = new EtcItem(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
-            itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1);
-        return item;
-    }
 
     public void ParseItemJson()
     {
@@ -1332,122 +815,122 @@ public class CacheSvc
                             }
                         }
                         Consumable item = new Consumable(
-                            ToInt(jo, "ItemID")
-                            , ToStr(jo, "Name")
-                            , ToEnum<ItemType>(jo, "Type")
-                            , ToEnum<ItemQuality>(jo, "Quality")
-                            , ToStr(jo, "Des")
-                            , ToInt(jo, "Capacity")
-                            , ToInt(jo, "BuyPrice")
-                            , ToInt(jo, "SellPrice")
-                            , ToStr(jo, "Sprite")
+                            Utility.ToInt(jo, "ItemID")
+                            , Utility.ToStr(jo, "Name")
+                            , Utility.ToEnum<ItemType>(jo, "Type")
+                            , Utility.ToEnum<ItemQuality>(jo, "Quality")
+                            , Utility.ToStr(jo, "Des")
+                            , Utility.ToInt(jo, "Capacity")
+                            , Utility.ToInt(jo, "BuyPrice")
+                            , Utility.ToInt(jo, "SellPrice")
+                            , Utility.ToStr(jo, "Sprite")
                             , isCash
                             , canTransaction
                             , 1
-                            , ToInt(jo, "Attack")
-                            , ToInt(jo, "Strength")
-                            , ToInt(jo, "Agility")
-                            , ToInt(jo, "Intellect")
-                            , ToInt(jo, "HP")
-                            , ToInt(jo, "MP")
-                            , ToInt(jo, "Defense")
-                            , ToInt(jo, "MinDamage")
-                            , ToInt(jo, "MaxDamage")
-                            , ToFloat(jo, "Accuracy")
-                            , ToFloat(jo, "Avoid")
-                            , ToFloat(jo, "Critical")
-                            , ToFloat(jo, "MagicDefense")
-                            , ToFloat(jo, "ExpRate")
-                            , ToInt(jo, "Exp")
-                            , ToFloat(jo, "DropRate")
-                            , ToInt(jo, "BuffTime")
-                            , ToInt(jo, "ColdTime")
+                            , Utility.ToInt(jo, "Attack")
+                            , Utility.ToInt(jo, "Strength")
+                            , Utility.ToInt(jo, "Agility")
+                            , Utility.ToInt(jo, "Intellect")
+                            , Utility.ToInt(jo, "HP")
+                            , Utility.ToInt(jo, "MP")
+                            , Utility.ToInt(jo, "Defense")
+                            , Utility.ToInt(jo, "MinDamage")
+                            , Utility.ToInt(jo, "MaxDamage")
+                            , Utility.ToFloat(jo, "Accuracy")
+                            , Utility.ToFloat(jo, "Avoid")
+                            , Utility.ToFloat(jo, "Critical")
+                            , Utility.ToFloat(jo, "MagicDefense")
+                            , Utility.ToFloat(jo, "ExpRate")
+                            , Utility.ToInt(jo, "Exp")
+                            , Utility.ToFloat(jo, "DropRate")
+                            , Utility.ToInt(jo, "BuffTime")
+                            , Utility.ToInt(jo, "ColdTime")
                             , Effects
                             );
                         ItemDic.Add(item.ItemID, item);
                         break;
                     case "Equipment":
                         Equipment equipItem = new Equipment(
-                            ToInt(jo, "ItemID")
-                            , ToStr(jo, "Name")
-                            , ToEnum<ItemType>(jo, "Type")
-                            , ToEnum<ItemQuality>(jo, "Quality")
-                            , ToStr(jo, "Des")
-                            , ToInt(jo, "Capacity")
-                            , ToInt(jo, "BuyPrice")
-                            , ToInt(jo, "SellPrice")
-                            , ToStr(jo, "Sprite")
+                            Utility.ToInt(jo, "ItemID")
+                            , Utility.ToStr(jo, "Name")
+                            , Utility.ToEnum<ItemType>(jo, "Type")
+                            , Utility.ToEnum<ItemQuality>(jo, "Quality")
+                            , Utility.ToStr(jo, "Des")
+                            , Utility.ToInt(jo, "Capacity")
+                            , Utility.ToInt(jo, "BuyPrice")
+                            , Utility.ToInt(jo, "SellPrice")
+                            , Utility.ToStr(jo, "Sprite")
                             , isCash
                             , canTransaction
                             , 1
-                            , ToInt(jo, "Attack")
-                            , ToInt(jo, "Strength")
-                            , ToInt(jo, "Agility")
-                            , ToInt(jo, "Intellect")
-                            , ToInt(jo, "Job")
-                            , ToInt(jo, "Level")
-                            , ToInt(jo, "Gender")
-                            , ToInt(jo, "Defense")
-                            , ToInt(jo, "HP")
-                            , ToInt(jo, "MP")
-                            , ToStr(jo, "Title")
-                            , ToInt(jo, "MinDamage")
-                            , ToInt(jo, "MaxDamage")
-                            , ToFloat(jo, "Accuracy")
-                            , ToFloat(jo, "Avoid")
-                            , ToFloat(jo, "Critical")
-                            , ToFloat(jo, "MagicDefense")
-                            , ToEnum<EquipmentType>(jo, "EquipmentType")
-                            , ToFloat(jo, "DropRate")
-                            , ToInt(jo, "RestRNum")
+                            , Utility.ToInt(jo, "Attack")
+                            , Utility.ToInt(jo, "Strength")
+                            , Utility.ToInt(jo, "Agility")
+                            , Utility.ToInt(jo, "Intellect")
+                            , Utility.ToInt(jo, "Job")
+                            , Utility.ToInt(jo, "Level")
+                            , Utility.ToInt(jo, "Gender")
+                            , Utility.ToInt(jo, "Defense")
+                            , Utility.ToInt(jo, "HP")
+                            , Utility.ToInt(jo, "MP")
+                            , Utility.ToStr(jo, "Title")
+                            , Utility.ToInt(jo, "MinDamage")
+                            , Utility.ToInt(jo, "MaxDamage")
+                            , Utility.ToFloat(jo, "Accuracy")
+                            , Utility.ToFloat(jo, "Avoid")
+                            , Utility.ToFloat(jo, "Critical")
+                            , Utility.ToFloat(jo, "MagicDefense")
+                            , Utility.ToEnum<EquipmentType>(jo, "EquipmentType")
+                            , Utility.ToFloat(jo, "DropRate")
+                            , Utility.ToInt(jo, "RestRNum")
                             );
                         ItemDic.Add(equipItem.ItemID, equipItem);
                         break;
                     case "Weapon":
                         Weapon weapon = new Weapon(
-                            ToInt(jo, "ItemID")
-                            , ToStr(jo, "Name")
-                            , ToEnum<ItemType>(jo, "Type")
-                            , ToEnum<ItemQuality>(jo, "Quality")
-                            , ToStr(jo, "Des")
-                            , ToInt(jo, "Capacity")
-                            , ToInt(jo, "BuyPrice")
-                            , ToInt(jo, "SellPrice")
-                            , ToStr(jo, "Sprite")
+                            Utility.ToInt(jo, "ItemID")
+                            , Utility.ToStr(jo, "Name")
+                            , Utility.ToEnum<ItemType>(jo, "Type")
+                            , Utility.ToEnum<ItemQuality>(jo, "Quality")
+                            , Utility.ToStr(jo, "Des")
+                            , Utility.ToInt(jo, "Capacity")
+                            , Utility.ToInt(jo, "BuyPrice")
+                            , Utility.ToInt(jo, "SellPrice")
+                            , Utility.ToStr(jo, "Sprite")
                             , isCash
                             , canTransaction
                             , 1
-                            , ToInt(jo, "Level")
-                            , ToInt(jo, "MinDamage")
-                            , ToInt(jo, "MaxDamage")
-                            , ToInt(jo, "AttSpeed")
-                            , ToInt(jo, "Range")
-                            , ToStr(jo, "Property")
-                            , ToInt(jo, "Attack")
-                            , ToInt(jo, "Strength")
-                            , ToInt(jo, "Agility")
-                            , ToInt(jo, "Intellect")
-                            , ToInt(jo, "Job")
-                            , ToFloat(jo, "Accuracy")
-                            , ToFloat(jo, "Avoid")
-                            , ToFloat(jo, "Critical")
-                            , ToEnum<WeaponType>(jo, "WeapType")
-                            , ToFloat(jo, "DropRate")
-                            , ToInt(jo, "RestRNum")
+                            , Utility.ToInt(jo, "Level")
+                            , Utility.ToInt(jo, "MinDamage")
+                            , Utility.ToInt(jo, "MaxDamage")
+                            , Utility.ToInt(jo, "AttSpeed")
+                            , Utility.ToInt(jo, "Range")
+                            , Utility.ToStr(jo, "Property")
+                            , Utility.ToInt(jo, "Attack")
+                            , Utility.ToInt(jo, "Strength")
+                            , Utility.ToInt(jo, "Agility")
+                            , Utility.ToInt(jo, "Intellect")
+                            , Utility.ToInt(jo, "Job")
+                            , Utility.ToFloat(jo, "Accuracy")
+                            , Utility.ToFloat(jo, "Avoid")
+                            , Utility.ToFloat(jo, "Critical")
+                            , Utility.ToEnum<WeaponType>(jo, "WeapType")
+                            , Utility.ToFloat(jo, "DropRate")
+                            , Utility.ToInt(jo, "RestRNum")
                             );
                         ItemDic.Add(weapon.ItemID, weapon);
                         break;
                     case "EtcItem":
                         EtcItem etcItem = new EtcItem(
-                            ToInt(jo, "ItemID")
-                            , ToStr(jo, "Name")
-                            , ToEnum<ItemType>(jo, "Type")
-                            , ToEnum<ItemQuality>(jo, "Quality")
-                            , ToStr(jo, "Des")
-                            , ToInt(jo, "Capacity")
-                            , ToInt(jo, "BuyPrice")
-                            , ToInt(jo, "SellPrice")
-                            , ToStr(jo, "Sprite")
+                            Utility.ToInt(jo, "ItemID")
+                            , Utility.ToStr(jo, "Name")
+                            , Utility.ToEnum<ItemType>(jo, "Type")
+                            , Utility.ToEnum<ItemQuality>(jo, "Quality")
+                            , Utility.ToStr(jo, "Des")
+                            , Utility.ToInt(jo, "Capacity")
+                            , Utility.ToInt(jo, "BuyPrice")
+                            , Utility.ToInt(jo, "SellPrice")
+                            , Utility.ToStr(jo, "Sprite")
                             , isCash
                             , canTransaction
                             , 1);
@@ -1459,7 +942,7 @@ public class CacheSvc
 
         }
     }
-    
+
     public Dictionary<int, MonsterInfo> MonsterInfoDic;
     public void ParseMonsterJson()
     {
@@ -1483,24 +966,24 @@ public class CacheSvc
                 }
                 MonsterInfo info = new MonsterInfo
                 {
-                    MonsterID = ToInt(jo, "MonsterID"),
+                    MonsterID = Utility.ToInt(jo, "MonsterID"),
                     Name = jo["Name"].ToString(),
-                    MaxHp = ToInt(jo, "MaxHP"),
-                    monsterAttribute = ToEnum<MonsterAttribute>(jo, "Attribute"),
+                    MaxHp = Utility.ToInt(jo, "MaxHP"),
+                    monsterAttribute = Utility.ToEnum<MonsterAttribute>(jo, "Attribute"),
                     IsActive = jo["IsActive"].ToString() == "true" ? true : false,
-                    Ribi = ToInt(jo, "Ribi"),
-                    BossLevel = ToInt(jo, "BossLevel"),
-                    Level = ToInt(jo, "Level"),
-                    Exp = ToInt(jo, "EXP"),
-                    Defense = ToInt(jo, "Defense"),
-                    MinDamage = ToInt(jo, "MinDamage"),
-                    MaxDamage = ToInt(jo, "MaxDamage"),
-                    AttackRange = ToInt(jo, "AttackRange"),
+                    Ribi = Utility.ToInt(jo, "Ribi"),
+                    BossLevel = Utility.ToInt(jo, "BossLevel"),
+                    Level = Utility.ToInt(jo, "Level"),
+                    Exp = Utility.ToInt(jo, "EXP"),
+                    Defense = Utility.ToInt(jo, "Defense"),
+                    MinDamage = Utility.ToInt(jo, "MinDamage"),
+                    MaxDamage = Utility.ToInt(jo, "MaxDamage"),
+                    AttackRange = Utility.ToInt(jo, "AttackRange"),
                     DropItems = DropItems,
-                    Accuracy = ToFloat(jo, "Accuracy"),
-                    Avoid = ToFloat(jo, "Avoid"),
-                    Critical = ToFloat(jo, "Critical"),
-                    MagicDefense = ToFloat(jo, "MagicDefense")
+                    Accuracy = Utility.ToFloat(jo, "Accuracy"),
+                    Avoid = Utility.ToFloat(jo, "Avoid"),
+                    Critical = Utility.ToFloat(jo, "Critical"),
+                    MagicDefense = Utility.ToFloat(jo, "MagicDefense")
                 };
                 MonsterInfoDic.Add(Convert.ToInt32(jo["MonsterID"].ToString()), info);
             }
@@ -1523,11 +1006,11 @@ public class CacheSvc
         }
         if (eo.PutOnEquipment != null)
         {
-            eo.PutOnEquipment.Posotion = eo.EquipmentPosition;
+            eo.PutOnEquipment.Position = eo.EquipmentPosition;
         }
         if (eo.PutOffEquipment != null)
         {
-            eo.PutOffEquipment.Posotion = eo.KnapsackPosition;
+            eo.PutOffEquipment.Position = eo.KnapsackPosition;
         }
 
         switch (eo.OperationType)
@@ -1760,11 +1243,11 @@ public class CacheSvc
             for (var i = 0; i < obj.Count; i++)
             {
                 var jo = JObject.Parse(obj[i].ToString());
-                var questId = ToInt(jo, "QuestID");
-                var startDate = JsonToList<int>((JObject)jo["StartDate"]);
-                var restTime = JsonToList<int>((JObject)jo["RestTime"]);
-                var finishedDate = JsonToList<int>((JObject)jo["FinishedDate"]);
-                var restAcceptableTime = JsonToList<int>((JObject)jo["RestAcceptableTime"]);
+                var questId = Utility.ToInt(jo, "QuestID");
+                var startDate = Utility.JsonToList<int>((JObject)jo["StartDate"]);
+                var restTime = Utility.JsonToList<int>((JObject)jo["RestTime"]);
+                var finishedDate = Utility.JsonToList<int>((JObject)jo["FinishedDate"]);
+                var restAcceptableTime = Utility.JsonToList<int>((JObject)jo["RestAcceptableTime"]);
                 var quest = new Quest
                 {
                     QuestID = questId,
@@ -1774,31 +1257,31 @@ public class CacheSvc
                     RestAcceptableTime = TimerSvc.GetTimeSpan(restAcceptableTime[2], restAcceptableTime[3], restAcceptableTime[4], restAcceptableTime[5]),
                     questState = (QuestState)Enum.Parse(typeof(QuestState), jo[""].ToString()),
                     questType = (QuestType)Enum.Parse(typeof(QuestType), jo[""].ToString()),
-                    HasCollectItems = JsonToDic_Int_Int((JObject)jo["HasCollectItems"], "ItemID", "Count"),
-                    HasKilledMonsters = JsonToDic_Int_Int((JObject)jo["HasKilledMonsters"], "MonsterID", "Count"),
+                    HasCollectItems = Utility.JsonToDic_Int_Int((JObject)jo["HasCollectItems"], "ItemID", "Count"),
+                    HasKilledMonsters = Utility.JsonToDic_Int_Int((JObject)jo["HasKilledMonsters"], "MonsterID", "Count"),
                 };
-                var MaxRestTime = JsonToList<int>((JObject)jo["MaxRestTime"]);
+                var MaxRestTime = Utility.JsonToList<int>((JObject)jo["MaxRestTime"]);
                 var info = new QuestInfo
                 {
                     questTemplate = quest,
-                    StartNPCID = ToInt(jo, "StartNPCID"),
-                    EndNPCID = ToInt(jo, "EndNPCID"),
+                    StartNPCID = Utility.ToInt(jo, "StartNPCID"),
+                    EndNPCID = Utility.ToInt(jo, "EndNPCID"),
                     MaxRestTime = TimerSvc.GetTimeSpan(restTime[2], restTime[3], restTime[4], restTime[5]),
-                    RequiredMonsters = JsonToDic_Int_Int((JObject)jo["RequiredMonsters"], "MonsterID", "Count"),
-                    RequiredItems = JsonToDic_Int_Int((JObject)jo["RequiredMonsters"], "ItemID", "Count"),
-                    RequiredLevel = ToInt(jo, "RequiredLevel"),
-                    RequiredQuests = JsonToList<int>((JObject)jo["RequiredQuests"]),
-                    RequiredJob = ToInt(jo, "RequiredJob"),
-                    OtherAcceptCondition = JsonToList<int>((JObject)jo["OtherAcceptCondition"]),
-                    RewardExp = ToLong(jo, "RewardExp"),
-                    RewardItem = JsonToItemList((JObject)jo["RewardItem"]),
-                    RewardHonor = ToInt(jo, "RewardHonor"),
-                    RewardBadge = ToInt(jo, "RewardBadge"),
-                    RewardRibi = ToLong(jo, "RewardRibi"),
-                    RewardTitle = ToInt(jo, "RewardTitle"),
-                    OtherRewardsTypes = JsonToList<int>((JObject)jo["OtherRewardsTypes"]),
-                    OtherRewardsValues = JsonToList<int>((JObject)jo["OtherRewardsValues"]),
-                    OtherCompleteConditions = JsonToList<int>((JObject)jo["OtherCompleteConditions"])
+                    RequiredMonsters = Utility.JsonToDic_Int_Int((JObject)jo["RequiredMonsters"], "MonsterID", "Count"),
+                    RequiredItems = Utility.JsonToDic_Int_Int((JObject)jo["RequiredMonsters"], "ItemID", "Count"),
+                    RequiredLevel = Utility.ToInt(jo, "RequiredLevel"),
+                    RequiredQuests = Utility.JsonToList<int>((JObject)jo["RequiredQuests"]),
+                    RequiredJob = Utility.ToInt(jo, "RequiredJob"),
+                    OtherAcceptCondition = Utility.JsonToList<int>((JObject)jo["OtherAcceptCondition"]),
+                    RewardExp = Utility.ToLong(jo, "RewardExp"),
+                    RewardItem = Utility.JsonToItemList((JObject)jo["RewardItem"]),
+                    RewardHonor = Utility.ToInt(jo, "RewardHonor"),
+                    RewardBadge = Utility.ToInt(jo, "RewardBadge"),
+                    RewardRibi = Utility.ToLong(jo, "RewardRibi"),
+                    RewardTitle = Utility.ToInt(jo, "RewardTitle"),
+                    OtherRewardsTypes = Utility.JsonToList<int>((JObject)jo["OtherRewardsTypes"]),
+                    OtherRewardsValues = Utility.JsonToList<int>((JObject)jo["OtherRewardsValues"]),
+                    OtherCompleteConditions = Utility.JsonToList<int>((JObject)jo["OtherCompleteConditions"])
                 };
                 if (QuestDic.ContainsKey(questId))
                 {
@@ -1812,75 +1295,7 @@ public class CacheSvc
             return QuestDic;
         }
     }
-    
+
     #endregion
 
-    #region Utility
-    public int ToInt(JObject jo, string s)
-    {
-        return Convert.ToInt32(jo[s].ToString());
-    }
-    public long ToLong(JObject jo, string s)
-    {
-        return Convert.ToInt64(jo[s].ToString());
-    }
-    public float ToFloat(JObject jo, string s)
-    {
-        return (float)Convert.ToDouble(jo[s].ToString());
-    }
-    public T ToEnum<T>(JObject jo, string s)
-    {
-        return (T)Enum.Parse(typeof(T), jo[s].ToString());
-    }
-    public string ToStr(JObject jo, string s)
-    {
-        return jo[s].ToString();
-    }
-    public Dictionary<int, int> JsonToDic_Int_Int(JObject jo, string key, string value)
-    {
-        Dictionary<int, int> r = new Dictionary<int, int>();
-        if (jo.Count > 0)
-        {
-            foreach (var je in jo.Children())
-            {
-                r.Add(ToInt((JObject)je, key), ToInt((JObject)je, value));
-            }
-        }
-        return r;
-    }
-    public List<T> JsonToList<T>(JObject jo) where T : IConvertible
-    {
-        List<T> r = new List<T>();
-        if (jo.Count > 0)
-        {
-            foreach (var je in jo.Children())
-            {
-                if (Regex.IsMatch(je.ToString(), "^[0-9]*$"))
-                {
-                    r.Add((T)Convert.ChangeType(je.ToString(), typeof(T)));
-                }
-            }
-        }
-        return r;
-    }
-    public List<Item> JsonToItemList(JObject jo)
-    {
-        List<Item> r = new List<Item>();
-        if (jo.Count > 0)
-        {
-            foreach (var je in jo.Children())
-            {
-                if (ItemDic.ContainsKey(Convert.ToInt32(((JObject)je).ToString())))
-                {
-                    r.Add(ItemDic[Convert.ToInt32(((JObject)je).ToString())]);
-                }
-                else
-                {
-                    LogSvc.Debug("無此道具，ID: " + Convert.ToInt32(((JObject)je).ToString()));
-                }
-            }
-        }
-        return r;
-    }
-    #endregion
 }

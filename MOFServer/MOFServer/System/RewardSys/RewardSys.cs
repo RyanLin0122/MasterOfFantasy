@@ -42,16 +42,16 @@ public class RewardSys
             {
                 if (item.IsCash)
                 {
-                    item.Posotion = EmptySlot_Cash[CashPointer];
-                    CashItemDic.Add(item.Posotion, item);
-                    chr.player.CashKnapsack.Add(item.Posotion, item);
+                    item.Position = EmptySlot_Cash[CashPointer];
+                    CashItemDic.Add(item.Position, item);
+                    chr.player.CashKnapsack.Add(item.Position, item);
                     CashPointer++;
                 }
                 else
                 {
-                    item.Posotion = EmptySlot_NotCash[NotCashPointer];
-                    NotCashItemDic.Add(item.Posotion, item);
-                    chr.player.NotCashKnapsack.Add(item.Posotion, item);
+                    item.Position = EmptySlot_NotCash[NotCashPointer];
+                    NotCashItemDic.Add(item.Position, item);
+                    chr.player.NotCashKnapsack.Add(item.Position, item);
                     NotCashPointer++;
                 }
             }
@@ -131,9 +131,9 @@ public class RewardSys
     public void TestSendKnapsack(MOFCharacter chr)
     {
         List<Item> Items = new List<Item>();
-        Items.Add(cacheSvc.GetConsumableByID(1001));
-        Items.Add(cacheSvc.GetEquipmentByID(3007));
-        Items.Add(cacheSvc.GetEtcItemByID(12001));
+        Items.Add(Utility.GetConsumableByID(1001));
+        Items.Add(Utility.GetEquipmentByID(3007));
+        Items.Add(Utility.GetEtcItemByID(12001));
         SendRewardToKnapsack(chr, 0, 111, 50, 1, Items, 25, 10, 13, 8, 17);
     }
     #endregion

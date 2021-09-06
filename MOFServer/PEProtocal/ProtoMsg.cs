@@ -274,14 +274,8 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public GameServerStatus ServerStatus { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer1 { get; set; }
-        [ProtoMember(7, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer2 { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer3 { get; set; }
-        [ProtoMember(9, IsRequired = false)]
         public string PrivateKey { get; set; }
-        [ProtoMember(10, IsRequired = false)]
+        [ProtoMember(7, IsRequired = false)]
         public AccountData accountData { get; set; }
     }
     [ProtoContract]
@@ -293,6 +287,28 @@ namespace PEProtocal
         public string Password { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public long Cash { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public Dictionary<int, Item> LockerServer1 { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public Dictionary<int, Item> LockerServer2 { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public Dictionary<int, Item> LockerServer3 { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelFashionServer1 { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelOtherServer1 { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelFashionServer2 { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelOtherServer2 { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelFashionServer3 { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public Dictionary<int, Item> CashShopBuyPanelOtherServer3 { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public Dictionary<int, string> Friends { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public Dictionary<int, string> BlockedPeople { get; set; }
     }
 
 

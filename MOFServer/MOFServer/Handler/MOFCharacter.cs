@@ -603,7 +603,7 @@ public class MOFCharacter
                 var CashKnapsack = session.ActivePlayer.CashKnapsack;
                 for (int i = 0; i < ItemIDs.Count; i++)
                 {
-                    bool IsCash = CacheSvc.Instance.ItemDic[ItemIDs[i]].IsCash;
+                    bool IsCash = CacheSvc.ItemDic[ItemIDs[i]].IsCash;
                     if (IsCash && CashKnapsack.ContainsKey(Positions[i]))
                     {
                         if (CashKnapsack[Positions[i]].ItemID == ItemIDs[i])

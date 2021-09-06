@@ -13,7 +13,7 @@ namespace PEProtocal
     public class Item 
     {
         [ProtoMember(1, IsRequired = false)]
-        public int Posotion { get; set; }
+        public int Position { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public int ItemID { get; set; }
         [ProtoMember(3, IsRequired = false)]
