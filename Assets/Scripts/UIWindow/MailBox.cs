@@ -41,7 +41,7 @@ public class MailBox : Inventory
 
     protected override void InitWnd()
     {
-        PECommon.Log("初始化信箱");
+        Debug.Log("初始化信箱");
         slotLists.Add(panel1.GetComponentsInChildren<Slot>());
         slotLists.Add(panel2.GetComponentsInChildren<Slot>());
         slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -49,12 +49,12 @@ public class MailBox : Inventory
         Txtcolor = RibiTxt.color;
         PressBag1();
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-        RibiTxt.text = GameRoot.Instance.CurrentPlayerData.LockerCoin.ToString("N0");
+        RibiTxt.text = GameRoot.Instance.ActivePlayer.MailBoxRibi.ToString("N0");
         base.InitWnd();
     }
     public void InitMailBox()
     {
-        PECommon.Log("初始化信箱");
+        Debug.Log("初始化信箱");
         slotLists.Add(panel1.GetComponentsInChildren<Slot>());
         slotLists.Add(panel2.GetComponentsInChildren<Slot>());
         slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -168,6 +168,7 @@ public class MailBox : Inventory
         panel3Text.color = Txtcolor;
 
     }
+    /*
     public void TestStoreMailBox()
     {
         List<EncodedItem> items = new List<EncodedItem>();
@@ -316,6 +317,7 @@ public class MailBox : Inventory
                 break;
         }
     }
+    */
     public void ClkPlusBtn()
     {
 

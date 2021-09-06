@@ -42,7 +42,6 @@ public class CreateWnd : WindowRoot
     //初始化
     protected override void InitWnd()
     {
-        PECommon.Log("初始化創角視窗");
         base.InitWnd();
         TempData = new Player
         {

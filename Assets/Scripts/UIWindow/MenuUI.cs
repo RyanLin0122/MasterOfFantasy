@@ -13,7 +13,7 @@ public class MenuUI : WindowRoot
     public bool IsKeyBind = false;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化MenuUI");
+        Debug.Log("初始化MenuUI");
         ChannelNum.text = GameRoot.Instance.ActiveChannel.ToString();
         base.InitWnd();
         //TODO

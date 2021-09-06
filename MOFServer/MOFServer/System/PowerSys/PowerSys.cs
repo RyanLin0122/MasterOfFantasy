@@ -25,10 +25,10 @@ public class PowerSys : SystemBase
     public void Init()
     {
         cacheSvc = CacheSvc.Instance;
-        TimerSvc.Instance.AddTimeTask(CalHpAdd, PECommon.AddHpTime, PETimeUnit.Second, 0);
-        TimerSvc.Instance.AddTimeTask(CalMpAdd, PECommon.AddMpTime, PETimeUnit.Second, 0);
+        TimerSvc.Instance.AddTimeTask(CalHpAdd, 10, PETimeUnit.Second, 0);
+        TimerSvc.Instance.AddTimeTask(CalMpAdd, 5, PETimeUnit.Second, 0);
         WeatherTask = TimerSvc.Instance.AddTimeTask(AssignWeather, 600, PETimeUnit.Second, 0);
-        PECommon.Log("PowerSys Init Done.");
+        LogSvc.Debug("PowerSys Init Done.");
     }
     private void CalHpAdd(int tid)
     {

@@ -16,8 +16,6 @@ public class GameRoot : MonoBehaviour
     public string Password;
     public WindowLock windowLock;
     public Dictionary<int, List<Player>> PlayersDic = new Dictionary<int, List<Player>>();
-    public PlayerData CurrentPlayerData = null;
-    public PlayerStatus CurrentPlayerStatus = PlayerStatus.Normal;
     public Dictionary<string, OtherPeopleCtrl> otherPlayers = new Dictionary<string, OtherPeopleCtrl>();
     public Canvas NearCanvas;
     public bool IsChangeOK = false;

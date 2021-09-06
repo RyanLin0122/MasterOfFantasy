@@ -256,8 +256,8 @@ public class ShopWnd : Inventory
                         Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
                         Newitem.Position = EmptyCashSlot[CashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
-                        PECommon.Log("加一次");
-                        PECommon.Log(Newitem.Type.ToString());
+                        Debug.Log("加一次");
+                        Debug.Log(Newitem.Type.ToString());
                         items.Add(Newitem);//把物品丟進items
                         CashPointer++;
                     }
@@ -274,8 +274,8 @@ public class ShopWnd : Inventory
                         Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
                         Newitem.Position = EmptyNotCashSlot[NotCashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
-                        PECommon.Log("加一次");
-                        PECommon.Log(Newitem.Type.ToString());
+                        Debug.Log("加一次");
+                        Debug.Log(Newitem.Type.ToString());
                         items.Add(Newitem);
                         NotCashPointer++;
                     }

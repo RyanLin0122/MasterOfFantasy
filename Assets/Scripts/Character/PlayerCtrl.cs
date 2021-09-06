@@ -410,7 +410,7 @@ public class PlayerCtrl : Controllable
         }
         catch (Exception e)
         {
-            PECommon.Log(e.ToString());
+            Debug.Log(e.ToString());
         }
 
     }

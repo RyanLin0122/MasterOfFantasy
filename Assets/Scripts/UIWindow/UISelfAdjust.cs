@@ -22,9 +22,9 @@ public class UISelfAdjust : MonoBehaviour
         float topBorder = cornerPos.y;
         //世界坐标下边界
         float downBorder = Camera.main.transform.position.y - (cornerPos.y - Camera.main.transform.position.y);
-        PECommon.Log(topBorder + " , " + downBorder + " , " + leftBorder + " , " + rightBorder);
+        Debug.Log(topBorder + " , " + downBorder + " , " + leftBorder + " , " + rightBorder);
 
-        PECommon.Log("BaseUI自適應");
+        Debug.Log("BaseUI自適應");
         BG.transform.position = new Vector3(
             rightBorder,
             downBorder,

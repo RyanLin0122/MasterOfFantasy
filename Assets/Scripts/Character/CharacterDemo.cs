@@ -290,7 +290,7 @@ public class CharacterDemo : MonoBehaviour
             case EquipmentType.Chest:
                 if (id < 7000)
                 {
-                    PECommon.Log("Chest ID: " + id);
+                    Debug.Log("Chest ID: " + id);
                     SuitCtrl.gameObject.SetActive(false);
                     ShoesCtrl.gameObject.SetActive(true);
                     UpwearCtrl.gameObject.SetActive(true);
@@ -302,14 +302,14 @@ public class CharacterDemo : MonoBehaviour
                 }
                 else
                 {
-                    PECommon.Log("Chest ID: " + id);
+                    Debug.Log("Chest ID: " + id);
                     SuitCtrl.gameObject.SetActive(true);
                     ShoesCtrl.gameObject.SetActive(false);
                     UpwearCtrl.gameObject.SetActive(false);
                     DownwearCtrl.gameObject.SetActive(false);
                     HandBackCtrl.gameObject.SetActive(false);
                     HandFrontCtrl.gameObject.SetActive(false);
-                    PECommon.Log("Path: " + ResSvc.Instance.GetEquipSpritePath(id)[0]);
+                    Debug.Log("Path: " + ResSvc.Instance.GetEquipSpritePath(id)[0]);
                     SuitCtrl.LoadSprite(ResSvc.Instance.GetEquipSpritePath(id)[0]);
                     UpwearCtrl.LoadDefaultSprite();
                 }

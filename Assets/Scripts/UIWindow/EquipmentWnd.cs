@@ -38,7 +38,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     public bool IsPutOff = false;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化裝備欄");
+        Debug.Log("初始化裝備欄");
         slotLists.Add(Battlepanel.GetComponentsInChildren<EquipSlot>());
         slotLists.Add(Fashionpanel.GetComponentsInChildren<EquipSlot>());
         illustration.InitIllustration();
@@ -308,76 +308,6 @@ public class EquipmentWnd : Inventory, IStackWnd
         }
         return Result;
     }
-    public void UpdatePlayerData(int position, int itemId)
-    {
-        switch (position)
-        {
-            case 1:
-                GameRoot.Instance.CurrentPlayerData.battlehead = itemId;
-                break;
-            case 2:
-                GameRoot.Instance.CurrentPlayerData.battlering1 = itemId;
-                break;
-            case 3:
-                GameRoot.Instance.CurrentPlayerData.battleneck = itemId;
-                break;
-            case 4:
-                GameRoot.Instance.CurrentPlayerData.battlering2 = itemId;
-                break;
-            case 5:
-                GameRoot.Instance.CurrentPlayerData.battleweapon = itemId;
-                break;
-            case 6:
-                GameRoot.Instance.CurrentPlayerData.battlechest = itemId;
-                break;
-            case 7:
-                GameRoot.Instance.CurrentPlayerData.battleglove = itemId;
-                break;
-            case 8:
-                GameRoot.Instance.CurrentPlayerData.battleshield = itemId;
-                break;
-            case 9:
-                GameRoot.Instance.CurrentPlayerData.battlepant = itemId;
-                break;
-            case 10:
-                GameRoot.Instance.CurrentPlayerData.battleshoes = itemId;
-                break;
-            case 11:
-                GameRoot.Instance.CurrentPlayerData.Fashionhairacc = itemId;
-                break;
-            case 12:
-                GameRoot.Instance.CurrentPlayerData.Fashionnamebox = itemId;
-                break;
-            case 13:
-                GameRoot.Instance.CurrentPlayerData.Fashionchatbox = itemId;
-                break;
-            case 14:
-                GameRoot.Instance.CurrentPlayerData.Fashionface = itemId;
-                break;
-            case 15:
-                GameRoot.Instance.CurrentPlayerData.Fashionglasses = itemId;
-                break;
-            case 16:
-                GameRoot.Instance.CurrentPlayerData.Fashionhairstyle = itemId;
-                break;
-            case 17:
-                GameRoot.Instance.CurrentPlayerData.Fashionchest = itemId;
-                break;
-            case 18:
-                GameRoot.Instance.CurrentPlayerData.Fashionglove = itemId;
-                break;
-            case 19:
-                GameRoot.Instance.CurrentPlayerData.Fashioncape = itemId;
-                break;
-            case 20:
-                GameRoot.Instance.CurrentPlayerData.Fashionpant = itemId;
-                break;
-            case 21:
-                GameRoot.Instance.CurrentPlayerData.Fashionshoes = itemId;
-                break;
-        }
-        MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
-    }
     public void PutOn(Item item)
     {
         Item exitItem = null;
@@ -390,7 +320,6 @@ public class EquipmentWnd : Inventory, IStackWnd
                 {
                     if (((Equipment)item).EquipType != EquipmentType.Ring)
                     {
-                        UpdatePlayerData(equipmentSlot.SlotPosition, item.ItemID);
                         if (equipmentSlot.transform.childCount > 0)
                         {
                             ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
@@ -424,7 +353,6 @@ public class EquipmentWnd : Inventory, IStackWnd
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsRightItem(item))
                 {
-                    UpdatePlayerData(equipmentSlot.SlotPosition, item.ItemID);
                     if (equipmentSlot.transform.childCount > 0)
                     {
                         ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
@@ -467,7 +395,6 @@ public class EquipmentWnd : Inventory, IStackWnd
             {
                 if (((Equipment)item).EquipType == EquipmentType.Ring)
                 {
-                    UpdatePlayerData(equipmentSlot.SlotPosition, item.ItemID);
                     if (equipmentSlot.transform.childCount > 0)
                     {
                         ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
@@ -649,7 +576,6 @@ public class EquipmentWnd : Inventory, IStackWnd
                 {
                     if (((Equipment)item).EquipType != EquipmentType.Ring)
                     {
-                        UpdatePlayerData(equipmentSlot.SlotPosition, item.ItemID);
                         if (equipmentSlot.transform.childCount > 0)
                         {
                             ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
@@ -674,7 +600,6 @@ public class EquipmentWnd : Inventory, IStackWnd
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsRightItem(item))
                 {
-                    UpdatePlayerData(equipmentSlot.SlotPosition, item.ItemID);
                     if (equipmentSlot.transform.childCount > 0)
                     {
                         ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();

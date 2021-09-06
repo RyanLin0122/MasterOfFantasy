@@ -231,7 +231,7 @@ public class ArcheryGameManager : MonoBehaviour
         Vector3 ArrowPos = ArrowImg.transform.localPosition;
         Vector3 TargetPos = TargetImg.transform.localPosition;
         float distance = ArrowPos.x - TargetPos.x;
-        PECommon.Log("distance: " + distance);
+        Debug.Log("distance: " + distance);
         if (Math.Abs(distance) <= 37.5f)
         {
             //插在上面

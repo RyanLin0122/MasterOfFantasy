@@ -6,7 +6,7 @@ public class KeyBind : WindowRoot
 {
     protected override void InitWnd()
     {
-        PECommon.Log("初始化鍵盤設定");
+        Debug.Log("初始化鍵盤設定");
         base.InitWnd();
         //TODO
     }

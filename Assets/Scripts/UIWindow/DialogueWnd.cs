@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PEProtocal;
+
 public class DialogueWnd : WindowRoot
 {
     public Image NpcImage;
@@ -11,7 +13,6 @@ public class DialogueWnd : WindowRoot
     public int NPCID;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化NPC對話視窗");
         QuestBtn.gameObject.SetActive(false);
         ClassBtn.gameObject.SetActive(false);
         Class2Btn.gameObject.SetActive(false);
@@ -126,7 +127,7 @@ public class DialogueWnd : WindowRoot
     public void EnterMiniGame()
     {
         SetWndState(false);
-        PECommon.Log("Minigame request!");
+        Debug.Log("Minigame request!");
         switch (NPCID)
         {
             case 1004:
@@ -147,7 +148,7 @@ public class DialogueWnd : WindowRoot
     public void EnterMiniGame2()
     {
         SetWndState(false);
-        PECommon.Log("Minigame request!");
+        Debug.Log("Minigame request!");
         switch (NPCID)
         {
             case 1004:

@@ -13,9 +13,9 @@ public class TimerSvc : MonoBehaviour
         //Set Log Output
         pt.SetLog((string info) =>
         {
-            PECommon.Log(info);
+            Debug.Log(info);
         });
-        PECommon.Log("Init TimerSvc");
+        Debug.Log("Init TimerSvc");
     }
     public void Update()
     {

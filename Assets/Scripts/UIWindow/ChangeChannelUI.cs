@@ -17,7 +17,7 @@ public class ChangeChannelUI : WindowRoot
     public Button CloseBtn;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化ChangeChannelUI");
+        Debug.Log("初始化ChangeChannelUI");
         base.InitWnd();
         IsOpen = true;
         ServerName.text = GameRoot.Instance.CurrentServerName;
@@ -85,7 +85,7 @@ public class ChangeChannelUI : WindowRoot
     {
         if (ChoosedChannel != GameRoot.Instance.ActiveChannel)
         {
-            PECommon.Log("換頻囉");
+            Debug.Log("換頻囉");
             GameRoot.Instance.ActiveChannel = ChoosedChannel;
 
             NetSvc.Instance.InitSvc();

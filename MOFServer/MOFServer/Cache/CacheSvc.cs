@@ -30,7 +30,7 @@ public class CacheSvc
         ParseItemJson();
         ParseMonsterJson();
         dbMgr = DBMgr.Instance;
-        PECommon.Log("CacheSvc Init Done!");
+        LogSvc.Debug("CacheSvc Init Done!");
     }
     public Tuple<bool, BsonDocument> QueryAccount(string Account)
     {
@@ -204,12 +204,8 @@ public class CacheSvc
     }
     #endregion
 
-
     #region InventorySystem 
     public static Dictionary<int, Item> ItemDic = new Dictionary<int, Item>();
-    public Dictionary<int, Dictionary<int, EncodedItem>> CharacterLocker = new Dictionary<int, Dictionary<int, EncodedItem>>();
-    public Dictionary<int, Dictionary<int, EncodedItem>> CharacterLocker_Cash = new Dictionary<int, Dictionary<int, EncodedItem>>();
-    public Dictionary<int, Dictionary<int, EncodedItem>> CharacterMailBox = new Dictionary<int, Dictionary<int, EncodedItem>>();
 
     public void ProcessKnapsackOperation(ProtoMsg msg, ServerSession session)
     {
@@ -444,332 +440,6 @@ public class CacheSvc
         }
 
     }
-    public void UpdateLocker(MOFMsg msg, ChannelServer server)
-    {
-        /*
-        switch (msg.lockerRelated.Type)
-        {
-            case 1: //加進空格
-                if (CharacterLocker_Cash.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker_Cash.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-
-                if (CharacterLocker.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                EncodedItem item = msg.lockerRelated.encodedItems[0];
-                dbMgr.DeleteKnapsack(item.DataBaseID);
-
-                item.position = msg.lockerRelated.LockerPosition;
-                if (!item.item.IsCash)
-                {
-                    CharacterKnapsack[msg.id].Remove(msg.lockerRelated.KnapsackPosition);
-                    if (!CharacterLocker[msg.id].ContainsKey(item.position))
-                    {
-
-                        //更新資料庫，得到資料庫ID
-                        //封包加上資料庫ID
-                        int dbId = dbMgr.AddLockerItem(item, msg.id);
-                        if (dbId != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = dbId;
-                            CharacterLocker[msg.id].Add(item.position, item);
-                            server.SessionCollection[msg.id].Write(msg);
-                        }
-                    }
-                    else
-                    {
-
-                        //更新資料庫
-                        //封包加上資料庫ID，回傳客戶端
-                        int dbId = dbMgr.AddLockerItem(item, msg.id);
-                        if (dbId != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = dbId;
-                            (CharacterLocker[msg.id])[item.position] = item;
-                            server.SessionCollection[msg.id].Write(msg);
-                        }
-                    }
-                }
-                else
-                {
-                    CharacterKnapsack_Cash[msg.id].Remove(msg.lockerRelated.KnapsackPosition);
-                    if (!CharacterLocker_Cash[msg.id].ContainsKey(item.position))
-                    {
-
-                        //更新資料庫，得到資料庫ID
-                        //封包加上資料庫ID
-                        int dbId = dbMgr.AddLockerItem(item, msg.id);
-                        if (dbId != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = dbId;
-                            CharacterLocker_Cash[msg.id].Add(item.position, item);
-                            server.SessionCollection[msg.id].Write(msg);
-                        }
-                    }
-                    else
-                    {
-
-                        //更新資料庫
-                        //封包加上資料庫ID，回傳客戶端
-                        int dbId = dbMgr.AddLockerItem(item, msg.id);
-                        if (dbId != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = dbId;
-                            (CharacterLocker_Cash[msg.id])[item.position] = item;
-                            server.SessionCollection[msg.id].Write(msg);
-                        }
-                    }
-                }
-                break;
-
-            case 2: //四種狀況
-                    ///1. 第二格增加數量 只有第二格id
-                    ///2. 第一格減少，第二格增加，兩格id都有
-                    ///3. 兩格交換，兩格id都有
-                    ///4. 移到第二格，只有第一格ID
-                server.SessionCollection[msg.id].Write(msg);
-                if (CharacterLocker.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                if (CharacterLocker_Cash.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker_Cash.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                if (msg.lockerRelated.encodedItems.Count == 1)
-                {
-                    //移到第二格，刪除第一格
-                    if (msg.lockerRelated.NewDBID != -1)
-                    {
-                        dbMgr.DeleteLocker(msg.lockerRelated.OldDBID);
-                        dbMgr.AddLockerItemAmount(msg.lockerRelated.encodedItems[0], msg.id, msg.lockerRelated.NewDBID);
-                        if (msg.lockerRelated.encodedItems[0].item.IsCash)
-                        {
-                            PECommon.Log(msg.lockerRelated.encodedItems[0].amount.ToString());
-                            (CharacterLocker_Cash[msg.id])[msg.lockerRelated.NewPosition] = msg.lockerRelated.encodedItems[0];
-                            (CharacterLocker_Cash[msg.id]).Remove(msg.lockerRelated.OldPosition);
-                        }
-                        else
-                        {
-                            PECommon.Log(msg.lockerRelated.encodedItems[0].amount.ToString());
-                            (CharacterLocker[msg.id])[msg.lockerRelated.NewPosition] = msg.lockerRelated.encodedItems[0];
-                            (CharacterLocker[msg.id]).Remove(msg.lockerRelated.OldPosition);
-                        }
-                    }
-                    //移到空格，直接修改position
-                    else
-                    {
-                        dbMgr.UpdateLockerPosition(msg.lockerRelated.encodedItems[0], msg.lockerRelated.NewPosition, msg.lockerRelated.OldDBID);
-                        if (msg.lockerRelated.encodedItems[0].item.IsCash)
-                        {
-                            if (!CharacterLocker_Cash[msg.id].ContainsKey(msg.lockerRelated.NewPosition))
-                            {
-                                (CharacterLocker_Cash[msg.id]).Add(msg.lockerRelated.NewPosition, (CharacterLocker_Cash[msg.id])[msg.lockerRelated.OldPosition]);
-                            }
-                            else
-                            {
-                                (CharacterLocker_Cash[msg.id])[msg.lockerRelated.NewPosition] = msg.lockerRelated.encodedItems[0];
-                            }
-                            (CharacterLocker_Cash[msg.id]).Remove(msg.lockerRelated.OldPosition);
-                        }
-                        else
-                        {
-                            if (!CharacterLocker[msg.id].ContainsKey(msg.lockerRelated.NewPosition))
-                            {
-                                (CharacterLocker[msg.id]).Add(msg.lockerRelated.NewPosition, (CharacterLocker[msg.id])[msg.lockerRelated.OldPosition]);
-                            }
-                            else
-                            {
-                                (CharacterLocker[msg.id])[msg.lockerRelated.NewPosition] = msg.lockerRelated.encodedItems[0];
-                            }
-                            (CharacterLocker[msg.id]).Remove(msg.lockerRelated.OldPosition);
-                        }
-                    }
-                }
-                else
-                {
-                    //兩格交換
-                    if (msg.lockerRelated.encodedItems[0].item.ItemID != msg.lockerRelated.encodedItems[1].item.ItemID)
-                    {
-                        dbMgr.UsedLockerID.Add(msg.lockerRelated.OldDBID);
-                        dbMgr.UsedLockerID.Add(msg.lockerRelated.NewDBID);
-                        dbMgr.DeleteLocker(msg.lockerRelated.OldDBID);
-                        dbMgr.DeleteLocker(msg.lockerRelated.NewDBID);
-                        dbMgr.InsertLockerByDBID(msg.lockerRelated.encodedItems[0], msg.id, msg.lockerRelated.NewDBID, msg.lockerRelated.NewPosition);
-                        dbMgr.InsertLockerByDBID(msg.lockerRelated.encodedItems[1], msg.id, msg.lockerRelated.OldDBID, msg.lockerRelated.OldPosition);
-                        dbMgr.UsedLockerID.Remove(msg.lockerRelated.OldDBID);
-                        dbMgr.UsedLockerID.Remove(msg.lockerRelated.NewDBID);
-                        if (msg.lockerRelated.encodedItems[1].item.IsCash)
-                        {
-                            EncodedItem Eitem = (CharacterLocker_Cash[msg.id])[msg.lockerRelated.NewPosition];
-                            (CharacterLocker_Cash[msg.id])[msg.lockerRelated.NewPosition] = (CharacterLocker_Cash[msg.id])[msg.lockerRelated.OldPosition];
-                            (CharacterLocker_Cash[msg.id])[msg.lockerRelated.OldPosition] = Eitem;
-                            (CharacterLocker_Cash[msg.id])[msg.lockerRelated.OldPosition].position = msg.lockerRelated.OldPosition;
-                            (CharacterLocker_Cash[msg.id])[msg.lockerRelated.NewPosition].position = msg.lockerRelated.NewPosition;
-                        }
-                        else
-                        {
-                            EncodedItem Eitem = (CharacterLocker[msg.id])[msg.lockerRelated.NewPosition];
-                            (CharacterLocker[msg.id])[msg.lockerRelated.NewPosition] = (CharacterLocker[msg.id])[msg.lockerRelated.OldPosition];
-                            (CharacterLocker[msg.id])[msg.lockerRelated.OldPosition] = Eitem;
-                            (CharacterLocker[msg.id])[msg.lockerRelated.OldPosition].position = msg.lockerRelated.OldPosition;
-                            (CharacterLocker[msg.id])[msg.lockerRelated.NewPosition].position = msg.lockerRelated.NewPosition;
-                        }
-                        return;
-                    }
-                    //兩格數量改變
-                    else
-                    {
-                        foreach (var Eitem in msg.lockerRelated.encodedItems)
-                        {
-                            if (!Eitem.item.IsCash)
-                            {
-                                int dbId = Eitem.DataBaseID;
-                                (CharacterLocker[msg.id])[Eitem.position] = Eitem;
-                                //更新資料庫
-                                //封包加上資料庫ID，回傳客戶端
-                                PECommon.Log(Eitem.amount.ToString());
-                                dbMgr.AddLockerItemAmount(Eitem, msg.id, dbId);
-                            }
-                            else
-                            {
-                                int dbId = Eitem.DataBaseID;
-                                (CharacterLocker_Cash[msg.id])[Eitem.position] = Eitem;
-                                //更新資料庫
-                                //封包加上資料庫ID，回傳客戶端
-                                PECommon.Log(Eitem.amount.ToString());
-                                dbMgr.AddLockerItemAmount(Eitem, msg.id, dbId);
-                            }
-                        }
-                    }
-                }
-                break;
-
-            case 3: //放東西進背包
-                Console.WriteLine("收到case3");
-
-                if (CharacterKnapsack.ContainsKey(msg.id) == false)
-                {
-                    CharacterKnapsack.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                if (CharacterKnapsack_Cash.ContainsKey(msg.id) == false)
-                {
-                    CharacterKnapsack_Cash.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                foreach (var Eitem in msg.lockerRelated.encodedItems)
-                {
-                    dbMgr.DeleteLocker(msg.lockerRelated.OldDBID);
-                    //更新資料庫，得到資料庫ID
-                    //封包加上資料庫ID
-                    int dbId = -1; //= dbMgr.AddItem(Eitem, msg.id);
-
-                    if (dbId != -1)
-                    {
-                        //回傳客戶端
-                        Eitem.DataBaseID = dbId;
-                        if (!Eitem.item.IsCash)
-                        {
-                            CharacterLocker[msg.id].Remove(msg.lockerRelated.LockerPosition);
-                            CharacterKnapsack[msg.id].Add(Eitem.position, Eitem);
-                        }
-                        else
-                        {
-                            CharacterLocker_Cash[msg.id].Remove(msg.lockerRelated.LockerPosition);
-                            CharacterKnapsack_Cash[msg.id].Add(Eitem.position, Eitem);
-                        }
-                    }
-                }
-                server.SessionCollection[msg.id].Write(msg);
-                break;
-                */
-    }
-
-
-    public void UpdateMailBox(MOFMsg msg, ChannelServer server)
-    {
-        /*
-        switch (msg.mailBoxRelated.Type)
-        {
-            case 1:  //存入信箱
-                if (CharacterLocker_Cash.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker_Cash.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-
-                if (CharacterLocker.ContainsKey(msg.id) == false)
-                {
-                    CharacterLocker.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                foreach (var item in msg.mailBoxRelated.encodedItems)
-                {
-                    if (!CharacterLocker[msg.id].ContainsKey(item.position))
-                    {
-                        //更新資料庫，得到資料庫ID
-                        //封包加上資料庫ID
-                        int dbID = dbMgr.AddMailBoxItem(item, msg.id);
-                        if (dbID != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = dbID;
-                            CharacterMailBox[msg.id].Add(item.position, item);
-                        }
-                    }
-                    else
-                    {
-                        //更新資料庫
-                        //封包加上資料庫ID，回傳客戶端
-                        int DbId = dbMgr.AddMailBoxItem(item, msg.id);
-                        if (DbId != -1)
-                        {
-                            //回傳客戶端
-                            item.DataBaseID = DbId;
-                            (CharacterMailBox[msg.id])[item.position] = item;
-                        }
-                    }
-                }
-                server.SessionCollection[msg.id].Write(msg);
-                Console.WriteLine("發出信箱封包");
-                break;
-            case 2:  //放進背包
-                if (CharacterMailBox.ContainsKey(msg.id) == false)
-                {
-                    CharacterMailBox.Add(msg.id, new Dictionary<int, EncodedItem>());
-                }
-                var Eitem = msg.mailBoxRelated.encodedItems[0];
-
-                dbMgr.DeleteMailBox(msg.mailBoxRelated.OldDBID);
-                //更新資料庫，得到資料庫ID
-                //封包加上資料庫ID
-                int dbId = -1;// = dbMgr.AddItem(Eitem, msg.id);
-                CharacterMailBox[msg.id].Remove(msg.mailBoxRelated.MailBoxPosition);
-                if (dbId != -1)
-                {
-                    //回傳客戶端
-                    Eitem.DataBaseID = dbId;
-                    if (!Eitem.item.IsCash)
-                    {
-                        CharacterKnapsack[msg.id].Add(Eitem.position, Eitem);
-                    }
-                    else
-                    {
-                        CharacterKnapsack_Cash[msg.id].Add(Eitem.position, Eitem);
-                    }
-                }
-                server.SessionCollection[msg.id].Write(msg);
-                Console.WriteLine("發出信箱封包");
-                break;                
-        }
-        */
-    }
-
-
 
     public void ParseItemJson()
     {
@@ -1298,4 +968,63 @@ public class CacheSvc
 
     #endregion
 
+    /*
+    #region CashShop
+    public void ParseCashShopItems()
+    {
+        Dictionary<string, Dictionary<string, List<CashShopData>>> cashShopDic = new Dictionary<string, Dictionary<string, List<CashShopData>>>();
+        //Unity裡的文本是TextAsset類
+        Console.WriteLine("解析道具資訊");
+        var jsonStr = "";
+        using (StreamReader r = new StreamReader("../../Common/ItemInfo.Json"))
+        {
+            jsonStr = r.ReadToEnd();
+            foreach (var cata in jo.keys)
+        {
+            Dictionary<string, List<CashShopData>> Catagories = new Dictionary<string, List<CashShopData>>();
+            //第一層 大分類 
+            foreach (var key in jo[cata].keys)
+            {
+                List<CashShopData> ItemList = new List<CashShopData>();
+                //第二層 小分類
+                var list = jo[cata][key].list;
+                foreach (var item in list)
+                {
+                    //第三層 商品
+                    CashShopData data = new CashShopData
+                    {
+                        ItemID = (int)item["ID"].n,
+                        SellPrice = (int)item["SellPrice"].n
+                    };
+                    ItemList.Add(data);
+                }
+                Catagories.Add(key, ItemList);
+            }
+            cashShopDic.Add(cata, Catagories);
+        }
+        this.CashShopDic = cashShopDic;
+
+        Console.WriteLine("解析道具資訊");
+        var jsonStr = "";
+        using (StreamReader r = new StreamReader("../../Common/ItemInfo.Json"))
+        {
+            jsonStr = r.ReadToEnd();
+            JArray obj = JArray.Parse(jsonStr);
+            for (int i = 0; i < obj.Count; i++)
+            {
+                JObject jo = JObject.Parse(obj[i].ToString());
+                bool isCash;
+                if (Convert.ToInt32(jo["IsCash"].ToString()) == 1) { isCash = true; }
+                else { isCash = false; }
+                bool canTransaction;
+                if (Convert.ToInt32(jo["CanTransaction"].ToString()) == 1) { canTransaction = true; }
+                else { canTransaction = false; }
+                }
+            }
+
+
+        }
+    }
+    #endregion
+    */
 }

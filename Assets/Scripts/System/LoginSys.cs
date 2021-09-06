@@ -116,17 +116,17 @@ public class LoginSys : SystemRoot
         {
             if (!istrain) //直接去利比村
             {
-                new EnterGameSender(1000, new float[] { resSvc.GetMapCfgData(1000).PlayerBornPos.x, resSvc.GetMapCfgData(1000).PlayerBornPos.y },isnew,istrain);
+                new EnterGameSender(1000, new float[] { resSvc.GetMapCfgData(1000).PlayerBornPos[0], resSvc.GetMapCfgData(1000).PlayerBornPos[1] },isnew,istrain);
             }
             else //去新手訓練
             {
-                new EnterGameSender(1002, new float[] { resSvc.GetMapCfgData(1002).PlayerBornPos.x, resSvc.GetMapCfgData(1002).PlayerBornPos.y }, isnew, istrain);
+                new EnterGameSender(1002, new float[] { resSvc.GetMapCfgData(1002).PlayerBornPos[0], resSvc.GetMapCfgData(1002).PlayerBornPos[1] }, isnew, istrain);
             }
         }
         else //不是新手，正常進入遊戲
         {
             int MapID = GameRoot.Instance.ActivePlayer.MapID;
-            new EnterGameSender(MapID, new float[] { resSvc.GetMapCfgData(MapID).PlayerBornPos.x, resSvc.GetMapCfgData(MapID).PlayerBornPos.y }, isnew, istrain);
+            new EnterGameSender(MapID, new float[] { resSvc.GetMapCfgData(MapID).PlayerBornPos[0], resSvc.GetMapCfgData(MapID).PlayerBornPos[1] }, isnew, istrain);
         }
         GameRoot.Instance.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }

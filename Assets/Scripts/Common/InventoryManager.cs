@@ -475,9 +475,9 @@ public class InventoryManager : MonoBehaviour
         if (ko.items.Count == 1)
         {
             //移到第二格，刪除第一格
-            PECommon.Log("移到空格，直接修改position");
-            PECommon.Log("OldPosition=" + ko.OldPosition[0]);
-            PECommon.Log("NewPosition=" + ko.NewPosition[0]);
+            Debug.Log("移到空格，直接修改position");
+            Debug.Log("OldPosition=" + ko.OldPosition[0]);
+            Debug.Log("NewPosition=" + ko.NewPosition[0]);
             ko.items[0].Position = ko.NewPosition[0];
             if (!ko.items[0].IsCash)
             {
@@ -512,7 +512,7 @@ public class InventoryManager : MonoBehaviour
             //兩格交換           
             if (ko.items[0].ItemID != ko.items[1].ItemID)
             {
-                PECommon.Log("交換兩格");
+                Debug.Log("交換兩格");
                 if (!ko.items[0].IsCash)
                 {
                     Item item = nk[ko.NewPosition[0]];
@@ -541,7 +541,7 @@ public class InventoryManager : MonoBehaviour
             //兩格數量改變
             else
             {
-                PECommon.Log("兩格數量改變");
+                Debug.Log("兩格數量改變");
                 if (!ko.items[0].IsCash)
                 {
                     nk[ko.OldPosition[0]].Count = ko.items[0].Count;

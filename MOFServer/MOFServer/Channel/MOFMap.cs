@@ -513,7 +513,7 @@ public class MOFMap
         }
         catch (Exception e)
         {
-            PECommon.Log(e.Message);
+            LogSvc.Debug(e.Message);
         }
 
     }
@@ -732,18 +732,6 @@ public class MOFMap
     public void ProcessPlayerAction(ProtoMsg msg)
     {
         BroadCastMassege(msg);
-    }
-
-    public void ProcessChangeEquipment(MOFMsg msg)
-    {
-        foreach (var item in characters.Values)
-        {
-            if (msg.id != item.ID)
-            {
-                //item.session.Write(msg);
-            }
-
-        }
     }
 
     public void ProcessNormalChat(string Name, string Contents)

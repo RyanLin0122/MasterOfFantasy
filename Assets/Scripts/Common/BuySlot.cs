@@ -9,7 +9,7 @@ public class BuySlot : Slot
 {
     public override void StoreItem(Item item, int amount = 1)
     {
-        PECommon.Log("StoreItem Amount= " + amount);
+        Debug.Log("StoreItem Amount= " + amount);
         if (transform.childCount == 0)
         {
             GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;

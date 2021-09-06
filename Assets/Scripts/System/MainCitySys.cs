@@ -36,7 +36,6 @@ public class MainCitySys : SystemRoot
     public GameObject playerprefab;
     public bool IsChatWnd = true;
     public bool test = false;
-    public Dictionary<int, PlayerData> playerCollection = new Dictionary<int, PlayerData>();
     public int ReportTaskID;
     public bool IsCalculator = false;
     public int MoveTaskID;
@@ -77,9 +76,8 @@ public class MainCitySys : SystemRoot
         GameRoot.Instance.ActivePlayer.MapID = msg.MiniGameID;
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
-            GameRoot.Instance.CurrentPlayerData.map = msg.MiniGameID;
-            PECommon.Log("Entering Game");
-
+            GameRoot.Instance.ActivePlayer.MapID = msg.MiniGameID;
+            Debug.Log("Entering Mini Game");
             //關閉主UI
             baseUI.SetWndState(false);
             GameRoot.Instance.gameObject.GetComponent<GotoMiniGame>().ranking = msg.MiniGameRanking;
@@ -93,7 +91,6 @@ public class MainCitySys : SystemRoot
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
-            PECommon.Log("Entering Game");
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
             equipmentWnd.ReadCharacterEquipment(GameRoot.Instance.ActivePlayer.playerEquipments);
@@ -117,7 +114,7 @@ public class MainCitySys : SystemRoot
             }
             catch (Exception e)
             {
-                PECommon.Log(e.ToString());
+                Debug.Log(e.ToString());
             }
             baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
@@ -153,7 +150,6 @@ public class MainCitySys : SystemRoot
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
             NewLocation = ResSvc.Instance.GetMapCfgData(rsp.MapID).Location;
-            PECommon.Log("Entering Game");
 
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
@@ -176,7 +172,7 @@ public class MainCitySys : SystemRoot
             }
             catch (Exception e)
             {
-                PECommon.Log(e.ToString());
+                Debug.Log(e.ToString());
             }
             baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
@@ -321,7 +317,7 @@ public class MainCitySys : SystemRoot
             }
             catch (Exception e)
             {
-                PECommon.Log(e.ToString());
+                Debug.Log(e.ToString());
             }
 
         }

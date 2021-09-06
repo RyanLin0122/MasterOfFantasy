@@ -43,7 +43,7 @@ public class NetSvc
             GameServerStatus[i] = 1;
         }
         TimerSvc.Instance.AddTimeTask(BattleSys.Instance.StartMoveRspTask, 100, PETimeUnit.Millisecond, 0);
-        PECommon.Log("NetSvc Init Done! ");
+        LogSvc.Debug("NetSvc Init Done! ");
     }
  
 

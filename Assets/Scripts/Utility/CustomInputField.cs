@@ -76,7 +76,7 @@ public class CustomInputField : InputField
     {
         chatWnd = transform.parent.parent.GetComponent<ChatWnd>();
         base.OnSelect(eventData);
-        PECommon.Log("Onselect");
+        Debug.Log("Onselect");
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = false;
         isSelect = true;
     }
@@ -84,7 +84,7 @@ public class CustomInputField : InputField
     public override void OnDeselect(BaseEventData eventData)
     {
         base.OnDeselect(eventData);
-        PECommon.Log("OnDeselect");
+        Debug.Log("OnDeselect");
         CurrentPointer = NewPointer;
         isSelect = false;
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = true;
@@ -92,7 +92,7 @@ public class CustomInputField : InputField
     }
     public void ActivateChat()
     {
-        PECommon.Log("開啟聊天");
+        Debug.Log("開啟聊天");
         Select();
     }
 

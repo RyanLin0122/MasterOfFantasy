@@ -52,7 +52,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     protected override void InitWnd()
     {
-        PECommon.Log("初始化道具欄");
+        Debug.Log("初始化道具欄");
         if (!HasInitialized)
         {
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
@@ -64,7 +64,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         }
         PressBag1();
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-        RibiTxt.text = GameRoot.Instance.CurrentPlayerData.coin.ToString("N0");
+        RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
         base.InitWnd();
 
     }

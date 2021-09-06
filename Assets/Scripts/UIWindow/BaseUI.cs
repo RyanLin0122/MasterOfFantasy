@@ -24,18 +24,6 @@ public class BaseUI : WindowRoot
 
     }
 
-    public void MinusHp(int damage)
-    {
-        PlayerData pd = GameRoot.Instance.CurrentPlayerData;
-        pd.hp -= damage;
-        MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
-    }
-    public void MinusMp(int consume)
-    {
-        PlayerData pd = GameRoot.Instance.CurrentPlayerData;
-        pd.mp -= consume;
-        MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
-    }
     public void AddExp(long value)
     {
         Player pd = GameRoot.Instance.ActivePlayer;
@@ -50,19 +38,19 @@ public class BaseUI : WindowRoot
                 {
                     if (restExp >= Tools.GetExpMax(pd.Level + 1))
                     {
-                        PECommon.Log("升等1");
+                        Debug.Log("升等1");
                         long restexp = Tools.GetExpMax(pd.Level) - 1;
                         LevelUp(restexp);
                     }
                     else
                     {
-                        PECommon.Log("升等2");
+                        Debug.Log("升等2");
                         LevelUp(restExp);
                     }
                 }
                 else
                 {
-                    PECommon.Log("升等3");
+                    Debug.Log("升等3");
                     LevelUp(0);
                 }
             }

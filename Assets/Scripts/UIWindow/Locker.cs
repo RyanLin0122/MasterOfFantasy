@@ -42,7 +42,7 @@ public class Locker : Inventory
     public bool HasInitialized = false;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化倉庫");
+        Debug.Log("初始化倉庫");
         if (!HasInitialized)
         {
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
@@ -54,7 +54,7 @@ public class Locker : Inventory
         }
         PressBag1();
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-        RibiTxt.text = GameRoot.Instance.CurrentPlayerData.LockerCoin.ToString("N0");
+        //RibiTxt.text = GameRoot.Instance.CurrentPlayerData.LockerCoin.ToString("N0");
         base.InitWnd();
     }
     public void InitLocker()
@@ -69,6 +69,7 @@ public class Locker : Inventory
             HasInitialized = true;
         }
     }
+    /*
     public void ReadCharacterLocker(ReqCharacterItem msg)
     {
         if (msg.LockerItems != null)
@@ -88,6 +89,7 @@ public class Locker : Inventory
             }
         }
     }
+    */
     public void PressBag1()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
@@ -192,6 +194,7 @@ public class Locker : Inventory
         InventoryManager.Instance.HideToolTip();
         IsOpen = false;
     }
+    /*
     public void StoreItem(int KnapsackPosition, bool Iscash)
     {
         if (Iscash)
@@ -339,8 +342,9 @@ public class Locker : Inventory
                 }
                 break;
         }
-        */
+        
     }
+    */
     public void ClkPlusBtn()
     {
 

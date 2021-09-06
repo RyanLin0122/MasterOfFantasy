@@ -36,7 +36,7 @@ public class TimerSvc
     {
         pt = new PETimer(10);
         tpQue.Clear();
-        pt.SetLog((string info) => { PECommon.Log(info); });
+        pt.SetLog((string info) => { LogSvc.Debug(info); });
         pt.SetHandle((Action<int> cb, int tid) =>
         {
             if (cb != null)
@@ -49,7 +49,7 @@ public class TimerSvc
         });
         TimeSpanDic = new Dictionary<(int, int, int, int), TimeSpan>();
         DateTimeDic = new Dictionary<(int, int, int, int, int, int), DateTime>();
-        PECommon.Log("TimeSvc Init Done! ");
+        LogSvc.Debug("TimeSvc Init Done! ");
     }
     public void Update()
     {

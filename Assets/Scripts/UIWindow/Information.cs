@@ -57,7 +57,7 @@ public class Information : WindowRoot
     public Illustration illustration;
     protected override void InitWnd()
     {
-        PECommon.Log("初始化InfoWnd");
+        Debug.Log("初始化InfoWnd");
         base.InitWnd();
         SetActive(additionInfo, false);
         illustration.InitIllustration();
@@ -171,7 +171,7 @@ public class Information : WindowRoot
     public void AttUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        int _Att = GameRoot.Instance.CurrentPlayerData.Att + Convert.ToInt32(tempAtt.text);
+        int _Att = GameRoot.Instance.ActivePlayer.Att + Convert.ToInt32(tempAtt.text);
         if (_Att < 20)
         {
             if (Convert.ToInt32(txtPoint.text) > 0)
@@ -217,7 +217,7 @@ public class Information : WindowRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         int num = 0;
-        int value = GameRoot.Instance.CurrentPlayerData.Att + Convert.ToInt32(tempAtt.text);
+        int value = GameRoot.Instance.ActivePlayer.Att + Convert.ToInt32(tempAtt.text);
         if (value <= 20)
         {
             num = 1;
@@ -247,7 +247,7 @@ public class Information : WindowRoot
     public void StrengthUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        int _Health = GameRoot.Instance.CurrentPlayerData.Health + Convert.ToInt32(tempStrength.text);
+        int _Health = GameRoot.Instance.ActivePlayer.Strength + Convert.ToInt32(tempStrength.text);
         if (_Health < 20)
         {
             if (Convert.ToInt32(txtPoint.text) > 0)
@@ -293,7 +293,7 @@ public class Information : WindowRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         int num = 0;
-        int value = GameRoot.Instance.CurrentPlayerData.Health + Convert.ToInt32(tempStrength.text);
+        int value = GameRoot.Instance.ActivePlayer.Strength + Convert.ToInt32(tempStrength.text);
         if (value <= 20)
         {
             num = 1;
@@ -323,7 +323,7 @@ public class Information : WindowRoot
     public void AgilityUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        int _Dex = GameRoot.Instance.CurrentPlayerData.Dex + Convert.ToInt32(tempAgility.text);
+        int _Dex = GameRoot.Instance.ActivePlayer.Agility + Convert.ToInt32(tempAgility.text);
         if (_Dex < 20)
         {
             if (Convert.ToInt32(txtPoint.text) > 0)
@@ -369,7 +369,7 @@ public class Information : WindowRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         int num = 0;
-        int value = GameRoot.Instance.CurrentPlayerData.Dex + Convert.ToInt32(tempAgility.text);
+        int value = GameRoot.Instance.ActivePlayer.Agility + Convert.ToInt32(tempAgility.text);
         if (value <= 20)
         {
             num = 1;
@@ -400,7 +400,7 @@ public class Information : WindowRoot
     public void IntellectUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        int _Int = GameRoot.Instance.CurrentPlayerData.Int + Convert.ToInt32(tempIntellect.text);
+        int _Int = GameRoot.Instance.ActivePlayer.Intellect + Convert.ToInt32(tempIntellect.text);
         if (_Int < 20)
         {
             if (Convert.ToInt32(txtPoint.text) > 0)
@@ -446,7 +446,7 @@ public class Information : WindowRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         int num = 0;
-        int value = GameRoot.Instance.CurrentPlayerData.Int + Convert.ToInt32(tempIntellect.text);
+        int value = GameRoot.Instance.ActivePlayer.Intellect + Convert.ToInt32(tempIntellect.text);
         if (value <= 20)
         {
             num = 1;

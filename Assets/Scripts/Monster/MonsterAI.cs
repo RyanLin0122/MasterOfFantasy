@@ -489,7 +489,7 @@ public class MonsterTask
     }
     public void OnExecute()
     {
-        PECommon.Log("播怪物動畫:" + ActionID);
+        Debug.Log("播怪物動畫:" + ActionID);
         switch (ActionID)
         {
             case 1: //受傷

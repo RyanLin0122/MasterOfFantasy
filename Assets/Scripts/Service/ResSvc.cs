@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PEProtocal;
 
 public class ResSvc : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class ResSvc : MonoBehaviour
         }
         catch (Exception e)
         {
-            PECommon.Log(e.ToString());
+            Debug.Log(e.ToString());
             throw;
         }
         try
@@ -63,7 +64,7 @@ public class ResSvc : MonoBehaviour
         }
         catch (Exception e)
         {
-            PECommon.Log(e.ToString());
+            Debug.Log(e.ToString());
             throw;
         }
 
@@ -89,7 +90,7 @@ public class ResSvc : MonoBehaviour
 
             }
         }
-        PECommon.Log(SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().name);
         GameObject go = null;
         if (prefab != null)
         {
@@ -113,7 +114,7 @@ public class ResSvc : MonoBehaviour
 
             }
         }
-        PECommon.Log(SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().name);
         GameObject go = null;
         if (prefab != null)
         {
@@ -319,7 +320,7 @@ public class ResSvc : MonoBehaviour
                             {
                                 string[] valArr = e.InnerText.Split(',');
 
-                                mc.PlayerBornPos = new Vector2(float.Parse(valArr[0]), float.Parse(valArr[1]));
+                                mc.PlayerBornPos = new float[] { float.Parse(valArr[0]), float.Parse(valArr[1])};
                             }
                             break;
                         case "Islimited":

@@ -22,7 +22,7 @@ public class LoginSys
     public void Init()
     {
         cacheSvc = CacheSvc.Instance;
-        PECommon.Log("LoginSys Init Done.");
+        LogSvc.Debug("LoginSys Init Done.");
     }
 
 

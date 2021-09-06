@@ -17,7 +17,7 @@ public class Inventory : WindowRoot
     {
         if (item == null)
         {
-            PECommon.Log("物品id不存在");
+            Debug.Log("物品id不存在");
             return false;
         }
         if (item.Capacity == 1)

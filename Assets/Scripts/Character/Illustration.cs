@@ -477,8 +477,8 @@ public class Illustration : MonoBehaviour
             DefaultScale.Add(FAdult_Pants.transform.localScale);
             DefaultScale.Add(FAdult_Shoes.transform.localScale);
         }
-        
-        PECommon.Log("初始化Illustration");
+
+        Debug.Log("初始化Illustration");
     }
     public void LoadPrefab() //載入原始位置，圖片，和大小
     {

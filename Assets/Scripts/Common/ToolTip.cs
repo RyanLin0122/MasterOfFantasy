@@ -29,14 +29,14 @@ public class ToolTip : MonoBehaviour
 
     public void Show(string text)
     {
-        PECommon.Log("正在秀tooltip");
+        Debug.Log("正在秀tooltip");
         toolTipText.text = text;
         contentText.text = text;
         targetAlpha = 1;
     }
     public void Hide()
     {
-        PECommon.Log("隱藏tooltip");
+        Debug.Log("隱藏tooltip");
         targetAlpha = 0;
     }
     public void SetLocalPosition(Vector3 position)

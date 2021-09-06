@@ -276,7 +276,7 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
         catch (Exception e)
         {
-            PECommon.Log(e.Message);
+            LogSvc.Debug(e.Message);
         }
 
     }

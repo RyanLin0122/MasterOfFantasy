@@ -240,7 +240,7 @@ public class OtherPeopleCtrl : Controllable
             case EquipmentType.Chest:
                 if (id < 7000)
                 {
-                    PECommon.Log("Chest ID: " + id);
+                    Debug.Log("Chest ID: " + id);
                     SuitCtrl.gameObject.SetActive(false);
                     ShoesCtrl.gameObject.SetActive(true);
                     UpwearCtrl.gameObject.SetActive(true);
@@ -252,7 +252,7 @@ public class OtherPeopleCtrl : Controllable
                 }
                 else
                 {
-                    PECommon.Log("Chest ID: " + id);
+                    Debug.Log("Chest ID: " + id);
                     SuitCtrl.gameObject.SetActive(true);
                     ShoesCtrl.gameObject.SetActive(false);
                     UpwearCtrl.gameObject.SetActive(false);
@@ -677,7 +677,7 @@ public class OtherPlayerTask
     }
     public void OnExecute()
     {
-        PECommon.Log("播動畫:" + ActionID);
+        Debug.Log("播動畫:" + ActionID);
         switch (ActionID)
         {
             case 1: //受傷
@@ -811,12 +811,12 @@ public class MoveOtherPlayer : ActionTask<Transform>
                 {
                     if (ctrl.IsRun)
                     {
-                        PECommon.Log("Run" + ctrl.IdleCounter);
+                        Debug.Log("Run" + ctrl.IdleCounter);
                         ctrl.PlayRun();
                     }
                     else
                     {
-                        PECommon.Log("Walk" + ctrl.IdleCounter);
+                        Debug.Log("Walk" + ctrl.IdleCounter);
                         ctrl.PlayWalk();
                     }
                     blackboard.SetVariableValue("IsMove", true);
@@ -831,18 +831,18 @@ public class MoveOtherPlayer : ActionTask<Transform>
             {
                 if (blackboard.GetVariable<bool>("IsMove").value)
                 {
-                    PECommon.Log("Idle" + ctrl.IdleCounter);
+                    Debug.Log("Idle" + ctrl.IdleCounter);
                     ctrl.PlayIdle();
                     blackboard.SetVariableValue("IsMove", false);
                 }
             }
             ctrl.IdleCounter++;
-            PECommon.Log("IdleCounter: " + ctrl.IdleCounter);
+            Debug.Log("IdleCounter: " + ctrl.IdleCounter);
             EndAction();
         }
         else
         {
-            PECommon.Log("IdleCounter: " + 0);
+            Debug.Log("IdleCounter: " + 0);
             ctrl.IdleCounter = 0;
         }
 

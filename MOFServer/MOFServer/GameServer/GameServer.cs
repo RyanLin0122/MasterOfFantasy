@@ -13,7 +13,7 @@ public class GameServer
     {
         RunChannels(index);
         NetSvc.Instance.gameServers[index] = this;
-        PECommon.Log("遊戲伺服器"+index+"設定完成!!");
+        LogSvc.Debug("遊戲伺服器"+index+"設定完成!!");
     }
 
     public void RunChannels(int index)

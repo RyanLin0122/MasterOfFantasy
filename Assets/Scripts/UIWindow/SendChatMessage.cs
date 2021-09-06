@@ -27,21 +27,21 @@ public class SendChatMessage : MonoBehaviour, ISelectHandler, IDeselectHandler
     }
     public void OnSelect(BaseEventData eventData)
     {
-        PECommon.Log("Onselect");       
+        Debug.Log("Onselect");       
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = false;
         isSelect = true;
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        PECommon.Log("OnDeselect");
+        Debug.Log("OnDeselect");
         isSelect = false;
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = true;
         
     }
     public void ActivateChat()
     {
-        PECommon.Log("開啟聊天");
+        Debug.Log("開啟聊天");
         Init();
         GetComponent<InputField>().Select();
     }
