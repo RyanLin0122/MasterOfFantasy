@@ -92,9 +92,6 @@
     <Reference Include="MySql.Data">
       <HintPath>..\Libs\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -278,6 +275,18 @@
     <Compile Include="System\SystemBase.cs" />
     <Compile Include="Tool\AStar.cs" />
     <Compile Include="Tool\Heap.cs" />
+    <Compile Include="Tool\LitJson\IJsonWrapper.cs" />
+    <Compile Include="Tool\LitJson\JsonData.cs" />
+    <Compile Include="Tool\LitJson\JsonException.cs" />
+    <Compile Include="Tool\LitJson\JsonMapper.cs" />
+    <Compile Include="Tool\LitJson\JsonMockWrapper.cs" />
+    <Compile Include="Tool\LitJson\JSONObject.cs" />
+    <Compile Include="Tool\LitJson\JsonReader.cs" />
+    <Compile Include="Tool\LitJson\JSONTemplates.cs" />
+    <Compile Include="Tool\LitJson\JsonWriter.cs" />
+    <Compile Include="Tool\LitJson\Lexer.cs" />
+    <Compile Include="Tool\LitJson\ParserToken.cs" />
+    <Compile Include="Tool\LitJson\VectorTemplates.cs" />
     <Compile Include="Tool\PolyNav2D.cs" />
     <Compile Include="Tool\PolyNavAgent.cs" />
     <Compile Include="Tool\PolyNavObstacle.cs" />
@@ -291,6 +300,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Common\CashShopInfo.Json" />
     <None Include="Common\ItemInfo.Json" />
     <None Include="Common\log4net.config" />
     <None Include="Common\MonsterInfo.Json" />

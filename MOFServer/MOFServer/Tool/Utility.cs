@@ -4,7 +4,6 @@ using MongoDB.Bson;
 using PEProtocal;
 using System.Configuration;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json.Linq;
 
 public static class Utility
 {
@@ -392,7 +391,7 @@ public static class Utility
     }
     public static Consumable GetConsumableByID(int ItemID)
     {
-        Consumable itemr = (Consumable)CacheSvc.ItemDic[ItemID];
+        Consumable itemr = (Consumable)CacheSvc.ItemList[ItemID];
         Consumable item = new Consumable(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
             itemr.HP, itemr.MP, itemr.Defense, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.ExpRate,
@@ -402,7 +401,7 @@ public static class Utility
     }
     public static Equipment GetEquipmentByID(int ItemID)
     {
-        Equipment itemr = (Equipment)CacheSvc.ItemDic[ItemID];
+        Equipment itemr = (Equipment)CacheSvc.ItemList[ItemID];
         Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
             itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum);
@@ -411,7 +410,7 @@ public static class Utility
     }
     public static Weapon GetWeaponByID(int ItemID)
     {
-        Weapon itemr = (Weapon)CacheSvc.ItemDic[ItemID];
+        Weapon itemr = (Weapon)CacheSvc.ItemList[ItemID];
         Weapon item = new Weapon(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Level, itemr.MinDamage, itemr.MaxDamage, itemr.AttSpeed, itemr.Range, itemr.Property, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
             itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum);
@@ -419,7 +418,7 @@ public static class Utility
     }
     public static EtcItem GetEtcItemByID(int ItemID)
     {
-        EtcItem itemr = (EtcItem)CacheSvc.ItemDic[ItemID];
+        EtcItem itemr = (EtcItem)CacheSvc.ItemList[ItemID];
         EtcItem item = new EtcItem(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1);
         return item;
@@ -459,44 +458,44 @@ public static class Utility
     #endregion
 
     #region Json to C# Type
-    public static int ToInt(JObject jo, string s)
+    public static int ToInt(JSONObject jo, string s)
     {
         return Convert.ToInt32(jo[s].ToString());
     }
-    public static long ToLong(JObject jo, string s)
+    public static long ToLong(JSONObject jo, string s)
     {
         return Convert.ToInt64(jo[s].ToString());
     }
-    public static float ToFloat(JObject jo, string s)
+    public static float ToFloat(JSONObject jo, string s)
     {
         return (float)Convert.ToDouble(jo[s].ToString());
     }
-    public static T ToEnum<T>(JObject jo, string s)
+    public static T ToEnum<T>(JSONObject jo, string s)
     {
         return (T)Enum.Parse(typeof(T), jo[s].ToString());
     }
-    public static string ToStr(JObject jo, string s)
+    public static string ToStr(JSONObject jo, string s)
     {
         return jo[s].ToString();
     }
-    public static Dictionary<int, int> JsonToDic_Int_Int(JObject jo, string key, string value)
+    public static Dictionary<int, int> JsonToDic_Int_Int(JSONObject jo, string key, string value)
     {
         Dictionary<int, int> r = new Dictionary<int, int>();
         if (jo.Count > 0)
         {
-            foreach (var je in jo.Children())
+            foreach (var je in jo.list)
             {
-                r.Add(ToInt((JObject)je, key), ToInt((JObject)je, value));
+                r.Add(ToInt(je, key), ToInt(je, value));
             }
         }
         return r;
     }
-    public static List<T> JsonToList<T>(JObject jo) where T : IConvertible
+    public static List<T> JsonToList<T>(JSONObject jo) where T : IConvertible
     {
         List<T> r = new List<T>();
         if (jo.Count > 0)
         {
-            foreach (var je in jo.Children())
+            foreach (var je in jo.list)
             {
                 if (Regex.IsMatch(je.ToString(), "^[0-9]*$"))
                 {
@@ -506,20 +505,20 @@ public static class Utility
         }
         return r;
     }
-    public static List<Item> JsonToItemList(JObject jo)
+    public static List<Item> JsonToItemList(JSONObject jo)
     {
         List<Item> r = new List<Item>();
         if (jo.Count > 0)
         {
-            foreach (var je in jo.Children())
+            foreach (var je in jo.list)
             {
-                if (CacheSvc.ItemDic.ContainsKey(Convert.ToInt32(((JObject)je).ToString())))
+                if (CacheSvc.ItemList.ContainsKey(Convert.ToInt32((je).ToString())))
                 {
-                    r.Add(CacheSvc.ItemDic[Convert.ToInt32(((JObject)je).ToString())]);
+                    r.Add(CacheSvc.ItemList[Convert.ToInt32((je).ToString())]);
                 }
                 else
                 {
-                    LogSvc.Debug("無此道具，ID: " + Convert.ToInt32(((JObject)je).ToString()));
+                    LogSvc.Debug("無此道具，ID: " + Convert.ToInt32((je).ToString()));
                 }
             }
         }
