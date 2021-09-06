@@ -433,7 +433,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             int KnapsackPosition = SlotPosition;
                             int EquipPosition = EquipmentWnd.Instance.FindEquipmentPosition(currentItem);
                             Item PutOffItem = InventoryManager.Instance.Equipments[EquipPosition];
-                            PutOffItem.Posotion = KnapsackPosition;
+                            PutOffItem.Position = KnapsackPosition;
                             new EquipmentSender(2, EquipPosition, PutOffItem, KnapsackPosition,currentItem);
                             Tools.Log("穿裝型2");
                         }
@@ -474,18 +474,18 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             if (!currentItem.Item.IsCash)
                             {
                                 Item item1 = nk[SlotPosition];
-                                item1.Posotion = SlotPosition;
+                                item1.Position = SlotPosition;
                                 item1.Count = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count;
                                 Items.Add(item1);
                             }
                             else
                             {
                                 Item item1 = ck[SlotPosition];
-                                item1.Posotion = SlotPosition;
+                                item1.Position = SlotPosition;
                                 item1.Count = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count;
                                 Items.Add(item1);
                             }
-                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Posotion }, new int[] { SlotPosition });
+                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                             Tools.Log("KnapsackOp: " + 4);
                         }
                         else
@@ -495,30 +495,30 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             if (!currentItem.Item.IsCash)
                             {
                                 int RestAmount = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
-                                Item item1 = nk[InventoryManager.Instance.PickedUpItem.Posotion];
-                                item1.Posotion = InventoryManager.Instance.PickedUpItem.Posotion;
+                                Item item1 = nk[InventoryManager.Instance.PickedUpItem.Position];
+                                item1.Position = InventoryManager.Instance.PickedUpItem.Position;
                                 item1.Count = RestAmount;
                                 Items.Add(item1);
 
                                 Item item2 = nk[SlotPosition];
-                                item2.Posotion = SlotPosition;
+                                item2.Position = SlotPosition;
                                 item2.Count = currentItem.Item.Capacity;
                                 Items.Add(item2);
                             }
                             else
                             {
                                 int RestAmount = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
-                                Item item1 = ck[InventoryManager.Instance.PickedUpItem.Posotion];
-                                item1.Posotion = InventoryManager.Instance.PickedUpItem.Posotion;
+                                Item item1 = ck[InventoryManager.Instance.PickedUpItem.Position];
+                                item1.Position = InventoryManager.Instance.PickedUpItem.Position;
                                 item1.Count = RestAmount;
                                 Items.Add(item1);
 
                                 Item item2 = ck[SlotPosition];
-                                item2.Posotion = SlotPosition;
+                                item2.Position = SlotPosition;
                                 item2.Count = currentItem.Item.Capacity;
                                 Items.Add(item2);
                             }
-                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Posotion }, new int[] { SlotPosition });
+                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                             Tools.Log("KnapsackOp: " + 4);
                         }
                     }
@@ -528,25 +528,25 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         List<Item> Items = new List<Item>();
                         if (!currentItem.Item.IsCash)
                         {
-                            Item item1 = nk[InventoryManager.Instance.PickedUpItem.Posotion];
-                            item1.Posotion = InventoryManager.Instance.PickedUpItem.Posotion;
+                            Item item1 = nk[InventoryManager.Instance.PickedUpItem.Position];
+                            item1.Position = InventoryManager.Instance.PickedUpItem.Position;
                             Items.Add(item1);
 
                             Item item2 = nk[SlotPosition];
-                            item2.Posotion = SlotPosition;
+                            item2.Position = SlotPosition;
                             Items.Add(item2);
                         }
                         else
                         {
-                            Item item1 = ck[InventoryManager.Instance.PickedUpItem.Posotion];
-                            item1.Posotion = InventoryManager.Instance.PickedUpItem.Posotion;
+                            Item item1 = ck[InventoryManager.Instance.PickedUpItem.Position];
+                            item1.Position = InventoryManager.Instance.PickedUpItem.Position;
                             Items.Add(item1);
 
                             Item item2 = ck[SlotPosition];
-                            item2.Posotion = SlotPosition;
+                            item2.Position = SlotPosition;
                             Items.Add(item2);
                         }
-                        new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Posotion }, new int[] { SlotPosition });
+                        new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                         Tools.Log("KnapsackOp: " + 4);
                     }
                     InventoryManager.Instance.RemovePickedItem();
@@ -558,7 +558,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 // 自身是空  
                 //1,IsPickedItem ==true  pickedItem放在
                 //2,IsPickedItem==false  return
-                if (InventoryManager.Instance.IsPickedItem == true && SlotPosition != InventoryManager.Instance.PickedUpItem.Posotion)
+                if (InventoryManager.Instance.IsPickedItem == true && SlotPosition != InventoryManager.Instance.PickedUpItem.Position)
                 {
                     //寫交換封包
                     List<Item> Items = new List<Item>();
@@ -572,14 +572,14 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         Item item1 = InventoryManager.Instance.PickedUpItem;
                         Items.Add(item1);
                     }
-                    new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Posotion }, new int[] { SlotPosition });
+                    new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                     Tools.Log("KnapsackOp: " + 4);
                     //InventoryManager.Instance.RemoveItem(InventoryManager.Instance.PickedItem.Amount);
                 }
 
                 else
                 {
-                    if (SlotPosition == InventoryManager.Instance.PickedUpItem.Posotion)
+                    if (SlotPosition == InventoryManager.Instance.PickedUpItem.Position)
                     {
                         StoreItem(InventoryManager.Instance.PickedUpItem, InventoryManager.Instance.PickedUpItem.Count);
                         InventoryManager.Instance.RemovePickedItem();

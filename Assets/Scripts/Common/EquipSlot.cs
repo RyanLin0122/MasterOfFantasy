@@ -33,7 +33,7 @@ public class EquipSlot : Slot
 
                 if (EmptySlot != null)
                 {
-                    PutOffItem.Posotion = EmptySlot.SlotPosition;
+                    PutOffItem.Position = EmptySlot.SlotPosition;
                     new EquipmentSender(3, SlotPosition, PutOffItem, EmptySlot.SlotPosition, null);
                 }
             }

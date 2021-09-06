@@ -178,11 +178,11 @@ public class KnapsackWnd : Inventory, IStackWnd
             {
                 if (!item.IsCash)
                 {
-                    FindSlot(item.Posotion).StoreItem(item, item.Count);
+                    FindSlot(item.Position).StoreItem(item, item.Count);
                 }
                 else
                 {
-                    FindCashSlot(item.Posotion).StoreItem(item, item.Count);
+                    FindCashSlot(item.Position).StoreItem(item, item.Count);
                 }
             }
         }
@@ -192,11 +192,11 @@ public class KnapsackWnd : Inventory, IStackWnd
             {
                 if (!item.IsCash)
                 {
-                    FindSlot(item.Posotion).StoreItem(item, item.Count);
+                    FindSlot(item.Position).StoreItem(item, item.Count);
                 }
                 else
                 {
-                    FindCashSlot(item.Posotion).StoreItem(item, item.Count);
+                    FindCashSlot(item.Position).StoreItem(item, item.Count);
                 }
             }
         }
@@ -228,7 +228,7 @@ public class KnapsackWnd : Inventory, IStackWnd
             else
             {
                 item.Count = 1;
-                item.Posotion = slot.SlotPosition;
+                item.Position = slot.SlotPosition;
                 List<Item> items = new List<Item>();
                 items.Add(item);
                 new KnapsackSender(1, items, null, new int[] { slot.SlotPosition });
@@ -261,7 +261,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     {
                         //還塞的下，增加數量
                         item.Count = hasitem.Count + 1;
-                        item.Posotion = slot.SlotPosition;
+                        item.Position = slot.SlotPosition;
                         List<Item> items = new List<Item>();
                         items.Add(item);
                         new KnapsackSender(2, items, null, new int[] { slot.SlotPosition });
@@ -282,7 +282,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                         if (emptySlot != null)
                         {
                             item.Count = 1;
-                            item.Posotion = emptySlot.SlotPosition;
+                            item.Position = emptySlot.SlotPosition;
                             List<Item> items = new List<Item>();
                             items.Add(item);
                             new KnapsackSender(1, items, null, new int[] { emptySlot.SlotPosition });
@@ -311,7 +311,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     if (emptySlot != null)
                     {
                         item.Count = 1;
-                        item.Posotion = emptySlot.SlotPosition;
+                        item.Position = emptySlot.SlotPosition;
                         List<Item> items = new List<Item>();
                         items.Add(item);
                         new KnapsackSender(1, items, null, new int[] { emptySlot.SlotPosition });
@@ -348,7 +348,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     if (reqSlotNum == 1) //放到有東西那格,一定夠放
                     {
                         item.Count = num + slot.GetComponentInChildren<ItemUI>().Amount;
-                        item.Posotion = slot.SlotPosition;
+                        item.Position = slot.SlotPosition;
                         List<Item> items = new List<Item>();
                         items.Add(item);
                         new KnapsackSender(2, items, null, new int[] { slot.SlotPosition });
@@ -380,7 +380,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                                 if (i == 0)
                                 {
                                     Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
-                                    newItem.Posotion = slot.SlotPosition;
+                                    newItem.Position = slot.SlotPosition;
                                     newItem.Count = item.Capacity;
                                     pos[i] = slot.SlotPosition;
                                     items.Add(newItem);
@@ -390,7 +390,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                                 {
                                     //最後一次
                                     Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
-                                    newItem.Posotion = EmptySlotPositions[i - 1];
+                                    newItem.Position = EmptySlotPositions[i - 1];
                                     newItem.Count = restNum;
                                     pos[i] = EmptySlotPositions[i - 1];
                                     items.Add(newItem);
@@ -400,7 +400,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                                 {
                                     //第i次
                                     Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
-                                    newItem.Posotion = EmptySlotPositions[i - 1];
+                                    newItem.Position = EmptySlotPositions[i - 1];
                                     newItem.Count = item.Capacity;
                                     pos[i] = EmptySlotPositions[i - 1];
                                     items.Add(newItem);
@@ -451,7 +451,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                             if (tempAmount <= item.Capacity || reqSlotNum == 1) //最後一次
                             {
                                 Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
-                                newItem.Posotion = EmptySlotPositions[i];
+                                newItem.Position = EmptySlotPositions[i];
                                 newItem.Count = tempAmount;
                                 pos[i] = EmptySlotPositions[i];
                                 items.Add(newItem);
@@ -459,7 +459,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                             else
                             {
                                 Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
-                                newItem.Posotion = EmptySlotPositions[i];
+                                newItem.Position = EmptySlotPositions[i];
                                 newItem.Count = item.Capacity;
                                 pos[i] = EmptySlotPositions[i];
                                 items.Add(newItem);

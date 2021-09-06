@@ -1,16 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PENet;
 using PEProtocal;
-using Mina.Core.Service;
-using Mina.Transport.Socket;
-using Mina.Filter.Codec;
-using Mina.Filter.Logging;
-using Mina.Core.Session;
-using System.Net;
-using Mina.Filter.Codec.Serialization;
-using Mina.Core.Future;
 
 public class NetSvc : MonoBehaviour
 {
@@ -458,18 +449,18 @@ public class NetSvc : MonoBehaviour
                             {
                                 if (!item.IsCash)
                                 {
-                                    if (nk.ContainsKey(item.Posotion))
+                                    if (nk.ContainsKey(item.Position))
                                     {
-                                        nk.Remove(item.Posotion);
-                                        GameObject.Destroy(KnapsackWnd.Instance.FindSlot(item.Posotion).GetComponentInChildren<ItemUI>());
+                                        nk.Remove(item.Position);
+                                        GameObject.Destroy(KnapsackWnd.Instance.FindSlot(item.Position).GetComponentInChildren<ItemUI>());
                                     }                                   
                                 }
                                 else
                                 {
-                                    if (ck.ContainsKey(item.Posotion))
+                                    if (ck.ContainsKey(item.Position))
                                     {
-                                        ck.Remove(item.Posotion);
-                                        GameObject.Destroy(KnapsackWnd.Instance.FindSlot(item.Posotion).GetComponentInChildren<ItemUI>());
+                                        ck.Remove(item.Position);
+                                        GameObject.Destroy(KnapsackWnd.Instance.FindSlot(item.Position).GetComponentInChildren<ItemUI>());
                                     }
                                 }
                             }
@@ -482,13 +473,13 @@ public class NetSvc : MonoBehaviour
                             {
                                 if (!item.IsCash)
                                 {
-                                    nk[item.Posotion] = item;
-                                    KnapsackWnd.Instance.FindSlot(item.Posotion).StoreItem(item, item.Count);
+                                    nk[item.Position] = item;
+                                    KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
                                 }
                                 else
                                 {
-                                    ck[item.Posotion] = item;
-                                    KnapsackWnd.Instance.FindCashSlot(item.Posotion).StoreItem(item, item.Count);
+                                    ck[item.Position] = item;
+                                    KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
                                 }
                             }
                             GameRoot.Instance.ActivePlayer.Ribi -= ko.Ribi;

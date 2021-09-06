@@ -304,12 +304,12 @@ public class InventoryManager : MonoBehaviour
         if (item.IsCash)
         {
             PickedUpItem = GameRoot.Instance.ActivePlayer.CashKnapsack[SlotPosition];
-            PickedUpItem.Posotion = SlotPosition;
+            PickedUpItem.Position = SlotPosition;
         }
         else
         {
             PickedUpItem = GameRoot.Instance.ActivePlayer.NotCashKnapsack[SlotPosition];
-            PickedUpItem.Posotion = SlotPosition;
+            PickedUpItem.Position = SlotPosition;
         }
         PickedItem.Show();
         this.toolTip.Hide();
@@ -478,7 +478,7 @@ public class InventoryManager : MonoBehaviour
             PECommon.Log("移到空格，直接修改position");
             PECommon.Log("OldPosition=" + ko.OldPosition[0]);
             PECommon.Log("NewPosition=" + ko.NewPosition[0]);
-            ko.items[0].Posotion = ko.NewPosition[0];
+            ko.items[0].Position = ko.NewPosition[0];
             if (!ko.items[0].IsCash)
             {
                 if (nk.ContainsKey(ko.NewPosition[0]))
@@ -518,8 +518,8 @@ public class InventoryManager : MonoBehaviour
                     Item item = nk[ko.NewPosition[0]];
                     nk[ko.NewPosition[0]] = nk[ko.OldPosition[0]];
                     nk[ko.OldPosition[0]] = item;
-                    nk[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
-                    nk[ko.OldPosition[0]].Posotion = ko.OldPosition[0];
+                    nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
+                    nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(KnapsackWnd.Instance.FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
                     KnapsackWnd.Instance.FindSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
@@ -530,8 +530,8 @@ public class InventoryManager : MonoBehaviour
                     Item item = ck[ko.NewPosition[0]];
                     ck[ko.NewPosition[0]] = ck[ko.OldPosition[0]];
                     ck[ko.OldPosition[0]] = item;
-                    ck[ko.NewPosition[0]].Posotion = ko.NewPosition[0];
-                    ck[ko.OldPosition[0]].Posotion = ko.OldPosition[0];
+                    ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
+                    ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
                     KnapsackWnd.Instance.FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);

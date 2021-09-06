@@ -140,11 +140,11 @@ public class EquipmentWnd : Inventory, IStackWnd
         }
         if (msg.PutOnEquipment != null)
         {
-            msg.PutOnEquipment.Posotion = msg.EquipmentPosition;
+            msg.PutOnEquipment.Position = msg.EquipmentPosition;
         }
         if (msg.PutOffEquipment != null)
         {
-            msg.PutOffEquipment.Posotion = msg.KnapsackPosition;
+            msg.PutOffEquipment.Position = msg.KnapsackPosition;
         }
 
         switch (msg.OperationType)

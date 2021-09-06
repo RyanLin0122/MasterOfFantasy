@@ -254,7 +254,7 @@ public class ShopWnd : Inventory
                     if (CashPointer <= EmptyCashSlot.Count)//目前空間夠的話
                     {
                         Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
-                        Newitem.Posotion = EmptyCashSlot[CashPointer];
+                        Newitem.Position = EmptyCashSlot[CashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
                         PECommon.Log("加一次");
                         PECommon.Log(Newitem.Type.ToString());
@@ -272,7 +272,7 @@ public class ShopWnd : Inventory
                     if (NotCashPointer <= EmptyNotCashSlot.Count)
                     {
                         Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
-                        Newitem.Posotion = EmptyNotCashSlot[NotCashPointer];
+                        Newitem.Position = EmptyNotCashSlot[NotCashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
                         PECommon.Log("加一次");
                         PECommon.Log(Newitem.Type.ToString());
