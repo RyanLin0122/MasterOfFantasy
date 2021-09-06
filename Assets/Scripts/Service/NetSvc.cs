@@ -19,8 +19,6 @@ public class NetSvc : MonoBehaviour
 
     private Queue<ProtoMsg> MOFmsgQue = new Queue<ProtoMsg>();
     public NettyClient Nettyclient;
-    public IoConnector connector;
-    public IoSession session; //隨頻道改變
     public ClientNettySession NettySession;
     public void InitSvc()
     {
@@ -31,24 +29,6 @@ public class NetSvc : MonoBehaviour
         print("InitNetSvc...");
 
     }
-    public void clearConnector()
-    {
-        connector.Dispose();
-    }
-    //Mina
-    public void SendMOFMsg(MOFMsg msg)
-    {
-        try
-        {
-            session.Write(msg);
-        }
-        catch (System.Exception e)
-        {
-            PECommon.Log(e.ToString());
-        }
-
-    }
-
     public void AddMOFPkg(ProtoMsg msg)
     {
         lock (obj)
@@ -162,40 +142,6 @@ public class NetSvc : MonoBehaviour
                 break;
         }
     }
-    private void ProcessMsg(MOFMsg msg)
-    {
-        switch (msg.cmd)
-        {
-
-            case 19: //讀取道具
-                
-                //EquipmentWnd.Instance.ReadCharacterEquipment(msg.reqCharacterItem);
-                Locker.Instance.ReadCharacterLocker(msg.reqCharacterItem);
-                MailBox.Instance.ReadCharacterMailBox(msg.reqCharacterItem);
-                MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
-                
-                break;
-            case 22: //別人換裝備
-                if (msg.id != GameRoot.Instance.CurrentPlayerData.id)
-                {
-                    //if (GameRoot.Instance.otherPlayers.ContainsKey(msg.id))
-                    //{
-                    //    GameRoot.Instance.otherPlayers[msg.id].SetAllEquipment(msg);
-                    //    GameRoot.Instance.otherPlayers[msg.id].SetFace(msg);
-                    //}
-                }
-                break;
-            case 23: //倉庫
-                PECommon.Log("倉庫");
-                Locker.Instance.ProcessLockerMsg(msg.lockerRelated);
-                break;
-            case 24: //倉庫
-                PECommon.Log("信箱");
-                MailBox.Instance.ProcessMailBoxMsg(msg.mailBoxRelated);
-                break;
-        }
-    }
-
 
     #region 業務邏輯處理
     public void DoLoginRsp(ProtoMsg msg)

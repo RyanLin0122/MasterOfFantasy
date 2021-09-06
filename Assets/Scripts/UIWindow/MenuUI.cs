@@ -82,8 +82,7 @@ public class MenuUI : WindowRoot
     public void ClickEndGameBtn()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
-        NetSvc.Instance.session.Close(true);
-        NetSvc.Instance.connector.Dispose();
+
         Application.Quit();
     }
 }

@@ -214,7 +214,7 @@ public class MailBox : Inventory
                 encodedItems = items,
                 
             };
-            NetSvc.Instance.SendMOFMsg(msg);
+            //NetSvc.Instance.SendMOFMsg(msg);
         }
     }       
     
@@ -285,7 +285,7 @@ public class MailBox : Inventory
             MailBoxPosition = MailBoxPosition,
             OldDBID = MailBoxDBID
         };
-        NetSvc.Instance.SendMOFMsg(msg);
+        //NetSvc.Instance.SendMOFMsg(msg);
     }
 
     public void ProcessMailBoxMsg(MailBoxRelated msg)

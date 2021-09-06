@@ -212,7 +212,7 @@ public class Locker : Inventory
                 //    KnapsackPosition = encodedItem.position
 
                 };
-                NetSvc.Instance.SendMOFMsg(msg);
+                //NetSvc.Instance.SendMOFMsg(msg);
             }
         }
         else
@@ -233,7 +233,7 @@ public class Locker : Inventory
               //      KnapsackPosition = encodedItem.position
 
                 };
-                NetSvc.Instance.SendMOFMsg(msg);
+                //NetSvc.Instance.SendMOFMsg(msg);
             }
         }
     }
@@ -294,7 +294,7 @@ public class Locker : Inventory
             LockerPosition = LockerPosition,
             OldDBID = LockerDBID
         };
-        NetSvc.Instance.SendMOFMsg(msg);
+        //NetSvc.Instance.SendMOFMsg(msg);
     }
 
     public void ProcessLockerMsg(LockerRelated msg)

@@ -87,34 +87,13 @@ public class ChangeChannelUI : WindowRoot
         {
             PECommon.Log("換頻囉");
             GameRoot.Instance.ActiveChannel = ChoosedChannel;
-            //NetSvc.Instance.client.ShutDown();
-            NetSvc.Instance.session.Close(true);
-            NetSvc.Instance.connector.SessionClosed += (s, e) =>
-            {
-                e.Session.Close(true);
-                e.Session.CloseNow();
 
-            };
-            NetSvc.Instance.connector.Dispose();
-            NetSvc.Instance.session = null;
             NetSvc.Instance.InitSvc();
 
             
             Thread task = new Thread(change =>{
                 Thread.Sleep(1000);
-                MOFMsg msg = new MOFMsg();
-                msg.cmd = 11; msg.id = GameRoot.Instance.CurrentPlayerData.id;
-                msg.addPlayer = new AddPlayer
-                {
-                    pd = GameRoot.Instance.CurrentPlayerData,
-                    LastMapID = 0,
-                    IsPortal = false,
-                    CharacterName = GameRoot.Instance.CurrentPlayerData.name,
-                    CharacterID = GameRoot.Instance.CurrentPlayerData.id,
-                    Position = new float[] { ResSvc.Instance.GetMapCfgData(GameRoot.Instance.CurrentPlayerData.map).PlayerBornPos.x, ResSvc.Instance.GetMapCfgData(GameRoot.Instance.CurrentPlayerData.map).PlayerBornPos.y },
-                    MapID = GameRoot.Instance.CurrentPlayerData.map
-                };
-                NetSvc.Instance.SendMOFMsg(msg);
+
                 GameRoot.AddTips("換頻囉~");
                 return;
             });
