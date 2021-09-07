@@ -7,6 +7,11 @@ public class MessageBox : MonoBehaviour
     public Text msgtxt;
     public MessageBoxType messageBoxType;
     public Action ConfirmAction = null;
+    public Image UpImage;
+    public Image ContentImage;
+    public Image DownImage;
+    public Button ConfirmBtn;
+    public Button CloseBtn;
 
     public static bool CheckIsMessageBox()
     {
@@ -28,7 +33,7 @@ public class MessageBox : MonoBehaviour
                 return true;
             }
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             print(e.Message);
         }
@@ -63,6 +68,18 @@ public class MessageBox : MonoBehaviour
         box.AdjustContentSize();
         box.transform.localPosition = Vector3.zero;
         box.messageBoxType = MessageBoxType.Simple;
+        if (box.ConfirmBtn != null && action != null)
+        {
+            box.ConfirmBtn.onClick.AddListener(() => { action.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
+            if (Type == MessageBoxType.Simple)
+            {
+                box.CloseBtn.onClick.AddListener(() => { action.Invoke(); });
+            }
+            else
+            {
+                box.ConfirmBtn.onClick.AddListener(() => Destroy(box.gameObject));
+            }
+        }
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
 
@@ -97,7 +114,12 @@ public class MessageBox : MonoBehaviour
     }
     public void AdjustContentSize()
     {
-
+        float Overlap_Offset = 3f;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(msgtxt.GetComponent<RectTransform>());
+        float TextHeight = msgtxt.rectTransform.rect.height;
+        ContentImage.rectTransform.sizeDelta = new Vector2(ContentImage.rectTransform.rect.width, TextHeight);
+        UpImage.transform.localPosition = new Vector2(UpImage.transform.localPosition.x, UpImage.rectTransform.rect.height / 2 + TextHeight / 2 - Overlap_Offset);
+        DownImage.transform.localPosition = new Vector2(DownImage.transform.localPosition.x, -DownImage.rectTransform.rect.height / 2 - TextHeight / 2 + Overlap_Offset);
     }
 }
 public enum MessageBoxType
