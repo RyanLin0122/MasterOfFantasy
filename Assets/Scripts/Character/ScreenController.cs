@@ -83,10 +83,7 @@ public class ScreenController : MonoBehaviour
             {
                 print(MessageBox.IsMessageBox);
             }
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                MessageBox.Show("haha");
-            }
+
             if (Input.GetKeyDown(KeyCode.L))
             {
                 MainCitySys.Instance.baseUI.AddExp(100000000);
