@@ -33,7 +33,7 @@ public class CacheSvc
         dbMgr = DBMgr.Instance;
         Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
         await task;
-        LogSvc.Debug("CacheSvc Init Done!");
+        LogSvc.Info("CacheSvc Init Done!");
     }
     public void QueryDataFromDB()
     {

@@ -49,7 +49,7 @@ public class TimerSvc
         });
         TimeSpanDic = new Dictionary<(int, int, int, int), TimeSpan>();
         DateTimeDic = new Dictionary<(int, int, int, int, int, int), DateTime>();
-        LogSvc.Debug("TimeSvc Init Done! ");
+        LogSvc.Info("TimeSvc Init Done! ");
     }
     public void Update()
     {

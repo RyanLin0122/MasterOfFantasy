@@ -28,7 +28,7 @@ public class PowerSys : SystemBase
         TimerSvc.Instance.AddTimeTask(CalHpAdd, 10, PETimeUnit.Second, 0);
         TimerSvc.Instance.AddTimeTask(CalMpAdd, 5, PETimeUnit.Second, 0);
         WeatherTask = TimerSvc.Instance.AddTimeTask(AssignWeather, 600, PETimeUnit.Second, 0);
-        LogSvc.Debug("PowerSys Init Done.");
+        LogSvc.Info("PowerSys Init Done.");
     }
     private void CalHpAdd(int tid)
     {

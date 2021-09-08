@@ -22,7 +22,7 @@ public class QuestSys : SystemBase
     public void Init()
     {
         cacheSvc = CacheSvc.Instance;
-        LogSvc.Debug("QuestSys Init Done.");
+        LogSvc.Info("QuestSys Init Done.");
     }
 
     public Dictionary<int, QuestInfo> QuestDic = new System.Collections.Generic.Dictionary<int, QuestInfo>();

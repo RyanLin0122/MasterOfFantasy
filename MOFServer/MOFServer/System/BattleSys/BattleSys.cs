@@ -28,7 +28,7 @@ class BattleSys
     {
         cacheSvc = CacheSvc.Instance;
 
-        LogSvc.Debug("BattleSys Init Done.");
+        LogSvc.Info("BattleSys Init Done.");
     }
 
     public void StartMoveRspTask(int tid)
