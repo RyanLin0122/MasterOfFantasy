@@ -5,6 +5,8 @@ using PEProtocal;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Collections.Concurrent;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public static class Utility
 {
@@ -739,6 +741,7 @@ public static class Utility
     #endregion
 
     #region Inventory
+
     public static ItemQuality GetItemQuality(int num)
     {
         switch (num)
@@ -759,6 +762,26 @@ public static class Utility
                 return ItemQuality.Artifact;
         }
         return ItemQuality.Common;
+    }
+    public static Item GetItemCopyByID(int ItemID)
+    {
+        if (ItemID > 1000 && ItemID <= 3000)
+        {
+            return GetConsumableByID(ItemID);
+        }
+        else if(ItemID > 3000 && ItemID <= 8000)
+        {
+            return GetEquipmentByID(ItemID);
+        }
+        else if (ItemID > 8000 && ItemID <= 12000)
+        {
+            return GetWeaponByID(ItemID);
+        }
+        else if (ItemID > 12000)
+        {
+            return GetEtcItemByID(ItemID);
+        }
+        return null;
     }
     public static Consumable GetConsumableByID(int ItemID)
     {
@@ -902,6 +925,21 @@ public static class Utility
     {
         TValue value = null;
         self.TryRemove(key, out value);
+    }
+    public static TOut TransReflection<TIn, TOut>(TIn tIn)
+    {
+        TOut tOut = Activator.CreateInstance<TOut>();
+        var tInType = tIn.GetType();
+        foreach (var itemOut in tOut.GetType().GetProperties())
+        {
+            var itemIn = tInType.GetProperty(itemOut.Name);
+            if (itemIn != null)
+            {
+                itemOut.SetValue(tOut, itemIn.GetValue(tIn));
+            }
+        }
+
+        return tOut;
     }
     #endregion
 }
