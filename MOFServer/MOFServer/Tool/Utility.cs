@@ -4,10 +4,11 @@ using MongoDB.Bson;
 using PEProtocal;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Collections.Concurrent;
 
 public static class Utility
 {
-    
+
     public static TrimedPlayer Convert2TrimedPlayer(Player p)
     {
         TrimedPlayer tp = new TrimedPlayer
@@ -36,7 +37,7 @@ public static class Utility
         };
         return tp;
     }
-    
+
     #region Bson to C# Type
     public static Dictionary<int, int> BsonArr2DiaryInfo(BsonArray bson)
     {
@@ -367,6 +368,376 @@ public static class Utility
     }
     #endregion
 
+    #region C# Type to Bson
+    public static BsonDocument Player2Bson(Player player)
+    {
+        var bson = new BsonDocument{
+
+                    { "Name", player.Name },
+                    { "Gender", player.Gender },
+                    { "Job", player.Job},
+                    { "Level", player.Level},
+                    { "Exp", player.Exp },
+                    { "HP", player.HP},
+                    { "MP", player.MP },
+                    { "MaxHP", player.MAXHP },
+                    { "MaxMP", player.MAXMP },
+                    { "Ribi", player.Ribi },
+                    { "Grade", player.Grade },
+                    { "IsNew", false },
+                    { "Guild", player.Guild },
+                    { "MailBoxRibi", player.MailBoxRibi },
+                    { "RestPoint", player.RestPoint },
+                    { "SwordPoint", player.SwordPoint },
+                    { "ArcheryPoint", player.ArcheryPoint },
+                    { "MagicPoint", player.MagicPoint },
+                    { "TheologyPoint", player.TheologyPoint },
+                    { "MajorPoint", player.MajorPoint },
+                    { "CoupleName", player.CoupleName },
+                    { "Title", player.Title },
+                    { "MapID", player.MapID },
+                    { "PlayerEquipment", PlayerEquipment2BsonArr(player.playerEquipments)},
+                    { "Knapsack", Dic_Int_Item2BsonArr(player.NotCashKnapsack) },
+                    { "CashKnapsack", Dic_Int_Item2BsonArr(player.CashKnapsack) },
+                    { "MailBox", Dic_Int_Item2BsonArr(player.MailBoxItems) },
+                    { "Att", player.Att },
+                    { "Strength", player.Strength },
+                    { "Agility", player.Agility },
+                    { "Intellect", player.Intellect },
+                    { "Server", player.Server },
+                    { "CreateTime", player.CreateTime },
+                    { "LastLoginTime", player.LastLoginTime },
+                    { "MiniGameRatio", player.MiniGameRatio },
+                    { "MiniGameArr", IntArr2BsonArray(player.MiniGameArr)},
+                    { "HighestMiniGameScore", IntArr2BsonArray(player.HighestMiniGameScores)},
+                    { "TotalMiniGameScore", IntArr2BsonArray(player.TotalMiniGameScores)},
+                    { "EasySuccess", IntArr2BsonArray(player.EasySuccess)},
+                    { "NormalSuccess", IntArr2BsonArray(player.NormalSuccess)},
+                    { "HardSuccess", IntArr2BsonArray(player.HardSuccess)},
+                    { "EasyFail", IntArr2BsonArray(player.EasyFail)},
+                    { "NormalFail", IntArr2BsonArray(player.NormalFail)},
+                    { "HardFail", IntArr2BsonArray(player.HardFail)},
+                    { "Badges", IntList2BsonArray(player.BadgeCollection)},
+                    { "CurrentBadge", player.CurrentBadge},
+                    { "ProcessingQuests", QuestList2BsonArr(player.ProcessingQuests)},
+                    { "AcceptableQuests", QuestList2BsonArr(player.AcceptableQuests)},
+                    { "FinishedQuests", QuestList2BsonArr(player.FinishedQuests)},
+                    { "TitleCollection", IntList2BsonArray(player.TitleCollection)},
+                    { "DiaryInformation", new BsonDocument{ { "NPC", DiaryInfo2BsonArr(player.diaryInformation.NPC_Info) },{ "Monster", DiaryInfo2BsonArr(player.diaryInformation.Monster_Info) } } },
+                    { "Honor", player.Honor}
+        };
+        return bson;
+    }
+    public static BsonArray PlayerEquipment2BsonArr(PlayerEquipments eq)
+    {
+        BsonArray r = new BsonArray();
+        if (eq.Badge != null)
+        {
+            r.Add(ItemToBson(eq.Badge));
+        }
+        if (eq.B_Chest != null)
+        {
+            r.Add(ItemToBson(eq.B_Chest));
+        }
+        if (eq.B_Glove != null)
+        {
+            r.Add(ItemToBson(eq.B_Glove));
+        }
+        if (eq.B_Head != null)
+        {
+            r.Add(ItemToBson(eq.B_Head));
+        }
+        if (eq.B_Neck != null)
+        {
+            r.Add(ItemToBson(eq.B_Neck));
+        }
+        if (eq.B_Pants != null)
+        {
+            r.Add(ItemToBson(eq.B_Pants));
+        }
+        if (eq.B_Ring1 != null)
+        {
+            r.Add(ItemToBson(eq.B_Ring1));
+        }
+        if (eq.B_Ring2 != null)
+        {
+            r.Add(ItemToBson(eq.B_Ring2));
+        }
+        if (eq.B_Shield != null)
+        {
+            r.Add(ItemToBson(eq.B_Shield));
+        }
+        if (eq.B_Shoes != null)
+        {
+            r.Add(ItemToBson(eq.B_Shoes));
+        }
+        if (eq.B_Weapon != null)
+        {
+            r.Add(ItemToBson(eq.B_Weapon));
+        }
+        if (eq.F_Cape != null)
+        {
+            r.Add(ItemToBson(eq.F_Cape));
+        }
+        if (eq.F_ChatBox != null)
+        {
+            r.Add(ItemToBson(eq.F_ChatBox));
+        }
+        if (eq.F_Chest != null)
+        {
+            r.Add(ItemToBson(eq.F_Chest));
+        }
+        if (eq.F_FaceAcc != null)
+        {
+            r.Add(ItemToBson(eq.F_FaceAcc));
+
+        }
+        if (eq.F_FaceType != null)
+        {
+            r.Add(ItemToBson(eq.F_FaceType));
+        }
+        if (eq.F_Glasses != null)
+        {
+            r.Add(ItemToBson(eq.F_Glasses));
+        }
+        if (eq.F_Glove != null)
+        {
+            r.Add(ItemToBson(eq.F_Glove));
+        }
+        if (eq.F_Hairacc != null)
+        {
+            r.Add(ItemToBson(eq.F_Hairacc));
+        }
+        if (eq.F_HairStyle != null)
+        {
+            r.Add(ItemToBson(eq.F_HairStyle));
+        }
+        if (eq.F_NameBox != null)
+        {
+            r.Add(ItemToBson(eq.F_NameBox));
+        }
+        if (eq.F_Pants != null)
+        {
+            r.Add(ItemToBson(eq.F_Pants));
+        }
+        if (eq.F_Shoes != null)
+        {
+            r.Add(ItemToBson(eq.F_Shoes));
+        }
+        return r;
+    }
+
+    public static BsonArray Dic_Int_Item2BsonArr(Dictionary<int, Item> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input.Values)
+        {
+            r.Add(ItemToBson(item));
+        }
+        return r;
+    }
+
+    public static BsonDocument ItemToBson(Item item)
+    {
+        switch (item.Type)
+        {
+            case ItemType.Consumable:
+
+                BsonDocument c = new BsonDocument
+                {
+                    {"Type","Consumable" },
+                    {"ItemID",item.ItemID },
+                    {"Position",item.Position },
+                    {"Quality",(int)item.Quality },
+                    {"Attack",((Consumable)item).Attack },
+                    {"Strength",((Consumable)item).Strength },
+                    {"Agility",((Consumable)item).Agility },
+                    {"Intellect",((Consumable)item).Intellect },
+                    {"HP",((Consumable)item).HP },
+                    {"MP",((Consumable)item).MP },
+                    {"Accuracy",((Consumable)item).Accuracy },
+                    {"Avoid",((Consumable)item).Avoid },
+                    {"Critical",((Consumable)item).Critical },
+                    {"Defense",((Consumable)item).Defense },
+                    {"MagicDefense",((Consumable)item).MagicDefense },
+                    {"MinDamage",((Consumable)item).MinDamage },
+                    {"MaxDamage",((Consumable)item).MaxDamage },
+                    {"Exp",((Consumable)item).Exp },
+                    {"ExpRate",((Consumable)item).ExpRate },
+                    {"DropRate",((Consumable)item).DropRate },
+                    {"Count",((Consumable)item).Count }
+                };
+                return c;
+            case ItemType.Equipment:
+                BsonDocument e = new BsonDocument
+                {
+                    {"Type","Equipment" },
+                    {"ItemID",item.ItemID },
+                    {"Position",item.Position },
+                    {"Quality",(int)item.Quality },
+                    {"Attack",((Equipment)item).Attack },
+                    {"Strength",((Equipment)item).Strength },
+                    {"Agility",((Equipment)item).Agility },
+                    {"Intellect",((Equipment)item).Intellect },
+                    {"HP",((Equipment)item).HP },
+                    {"MP",((Equipment)item).MP },
+                    {"Accuracy",((Equipment)item).Accuracy },
+                    {"Avoid",((Equipment)item).Avoid },
+                    {"Critical",((Equipment)item).Critical },
+                    {"Defense",((Equipment)item).Defense },
+                    {"MinDamage",((Equipment)item).MinDamage },
+                    {"MaxDamage",((Equipment)item).MaxDamage },
+                    {"MagicDefense",((Equipment)item).MagicDefense },
+                    {"DropRate",((Equipment)item).DropRate },
+                    {"RestRNum",((Equipment)item).RestRNum },
+                    {"Count",((Equipment)item).Count },
+                };
+                return e;
+            case ItemType.Weapon:
+                BsonDocument w = new BsonDocument
+                {
+                    {"Type","Weapon" },
+                    {"ItemID",item.ItemID },
+                    {"Position",item.Position },
+                    {"Quality",(int)item.Quality },
+                    {"MinDamage",((Weapon)item).MinDamage },
+                    {"MaxDamage",((Weapon)item).MaxDamage },
+                    {"AttSpeed",((Weapon)item).AttSpeed },
+                    {"Range",((Weapon)item).Range },
+                    {"Attack",((Weapon)item).Attack },
+                    {"Strength",((Weapon)item).Strength },
+                    {"Agility",((Weapon)item).Agility },
+                    {"Intellect",((Weapon)item).Intellect },
+                    {"Accuracy",((Weapon)item).Accuracy },
+                    {"Avoid",((Weapon)item).Avoid },
+                    {"Critical",((Weapon)item).Critical },
+                    {"DropRate",((Weapon)item).DropRate },
+                    {"RestRNum",((Weapon)item).RestRNum },
+                    {"Property",((Weapon)item).Property },
+                    {"Count",((Weapon)item).Count },
+                };
+                return w;
+            case ItemType.EtcItem:
+                BsonDocument t = new BsonDocument
+                {
+                    {"Type","EtcItem" },
+                    {"ItemID",item.ItemID },
+                    {"Position",item.Position },
+                    {"Quality",(int)item.Quality },
+                    {"Count",((EtcItem)item).Count }
+                };
+                return t;
+        }
+        return null;
+    }
+    public static BsonArray Arr2StringBsonArr<T>(T[] input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item.ToString());
+        }
+        return r;
+    }
+    public static BsonArray IntArr2BsonArray(int[] input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray floatArr2BsonArray(float[] input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray longArr2BsonArray(long[] input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray IntList2BsonArray(List<int> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray FloatList2BsonArray(List<float> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray LongList2BsonArray(List<long> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in input)
+        {
+            r.Add(item);
+        }
+        return r;
+    }
+    public static BsonArray Dic_Int_Int2BsonArr(Dictionary<int, int> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var key in input.Keys)
+        {
+            r.Add(new BsonDocument { { "ID", key }, { "Amount", input[key] } });
+        }
+        return r;
+    }
+    public static BsonArray DiaryInfo2BsonArr(Dictionary<int, int> input)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var key in input.Keys)
+        {
+            r.Add(new BsonDocument { { "ID", key }, { "Level", input[key] } });
+        }
+        return r;
+    }
+
+    public static BsonArray QuestList2BsonArr(List<Quest> list)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in list)
+        {
+            r.Add(Quest2Bson(item));
+        }
+        return r;
+    }
+    public static BsonDocument Quest2Bson(Quest quest)
+    {
+        BsonDocument r = new BsonDocument {
+            { "QuestType", quest.questType.ToString()},
+            { "ID", quest.QuestID },
+            { "StartDate" , quest.StartDate},
+            //{ "RestTime", quest.RestTime},
+            { "FinishDate", quest.FinishedDate},
+            { "QuestState", quest.questState},
+            //{ "RestAcceptableTime", quest.RestAcceptableTime},
+            { "HasCollectItems", Dic_Int_Int2BsonArr(quest.HasCollectItems)},
+            { "HasKilledMonsters", Dic_Int_Int2BsonArr(quest.HasKilledMonsters)}
+        };
+        return r;
+    }
+    #endregion
+
     #region Inventory
     public static ItemQuality GetItemQuality(int num)
     {
@@ -526,5 +897,12 @@ public static class Utility
     }
     #endregion
 
+    #region Extension
+    public static void Remove<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> self, TKey key) where TValue : class
+    {
+        TValue value = null;
+        self.TryRemove(key, out value);
+    }
+    #endregion
 }
 

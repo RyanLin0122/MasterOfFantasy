@@ -71,7 +71,9 @@ public class MOFMap
                 ));
                 channelServer.characters.TryAdd(msg.enterGameReq.CharacterName, characters[msg.enterGameReq.CharacterName]);
                 //刪除暫存帳號資料
-                CacheSvc.Instance.AccountTempData.Remove(session.Account);
+                BsonDocument tempdata = null;
+                CacheSvc.Instance.AccountTempData.TryRemove(session.Account, out tempdata);
+                tempdata = null;
                 session.ActivePlayer = ActivePlayer;
 
                 //蒐集所有人資料

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PEProtocal;
+using System.Threading.Tasks;
 
 public class MOFCharacter
 {
@@ -647,6 +648,12 @@ public class MOFCharacter
     public bool SyncSaveCharacter()
     {
         return CacheSvc.Instance.SyncSaveCharacter(session.Account, player);
+    }
+    public async void AsyncSaveCharacter()
+    {
+        Task task = ServerRoot.Instance.taskFactory.StartNew(() => CacheSvc.Instance.AsyncSaveCharacter(session.Account, player));
+        await task;
+        return;
     }
 }
 

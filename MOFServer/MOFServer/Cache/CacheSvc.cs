@@ -3,7 +3,8 @@ using PEProtocal;
 using System.IO;
 using System;
 using MongoDB.Bson;
-using System.Text.RegularExpressions;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 
 public class CacheSvc
 {
@@ -20,16 +21,24 @@ public class CacheSvc
         }
     }
     private DBMgr dbMgr;
-    public List<string> CharacterNames;
-    //Key: Account Value: all characters in account
-    public Dictionary<string, BsonDocument> AccountTempData = new Dictionary<string, BsonDocument>();
-    public void Init()
+    public ConcurrentDictionary<string, BsonDocument> AccountTempData = new ConcurrentDictionary<string, BsonDocument>(); //角色登入時的暫存資料，Todo定時清除
+    public ConcurrentDictionary<string, MOFCharacter> MOFCharacterDict = new ConcurrentDictionary<string, MOFCharacter>(); //Key: 角色名字
+    public ConcurrentDictionary<string, AccountData> AccountDataDict = new ConcurrentDictionary<string, AccountData>(); //Key: 帳號
+    public HashSet<string> CharacterNames = new HashSet<string>();
+    public async void Init()
     {
         ParseItemJson();
         ParseMonsterJson();
         ParseCashShopItems();
         dbMgr = DBMgr.Instance;
+        Task task = ServerRoot.Instance.taskFactory.StartNew(() => QueryDataFromDB());
+        await task;
         LogSvc.Debug("CacheSvc Init Done!");
+    }
+    public void QueryDataFromDB()
+    {
+        CharacterNames = dbMgr.QueryNames().Result;
+        MiniGame_Records = dbMgr.QueryMiniGameRanking().Result;
     }
     public Tuple<bool, BsonDocument> QueryAccount(string Account)
     {
@@ -40,18 +49,15 @@ public class CacheSvc
         dbMgr.InsertNewAccount(msg);
     }
 
+    public async Task AsyncSaveCharacter(string acc, Player player)
+    {
+        var factory = ServerRoot.Instance.taskFactory;
+        Task task = factory.StartNew(() => dbMgr.AsyncSaveCharacter(acc, player));
+        await task;
+    }
     public bool SyncSaveCharacter(string acc, Player player)
     {
         return dbMgr.SyncSaveCharacter(acc, player);
-    }
-
-
-
-
-    //查詢名字是否存在
-    public bool IsNameExist(string name)
-    {
-        return CharacterNames.Contains(name);
     }
 
     public Player CreatePlayerData(CreateInfo info)
@@ -109,6 +115,10 @@ public class CacheSvc
     }
     public void InsertNewPlayer2DB(string Account, CreateInfo info)
     {
+        if (!CharacterNames.Contains(info.name))
+        {
+            CharacterNames.Add(info.name);
+        }
         dbMgr.InsertNewPlayer(Account, info);
     }
     public BsonDocument DeletePlayer(string Account, string PlayerName)
@@ -135,16 +145,19 @@ public class CacheSvc
         };
         chr.CalculateEquipProperty();
         chr.CalculateRealProperty();
+        if (!MOFCharacterDict.ContainsKey(player.Name))
+        {
+            MOFCharacterDict.TryAdd(player.Name, chr);
+        }
+        else
+        {
+            MOFCharacterDict[player.Name] = chr;
+        }
         return chr;
     }
 
     #region MiniGameSystem <Name,Score>
     public Dictionary<string, int>[] MiniGame_Records;
-    public void InitMiniGameSystem()
-    {
-        //加載資料庫中小遊戲紀錄
-        MiniGame_Records = dbMgr.QueryMiniGameRanking();
-    }
 
     //完成小遊戲回報
     public void ReportScore(string Name, int Score, int GameID)

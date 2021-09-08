@@ -107,7 +107,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                         }
                         if (CacheSvc.Instance.AccountTempData.ContainsKey(msg.logoutReq.Account))
                         {
-                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);
+                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);                        
                         }
                         session.Close();
                         NetSvc.Instance.sessionMap.RemoveSession(msg.logoutReq.SessionID);

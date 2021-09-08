@@ -134,7 +134,22 @@ public class LoginRequestHandler : ChannelHandlerAdapter
 
                 }
                 //把帳號資料暫存到快取
-                CacheSvc.Instance.AccountTempData.Add(msg.Account, check.Item2);
+                CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, check.Item2);
+                var accountData = new AccountData
+                {
+                    Account = msg.Account,
+                    Password = msg.loginRequest.Password,
+                    Cash = check.Item2["Cash"].AsInt64,
+                    CashShopBuyPanelFashionServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer1"].AsBsonArray),
+                    CashShopBuyPanelFashionServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer2"].AsBsonArray),
+                    CashShopBuyPanelFashionServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer3"].AsBsonArray),
+                    CashShopBuyPanelOtherServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer1"].AsBsonArray),
+                    CashShopBuyPanelOtherServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer2"].AsBsonArray),
+                    CashShopBuyPanelOtherServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer3"].AsBsonArray),
+                    LockerServer1 = Utility.GetInventoryFromBson(check.Item2["LockerServer1"].AsBsonArray),
+                    LockerServer2 = Utility.GetInventoryFromBson(check.Item2["LockerServer2"].AsBsonArray),
+                    LockerServer3 = Utility.GetInventoryFromBson(check.Item2["LockerServer3"].AsBsonArray),
+                };
                 ProtoMsg outmsg = new ProtoMsg
                 {
                     MessageType = 2,
@@ -148,26 +163,23 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         {
                             ServerStatus = NetSvc.Instance.GameServerStatus,
                             ChannelNums = NetSvc.Instance.ChannelsNum
-                        },                        
+                        },
                         PrivateKey = ServerConstants.PrivateKey,
-                        accountData = new AccountData
-                        {
-                            Account = msg.Account,
-                            Password = msg.loginRequest.Password,
-                            Cash = check.Item2["Cash"].AsInt64,
-                            CashShopBuyPanelFashionServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer1"].AsBsonArray),
-                            CashShopBuyPanelFashionServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer2"].AsBsonArray),
-                            CashShopBuyPanelFashionServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelFashionServer3"].AsBsonArray),
-                            CashShopBuyPanelOtherServer1 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer1"].AsBsonArray),
-                            CashShopBuyPanelOtherServer2 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer2"].AsBsonArray),
-                            CashShopBuyPanelOtherServer3 = Utility.GetInventoryFromBson(check.Item2["CashShopBuyPanelOtherServer3"].AsBsonArray),
-                            LockerServer1 = Utility.GetInventoryFromBson(check.Item2["LockerServer1"].AsBsonArray),
-                            LockerServer2 = Utility.GetInventoryFromBson(check.Item2["LockerServer2"].AsBsonArray),
-                            LockerServer3 = Utility.GetInventoryFromBson(check.Item2["LockerServer3"].AsBsonArray),
-                        }
+                        accountData = accountData
+                        
                     },
                     players = characters
                 };
+                //存下帳號資料進CacheSvc
+                if (CacheSvc.Instance.AccountDataDict.ContainsKey(accountData.Account))
+                {
+                    CacheSvc.Instance.AccountDataDict.TryAdd(accountData.Account,accountData);
+                }
+                else
+                {
+                    CacheSvc.Instance.AccountDataDict[accountData.Account] = accountData;
+
+                }
                 session.WriteAndFlush(outmsg,false);
                 return true;
             }
