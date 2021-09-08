@@ -31,7 +31,7 @@ public class CacheSvc
         ParseMonsterJson();
         ParseCashShopItems();
         dbMgr = DBMgr.Instance;
-        Task task = ServerRoot.Instance.taskFactory.StartNew(() => QueryDataFromDB());
+        Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
         await task;
         LogSvc.Debug("CacheSvc Init Done!");
     }

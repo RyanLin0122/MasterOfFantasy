@@ -25,8 +25,6 @@ public class ServerRoot
         TimerSvc.Instance.Init();
         CacheSvc.Instance.Init();
         NetSvc.Instance.Init();
-        //Data base layer
-        DBMgr.Instance.Init();
         //System layer
         RandomSys.Instance.Init();
         LoginSys.Instance.Init();

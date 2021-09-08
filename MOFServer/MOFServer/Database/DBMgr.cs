@@ -26,14 +26,18 @@ public class DBMgr
     IMongoCollection<BsonDocument> AccCollection;
     IMongoCollection<BsonDocument> MinigameRanking;
     IMongoCollection<BsonDocument> CharacterNames;
-    public void Init()
+    public async void Init()
     {
-        var mongourl = new MongoUrl(ServerConstants.DBconnStr);
-        MongoClient client = new MongoClient(mongourl);
-        var mongoDatabase = client.GetDatabase(mongourl.DatabaseName);
-        AccCollection = mongoDatabase.GetCollection<BsonDocument>("Accounts");
-        MinigameRanking = mongoDatabase.GetCollection<BsonDocument>("Minigame");
-        CharacterNames = mongoDatabase.GetCollection<BsonDocument>("CharacterNames");
+        Task task = ServerRoot.Instance.taskFactory.StartNew(()=> {
+            var mongourl = new MongoUrl(ServerConstants.DBconnStr);
+            MongoClient client = new MongoClient(mongourl);
+            var mongoDatabase = client.GetDatabase(mongourl.DatabaseName);
+            AccCollection = mongoDatabase.GetCollection<BsonDocument>("Accounts");
+            MinigameRanking = mongoDatabase.GetCollection<BsonDocument>("Minigame");
+            CharacterNames = mongoDatabase.GetCollection<BsonDocument>("CharacterNames");
+        });
+        await task;
+        CacheSvc.Instance.QueryDataFromDB();
         LogSvc.Info("DataBase Init Done!");
     }
 
