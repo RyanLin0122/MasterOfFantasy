@@ -309,6 +309,38 @@ namespace PEProtocal
         public Dictionary<int, string> Friends { get; set; }
         [ProtoMember(14, IsRequired = false)]
         public Dictionary<int, string> BlockedPeople { get; set; }
+
+        public Dictionary<int, Item> GetNewBuyPanelFashionS1()
+        {
+            CashShopBuyPanelFashionServer1 = new Dictionary<int, Item>();
+            return CashShopBuyPanelFashionServer1;
+        }
+        public Dictionary<int, Item> GetNewBuyPanelFashionS2()
+        {
+            CashShopBuyPanelFashionServer2 = new Dictionary<int, Item>();
+            return CashShopBuyPanelFashionServer2;
+        }
+        public Dictionary<int, Item> GetNewBuyPanelFashionS3()
+        {
+            CashShopBuyPanelFashionServer3 = new Dictionary<int, Item>();
+            return CashShopBuyPanelFashionServer3;
+        }
+
+        public Dictionary<int, Item> GetNewBuyPanelOtherS1()
+        {
+            CashShopBuyPanelOtherServer1 = new Dictionary<int, Item>();
+            return CashShopBuyPanelOtherServer1;
+        }
+        public Dictionary<int, Item> GetNewBuyPanelOtherS2()
+        {
+            CashShopBuyPanelOtherServer2 = new Dictionary<int, Item>();
+            return CashShopBuyPanelOtherServer2;
+        }
+        public Dictionary<int, Item> GetNewBuyPanelOtherS3()
+        {
+            CashShopBuyPanelOtherServer3 = new Dictionary<int, Item>();
+            return CashShopBuyPanelOtherServer3;
+        }
     }
 
 
@@ -455,6 +487,17 @@ namespace PEProtocal
         public List<int> TitleCollection { get; set; }
         [ProtoMember(53, IsRequired = false)]
         public int Honor { get; set; }
+
+        public Dictionary<int,Item> GetNewNotCashKnapsack()
+        {
+            NotCashKnapsack = new Dictionary<int, Item>();
+            return NotCashKnapsack;
+        }
+        public Dictionary<int, Item> GetNewCashKnapsack()
+        {
+            CashKnapsack = new Dictionary<int, Item>();
+            return CashKnapsack;
+        }
     }
     [ProtoContract]
     public class TrimedPlayer //For other people
