@@ -20,14 +20,14 @@ public class CharacterDemo : MonoBehaviour
         InitCtrls();
     }
 
-    public void SetAllEquipment(Player playerData)
+    public void SetAllEquipment(Player player)
     {
-        SetEquipment(playerData, EquipmentType.Shoes);
-        SetEquipment(playerData, EquipmentType.Chest);
-        SetEquipment(playerData, EquipmentType.Pant);
-        SetEquipment(playerData, EquipmentType.Gloves);
-        SetEquipment(playerData, EquipmentType.HairStyle);
-        SetFace(playerData);
+        SetEquipment(player, EquipmentType.Shoes);
+        SetEquipment(player, EquipmentType.Chest);
+        SetEquipment(player, EquipmentType.Pant);
+        SetEquipment(player, EquipmentType.Gloves);
+        SetEquipment(player, EquipmentType.HairStyle);
+        SetFace(player);
         PlayIdle();
     }
     public void SetEquipment(Player pd, EquipmentType Type)
