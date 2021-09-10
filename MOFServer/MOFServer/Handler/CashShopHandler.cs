@@ -59,9 +59,15 @@ public class CashShopHandler : GameHandler
             SendErrorBack(4,session);
             return;
         }
-        //驗證格子夠不夠
-
-        //創造物品
+        for (int i = 0; i < ItemNum; i++)
+        {
+            TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
+        }
+        if (TotalPrice != req.TotalPrice)
+        {
+            SendErrorBack(3, session);
+            return;
+        }
         List<Item> ItemList = new List<Item>();
         for (int i = 0; i < ItemNum; i++)
         {
