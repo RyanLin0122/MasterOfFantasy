@@ -16,7 +16,7 @@ public class CashShopHandler : GameHandler
             SendErrorBack(1, session);
             return;
         }
-        //處理3種狀況 1. 購買 2. 確認點數 3. 送禮給別人
+        //處理3種狀況 1. 購買 2. 確認點數 3. 送禮給別人 4.放入背包
         switch (req.OperationType)
         {
             case 1:
@@ -33,19 +33,47 @@ public class CashShopHandler : GameHandler
     public void ProcessBuyEvent(CashShopRequest req, ServerSession session)
     {
         int ItemNum = req.Cata.Count;
+
         //判斷數量
         if (req.ID.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
         {
             //數量對不起來
             SendErrorBack(2, session);
+            return;
         }
+        //驗證總價
+        long TotalPrice = 0;
+        for (int i = 0; i < ItemNum; i++)
+        {
+            TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
+        }
+        if (TotalPrice != req.TotalPrice)
+        {
+            SendErrorBack(3, session);
+            return;
+        }
+        //驗證錢夠不夠
+        if(CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash < TotalPrice)
+        {
+            //錢不夠
+            SendErrorBack(4,session);
+            return;
+        }
+        //驗證格子夠不夠
+
+        //創造物品
+        List<Item> ItemList = new List<Item>();
         for (int i = 0; i < ItemNum; i++)
         {
             int ItemID = req.ID[i];
             int Amount = req.Amount[i];
             Item item = Utility.GetItemCopyByID(ItemID);
             item.Count = Amount;
+            ItemList.Add(item);
         }
+        
+        var nk = session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : session.ActivePlayer.GetNewNotCashKnapsack();
+        var ck = session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : session.ActivePlayer.GetNewCashKnapsack();
 
     }
     public void ProcessCheckCash(CashShopRequest req, ServerSession session)
@@ -70,6 +98,10 @@ public class CashShopHandler : GameHandler
                 return "CashShopReq 為空";
             case 2:
                 return "數量錯誤";
+            case 3:
+                return "總價錯誤";
+            case 4:
+                return "現金不足";
             default:
                 return "錯誤";
         }

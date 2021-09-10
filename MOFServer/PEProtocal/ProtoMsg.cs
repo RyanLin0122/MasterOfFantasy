@@ -455,6 +455,17 @@ namespace PEProtocal
         public List<int> TitleCollection { get; set; }
         [ProtoMember(53, IsRequired = false)]
         public int Honor { get; set; }
+
+        public Dictionary<int,Item> GetNewNotCashKnapsack()
+        {
+            NotCashKnapsack = new Dictionary<int, Item>();
+            return NotCashKnapsack;
+        }
+        public Dictionary<int, Item> GetNewCashKnapsack()
+        {
+            CashKnapsack = new Dictionary<int, Item>();
+            return CashKnapsack;
+        }
     }
     [ProtoContract]
     public class TrimedPlayer //For other people
