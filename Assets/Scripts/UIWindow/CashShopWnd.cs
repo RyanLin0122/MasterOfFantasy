@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
-using System.Linq;
 using System.Globalization;
 public class CashShopWnd : Inventory
 {
@@ -67,8 +65,8 @@ public class CashShopWnd : Inventory
         PressNewBtn();
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
         InitDemo();
-        illustration.SetGenderAge(true, IsPutOff, GameRoot.Instance.ActivePlayer);
-        CashText.text = long.Parse(GameRoot.Instance.AccountData.Cash.ToString(), NumberStyles.AllowThousands).ToString();
+        InitializeTryOnPlayer();
+        CashText.text = GameRoot.Instance.AccountData.Cash.ToString("NO");
         base.InitWnd();
     }
 
@@ -290,7 +288,38 @@ public class CashShopWnd : Inventory
     #endregion
 
     #region Illustration and Demo
-    
+    public Player TryOnPlayer = null;
+    public void InitializeTryOnPlayer()
+    {
+        Player player = GameRoot.Instance.ActivePlayer;
+        PlayerEquipments CurrentEquipments = GameRoot.Instance.ActivePlayer.playerEquipments;
+        PlayerEquipments TryOnEquipments = new PlayerEquipments();
+        TryOnEquipments.Badge = CurrentEquipments.Badge != null ? CurrentEquipments.Badge != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.Badge.ItemID) : null : null;
+        TryOnEquipments.B_Chest = CurrentEquipments.B_Chest != null ? CurrentEquipments.B_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Chest.ItemID) : null: null;
+        TryOnEquipments.B_Glove = CurrentEquipments.B_Glove != null ? CurrentEquipments.B_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Glove.ItemID) : null : null;
+        TryOnEquipments.B_Head = CurrentEquipments.B_Head != null ? CurrentEquipments.B_Head != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Head.ItemID) : null: null;
+        TryOnEquipments.B_Neck = CurrentEquipments.B_Neck != null ? CurrentEquipments.B_Neck != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Neck.ItemID) : null : null;
+        TryOnEquipments.B_Pants = CurrentEquipments.B_Pants != null ? CurrentEquipments.B_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Pants.ItemID) : null: null;
+        TryOnEquipments.B_Shield = CurrentEquipments.B_Shield != null ? CurrentEquipments.B_Shield != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shield.ItemID) : null : null;
+        TryOnEquipments.B_Ring1 = CurrentEquipments.B_Ring1 != null ? CurrentEquipments.B_Ring1 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring1.ItemID) : null : null;
+        TryOnEquipments.B_Ring2 = CurrentEquipments.B_Ring2 != null ? CurrentEquipments.B_Ring2 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring2.ItemID) : null : null;
+        TryOnEquipments.B_Shoes = CurrentEquipments.B_Shoes != null ? CurrentEquipments.B_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shoes.ItemID) : null: null;
+        TryOnEquipments.B_Weapon = CurrentEquipments.B_Weapon != null ? CurrentEquipments.B_Weapon != null ? (Weapon)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Weapon.ItemID) : null: null;
+        TryOnEquipments.F_ChatBox = CurrentEquipments.F_ChatBox != null ? CurrentEquipments.F_ChatBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_ChatBox.ItemID) : null: null;
+        TryOnEquipments.F_Chest = CurrentEquipments.F_Chest != null ? CurrentEquipments.F_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Chest.ItemID) : null: null;
+        TryOnEquipments.F_FaceAcc = CurrentEquipments.F_FaceAcc != null ? CurrentEquipments.F_FaceAcc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceAcc.ItemID) : null: null;
+        TryOnEquipments.F_FaceType = CurrentEquipments.F_FaceType != null ? CurrentEquipments.F_FaceType != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceType.ItemID) : null : null;
+        TryOnEquipments.F_Glasses = CurrentEquipments.F_Glasses != null ? CurrentEquipments.F_Glasses != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glasses.ItemID) : null : null;
+        TryOnEquipments.F_Glove = CurrentEquipments.F_Glove != null ? CurrentEquipments.F_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glove.ItemID) : null: null;
+        TryOnEquipments.F_Hairacc = CurrentEquipments.F_Hairacc != null ? CurrentEquipments.F_Hairacc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Hairacc.ItemID) : null: null;
+        TryOnEquipments.F_HairStyle = CurrentEquipments.F_HairStyle != null ? CurrentEquipments.F_HairStyle != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_HairStyle.ItemID) : null: null;
+        TryOnEquipments.F_NameBox = CurrentEquipments.F_NameBox != null ? CurrentEquipments.F_NameBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_NameBox.ItemID) : null: null;
+        TryOnEquipments.F_Pants = CurrentEquipments.F_Pants != null ? CurrentEquipments.F_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Pants.ItemID) : null : null;
+        TryOnEquipments.F_Shoes = CurrentEquipments.F_Shoes != null ? CurrentEquipments.F_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Shoes.ItemID) : null : null;
+        TryOnPlayer = new Player { Gender = player.Gender, Level = player.Level, playerEquipments = TryOnEquipments };
+        illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
+        Demo.SetAllEquipment(TryOnPlayer);
+    }
     private void PutOffEquipment(int pos, PlayerEquipments pq)
     {
         switch (pos)
@@ -360,79 +389,90 @@ public class CashShopWnd : Inventory
                 break;
         }
     }
-    private void SetupEquipment(Equipment eq, PlayerEquipments pq, int EquipmentPos)
+    private void TryOnEquipment(Item eq)
     {
-        switch (EquipmentPos)
+        if(TryOnPlayer == null)
         {
-            case 1:
-                pq.B_Head = eq;
-                break;
-            case 2:
-                pq.B_Ring1 = eq;
-                break;
-            case 3:
-                pq.B_Neck = eq;
-                break;
-            case 4:
-                pq.B_Ring2 = eq;
-                break;
-
-            case 6:
-                pq.B_Chest = eq;
-                break;
-            case 7:
-                pq.B_Glove = eq;
-                break;
-            case 8:
-                pq.B_Shield = eq;
-                break;
-            case 9:
-                pq.B_Pants = eq;
-                break;
-            case 10:
-                pq.B_Shoes = eq;
-                break;
-            case 11:
-                pq.F_Hairacc = eq;
-                break;
-            case 12:
-                pq.F_NameBox = eq;
-                break;
-            case 13:
-                pq.F_ChatBox = eq;
-                break;
-            case 14:
-                pq.F_FaceType = eq;
-                break;
-            case 15:
-                pq.F_Glasses = eq;
-                break;
-            case 16:
-                pq.F_HairStyle = eq;
-                break;
-            case 17:
-                pq.F_Chest = eq;
-                break;
-            case 18:
-                pq.F_Glove = eq;
-                break;
-            case 19:
-                pq.F_Cape = eq;
-                break;
-            case 20:
-                pq.F_Pants = eq;
-                break;
-            case 21:
-                pq.F_Shoes = eq;
-                break;
+            InitializeTryOnPlayer();
         }
+        PlayerEquipments pe = TryOnPlayer.playerEquipments;
+        if(eq.Type== ItemType.Equipment || eq.Type == ItemType.Weapon)
+        {
+            if (eq.Type == ItemType.Weapon)
+            {
+                pe.B_Weapon = (Weapon)eq;
+            }
+            else if(eq.Type == ItemType.Equipment)
+            {
+                Equipment e = (Equipment)eq;
+                switch (e.EquipType)
+                { 
+                    case EquipmentType.Head:
+                        pe.B_Head = e; 
+                        break;
+                    case EquipmentType.Neck:
+                        pe.B_Neck = e;
+                        break;
+                    case EquipmentType.Chest:
+                        if (e.IsCash) pe.F_Chest = e; else pe.B_Chest = e;
+                        break;
+                    case EquipmentType.Ring:
+                        if (pe.B_Ring1 == null && pe.B_Ring2 == null) pe.B_Ring1 = e;
+                        else if (pe.B_Ring1 != null && pe.B_Ring2 == null) pe.B_Ring2 = e;
+                        else if (pe.B_Ring1 == null && pe.B_Ring2 != null) pe.B_Ring1 = e;
+                        else if (pe.B_Ring1 != null && pe.B_Ring2 != null) pe.B_Ring2 = e;
+                        break;
+                    case EquipmentType.Pant:
+                        if (e.IsCash) pe.F_Pants = e; else pe.B_Pants = e;
+                        break;
+                    case EquipmentType.Shoes:
+                        if (e.IsCash) pe.F_Shoes = e; else pe.B_Shoes = e;
+                        break;
+                    case EquipmentType.Gloves:
+                        if (e.IsCash) pe.F_Glove = e; else pe.B_Glove = e;
+                        break;
+                    case EquipmentType.Shield:
+                        pe.B_Shield = e;
+                        break;
+                    case EquipmentType.FaceType:
+                        pe.F_FaceType = e;
+                        break;
+                    case EquipmentType.HairAcc:
+                        pe.F_Hairacc = e;
+                        break;
+                    case EquipmentType.HairStyle:
+                        pe.F_HairStyle = e;
+                        break;
+                    case EquipmentType.Glasses:
+                        pe.F_Glasses = e;
+                        break;
+                    case EquipmentType.Cape:
+                        pe.F_Cape = e;
+                        break;
+                    case EquipmentType.NameBox:
+                        pe.F_NameBox = e;
+                        break;
+                    case EquipmentType.ChatBox:
+                        pe.F_ChatBox = e;
+                        break;
+                    case EquipmentType.Badge:
+                        pe.Badge = e;
+                        break;
+                    case EquipmentType.FaceAcc:
+                        pe.F_FaceAcc = e;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        ResetIllustrationAndDemo();
     }
-    private void SetupWeapon(Item wp, PlayerEquipments pq)
+    public void ResetIllustrationAndDemo()
     {
-        pq.B_Weapon = (Weapon)wp;
+        illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
+        Demo.SetAllEquipment(TryOnPlayer);
     }
-    
-    
     public void PutOffAll()
     {
         illustration.SetGenderAge(true, true, GameRoot.Instance.ActivePlayer);
