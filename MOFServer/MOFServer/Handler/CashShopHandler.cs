@@ -106,16 +106,6 @@ public class CashShopHandler : GameHandler
         List<Item> ItemList = new List<Item>();
         for (int i = 0; i < ItemNum; i++)
         {
-            TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
-        }
-        if (TotalPrice != req.TotalPrice)
-        {
-            SendErrorBack(3, session);
-            return;
-        }
-        List<Item> ItemList = new List<Item>();
-        for (int i = 0; i < ItemNum; i++)
-        {
             int ItemID = req.ID[i];
             int Amount = req.Amount[i];
             Item item = Utility.GetItemCopyByID(ItemID);
