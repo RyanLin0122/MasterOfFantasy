@@ -53,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -84,9 +85,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -125,7 +129,7 @@ TextureImporter:
         width: 167
         height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +145,12 @@ TextureImporter:
       name: child-boy-coat01_1
       rect:
         serializedVersion: 2
-        x: 169
-        y: 120
-        width: 171
-        height: 157
+        x: 167
+        y: 130
+        width: 174
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,11 +167,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 341
-        y: 400
+        y: 395
         width: 167
-        height: 112
+        height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,11 +188,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 282
+        y: 277
         width: 167
-        height: 113
+        height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,11 +209,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 169
-        y: 279
+        y: 276
         width: 167
-        height: 115
+        height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,10 +231,10 @@ TextureImporter:
         serializedVersion: 2
         x: 2
         y: 0
-        width: 170
+        width: 167
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +250,12 @@ TextureImporter:
       name: child-boy-coat01_6
       rect:
         serializedVersion: 2
-        x: 340
-        y: 82
-        width: 168
-        height: 167
+        x: 342
+        y: 103
+        width: 167
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +271,12 @@ TextureImporter:
       name: child-boy-coat01_7
       rect:
         serializedVersion: 2
-        x: 171
+        x: 174
         y: 395
-        width: 171
+        width: 167
         height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +292,12 @@ TextureImporter:
       name: child-boy-coat01_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 130
-        width: 168
-        height: 149
+        x: 1
+        y: 129
+        width: 167
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -309,12 +313,12 @@ TextureImporter:
       name: child-boy-coat01_9
       rect:
         serializedVersion: 2
-        x: 340
-        y: 252
-        width: 172
-        height: 143
+        x: 336
+        y: 251
+        width: 176
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

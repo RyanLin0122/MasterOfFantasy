@@ -96,6 +96,8 @@ public class CashShopHandler : GameHandler
         }
         var EmptyFashion = IsEmptySlotEnough(FashionPanel, FashionNum);
         var EmptyOther = IsEmptySlotEnough(OtherPanel, OtherNum);
+        int EmptyFashionPointer = 0;
+        int EmptyOtherPointer = 0;
         if (EmptyFashion.Item1 == false || EmptyOther.Item1 == false)
         {
             //格子不夠

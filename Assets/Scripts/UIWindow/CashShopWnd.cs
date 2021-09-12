@@ -389,6 +389,15 @@ public class CashShopWnd : Inventory
                 break;
         }
     }
+
+    /// <summary>
+    /// 雙擊圖片試穿或脫掉
+    /// </summary>
+    /// <param name="itemID"></param>
+    public void TryOnOrPutOffEquipment(int itemID)
+    {
+
+    }
     private void TryOnEquipment(Item eq)
     {
         if(TryOnPlayer == null)
@@ -556,8 +565,6 @@ public class CashShopWnd : Inventory
     }
     public void SetSellItems(int Page)
     {
-
-
         ClearSellItems();
         List<CashShopData> Items = ResSvc.Instance.CashShopDic[cata][CurrentTag];
 
@@ -568,17 +575,26 @@ public class CashShopWnd : Inventory
                 break;
             }
 
-            InstantiateItem(Items[i].ItemID, Items[i].SellPrice);
+            InstantiateSellItem(Items[i].ItemID, Items[i].SellPrice);
         }
     }
 
     public GameObject SellItemGroup;
 
-    public void InstantiateItem(int ItemID, int SellPrice)
+    public void InstantiateSellItem(int ItemID, int SellPrice)
     {
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
         ItemUI.SetItem(ItemID, SellPrice);
+        
+        //添加試穿/脫掉事件
+        ItemUI.image.GetComponent<DoubleClickObject>().DoubleClickEvents.AddListener(()=> { TryOnOrPutOffEquipment(ItemID); });
+        //添加購買事件
+
+        //添加送禮事件
+
+        //添加放入購物車事件
+
     }
     public void ClearSellItems()
     {
