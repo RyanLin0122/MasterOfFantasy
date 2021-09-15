@@ -31,7 +31,9 @@ public class MainCitySys : SystemRoot
     public OptionWnd optionWnd;
     public DiaryWnd diaryWnd;
     public CashShopWnd cashShopWnd;
-
+    public StrengthenWnd strengthenWnd;
+    public TransationWnd transationWnd;
+    public MGFWnd mGFWnd;
 
     public GameObject playerprefab;
     public bool IsChatWnd = true;
@@ -402,6 +404,42 @@ public class MainCitySys : SystemRoot
         cashShopWnd.IsOpen = true;
     }
 
+    public void CloseStrengthenWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        strengthenWnd.SetWndState(false);
+        strengthenWnd.IsOpen = false;
+    }
+    public void OpenStrengthenWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        strengthenWnd.SetWndState();
+        strengthenWnd.IsOpen = true;
+    }
+    public void CloseMGFWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        mGFWnd.SetWndState(false);
+        mGFWnd.IsOpen = false;
+    }
+    public void OpenMGFWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        mGFWnd.SetWndState();
+        mGFWnd.IsOpen = true;
+    }
+    public void CloseTransationWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        transationWnd.SetWndState(false);
+        transationWnd.IsOpen = false;
+    }
+    public void OpenTransationWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        transationWnd.SetWndState();
+        transationWnd.IsOpen = true;
+    }
     public void OpenLockerWnd()
     {
         CloseEquipWnd2();
