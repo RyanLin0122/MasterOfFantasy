@@ -35,7 +35,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -67,12 +66,9 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -94,7 +90,7 @@ TextureImporter:
       name: adult-boy-coat02_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 281
         width: 189
         height: 229
@@ -115,7 +111,7 @@ TextureImporter:
       name: adult-boy-coat02_1
       rect:
         serializedVersion: 2
-        x: 192
+        x: 190
         y: 275
         width: 199
         height: 236
@@ -136,10 +132,10 @@ TextureImporter:
       name: adult-boy-coat02_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 46
-        width: 189
-        height: 229
+        x: 0
+        y: 48
+        width: 190
+        height: 227
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +153,10 @@ TextureImporter:
       name: adult-boy-coat02_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 42
+        x: 191
+        y: 44
         width: 189
-        height: 229
+        height: 228
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
