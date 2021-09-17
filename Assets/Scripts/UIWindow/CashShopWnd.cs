@@ -22,8 +22,6 @@ public class CashShopWnd : Inventory
     public Button CloseBtn;
     public Button FashionBtnL;
     public Button OtherBtnL;
-    //public GameObject panel1L;
-    //public GameObject panel2L;
     public Sprite PanelSprite1;
     public Sprite PanelSprite2;
     public Text CashText;
@@ -42,7 +40,7 @@ public class CashShopWnd : Inventory
     public Text panel5Text;
     public Text panel6Text;
     public GameObject ButtonGroup;
-
+    public Transform BuyItemsTransform;
     public Illustration illustration;
     public CharacterDemo Demo;
     public bool IsPutOff = false;
@@ -50,6 +48,7 @@ public class CashShopWnd : Inventory
     public string cata;
     public string CurrentTag;
     int CurrentPage = 0;
+    int CurrentPanelPage = 0;
     public Text CurPTxt;
     public GameRoot TagList = null;
     public Button Forward;
@@ -68,7 +67,7 @@ public class CashShopWnd : Inventory
         SetActive(InventoryManager.Instance.toolTip.gameObject, true);
         InitDemo();
         InitializeTryOnPlayer();
-        CashText.text = GameRoot.Instance.AccountData.Cash.ToString("NO");
+        CashText.text = GameRoot.Instance.AccountData.Cash.ToString("N0");
         base.InitWnd();
     }
 
@@ -97,7 +96,7 @@ public class CashShopWnd : Inventory
     {
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseShopWnd();
+            MainCitySys.Instance.CloseCashShopWnd();
             IsOpen = false;
         }
         else
@@ -108,20 +107,21 @@ public class CashShopWnd : Inventory
     }
     public void PressFashion1()
     {
+        CurrentPanelPage = 0;
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-        //panel1L.SetActive(true);
-        //panel2L.SetActive(false);
         FashionBtnL.GetComponent<Image>().sprite = PanelSprite1;
         OtherBtnL.GetComponent<Image>().sprite = PanelSprite2;
-
+        ClearPanel();
+        SetBuyPanel(0);
     }
     public void PressOther()
     {
+        CurrentPanelPage = 1;
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-        //panel1L.SetActive(false);
-        //panel2L.SetActive(true);
         FashionBtnL.GetComponent<Image>().sprite = PanelSprite2;
         OtherBtnL.GetComponent<Image>().sprite = PanelSprite1;
+        ClearPanel();
+        SetBuyPanel(1);
     }
 
     #region Press Catagories Button
@@ -321,6 +321,10 @@ public class CashShopWnd : Inventory
         TryOnPlayer = new Player { Gender = player.Gender, Level = player.Level, playerEquipments = TryOnEquipments };
         illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
         Demo.SetAllEquipment(TryOnPlayer);
+    }
+    public void TryOnOffEquipment(int ItemID)
+    {
+        print("進入試穿事件");
     }
     private void PutOffEquipment(int pos, PlayerEquipments pq)
     {
@@ -579,18 +583,8 @@ public class CashShopWnd : Inventory
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
         ItemUI.SetItem(ItemID, SellPrice);
-
-        ItemUI.BuyBtn.onClick.AddListener(() =>
-        {
-            new CashShopSender(
-            1,
-            new List<string> { cata },
-            new List<string> { CurrentTag },
-            new List<int> { ItemID },
-            new List<int> { SellPrice },
-            SellPrice);
-        });
-        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        ItemUI.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => TryOnOffEquipment(ItemID));
+        ItemUI.BuyBtn.onClick.AddListener(() => PressBuyBtn(ItemID, SellPrice));
     }
     public void ClearSellItems()
     {
@@ -639,6 +633,108 @@ public class CashShopWnd : Inventory
 
 
     #region Logic
+    public void SetBuyPanel(int page = 0)
+    {
+        Dictionary<int, Item> FashionPanel = null;
+        Dictionary<int, Item> OtherPanel = null;
+        AccountData data = GameRoot.Instance.AccountData;
+        switch (GameRoot.Instance.ActiveServer)
+        {
+            case 0:
+                FashionPanel = data.CashShopBuyPanelFashionServer1 != null ? data.CashShopBuyPanelFashionServer1 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer1 != null ? data.CashShopBuyPanelOtherServer1 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer1 = FashionPanel;
+                data.CashShopBuyPanelOtherServer1 = OtherPanel;
+                break;
+            case 1:
+                FashionPanel = data.CashShopBuyPanelFashionServer2 != null ? data.CashShopBuyPanelFashionServer2 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer2 != null ? data.CashShopBuyPanelOtherServer2 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer2 = FashionPanel;
+                data.CashShopBuyPanelOtherServer2 = OtherPanel;
+                break;
+            case 2:
+                FashionPanel = data.CashShopBuyPanelFashionServer3 != null ? data.CashShopBuyPanelFashionServer3 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer3 != null ? data.CashShopBuyPanelOtherServer3 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer3 = FashionPanel;
+                data.CashShopBuyPanelOtherServer3 = OtherPanel;
+                break;
+            default:
+                break;
+        }
+
+        //生成slot
+        for (int k = 0; k < 2; k++)
+        {
+            Slot[] slots = new Slot[100];
+            for (int i = 0; i < 100; i++)
+            {
+                slots[i] = InstantiateSlot(i);
+            }
+            if (k == 0) slotLists[0] = slots;
+            if (k == 1) slotLists[1] = slots;
+        }
+
+        //放入道具
+        if (CurrentPanelPage == 0)
+        {
+            foreach (var pos in FashionPanel.Keys)
+            {
+                ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
+            }
+        }
+        if (CurrentPanelPage == 1)
+        {
+            foreach (var pos in OtherPanel.Keys)
+            {
+                ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(OtherPanel[pos], OtherPanel[pos].Count);
+            }
+        }
+
+
+    }
+    public void ClearPanel()
+    {
+        if (slotLists == null || slotLists.Count == 0)
+        {
+            slotLists = new List<Slot[]>();
+            slotLists.Add(new Slot[100]);
+            slotLists.Add(new Slot[100]);
+            return;
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            foreach (var slot in slotLists[i])
+            {
+                if (slot != null) Destroy(slot.gameObject);
+            }
+        }
+
+    }
+    public CashShopBuyPanelSlot InstantiateSlot(int SlotPosition)
+    {
+        Transform go = (Instantiate(Resources.Load("Prefabs/CashShopBuySlot")) as GameObject).transform;
+        go.SetParent(BuyItemsTransform);
+        go.localPosition = new Vector3(go.localPosition.x, go.localPosition.y, 0f);
+        CashShopBuyPanelSlot BuySlot = go.GetComponent<CashShopBuyPanelSlot>();
+        BuySlot.SlotPosition = SlotPosition;
+        go.SetSiblingIndex(SlotPosition);
+        return BuySlot;
+    }
+    public void PressBuyBtn(int ItemID, int SellPrice)
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        MessageBox.Show("確定要購買 " + InventoryManager.Instance.itemList[ItemID].Name + "嗎?", MessageBoxType.Confirm,
+            () =>
+            {
+                new CashShopSender(
+            1,
+            new List<string> { cata },
+            new List<string> { CurrentTag },
+            new List<int> { ItemID },
+            new List<int> { SellPrice },
+            SellPrice);
+            });
+    }
     public void ProcessCashShopResponse(CashShopResponse rsp)
     {
         if (!rsp.IsSuccess)
@@ -668,7 +764,59 @@ public class CashShopWnd : Inventory
             MessageBox.Show(s);
             return;
         }
-        print("購買成功 放入商城倉庫"); 
+        print("購買成功 放入商城倉庫");
+        Dictionary<int, Item> FashionPanel = null;
+        Dictionary<int, Item> OtherPanel = null;
+        AccountData data = GameRoot.Instance.AccountData;
+        switch (GameRoot.Instance.ActiveServer)
+        {
+            case 0:
+                FashionPanel = data.CashShopBuyPanelFashionServer1 != null ? data.CashShopBuyPanelFashionServer1 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer1 != null ? data.CashShopBuyPanelOtherServer1 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer1 = FashionPanel;
+                data.CashShopBuyPanelOtherServer1 = OtherPanel;
+                break;
+            case 1:
+                FashionPanel = data.CashShopBuyPanelFashionServer2 != null ? data.CashShopBuyPanelFashionServer2 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer2 != null ? data.CashShopBuyPanelOtherServer2 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer2 = FashionPanel;
+                data.CashShopBuyPanelOtherServer2 = OtherPanel;
+                break;
+            case 2:
+                FashionPanel = data.CashShopBuyPanelFashionServer3 != null ? data.CashShopBuyPanelFashionServer3 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer3 != null ? data.CashShopBuyPanelOtherServer3 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer3 = FashionPanel;
+                data.CashShopBuyPanelOtherServer3 = OtherPanel;
+                break;
+        }
+        if (rsp.FashionItems != null && rsp.FashionItems.Count > 0)
+        {
+            foreach (var pos in rsp.FashionItems.Keys)
+            {
+                Tools.SetDictionary(FashionPanel, pos, rsp.FashionItems[pos]);
+            }
+            if (CurrentPanelPage == 0)
+            {
+                foreach (var pos in rsp.FashionItems.Keys)
+                {
+                    ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos], rsp.FashionItems[pos].Count);
+                }
+            }
+        }
+        if (rsp.OtherItems != null && rsp.OtherItems.Count > 0)
+        {
+            foreach (var pos in rsp.OtherItems.Keys)
+            {
+                Tools.SetDictionary(OtherPanel, pos, rsp.OtherItems[pos]);
+            }
+            if (CurrentPanelPage == 1)
+            {
+                foreach (var pos in rsp.OtherItems.Keys)
+                {
+                    ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos], rsp.OtherItems[pos].Count);
+                }
+            }
+        }
     }
     #endregion
 

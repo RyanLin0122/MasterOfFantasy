@@ -170,6 +170,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                     },
                     players = characters
                 };
+                session.AccountData = accountData;
                 //存下帳號資料進CacheSvc
                 if (CacheSvc.Instance.AccountDataDict.ContainsKey(accountData.Account))
                 {

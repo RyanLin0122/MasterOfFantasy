@@ -201,13 +201,13 @@ public class CashShopHandler : GameHandler
             {
                 if (Inventory[i] == null)
                 {
-                    i++;
+                    EmptySlotNum++;
                     EmptySlotPosition.Add(i);
                 }
             }
             else
             {
-                i++;
+                EmptySlotNum++;
                 EmptySlotPosition.Add(i);
             }
         }

@@ -394,6 +394,7 @@ public class MainCitySys : SystemRoot
     public void CloseCashShopWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        cashShopWnd.ClearPanel();
         cashShopWnd.SetWndState(false);
         cashShopWnd.IsOpen = false;
     }
