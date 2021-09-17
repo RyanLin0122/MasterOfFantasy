@@ -572,19 +572,19 @@ public class CashShopWnd : Inventory
                 break;
             }
 
-            InstantiateItem(Items[i].ItemID, Items[i].SellPrice);
+            InstantiateItem(Items[i].ItemID, Items[i].SellPrice, Items[i].Quantity);
         }
     }
 
     public GameObject SellItemGroup;
 
-    public void InstantiateItem(int ItemID, int SellPrice)
+    public void InstantiateItem(int ItemID, int SellPrice, int Quantity)
     {
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
-        ItemUI.SetItem(ItemID, SellPrice);
+        ItemUI.SetItem(ItemID, SellPrice, Quantity);
         ItemUI.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => TryOnOffEquipment(ItemID));
-        ItemUI.BuyBtn.onClick.AddListener(() => PressBuyBtn(ItemID, SellPrice));
+        ItemUI.BuyBtn.onClick.AddListener(() => PressBuyBtn(ItemID, SellPrice, Quantity));
     }
     public void ClearSellItems()
     {
@@ -720,7 +720,7 @@ public class CashShopWnd : Inventory
         go.SetSiblingIndex(SlotPosition);
         return BuySlot;
     }
-    public void PressBuyBtn(int ItemID, int SellPrice)
+    public void PressBuyBtn(int ItemID, int SellPrice, int Quantity)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         MessageBox.Show("確定要購買 " + InventoryManager.Instance.itemList[ItemID].Name + "嗎?", MessageBoxType.Confirm,
@@ -731,9 +731,40 @@ public class CashShopWnd : Inventory
             new List<string> { cata },
             new List<string> { CurrentTag },
             new List<int> { ItemID },
-            new List<int> { SellPrice },
+            new List<int> { 1 },
+            new List<int> { Quantity},
             SellPrice);
             });
+    }
+
+    public List<CartItem> cartItems = new List<CartItem>();
+    
+    
+    public void AddItem2Cart(int itemID, int sellPrice, int quantity, int amount)
+    {
+        CartItem item = new CartItem
+        {
+            cata = cata,
+            tag = tag,
+            itemID = itemID,
+            sellPrice = sellPrice,
+            quantity = quantity,
+            amount = amount
+        };
+        cartItems.Add(item);
+
+    }
+    public void SetCart()
+    {
+
+    }
+    public void RefreshCart()
+    {
+        
+    }
+    public void ClearCart()
+    {
+        cartItems.Clear();
     }
     public void ProcessCashShopResponse(CashShopResponse rsp)
     {

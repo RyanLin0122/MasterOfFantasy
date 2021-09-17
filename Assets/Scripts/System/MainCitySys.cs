@@ -648,4 +648,9 @@ public class MainCitySys : SystemRoot
         GameRoot.Instance.ActivePlayer.MiniGameRatio = setting.MiniGameRatio;
         baseUI.SetClassImg();
     }
+
+    public void SaveAccount()
+    {
+        new ChatSender(1, "!Save");
+    }
 }

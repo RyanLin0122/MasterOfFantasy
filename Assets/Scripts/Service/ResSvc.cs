@@ -646,7 +646,8 @@ public class ResSvc : MonoBehaviour
                     CashShopData data = new CashShopData
                     {
                         ItemID = (int)item["ID"].n,
-                        SellPrice = (int)item["SellPrice"].n
+                        SellPrice = (int)item["SellPrice"].n,
+                        Quantity = (int)item["Quantity"].n
                     };
                     ItemList.Add(data);
                 }

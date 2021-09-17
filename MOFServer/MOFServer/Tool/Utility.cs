@@ -140,7 +140,10 @@ public static class Utility
             ProcessingQuests = BsonArr2QuestList(data["ProcessingQuests"].AsBsonArray),
             AcceptableQuests = BsonArr2QuestList(data["AcceptableQuests"].AsBsonArray),
             FinishedQuests = BsonArr2QuestList(data["FinishedQuests"].AsBsonArray),
-            Honor = data["Honor"].AsInt32
+            Honor = data["Honor"].AsInt32,
+            Cart = BsonArr2CartList(data["Cart"].AsBsonArray),
+            PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray)
+
         };
         return player;
     }
@@ -818,7 +821,30 @@ public static class Utility
         return item;
     }
     #endregion
-
+    #region Cart
+    public static List<CartItem> BsonArr2CartList(BsonArray bson)
+    {
+        List<CartItem> cart = new List<CartItem>();
+        foreach (var value in bson.Values)
+        {
+            cart.Add(BsonDoc2CartItem(value.AsBsonDocument));
+        }
+        return cart;
+    }
+    public static CartItem BsonDoc2CartItem(BsonDocument doc)
+    {
+        CartItem item = new CartItem
+        {
+            cata = doc["cata"].AsString,
+            tag = doc["tag"].AsString,
+            sellPrice = doc["sellPrice"].AsInt32,
+            itemID = doc["id"].AsInt32,
+            amount = doc["amount"].AsInt32,
+            quantity = doc["quantity"].AsInt32
+        };
+        return item;
+    }
+    #endregion
     #region Quest
     public static List<Quest> BsonArr2QuestList(BsonArray bson)
     {

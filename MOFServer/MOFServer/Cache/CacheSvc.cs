@@ -51,9 +51,16 @@ public class CacheSvc
 
     public async Task AsyncSaveCharacter(string acc, Player player)
     {
+        /*
         var factory = ServerRoot.Instance.taskFactory;
         Task task = factory.StartNew(() => dbMgr.AsyncSaveCharacter(acc, player));
         await task;
+        */
+        await dbMgr.AsyncSaveCharacter(acc, player);
+    }
+    public async Task AsyncSaveAccount(string account, AccountData data)
+    {
+        await dbMgr.AsyncSaveAccount(account, data);
     }
     public bool SyncSaveCharacter(string acc, Player player)
     {
@@ -980,7 +987,8 @@ public class CacheSvc
                         CashShopData data = new CashShopData
                         {
                             ItemID = (int)item["ID"].n,
-                            SellPrice = (int)item["SellPrice"].n
+                            SellPrice = (int)item["SellPrice"].n,
+                            Quantity = (int)item["Quantity"].n
                         };
                         ItemList.Add(data);
                     }

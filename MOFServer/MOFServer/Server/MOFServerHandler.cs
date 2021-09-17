@@ -252,9 +252,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                 //GM指令
                 switch (chatreq.Contents)
                 {
-                    case "!save":
+                    case "!Save":
                         LogSvc.Debug("Save!!!");
-                        GetMap(session).characters[session.ActivePlayer.Name].SyncSaveCharacter();
+                        GetMap(session).characters[session.ActivePlayer.Name].AsyncSaveCharacter();
+                        GetMap(session).characters[session.ActivePlayer.Name].AsyncSaveAccount();
                         break;
                     case "!reward":
                         LogSvc.Debug("Reward!!!");
