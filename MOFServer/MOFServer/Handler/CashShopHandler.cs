@@ -32,95 +32,125 @@ public class CashShopHandler : GameHandler
     }
     public void ProcessBuyEvent(CashShopRequest req, ServerSession session)
     {
-        int ItemNum = req.Cata.Count;
+        try
+        {
+            int ItemNum = req.Cata.Count;
 
-        //判斷數量
-        if (req.ID.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
-        {
-            //數量對不起來
-            SendErrorBack(2, session);
-            return;
-        }
-        //驗證總價
-        long TotalPrice = 0;
-        for (int i = 0; i < ItemNum; i++)
-        {
-            TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
-        }
-        if (TotalPrice != req.TotalPrice)
-        {
-            SendErrorBack(3, session);
-            return;
-        }
-        //驗證錢夠不夠
-        if (CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash < TotalPrice)
-        {
-            //錢不夠
-            SendErrorBack(4, session);
-            return;
-        }
-        //驗證格子夠不夠
-        int FashionNum = 0;
-        int OtherNum = 0;
-        for (int i = 0; i < ItemNum; i++)
-        {
-            int itemID = req.ID[i];
-            int Amount = req.Amount[i];
-            int capacity = CacheSvc.ItemList[itemID].Capacity;
-            if (CacheSvc.ItemList[itemID].Type == ItemType.Equipment || CacheSvc.ItemList[itemID].Type == ItemType.Weapon)
+            //判斷數量
+            if (req.ID.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
             {
-                FashionNum++;
+                //數量對不起來
+                SendErrorBack(2, session);
+                return;
             }
-            else
+            //驗證總價
+            long TotalPrice = 0;
+            for (int i = 0; i < ItemNum; i++)
             {
-                int NeedSlotNum = (int)Math.Ceiling((double)Amount / capacity);
-                OtherNum += NeedSlotNum;
+                TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
             }
-        }
-        Dictionary<int, Item> FashionPanel = null;
-        Dictionary<int, Item> OtherPanel = null;
-        switch (session.ActivePlayer.Server)
-        {
-            case 0:
-                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer1 != null ? session.AccountData.CashShopBuyPanelFashionServer1 : session.AccountData.GetNewBuyPanelFashionS1();
-                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer1 != null ? session.AccountData.CashShopBuyPanelOtherServer1 : session.AccountData.GetNewBuyPanelOtherS1();
-                break;
-            case 1:
-                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer2 != null ? session.AccountData.CashShopBuyPanelFashionServer2 : session.AccountData.GetNewBuyPanelFashionS2();
-                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer2 != null ? session.AccountData.CashShopBuyPanelOtherServer2 : session.AccountData.GetNewBuyPanelOtherS2();
-                break;
-            case 2:
-                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer3 != null ? session.AccountData.CashShopBuyPanelFashionServer3 : session.AccountData.GetNewBuyPanelFashionS3();
-                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer3 != null ? session.AccountData.CashShopBuyPanelOtherServer3 : session.AccountData.GetNewBuyPanelOtherS3();
-                break;
-        }
-        var EmptyFashion = IsEmptySlotEnough(FashionPanel, FashionNum);
-        var EmptyOther = IsEmptySlotEnough(OtherPanel, OtherNum);
-        if (EmptyFashion.Item1 == false || EmptyOther.Item1 == false)
-        {
-            //格子不夠
-            SendErrorBack(5, session);
-            return;
-        }
-        //創造物品
-        List<Item> ItemList = new List<Item>();
-        for (int i = 0; i < ItemNum; i++)
-        {
-            int ItemID = req.ID[i];
-            int Amount = req.Amount[i];
-            Item item = Utility.GetItemCopyByID(ItemID);
-            item.Count = Amount;
-            ItemList.Add(item);
-        }
-        //放進Panel
+            if (TotalPrice != req.TotalPrice)
+            {
+                SendErrorBack(3, session);
+                return;
+            }
+            //驗證錢夠不夠
+            if (CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash < TotalPrice)
+            {
+                //錢不夠
+                SendErrorBack(4, session);
+                return;
+            }
+            //驗證格子夠不夠
+            int FashionNum = 0;
+            int OtherNum = 0;
+            for (int i = 0; i < ItemNum; i++)
+            {
+                int itemID = req.ID[i];
+                int Amount = req.Amount[i];
+                int capacity = CacheSvc.ItemList[itemID].Capacity;
+                if (CacheSvc.ItemList[itemID].Type == ItemType.Equipment || CacheSvc.ItemList[itemID].Type == ItemType.Weapon)
+                {
+                    FashionNum++;
+                }
+                else
+                {
+                    int NeedSlotNum = (int)Math.Ceiling((double)Amount / capacity);
+                    OtherNum += NeedSlotNum;
+                }
+            }
+            Dictionary<int, Item> FashionPanel = null;
+            Dictionary<int, Item> OtherPanel = null;
+            switch (session.ActivePlayer.Server)
+            {
+                case 0:
+                    FashionPanel = session.AccountData.CashShopBuyPanelFashionServer1 != null ? session.AccountData.CashShopBuyPanelFashionServer1 : session.AccountData.GetNewBuyPanelFashionS1();
+                    OtherPanel = session.AccountData.CashShopBuyPanelOtherServer1 != null ? session.AccountData.CashShopBuyPanelOtherServer1 : session.AccountData.GetNewBuyPanelOtherS1();
+                    break;
+                case 1:
+                    FashionPanel = session.AccountData.CashShopBuyPanelFashionServer2 != null ? session.AccountData.CashShopBuyPanelFashionServer2 : session.AccountData.GetNewBuyPanelFashionS2();
+                    OtherPanel = session.AccountData.CashShopBuyPanelOtherServer2 != null ? session.AccountData.CashShopBuyPanelOtherServer2 : session.AccountData.GetNewBuyPanelOtherS2();
+                    break;
+                case 2:
+                    FashionPanel = session.AccountData.CashShopBuyPanelFashionServer3 != null ? session.AccountData.CashShopBuyPanelFashionServer3 : session.AccountData.GetNewBuyPanelFashionS3();
+                    OtherPanel = session.AccountData.CashShopBuyPanelOtherServer3 != null ? session.AccountData.CashShopBuyPanelOtherServer3 : session.AccountData.GetNewBuyPanelOtherS3();
+                    break;
+            }
+            var EmptyFashion = IsEmptySlotEnough(FashionPanel, FashionNum);
+            var EmptyOther = IsEmptySlotEnough(OtherPanel, OtherNum);
+            int EmptyFashionPointer = 0;
+            int EmptyOtherPointer = 0;
+            if (EmptyFashion.Item1 == false || EmptyOther.Item1 == false)
+            {
+                //格子不夠
+                SendErrorBack(5, session);
+                return;
+            }
+            //創造物品
+            List<Item> ItemList = new List<Item>();
+            for (int i = 0; i < ItemNum; i++)
+            {
+                int ItemID = req.ID[i];
+                int Amount = req.Amount[i];
+                Item item = Utility.GetItemCopyByID(ItemID);
+                item.Count = Amount;
+                ItemList.Add(item);
+            }
+            //放進Panel
+            for (int j = 0; j < ItemList.Count; j++)
+            {
+                if (ItemList[j].Type == ItemType.Equipment || ItemList[j].Type == ItemType.Weapon)
+                {
+                    ItemList[j].Position = EmptyFashion.Item2[EmptyFashionPointer];
+                    FashionPanel.Add(ItemList[j].Position, ItemList[j]);
+                    EmptyFashionPointer++;
+                }
+                else
+                {
+                    ItemList[j].Position = EmptyOther.Item2[EmptyOtherPointer];
+                    OtherPanel.Add(ItemList[j].Position, ItemList[j]);
+                    EmptyOtherPointer++; ;
+                }
+            }
+            //回傳
+            ProtoMsg rsp = new ProtoMsg
+            {
+                MessageType = 47,
+                cashShopResponse = new CashShopResponse
+                {
+                    IsSuccess = true,
+                    OtherItems = OtherPanel,
+                    FashionItems = FashionPanel,
+                    TotalPrice = TotalPrice
+                }
+            };
+            session.WriteAndFlush(rsp);
 
-        //回傳
-        ProtoMsg rsp = new ProtoMsg
+        }
+        catch (Exception e)
         {
-            MessageType = 47
-
-        };
-        session.WriteAndFlush(rsp);
+            LogSvc.Error(e.Message);
+        }
 
     }
     public void ProcessCheckCash(CashShopRequest req, ServerSession session)

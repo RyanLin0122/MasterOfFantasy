@@ -57,6 +57,8 @@ public class CashShopWnd : Inventory
     int TotalPage;
     public Text TotPTex;
 
+    //BuyPanel
+    public List<CashShopBuyPanelSlot> BuyPanelSlots = new List<CashShopBuyPanelSlot>();
     protected override void InitWnd()
     {
         illustration.InitIllustration();
@@ -295,25 +297,25 @@ public class CashShopWnd : Inventory
         PlayerEquipments CurrentEquipments = GameRoot.Instance.ActivePlayer.playerEquipments;
         PlayerEquipments TryOnEquipments = new PlayerEquipments();
         TryOnEquipments.Badge = CurrentEquipments.Badge != null ? CurrentEquipments.Badge != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.Badge.ItemID) : null : null;
-        TryOnEquipments.B_Chest = CurrentEquipments.B_Chest != null ? CurrentEquipments.B_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Chest.ItemID) : null: null;
+        TryOnEquipments.B_Chest = CurrentEquipments.B_Chest != null ? CurrentEquipments.B_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Chest.ItemID) : null : null;
         TryOnEquipments.B_Glove = CurrentEquipments.B_Glove != null ? CurrentEquipments.B_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Glove.ItemID) : null : null;
-        TryOnEquipments.B_Head = CurrentEquipments.B_Head != null ? CurrentEquipments.B_Head != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Head.ItemID) : null: null;
+        TryOnEquipments.B_Head = CurrentEquipments.B_Head != null ? CurrentEquipments.B_Head != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Head.ItemID) : null : null;
         TryOnEquipments.B_Neck = CurrentEquipments.B_Neck != null ? CurrentEquipments.B_Neck != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Neck.ItemID) : null : null;
-        TryOnEquipments.B_Pants = CurrentEquipments.B_Pants != null ? CurrentEquipments.B_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Pants.ItemID) : null: null;
+        TryOnEquipments.B_Pants = CurrentEquipments.B_Pants != null ? CurrentEquipments.B_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Pants.ItemID) : null : null;
         TryOnEquipments.B_Shield = CurrentEquipments.B_Shield != null ? CurrentEquipments.B_Shield != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shield.ItemID) : null : null;
         TryOnEquipments.B_Ring1 = CurrentEquipments.B_Ring1 != null ? CurrentEquipments.B_Ring1 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring1.ItemID) : null : null;
         TryOnEquipments.B_Ring2 = CurrentEquipments.B_Ring2 != null ? CurrentEquipments.B_Ring2 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring2.ItemID) : null : null;
-        TryOnEquipments.B_Shoes = CurrentEquipments.B_Shoes != null ? CurrentEquipments.B_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shoes.ItemID) : null: null;
-        TryOnEquipments.B_Weapon = CurrentEquipments.B_Weapon != null ? CurrentEquipments.B_Weapon != null ? (Weapon)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Weapon.ItemID) : null: null;
-        TryOnEquipments.F_ChatBox = CurrentEquipments.F_ChatBox != null ? CurrentEquipments.F_ChatBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_ChatBox.ItemID) : null: null;
-        TryOnEquipments.F_Chest = CurrentEquipments.F_Chest != null ? CurrentEquipments.F_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Chest.ItemID) : null: null;
-        TryOnEquipments.F_FaceAcc = CurrentEquipments.F_FaceAcc != null ? CurrentEquipments.F_FaceAcc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceAcc.ItemID) : null: null;
+        TryOnEquipments.B_Shoes = CurrentEquipments.B_Shoes != null ? CurrentEquipments.B_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shoes.ItemID) : null : null;
+        TryOnEquipments.B_Weapon = CurrentEquipments.B_Weapon != null ? CurrentEquipments.B_Weapon != null ? (Weapon)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Weapon.ItemID) : null : null;
+        TryOnEquipments.F_ChatBox = CurrentEquipments.F_ChatBox != null ? CurrentEquipments.F_ChatBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_ChatBox.ItemID) : null : null;
+        TryOnEquipments.F_Chest = CurrentEquipments.F_Chest != null ? CurrentEquipments.F_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Chest.ItemID) : null : null;
+        TryOnEquipments.F_FaceAcc = CurrentEquipments.F_FaceAcc != null ? CurrentEquipments.F_FaceAcc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceAcc.ItemID) : null : null;
         TryOnEquipments.F_FaceType = CurrentEquipments.F_FaceType != null ? CurrentEquipments.F_FaceType != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceType.ItemID) : null : null;
         TryOnEquipments.F_Glasses = CurrentEquipments.F_Glasses != null ? CurrentEquipments.F_Glasses != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glasses.ItemID) : null : null;
-        TryOnEquipments.F_Glove = CurrentEquipments.F_Glove != null ? CurrentEquipments.F_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glove.ItemID) : null: null;
-        TryOnEquipments.F_Hairacc = CurrentEquipments.F_Hairacc != null ? CurrentEquipments.F_Hairacc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Hairacc.ItemID) : null: null;
-        TryOnEquipments.F_HairStyle = CurrentEquipments.F_HairStyle != null ? CurrentEquipments.F_HairStyle != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_HairStyle.ItemID) : null: null;
-        TryOnEquipments.F_NameBox = CurrentEquipments.F_NameBox != null ? CurrentEquipments.F_NameBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_NameBox.ItemID) : null: null;
+        TryOnEquipments.F_Glove = CurrentEquipments.F_Glove != null ? CurrentEquipments.F_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glove.ItemID) : null : null;
+        TryOnEquipments.F_Hairacc = CurrentEquipments.F_Hairacc != null ? CurrentEquipments.F_Hairacc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Hairacc.ItemID) : null : null;
+        TryOnEquipments.F_HairStyle = CurrentEquipments.F_HairStyle != null ? CurrentEquipments.F_HairStyle != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_HairStyle.ItemID) : null : null;
+        TryOnEquipments.F_NameBox = CurrentEquipments.F_NameBox != null ? CurrentEquipments.F_NameBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_NameBox.ItemID) : null : null;
         TryOnEquipments.F_Pants = CurrentEquipments.F_Pants != null ? CurrentEquipments.F_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Pants.ItemID) : null : null;
         TryOnEquipments.F_Shoes = CurrentEquipments.F_Shoes != null ? CurrentEquipments.F_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Shoes.ItemID) : null : null;
         TryOnPlayer = new Player { Gender = player.Gender, Level = player.Level, playerEquipments = TryOnEquipments };
@@ -391,24 +393,24 @@ public class CashShopWnd : Inventory
     }
     private void TryOnEquipment(Item eq)
     {
-        if(TryOnPlayer == null)
+        if (TryOnPlayer == null)
         {
             InitializeTryOnPlayer();
         }
         PlayerEquipments pe = TryOnPlayer.playerEquipments;
-        if(eq.Type== ItemType.Equipment || eq.Type == ItemType.Weapon)
+        if (eq.Type == ItemType.Equipment || eq.Type == ItemType.Weapon)
         {
             if (eq.Type == ItemType.Weapon)
             {
                 pe.B_Weapon = (Weapon)eq;
             }
-            else if(eq.Type == ItemType.Equipment)
+            else if (eq.Type == ItemType.Equipment)
             {
                 Equipment e = (Equipment)eq;
                 switch (e.EquipType)
-                { 
+                {
                     case EquipmentType.Head:
-                        pe.B_Head = e; 
+                        pe.B_Head = e;
                         break;
                     case EquipmentType.Neck:
                         pe.B_Neck = e;
@@ -556,8 +558,6 @@ public class CashShopWnd : Inventory
     }
     public void SetSellItems(int Page)
     {
-
-
         ClearSellItems();
         List<CashShopData> Items = ResSvc.Instance.CashShopDic[cata][CurrentTag];
 
@@ -579,6 +579,18 @@ public class CashShopWnd : Inventory
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
         ItemUI.SetItem(ItemID, SellPrice);
+
+        ItemUI.BuyBtn.onClick.AddListener(() =>
+        {
+            new CashShopSender(
+            1,
+            new List<string> { cata },
+            new List<string> { CurrentTag },
+            new List<int> { ItemID },
+            new List<int> { SellPrice },
+            SellPrice);
+        });
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
     public void ClearSellItems()
     {
@@ -629,7 +641,34 @@ public class CashShopWnd : Inventory
     #region Logic
     public void ProcessCashShopResponse(CashShopResponse rsp)
     {
-
+        if (!rsp.IsSuccess)
+        {
+            string s = "";
+            switch (rsp.ErrorLogType)
+            {
+                case 1:
+                    s = "CashShopReq 為空";
+                    break;
+                case 2:
+                    s = "數量錯誤";
+                    break;
+                case 3:
+                    s = "總價錯誤";
+                    break;
+                case 4:
+                    s = "現金不足";
+                    break;
+                case 5:
+                    s = "格子不足";
+                    break;
+                default:
+                    s = "錯誤";
+                    break;
+            }
+            MessageBox.Show(s);
+            return;
+        }
+        print("購買成功 放入商城倉庫"); 
     }
     #endregion
 

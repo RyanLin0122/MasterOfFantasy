@@ -1432,7 +1432,7 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public long TotalPrice { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public Dictionary<int, Item> Items { get; set; } // position, Item
+        public Dictionary<int, Item> FashionItems { get; set; } // position, Item
         [ProtoMember(4, IsRequired = false)]
         public int ErrorLogType { get; set; }
         [ProtoMember(5, IsRequired = false)]
@@ -1441,5 +1441,7 @@ namespace PEProtocal
         public string GiftPlayerName { get; set; }
         [ProtoMember(7, IsRequired = false)] //
         public bool IsSuccess { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
     }
 }
