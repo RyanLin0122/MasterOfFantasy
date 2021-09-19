@@ -8,7 +8,6 @@ public class UISelfAdjust : MonoBehaviour
     public GameObject DownBar;
     public GameObject ChatWnd;
     public GameObject ExpBar;
-    public GameObject BG;
     public void BaseUISelfAdjust()
     {
         //世界坐标的右上角  因为视口坐标右上角是1,1,点
@@ -24,28 +23,16 @@ public class UISelfAdjust : MonoBehaviour
         float downBorder = Camera.main.transform.position.y - (cornerPos.y - Camera.main.transform.position.y);
         Debug.Log(topBorder + " , " + downBorder + " , " + leftBorder + " , " + rightBorder);
 
-        Debug.Log("BaseUI自適應");
-        BG.transform.position = new Vector3(
-            rightBorder,
-            downBorder,
-            BG.transform.position.z);
-        DownBar.transform.position = new Vector3( 
-            leftBorder, 
-            downBorder,
-            DownBar.transform.position.z);
-        UpBar.transform.position = new Vector3(
-            leftBorder, 
-            topBorder, 
-            UpBar.transform.position.z);
-        ExpBar.transform.position = new Vector3(
-            leftBorder,
-            -25f+(DownBar.transform as RectTransform).rect.height+downBorder- ExpBar.GetComponent<RectTransform>().rect.height,
+        DownBar.transform.position = new Vector3(leftBorder, downBorder, DownBar.transform.position.z);
+        UpBar.transform.position = new Vector3(leftBorder, topBorder, UpBar.transform.position.z);
+        ExpBar.transform.position = new Vector3(leftBorder,
+            -25f + (DownBar.transform as RectTransform).rect.height + downBorder,
             ExpBar.transform.position.z
             );
         //ExpBar.transform.localPosition = new Vector2(ExpBar.transform.localPosition.x, 70f);
         ChatWnd.transform.position = new Vector3(
             leftBorder,
-            (ExpBar.transform as RectTransform).rect.height+ExpBar.transform.position.y,
+            (ExpBar.transform as RectTransform).rect.height + ExpBar.transform.position.y,
             ChatWnd.transform.position.z
             );
     }

@@ -429,7 +429,9 @@ public static class Utility
                     { "FinishedQuests", QuestList2BsonArr(player.FinishedQuests)},
                     { "TitleCollection", IntList2BsonArray(player.TitleCollection)},
                     { "DiaryInformation", new BsonDocument{ { "NPC", DiaryInfo2BsonArr(player.diaryInformation.NPC_Info) },{ "Monster", DiaryInfo2BsonArr(player.diaryInformation.Monster_Info) } } },
-                    { "Honor", player.Honor}
+                    { "Honor", player.Honor},
+                    { "Cart", CartList2BsonArr(player.Cart)},
+                    { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)}
         };
         return bson;
     }
@@ -541,7 +543,28 @@ public static class Utility
         }
         return r;
     }
-
+    public static BsonArray CartList2BsonArr(List<CartItem> cartItems)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in cartItems)
+        {
+            r.Add(CartItem2Bson(item));
+        }
+        return r;
+    }
+    public static BsonDocument CartItem2Bson(CartItem item)
+    {
+        BsonDocument b = new BsonDocument
+        {
+            { "cata",item.cata},
+            { "tag",item.tag},
+            { "id",item.itemID},
+            { "qt",item.quantity},
+            { "sp",item.sellPrice},
+            { "am",item.amount}
+        };
+        return b;
+    }
     public static BsonDocument ItemToBson(Item item)
     {
         switch (item.Type)
@@ -772,7 +795,7 @@ public static class Utility
         {
             return GetConsumableByID(ItemID);
         }
-        else if(ItemID > 3000 && ItemID <= 8000)
+        else if (ItemID > 3000 && ItemID <= 8000)
         {
             return GetEquipmentByID(ItemID);
         }
@@ -837,10 +860,10 @@ public static class Utility
         {
             cata = doc["cata"].AsString,
             tag = doc["tag"].AsString,
-            sellPrice = doc["sellPrice"].AsInt32,
+            sellPrice = doc["sp"].AsInt32,
             itemID = doc["id"].AsInt32,
-            amount = doc["amount"].AsInt32,
-            quantity = doc["quantity"].AsInt32
+            amount = doc["am"].AsInt32,
+            quantity = doc["qt"].AsInt32
         };
         return item;
     }

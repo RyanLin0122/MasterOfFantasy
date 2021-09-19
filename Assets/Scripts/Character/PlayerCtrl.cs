@@ -24,13 +24,14 @@ public class PlayerCtrl : Controllable
     public ScreenController screenCtrl;
     public Image HpBar;
     public Text Title;
-
-
+    public bool IsMoving = false;
+    public Sprite[] DustSprites;
     void Awake()
     {
         rigidbody = this.GetComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
         PlayerName = GameRoot.Instance.ActivePlayer.Name;
+        DustSprites = Resources.LoadAll<Sprite>("Effect/Effect Angel Trainee Wing Walking Dust");
     }
 
     private void Update()
@@ -55,9 +56,48 @@ public class PlayerCtrl : Controllable
             tree.RestartBehaviour();
 
         }
-
+        if (!IsMoving && screenCtrl.canCtrl)
+        {
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                IsMoving = true;
+                InstantiateDust();
+            }
+        }
+        else
+        {
+            if (!screenCtrl.canCtrl)
+            {
+                IsMoving = false;
+                return;
+            }
+            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+            {
+                IsMoving = false;
+                return;
+            }
+        }
+        
     }
+    public Transform DustContainer;
+    public void InstantiateDust()
+    {
+        if (IsMoving)
+        {
+            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/DustPrefab"));
+            go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
+            int Sign = transform.localScale.x >= 0 ? -1 : 1;
+            go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);
+            go.transform.localScale = new Vector3(30, 30, 1);
+            DustAnimator ani = go.GetComponent<DustAnimator>();
 
+            int spriteIndex =Tools.RDInt(0, DustSprites.Length-1);
+            print("Show " + spriteIndex);
+            ani.Initialize(DustSprites[spriteIndex]);
+            TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust(); }, 0.15f, PETimeUnit.Second, 1);
+        }
+        
+    }
     #region player animation
     public EquipmentAnimator ShoesCtrl;
     public EquipmentAnimator FaceCtrl;

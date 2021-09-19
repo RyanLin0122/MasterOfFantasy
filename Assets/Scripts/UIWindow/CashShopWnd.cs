@@ -663,15 +663,18 @@ public class CashShopWnd : Inventory
         }
 
         //生成slot
-        for (int k = 0; k < 2; k++)
+        Slot[] slots = new Slot[100];
+        for (int i = 0; i < 100; i++)
         {
-            Slot[] slots = new Slot[100];
-            for (int i = 0; i < 100; i++)
-            {
-                slots[i] = InstantiateSlot(i);
-            }
-            if (k == 0) slotLists[0] = slots;
-            if (k == 1) slotLists[1] = slots;
+            slots[i] = InstantiateSlot(i);
+        }
+        if (CurrentPanelPage == 0)
+        {
+            slotLists[0] = slots;
+        }
+        else if(CurrentPanelPage == 1)
+        {
+            slotLists[1] = slots;
         }
 
         //放入道具
@@ -682,7 +685,7 @@ public class CashShopWnd : Inventory
                 ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
             }
         }
-        if (CurrentPanelPage == 1)
+        else if (CurrentPanelPage == 1)
         {
             foreach (var pos in OtherPanel.Keys)
             {
