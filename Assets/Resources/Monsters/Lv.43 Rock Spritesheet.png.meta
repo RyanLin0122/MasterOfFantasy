@@ -1,9 +1,99 @@
 fileFormatVersion: 2
 guid: 33c1e74d10b17534e8db1d750d5abf54
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 202883245599740415
+    second: Lv.43 Rock Spritesheet_0
+  - first:
+      213: -4045066695938558083
+    second: Lv.43 Rock Spritesheet_1
+  - first:
+      213: 4646163420798205803
+    second: Lv.43 Rock Spritesheet_2
+  - first:
+      213: 1966505314652256231
+    second: Lv.43 Rock Spritesheet_3
+  - first:
+      213: -1797681137283225160
+    second: Lv.43 Rock Spritesheet_4
+  - first:
+      213: 5834032848044771030
+    second: Lv.43 Rock Spritesheet_5
+  - first:
+      213: 3717437687911936507
+    second: Lv.43 Rock Spritesheet_6
+  - first:
+      213: 8416283643518837686
+    second: Lv.43 Rock Spritesheet_7
+  - first:
+      213: 1478705715434518277
+    second: Lv.43 Rock Spritesheet_8
+  - first:
+      213: 1107902390366653779
+    second: Lv.43 Rock Spritesheet_9
+  - first:
+      213: -3325027114660446944
+    second: Lv.43 Rock Spritesheet_10
+  - first:
+      213: 8146062191456547775
+    second: Lv.43 Rock Spritesheet_11
+  - first:
+      213: -6463973406359319788
+    second: Lv.43 Rock Spritesheet_12
+  - first:
+      213: -3741267501128899232
+    second: Lv.43 Rock Spritesheet_13
+  - first:
+      213: 1132058442814151043
+    second: Lv.43 Rock Spritesheet_14
+  - first:
+      213: 7673722445219445307
+    second: Lv.43 Rock Spritesheet_15
+  - first:
+      213: -938138512315991700
+    second: Lv.43 Rock Spritesheet_16
+  - first:
+      213: -8218100134380481721
+    second: Lv.43 Rock Spritesheet_17
+  - first:
+      213: -4238910134052959989
+    second: Lv.43 Rock Spritesheet_18
+  - first:
+      213: -5342189656739459694
+    second: Lv.43 Rock Spritesheet_19
+  - first:
+      213: -1865654614916692918
+    second: Lv.43 Rock Spritesheet_20
+  - first:
+      213: -3150120597875875670
+    second: Lv.43 Rock Spritesheet_21
+  - first:
+      213: 4032528112059167157
+    second: Lv.43 Rock Spritesheet_22
+  - first:
+      213: -5051231412082825551
+    second: Lv.43 Rock Spritesheet_23
+  - first:
+      213: -5668011085810864520
+    second: Lv.43 Rock Spritesheet_24
+  - first:
+      213: 589940905647023784
+    second: Lv.43 Rock Spritesheet_25
+  - first:
+      213: -8498035152020392324
+    second: Lv.43 Rock Spritesheet_26
+  - first:
+      213: 6488922007185561865
+    second: Lv.43 Rock Spritesheet_27
+  - first:
+      213: -4369415651903334345
+    second: Lv.43 Rock Spritesheet_28
+  - first:
+      213: -4283547822124134451
+    second: Lv.43 Rock Spritesheet_29
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +130,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +147,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +160,664 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 476
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff1d9d8ac39c0d200800000000000000
+      internalID: 202883245599740415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 476
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77b1df85490dd7c0800000000000000
+      internalID: -4045066695938558083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 476
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f3719c30d7a7040800000000000000
+      internalID: 4646163420798205803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 476
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7f3c82a2e6a4b10800000000000000
+      internalID: 1966505314652256231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 474
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b920d8b78a5d07e0800000000000000
+      internalID: -1797681137283225160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 476
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d64bab17f5a6f050800000000000000
+      internalID: 5834032848044771030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 478
+        width: 69
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1f3ae91edf69330800000000000000
+      internalID: 3717437687911936507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 412
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3eed4e165acc470800000000000000
+      internalID: 8416283643518837686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 45
+        width: 96
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50770df730b658410800000000000000
+      internalID: 1478705715434518277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 45
+        width: 96
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d4c97aa5f006f00800000000000000
+      internalID: 1107902390366653779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 133
+        width: 102
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d3f1ab4712bd1d0800000000000000
+      internalID: -3325027114660446944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 144
+        width: 106
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3f1084760ac0170800000000000000
+      internalID: 8146062191456547775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 140
+        width: 114
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41b816c3f6a5b46a0800000000000000
+      internalID: -6463973406359319788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 151
+        width: 119
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 065af71a709541cc0800000000000000
+      internalID: -3741267501128899232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 226
+        width: 100
+        height: 92
+      alignment: 9
+      pivot: {x: 0.5031659, y: 0.42773038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3895be4e721e5bf00800000000000000
+      internalID: 1132058442814151043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 240
+        width: 100
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5063321, y: 0.44963005}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a3f3428e98e7a60800000000000000
+      internalID: 7673722445219445307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 239
+        width: 100
+        height: 92
+      alignment: 9
+      pivot: {x: 0.49999985, y: 0.42773005}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c69ba475eff0bf2f0800000000000000
+      internalID: -938138512315991700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 239
+        width: 100
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74359a9187173fd80800000000000000
+      internalID: -8218100134380481721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 245
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0948f811bd5c25c0800000000000000
+      internalID: -4238910134052959989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 330
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29d4743bfcabcd5b0800000000000000
+      internalID: -5342189656739459694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 328
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44825c230ddb16e0800000000000000
+      internalID: -1865654614916692918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 328
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0a7fb91068844d0800000000000000
+      internalID: -3150120597875875670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 331
+        width: 75
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b13012e3fa66f730800000000000000
+      internalID: 4032528112059167157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 326
+        width: 96
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b622841bcb66e9b0800000000000000
+      internalID: -5051231412082825551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 308
+        width: 90
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e6447a2fd2751b0800000000000000
+      internalID: -5668011085810864520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 402
+        width: 96
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a62097c024ef2800800000000000000
+      internalID: 589940905647023784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 404
+        width: 101
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76ba03cd0ae01a80800000000000000
+      internalID: -8498035152020392324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 425
+        width: 76
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 909928d8f284d0a50800000000000000
+      internalID: 6488922007185561865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 406
+        width: 68
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73815406d97bc53c0800000000000000
+      internalID: -4369415651903334345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.43 Rock Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 401
+        width: 53
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf84e373f7cd84c0800000000000000
+      internalID: -4283547822124134451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

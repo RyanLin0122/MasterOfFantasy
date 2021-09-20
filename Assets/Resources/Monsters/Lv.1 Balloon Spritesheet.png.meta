@@ -1,9 +1,117 @@
 fileFormatVersion: 2
 guid: da25ded570f0c6c498919f5703c4b6c2
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1578014504599272965
+    second: Lv.1 Balloon Spritesheet_0
+  - first:
+      213: -5354599784435905215
+    second: Lv.1 Balloon Spritesheet_1
+  - first:
+      213: 7430933790305873942
+    second: Lv.1 Balloon Spritesheet_2
+  - first:
+      213: 6285891453263664734
+    second: Lv.1 Balloon Spritesheet_3
+  - first:
+      213: -3985306767102166921
+    second: Lv.1 Balloon Spritesheet_4
+  - first:
+      213: 6879525942569051586
+    second: Lv.1 Balloon Spritesheet_5
+  - first:
+      213: 2339620398981119207
+    second: Lv.1 Balloon Spritesheet_6
+  - first:
+      213: 5190645860128924504
+    second: Lv.1 Balloon Spritesheet_7
+  - first:
+      213: -145313910219196840
+    second: Lv.1 Balloon Spritesheet_8
+  - first:
+      213: 7749740648291270998
+    second: Lv.1 Balloon Spritesheet_9
+  - first:
+      213: -6577285037530792907
+    second: Lv.1 Balloon Spritesheet_10
+  - first:
+      213: 2456260280061318950
+    second: Lv.1 Balloon Spritesheet_11
+  - first:
+      213: 4974517495871058796
+    second: Lv.1 Balloon Spritesheet_12
+  - first:
+      213: 8935302104620725519
+    second: Lv.1 Balloon Spritesheet_13
+  - first:
+      213: 1156635374460629746
+    second: Lv.1 Balloon Spritesheet_14
+  - first:
+      213: -1785461494740034892
+    second: Lv.1 Balloon Spritesheet_15
+  - first:
+      213: -7530547630498291968
+    second: Lv.1 Balloon Spritesheet_16
+  - first:
+      213: 4858644285180322788
+    second: Lv.1 Balloon Spritesheet_17
+  - first:
+      213: -4939067546529278716
+    second: Lv.1 Balloon Spritesheet_18
+  - first:
+      213: -7225914749939203619
+    second: Lv.1 Balloon Spritesheet_19
+  - first:
+      213: 1569419413355489852
+    second: Lv.1 Balloon Spritesheet_20
+  - first:
+      213: 156918121936631527
+    second: Lv.1 Balloon Spritesheet_21
+  - first:
+      213: -4157884358296078510
+    second: Lv.1 Balloon Spritesheet_22
+  - first:
+      213: 8658303847508070652
+    second: Lv.1 Balloon Spritesheet_23
+  - first:
+      213: 8469307966464730709
+    second: Lv.1 Balloon Spritesheet_24
+  - first:
+      213: 911229721207488102
+    second: Lv.1 Balloon Spritesheet_25
+  - first:
+      213: -6021954703999587484
+    second: Lv.1 Balloon Spritesheet_26
+  - first:
+      213: -5408203579353480804
+    second: Lv.1 Balloon Spritesheet_27
+  - first:
+      213: -4931584815660514844
+    second: Lv.1 Balloon Spritesheet_28
+  - first:
+      213: -2373679116167641252
+    second: Lv.1 Balloon Spritesheet_29
+  - first:
+      213: 6509470526033593475
+    second: Lv.1 Balloon Spritesheet_30
+  - first:
+      213: -4840353629550817415
+    second: Lv.1 Balloon Spritesheet_31
+  - first:
+      213: -9178416929714400823
+    second: Lv.1 Balloon Spritesheet_32
+  - first:
+      213: -7862712953380468621
+    second: Lv.1 Balloon Spritesheet_33
+  - first:
+      213: -3931330043546728918
+    second: Lv.1 Balloon Spritesheet_34
+  - first:
+      213: 133316450803645387
+    second: Lv.1 Balloon Spritesheet_35
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +148,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +165,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +178,790 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ebd0dc4db36e510800000000000000
+      internalID: 1578014504599272965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d805eadd3a0b5b0800000000000000
+      internalID: -5354599784435905215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610f0a859eaff1760800000000000000
+      internalID: 7430933790305873942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56d17009f8fb3750800000000000000
+      internalID: 6285891453263664734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7783ae14c9851b8c0800000000000000
+      internalID: -3985306767102166921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5a9ed356cf87f50800000000000000
+      internalID: 6879525942569051586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ecf6866b50087020800000000000000
+      internalID: 2339620398981119207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85326d798e0e80840800000000000000
+      internalID: 5190645860128924504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8563670c4cdbbfdf0800000000000000
+      internalID: -145313910219196840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 465
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6518eca4f0c9c8b60800000000000000
+      internalID: 7749740648291270998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 376
+        width: 51
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c3c773b1ac8b4a0800000000000000
+      internalID: -6577285037530792907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 376
+        width: 91
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627d4fcf5b3661220800000000000000
+      internalID: 2456260280061318950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 376
+        width: 82
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c633c5e6e49090540800000000000000
+      internalID: 4974517495871058796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 376
+        width: 77
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f05f7b24ce1900c70800000000000000
+      internalID: 8935302104620725519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 370
+        width: 57
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f27065beb13d0010800000000000000
+      internalID: 1156635374460629746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 370
+        width: 59
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bad1e5fa34c837e0800000000000000
+      internalID: -1785461494740034892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 370
+        width: 59
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f5dff14de1e7790800000000000000
+      internalID: -7530547630498291968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 279
+        width: 55
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e3a7243c3f5d6340800000000000000
+      internalID: 4858644285180322788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 277
+        width: 70
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40556771c38e47bb0800000000000000
+      internalID: -4939067546529278716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 277
+        width: 68
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd14e98c1d468bb90800000000000000
+      internalID: -7225914749939203619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 277
+        width: 70
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ae7ac24a2b7c510800000000000000
+      internalID: 1569419413355489852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 277
+        width: 63
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e6bad4533c7d2200800000000000000
+      internalID: 156918121936631527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 281
+        width: 79
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257fb9e943a3c46c0800000000000000
+      internalID: -4157884358296078510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 281
+        width: 79
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf0dd14c979782870800000000000000
+      internalID: 8658303847508070652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 190
+        width: 79
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556248229b6098570800000000000000
+      internalID: 8469307966464730709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 190
+        width: 79
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66eb9518a9655ac00800000000000000
+      internalID: 911229721207488102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 190
+        width: 74
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46bac963a18bd6ca0800000000000000
+      internalID: -6021954703999587484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 190
+        width: 73
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c91c3ab9f7332f4b0800000000000000
+      internalID: -5408203579353480804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 190
+        width: 74
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e148d22dbd7f8bb0800000000000000
+      internalID: -4931584815660514844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 190
+        width: 74
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c57801e8b6ffe0fd0800000000000000
+      internalID: -2373679116167641252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 94
+        width: 63
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3848b1c64f8465a50800000000000000
+      internalID: 6509470526033593475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 94
+        width: 63
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97fc95be40c93dcb0800000000000000
+      internalID: -4840353629550817415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 94
+        width: 63
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c111f78e66bf9080800000000000000
+      internalID: -9178416929714400823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 105
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37805e23a3802e290800000000000000
+      internalID: -7862712953380468621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 118
+        width: 63
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26839b872c1179c0800000000000000
+      internalID: -3931330043546728918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Balloon Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 147
+        width: 63
+        height: 43
+      alignment: 9
+      pivot: {x: 0.48507497, y: 0.96648604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcbfddc0b92a9d100800000000000000
+      internalID: 133316450803645387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

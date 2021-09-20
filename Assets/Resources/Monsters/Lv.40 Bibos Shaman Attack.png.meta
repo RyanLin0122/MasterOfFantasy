@@ -1,9 +1,27 @@
 fileFormatVersion: 2
 guid: 4ac25dede44f68949a2d12f28620f4c6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -9175974507256357218
+    second: Lv.40 Bibos Shaman Attack_0
+  - first:
+      213: 1376924897113208292
+    second: Lv.40 Bibos Shaman Attack_1
+  - first:
+      213: 5958817397423343090
+    second: Lv.40 Bibos Shaman Attack_2
+  - first:
+      213: 5230558798351512644
+    second: Lv.40 Bibos Shaman Attack_3
+  - first:
+      213: -3010050633446339314
+    second: Lv.40 Bibos Shaman Attack_4
+  - first:
+      213: -5100135778688656516
+    second: Lv.40 Bibos Shaman Attack_5
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +75,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +88,160 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_0
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 90
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ed1f25dc368a080800000000000000
+      internalID: -9175974507256357218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 90
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5f2de06e1db1310800000000000000
+      internalID: 1376924897113208292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 171
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f506de0ad8f1b250800000000000000
+      internalID: 5958817397423343090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 171
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4443980b38da69840800000000000000
+      internalID: 5230558798351512644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 205
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.42468813, y: 0.48185998}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0dcd7595e62a36d0800000000000000
+      internalID: -3010050633446339314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Attack_5
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 90
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7b900de78da839b0800000000000000
+      internalID: -5100135778688656516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

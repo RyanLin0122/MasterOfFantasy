@@ -1,9 +1,96 @@
 fileFormatVersion: 2
 guid: 39f8023969ba35a4c8a9574847d5bc29
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3759096971151818716
+    second: Lv.1 Qwiny Monster Spritesheet_0
+  - first:
+      213: 2241381470955947664
+    second: Lv.1 Qwiny Monster Spritesheet_1
+  - first:
+      213: 7640618367964981450
+    second: Lv.1 Qwiny Monster Spritesheet_2
+  - first:
+      213: 866056254722669980
+    second: Lv.1 Qwiny Monster Spritesheet_3
+  - first:
+      213: 2363422749530711709
+    second: Lv.1 Qwiny Monster Spritesheet_4
+  - first:
+      213: 8875848331155553610
+    second: Lv.1 Qwiny Monster Spritesheet_5
+  - first:
+      213: -3651450300404211077
+    second: Lv.1 Qwiny Monster Spritesheet_6
+  - first:
+      213: 494797199383981412
+    second: Lv.1 Qwiny Monster Spritesheet_7
+  - first:
+      213: 2740419808585601126
+    second: Lv.1 Qwiny Monster Spritesheet_8
+  - first:
+      213: -8331204471152424010
+    second: Lv.1 Qwiny Monster Spritesheet_9
+  - first:
+      213: 6212340905856635944
+    second: Lv.1 Qwiny Monster Spritesheet_10
+  - first:
+      213: 423695509115570155
+    second: Lv.1 Qwiny Monster Spritesheet_11
+  - first:
+      213: -9215907267534703371
+    second: Lv.1 Qwiny Monster Spritesheet_12
+  - first:
+      213: 2655961029607044010
+    second: Lv.1 Qwiny Monster Spritesheet_13
+  - first:
+      213: -4872255534492114911
+    second: Lv.1 Qwiny Monster Spritesheet_14
+  - first:
+      213: 4084879516809508848
+    second: Lv.1 Qwiny Monster Spritesheet_15
+  - first:
+      213: 7529753929127093841
+    second: Lv.1 Qwiny Monster Spritesheet_16
+  - first:
+      213: -7347092896697002625
+    second: Lv.1 Qwiny Monster Spritesheet_17
+  - first:
+      213: -366478802818888815
+    second: Lv.1 Qwiny Monster Spritesheet_18
+  - first:
+      213: -2574192762757129192
+    second: Lv.1 Qwiny Monster Spritesheet_19
+  - first:
+      213: -7468552334620118646
+    second: Lv.1 Qwiny Monster Spritesheet_20
+  - first:
+      213: 1497208325071294626
+    second: Lv.1 Qwiny Monster Spritesheet_21
+  - first:
+      213: -6881786579494692803
+    second: Lv.1 Qwiny Monster Spritesheet_22
+  - first:
+      213: 6870559787335584279
+    second: Lv.1 Qwiny Monster Spritesheet_23
+  - first:
+      213: 6426160518102364170
+    second: Lv.1 Qwiny Monster Spritesheet_24
+  - first:
+      213: 459712167953112760
+    second: Lv.1 Qwiny Monster Spritesheet_25
+  - first:
+      213: 1466490152352847569
+    second: Lv.1 Qwiny Monster Spritesheet_26
+  - first:
+      213: -2255799196648279733
+    second: Lv.1 Qwiny Monster Spritesheet_27
+  - first:
+      213: -6730902533212444777
+    second: Lv.1 Qwiny Monster Spritesheet_28
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +127,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +144,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +157,643 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 166
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf30c957cefa2430800000000000000
+      internalID: 3759096971151818716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 166
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096c87e829cfa1f10800000000000000
+      internalID: 2241381470955947664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 166
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac8a0e68cede80a60800000000000000
+      internalID: 7640618367964981450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 166
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9dff3a3399d40c00800000000000000
+      internalID: 866056254722669980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 166
+        width: 128
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96eadff7709cc020800000000000000
+      internalID: 2363422749530711709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 71
+        width: 108
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d35cae7095d2b70800000000000000
+      internalID: 8875848331155553610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 71
+        width: 122
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72e9694c41735dc0800000000000000
+      internalID: -3651450300404211077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 476
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46de3296e6fddd600800000000000000
+      internalID: 494797199383981412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 476
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660503aeb4de70620800000000000000
+      internalID: 2740419808585601126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 476
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb40d19cad916c80800000000000000
+      internalID: -8331204471152424010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 476
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8249635b32ba63650800000000000000
+      internalID: 6212340905856635944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 476
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be703c912d441e500800000000000000
+      internalID: 423695509115570155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 476
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f437ab0b258a1080800000000000000
+      internalID: -9215907267534703371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 476
+        width: 70
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3320b0c7edbd420800000000000000
+      internalID: 2655961029607044010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 476
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120aaabd765426cb0800000000000000
+      internalID: -4872255534492114911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 476
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f733b5274860b830800000000000000
+      internalID: 4084879516809508848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 392
+        width: 96
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156e8bfdd4f0f7860800000000000000
+      internalID: 7529753929127093841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 392
+        width: 96
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f755490efe1e90a90800000000000000
+      internalID: -7347092896697002625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 401
+        width: 95
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b054478710aeaf0800000000000000
+      internalID: -366478802818888815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 73
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cda782251a64cd0800000000000000
+      internalID: -2574192762757129192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 394
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81bd84c83f5a5890800000000000000
+      internalID: -7468552334620118646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 394
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0d1a20a0727c410800000000000000
+      internalID: 1497208325071294626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 323
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d381b25319bfe70a0800000000000000
+      internalID: -6881786579494692803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 318
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a883c89b1295f50800000000000000
+      internalID: 6870559787335584279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 253
+        width: 108
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00b127a1fe4e2950800000000000000
+      internalID: 6426160518102364170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 323
+        width: 57
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be15c5f7c9316600800000000000000
+      internalID: 459712167953112760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 319
+        width: 96
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d6999516050a5410800000000000000
+      internalID: 1466490152352847569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 319
+        width: 105
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b41fa27159ac1b0e0800000000000000
+      internalID: -2255799196648279733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Qwiny Monster Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 319
+        width: 103
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7976812dec70792a0800000000000000
+      internalID: -6730902533212444777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

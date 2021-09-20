@@ -1,9 +1,138 @@
 fileFormatVersion: 2
 guid: 67866c5c89c29fb49b1a504dfe527ae9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5976859474121075665
+    second: Lv.24 Tree Tag Spritesheet_0
+  - first:
+      213: 917549979111729032
+    second: Lv.24 Tree Tag Spritesheet_1
+  - first:
+      213: 7209574180707945897
+    second: Lv.24 Tree Tag Spritesheet_2
+  - first:
+      213: -6067595537233230493
+    second: Lv.24 Tree Tag Spritesheet_3
+  - first:
+      213: 1930896593007205978
+    second: Lv.24 Tree Tag Spritesheet_4
+  - first:
+      213: 129365639594373028
+    second: Lv.24 Tree Tag Spritesheet_5
+  - first:
+      213: -6532729687496528476
+    second: Lv.24 Tree Tag Spritesheet_6
+  - first:
+      213: 7511911265154788625
+    second: Lv.24 Tree Tag Spritesheet_7
+  - first:
+      213: 2981029772440150137
+    second: Lv.24 Tree Tag Spritesheet_8
+  - first:
+      213: -612324692657824719
+    second: Lv.24 Tree Tag Spritesheet_9
+  - first:
+      213: -1989312493709375580
+    second: Lv.24 Tree Tag Spritesheet_10
+  - first:
+      213: 4778204495281428693
+    second: Lv.24 Tree Tag Spritesheet_11
+  - first:
+      213: 3126199370617301815
+    second: Lv.24 Tree Tag Spritesheet_12
+  - first:
+      213: -5648130994690405855
+    second: Lv.24 Tree Tag Spritesheet_13
+  - first:
+      213: -3648897344864194980
+    second: Lv.24 Tree Tag Spritesheet_14
+  - first:
+      213: 8984811159093829271
+    second: Lv.24 Tree Tag Spritesheet_15
+  - first:
+      213: 7637121155411198488
+    second: Lv.24 Tree Tag Spritesheet_16
+  - first:
+      213: 5742910133343148403
+    second: Lv.24 Tree Tag Spritesheet_17
+  - first:
+      213: 4388669352009118702
+    second: Lv.24 Tree Tag Spritesheet_18
+  - first:
+      213: 5596403805248291041
+    second: Lv.24 Tree Tag Spritesheet_19
+  - first:
+      213: -2835720977613817108
+    second: Lv.24 Tree Tag Spritesheet_20
+  - first:
+      213: 3501590171930106507
+    second: Lv.24 Tree Tag Spritesheet_21
+  - first:
+      213: 1721322503863958671
+    second: Lv.24 Tree Tag Spritesheet_22
+  - first:
+      213: -5428525943686078324
+    second: Lv.24 Tree Tag Spritesheet_23
+  - first:
+      213: 3504465457235382231
+    second: Lv.24 Tree Tag Spritesheet_24
+  - first:
+      213: 3853709725036336208
+    second: Lv.24 Tree Tag Spritesheet_25
+  - first:
+      213: 447693112727541437
+    second: Lv.24 Tree Tag Spritesheet_26
+  - first:
+      213: 3012144499970219499
+    second: Lv.24 Tree Tag Spritesheet_27
+  - first:
+      213: -7702647473211747494
+    second: Lv.24 Tree Tag Spritesheet_28
+  - first:
+      213: -8218401334963074979
+    second: Lv.24 Tree Tag Spritesheet_29
+  - first:
+      213: -7971951624055285179
+    second: Lv.24 Tree Tag Spritesheet_30
+  - first:
+      213: 684319035337769895
+    second: Lv.24 Tree Tag Spritesheet_31
+  - first:
+      213: 8965716606077931250
+    second: Lv.24 Tree Tag Spritesheet_32
+  - first:
+      213: -522565027548557168
+    second: Lv.24 Tree Tag Spritesheet_33
+  - first:
+      213: -2751870590852565860
+    second: Lv.24 Tree Tag Spritesheet_34
+  - first:
+      213: -5419169753729681415
+    second: Lv.24 Tree Tag Spritesheet_35
+  - first:
+      213: -6255652498012734245
+    second: Lv.24 Tree Tag Spritesheet_36
+  - first:
+      213: 8674703812232819069
+    second: Lv.24 Tree Tag Spritesheet_37
+  - first:
+      213: 202459333276590148
+    second: Lv.24 Tree Tag Spritesheet_38
+  - first:
+      213: -7913508605031678956
+    second: Lv.24 Tree Tag Spritesheet_39
+  - first:
+      213: 8920986421011977092
+    second: Lv.24 Tree Tag Spritesheet_40
+  - first:
+      213: 8705133994116908689
+    second: Lv.24 Tree Tag Spritesheet_41
+  - first:
+      213: -6168651870281332326
+    second: Lv.24 Tree Tag Spritesheet_42
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +169,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +186,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +199,937 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24d59c99fded0da0800000000000000
+      internalID: -5976859474121075665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8872f9838dacbbc00800000000000000
+      internalID: 917549979111729032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9adcce6f48d8d0460800000000000000
+      internalID: 7209574180707945897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365c772a1029bcba0800000000000000
+      internalID: -6067595537233230493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ed434983cebca10800000000000000
+      internalID: 1930896593007205978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 441
+        width: 71
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afe9222d599bc100800000000000000
+      internalID: 129365639594373028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 441
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4adee1b06f41755a0800000000000000
+      internalID: -6532729687496528476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 372
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d6ecfee7baf3860800000000000000
+      internalID: 7511911265154788625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 370
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 970a82ba8cebe5920800000000000000
+      internalID: 2981029772440150137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 370
+        width: 56
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c1eeeafe59087f0800000000000000
+      internalID: -612324692657824719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 369
+        width: 78
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a7c439a3da8464e0800000000000000
+      internalID: -1989312493709375580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 369
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d89c652ca79f4240800000000000000
+      internalID: 4778204495281428693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 369
+        width: 78
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ba1b6a3cd726b20800000000000000
+      internalID: 3126199370617301815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 369
+        width: 76
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12aca9019cecd91b0800000000000000
+      internalID: -5648130994690405855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 292
+        width: 68
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ee08192338c5dc0800000000000000
+      internalID: -3648897344864194980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 290
+        width: 67
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ed0c7452670bc70800000000000000
+      internalID: 8984811159093829271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 290
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812c7e64a318cf960800000000000000
+      internalID: 7637121155411198488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 292
+        width: 50
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 379d8eac65ae2bf40800000000000000
+      internalID: 5742910133343148403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 290
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee3b523068fa7ec30800000000000000
+      internalID: 4388669352009118702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 290
+        width: 69
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0087f1c9b6aad40800000000000000
+      internalID: 5596403805248291041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 301
+        width: 89
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea743f8bce75a8d0800000000000000
+      internalID: -2835720977613817108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 0
+        width: 73
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a94ea85b5289030800000000000000
+      internalID: 3501590171930106507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 0
+        width: 73
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8c72b282bd53e710800000000000000
+      internalID: 1721322503863958671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 73
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8069907a600aa4b0800000000000000
+      internalID: -5428525943686078324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 80
+        width: 73
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df442214cc52a030800000000000000
+      internalID: 3504465457235382231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 76
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 054524cb3902b7530800000000000000
+      internalID: 3853709725036336208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 77
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db693889386863600800000000000000
+      internalID: 447693112727541437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 82
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed1fd4b6794dc920800000000000000
+      internalID: 3012144499970219499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 81
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a535729fee2ba1590800000000000000
+      internalID: -7702647473211747494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 82
+        width: 74
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d580eef578f52fd80800000000000000
+      internalID: -8218401334963074979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 166
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54a16913c30fd5190800000000000000
+      internalID: -7971951624055285179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 156
+        width: 68
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a3885679803f7900800000000000000
+      internalID: 684319035337769895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 159
+        width: 68
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe881630cf9c6c70800000000000000
+      internalID: 8965716606077931250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 168
+        width: 69
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0901de840e97fb8f0800000000000000
+      internalID: -522565027548557168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 169
+        width: 68
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94736417446fc9d0800000000000000
+      internalID: -2751870590852565860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 167
+        width: 69
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7b66b22dd3bc4b0800000000000000
+      internalID: -5419169753729681415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 166
+        width: 69
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc7aa962357f29a0800000000000000
+      internalID: -6255652498012734245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 241
+        width: 64
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d713ddb182db26870800000000000000
+      internalID: 8674703812232819069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 244
+        width: 65
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 440e961e0b74fc200800000000000000
+      internalID: 202459333276590148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 244
+        width: 64
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41cf61ee9d19d2290800000000000000
+      internalID: -7913508605031678956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 243
+        width: 64
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483908e62e5bdcb70800000000000000
+      internalID: 8920986421011977092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 244
+        width: 65
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1960481fe39dec870800000000000000
+      internalID: 8705133994116908689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.24 Tree Tag Spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 243
+        width: 64
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9905d09ecb846aa0800000000000000
+      internalID: -6168651870281332326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -1,9 +1,93 @@
 fileFormatVersion: 2
 guid: d9c62acd3cd07e242bfc69c41e6e575d
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6916810663528437297
+    second: Lv.110 Illusion Spritesheet_0
+  - first:
+      213: 7234372944499022613
+    second: Lv.110 Illusion Spritesheet_1
+  - first:
+      213: -2316542741465011219
+    second: Lv.110 Illusion Spritesheet_2
+  - first:
+      213: -5599321395814069935
+    second: Lv.110 Illusion Spritesheet_3
+  - first:
+      213: -7593108164872015401
+    second: Lv.110 Illusion Spritesheet_4
+  - first:
+      213: -1984456695213013140
+    second: Lv.110 Illusion Spritesheet_5
+  - first:
+      213: 6822309083235726684
+    second: Lv.110 Illusion Spritesheet_6
+  - first:
+      213: -8322626347765227701
+    second: Lv.110 Illusion Spritesheet_7
+  - first:
+      213: -1190199429515058064
+    second: Lv.110 Illusion Spritesheet_8
+  - first:
+      213: -7905734577877175683
+    second: Lv.110 Illusion Spritesheet_9
+  - first:
+      213: -1299927557284270566
+    second: Lv.110 Illusion Spritesheet_10
+  - first:
+      213: 8634372418543083134
+    second: Lv.110 Illusion Spritesheet_11
+  - first:
+      213: 8744789697619156552
+    second: Lv.110 Illusion Spritesheet_12
+  - first:
+      213: -8076650141855112952
+    second: Lv.110 Illusion Spritesheet_13
+  - first:
+      213: -2696630476940888498
+    second: Lv.110 Illusion Spritesheet_14
+  - first:
+      213: 4941415016835200884
+    second: Lv.110 Illusion Spritesheet_15
+  - first:
+      213: 7641863493136216172
+    second: Lv.110 Illusion Spritesheet_16
+  - first:
+      213: 310608214906802243
+    second: Lv.110 Illusion Spritesheet_17
+  - first:
+      213: 4620428631918542027
+    second: Lv.110 Illusion Spritesheet_18
+  - first:
+      213: -7673680753055291256
+    second: Lv.110 Illusion Spritesheet_19
+  - first:
+      213: 4972275082411490674
+    second: Lv.110 Illusion Spritesheet_20
+  - first:
+      213: -4512614204468412520
+    second: Lv.110 Illusion Spritesheet_21
+  - first:
+      213: -696604555033769950
+    second: Lv.110 Illusion Spritesheet_22
+  - first:
+      213: 3102163194477574189
+    second: Lv.110 Illusion Spritesheet_23
+  - first:
+      213: -1536511481979364959
+    second: Lv.110 Illusion Spritesheet_24
+  - first:
+      213: 1217004779362294723
+    second: Lv.110 Illusion Spritesheet_25
+  - first:
+      213: 4043143802802814762
+    second: Lv.110 Illusion Spritesheet_26
+  - first:
+      213: 4466323126233074541
+    second: Lv.110 Illusion Spritesheet_27
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +124,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +141,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +154,622 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 49
+        width: 105
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1361f32d6a27dff50800000000000000
+      internalID: 6916810663528437297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 49
+        width: 105
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b9f891dd7a56460800000000000000
+      internalID: 7234372944499022613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 49
+        width: 105
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debe7f376acf9dfd0800000000000000
+      internalID: -2316542741465011219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 60
+        width: 105
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15902436bd63b42b0800000000000000
+      internalID: -5599321395814069935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 195
+        width: 119
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d17fa3aa5cdf9690800000000000000
+      internalID: -7593108164872015401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 189
+        width: 119
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c67cea9562bc574e0800000000000000
+      internalID: -1984456695213013140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 311
+        width: 110
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55bf2e07f5bdae50800000000000000
+      internalID: 6822309083235726684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 311
+        width: 110
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f952f8e67108c80800000000000000
+      internalID: -8322626347765227701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 311
+        width: 110
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 074e1efbcef8b7fe0800000000000000
+      internalID: -1190199429515058064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 311
+        width: 117
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72bb1da940394290800000000000000
+      internalID: -7905734577877175683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 458
+        width: 101
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e645226cab5fde0800000000000000
+      internalID: -1299927557284270566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 458
+        width: 101
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ed0b1c7f373d770800000000000000
+      internalID: 8634372418543083134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 458
+        width: 101
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ed51ae5ebbb5970800000000000000
+      internalID: 8744789697619156552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 564
+        width: 125
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8012e97ec79f9ef80800000000000000
+      internalID: -8076650141855112952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 563
+        width: 125
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e46327b5ed4a39ad0800000000000000
+      internalID: -2696630476940888498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 565
+        width: 122
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4773e3ee6ce639440800000000000000
+      internalID: 4941415016835200884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 568
+        width: 104
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60f862db5a5d0a60800000000000000
+      internalID: 7641863493136216172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 675
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34096d996808f4400800000000000000
+      internalID: 310608214906802243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 675
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc7c835c5f0f1040800000000000000
+      internalID: 4620428631918542027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 681
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8882362130c918590800000000000000
+      internalID: -7673680753055291256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 689
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27db9acd7d1110540800000000000000
+      internalID: 4972275082411490674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 683
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f37463a49ff51c0800000000000000
+      internalID: -4512614204468412520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 788
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2280b4419d92556f0800000000000000
+      internalID: -696604555033769950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 790
+        width: 83
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d28702a4df81d0b20800000000000000
+      internalID: 3102163194477574189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 791
+        width: 84
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a99f4ba2f63daae0800000000000000
+      internalID: -1536511481979364959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 793
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb97db166ba3e010800000000000000
+      internalID: 1217004779362294723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 793
+        width: 84
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f32edfdd12c1830800000000000000
+      internalID: 4043143802802814762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Illusion Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 793
+        width: 85
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b0c3f38319bfd30800000000000000
+      internalID: 4466323126233074541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

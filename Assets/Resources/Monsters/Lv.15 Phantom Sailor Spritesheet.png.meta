@@ -1,9 +1,102 @@
 fileFormatVersion: 2
 guid: 0c5b782c172902d43aee5aa8514905b0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7020354033238821053
+    second: Lv.15 Phantom Sailor Spritesheet_0
+  - first:
+      213: 3250638307117089558
+    second: Lv.15 Phantom Sailor Spritesheet_1
+  - first:
+      213: -1082786418453395764
+    second: Lv.15 Phantom Sailor Spritesheet_2
+  - first:
+      213: -203324308686495089
+    second: Lv.15 Phantom Sailor Spritesheet_3
+  - first:
+      213: -7263380695749361480
+    second: Lv.15 Phantom Sailor Spritesheet_4
+  - first:
+      213: 3284567731664451828
+    second: Lv.15 Phantom Sailor Spritesheet_5
+  - first:
+      213: -3252527356235606648
+    second: Lv.15 Phantom Sailor Spritesheet_6
+  - first:
+      213: 4547023485567858724
+    second: Lv.15 Phantom Sailor Spritesheet_7
+  - first:
+      213: -2754382583173448252
+    second: Lv.15 Phantom Sailor Spritesheet_8
+  - first:
+      213: 4175493042946898054
+    second: Lv.15 Phantom Sailor Spritesheet_9
+  - first:
+      213: -329195864782870405
+    second: Lv.15 Phantom Sailor Spritesheet_10
+  - first:
+      213: -6605051598201472647
+    second: Lv.15 Phantom Sailor Spritesheet_11
+  - first:
+      213: -6883264494425033258
+    second: Lv.15 Phantom Sailor Spritesheet_12
+  - first:
+      213: -7030010305727562780
+    second: Lv.15 Phantom Sailor Spritesheet_13
+  - first:
+      213: -2852793270632333041
+    second: Lv.15 Phantom Sailor Spritesheet_14
+  - first:
+      213: 6198416170333419930
+    second: Lv.15 Phantom Sailor Spritesheet_15
+  - first:
+      213: -2233710885197062739
+    second: Lv.15 Phantom Sailor Spritesheet_16
+  - first:
+      213: 496111587330090593
+    second: Lv.15 Phantom Sailor Spritesheet_17
+  - first:
+      213: 7000166381026248117
+    second: Lv.15 Phantom Sailor Spritesheet_18
+  - first:
+      213: 5266592576038725142
+    second: Lv.15 Phantom Sailor Spritesheet_19
+  - first:
+      213: 7956882102115415267
+    second: Lv.15 Phantom Sailor Spritesheet_20
+  - first:
+      213: -5360640456023495344
+    second: Lv.15 Phantom Sailor Spritesheet_21
+  - first:
+      213: -2977384554501532414
+    second: Lv.15 Phantom Sailor Spritesheet_22
+  - first:
+      213: -900901049160560770
+    second: Lv.15 Phantom Sailor Spritesheet_23
+  - first:
+      213: 5962781999017221003
+    second: Lv.15 Phantom Sailor Spritesheet_24
+  - first:
+      213: -6567725261599562884
+    second: Lv.15 Phantom Sailor Spritesheet_25
+  - first:
+      213: 7392457658017124593
+    second: Lv.15 Phantom Sailor Spritesheet_26
+  - first:
+      213: -4871789807987259674
+    second: Lv.15 Phantom Sailor Spritesheet_27
+  - first:
+      213: 8303438459813099811
+    second: Lv.15 Phantom Sailor Spritesheet_28
+  - first:
+      213: 8583097005550615251
+    second: Lv.15 Phantom Sailor Spritesheet_29
+  - first:
+      213: 994694031735760005
+    second: Lv.15 Phantom Sailor Spritesheet_30
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +133,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +150,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +163,685 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347b153c331b29e90800000000000000
+      internalID: -7020354033238821053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 613cdf451569c1d20800000000000000
+      internalID: 3250638307117089558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc6c7704d7b29f0f0800000000000000
+      internalID: -1082786418453395764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f822a865e95ad2df0800000000000000
+      internalID: -203324308686495089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b00e618db9433b90800000000000000
+      internalID: -7263380695749361480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 432
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8f19613f0259d20800000000000000
+      internalID: 3284567731664451828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 439
+        width: 77
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88516552a93bcd2d0800000000000000
+      internalID: -3252527356235606648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 359
+        width: 77
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42871aad4c54a1f30800000000000000
+      internalID: 4547023485567858724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 358
+        width: 78
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd7c6a42a776c9d0800000000000000
+      internalID: -2754382583173448252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 347
+        width: 90
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688f6f2ccc452f930800000000000000
+      internalID: 4175493042946898054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 347
+        width: 90
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78e61aea167e6bf0800000000000000
+      internalID: -329195864782870405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 347
+        width: 90
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979331601942654a0800000000000000
+      internalID: -6605051598201472647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 347
+        width: 85
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5bcb2596bb970a0800000000000000
+      internalID: -6883264494425033258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 271
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ebf5cf9fd2607e90800000000000000
+      internalID: -7030010305727562780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 275
+        width: 76
+        height: 72
+      alignment: 9
+      pivot: {x: 0.4999998, y: 0.41231197}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01c55692a7d868d0800000000000000
+      internalID: -2852793270632333041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 272
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99b2c29aa2350650800000000000000
+      internalID: 6198416170333419930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 275
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dadd7ecd8c34001e0800000000000000
+      internalID: -2233710885197062739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 260
+        width: 82
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166e3c33cda82e600800000000000000
+      internalID: 496111587330090593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 260
+        width: 82
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b583bd2c36952160800000000000000
+      internalID: 7000166381026248117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 187
+        width: 82
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6166f775b02b61940800000000000000
+      internalID: 5266592576038725142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 187
+        width: 82
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e4b0405d168c6e60800000000000000
+      internalID: 7956882102115415267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 180
+        width: 76
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05da12a38ed2b95b0800000000000000
+      internalID: -5360640456023495344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 180
+        width: 76
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2059335c5843ea6d0800000000000000
+      internalID: -2977384554501532414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 180
+        width: 76
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f020bd44b5f73f0800000000000000
+      internalID: -900901049160560770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 180
+        width: 76
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8bd38cc2ae00c250800000000000000
+      internalID: 5962781999017221003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 80
+        width: 66
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c73affffba0cad4a0800000000000000
+      internalID: -6567725261599562884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 81
+        width: 66
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f01a33b219479660800000000000000
+      internalID: 7392457658017124593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 80
+        width: 64
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e60d824bfce36cb0800000000000000
+      internalID: -4871789807987259674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 80
+        width: 71
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329f973294dbb3370800000000000000
+      internalID: 8303438459813099811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 80
+        width: 66
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da309850494d1770800000000000000
+      internalID: 8583097005550615251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.15 Phantom Sailor Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 80
+        width: 66
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584afc5a3fcddcd00800000000000000
+      internalID: 994694031735760005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

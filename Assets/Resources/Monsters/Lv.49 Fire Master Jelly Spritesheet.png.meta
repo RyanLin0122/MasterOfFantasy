@@ -1,9 +1,96 @@
 fileFormatVersion: 2
 guid: b2415d5cab4ae7f40962f11f0b9f7bba
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6384689165061832106
+    second: Lv.49 Fire Master Jelly Spritesheet_0
+  - first:
+      213: 3659221259229888733
+    second: Lv.49 Fire Master Jelly Spritesheet_1
+  - first:
+      213: 9050227295892194452
+    second: Lv.49 Fire Master Jelly Spritesheet_2
+  - first:
+      213: -349202306431206413
+    second: Lv.49 Fire Master Jelly Spritesheet_3
+  - first:
+      213: -6261701347515640548
+    second: Lv.49 Fire Master Jelly Spritesheet_4
+  - first:
+      213: 8100435050771164929
+    second: Lv.49 Fire Master Jelly Spritesheet_5
+  - first:
+      213: 6905495389305447181
+    second: Lv.49 Fire Master Jelly Spritesheet_6
+  - first:
+      213: -8020336583666161323
+    second: Lv.49 Fire Master Jelly Spritesheet_7
+  - first:
+      213: -1384024722553325639
+    second: Lv.49 Fire Master Jelly Spritesheet_8
+  - first:
+      213: 3749498410821081855
+    second: Lv.49 Fire Master Jelly Spritesheet_9
+  - first:
+      213: -2775557857967558799
+    second: Lv.49 Fire Master Jelly Spritesheet_10
+  - first:
+      213: -3798618286898209630
+    second: Lv.49 Fire Master Jelly Spritesheet_11
+  - first:
+      213: 588957344602501771
+    second: Lv.49 Fire Master Jelly Spritesheet_12
+  - first:
+      213: 8802283845539950317
+    second: Lv.49 Fire Master Jelly Spritesheet_13
+  - first:
+      213: -7157986461892678638
+    second: Lv.49 Fire Master Jelly Spritesheet_14
+  - first:
+      213: 4838732036027317706
+    second: Lv.49 Fire Master Jelly Spritesheet_15
+  - first:
+      213: -60167587180801773
+    second: Lv.49 Fire Master Jelly Spritesheet_16
+  - first:
+      213: 4887011707934197479
+    second: Lv.49 Fire Master Jelly Spritesheet_17
+  - first:
+      213: -8334718345504106944
+    second: Lv.49 Fire Master Jelly Spritesheet_18
+  - first:
+      213: 4220097354692525502
+    second: Lv.49 Fire Master Jelly Spritesheet_19
+  - first:
+      213: 5177901798794448421
+    second: Lv.49 Fire Master Jelly Spritesheet_20
+  - first:
+      213: -2276685892252817770
+    second: Lv.49 Fire Master Jelly Spritesheet_21
+  - first:
+      213: -4521335508775340581
+    second: Lv.49 Fire Master Jelly Spritesheet_22
+  - first:
+      213: 8000805671395311091
+    second: Lv.49 Fire Master Jelly Spritesheet_23
+  - first:
+      213: 4809216206914814897
+    second: Lv.49 Fire Master Jelly Spritesheet_24
+  - first:
+      213: 5129354730102008305
+    second: Lv.49 Fire Master Jelly Spritesheet_25
+  - first:
+      213: -1807542317172393397
+    second: Lv.49 Fire Master Jelly Spritesheet_26
+  - first:
+      213: -6516755906322114592
+    second: Lv.49 Fire Master Jelly Spritesheet_27
+  - first:
+      213: -5536500800131224643
+    second: Lv.49 Fire Master Jelly Spritesheet_28
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +127,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +144,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +157,643 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 14
+        width: 89
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aadbbc4d7f8fa9850800000000000000
+      internalID: 6384689165061832106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 24
+        width: 89
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd084fe095a28c230800000000000000
+      internalID: 3659221259229888733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 27
+        width: 89
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494c23486cdd89d70800000000000000
+      internalID: 9050227295892194452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 23
+        width: 88
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fbbb6a3a52672bf0800000000000000
+      internalID: -349202306431206413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 77
+        width: 111
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c15deb3ecc7f919a0800000000000000
+      internalID: -6261701347515640548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 135
+        width: 111
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fa65fb2c68a6070800000000000000
+      internalID: 8100435050771164929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 136
+        width: 111
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0326ad387f35df50800000000000000
+      internalID: 6905495389305447181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 134
+        width: 99
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5592287ee5a02b090800000000000000
+      internalID: -8020336583666161323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 91
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7b9d309d4facce0800000000000000
+      internalID: -1384024722553325639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 268
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffad1ee50f4e80430800000000000000
+      internalID: 3749498410821081855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 258
+        width: 92
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17fac4e65dc3b79d0800000000000000
+      internalID: -2775557857967558799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 267
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac11244bc8984bc0800000000000000
+      internalID: -3798618286898209630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 173
+        width: 92
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82b3e0a5956c2800800000000000000
+      internalID: 588957344602501771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 173
+        width: 77
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee6191658ef72a70800000000000000
+      internalID: 8802283845539950317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 177
+        width: 77
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ce4dfcc39b9ac90800000000000000
+      internalID: -7157986461892678638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 442
+        width: 77
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acdf5ba6621a62340800000000000000
+      internalID: 4838732036027317706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 445
+        width: 81
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3119813f5ed3a2ff0800000000000000
+      internalID: -60167587180801773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 451
+        width: 87
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e6c790814722d340800000000000000
+      internalID: 4887011707934197479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 452
+        width: 86
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046db41f2d1255c80800000000000000
+      internalID: -8334718345504106944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 444
+        width: 76
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd73006f2cc09a30800000000000000
+      internalID: 4220097354692525502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 431
+        width: 74
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ecff6904a9bd740800000000000000
+      internalID: 5177901798794448421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 358
+        width: 92
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696a02f4e369760e0800000000000000
+      internalID: -2276685892252817770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 372
+        width: 100
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5f5115f4df041c0800000000000000
+      internalID: -4521335508775340581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 374
+        width: 76
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdb2783e52980f60800000000000000
+      internalID: 8000805671395311091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 377
+        width: 89
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3853de8a4cdb240800000000000000
+      internalID: 4809216206914814897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 369
+        width: 81
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f923b653f02f2740800000000000000
+      internalID: 5129354730102008305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 208
+        width: 71
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4af37cd6d15ae6e0800000000000000
+      internalID: -1807542317172393397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 287
+        width: 82
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7ddbbc705df85a0800000000000000
+      internalID: -6516755906322114592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.49 Fire Master Jelly Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 291
+        width: 78
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbb238d1bd56a23b0800000000000000
+      internalID: -5536500800131224643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

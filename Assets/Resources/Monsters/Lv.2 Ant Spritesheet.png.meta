@@ -1,9 +1,138 @@
 fileFormatVersion: 2
 guid: de2282aa150995b44a7e621567ce5b99
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3701346115410642353
+    second: Lv.2 Ant Spritesheet_0
+  - first:
+      213: -3445235587770898388
+    second: Lv.2 Ant Spritesheet_1
+  - first:
+      213: -5707514245021942139
+    second: Lv.2 Ant Spritesheet_2
+  - first:
+      213: 4228536454385974619
+    second: Lv.2 Ant Spritesheet_3
+  - first:
+      213: -7577378779474373534
+    second: Lv.2 Ant Spritesheet_4
+  - first:
+      213: -3359484703794255823
+    second: Lv.2 Ant Spritesheet_5
+  - first:
+      213: -56302799253515021
+    second: Lv.2 Ant Spritesheet_6
+  - first:
+      213: -7673648350989219642
+    second: Lv.2 Ant Spritesheet_7
+  - first:
+      213: 4531546026623700777
+    second: Lv.2 Ant Spritesheet_8
+  - first:
+      213: -3885555657308431834
+    second: Lv.2 Ant Spritesheet_9
+  - first:
+      213: -4397976495965987975
+    second: Lv.2 Ant Spritesheet_10
+  - first:
+      213: 8170219082758360819
+    second: Lv.2 Ant Spritesheet_11
+  - first:
+      213: -2912471083957900098
+    second: Lv.2 Ant Spritesheet_12
+  - first:
+      213: -6891210277617062410
+    second: Lv.2 Ant Spritesheet_13
+  - first:
+      213: 5200360090180945664
+    second: Lv.2 Ant Spritesheet_14
+  - first:
+      213: -3852299477534049246
+    second: Lv.2 Ant Spritesheet_15
+  - first:
+      213: -8334280186135248233
+    second: Lv.2 Ant Spritesheet_16
+  - first:
+      213: -2487012206794065241
+    second: Lv.2 Ant Spritesheet_17
+  - first:
+      213: -1548313878386470703
+    second: Lv.2 Ant Spritesheet_18
+  - first:
+      213: -6153995665880262543
+    second: Lv.2 Ant Spritesheet_19
+  - first:
+      213: 6090753004637625045
+    second: Lv.2 Ant Spritesheet_20
+  - first:
+      213: -4231773175680500711
+    second: Lv.2 Ant Spritesheet_21
+  - first:
+      213: -1970261891153777700
+    second: Lv.2 Ant Spritesheet_22
+  - first:
+      213: 2821724297549920240
+    second: Lv.2 Ant Spritesheet_23
+  - first:
+      213: -804001492863557933
+    second: Lv.2 Ant Spritesheet_24
+  - first:
+      213: -8666261811080776730
+    second: Lv.2 Ant Spritesheet_25
+  - first:
+      213: 622423364440144205
+    second: Lv.2 Ant Spritesheet_26
+  - first:
+      213: 9175440448046209448
+    second: Lv.2 Ant Spritesheet_27
+  - first:
+      213: 4567368019034493462
+    second: Lv.2 Ant Spritesheet_28
+  - first:
+      213: 3737543745235468249
+    second: Lv.2 Ant Spritesheet_29
+  - first:
+      213: 2571935018305675900
+    second: Lv.2 Ant Spritesheet_30
+  - first:
+      213: 4259215716538017282
+    second: Lv.2 Ant Spritesheet_31
+  - first:
+      213: -4163377596209201478
+    second: Lv.2 Ant Spritesheet_32
+  - first:
+      213: 8137014506669289917
+    second: Lv.2 Ant Spritesheet_33
+  - first:
+      213: 4913117306046960593
+    second: Lv.2 Ant Spritesheet_34
+  - first:
+      213: -7087378769729315553
+    second: Lv.2 Ant Spritesheet_35
+  - first:
+      213: -5174517949071207954
+    second: Lv.2 Ant Spritesheet_36
+  - first:
+      213: 919104762862682286
+    second: Lv.2 Ant Spritesheet_37
+  - first:
+      213: 5018350740499937747
+    second: Lv.2 Ant Spritesheet_38
+  - first:
+      213: -3640066945404682068
+    second: Lv.2 Ant Spritesheet_39
+  - first:
+      213: 2454516088937766855
+    second: Lv.2 Ant Spritesheet_40
+  - first:
+      213: 3069018637623733215
+    second: Lv.2 Ant Spritesheet_41
+  - first:
+      213: -668411785873292821
+    second: Lv.2 Ant Spritesheet_42
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +169,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +186,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +199,937 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4a3d20915d22acc0800000000000000
+      internalID: -3701346115410642353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c28a16f8c701030d0800000000000000
+      internalID: -3445235587770898388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e3cfaa806dac0b0800000000000000
+      internalID: -5707514245021942139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5d37736087ceaa30800000000000000
+      internalID: 4228536454385974619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264d8d0952eb7d690800000000000000
+      internalID: -7577378779474373534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1382cf11676b061d0800000000000000
+      internalID: -3359484703794255823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f452a207e8f73ff0800000000000000
+      internalID: -56302799253515021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c886044b79b18590800000000000000
+      internalID: -7673648350989219642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 347
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f0d302a1943ee30800000000000000
+      internalID: 4531546026623700777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 309
+        width: 53
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a1f1b57bbb31ac0800000000000000
+      internalID: -3885555657308431834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 309
+        width: 53
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97b1e6badaf37f2c0800000000000000
+      internalID: -4397976495965987975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 309
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe0ee4d7f2726170800000000000000
+      internalID: 8170219082758360819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 286
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebca716eaf2d497d0800000000000000
+      internalID: -2912471083957900098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 286
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd2d1283c08d50a0800000000000000
+      internalID: -6891210277617062410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 286
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0078a5703f36b2840800000000000000
+      internalID: 5200360090180945664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 289
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22cf8291902e98ac0800000000000000
+      internalID: -3852299477534049246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 289
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79205ded350b65c80800000000000000
+      internalID: -8334280186135248233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 291
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aabafd139b5c7dd0800000000000000
+      internalID: -2487012206794065241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 224
+        width: 72
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d097fd1bb8438ae0800000000000000
+      internalID: -1548313878386470703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 224
+        width: 72
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178d9e11c8d989aa0800000000000000
+      internalID: -6153995665880262543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 223
+        width: 72
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5da91186693b68450800000000000000
+      internalID: 6090753004637625045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 223
+        width: 70
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c7985b7b8b545c0800000000000000
+      internalID: -4231773175680500711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 240
+        width: 56
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb2a47bf3938a4e0800000000000000
+      internalID: -1970261891153777700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 240
+        width: 56
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f73d896c47c82720800000000000000
+      internalID: 2821724297549920240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 237
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dedbfae6ec97d4f0800000000000000
+      internalID: -804001492863557933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 166
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e33ff37cc04bb780800000000000000
+      internalID: -8666261811080776730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 166
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49bb5190ca43a800800000000000000
+      internalID: 622423364440144205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 166
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a99b835976b55f70800000000000000
+      internalID: 9175440448046209448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 166
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612d70da30d826f30800000000000000
+      internalID: 4567368019034493462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 166
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df3e33eb3c6ed330800000000000000
+      internalID: 3737543745235468249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 166
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c726f7fb54951b320800000000000000
+      internalID: 2571935018305675900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 166
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 206620eb026cb1b30800000000000000
+      internalID: 4259215716538017282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 166
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe71208226b836c0800000000000000
+      internalID: -4163377596209201478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 106
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db13932059b7ce070800000000000000
+      internalID: 8137014506669289917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 106
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3d0c6b826ee2440800000000000000
+      internalID: 4913117306046960593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d93a93f8294ad90800000000000000
+      internalID: -7087378769729315553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee15ab1575b6038b0800000000000000
+      internalID: -5174517949071207954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea0ccc589e051cc00800000000000000
+      internalID: 919104762862682286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d931ddf863c4a540800000000000000
+      internalID: 5018350740499937747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca043882662eb7dc0800000000000000
+      internalID: -3640066945404682068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 111
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cfdd98d061301220800000000000000
+      internalID: 2454516088937766855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 32
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdbad98c038579a20800000000000000
+      internalID: 3069018637623733215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.2 Ant Spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be1865ba50359b6f0800000000000000
+      internalID: -668411785873292821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
