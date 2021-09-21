@@ -133,12 +133,19 @@ namespace PEProtocal
         public float DropRate { get; set; }
         [ProtoMember(20, IsRequired = false)]
         public int RestRNum { get; set; }
+        [ProtoMember(21, IsRequired = false)]
+        public float ExpRate { get; set; }
+        [ProtoMember(22, IsRequired = false)]
+        public int ExpiredTime { get; set; }
+        [ProtoMember(23, IsRequired = false)]
+        public int Stars { get; set; }
+
         public Equipment()
         {
 
         }
         public Equipment(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash,bool canTransaction,int count,
-            int attack, int strength, int agility, int intellext, int job, int level, int gender, int defense, int hp, int mp, string title,int Mindamage,int Maxdamage, float accuracy, float avoid, float critical, float magicDefense, EquipmentType equipType,float dropRate,int restRNum)
+            int attack, int strength, int agility, int intellext, int job, int level, int gender, int defense, int hp, int mp, string title,int Mindamage,int Maxdamage, float accuracy, float avoid, float critical, float magicDefense, EquipmentType equipType,float dropRate,int restRNum, float ExpRate, int ExpiredTime, int Stars)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Attack = attack;
@@ -161,6 +168,9 @@ namespace PEProtocal
             this.EquipType = equipType;
             this.RestRNum = restRNum;
             this.DropRate = dropRate;
+            this.ExpRate = ExpRate;
+            this.ExpiredTime = ExpiredTime;
+            this.Stars = Stars;
         }
     }
     [ProtoContract(EnumPassthru = false)]
@@ -328,9 +338,17 @@ namespace PEProtocal
         public float DropRate { get; set; }
         [ProtoMember(17, IsRequired = false)]
         public int RestRNum { get; set; }
+        [ProtoMember(18, IsRequired = false)]
+        public int Additional { get; set; }
+        [ProtoMember(19, IsRequired = false)]
+        public int Stars { get; set; }
+        [ProtoMember(20, IsRequired = false)]
+        public int AdditionalLevel { get; set; }
+        [ProtoMember(21, IsRequired = false)]
+        public int ExpiredTime { get; set; }
 
         public Weapon(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash, bool canTransaction, int count,
-            int level, int Mindamage,int Maxdamage, int attSpeed, int range, string property, int attack, int strength, int agility, int intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum)
+            int level, int Mindamage,int Maxdamage, int attSpeed, int range, string property, int attack, int strength, int agility, int intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum, int Additional, int Stars, int AdditionalLevel, int ExpiredTime)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Level = level;
@@ -350,6 +368,10 @@ namespace PEProtocal
             this.WeapType = weaponType;
             this.RestRNum = restRNum;
             this.DropRate = dropRate;
+            this.Additional = Additional;
+            this.Stars = Stars;
+            this.AdditionalLevel = AdditionalLevel;
+            this.ExpiredTime = ExpiredTime;
         }
     }
     [ProtoContract]

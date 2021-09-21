@@ -27,6 +27,11 @@ public class DustAnimator : MonoBehaviour
         float ScaleY = StartScale.y + (EndScale.y - StartScale.y) * (((float)frame) / (AnimLength - 1));
         return new Vector3(ScaleX, ScaleY, 1);
     }
+    public Quaternion GetRotation(int frame)
+    {
+        if (frame == 0) return Quaternion.Euler(Vector3.zero);
+        return Quaternion.Euler(new Vector3(0, 0, 30 * frame));
+    }
     public float GetAlpha(int frame)
     {
         float Threshold = 0.6f;
@@ -44,6 +49,7 @@ public class DustAnimator : MonoBehaviour
         if (frame == AnimLength) { Destroy(gameObject); return; }
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, GetAlpha(frame));
         transform.localScale = GetScale(frame);
+        transform.localRotation = GetRotation(frame);
         FrameIndex++;
         TimerSvc.Instance.AddTimeTask((a) => { UpdateAnime(FrameIndex); }, TimeIntervel, PETimeUnit.Second);
     }

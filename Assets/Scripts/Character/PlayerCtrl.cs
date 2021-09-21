@@ -31,7 +31,7 @@ public class PlayerCtrl : Controllable
         rigidbody = this.GetComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
         PlayerName = GameRoot.Instance.ActivePlayer.Name;
-        DustSprites = Resources.LoadAll<Sprite>("Effect/Effect Angel Trainee Wing Walking Dust");
+        DustSprites = Resources.LoadAll<Sprite>("Effect/Effect Dust Cloak Walking Dust");
     }
 
     private void Update()
@@ -79,7 +79,10 @@ public class PlayerCtrl : Controllable
         }
         
     }
-    public Transform DustContainer;
+    public void ChangeDustSprite(int CapeID)
+    {
+
+    }
     public void InstantiateDust()
     {
         if (IsMoving)
@@ -90,11 +93,9 @@ public class PlayerCtrl : Controllable
             go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);
             go.transform.localScale = new Vector3(30, 30, 1);
             DustAnimator ani = go.GetComponent<DustAnimator>();
-
             int spriteIndex =Tools.RDInt(0, DustSprites.Length-1);
-            print("Show " + spriteIndex);
             ani.Initialize(DustSprites[spriteIndex]);
-            TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust(); }, 0.15f, PETimeUnit.Second, 1);
+            TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust(); }, 0.1f, PETimeUnit.Second, 1);
         }
         
     }
