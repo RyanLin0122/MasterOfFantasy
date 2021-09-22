@@ -593,7 +593,7 @@ public static class Utility
                     {"Exp",((Consumable)item).Exp },
                     {"ExpRate",((Consumable)item).ExpRate },
                     {"DropRate",((Consumable)item).DropRate },
-                    {"Count",((Consumable)item).Count }
+                    {"Count",((Consumable)item).Count },
                 };
                 return c;
             case ItemType.Equipment:
@@ -619,6 +619,9 @@ public static class Utility
                     {"DropRate",((Equipment)item).DropRate },
                     {"RestRNum",((Equipment)item).RestRNum },
                     {"Count",((Equipment)item).Count },
+                    {"ExpRate",((Equipment)item).Count },
+                    {"ExpiredTime",((Equipment)item).Count },
+                    {"Stars",((Equipment)item).Count },
                 };
                 return e;
             case ItemType.Weapon:
@@ -643,6 +646,10 @@ public static class Utility
                     {"RestRNum",((Weapon)item).RestRNum },
                     {"Property",((Weapon)item).Property },
                     {"Count",((Weapon)item).Count },
+                    {"Additional",((Weapon)item).Count },
+                    {"Stars",((Weapon)item).Count },
+                    {"AdditionalLevel",((Weapon)item).Count },
+                    {"ExpiredTime",((Weapon)item).Count },
                 };
                 return w;
             case ItemType.EtcItem:
@@ -824,7 +831,7 @@ public static class Utility
         Equipment itemr = (Equipment)CacheSvc.ItemList[ItemID];
         Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum);
+            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate,itemr.ExpiredTime,itemr.Stars);
 
         return item;
     }
@@ -833,7 +840,7 @@ public static class Utility
         Weapon itemr = (Weapon)CacheSvc.ItemList[ItemID];
         Weapon item = new Weapon(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Level, itemr.MinDamage, itemr.MaxDamage, itemr.AttSpeed, itemr.Range, itemr.Property, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum);
+            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum,itemr.Additional,itemr.Stars,itemr.AdditionalLevel,itemr.ExpiredTime);
         return item;
     }
     public static EtcItem GetEtcItemByID(int ItemID)
