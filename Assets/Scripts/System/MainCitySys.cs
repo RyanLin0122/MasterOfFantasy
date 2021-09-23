@@ -34,6 +34,8 @@ public class MainCitySys : SystemRoot
     public StrengthenWnd strengthenWnd;
     public TransationWnd transationWnd;
     public MGFWnd mGFWnd;
+    public CommunityWnd communityWnd;
+    public PetWnd petWnd;
 
     public GameObject playerprefab;
     public bool IsChatWnd = true;
@@ -439,6 +441,30 @@ public class MainCitySys : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();
         transationWnd.IsOpen = true;
+    }
+    public void CloseCommunityWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        communityWnd.SetWndState(false);
+        communityWnd.IsOpen = false;
+    }
+    public void OpenCommunityWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        communityWnd.SetWndState();
+        communityWnd.IsOpen = true;
+    }
+    public void ClosePetWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        petWnd.SetWndState(false);
+        petWnd.IsOpen = false;
+    }
+    public void OpenPetWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        petWnd.SetWndState();
+        petWnd.IsOpen = true;
     }
     public void OpenLockerWnd()
     {
