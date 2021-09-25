@@ -746,7 +746,26 @@ public class CashShopWnd : Inventory
             SellPrice);
             });
     }
-
+    public void PressPutAllToKnapsack()
+    {
+        print("送出全部放進背包!");
+        var pos = new List<int>();
+        if (CurrentPanelPage > 1)
+        {
+            MessageBox.Show("購買視窗頁碼錯誤");
+            return;
+        }
+        for (int i = 0; i < slotLists[CurrentPanelPage].Length; i++)
+        {
+            CashShopBuyPanelSlot BuySlot = (CashShopBuyPanelSlot)slotLists[CurrentPanelPage][i];
+            if (BuySlot.GetComponentInChildren<ItemUI>() != null)
+            {
+                pos.Add(i);
+            }
+        }
+        bool IsFashionPanel = CurrentPanelPage == 0 ? true : false;
+        new CashShopSender(4, pos, IsFashionPanel);
+    }
     public List<CartItem> cartItems = new List<CartItem>();
 
 
@@ -956,7 +975,7 @@ public class CashShopWnd : Inventory
                         }
                     }
                 }
-                else 
+                else
                 {
                     slots = slotLists[1];
                     foreach (var pos in ProcessedPositions)
@@ -967,7 +986,7 @@ public class CashShopWnd : Inventory
                             OtherPanel.Remove(pos);
                         }
                     }
-                }               
+                }
                 return;
         }
 
