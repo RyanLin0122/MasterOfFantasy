@@ -95,9 +95,8 @@ public class PlayerCtrl : Controllable
             DustAnimator ani = go.GetComponent<DustAnimator>();
             int spriteIndex =Tools.RDInt(0, DustSprites.Length-1);
             ani.Initialize(DustSprites[spriteIndex]);
-            TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust(); }, 0.1f, PETimeUnit.Second, 1);
+            int t = TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust();}, 0.13f, PETimeUnit.Second, 1);
         }
-        
     }
     #region player animation
     public EquipmentAnimator ShoesCtrl;

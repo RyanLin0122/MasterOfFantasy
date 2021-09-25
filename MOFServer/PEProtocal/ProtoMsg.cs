@@ -1257,11 +1257,15 @@ namespace PEProtocal
         [ProtoMember(6, IsRequired = false)]
         public List<int> Amount { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放進背包
         [ProtoMember(8, IsRequired = false)]
         public string GiftPlayerName { get; set; }
         [ProtoMember(9, IsRequired = false)]
         public List<int> Quantity { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public List<int> Positions { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public bool IsFashionPanel { get; set; }
     }
 
     [ProtoContract]
@@ -1276,12 +1280,25 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public int ErrorLogType { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放東西進背包或信箱
         [ProtoMember(6, IsRequired = false)]
         public string GiftPlayerName { get; set; }
         [ProtoMember(7, IsRequired = false)] //
         public bool IsSuccess { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+        [ProtoMember(9, IsRequired = false)] //
+        public List<int> ProcessPositions { get; set; }
+        [ProtoMember(10, IsRequired = false)] //
+        public bool IsFull { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public Dictionary<int, Item> CashKnapsack { get; set; } // position, Item
+        [ProtoMember(12, IsRequired = false)]
+        public Dictionary<int, Item> NonCashKnapsack { get; set; } // position, Item
+        [ProtoMember(13, IsRequired = false)]
+        public Dictionary<int, Item> MailBox { get; set; } // position, Item
+
+        [ProtoMember(14, IsRequired = false)]
+        public bool IsFashion { get; set; } // position, Item
     }
 }

@@ -48,7 +48,7 @@ public class CashShopWnd : Inventory
     public string cata;
     public string CurrentTag;
     int CurrentPage = 0;
-    int CurrentPanelPage = 0;
+    public int CurrentPanelPage = 0;
     public Text CurPTxt;
     public GameRoot TagList = null;
     public Button Forward;
@@ -672,7 +672,7 @@ public class CashShopWnd : Inventory
         {
             slotLists[0] = slots;
         }
-        else if(CurrentPanelPage == 1)
+        else if (CurrentPanelPage == 1)
         {
             slotLists[1] = slots;
         }
@@ -682,14 +682,21 @@ public class CashShopWnd : Inventory
         {
             foreach (var pos in FashionPanel.Keys)
             {
-                ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
+                CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[0][pos]);
+                slot.StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
+                slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
+                GetComponent<Image>().raycastTarget = true;
             }
         }
         else if (CurrentPanelPage == 1)
         {
             foreach (var pos in OtherPanel.Keys)
             {
-                ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(OtherPanel[pos], OtherPanel[pos].Count);
+                CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[1][pos]);
+                slot.StoreItem(OtherPanel[pos], OtherPanel[pos].Count);
+                slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
+                print(slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.ToString());
+                GetComponent<Image>().raycastTarget = true;
             }
         }
 
@@ -735,14 +742,14 @@ public class CashShopWnd : Inventory
             new List<string> { CurrentTag },
             new List<int> { ItemID },
             new List<int> { 1 },
-            new List<int> { Quantity},
+            new List<int> { Quantity },
             SellPrice);
             });
     }
 
     public List<CartItem> cartItems = new List<CartItem>();
-    
-    
+
+
     public void AddItem2Cart(int itemID, int sellPrice, int quantity, int amount)
     {
         CartItem item = new CartItem
@@ -763,7 +770,7 @@ public class CashShopWnd : Inventory
     }
     public void RefreshCart()
     {
-        
+
     }
     public void ClearCart()
     {
@@ -823,34 +830,147 @@ public class CashShopWnd : Inventory
                 data.CashShopBuyPanelOtherServer3 = OtherPanel;
                 break;
         }
-        if (rsp.FashionItems != null && rsp.FashionItems.Count > 0)
+        switch (rsp.OperationType)
         {
-            foreach (var pos in rsp.FashionItems.Keys)
-            {
-                Tools.SetDictionary(FashionPanel, pos, rsp.FashionItems[pos]);
-            }
-            if (CurrentPanelPage == 0)
-            {
-                foreach (var pos in rsp.FashionItems.Keys)
+            case 1:
+                if (rsp.FashionItems != null && rsp.FashionItems.Count > 0)
                 {
-                    ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos], rsp.FashionItems[pos].Count);
+                    foreach (var pos in rsp.FashionItems.Keys)
+                    {
+                        Tools.SetDictionary(FashionPanel, pos, rsp.FashionItems[pos]);
+                    }
+                    if (CurrentPanelPage == 0)
+                    {
+                        foreach (var pos in rsp.FashionItems.Keys)
+                        {
+                            ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos], rsp.FashionItems[pos].Count);
+                        }
+                    }
                 }
-            }
-        }
-        if (rsp.OtherItems != null && rsp.OtherItems.Count > 0)
-        {
-            foreach (var pos in rsp.OtherItems.Keys)
-            {
-                Tools.SetDictionary(OtherPanel, pos, rsp.OtherItems[pos]);
-            }
-            if (CurrentPanelPage == 1)
-            {
-                foreach (var pos in rsp.OtherItems.Keys)
+                if (rsp.OtherItems != null && rsp.OtherItems.Count > 0)
                 {
-                    ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos], rsp.OtherItems[pos].Count);
+                    foreach (var pos in rsp.OtherItems.Keys)
+                    {
+                        Tools.SetDictionary(OtherPanel, pos, rsp.OtherItems[pos]);
+                    }
+                    if (CurrentPanelPage == 1)
+                    {
+                        foreach (var pos in rsp.OtherItems.Keys)
+                        {
+                            ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos], rsp.OtherItems[pos].Count);
+                        }
+                    }
                 }
-            }
+                return;
+            case 4:
+                Dictionary<int, Item> outputNonCashKnapsack = rsp.NonCashKnapsack != null ? rsp.NonCashKnapsack : new Dictionary<int, Item>();
+                Dictionary<int, Item> outputCashKnapsack = rsp.CashKnapsack != null ? rsp.CashKnapsack : new Dictionary<int, Item>();
+                Dictionary<int, Item> outputMailBox = rsp.MailBox != null ? rsp.MailBox : new Dictionary<int, Item>();
+
+                Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.NotCashKnapsack = nk;
+                Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.CashKnapsack = ck;
+                Dictionary<int, Item> mailBox = GameRoot.Instance.ActivePlayer.MailBoxItems != null ? GameRoot.Instance.ActivePlayer.MailBoxItems : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.MailBoxItems = mailBox;
+                if (outputNonCashKnapsack.Keys != null)
+                {
+                    if (outputNonCashKnapsack.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputNonCashKnapsack.Keys)
+                        {
+                            if (!outputNonCashKnapsack[pos].IsCash)
+                            {
+                                if (!nk.ContainsKey(pos))
+                                {
+                                    nk.Add(pos, outputNonCashKnapsack[pos]);
+                                }
+                                else
+                                {
+                                    nk[pos] = outputNonCashKnapsack[pos];
+                                }
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(nk[pos], nk[pos].Count);
+                            }
+                        }
+                    }
+                }
+                if (outputCashKnapsack.Keys != null)
+                {
+                    if (outputCashKnapsack.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputCashKnapsack.Keys)
+                        {
+                            if (outputCashKnapsack[pos].IsCash)
+                            {
+                                if (!ck.ContainsKey(pos))
+                                {
+                                    ck.Add(pos, outputCashKnapsack[pos]);
+                                }
+                                else
+                                {
+                                    ck[pos] = outputCashKnapsack[pos];
+                                }
+                                KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(ck[pos], ck[pos].Count);
+                            }
+                        }
+                    }
+                }
+                if (outputMailBox.Keys != null)
+                {
+                    if (outputMailBox.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputMailBox.Keys)
+                        {
+                            if (!outputMailBox[pos].IsCash)
+                            {
+                                if (!mailBox.ContainsKey(pos))
+                                {
+                                    mailBox.Add(pos, outputMailBox[pos]);
+                                }
+                                else
+                                {
+                                    mailBox[pos] = outputMailBox[pos];
+                                }
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(mailBox[pos], mailBox[pos].Count);
+                            }
+                        }
+                    }
+                }
+                //§R°£
+                List<int> ProcessedPositions = rsp.ProcessPositions;
+                bool IsFashion = rsp.IsFashion;
+                Slot[] slots = null;
+                if (ProcessedPositions == null || ProcessedPositions.Count == 0)
+                {
+                    return;
+                }
+                if (IsFashion)
+                {
+                    slots = slotLists[0];
+                    foreach (var pos in ProcessedPositions)
+                    {
+                        Destroy(slots[pos].GetComponentInChildren<ItemUI>().gameObject);
+                        if (FashionPanel.ContainsKey(pos))
+                        {
+                            FashionPanel.Remove(pos);
+                        }
+                    }
+                }
+                else 
+                {
+                    slots = slotLists[1];
+                    foreach (var pos in ProcessedPositions)
+                    {
+                        Destroy(slots[pos].GetComponentInChildren<ItemUI>().gameObject);
+                        if (OtherPanel.ContainsKey(pos))
+                        {
+                            OtherPanel.Remove(pos);
+                        }
+                    }
+                }               
+                return;
         }
+
     }
     #endregion
 

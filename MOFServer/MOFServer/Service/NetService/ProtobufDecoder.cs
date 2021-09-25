@@ -87,15 +87,23 @@ public class ProtobufDecoder : ByteToMessageDecoder
             input.ReadBytes(array, 0, length);
         }
         //字節流轉ProtoMsg
-        ProtoMsg outmsg;
-        if (IsPrivateKey == 0)
+        ProtoMsg outmsg = null;
+        try
         {
-            outmsg = ProtoMsg.ProtoDeserialize(array, ServerConstants.PublicKey);
+            if (IsPrivateKey == 0)
+            {
+                outmsg = ProtoMsg.ProtoDeserialize(array, ServerConstants.PublicKey);
+            }
+            else
+            {
+                outmsg = ProtoMsg.ProtoDeserialize(array, ServerConstants.PrivateKey);
+            }
         }
-        else
+        catch (Exception e)
         {
-            outmsg = ProtoMsg.ProtoDeserialize(array, ServerConstants.PrivateKey);
+            LogSvc.Error(e.Message);
         }
+        
         if (outmsg != null)
         {
             output.Add(outmsg);

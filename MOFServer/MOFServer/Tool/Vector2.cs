@@ -27,7 +27,7 @@ public class Vector2
     }
     public static float Dot(Vector2 a, Vector2 b)
     {
-        return a.x * a.y + b.x * b.y;
+        return a.x * b.x + a.y * b.y;
     }
     public static float Distance(Vector2 a, Vector2 b)
     {

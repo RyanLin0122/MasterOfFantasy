@@ -138,6 +138,7 @@ public class CashShopHandler : GameHandler
                 MessageType = 47,
                 cashShopResponse = new CashShopResponse
                 {
+                    OperationType = 1,
                     IsSuccess = true,
                     OtherItems = OtherPanel,
                     FashionItems = FashionPanel,
@@ -164,8 +165,151 @@ public class CashShopHandler : GameHandler
     }
     public void ProcessToKnapsack(CashShopRequest req, ServerSession session)
     {
-        var nk = session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : session.ActivePlayer.GetNewNotCashKnapsack();
-        var ck = session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : session.ActivePlayer.GetNewCashKnapsack();
+        try
+        {
+            var nk = session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : session.ActivePlayer.GetNewNotCashKnapsack();
+            var ck = session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : session.ActivePlayer.GetNewCashKnapsack();
+            var mailbox = session.ActivePlayer.MailBoxItems != null ? session.ActivePlayer.MailBoxItems : session.ActivePlayer.GetNewMailBox();
+            List<int> ProcessedPositions = new List<int>(); //存已經放進背包或信箱的BuyPanel Position
+            Dictionary<int, Item> BuyPanel = null;
+            switch (session.ActivePlayer.Server)
+            {
+                case 0:
+                    if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer1 != null ? session.AccountData.CashShopBuyPanelFashionServer1 : session.AccountData.GetNewBuyPanelFashionS1();
+                    else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer1 != null ? session.AccountData.CashShopBuyPanelOtherServer1 : session.AccountData.GetNewBuyPanelOtherS1();
+                    break;
+                case 1:
+                    if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer2 != null ? session.AccountData.CashShopBuyPanelFashionServer2 : session.AccountData.GetNewBuyPanelFashionS2();
+                    else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer2 != null ? session.AccountData.CashShopBuyPanelOtherServer2 : session.AccountData.GetNewBuyPanelOtherS2();
+                    break;
+                case 2:
+                    if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer3 != null ? session.AccountData.CashShopBuyPanelFashionServer3 : session.AccountData.GetNewBuyPanelFashionS3();
+                    else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer3 != null ? session.AccountData.CashShopBuyPanelOtherServer3 : session.AccountData.GetNewBuyPanelOtherS3();
+                    break;
+            }
+            if (req.Positions == null)
+            {
+                return;
+            }
+            List<int> Positions = req.Positions;
+            if (Positions.Count == 0)
+            {
+                return;
+            }
+            //計算空位
+            int RequiredCashSlotNum = 0;
+            int RequiredNonCashSlotNum = 0;
+            int RequiredMailBoxNum = 0;
+            List<int> CashPositions = new List<int>();
+            List<int> NonCashPositions = new List<int>();
+            foreach (var pos in Positions)
+            {
+                if (BuyPanel[pos].IsCash)
+                {
+                    RequiredCashSlotNum++;
+                    CashPositions.Add(pos);
+                }
+                else
+                {
+                    RequiredNonCashSlotNum++;
+                    NonCashPositions.Add(pos);
+                }
+            }
+            if (Positions.Count - RequiredCashSlotNum - RequiredNonCashSlotNum > 0)
+            {
+                RequiredMailBoxNum = Positions.Count - RequiredCashSlotNum - RequiredNonCashSlotNum;
+            }
+            //尋找空位，背包不夠再放信箱
+            (bool, List<int>) EmptyCashSlots = IsEmptySlotEnough(ck, RequiredCashSlotNum, 24, 1);
+            (bool, List<int>) EmptyNonCashSlots = IsEmptySlotEnough(nk, RequiredNonCashSlotNum, 72, 1);
+            (bool, List<int>) EmptyMailBoxSlots = IsEmptySlotEnough(mailbox, RequiredMailBoxNum, 96, 1);
+            int EmptyCashKnapsackPointer = 0;
+            int EmptyNonCashKnapsackPointer = 0;
+            Dictionary<int, Item> OutputCashKnapsack = new Dictionary<int, Item>();
+            Dictionary<int, Item> OutputNonCashKnapsack = new Dictionary<int, Item>();
+            Dictionary<int, Item> OutputMailbox = new Dictionary<int, Item>();
+            //開始放入
+            if (RequiredCashSlotNum != 0 && EmptyCashSlots.Item2.Count > 0)
+            {
+                for (int i = 0; i < EmptyCashSlots.Item2.Count; i++)
+                {
+
+                    if (EmptyCashKnapsackPointer == RequiredCashSlotNum) //指針超過所需格數
+                    {
+                        break;
+                    }
+                    MoveItem(BuyPanel, ck, CashPositions[EmptyCashKnapsackPointer], EmptyCashSlots.Item2[EmptyCashKnapsackPointer]);
+                    ProcessedPositions.Add(CashPositions[EmptyCashKnapsackPointer]);
+                    OutputCashKnapsack.Add(EmptyCashSlots.Item2[EmptyCashKnapsackPointer], ck[EmptyCashSlots.Item2[EmptyCashKnapsackPointer]]);
+                    EmptyCashKnapsackPointer++;
+                }
+            }
+            if (RequiredNonCashSlotNum != 0 && EmptyNonCashSlots.Item2.Count > 0)
+            {
+                for (int j = 0; j < EmptyNonCashSlots.Item2.Count; j++)
+                {
+                    if (EmptyNonCashKnapsackPointer == RequiredNonCashSlotNum) //指針超過所需格數
+                    {
+                        break;
+                    }
+                    MoveItem(BuyPanel, nk, NonCashPositions[EmptyNonCashKnapsackPointer], EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]);
+                    ProcessedPositions.Add(NonCashPositions[EmptyNonCashKnapsackPointer]);
+                    OutputNonCashKnapsack.Add(EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer], nk[EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]]);
+                    EmptyNonCashKnapsackPointer++;
+                }
+            }
+            //背包不夠放
+            if (RequiredMailBoxNum != 0 && EmptyMailBoxSlots.Item2.Count > 0)
+            {
+                for (int EmptyMailBoxPointer = 0; EmptyMailBoxPointer < EmptyMailBoxSlots.Item2.Count; EmptyMailBoxPointer++)
+                {
+                    for (int i = EmptyCashKnapsackPointer; i < RequiredCashSlotNum; i++)
+                    {
+                        if (EmptyCashKnapsackPointer == CashPositions.Count)
+                        {
+                            break;
+                        }
+                        MoveItem(BuyPanel, mailbox, CashPositions[EmptyCashKnapsackPointer], EmptyMailBoxSlots.Item2[EmptyMailBoxPointer]);
+                        ProcessedPositions.Add(CashPositions[EmptyCashKnapsackPointer]);
+                        OutputMailbox.Add(EmptyMailBoxSlots.Item2[EmptyCashKnapsackPointer], ck[EmptyCashSlots.Item2[EmptyCashKnapsackPointer]]);
+                        EmptyCashKnapsackPointer++;
+                    }
+                    for (int i = EmptyNonCashKnapsackPointer; i < RequiredNonCashSlotNum; i++)
+                    {
+                        if (EmptyNonCashKnapsackPointer == CashPositions.Count)
+                        {
+                            break;
+                        }
+                        MoveItem(BuyPanel, mailbox, CashPositions[EmptyNonCashKnapsackPointer], EmptyMailBoxSlots.Item2[EmptyMailBoxPointer]);
+                        ProcessedPositions.Add(CashPositions[EmptyNonCashKnapsackPointer]);
+                        OutputMailbox.Add(EmptyMailBoxSlots.Item2[EmptyNonCashKnapsackPointer], ck[EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]]);
+                        EmptyNonCashKnapsackPointer++;
+                    }
+                }
+            }
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 47,
+                cashShopResponse = new CashShopResponse
+                {
+                    OperationType = 4,
+                    IsSuccess = true,
+                    IsFull = !EmptyMailBoxSlots.Item1,
+                    CashKnapsack = OutputCashKnapsack,
+                    NonCashKnapsack = OutputNonCashKnapsack,
+                    MailBox = OutputMailbox,
+                    ProcessPositions = ProcessedPositions,
+                    IsFashion = req.IsFashionPanel
+                }
+            };
+            session.WriteAndFlush(msg);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e.Message);
+        }
+        //主角準備好
+
     }
     public void SendErrorBack(int errorType, ServerSession session)
     {
@@ -191,11 +335,11 @@ public class CashShopHandler : GameHandler
         }
     }
 
-    public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num)
+    public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num, int Capacity = 100, int firstIndex = 0)
     {
         int EmptySlotNum = 0;
         List<int> EmptySlotPosition = new List<int>();
-        for (int i = 0; i < 100; i++)
+        for (int i = firstIndex; i < Capacity + firstIndex; i++)
         {
             if (Inventory.ContainsKey(i))
             {
@@ -219,6 +363,20 @@ public class CashShopHandler : GameHandler
         {
             return (false, EmptySlotPosition);
         }
+    }
+
+    public void MoveItem(Dictionary<int, Item> From, Dictionary<int, Item> To, int PosFrom, int PosTo)
+    {
+        if (To.ContainsKey(PosTo))
+        {
+            To[PosTo] = From[PosFrom];
+        }
+        else
+        {
+            To.Add(PosTo, From[PosFrom]);
+        }
+        To[PosTo].Position = PosTo;
+        From.Remove(PosFrom);
     }
 }
 

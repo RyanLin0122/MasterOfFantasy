@@ -773,7 +773,53 @@ namespace PolyNav
             list[indexA] = list[indexB];
             list[indexB] = tmp;
         }
-
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                PrintPolygons();
+            }
+        }
+        public void PrintPolygons()
+        {
+            string s = "";
+            s += map.PrintPolygon(invertMasterPolygon);
+            s += PrintObstacle();
+            print(s);
+        }
+        public string PrintObstacle()
+        {
+            string s = "";
+            print("There are " + navObstacles.Count + " Obstacles");
+            foreach (var obs in navObstacles)
+            {
+                print("------ObsType-----: " + obs.shapeType.ToString() + " IsInvert: " + obs.invertPolygon);
+                s += "\"Obstacles\":[\n  {";
+                s += "\n      \"ShapeType\": " + obs.shapeType.ToString();
+                s += ",\n      \"IsInvert\": ";
+                if (obs.invertPolygon)
+                {
+                    s += "true";
+                }
+                else
+                {
+                    s += "false";
+                }
+                s += ",\n      \"Paths\" : " + "[\n";
+                for (int i = 0; i < obs.GetPathCount(); i++)
+                {
+                    s += "        {\n          \"Points\": [";
+                    foreach (var item in obs.GetPathPoints(i))
+                    {
+                        s = s + item.x + "," + item.y + ",";
+                    }
+                    s = s.Remove(s.Length - 1);
+                    s += "]},\n";
+                }
+                s += "]}\n    ]\n";
+            }
+            return s;
+        }
         ///----------------------------------------------------------------------------------------------
         ///----------------------------------------------------------------------------------------------
         ///----------------------------------------------------------------------------------------------
@@ -805,6 +851,35 @@ namespace PolyNav
                 temp.Add(masterPoly);
                 temp.AddRange(obstaclePolys);
                 allPolygons = temp.ToArray();
+            }
+            public string PrintPolygon(bool IsInvert)
+            {
+                string s = "";
+                print("There are " + allPolygons.Length + " Polygons");
+                s += "\"Polygons\":[\n  {";
+                s += "\n    \"IsInvert\": ";
+                if (IsInvert)
+                {
+                    s += "true";
+                }
+                else
+                {
+                    s += "false";
+                }
+                s += "\n    \"Paths\": " + "[\n";
+                foreach (var poly in allPolygons)
+                {
+                    s += "      {\n      \"Points\": [";
+                    foreach (var item in poly.points)
+                    {
+                        s = s + item.x + "," + item.y + ",";
+                    }
+                    s = s.Remove(s.Length - 1);
+                    s += "]\n          },";
+                }
+                s = s.Remove(s.Length - 1);
+                s += "        ]\n      }\n    ],\n";
+                return s;
             }
         }
 

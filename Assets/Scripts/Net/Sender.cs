@@ -542,4 +542,24 @@ public class CashShopSender : BaseSender
         base.SendMsg(msg);
     }
 
+    /// <summary>
+    /// 放入背包
+    /// </summary>
+    /// <param name="Operation"></param>
+    /// <param name="Position"></param>
+    public CashShopSender(int Operation, List<int> Position, bool IsFashionPanel)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 46,
+            cashShopRequest = new CashShopRequest
+            {
+                OperationType = 4,
+                Positions = Position,
+                IsFashionPanel = IsFashionPanel
+            }
+        };
+        base.SendMsg(msg);
+    }
+
 }

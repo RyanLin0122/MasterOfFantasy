@@ -184,6 +184,11 @@ namespace PEProtocal
             CashKnapsack = new Dictionary<int, Item>();
             return CashKnapsack;
         }
+        public Dictionary<int, Item> GetNewMailBox()
+        {
+            MailBoxItems = new Dictionary<int, Item>();
+            return MailBoxItems;
+        }
     }
 
     [ProtoContract]

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Globalization;
 
-public class CashShopBuyPanelSlot : Slot
+public class CashShopBuyPanelSlot : Slot, IPointerEnterHandler, IPointerExitHandler
 {
     public bool IsEmpty => transform.childCount == 0;
 
@@ -34,14 +34,18 @@ public class CashShopBuyPanelSlot : Slot
         {
             transform.GetChild(0).GetComponent<ItemUI>().SetAmount(amount);
         }
+
     }
     /// <summary>
     /// 送出放進背包請求
     /// </summary>
     public void PutIntoKnapsack()
     {
-        print("放進背包");
-        //To do
+        print("送出放進背包，BuyPanel Position: " + SlotPosition);
+        var pos = new List<int>();
+        pos.Add(SlotPosition);
+        bool IsFashionPanel = CashShopWnd.Instance.CurrentPanelPage == 0 ? true : false;
+        new CashShopSender(4, pos, IsFashionPanel);
     }
     public void DoubleClickItem()
     {
@@ -64,5 +68,15 @@ public class CashShopBuyPanelSlot : Slot
         }
     }
 
-    
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!IsEmpty)
+        {
+            //string toolTipText = Slot.GetToolTipText(GetComponent<ItemUI>().Item);
+        }
+    }
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        InventoryManager.Instance.HideToolTip();
+    }
 }
