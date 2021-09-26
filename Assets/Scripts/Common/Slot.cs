@@ -414,11 +414,11 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
                         if (currentItem is Weapon)
                         {
-                            IsSlotFilled = EquipmentWnd.Instance.IsFilledEquipment(EquipmentType.Weapon, currentItem.IsCash);
+                            IsSlotFilled = EquipmentWnd.Instance.IsEquipmentSlotFilled(EquipmentType.Weapon, currentItem.IsCash);
                         }
                         else if (currentItem is Equipment)
                         {
-                            IsSlotFilled = EquipmentWnd.Instance.IsFilledEquipment(((Equipment)currentItem).EquipType, currentItem.IsCash);
+                            IsSlotFilled = EquipmentWnd.Instance.IsEquipmentSlotFilled(((Equipment)currentItem).EquipType, currentItem.IsCash);
                         }
 
                         if (!IsSlotFilled)

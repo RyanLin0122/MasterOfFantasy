@@ -494,7 +494,7 @@ public class CashShopSender : BaseSender
     /// <param name="ID"></param>
     /// <param name="Amount"></param>
     /// <param name="TotalPrice"></param>
-    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> ID, List<int> Amount, List<int> Quantity, int TotalPrice)
+    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> Order, List<int> Amount, List<int> Quantity, int TotalPrice)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -506,7 +506,7 @@ public class CashShopSender : BaseSender
                 TotalPrice = TotalPrice,
                 Cata = Cata,
                 Tag = Tag,
-                ID = ID,
+                Orders = Order,
                 Quantity = Quantity,
                 Amount = Amount
             }
@@ -522,7 +522,7 @@ public class CashShopSender : BaseSender
     /// <param name="ID"></param>
     /// <param name="Amount"></param>
     /// <param name="TotalPrice"></param>
-    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> ID, List<int> Amount, int TotalPrice, string GiftPlayerName)
+    public CashShopSender(int Operation, List<string> Cata, List<string> Tag, List<int> Order, List<int> Amount, int TotalPrice, string GiftPlayerName)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -534,7 +534,7 @@ public class CashShopSender : BaseSender
                 TotalPrice = TotalPrice,
                 Cata = Cata,
                 Tag = Tag,
-                ID = ID,
+                Orders = Order,
                 Amount = Amount,
                 GiftPlayerName = GiftPlayerName
             }

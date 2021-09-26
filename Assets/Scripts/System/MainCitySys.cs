@@ -89,7 +89,7 @@ public class MainCitySys : SystemRoot
     }
     public void LoginMap(EnterGameRsp rsp) //加載某地圖，特定位置
     {
-        equipmentWnd.LoadWnd();
+        equipmentWnd.InitEquipWndWhenLogin();
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
 
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
@@ -99,7 +99,7 @@ public class MainCitySys : SystemRoot
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
             
-            equipmentWnd.ReadCharacterEquipment(GameRoot.Instance.ActivePlayer.playerEquipments);
+            equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             Knapsack.ReadItems();
             //打開主UI
             baseUI.SetWndState();
@@ -299,8 +299,8 @@ public class MainCitySys : SystemRoot
         player.GetComponent<Namebox>().SetNameBox(GameRoot.Instance.ActivePlayer.Name);
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
-        equipmentWnd.SetAllEquipment(GameRoot.Instance.ActivePlayer);
-        equipmentWnd.SetFace(GameRoot.Instance.ActivePlayer);
+        equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+        equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
     }
 
     public void LoadMonster()

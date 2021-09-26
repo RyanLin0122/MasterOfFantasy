@@ -37,7 +37,7 @@ public class CashShopHandler : GameHandler
             int ItemNum = req.Cata.Count;
 
             //判斷數量
-            if (req.ID.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
+            if (req.Orders.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
             {
                 //數量對不起來
                 SendErrorBack(2, session);
@@ -47,7 +47,7 @@ public class CashShopHandler : GameHandler
             long TotalPrice = 0;
             for (int i = 0; i < ItemNum; i++)
             {
-                TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][0].SellPrice * req.Amount[i];
+                TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].SellPrice * req.Amount[i];
             }
             if (TotalPrice != req.TotalPrice)
             {
@@ -66,7 +66,7 @@ public class CashShopHandler : GameHandler
             int OtherNum = 0;
             for (int i = 0; i < ItemNum; i++)
             {
-                int itemID = req.ID[i];
+                int itemID = CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].ItemID;
                 int Amount = req.Amount[i];
                 int capacity = CacheSvc.ItemList[itemID].Capacity;
                 if (CacheSvc.ItemList[itemID].Type == ItemType.Equipment || CacheSvc.ItemList[itemID].Type == ItemType.Weapon)
@@ -110,7 +110,7 @@ public class CashShopHandler : GameHandler
             List<Item> ItemList = new List<Item>();
             for (int i = 0; i < ItemNum; i++)
             {
-                int ItemID = req.ID[i];
+                int ItemID = CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].ItemID;
                 int Amount = req.Amount[i];
                 Item item = Utility.GetItemCopyByID(ItemID);
                 item.Count = Amount;

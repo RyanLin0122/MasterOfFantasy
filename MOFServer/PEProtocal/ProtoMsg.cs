@@ -1253,7 +1253,7 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public List<string> Tag { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public List<int> ID { get; set; }
+        public List<int> Orders { get; set; }
         [ProtoMember(6, IsRequired = false)]
         public List<int> Amount { get; set; }
         [ProtoMember(7, IsRequired = false)]

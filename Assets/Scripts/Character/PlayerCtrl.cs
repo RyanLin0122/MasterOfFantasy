@@ -87,7 +87,7 @@ public class PlayerCtrl : Controllable
     {
         if (IsMoving)
         {
-            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/DustPrefab"));
+            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Dust/DustPrefab"));
             go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
             int Sign = transform.localScale.x >= 0 ? -1 : 1;
             go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);
