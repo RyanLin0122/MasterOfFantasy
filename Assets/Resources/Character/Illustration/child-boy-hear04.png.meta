@@ -1,9 +1,69 @@
 fileFormatVersion: 2
 guid: 0228633658e7296469fa37746e6ccfee
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4060985762179944576
+    second: child-boy-hear04_0
+  - first:
+      213: 4879859893126900176
+    second: child-boy-hear04_1
+  - first:
+      213: 1995643948356947332
+    second: child-boy-hear04_2
+  - first:
+      213: -6182473246742250475
+    second: child-boy-hear04_3
+  - first:
+      213: -8161540413829932942
+    second: child-boy-hear04_4
+  - first:
+      213: -598144595135350361
+    second: child-boy-hear04_5
+  - first:
+      213: 8870483718433113162
+    second: child-boy-hear04_6
+  - first:
+      213: 7378582699752695968
+    second: child-boy-hear04_7
+  - first:
+      213: 8127509757512361909
+    second: child-boy-hear04_8
+  - first:
+      213: 2154764623434998871
+    second: child-boy-hear04_9
+  - first:
+      213: 6329348032556511421
+    second: child-boy-hear04_10
+  - first:
+      213: 3521688937785042172
+    second: child-boy-hear04_11
+  - first:
+      213: 2008530840118489637
+    second: child-boy-hear04_12
+  - first:
+      213: -8948880481047818924
+    second: child-boy-hear04_13
+  - first:
+      213: -7464101528881155350
+    second: child-boy-hear04_14
+  - first:
+      213: -5924527959920014224
+    second: child-boy-hear04_15
+  - first:
+      213: 6962869285725322775
+    second: child-boy-hear04_16
+  - first:
+      213: -5177228676314430482
+    second: child-boy-hear04_17
+  - first:
+      213: 5783486918500586032
+    second: child-boy-hear04_18
+  - first:
+      213: -7864276612097160455
+    second: child-boy-hear04_19
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +83,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +101,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +115,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +134,442 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: child-boy-hear04_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 317
+        width: 89
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08097a0e8058b5830800000000000000
+      internalID: 4060985762179944576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_1
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 321
+        width: 72
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9218bd7beb8b340800000000000000
+      internalID: 4879859893126900176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_2
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 394
+        width: 102
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48d49fff893f1bb10800000000000000
+      internalID: 1995643948356947332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_3
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 398
+        width: 84
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c72969651733aa0800000000000000
+      internalID: -6182473246742250475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_4
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 421
+        width: 98
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2781cad3c326cbe80800000000000000
+      internalID: -8161540413829932942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 141
+        width: 102
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a933aae8a6f2b7f0800000000000000
+      internalID: -598144595135350361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_6
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 226
+        width: 84
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44871fa1f94a1b70800000000000000
+      internalID: 8870483718433113162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_7
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 118
+        width: 97
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a82a9c3fddf56660800000000000000
+      internalID: 7378582699752695968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 36
+        width: 76
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7ab052017bac070800000000000000
+      internalID: 8127509757512361909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 15
+        width: 91
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754eb62320347ed10800000000000000
+      internalID: 2154764623434998871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_10
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 42
+        width: 80
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db03954508c56d750800000000000000
+      internalID: 6329348032556511421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_11
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 76
+        width: 79
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4a9122e6d8fd030800000000000000
+      internalID: 3521688937785042172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_12
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 34
+        width: 48
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 522fdad482cbfdb10800000000000000
+      internalID: 2008530840118489637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_13
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 0
+        width: 85
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45dc7bd9d903fc380800000000000000
+      internalID: -8948880481047818924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_14
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 84
+        width: 91
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2b69bb43f2a6890800000000000000
+      internalID: -7464101528881155350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_15
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 188
+        width: 89
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07c091fb539d7cda0800000000000000
+      internalID: -5924527959920014224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_16
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 204
+        width: 105
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71eb22979b411a060800000000000000
+      internalID: 6962869285725322775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_17
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 312
+        width: 100
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee30053f2f9c628b0800000000000000
+      internalID: -5177228676314430482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_18
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 305
+        width: 83
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 032985cc5b2134050800000000000000
+      internalID: 5783486918500586032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-hear04_19
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 275
+        width: 97
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fa4988861a7cd290800000000000000
+      internalID: -7864276612097160455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

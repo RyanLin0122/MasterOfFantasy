@@ -1,9 +1,36 @@
 fileFormatVersion: 2
 guid: 2bea112f1f4bfe14fa2c9a8577cd704a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1227141858848750933
+    second: teen-boy-triusers02_0
+  - first:
+      213: 625864704930238973
+    second: teen-boy-triusers02_1
+  - first:
+      213: -1872473054317248766
+    second: teen-boy-triusers02_2
+  - first:
+      213: 6108099282494205423
+    second: teen-boy-triusers02_3
+  - first:
+      213: 305998836005676498
+    second: teen-boy-triusers02_4
+  - first:
+      213: -8680653104493149752
+    second: teen-boy-triusers02_5
+  - first:
+      213: -2158268586604318132
+    second: teen-boy-triusers02_6
+  - first:
+      213: 6583061500484784094
+    second: teen-boy-triusers02_7
+  - first:
+      213: 611400009604071532
+    second: teen-boy-triusers02_8
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +50,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +68,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +82,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +101,211 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-boy-triusers02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 249
+        width: 117
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba2ce462bf058fee0800000000000000
+      internalID: -1227141858848750933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_1
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 323
+        width: 118
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df152d612a48fa800800000000000000
+      internalID: 625864704930238973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_2
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 355
+        width: 132
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ffde98da3a306e0800000000000000
+      internalID: -1872473054317248766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_3
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 355
+        width: 132
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feda2e17fe354c450800000000000000
+      internalID: 6108099282494205423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_4
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 195
+        width: 132
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d52dc1f1502f3400800000000000000
+      internalID: 305998836005676498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_5
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 195
+        width: 132
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c14b485eff188780800000000000000
+      internalID: -8680653104493149752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 57
+        width: 105
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42b09dc72a4c02e0800000000000000
+      internalID: -2158268586604318132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_7
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 35
+        width: 132
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf02fe5e8bbb5b50800000000000000
+      internalID: 6583061500484784094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-triusers02_8
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 33
+        width: 133
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c600f14c1112c7800800000000000000
+      internalID: 611400009604071532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

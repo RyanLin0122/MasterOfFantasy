@@ -1,9 +1,84 @@
 fileFormatVersion: 2
 guid: eb754c1a2b345e74faf59ee8fca078d6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -20962952130086551
+    second: Lv.25 Light Of Dark Spritesheet_0
+  - first:
+      213: -910241162660599958
+    second: Lv.25 Light Of Dark Spritesheet_1
+  - first:
+      213: 7242417629751060012
+    second: Lv.25 Light Of Dark Spritesheet_2
+  - first:
+      213: -2149385689475425109
+    second: Lv.25 Light Of Dark Spritesheet_3
+  - first:
+      213: 6840105421894043792
+    second: Lv.25 Light Of Dark Spritesheet_4
+  - first:
+      213: 3046376244001731051
+    second: Lv.25 Light Of Dark Spritesheet_5
+  - first:
+      213: -2782895052174264532
+    second: Lv.25 Light Of Dark Spritesheet_6
+  - first:
+      213: 2775053052020380560
+    second: Lv.25 Light Of Dark Spritesheet_7
+  - first:
+      213: 6644744482770300821
+    second: Lv.25 Light Of Dark Spritesheet_8
+  - first:
+      213: 8976826134011735093
+    second: Lv.25 Light Of Dark Spritesheet_9
+  - first:
+      213: -4151080466385351203
+    second: Lv.25 Light Of Dark Spritesheet_10
+  - first:
+      213: 6714225123070453109
+    second: Lv.25 Light Of Dark Spritesheet_11
+  - first:
+      213: 1981938824134735615
+    second: Lv.25 Light Of Dark Spritesheet_12
+  - first:
+      213: -2479373883156921381
+    second: Lv.25 Light Of Dark Spritesheet_13
+  - first:
+      213: 2773618823620723634
+    second: Lv.25 Light Of Dark Spritesheet_14
+  - first:
+      213: 3460277110469225943
+    second: Lv.25 Light Of Dark Spritesheet_15
+  - first:
+      213: 5961798834784710769
+    second: Lv.25 Light Of Dark Spritesheet_16
+  - first:
+      213: -4727522714385586354
+    second: Lv.25 Light Of Dark Spritesheet_17
+  - first:
+      213: -8115646154774388340
+    second: Lv.25 Light Of Dark Spritesheet_18
+  - first:
+      213: -1026353366812983619
+    second: Lv.25 Light Of Dark Spritesheet_19
+  - first:
+      213: -5538301264696910848
+    second: Lv.25 Light Of Dark Spritesheet_20
+  - first:
+      213: -2635217721399076914
+    second: Lv.25 Light Of Dark Spritesheet_21
+  - first:
+      213: 1834519953231004284
+    second: Lv.25 Light Of Dark Spritesheet_22
+  - first:
+      213: -550297533077479550
+    second: Lv.25 Light Of Dark Spritesheet_23
+  - first:
+      213: -4733047992647895029
+    second: Lv.25 Light Of Dark Spritesheet_24
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +115,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +132,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +145,559 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 418
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969b7dc5e4685bff0800000000000000
+      internalID: -20962952130086551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 418
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a672da73c7c2e53f0800000000000000
+      internalID: -910241162660599958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 418
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c26a658567c328460800000000000000
+      internalID: 7242417629751060012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 418
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac52857a19db22e0800000000000000
+      internalID: -2149385689475425109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 418
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098c73a04afecee50800000000000000
+      internalID: 6840105421894043792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 317
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be179e3bd07e64a20800000000000000
+      internalID: 3046376244001731051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 220
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c27f5f7c1bb2169d0800000000000000
+      internalID: -2782895052174264532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 220
+        width: 89
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093d9864c08f28620800000000000000
+      internalID: 2775053052020380560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 220
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59fa2c6d6efd63c50800000000000000
+      internalID: 6644744482770300821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 220
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c6630cec7149c70800000000000000
+      internalID: 8976826134011735093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 220
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddc9072f466466c0800000000000000
+      internalID: -4151080466385351203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 118
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5752e9a0d28bd2d50800000000000000
+      internalID: 6714225123070453109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 118
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff63b1b1cd2418b10800000000000000
+      internalID: 1981938824134735615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 118
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd30d0de69e779dd0800000000000000
+      internalID: -2479373883156921381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 108
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b30044ff9fdd7620800000000000000
+      internalID: 2773618823620723634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 123
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddeee9d2bf550030800000000000000
+      internalID: 3460277110469225943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 314
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1703ea904709cb250800000000000000
+      internalID: 5961798834784710769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 314
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47e4758327746eb0800000000000000
+      internalID: -4727522714385586354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 314
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8168ed12de6f5f80800000000000000
+      internalID: -8115646154774388340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 314
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbef51dfc09a1c1f0800000000000000
+      internalID: -1026353366812983619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 15
+        width: 90
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cd4aac7500423b0800000000000000
+      internalID: -5538301264696910848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 15
+        width: 96
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec79132c173dd6bd0800000000000000
+      internalID: -2635217721399076914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 15
+        width: 96
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7243b18d26857910800000000000000
+      internalID: 1834519953231004284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 15
+        width: 96
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28f942c2f43fc58f0800000000000000
+      internalID: -550297533077479550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.25 Light Of Dark Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 15
+        width: 96
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08b85d6de5d05eb0800000000000000
+      internalID: -4733047992647895029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

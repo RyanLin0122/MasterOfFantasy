@@ -1,9 +1,72 @@
 fileFormatVersion: 2
 guid: e6a88c302059d7446a41c02e2cbc5212
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6259623815293039195
+    second: Adult-boy-HEAR05_0
+  - first:
+      213: 6038085634761961039
+    second: Adult-boy-HEAR05_1
+  - first:
+      213: 4986723639668151168
+    second: Adult-boy-HEAR05_2
+  - first:
+      213: 6972118840850019292
+    second: Adult-boy-HEAR05_3
+  - first:
+      213: -5869581379619655005
+    second: Adult-boy-HEAR05_4
+  - first:
+      213: -7774867621737965337
+    second: Adult-boy-HEAR05_5
+  - first:
+      213: -6807861344261719235
+    second: Adult-boy-HEAR05_6
+  - first:
+      213: -8975653866230433576
+    second: Adult-boy-HEAR05_7
+  - first:
+      213: 2124971741367714141
+    second: Adult-boy-HEAR05_8
+  - first:
+      213: 1825866411560399481
+    second: Adult-boy-HEAR05_9
+  - first:
+      213: 2980236737232939870
+    second: Adult-boy-HEAR05_10
+  - first:
+      213: 2446512006811567922
+    second: Adult-boy-HEAR05_11
+  - first:
+      213: -3196786412501098532
+    second: Adult-boy-HEAR05_12
+  - first:
+      213: 7275415351791948551
+    second: Adult-boy-HEAR05_13
+  - first:
+      213: 453623474445306032
+    second: Adult-boy-HEAR05_14
+  - first:
+      213: -997273820806167461
+    second: Adult-boy-HEAR05_15
+  - first:
+      213: -8638753741033151352
+    second: Adult-boy-HEAR05_16
+  - first:
+      213: -4665908893000009712
+    second: Adult-boy-HEAR05_17
+  - first:
+      213: -2569684708754831166
+    second: Adult-boy-HEAR05_18
+  - first:
+      213: 2649632884489207119
+    second: Adult-boy-HEAR05_19
+  - first:
+      213: 2501308573766369994
+    second: Adult-boy-HEAR05_20
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +86,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +104,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +118,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +137,463 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 268
+        width: 89
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad02ed0e495129a0800000000000000
+      internalID: -6259623815293039195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 165
+        width: 99
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e2067c4e69bc350800000000000000
+      internalID: 6038085634761961039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 51
+        width: 87
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083967fbab6643540800000000000000
+      internalID: 4986723639668151168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 9
+        width: 91
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd37ca85521f1c060800000000000000
+      internalID: 6972118840850019292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_4
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 30
+        width: 79
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2f58765de0b8ea0800000000000000
+      internalID: -5869581379619655005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_5
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 120
+        width: 86
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e85f9e471f1a1490800000000000000
+      internalID: -7774867621737965337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_6
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 107
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3bba2f4d2e9581a0800000000000000
+      internalID: -6807861344261719235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_7
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 53
+        width: 99
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8397c1d52107380800000000000000
+      internalID: -8975653866230433576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_8
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 178
+        width: 102
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5147f94a8a6d7d10800000000000000
+      internalID: 2124971741367714141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_9
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 319
+        width: 95
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972ff54d3d7c65910800000000000000
+      internalID: 1825866411560399481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_10
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 307
+        width: 76
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ba655c58deb5920800000000000000
+      internalID: 2980236737232939870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_11
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 308
+        width: 77
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2374bb045b1c3f120800000000000000
+      internalID: 2446512006811567922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_12
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 222
+        width: 75
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf9314f1bbb2a3d0800000000000000
+      internalID: -3196786412501098532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_13
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 222
+        width: 75
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7039bf437b777f460800000000000000
+      internalID: 7275415351791948551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_14
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 228
+        width: 74
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8471885289b4600800000000000000
+      internalID: 453623474445306032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_15
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 320
+        width: 84
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b544d076eb8f822f0800000000000000
+      internalID: -997273820806167461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_16
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 298
+        width: 79
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88464ab1e3bfc1880800000000000000
+      internalID: -8638753741033151352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_17
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 410
+        width: 88
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018f566359c5f3fb0800000000000000
+      internalID: -4665908893000009712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_18
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 399
+        width: 126
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c84ae54f55a65cd0800000000000000
+      internalID: -2569684708754831166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_19
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 397
+        width: 91
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d3c21f11365c420800000000000000
+      internalID: 2649632884489207119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-boy-HEAR05_20
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 418
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac2cbf435ee66b220800000000000000
+      internalID: 2501308573766369994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

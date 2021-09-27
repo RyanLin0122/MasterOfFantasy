@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 21300000
     second: 20000017_main_ui.gi_0
+  - first:
+      213: -5976101941467831500
+    second: 20000017_main_ui.gi_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -26,6 +29,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -57,9 +61,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -94,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 964
+        y: 965
         width: 1061
-        height: 50
+        height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

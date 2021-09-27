@@ -140,7 +140,10 @@ public static class Utility
             ProcessingQuests = BsonArr2QuestList(data["ProcessingQuests"].AsBsonArray),
             AcceptableQuests = BsonArr2QuestList(data["AcceptableQuests"].AsBsonArray),
             FinishedQuests = BsonArr2QuestList(data["FinishedQuests"].AsBsonArray),
-            Honor = data["Honor"].AsInt32
+            Honor = data["Honor"].AsInt32,
+            Cart = BsonArr2CartList(data["Cart"].AsBsonArray),
+            PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray)
+
         };
         return player;
     }
@@ -426,7 +429,9 @@ public static class Utility
                     { "FinishedQuests", QuestList2BsonArr(player.FinishedQuests)},
                     { "TitleCollection", IntList2BsonArray(player.TitleCollection)},
                     { "DiaryInformation", new BsonDocument{ { "NPC", DiaryInfo2BsonArr(player.diaryInformation.NPC_Info) },{ "Monster", DiaryInfo2BsonArr(player.diaryInformation.Monster_Info) } } },
-                    { "Honor", player.Honor}
+                    { "Honor", player.Honor},
+                    { "Cart", CartList2BsonArr(player.Cart)},
+                    { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)}
         };
         return bson;
     }
@@ -538,7 +543,28 @@ public static class Utility
         }
         return r;
     }
-
+    public static BsonArray CartList2BsonArr(List<CartItem> cartItems)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in cartItems)
+        {
+            r.Add(CartItem2Bson(item));
+        }
+        return r;
+    }
+    public static BsonDocument CartItem2Bson(CartItem item)
+    {
+        BsonDocument b = new BsonDocument
+        {
+            { "cata",item.cata},
+            { "tag",item.tag},
+            { "id",item.itemID},
+            { "qt",item.quantity},
+            { "sp",item.sellPrice},
+            { "am",item.amount}
+        };
+        return b;
+    }
     public static BsonDocument ItemToBson(Item item)
     {
         switch (item.Type)
@@ -567,7 +593,7 @@ public static class Utility
                     {"Exp",((Consumable)item).Exp },
                     {"ExpRate",((Consumable)item).ExpRate },
                     {"DropRate",((Consumable)item).DropRate },
-                    {"Count",((Consumable)item).Count }
+                    {"Count",((Consumable)item).Count },
                 };
                 return c;
             case ItemType.Equipment:
@@ -593,6 +619,9 @@ public static class Utility
                     {"DropRate",((Equipment)item).DropRate },
                     {"RestRNum",((Equipment)item).RestRNum },
                     {"Count",((Equipment)item).Count },
+                    {"ExpRate",((Equipment)item).Count },
+                    {"ExpiredTime",((Equipment)item).Count },
+                    {"Stars",((Equipment)item).Count },
                 };
                 return e;
             case ItemType.Weapon:
@@ -617,6 +646,10 @@ public static class Utility
                     {"RestRNum",((Weapon)item).RestRNum },
                     {"Property",((Weapon)item).Property },
                     {"Count",((Weapon)item).Count },
+                    {"Additional",((Weapon)item).Count },
+                    {"Stars",((Weapon)item).Count },
+                    {"AdditionalLevel",((Weapon)item).Count },
+                    {"ExpiredTime",((Weapon)item).Count },
                 };
                 return w;
             case ItemType.EtcItem:
@@ -769,7 +802,7 @@ public static class Utility
         {
             return GetConsumableByID(ItemID);
         }
-        else if(ItemID > 3000 && ItemID <= 8000)
+        else if (ItemID > 3000 && ItemID <= 8000)
         {
             return GetEquipmentByID(ItemID);
         }
@@ -798,7 +831,7 @@ public static class Utility
         Equipment itemr = (Equipment)CacheSvc.ItemList[ItemID];
         Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum);
+            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate,itemr.ExpiredTime,itemr.Stars);
 
         return item;
     }
@@ -807,7 +840,7 @@ public static class Utility
         Weapon itemr = (Weapon)CacheSvc.ItemList[ItemID];
         Weapon item = new Weapon(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Level, itemr.MinDamage, itemr.MaxDamage, itemr.AttSpeed, itemr.Range, itemr.Property, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum);
+            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum,itemr.Additional,itemr.Stars,itemr.AdditionalLevel,itemr.ExpiredTime);
         return item;
     }
     public static EtcItem GetEtcItemByID(int ItemID)
@@ -818,7 +851,30 @@ public static class Utility
         return item;
     }
     #endregion
-
+    #region Cart
+    public static List<CartItem> BsonArr2CartList(BsonArray bson)
+    {
+        List<CartItem> cart = new List<CartItem>();
+        foreach (var value in bson.Values)
+        {
+            cart.Add(BsonDoc2CartItem(value.AsBsonDocument));
+        }
+        return cart;
+    }
+    public static CartItem BsonDoc2CartItem(BsonDocument doc)
+    {
+        CartItem item = new CartItem
+        {
+            cata = doc["cata"].AsString,
+            tag = doc["tag"].AsString,
+            sellPrice = doc["sp"].AsInt32,
+            itemID = doc["id"].AsInt32,
+            amount = doc["am"].AsInt32,
+            quantity = doc["qt"].AsInt32
+        };
+        return item;
+    }
+    #endregion
     #region Quest
     public static List<Quest> BsonArr2QuestList(BsonArray bson)
     {

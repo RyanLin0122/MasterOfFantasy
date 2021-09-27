@@ -58,9 +58,9 @@ public class CreateWnd : WindowRoot
             Grade = 1,
             RestPoint = 0,            
             playerEquipments = new PlayerEquipments {
-                F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3005),
-                F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3013),
-                F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3021)
+                F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3005),
+                F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013),
+                F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021)
             },
         };
         Demo.SetAllEquipment(TempData);
@@ -271,9 +271,9 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣1";
             Downwear.text = "基本下衣1";
             Shoes.text = "基本鞋子1";
-            TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3001);
-            TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3009);
-            TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3017);
+            TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3001);
+            TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3009);
+            TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3017);
             
         }
         else if (Gender.text == "男生")
@@ -283,9 +283,9 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣1";
             Downwear.text = "基本下衣1";
             Shoes.text = "基本鞋子1";
-            TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3005);
-            TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3013);
-            TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3021);
+            TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3005);
+            TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013);
+            TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021);
         }
         Demo.SetAllEquipment(TempData);
         illustration.SetGenderAge(true, false, TempData);
@@ -306,11 +306,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3006);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3006);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3002);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3002);
             }
         }
         else if (Upwear.text == "基本上衣2")
@@ -318,11 +318,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3007);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3007);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3003);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3003);
             }
         }
         else if (Upwear.text == "基本上衣3")
@@ -330,11 +330,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3008);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3008);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3004);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3004);
             }
         }
         else if (Upwear.text == "基本上衣4")
@@ -342,11 +342,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3005);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3005);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3001);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3001);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -360,11 +360,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3008);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3008);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3004);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3004);
             }
         }
         else if (Upwear.text == "基本上衣2")
@@ -372,11 +372,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3005);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3005);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3001);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3001);
             }
         }
         else if (Upwear.text == "基本上衣3")
@@ -384,11 +384,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3006);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3006);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3002);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3002);
             }
         }
         else if (Upwear.text == "基本上衣4")
@@ -396,11 +396,11 @@ public class CreateWnd : WindowRoot
             Upwear.text = "基本上衣3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3007);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3007);
             }
             else
             {
-                TempData.playerEquipments.F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3003);
+                TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3003);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -414,11 +414,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3014);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3014);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3010);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3010);
             }
         }
         else if (Downwear.text == "基本下衣2")
@@ -426,11 +426,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3015);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3015);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3011);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3011);
             }
         }
         else if (Downwear.text == "基本下衣3")
@@ -438,11 +438,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3016);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3016);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3012);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3012);
             }
         }
         else if (Downwear.text == "基本下衣4")
@@ -450,11 +450,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3013);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3009);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3009);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -468,11 +468,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3016);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3016);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3012);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3012);
             }
         }
         else if (Downwear.text == "基本下衣2")
@@ -480,11 +480,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3013);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3009);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3009);
             }
         }
         else if (Downwear.text == "基本下衣3")
@@ -492,11 +492,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3014);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3014);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3010);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3010);
             }
         }
         else if (Downwear.text == "基本下衣4")
@@ -504,11 +504,11 @@ public class CreateWnd : WindowRoot
             Downwear.text = "基本下衣3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3015);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3015);
             }
             else
             {
-                TempData.playerEquipments.F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3011);
+                TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3011);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -522,11 +522,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3022);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3022);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3018);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3018);
             }
         }
         else if (Shoes.text == "基本鞋子2")
@@ -534,11 +534,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3023);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3023);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3019);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3019);
             }
         }
         else if (Shoes.text == "基本鞋子3")
@@ -546,11 +546,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3024);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3024);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3020);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3020);
             }
         }
         else if (Shoes.text == "基本鞋子4")
@@ -558,11 +558,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3021);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3017);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3017);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -576,11 +576,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子4";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3024);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3024);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3020);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3020);
             }
         }
         else if (Shoes.text == "基本鞋子2")
@@ -588,11 +588,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子1";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3021);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3017);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3017);
             }
         }
         else if (Shoes.text == "基本鞋子3")
@@ -600,11 +600,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子2";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3022);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3022);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3018);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3018);
             }
         }
         else if (Shoes.text == "基本鞋子4")
@@ -612,11 +612,11 @@ public class CreateWnd : WindowRoot
             Shoes.text = "基本鞋子3";
             if (TempData.Gender == 0)
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3023);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3023);
             }
             else
             {
-                TempData.playerEquipments.F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3019);
+                TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3019);
             }
         }
         Demo.SetAllEquipment(TempData);
@@ -641,9 +641,9 @@ public class CreateWnd : WindowRoot
 
             playerEquipments = new PlayerEquipments
             {
-                F_Chest = (Equipment)InventoryManager.Instance.GetNewItemByID(3005),
-                F_Pants = (Equipment)InventoryManager.Instance.GetNewItemByID(3013),
-                F_Shoes = (Equipment)InventoryManager.Instance.GetNewItemByID(3021)
+                F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3005),
+                F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013),
+                F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021)
             },
         };
         Demo.SetAllEquipment(TempData);

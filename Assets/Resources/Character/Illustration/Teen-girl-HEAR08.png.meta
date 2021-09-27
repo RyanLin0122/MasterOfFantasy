@@ -1,9 +1,54 @@
 fileFormatVersion: 2
 guid: 1b05682f41e3c8c4886cd7ffa0d3b43a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1634256799940807056
+    second: Teen-girl-HEAR08_0
+  - first:
+      213: 2582361298197483065
+    second: Teen-girl-HEAR08_1
+  - first:
+      213: 6877306980736675650
+    second: Teen-girl-HEAR08_2
+  - first:
+      213: -1926320918130377994
+    second: Teen-girl-HEAR08_3
+  - first:
+      213: 1270369560795979567
+    second: Teen-girl-HEAR08_4
+  - first:
+      213: -6287279011547641892
+    second: Teen-girl-HEAR08_5
+  - first:
+      213: -3080006122256411013
+    second: Teen-girl-HEAR08_6
+  - first:
+      213: -8063535577980918004
+    second: Teen-girl-HEAR08_7
+  - first:
+      213: 1489784271115821419
+    second: Teen-girl-HEAR08_8
+  - first:
+      213: -4037117443096645893
+    second: Teen-girl-HEAR08_9
+  - first:
+      213: -1100625221578502295
+    second: Teen-girl-HEAR08_10
+  - first:
+      213: -4122276292420998823
+    second: Teen-girl-HEAR08_11
+  - first:
+      213: -1495181368709139486
+    second: Teen-girl-HEAR08_12
+  - first:
+      213: 5914738717329874707
+    second: Teen-girl-HEAR08_13
+  - first:
+      213: -6712954773631507639
+    second: Teen-girl-HEAR08_14
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +68,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +86,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +100,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +119,337 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 87
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076f2cf5914f159e0800000000000000
+      internalID: -1634256799940807056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 385
+        width: 105
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e07c43be366d320800000000000000
+      internalID: 2582361298197483065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 96
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24faf1ee24a117f50800000000000000
+      internalID: 6877306980736675650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 83
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa3f6fb4555445e0800000000000000
+      internalID: -1926320918130377994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 0
+        width: 103
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f96b4826241a110800000000000000
+      internalID: 1270369560795979567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_5
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 121
+        width: 86
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd70fe8ec091fb8a0800000000000000
+      internalID: -6287279011547641892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_6
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 14
+        width: 87
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76d0e810ce9145d0800000000000000
+      internalID: -3080006122256411013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_7
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 44
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0729b04d11981090800000000000000
+      internalID: -8063535577980918004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_8
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 2
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b61a2dfb6e6cca410800000000000000
+      internalID: 1489784271115821419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_9
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 89
+        width: 228
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfee0b7331749f7c0800000000000000
+      internalID: -4037117443096645893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_10
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 231
+        width: 133
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f4afc313bc9b0f0800000000000000
+      internalID: -1100625221578502295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_11
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 436
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9596b348d8bbac6c0800000000000000
+      internalID: -4122276292420998823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_12
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 436
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e33f4b877c004be0800000000000000
+      internalID: -1495181368709139486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_13
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 436
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f52b9968f551250800000000000000
+      internalID: 5914738717329874707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teen-girl-HEAR08_14
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 413
+        width: 80
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9436e6c333bc6d2a0800000000000000
+      internalID: -6712954773631507639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

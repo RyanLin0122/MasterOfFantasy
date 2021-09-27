@@ -1,9 +1,99 @@
 fileFormatVersion: 2
 guid: 63200cafaac25184d947f469d14729d7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -482198389598521192
+    second: Lv.110 Orochi Spritesheet_0
+  - first:
+      213: -6945494685953189149
+    second: Lv.110 Orochi Spritesheet_1
+  - first:
+      213: -7553011796314766346
+    second: Lv.110 Orochi Spritesheet_2
+  - first:
+      213: -3459018434143315308
+    second: Lv.110 Orochi Spritesheet_3
+  - first:
+      213: -4859078748879132864
+    second: Lv.110 Orochi Spritesheet_4
+  - first:
+      213: 6571209484966861939
+    second: Lv.110 Orochi Spritesheet_5
+  - first:
+      213: 5352905907403493812
+    second: Lv.110 Orochi Spritesheet_6
+  - first:
+      213: -5876185155563076816
+    second: Lv.110 Orochi Spritesheet_7
+  - first:
+      213: 1552519728656672832
+    second: Lv.110 Orochi Spritesheet_8
+  - first:
+      213: 848362384720930227
+    second: Lv.110 Orochi Spritesheet_9
+  - first:
+      213: 4265639738653405085
+    second: Lv.110 Orochi Spritesheet_10
+  - first:
+      213: -631819707903064107
+    second: Lv.110 Orochi Spritesheet_11
+  - first:
+      213: -4790029099328016998
+    second: Lv.110 Orochi Spritesheet_12
+  - first:
+      213: -6410063018853594927
+    second: Lv.110 Orochi Spritesheet_13
+  - first:
+      213: 7593749633430827845
+    second: Lv.110 Orochi Spritesheet_14
+  - first:
+      213: 8706203346300275514
+    second: Lv.110 Orochi Spritesheet_15
+  - first:
+      213: -5239894313906612554
+    second: Lv.110 Orochi Spritesheet_16
+  - first:
+      213: -1143699498633864268
+    second: Lv.110 Orochi Spritesheet_17
+  - first:
+      213: 6211572653889683569
+    second: Lv.110 Orochi Spritesheet_18
+  - first:
+      213: -236758347283187254
+    second: Lv.110 Orochi Spritesheet_19
+  - first:
+      213: 8354649555845343498
+    second: Lv.110 Orochi Spritesheet_20
+  - first:
+      213: 1037141971701626162
+    second: Lv.110 Orochi Spritesheet_21
+  - first:
+      213: 6352069927514619589
+    second: Lv.110 Orochi Spritesheet_22
+  - first:
+      213: -5981836632297704288
+    second: Lv.110 Orochi Spritesheet_23
+  - first:
+      213: -8427052191715162972
+    second: Lv.110 Orochi Spritesheet_24
+  - first:
+      213: -4707750095292394575
+    second: Lv.110 Orochi Spritesheet_25
+  - first:
+      213: -8665202311598752367
+    second: Lv.110 Orochi Spritesheet_26
+  - first:
+      213: -890220321070945808
+    second: Lv.110 Orochi Spritesheet_27
+  - first:
+      213: -3898125734500136303
+    second: Lv.110 Orochi Spritesheet_28
+  - first:
+      213: -5796604556459538634
+    second: Lv.110 Orochi Spritesheet_29
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +130,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +147,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +160,664 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 2515
+        width: 162
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898f6b49e13ee49f0800000000000000
+      internalID: -482198389598521192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 2515
+        width: 153
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea9566c165ac9f90800000000000000
+      internalID: -6945494685953189149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 2512
+        width: 144
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3c250f9cf4e2790800000000000000
+      internalID: -7553011796314766346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 2336
+        width: 165
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a1c519f091fffc0800000000000000
+      internalID: -3459018434143315308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 2334
+        width: 150
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 047e8655f95119cb0800000000000000
+      internalID: -4859078748879132864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 2340
+        width: 160
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c9028f530a13b50800000000000000
+      internalID: 6571209484966861939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 2136
+        width: 196
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b110e6df87594a40800000000000000
+      internalID: 5352905907403493812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 2151
+        width: 168
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0334d300cb8937ea0800000000000000
+      internalID: -5876185155563076816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 1940
+        width: 175
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048ed55b778ab8510800000000000000
+      internalID: 1552519728656672832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1951
+        width: 141
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b52816181df5cb00800000000000000
+      internalID: 848362384720930227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1972
+        width: 197
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9fe932fdb8923b30800000000000000
+      internalID: 4265639738653405085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1790
+        width: 197
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7c85cb2535b37f0800000000000000
+      internalID: -631819707903064107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1570
+        width: 202
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9de4cea9e5668db0800000000000000
+      internalID: -4790029099328016998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 1570
+        width: 202
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d80d5575a1ea07a0800000000000000
+      internalID: -6410063018853594927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 1377
+        width: 202
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543b5e5ee0b626960800000000000000
+      internalID: 7593749633430827845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 1361
+        width: 202
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b8b86e0d5a2d870800000000000000
+      internalID: 8706203346300275514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 937
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6d10732e72847b0800000000000000
+      internalID: -5239894313906612554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 1140
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bbd2269d53c020f0800000000000000
+      internalID: -1143699498633864268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1140
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17000ab1b60f33650800000000000000
+      internalID: 6211572653889683569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 937
+        width: 201
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9b39c998dd6bcf0800000000000000
+      internalID: -236758347283187254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 542
+        width: 195
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a096907918da1f370800000000000000
+      internalID: 8354649555845343498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 550
+        width: 162
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2357ce4d02ba46e00800000000000000
+      internalID: 1037141971701626162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 552
+        width: 163
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce33f1c1f5172850800000000000000
+      internalID: 6352069927514619589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 742
+        width: 199
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a4f97ba64f3cfca0800000000000000
+      internalID: -5981836632297704288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 731
+        width: 159
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a404291ea81d0b80800000000000000
+      internalID: -8427052191715162972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 37
+        width: 188
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b319c62b36baaeb0800000000000000
+      internalID: -4707750095292394575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 185
+        width: 188
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d334668640fb780800000000000000
+      internalID: -8665202311598752367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 185
+        width: 188
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f96bb6a55d45a3f0800000000000000
+      internalID: -890220321070945808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 376
+        width: 188
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a8f413c4317e9c0800000000000000
+      internalID: -3898125734500136303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Orochi Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 345
+        width: 195
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63781dc1ed25e8fa0800000000000000
+      internalID: -5796604556459538634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

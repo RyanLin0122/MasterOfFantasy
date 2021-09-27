@@ -5,6 +5,33 @@ TextureImporter:
   - first:
       213: 21300000
     second: adult-girl-triusers03_0
+  - first:
+      213: 9206334201200697275
+    second: adult-girl-triusers03_1
+  - first:
+      213: 9064932276560989934
+    second: adult-girl-triusers03_2
+  - first:
+      213: -7138948947182166220
+    second: adult-girl-triusers03_3
+  - first:
+      213: -5561154208268554697
+    second: adult-girl-triusers03_4
+  - first:
+      213: 3282859483319529643
+    second: adult-girl-triusers03_5
+  - first:
+      213: 5493790127201941534
+    second: adult-girl-triusers03_6
+  - first:
+      213: -7008883613098301138
+    second: adult-girl-triusers03_7
+  - first:
+      213: 7533612720040949455
+    second: adult-girl-triusers03_8
+  - first:
+      213: -6232428972462242440
+    second: adult-girl-triusers03_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -26,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -57,9 +85,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -95,7 +126,28 @@ TextureImporter:
         serializedVersion: 2
         x: 3
         y: 180
-        width: 98
+        width: 95
+        height: 332
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61bc0b71b627a8640869c275a8e4ddf0
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 180
+        width: 95
         height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -104,8 +156,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61bc0b71b627a8640869c275a8e4ddf0
-      internalID: 21300000
+      spriteID: bbfd812cd2873cf70800000000000000
+      internalID: 9206334201200697275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 180
+        width: 95
+        height: 332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee0461a0eb1dcd70800000000000000
+      internalID: 9064932276560989934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_3
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 180
+        width: 94
+        height: 332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43fde8d91cb5dec90800000000000000
+      internalID: -7138948947182166220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_4
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 180
+        width: 95
+        height: 332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73eebfa36bfc2d2b0800000000000000
+      internalID: -5561154208268554697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 25
+        width: 98
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba078c68e4f0f8d20800000000000000
+      internalID: 3282859483319529643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_6
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 26
+        width: 99
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e187b6a630ddd3c40800000000000000
+      internalID: 5493790127201941534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_7
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 26
+        width: 99
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2928311d717bbe90800000000000000
+      internalID: -7008883613098301138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_8
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 26
+        width: 99
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6b765aad4cc8860800000000000000
+      internalID: 7533612720040949455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-triusers03_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 26
+        width: 98
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8750980ded6f189a0800000000000000
+      internalID: -6232428972462242440
       vertices: []
       indices: 
       edges: []

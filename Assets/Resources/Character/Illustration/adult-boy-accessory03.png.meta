@@ -1,9 +1,72 @@
 fileFormatVersion: 2
 guid: 2d3b53ec09d80bc478082400c28fa169
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2489283500006245434
+    second: adult-boy-accessory03_0
+  - first:
+      213: -4160595786584301212
+    second: adult-boy-accessory03_1
+  - first:
+      213: -6927659670044052383
+    second: adult-boy-accessory03_2
+  - first:
+      213: -52618748673768980
+    second: adult-boy-accessory03_3
+  - first:
+      213: 6106438063832240635
+    second: adult-boy-accessory03_4
+  - first:
+      213: 2620990285051541346
+    second: adult-boy-accessory03_5
+  - first:
+      213: -444921075008644481
+    second: adult-boy-accessory03_6
+  - first:
+      213: 6199475505926222234
+    second: adult-boy-accessory03_7
+  - first:
+      213: -1213477644406678424
+    second: adult-boy-accessory03_8
+  - first:
+      213: -1299151464193120154
+    second: adult-boy-accessory03_9
+  - first:
+      213: 7853835651567111027
+    second: adult-boy-accessory03_10
+  - first:
+      213: 1934572894025626614
+    second: adult-boy-accessory03_11
+  - first:
+      213: -8899167098901052862
+    second: adult-boy-accessory03_12
+  - first:
+      213: -6794598655507479514
+    second: adult-boy-accessory03_13
+  - first:
+      213: 5264518975845791186
+    second: adult-boy-accessory03_14
+  - first:
+      213: -3729272863370315121
+    second: adult-boy-accessory03_15
+  - first:
+      213: 4971031393726390902
+    second: adult-boy-accessory03_16
+  - first:
+      213: -3821881491263880112
+    second: adult-boy-accessory03_17
+  - first:
+      213: 7731043931006674600
+    second: adult-boy-accessory03_18
+  - first:
+      213: 296568429791983432
+    second: adult-boy-accessory03_19
+  - first:
+      213: -3661169324213336051
+    second: adult-boy-accessory03_20
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +86,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +104,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +118,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +137,463 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: adult-boy-accessory03_0
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 477
+        width: 67
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a340d1b8726bb8220800000000000000
+      internalID: 2489283500006245434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_1
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 432
+        width: 112
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461e7a60d289246c0800000000000000
+      internalID: -4160595786584301212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_2
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 366
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16479320c320cdf90800000000000000
+      internalID: -6927659670044052383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_3
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 413
+        width: 55
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce146c0e68f054ff0800000000000000
+      internalID: -52618748673768980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_4
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 478
+        width: 63
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf115a5d01d6eb450800000000000000
+      internalID: 6106438063832240635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_5
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 435
+        width: 94
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2673f3417c0af5420800000000000000
+      internalID: 2620990285051541346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_6
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 452
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a560bb3a253d9f0800000000000000
+      internalID: -444921075008644481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_7
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 435
+        width: 56
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a91b77c5026f80650800000000000000
+      internalID: 6199475505926222234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 464
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c134ef28cd82fe0800000000000000
+      internalID: -1213477644406678424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_9
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 423
+        width: 79
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 668275360ac78fde0800000000000000
+      internalID: -1299151464193120154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 409
+        width: 86
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37bc4f7e9ed6efc60800000000000000
+      internalID: 7853835651567111027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 317
+        width: 79
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f33f7c1ccbf8da10800000000000000
+      internalID: 1934572894025626614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 249
+        width: 57
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242c8216caecf7480800000000000000
+      internalID: -8899167098901052862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 58
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 624412ba58cb4b1a0800000000000000
+      internalID: -6794598655507479514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 145
+        width: 55
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d5779cad145f0940800000000000000
+      internalID: 5264518975845791186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 54
+        width: 59
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8afe4cd616fe3cc0800000000000000
+      internalID: -3729272863370315121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 84
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 672606607b6acf440800000000000000
+      internalID: 4971031393726390902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_17
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 277
+        width: 95
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 054839b6803f5fac0800000000000000
+      internalID: -3821881491263880112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_18
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 341
+        width: 114
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6a7929e7f2a4b60800000000000000
+      internalID: 7731043931006674600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_19
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 338
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847b8556a6f9d1400800000000000000
+      internalID: 296568429791983432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-accessory03_20
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 375
+        width: 53
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0805b7b5e9e03dc0800000000000000
+      internalID: -3661169324213336051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

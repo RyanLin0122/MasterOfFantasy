@@ -105,7 +105,7 @@ public class GuideWnd : WindowRoot, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         SetWndState(false);
         IsOpen = false;
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         UIManager.Instance.ForcePop(this);
     }
 

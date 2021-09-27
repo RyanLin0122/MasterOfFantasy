@@ -5,28 +5,64 @@ using System;
 public class ScreenController : MonoBehaviour
 {
     [Header("camera")] public new Camera camera;
-
     [Header("offset")] public Vector3 Offset;
 
     [Header("相機上界")] public float UpBound;
     [Header("相機下界")] public float DownBound;
     [Header("相機左界")] public float LeftBound;
     [Header("相機右界")] public float RightBound;
+    
     public bool canCtrl = true;
+ 
     private void Awake()
     {
         Scene scene = SceneManager.GetActiveScene();
+        GameObject background = GameObject.Find("BG");
+        //print(background.name);
+        float bound_x = background.GetComponent<Renderer>().bounds.size.x;
+        float bound_y = background.GetComponent<Renderer>().bounds.size.y;
+
+        print("Hi");
+        //print(bound_x);
         int[] mapBound = Tools.GetMapBoundary(scene.name);
-        UpBound = mapBound[0];
-        DownBound = mapBound[1];
-        LeftBound = mapBound[2];
-        RightBound = mapBound[3];
+
+        float cam_x = 535.0f;
+        float cam_y = 300.0f;
+
+        
+
+        UpBound = bound_y / 2.0f - cam_y;
+        DownBound = -UpBound;
+        if (UpBound < DownBound)
+        {
+            UpBound = 0;
+            DownBound = 0;
+        }
+
+        RightBound = bound_x / 2.0f - cam_x;
+        LeftBound = -RightBound;
+        if(RightBound < LeftBound)
+        {
+            RightBound = 0;
+            LeftBound = 0;
+
+        }
+
+        //UpBound = mapBound[0];
+        //print(UpBound);
+        //DownBound = mapBound[1];
+        //print(DownBound);
+        //LeftBound = mapBound[2];
+        //print(LeftBound);
+        //RightBound = mapBound[3];
+        //print(RightBound);
     }
     // Use this for initialization
     void Start()
     {
         camera = Camera.main;
-        Offset = camera.transform.position - transform.position;
+        Offset = camera.transform.position;
+        //Offset = camera.transform.position - transform.position;
         //相對位移 = 攝影機座標-玩家座標
     }
 

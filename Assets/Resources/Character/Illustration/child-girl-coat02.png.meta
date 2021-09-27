@@ -1,9 +1,45 @@
 fileFormatVersion: 2
 guid: 472dde54d4d16694a881850bc767eff1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -19311316097190588
+    second: child-girl-coat02_0
+  - first:
+      213: 5966295542740441441
+    second: child-girl-coat02_1
+  - first:
+      213: -6779361809964916863
+    second: child-girl-coat02_2
+  - first:
+      213: -6117246246752521081
+    second: child-girl-coat02_3
+  - first:
+      213: -5267776707273729824
+    second: child-girl-coat02_4
+  - first:
+      213: 9071806356240640894
+    second: child-girl-coat02_5
+  - first:
+      213: 6517196521240766094
+    second: child-girl-coat02_6
+  - first:
+      213: -142547343505233071
+    second: child-girl-coat02_7
+  - first:
+      213: -3584560365651290293
+    second: child-girl-coat02_8
+  - first:
+      213: 4553644540858615184
+    second: child-girl-coat02_9
+  - first:
+      213: -3259221601128150246
+    second: child-girl-coat02_10
+  - first:
+      213: 8027883226677325117
+    second: child-girl-coat02_11
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +59,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +91,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +110,274 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: child-girl-coat02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 142
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445b1e7d5746bbff0800000000000000
+      internalID: -19311316097190588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 400
+        width: 140
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1695a027f2a8cc250800000000000000
+      internalID: 5966295542740441441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 403
+        width: 144
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f11393a5edae1a0800000000000000
+      internalID: -6779361809964916863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 279
+        width: 145
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78479baf2fc2b1ba0800000000000000
+      internalID: -6117246246752521081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_4
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 277
+        width: 145
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e85fde9ef815e6b0800000000000000
+      internalID: -5267776707273729824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_5
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 277
+        width: 145
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7baad601d785ed70800000000000000
+      internalID: 9071806356240640894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 154
+        width: 144
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e86a7fbd4bbb17a50800000000000000
+      internalID: 6517196521240766094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 164
+        width: 142
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15be1b242f1950ef0800000000000000
+      internalID: -142547343505233071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_8
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 164
+        width: 140
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b471969d655114ec0800000000000000
+      internalID: -3584560365651290293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 140
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095464b659bc13f30800000000000000
+      internalID: 4553644540858615184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_10
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 30
+        width: 142
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b0a7cc83be4c2d0800000000000000
+      internalID: -3259221601128150246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-coat02_11
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 50
+        width: 146
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d2b68d245c86f60800000000000000
+      internalID: 8027883226677325117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

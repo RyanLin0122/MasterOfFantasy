@@ -48,7 +48,7 @@ public class MailBox : Inventory
         slotLists.Add(panel4.GetComponentsInChildren<Slot>());
         Txtcolor = RibiTxt.color;
         PressBag1();
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
         RibiTxt.text = GameRoot.Instance.ActivePlayer.MailBoxRibi.ToString("N0");
         base.InitWnd();
     }
@@ -70,7 +70,7 @@ public class MailBox : Inventory
             MainCitySys.Instance.CloseMailBoxWnd();
             KnapsackWnd.Instance.CloseAndPop();
             MainCitySys.Instance.Knapsack.IsOpen = false;
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
             IsOpen = false;
 
         }
@@ -87,7 +87,7 @@ public class MailBox : Inventory
         MainCitySys.Instance.CloseMailBoxWnd();
         KnapsackWnd.Instance.CloseAndPop();
         MainCitySys.Instance.Knapsack.IsOpen = false;
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         IsOpen = false;
     }
     public void PressBag1()

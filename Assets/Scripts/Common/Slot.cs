@@ -347,13 +347,13 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (transform.childCount > 0)
         {
             string toolTipText = GetToolTipText(transform.GetChild(0).GetComponent<ItemUI>().Item);
-            InventoryManager.Instance.ShowToolTip(toolTipText);
+            InventorySys.Instance.ShowToolTip(toolTipText);
         }
     }
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (transform.childCount > 0)
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -373,10 +373,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 //穿裝或喝水
-                if (InventoryManager.Instance.IsPickedItem == false && transform.childCount > 0)
+                if (InventorySys.Instance.IsPickedItem == false && transform.childCount > 0)
                 {
                     ItemUI currentItemUI = transform.GetChild(0).GetComponent<ItemUI>();
-                    InventoryManager.Instance.HideToolTip();
+                    InventorySys.Instance.HideToolTip();
                     if (currentItemUI.Item is Consumable)
                     {
                         AudioSvc.Instance.PlayUIAudio(Constants.PotionAudio);
@@ -408,17 +408,17 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         }
                         currentItemUI.ReduceAmount(1);
                         Item currentItem = currentItemUI.Item;
-                        InventoryManager.Instance.HideToolTip();
+                        InventorySys.Instance.HideToolTip();
 
                         bool IsSlotFilled = false;
 
                         if (currentItem is Weapon)
                         {
-                            IsSlotFilled = EquipmentWnd.Instance.IsFilledEquipment(EquipmentType.Weapon, currentItem.IsCash);
+                            IsSlotFilled = EquipmentWnd.Instance.IsEquipmentSlotFilled(EquipmentType.Weapon, currentItem.IsCash);
                         }
                         else if (currentItem is Equipment)
                         {
-                            IsSlotFilled = EquipmentWnd.Instance.IsFilledEquipment(((Equipment)currentItem).EquipType, currentItem.IsCash);
+                            IsSlotFilled = EquipmentWnd.Instance.IsEquipmentSlotFilled(((Equipment)currentItem).EquipType, currentItem.IsCash);
                         }
 
                         if (!IsSlotFilled)
@@ -432,14 +432,14 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         {
                             int KnapsackPosition = SlotPosition;
                             int EquipPosition = EquipmentWnd.Instance.FindEquipmentPosition(currentItem);
-                            Item PutOffItem = InventoryManager.Instance.Equipments[EquipPosition];
+                            Item PutOffItem = InventorySys.Instance.Equipments[EquipPosition];
                             PutOffItem.Position = KnapsackPosition;
                             new EquipmentSender(2, EquipPosition, PutOffItem, KnapsackPosition,currentItem);
                             Tools.Log("穿裝型2");
                         }
                     }
                 }
-                InventoryManager.Instance.RemovePickedItem();
+                InventorySys.Instance.RemovePickedItem();
             }
 
             if (eventData.button != PointerEventData.InputButton.Left) return;
@@ -447,13 +447,13 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (transform.childCount > 0)
             {
                 ItemUI currentItem = transform.GetChild(0).GetComponent<ItemUI>();
-                if (InventoryManager.Instance.IsPickedItem == false)//当前没有选中任何物品( 当前手上没有任何物品)当前鼠标上没有任何物品
+                if (InventorySys.Instance.IsPickedItem == false)//当前没有选中任何物品( 当前手上没有任何物品)当前鼠标上没有任何物品
                 {
                     //把東西拿到手上
                     AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-                    InventoryManager.Instance.PickupItem(currentItem.Item, currentItem.Amount, SlotPosition);
+                    InventorySys.Instance.PickupItem(currentItem.Item, currentItem.Amount, SlotPosition);
                     GameObject obj = currentItem.gameObject;
-                    obj.transform.SetParent(InventoryManager.Instance.transform);
+                    obj.transform.SetParent(InventorySys.Instance.transform);
                     Destroy(obj);
                 }
                 else
@@ -463,10 +463,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                     //可以完全放下
                     //或只能放下其中一部分 交換封包
                     //自身的id!=pickedItem.id   pickedItem交换 交換封包         
-                    if (currentItem.Item.ItemID == InventoryManager.Instance.PickedItem.Item.ItemID)
+                    if (currentItem.Item.ItemID == InventorySys.Instance.PickedItem.Item.ItemID)
                     {
                         //補充數量
-                        if (currentItem.Item.Capacity >= currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count)
+                        if (currentItem.Item.Capacity >= currentItem.Amount + InventorySys.Instance.PickedUpItem.Count)
                         {
                             //夠放第一格全部數量，刪除第一格物品
                             //寫交換封包
@@ -475,17 +475,17 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             {
                                 Item item1 = nk[SlotPosition];
                                 item1.Position = SlotPosition;
-                                item1.Count = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count;
+                                item1.Count = currentItem.Amount + InventorySys.Instance.PickedUpItem.Count;
                                 Items.Add(item1);
                             }
                             else
                             {
                                 Item item1 = ck[SlotPosition];
                                 item1.Position = SlotPosition;
-                                item1.Count = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count;
+                                item1.Count = currentItem.Amount + InventorySys.Instance.PickedUpItem.Count;
                                 Items.Add(item1);
                             }
-                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
+                            new KnapsackSender(4, Items, new int[] { InventorySys.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                             Tools.Log("KnapsackOp: " + 4);
                         }
                         else
@@ -494,9 +494,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             List<Item> Items = new List<Item>();
                             if (!currentItem.Item.IsCash)
                             {
-                                int RestAmount = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
-                                Item item1 = nk[InventoryManager.Instance.PickedUpItem.Position];
-                                item1.Position = InventoryManager.Instance.PickedUpItem.Position;
+                                int RestAmount = currentItem.Amount + InventorySys.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
+                                Item item1 = nk[InventorySys.Instance.PickedUpItem.Position];
+                                item1.Position = InventorySys.Instance.PickedUpItem.Position;
                                 item1.Count = RestAmount;
                                 Items.Add(item1);
 
@@ -507,9 +507,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                             }
                             else
                             {
-                                int RestAmount = currentItem.Amount + InventoryManager.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
-                                Item item1 = ck[InventoryManager.Instance.PickedUpItem.Position];
-                                item1.Position = InventoryManager.Instance.PickedUpItem.Position;
+                                int RestAmount = currentItem.Amount + InventorySys.Instance.PickedUpItem.Count - currentItem.Item.Capacity;
+                                Item item1 = ck[InventorySys.Instance.PickedUpItem.Position];
+                                item1.Position = InventorySys.Instance.PickedUpItem.Position;
                                 item1.Count = RestAmount;
                                 Items.Add(item1);
 
@@ -518,7 +518,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                                 item2.Count = currentItem.Item.Capacity;
                                 Items.Add(item2);
                             }
-                            new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
+                            new KnapsackSender(4, Items, new int[] { InventorySys.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                             Tools.Log("KnapsackOp: " + 4);
                         }
                     }
@@ -528,8 +528,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         List<Item> Items = new List<Item>();
                         if (!currentItem.Item.IsCash)
                         {
-                            Item item1 = nk[InventoryManager.Instance.PickedUpItem.Position];
-                            item1.Position = InventoryManager.Instance.PickedUpItem.Position;
+                            Item item1 = nk[InventorySys.Instance.PickedUpItem.Position];
+                            item1.Position = InventorySys.Instance.PickedUpItem.Position;
                             Items.Add(item1);
 
                             Item item2 = nk[SlotPosition];
@@ -538,18 +538,18 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         }
                         else
                         {
-                            Item item1 = ck[InventoryManager.Instance.PickedUpItem.Position];
-                            item1.Position = InventoryManager.Instance.PickedUpItem.Position;
+                            Item item1 = ck[InventorySys.Instance.PickedUpItem.Position];
+                            item1.Position = InventorySys.Instance.PickedUpItem.Position;
                             Items.Add(item1);
 
                             Item item2 = ck[SlotPosition];
                             item2.Position = SlotPosition;
                             Items.Add(item2);
                         }
-                        new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
+                        new KnapsackSender(4, Items, new int[] { InventorySys.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                         Tools.Log("KnapsackOp: " + 4);
                     }
-                    InventoryManager.Instance.RemovePickedItem();
+                    InventorySys.Instance.RemovePickedItem();
                 }
             }
             else
@@ -558,35 +558,35 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 // 自身是空  
                 //1,IsPickedItem ==true  pickedItem放在
                 //2,IsPickedItem==false  return
-                if (InventoryManager.Instance.IsPickedItem == true && SlotPosition != InventoryManager.Instance.PickedUpItem.Position)
+                if (InventorySys.Instance.IsPickedItem == true && SlotPosition != InventorySys.Instance.PickedUpItem.Position)
                 {
                     //寫交換封包
                     List<Item> Items = new List<Item>();
-                    if (!InventoryManager.Instance.PickedUpItem.IsCash)
+                    if (!InventorySys.Instance.PickedUpItem.IsCash)
                     {
-                        Item item1 = InventoryManager.Instance.PickedUpItem;
+                        Item item1 = InventorySys.Instance.PickedUpItem;
                         Items.Add(item1);
                     }
                     else
                     {
-                        Item item1 = InventoryManager.Instance.PickedUpItem;
+                        Item item1 = InventorySys.Instance.PickedUpItem;
                         Items.Add(item1);
                     }
-                    new KnapsackSender(4, Items, new int[] { InventoryManager.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
+                    new KnapsackSender(4, Items, new int[] { InventorySys.Instance.PickedUpItem.Position }, new int[] { SlotPosition });
                     Tools.Log("KnapsackOp: " + 4);
                     //InventoryManager.Instance.RemoveItem(InventoryManager.Instance.PickedItem.Amount);
                 }
 
                 else
                 {
-                    if (SlotPosition == InventoryManager.Instance.PickedUpItem.Position)
+                    if (SlotPosition == InventorySys.Instance.PickedUpItem.Position)
                     {
-                        StoreItem(InventoryManager.Instance.PickedUpItem, InventoryManager.Instance.PickedUpItem.Count);
-                        InventoryManager.Instance.RemovePickedItem();
+                        StoreItem(InventorySys.Instance.PickedUpItem, InventorySys.Instance.PickedUpItem.Count);
+                        InventorySys.Instance.RemovePickedItem();
                         return;
                     }
                 }
-                InventoryManager.Instance.RemovePickedItem();
+                InventorySys.Instance.RemovePickedItem();
             }
         }
 

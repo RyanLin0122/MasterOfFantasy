@@ -105,18 +105,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -124,7 +112,7 @@ TextureImporter:
       name: child-boy-coat02_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 3
         y: 349
         width: 176
         height: 162
@@ -167,9 +155,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 221
+        y: 214
         width: 167
-        height: 123
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,7 +180,7 @@ TextureImporter:
         width: 176
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +196,12 @@ TextureImporter:
       name: child-boy-coat02_4
       rect:
         serializedVersion: 2
-        x: 5
+        x: 6
         y: 79
-        width: 176
+        width: 175
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +217,12 @@ TextureImporter:
       name: child-boy-coat02_5
       rect:
         serializedVersion: 2
-        x: 180
+        x: 181
         y: 87
         width: 176
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

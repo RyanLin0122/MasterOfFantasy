@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: d5e27915a737595418cce30880c77a04
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -493071790695759400
+    second: teen-girl-hand02_0
+  - first:
+      213: -7331221434063928457
+    second: teen-girl-hand02_1
+  - first:
+      213: 3151805961418293520
+    second: teen-girl-hand02_2
+  - first:
+      213: 3150776185575596514
+    second: teen-girl-hand02_3
+  - first:
+      213: 792332707267841299
+    second: teen-girl-hand02_4
+  - first:
+      213: 6565963986778617970
+    second: teen-girl-hand02_5
+  - first:
+      213: -3145410454150841552
+    second: teen-girl-hand02_6
+  - first:
+      213: 526863578598345352
+    second: teen-girl-hand02_7
+  - first:
+      213: -8660162045786302452
+    second: teen-girl-hand02_8
+  - first:
+      213: 6499103622272786878
+    second: teen-girl-hand02_9
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +71,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +85,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +104,232 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-girl-hand02_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 187
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d140da91d14829f0800000000000000
+      internalID: -493071790695759400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 188
+        width: 43
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773c3ecb2f4424a90800000000000000
+      internalID: -7331221434063928457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 176
+        width: 65
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 011cb4ba2d67dbb20800000000000000
+      internalID: 3151805961418293520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 175
+        width: 73
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e16efb4f3ec9bb20800000000000000
+      internalID: 3150776185575596514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113
+        width: 47
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d8f98366eeefa00800000000000000
+      internalID: 792332707267841299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 111
+        width: 44
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27872ff357dfe1b50800000000000000
+      internalID: 6565963986778617970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 125
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03bf9876bd14954d0800000000000000
+      internalID: -3145410454150841552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_7
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 125
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a027f12abcf4700800000000000000
+      internalID: 526863578598345352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_8
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 119
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08569bb08ce0d780800000000000000
+      internalID: -8660162045786302452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hand02_9
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 127
+        width: 31
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1260c8f44713a50800000000000000
+      internalID: 6499103622272786878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

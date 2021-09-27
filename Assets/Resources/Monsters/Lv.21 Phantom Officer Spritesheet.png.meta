@@ -1,9 +1,102 @@
 fileFormatVersion: 2
 guid: 87121a4dd8bb5974696a38c0ececca0a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4064048809718528022
+    second: Lv.21 Phantom Officer Spritesheet_0
+  - first:
+      213: -6786996320194483494
+    second: Lv.21 Phantom Officer Spritesheet_1
+  - first:
+      213: -6152669943595662836
+    second: Lv.21 Phantom Officer Spritesheet_2
+  - first:
+      213: 2087073573252201408
+    second: Lv.21 Phantom Officer Spritesheet_3
+  - first:
+      213: 8418435436217281397
+    second: Lv.21 Phantom Officer Spritesheet_4
+  - first:
+      213: 8523493171817961752
+    second: Lv.21 Phantom Officer Spritesheet_5
+  - first:
+      213: -2163344955195485415
+    second: Lv.21 Phantom Officer Spritesheet_6
+  - first:
+      213: -3500773993620814364
+    second: Lv.21 Phantom Officer Spritesheet_7
+  - first:
+      213: 5677987888848690654
+    second: Lv.21 Phantom Officer Spritesheet_8
+  - first:
+      213: -2674403582835882279
+    second: Lv.21 Phantom Officer Spritesheet_9
+  - first:
+      213: 3581175835273954740
+    second: Lv.21 Phantom Officer Spritesheet_10
+  - first:
+      213: -6681514765470970943
+    second: Lv.21 Phantom Officer Spritesheet_11
+  - first:
+      213: 3495450509679620450
+    second: Lv.21 Phantom Officer Spritesheet_12
+  - first:
+      213: -4320123776775060054
+    second: Lv.21 Phantom Officer Spritesheet_13
+  - first:
+      213: -839472235873907624
+    second: Lv.21 Phantom Officer Spritesheet_14
+  - first:
+      213: -8504524301047062607
+    second: Lv.21 Phantom Officer Spritesheet_15
+  - first:
+      213: 2814959987256321966
+    second: Lv.21 Phantom Officer Spritesheet_16
+  - first:
+      213: 4403805318076711691
+    second: Lv.21 Phantom Officer Spritesheet_17
+  - first:
+      213: 7282291547925504002
+    second: Lv.21 Phantom Officer Spritesheet_18
+  - first:
+      213: 7269866031509453429
+    second: Lv.21 Phantom Officer Spritesheet_19
+  - first:
+      213: 8644331499555104500
+    second: Lv.21 Phantom Officer Spritesheet_20
+  - first:
+      213: -5601892034727842846
+    second: Lv.21 Phantom Officer Spritesheet_21
+  - first:
+      213: -5383632053135506552
+    second: Lv.21 Phantom Officer Spritesheet_22
+  - first:
+      213: -3421614275272182532
+    second: Lv.21 Phantom Officer Spritesheet_23
+  - first:
+      213: -1234500763120912517
+    second: Lv.21 Phantom Officer Spritesheet_24
+  - first:
+      213: 2149927105117186586
+    second: Lv.21 Phantom Officer Spritesheet_25
+  - first:
+      213: -6511827807941694389
+    second: Lv.21 Phantom Officer Spritesheet_26
+  - first:
+      213: 1299936932159246557
+    second: Lv.21 Phantom Officer Spritesheet_27
+  - first:
+      213: 8783471466194597493
+    second: Lv.21 Phantom Officer Spritesheet_28
+  - first:
+      213: 2375100725699280211
+    second: Lv.21 Phantom Officer Spritesheet_29
+  - first:
+      213: 4405886034658458933
+    second: Lv.21 Phantom Officer Spritesheet_30
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +133,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +150,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +163,685 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 29
+        width: 71
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6183f153cd6666830800000000000000
+      internalID: 4064048809718528022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 23
+        width: 71
+        height: 101
+      alignment: 9
+      pivot: {x: 0.5000004, y: 0.49537542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adaacea4ecebfc1a0800000000000000
+      internalID: -6786996320194483494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 23
+        width: 71
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0202c7d8435d9aa0800000000000000
+      internalID: -6152669943595662836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 71
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb7dc96b56c6fc10800000000000000
+      internalID: 2087073573252201408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 20
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57baa4c2d6a44d470800000000000000
+      internalID: 8418435436217281397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 24
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8195daf51e7894670800000000000000
+      internalID: 8523493171817961752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 135
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91390f2a9314af1e0800000000000000
+      internalID: -2163344955195485415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 127
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e54e47c990ca6fc0800000000000000
+      internalID: -3500773993620814364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 140
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edddbc1d6e34cce40800000000000000
+      internalID: 5677987888848690654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 140
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6090b6c1c92ead0800000000000000
+      internalID: -2674403582835882279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 138
+        width: 71
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b587b3c274e2b130800000000000000
+      internalID: 3581175835273954740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 137
+        width: 71
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb439298bd7643a0800000000000000
+      internalID: -6681514765470970943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 317
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 261796708b5528030800000000000000
+      internalID: 3495450509679620450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 317
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa58a936056db04c0800000000000000
+      internalID: -4320123776775060054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 319
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85cceedf2789954f0800000000000000
+      internalID: -839472235873907624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 314
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf9964053cd9f980800000000000000
+      internalID: -8504524301047062607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 223
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7e951b13fb01720800000000000000
+      internalID: 2814959987256321966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 227
+        width: 71
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0340fbba957d1d30800000000000000
+      internalID: 4403805318076711691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 223
+        width: 71
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200ede06495ef0560800000000000000
+      internalID: 7282291547925504002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 227
+        width: 74
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57abcc463a0c3e460800000000000000
+      internalID: 7269866031509453429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 226
+        width: 72
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f6a3bff2b5d6f770800000000000000
+      internalID: 8644331499555104500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 223
+        width: 72
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebe4ffdfd41242b0800000000000000
+      internalID: -5601892034727842846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 223
+        width: 62
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883837fdb2f7945b0800000000000000
+      internalID: -5383632053135506552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 43
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4fef3f1fbf380d0800000000000000
+      internalID: -3421614275272182532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 422
+        width: 75
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b77ba3bb81c2edee0800000000000000
+      internalID: -1234500763120912517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 422
+        width: 75
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a6e71bf4316dd10800000000000000
+      internalID: 2149927105117186586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 422
+        width: 75
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4cef1d1c1751a5a0800000000000000
+      internalID: -6511827807941694389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 422
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd053cf90cd4a0210800000000000000
+      internalID: 1299936932159246557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 422
+        width: 75
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 576fe4df2c825e970800000000000000
+      internalID: 8783471466194597493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 422
+        width: 73
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35df315b68d06f020800000000000000
+      internalID: 2375100725699280211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.21 Phantom Officer Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 422
+        width: 74
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53dfba0510ad42d30800000000000000
+      internalID: 4405886034658458933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

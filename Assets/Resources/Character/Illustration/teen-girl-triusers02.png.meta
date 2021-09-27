@@ -1,9 +1,48 @@
 fileFormatVersion: 2
 guid: 6be685f73ebb2004ab2095dd8587fecc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4283828152544938517
+    second: teen-girl-triusers02_0
+  - first:
+      213: -939535525460348013
+    second: teen-girl-triusers02_1
+  - first:
+      213: 4077370337739014547
+    second: teen-girl-triusers02_2
+  - first:
+      213: 2602325529900169022
+    second: teen-girl-triusers02_3
+  - first:
+      213: -4195626453180343142
+    second: teen-girl-triusers02_4
+  - first:
+      213: -7643615537637839070
+    second: teen-girl-triusers02_5
+  - first:
+      213: 6078997382062252647
+    second: teen-girl-triusers02_7
+  - first:
+      213: 3801022389161413336
+    second: teen-girl-triusers02_8
+  - first:
+      213: 2433951819199930648
+    second: teen-girl-triusers02_9
+  - first:
+      213: -2642306692411281296
+    second: teen-girl-triusers02_10
+  - first:
+      213: 3891056856606455638
+    second: teen-girl-triusers02_11
+  - first:
+      213: 8616360430731183236
+    second: teen-girl-triusers02_12
+  - first:
+      213: -7318599537158895475
+    second: teen-girl-triusers02_6
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +62,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +80,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +94,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +113,295 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-girl-triusers02_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 260
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a424f0207337b30800000000000000
+      internalID: 4283828152544938517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 260
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393731fda6916f2f0800000000000000
+      internalID: -939535525460348013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_2
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 260
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39106a628bab59830800000000000000
+      internalID: 4077370337739014547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_3
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 260
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3731af18415d1420800000000000000
+      internalID: 2602325529900169022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_4
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 260
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c14ff58f326c5c0800000000000000
+      internalID: -4195626453180343142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_5
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 163
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22fa0778a2c6ce590800000000000000
+      internalID: -7643615537637839070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_7
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 163
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 762a95c39efec5450800000000000000
+      internalID: 6078997382062252647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_8
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 63
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dac54969b1ffb430800000000000000
+      internalID: 3801022389161413336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_9
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 63
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811e3dfa84227c120800000000000000
+      internalID: 2433951819199930648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_10
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 63
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07030331014a45bd0800000000000000
+      internalID: -2642306692411281296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_11
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 6
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65730ea689fcff530800000000000000
+      internalID: 3891056856606455638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 6
+        width: 87
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484c67a0926739770800000000000000
+      internalID: 8616360430731183236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-triusers02_6
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 163
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d884e4e1f7c1f6a90800000000000000
+      internalID: -7318599537158895475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

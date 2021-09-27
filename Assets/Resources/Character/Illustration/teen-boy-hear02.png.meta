@@ -1,9 +1,42 @@
 fileFormatVersion: 2
 guid: e9851136de6c769489bb80dbcf8713e8
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1421244210216359767
+    second: teen-boy-hear02_0
+  - first:
+      213: 3143234275889198380
+    second: teen-boy-hear02_1
+  - first:
+      213: -9219857475778974881
+    second: teen-boy-hear02_2
+  - first:
+      213: 2523937463299312795
+    second: teen-boy-hear02_3
+  - first:
+      213: -7141375304486928599
+    second: teen-boy-hear02_4
+  - first:
+      213: 1801264642423856902
+    second: teen-boy-hear02_5
+  - first:
+      213: 4480103968697457872
+    second: teen-boy-hear02_6
+  - first:
+      213: -7427048048570264767
+    second: teen-boy-hear02_7
+  - first:
+      213: -2400958803359709965
+    second: teen-boy-hear02_8
+  - first:
+      213: 1576151637846506092
+    second: teen-boy-hear02_9
+  - first:
+      213: 614200046778018711
+    second: teen-boy-hear02_10
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +56,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +74,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +88,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +107,253 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-boy-hear02_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 392
+        width: 92
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a829febbe9b64ce0800000000000000
+      internalID: -1421244210216359767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 336
+        width: 161
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25353c9be20f9b20800000000000000
+      internalID: 3143234275889198380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 424
+        width: 85
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5be674897c7c0080800000000000000
+      internalID: -9219857475778974881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_3
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 388
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c814f10c3d60320800000000000000
+      internalID: 2523937463299312795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_4
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 399
+        width: 68
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f3f484ffcb4ec90800000000000000
+      internalID: -7141375304486928599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_5
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 54
+        width: 137
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f152616a06ff810800000000000000
+      internalID: 1801264642423856902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_6
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 326
+        width: 91
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dc970ba2d68c2e30800000000000000
+      internalID: 4480103968697457872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_7
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 193
+        width: 146
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14316376623dde890800000000000000
+      internalID: -7427048048570264767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 245
+        width: 112
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4c56d60b41eaed0800000000000000
+      internalID: -2400958803359709965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 135
+        width: 81
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6abdf5509d9fd510800000000000000
+      internalID: 1576151637846506092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear02_10
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 123
+        width: 146
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b6b3930b3168800800000000000000
+      internalID: 614200046778018711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -18,7 +18,7 @@ public class ResSvc : MonoBehaviour
         InitNpcCfg();
         InitShopInfo(PathDefine.NpcShop);
         InitEquipmentPath(PathDefine.EquipmentPath);
-        InventoryManager.Instance.ParseItemJson();
+        InventorySys.Instance.ParseItemJson();
         ParseMonsterJson();
         ParseSkillJson();
         IllustrationPath.Instance.Init();
@@ -640,13 +640,14 @@ public class ResSvc : MonoBehaviour
                 List<CashShopData> ItemList = new List<CashShopData>();
                 //第二層 小分類
                 var list = jo[cata][key].list;
-                foreach (var item in list)
+                for (int i = 0; i < list.Count; i++)
                 {
                     //第三層 商品
                     CashShopData data = new CashShopData
                     {
-                        ItemID = (int)item["ID"].n,
-                        SellPrice = (int)item["SellPrice"].n
+                        ItemID = (int)list[i]["ID"].n,
+                        SellPrice = (int)list[i]["SellPrice"].n,
+                        Quantity = (int)list[i]["Quantity"].n
                     };
                     ItemList.Add(data);
                 }

@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: bfb6571dca525b947a186b137ce41433
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7130106277791942883
+    second: teen-boy-clock07_0
+  - first:
+      213: -58283897837149314
+    second: teen-boy-clock07_1
+  - first:
+      213: -4359614247493086146
+    second: teen-boy-clock07_2
+  - first:
+      213: -8934648068791764803
+    second: teen-boy-clock07_3
+  - first:
+      213: 1160907369292735763
+    second: teen-boy-clock07_4
+  - first:
+      213: 5697584771525428048
+    second: teen-boy-clock07_5
+  - first:
+      213: 7133915495703399635
+    second: teen-boy-clock07_6
+  - first:
+      213: -4673541423232624084
+    second: teen-boy-clock07_7
+  - first:
+      213: -5032747057277908231
+    second: teen-boy-clock07_8
+  - first:
+      213: 6642544553094722002
+    second: teen-boy-clock07_9
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +71,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +85,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +104,232 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-boy-clock07_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 341
+        width: 363
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8429af1e933f260800000000000000
+      internalID: 7130106277791942883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_1
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 355
+        width: 113
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73aa4d8a1fe03ff0800000000000000
+      internalID: -58283897837149314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 274
+        width: 177
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34517ca0f98f73c0800000000000000
+      internalID: -4359614247493086146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 274
+        width: 89
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db879825be0c10480800000000000000
+      internalID: -8934648068791764803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_4
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 136
+        width: 161
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315a3d30a1f5c1010800000000000000
+      internalID: 1160907369292735763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_5
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 67
+        width: 78
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 053c270a923e11f40800000000000000
+      internalID: 5697584771525428048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_6
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 12
+        width: 46
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc4e03a852c00360800000000000000
+      internalID: 7133915495703399635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_7
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 12
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a552946de342fb0800000000000000
+      internalID: -4673541423232624084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_8
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 5
+        width: 107
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9face8e4737182ab0800000000000000
+      internalID: -5032747057277908231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-clock07_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 13
+        width: 252
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1baebc31f0f2c50800000000000000
+      internalID: 6642544553094722002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

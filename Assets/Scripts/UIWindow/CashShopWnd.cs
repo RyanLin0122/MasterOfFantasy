@@ -5,6 +5,7 @@ using PEProtocal;
 using System.Globalization;
 public class CashShopWnd : Inventory
 {
+    #region Singleton
     private static CashShopWnd _instance;
     public static CashShopWnd Instance
     {
@@ -17,13 +18,13 @@ public class CashShopWnd : Inventory
             return _instance;
         }
     }
+    #endregion
 
+    #region Properties
     public bool IsOpen = false;
     public Button CloseBtn;
     public Button FashionBtnL;
     public Button OtherBtnL;
-    //public GameObject panel1L;
-    //public GameObject panel2L;
     public Sprite PanelSprite1;
     public Sprite PanelSprite2;
     public Text CashText;
@@ -42,7 +43,7 @@ public class CashShopWnd : Inventory
     public Text panel5Text;
     public Text panel6Text;
     public GameObject ButtonGroup;
-
+    public Transform BuyItemsTransform;
     public Illustration illustration;
     public CharacterDemo Demo;
     public bool IsPutOff = false;
@@ -50,26 +51,31 @@ public class CashShopWnd : Inventory
     public string cata;
     public string CurrentTag;
     int CurrentPage = 0;
+    public int CurrentPanelPage = 0;
     public Text CurPTxt;
     public GameRoot TagList = null;
     public Button Forward;
     public Button Backward;
     int TotalPage;
     public Text TotPTex;
+    public GameObject SellItemGroup;
 
+    //BuyPanel
+    public List<CashShopBuyPanelSlot> BuyPanelSlots = new List<CashShopBuyPanelSlot>();
+    #endregion
+
+    #region Initialize
     protected override void InitWnd()
     {
         illustration.InitIllustration();
-        MainCitySys.Instance.InfoWnd.illustration.InitIllustration();
+        InitDemo();
         PressFashion1();
         PressNewBtn();
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-        InitDemo();
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
         InitializeTryOnPlayer();
-        CashText.text = GameRoot.Instance.AccountData.Cash.ToString("NO");
+        CashText.text = GameRoot.Instance.AccountData.Cash.ToString("N0");
         base.InitWnd();
     }
-
     private void InitDemo()
     {
         Demo.DownwearCtrl.Init();
@@ -82,45 +88,7 @@ public class CashShopWnd : Inventory
         Demo.HairFrontCtrl.Init();
         Demo.FaceCtrl.Init();
     }
-
-
-    public void ClickCloseBtn()
-    {
-        MainCitySys.Instance.CloseCashShopWnd();
-        IsOpen = false;
-    }
-
-
-    public void openCloseWnd()
-    {
-        if (IsOpen == true)
-        {
-            MainCitySys.Instance.CloseShopWnd();
-            IsOpen = false;
-        }
-        else
-        {
-            MainCitySys.Instance.OpenCashShopWnd();
-            IsOpen = true;
-        }
-    }
-    public void PressFashion1()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-        //panel1L.SetActive(true);
-        //panel2L.SetActive(false);
-        FashionBtnL.GetComponent<Image>().sprite = PanelSprite1;
-        OtherBtnL.GetComponent<Image>().sprite = PanelSprite2;
-
-    }
-    public void PressOther()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
-        //panel1L.SetActive(false);
-        //panel2L.SetActive(true);
-        FashionBtnL.GetComponent<Image>().sprite = PanelSprite2;
-        OtherBtnL.GetComponent<Image>().sprite = PanelSprite1;
-    }
+    #endregion
 
     #region Press Catagories Button
 
@@ -287,212 +255,87 @@ public class CashShopWnd : Inventory
 
     #endregion
 
-    #region Illustration and Demo
-    public Player TryOnPlayer = null;
-    public void InitializeTryOnPlayer()
+    #region UI Operation
+    public void ClickCloseBtn()
     {
-        Player player = GameRoot.Instance.ActivePlayer;
-        PlayerEquipments CurrentEquipments = GameRoot.Instance.ActivePlayer.playerEquipments;
-        PlayerEquipments TryOnEquipments = new PlayerEquipments();
-        TryOnEquipments.Badge = CurrentEquipments.Badge != null ? CurrentEquipments.Badge != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.Badge.ItemID) : null : null;
-        TryOnEquipments.B_Chest = CurrentEquipments.B_Chest != null ? CurrentEquipments.B_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Chest.ItemID) : null: null;
-        TryOnEquipments.B_Glove = CurrentEquipments.B_Glove != null ? CurrentEquipments.B_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Glove.ItemID) : null : null;
-        TryOnEquipments.B_Head = CurrentEquipments.B_Head != null ? CurrentEquipments.B_Head != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Head.ItemID) : null: null;
-        TryOnEquipments.B_Neck = CurrentEquipments.B_Neck != null ? CurrentEquipments.B_Neck != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Neck.ItemID) : null : null;
-        TryOnEquipments.B_Pants = CurrentEquipments.B_Pants != null ? CurrentEquipments.B_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Pants.ItemID) : null: null;
-        TryOnEquipments.B_Shield = CurrentEquipments.B_Shield != null ? CurrentEquipments.B_Shield != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shield.ItemID) : null : null;
-        TryOnEquipments.B_Ring1 = CurrentEquipments.B_Ring1 != null ? CurrentEquipments.B_Ring1 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring1.ItemID) : null : null;
-        TryOnEquipments.B_Ring2 = CurrentEquipments.B_Ring2 != null ? CurrentEquipments.B_Ring2 != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Ring2.ItemID) : null : null;
-        TryOnEquipments.B_Shoes = CurrentEquipments.B_Shoes != null ? CurrentEquipments.B_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Shoes.ItemID) : null: null;
-        TryOnEquipments.B_Weapon = CurrentEquipments.B_Weapon != null ? CurrentEquipments.B_Weapon != null ? (Weapon)InventoryManager.Instance.GetItemById(CurrentEquipments.B_Weapon.ItemID) : null: null;
-        TryOnEquipments.F_ChatBox = CurrentEquipments.F_ChatBox != null ? CurrentEquipments.F_ChatBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_ChatBox.ItemID) : null: null;
-        TryOnEquipments.F_Chest = CurrentEquipments.F_Chest != null ? CurrentEquipments.F_Chest != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Chest.ItemID) : null: null;
-        TryOnEquipments.F_FaceAcc = CurrentEquipments.F_FaceAcc != null ? CurrentEquipments.F_FaceAcc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceAcc.ItemID) : null: null;
-        TryOnEquipments.F_FaceType = CurrentEquipments.F_FaceType != null ? CurrentEquipments.F_FaceType != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_FaceType.ItemID) : null : null;
-        TryOnEquipments.F_Glasses = CurrentEquipments.F_Glasses != null ? CurrentEquipments.F_Glasses != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glasses.ItemID) : null : null;
-        TryOnEquipments.F_Glove = CurrentEquipments.F_Glove != null ? CurrentEquipments.F_Glove != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Glove.ItemID) : null: null;
-        TryOnEquipments.F_Hairacc = CurrentEquipments.F_Hairacc != null ? CurrentEquipments.F_Hairacc != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Hairacc.ItemID) : null: null;
-        TryOnEquipments.F_HairStyle = CurrentEquipments.F_HairStyle != null ? CurrentEquipments.F_HairStyle != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_HairStyle.ItemID) : null: null;
-        TryOnEquipments.F_NameBox = CurrentEquipments.F_NameBox != null ? CurrentEquipments.F_NameBox != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_NameBox.ItemID) : null: null;
-        TryOnEquipments.F_Pants = CurrentEquipments.F_Pants != null ? CurrentEquipments.F_Pants != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Pants.ItemID) : null : null;
-        TryOnEquipments.F_Shoes = CurrentEquipments.F_Shoes != null ? CurrentEquipments.F_Shoes != null ? (Equipment)InventoryManager.Instance.GetItemById(CurrentEquipments.F_Shoes.ItemID) : null : null;
-        TryOnPlayer = new Player { Gender = player.Gender, Level = player.Level, playerEquipments = TryOnEquipments };
-        illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
-        Demo.SetAllEquipment(TryOnPlayer);
+        MainCitySys.Instance.CloseCashShopWnd();
+        IsOpen = false;
     }
-    private void PutOffEquipment(int pos, PlayerEquipments pq)
+    public void openCloseWnd()
     {
-        switch (pos)
+        if (IsOpen == true)
         {
-            case 1:
-                pq.B_Head = null;
-                break;
-            case 2:
-                pq.B_Ring1 = null;
-                break;
-            case 3:
-                pq.B_Neck = null;
-                break;
-            case 4:
-                pq.B_Ring2 = null;
-                break;
-            case 6:
-                pq.B_Chest = null;
-                break;
-            case 7:
-                pq.B_Glove = null;
-                break;
-            case 8:
-                pq.B_Shield = null;
-                break;
-            case 9:
-                pq.B_Pants = null;
-                break;
-            case 10:
-                pq.B_Shoes = null;
-                break;
-            case 11:
-                pq.F_Hairacc = null;
-                break;
-            case 12:
-                pq.F_NameBox = null;
-                break;
-            case 13:
-                pq.F_ChatBox = null;
-                break;
-            case 14:
-                pq.F_FaceType = null;
-                break;
-            case 15:
-                pq.F_Glasses = null;
-                break;
-            case 16:
-                pq.F_HairStyle = null;
-                break;
-            case 17:
-                pq.F_Chest = null;
-                break;
-            case 18:
-                pq.F_Glove = null;
-                break;
-            case 19:
-                pq.F_Cape = null;
-                break;
-            case 20:
-                pq.F_Pants = null;
-                break;
-            case 21:
-                pq.F_Shoes = null;
-                break;
-            case 5:
-                pq.B_Weapon = null;
-                break;
+            MainCitySys.Instance.CloseCashShopWnd();
+            IsOpen = false;
+        }
+        else
+        {
+            MainCitySys.Instance.OpenCashShopWnd();
+            IsOpen = true;
         }
     }
-
-    /// <summary>
-    /// 雙擊圖片試穿或脫掉
-    /// </summary>
-    /// <param name="itemID"></param>
-    public void TryOnOrPutOffEquipment(int itemID)
+    public void PressForward()
     {
-
-    }
-    private void TryOnEquipment(Item eq)
-    {
-        if(TryOnPlayer == null)
+        if (CurrentPage != 0)
         {
-            InitializeTryOnPlayer();
-        }
-        PlayerEquipments pe = TryOnPlayer.playerEquipments;
-        if(eq.Type== ItemType.Equipment || eq.Type == ItemType.Weapon)
-        {
-            if (eq.Type == ItemType.Weapon)
+            CurrentPage -= 1;
+            Backward.interactable = true;
+            CurPTxt.text = (CurrentPage + 1).ToString();
+            SetSellItems(CurrentPage);
+            if (CurrentPage == 0)
             {
-                pe.B_Weapon = (Weapon)eq;
-            }
-            else if(eq.Type == ItemType.Equipment)
-            {
-                Equipment e = (Equipment)eq;
-                switch (e.EquipType)
-                { 
-                    case EquipmentType.Head:
-                        pe.B_Head = e; 
-                        break;
-                    case EquipmentType.Neck:
-                        pe.B_Neck = e;
-                        break;
-                    case EquipmentType.Chest:
-                        if (e.IsCash) pe.F_Chest = e; else pe.B_Chest = e;
-                        break;
-                    case EquipmentType.Ring:
-                        if (pe.B_Ring1 == null && pe.B_Ring2 == null) pe.B_Ring1 = e;
-                        else if (pe.B_Ring1 != null && pe.B_Ring2 == null) pe.B_Ring2 = e;
-                        else if (pe.B_Ring1 == null && pe.B_Ring2 != null) pe.B_Ring1 = e;
-                        else if (pe.B_Ring1 != null && pe.B_Ring2 != null) pe.B_Ring2 = e;
-                        break;
-                    case EquipmentType.Pant:
-                        if (e.IsCash) pe.F_Pants = e; else pe.B_Pants = e;
-                        break;
-                    case EquipmentType.Shoes:
-                        if (e.IsCash) pe.F_Shoes = e; else pe.B_Shoes = e;
-                        break;
-                    case EquipmentType.Gloves:
-                        if (e.IsCash) pe.F_Glove = e; else pe.B_Glove = e;
-                        break;
-                    case EquipmentType.Shield:
-                        pe.B_Shield = e;
-                        break;
-                    case EquipmentType.FaceType:
-                        pe.F_FaceType = e;
-                        break;
-                    case EquipmentType.HairAcc:
-                        pe.F_Hairacc = e;
-                        break;
-                    case EquipmentType.HairStyle:
-                        pe.F_HairStyle = e;
-                        break;
-                    case EquipmentType.Glasses:
-                        pe.F_Glasses = e;
-                        break;
-                    case EquipmentType.Cape:
-                        pe.F_Cape = e;
-                        break;
-                    case EquipmentType.NameBox:
-                        pe.F_NameBox = e;
-                        break;
-                    case EquipmentType.ChatBox:
-                        pe.F_ChatBox = e;
-                        break;
-                    case EquipmentType.Badge:
-                        pe.Badge = e;
-                        break;
-                    case EquipmentType.FaceAcc:
-                        pe.F_FaceAcc = e;
-                        break;
-                    default:
-                        break;
-                }
+                Forward.interactable = false;
             }
         }
-        ResetIllustrationAndDemo();
     }
-    public void ResetIllustrationAndDemo()
+    public void PressBackward()
     {
-        illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
-        Demo.SetAllEquipment(TryOnPlayer);
+        if (CurrentPage != TotalPage - 1)
+        {
+            CurrentPage += 1;
+            Forward.interactable = true;
+            CurPTxt.text = (CurrentPage + 1).ToString();
+            SetSellItems(CurrentPage);
+            if (CurrentPage == TotalPage - 1)
+            {
+                Backward.interactable = false;
+            }
+        }
     }
-    public void PutOffAll()
+    public void PressFashion1()
     {
-        illustration.SetGenderAge(true, true, GameRoot.Instance.ActivePlayer);
+        CurrentPanelPage = 0;
+        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        FashionBtnL.GetComponent<Image>().sprite = PanelSprite1;
+        OtherBtnL.GetComponent<Image>().sprite = PanelSprite2;
+        ClearPanel();
+        SetBuyPanel(0);
     }
-    public void ClickReturnBtn()
+    public void PressOther()
     {
-        illustration.SetGenderAge(true, false, GameRoot.Instance.ActivePlayer);
+        CurrentPanelPage = 1;
+        AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
+        FashionBtnL.GetComponent<Image>().sprite = PanelSprite2;
+        OtherBtnL.GetComponent<Image>().sprite = PanelSprite1;
+        ClearPanel();
+        SetBuyPanel(1);
     }
-
-    #endregion
-
+    public void PressBuyBtn(int Order, int SellPrice, int Quantity)
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        MessageBox.Show("確定要購買 " + InventorySys.Instance.itemList[ResSvc.Instance.CashShopDic[cata][CurrentTag][Order].ItemID].Name + "嗎?", MessageBoxType.Confirm,
+            () =>
+            {
+                new CashShopSender(
+            1,
+            new List<string> { cata },
+            new List<string> { CurrentTag },
+            new List<int> { Order },
+            new List<int> { 1 },
+            new List<int> { Quantity },
+            SellPrice);
+            });
+    }
     public void SetItemTags(string Cata)
     {
         List<string> TagList = new List<string>();
@@ -575,26 +418,16 @@ public class CashShopWnd : Inventory
                 break;
             }
 
-            InstantiateSellItem(Items[i].ItemID, Items[i].SellPrice);
+            InstantiateItem(Items[i].ItemID, Items[i].SellPrice, Items[i].Quantity, i);
         }
     }
-
-    public GameObject SellItemGroup;
-
-    public void InstantiateSellItem(int ItemID, int SellPrice)
+    public void InstantiateItem(int ItemID, int SellPrice, int Quantity, int Order)
     {
         CashShopItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CashItemUI"))).transform.GetComponent<CashShopItemUI>();
         ItemUI.transform.SetParent(SellItemGroup.transform);
-        ItemUI.SetItem(ItemID, SellPrice);
-        
-        //添加試穿/脫掉事件
-        ItemUI.image.GetComponent<DoubleClickObject>().DoubleClickEvents.AddListener(()=> { TryOnOrPutOffEquipment(ItemID); });
-        //添加購買事件
-
-        //添加送禮事件
-
-        //添加放入購物車事件
-
+        ItemUI.SetItem(ItemID, SellPrice, Quantity);
+        ItemUI.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => TryOnOffEquipment(ItemID));
+        ItemUI.BuyBtn.onClick.AddListener(() => PressBuyBtn(Order, SellPrice, Quantity));
     }
     public void ClearSellItems()
     {
@@ -612,39 +445,552 @@ public class CashShopWnd : Inventory
             ButtonGroup.transform.GetChild(i).gameObject.GetComponent<Text>().color = Color.white;
         }
     }
-    public void PressForward()
+    #endregion
+
+    #region Illustration and Demo
+    public Player TryOnPlayer = null;
+    public void InitializeTryOnPlayer()
     {
-        if (CurrentPage != 0)
+        Player player = GameRoot.Instance.ActivePlayer;
+        PlayerEquipments CurrentEquipments = GameRoot.Instance.ActivePlayer.playerEquipments;
+        PlayerEquipments TryOnEquipments = new PlayerEquipments();
+        TryOnEquipments.Badge = CurrentEquipments.Badge != null ? CurrentEquipments.Badge != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.Badge.ItemID) : null : null;
+        TryOnEquipments.B_Chest = CurrentEquipments.B_Chest != null ? CurrentEquipments.B_Chest != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Chest.ItemID) : null : null;
+        TryOnEquipments.B_Glove = CurrentEquipments.B_Glove != null ? CurrentEquipments.B_Glove != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Glove.ItemID) : null : null;
+        TryOnEquipments.B_Head = CurrentEquipments.B_Head != null ? CurrentEquipments.B_Head != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Head.ItemID) : null : null;
+        TryOnEquipments.B_Neck = CurrentEquipments.B_Neck != null ? CurrentEquipments.B_Neck != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Neck.ItemID) : null : null;
+        TryOnEquipments.B_Pants = CurrentEquipments.B_Pants != null ? CurrentEquipments.B_Pants != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Pants.ItemID) : null : null;
+        TryOnEquipments.B_Shield = CurrentEquipments.B_Shield != null ? CurrentEquipments.B_Shield != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Shield.ItemID) : null : null;
+        TryOnEquipments.B_Ring1 = CurrentEquipments.B_Ring1 != null ? CurrentEquipments.B_Ring1 != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Ring1.ItemID) : null : null;
+        TryOnEquipments.B_Ring2 = CurrentEquipments.B_Ring2 != null ? CurrentEquipments.B_Ring2 != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Ring2.ItemID) : null : null;
+        TryOnEquipments.B_Shoes = CurrentEquipments.B_Shoes != null ? CurrentEquipments.B_Shoes != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.B_Shoes.ItemID) : null : null;
+        TryOnEquipments.B_Weapon = CurrentEquipments.B_Weapon != null ? CurrentEquipments.B_Weapon != null ? (Weapon)InventorySys.Instance.GetItemById(CurrentEquipments.B_Weapon.ItemID) : null : null;
+        TryOnEquipments.F_ChatBox = CurrentEquipments.F_ChatBox != null ? CurrentEquipments.F_ChatBox != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_ChatBox.ItemID) : null : null;
+        TryOnEquipments.F_Chest = CurrentEquipments.F_Chest != null ? CurrentEquipments.F_Chest != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Chest.ItemID) : null : null;
+        TryOnEquipments.F_FaceAcc = CurrentEquipments.F_FaceAcc != null ? CurrentEquipments.F_FaceAcc != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_FaceAcc.ItemID) : null : null;
+        TryOnEquipments.F_FaceType = CurrentEquipments.F_FaceType != null ? CurrentEquipments.F_FaceType != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_FaceType.ItemID) : null : null;
+        TryOnEquipments.F_Glasses = CurrentEquipments.F_Glasses != null ? CurrentEquipments.F_Glasses != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Glasses.ItemID) : null : null;
+        TryOnEquipments.F_Glove = CurrentEquipments.F_Glove != null ? CurrentEquipments.F_Glove != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Glove.ItemID) : null : null;
+        TryOnEquipments.F_Hairacc = CurrentEquipments.F_Hairacc != null ? CurrentEquipments.F_Hairacc != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Hairacc.ItemID) : null : null;
+        TryOnEquipments.F_HairStyle = CurrentEquipments.F_HairStyle != null ? CurrentEquipments.F_HairStyle != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_HairStyle.ItemID) : null : null;
+        TryOnEquipments.F_NameBox = CurrentEquipments.F_NameBox != null ? CurrentEquipments.F_NameBox != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_NameBox.ItemID) : null : null;
+        TryOnEquipments.F_Pants = CurrentEquipments.F_Pants != null ? CurrentEquipments.F_Pants != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Pants.ItemID) : null : null;
+        TryOnEquipments.F_Shoes = CurrentEquipments.F_Shoes != null ? CurrentEquipments.F_Shoes != null ? (Equipment)InventorySys.Instance.GetItemById(CurrentEquipments.F_Shoes.ItemID) : null : null;
+        TryOnPlayer = new Player { Gender = player.Gender, Level = player.Level, playerEquipments = TryOnEquipments };
+        ResetIllustrationAndDemo();
+    }
+    public void TryOnOffEquipment(int ItemID)
+    {
+        print("進入試穿事件");
+        if (TryOnPlayer == null || TryOnPlayer.playerEquipments == null)
         {
-            CurrentPage -= 1;
-            Backward.interactable = true;
-            CurPTxt.text = (CurrentPage + 1).ToString();
-            SetSellItems(CurrentPage);
-            if (CurrentPage == 0)
+            InitializeTryOnPlayer();
+        }
+        PlayerEquipments equips = TryOnPlayer.playerEquipments;
+        if (EquipmentWnd.GetEquipmentByItemID(ItemID, equips) == null)
+        {
+            Item item = InventorySys.Instance.GetItemById(ItemID);
+            if (item is Equipment)
             {
-                Forward.interactable = false;
+                Equipment equip = (Equipment)item;
             }
+            else
+            {
+                return;
+            }
+            TryOnEquipment(InventorySys.Instance.GetItemById(ItemID));
+        }
+        else
+        {
+            Item item = InventorySys.Instance.GetItemById(ItemID);
+            if (item is Equipment)
+            {
+                Equipment equip = (Equipment)item;
+                switch (equip.EquipType)
+                {
+                    case EquipmentType.None:
+                        break;
+                    case EquipmentType.Head:
+                        break;
+                    case EquipmentType.Neck:
+                        break;
+                    case EquipmentType.Chest:
+                        equips.F_Chest = null;
+                        break;
+                    case EquipmentType.Ring:
+                        break;
+                    case EquipmentType.Pant:
+                        equips.F_Pants = null;
+                        break;
+                    case EquipmentType.Shoes:
+                        equips.F_Shoes = null;
+                        break;
+                    case EquipmentType.Gloves:
+                        equips.F_Glove = null;
+                        break;
+                    case EquipmentType.Shield:
+                        break;
+                    case EquipmentType.FaceType:
+                        equips.F_FaceType = null;
+                        break;
+                    case EquipmentType.HairAcc:
+                        equips.F_Hairacc = null;
+                        break;
+                    case EquipmentType.HairStyle:
+                        equips.F_HairStyle = null;
+                        break;
+                    case EquipmentType.Glasses:
+                        equips.F_Glasses = null;
+                        break;
+                    case EquipmentType.Cape:
+                        equips.F_Cape = null;
+                        break;
+                    case EquipmentType.NameBox:
+                        equips.F_NameBox = null;
+                        break;
+                    case EquipmentType.ChatBox:
+                        equips.F_ChatBox = null;
+                        break;
+                    case EquipmentType.Badge:
+                        break;
+                    case EquipmentType.Weapon:
+                        break;
+                    case EquipmentType.FaceAcc:
+                        equips.F_FaceAcc = null;
+                        break;
+                    case EquipmentType.Vehecle: //ToDO
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                return;
+            }
+            TryOnEquipment(InventorySys.Instance.GetItemById(ItemID));
         }
     }
-    public void PressBackward()
+    private void TryOnEquipment(Item eq)
     {
-        if (CurrentPage != TotalPage - 1)
+        if (TryOnPlayer == null)
         {
-            CurrentPage += 1;
-            Forward.interactable = true;
-            CurPTxt.text = (CurrentPage + 1).ToString();
-            SetSellItems(CurrentPage);
-            if (CurrentPage == TotalPage - 1)
+            InitializeTryOnPlayer();
+        }
+        PlayerEquipments pe = TryOnPlayer.playerEquipments;
+        if (TryOnPlayer.Gender != ((Equipment)eq).Gender)
+        {
+            return;
+        }
+        if (eq.Type == ItemType.Equipment || eq.Type == ItemType.Weapon)
+        {
+            if (eq.Type == ItemType.Weapon)
             {
-                Backward.interactable = false;
+                pe.B_Weapon = (Weapon)eq;
+            }
+            else if (eq.Type == ItemType.Equipment)
+            {
+                Equipment e = (Equipment)eq;
+                switch (e.EquipType)
+                {
+                    case EquipmentType.Head:
+                        pe.B_Head = e;
+                        break;
+                    case EquipmentType.Neck:
+                        pe.B_Neck = e;
+                        break;
+                    case EquipmentType.Chest:
+                        if (e.IsCash) pe.F_Chest = e; else pe.B_Chest = e;
+                        break;
+                    case EquipmentType.Ring:
+                        if (pe.B_Ring1 == null && pe.B_Ring2 == null) pe.B_Ring1 = e;
+                        else if (pe.B_Ring1 != null && pe.B_Ring2 == null) pe.B_Ring2 = e;
+                        else if (pe.B_Ring1 == null && pe.B_Ring2 != null) pe.B_Ring1 = e;
+                        else if (pe.B_Ring1 != null && pe.B_Ring2 != null) pe.B_Ring2 = e;
+                        break;
+                    case EquipmentType.Pant:
+                        if (e.IsCash) pe.F_Pants = e; else pe.B_Pants = e;
+                        break;
+                    case EquipmentType.Shoes:
+                        if (e.IsCash) pe.F_Shoes = e; else pe.B_Shoes = e;
+                        break;
+                    case EquipmentType.Gloves:
+                        if (e.IsCash) pe.F_Glove = e; else pe.B_Glove = e;
+                        break;
+                    case EquipmentType.Shield:
+                        pe.B_Shield = e;
+                        break;
+                    case EquipmentType.FaceType:
+                        pe.F_FaceType = e;
+                        break;
+                    case EquipmentType.HairAcc:
+                        pe.F_Hairacc = e;
+                        break;
+                    case EquipmentType.HairStyle:
+                        pe.F_HairStyle = e;
+                        break;
+                    case EquipmentType.Glasses:
+                        pe.F_Glasses = e;
+                        break;
+                    case EquipmentType.Cape:
+                        pe.F_Cape = e;
+                        break;
+                    case EquipmentType.NameBox:
+                        pe.F_NameBox = e;
+                        break;
+                    case EquipmentType.ChatBox:
+                        pe.F_ChatBox = e;
+                        break;
+                    case EquipmentType.Badge:
+                        pe.Badge = e;
+                        break;
+                    case EquipmentType.FaceAcc:
+                        pe.F_FaceAcc = e;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        ResetIllustrationAndDemo();
+    }
+    public void ResetIllustrationAndDemo()
+    {
+        illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
+        Demo.SetAllEquipment(TryOnPlayer);
+    }
+    public void PutOffAll()
+    {
+        InitializeTryOnPlayer();
+    }
+    public void ClickReturnBtn()
+    {
+        illustration.SetGenderAge(true, false, GameRoot.Instance.ActivePlayer);
     }
 
+    #endregion
 
     #region Logic
+    public void SetBuyPanel(int page = 0)
+    {
+        Dictionary<int, Item> FashionPanel = null;
+        Dictionary<int, Item> OtherPanel = null;
+        AccountData data = GameRoot.Instance.AccountData;
+        switch (GameRoot.Instance.ActiveServer)
+        {
+            case 0:
+                FashionPanel = data.CashShopBuyPanelFashionServer1 != null ? data.CashShopBuyPanelFashionServer1 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer1 != null ? data.CashShopBuyPanelOtherServer1 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer1 = FashionPanel;
+                data.CashShopBuyPanelOtherServer1 = OtherPanel;
+                break;
+            case 1:
+                FashionPanel = data.CashShopBuyPanelFashionServer2 != null ? data.CashShopBuyPanelFashionServer2 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer2 != null ? data.CashShopBuyPanelOtherServer2 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer2 = FashionPanel;
+                data.CashShopBuyPanelOtherServer2 = OtherPanel;
+                break;
+            case 2:
+                FashionPanel = data.CashShopBuyPanelFashionServer3 != null ? data.CashShopBuyPanelFashionServer3 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer3 != null ? data.CashShopBuyPanelOtherServer3 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer3 = FashionPanel;
+                data.CashShopBuyPanelOtherServer3 = OtherPanel;
+                break;
+            default:
+                break;
+        }
+        //生成slot
+        Slot[] slots = new Slot[100];
+        for (int i = 0; i < 100; i++)
+        {
+            slots[i] = InstantiateSlot(i);
+        }
+        if (CurrentPanelPage == 0)
+        {
+            slotLists[0] = slots;
+        }
+        else if (CurrentPanelPage == 1)
+        {
+            slotLists[1] = slots;
+        }
+        //放入道具
+        if (CurrentPanelPage == 0)
+        {
+            foreach (var pos in FashionPanel.Keys)
+            {
+                CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[0][pos]);
+                slot.StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
+                slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
+                GetComponent<Image>().raycastTarget = true;
+            }
+        }
+        else if (CurrentPanelPage == 1)
+        {
+            foreach (var pos in OtherPanel.Keys)
+            {
+                CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[1][pos]);
+                slot.StoreItem(OtherPanel[pos], OtherPanel[pos].Count);
+                slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
+                print(slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.ToString());
+                GetComponent<Image>().raycastTarget = true;
+            }
+        }
+    }
+    public void ClearPanel()
+    {
+        if (slotLists == null || slotLists.Count == 0)
+        {
+            slotLists = new List<Slot[]>();
+            slotLists.Add(new Slot[100]);
+            slotLists.Add(new Slot[100]);
+            return;
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            foreach (var slot in slotLists[i])
+            {
+                if (slot != null) Destroy(slot.gameObject);
+            }
+        }
+    }
+    public CashShopBuyPanelSlot InstantiateSlot(int SlotPosition)
+    {
+        Transform go = (Instantiate(Resources.Load("Prefabs/CashShopBuySlot")) as GameObject).transform;
+        go.SetParent(BuyItemsTransform);
+        go.localPosition = new Vector3(go.localPosition.x, go.localPosition.y, 0f);
+        CashShopBuyPanelSlot BuySlot = go.GetComponent<CashShopBuyPanelSlot>();
+        BuySlot.SlotPosition = SlotPosition;
+        go.SetSiblingIndex(SlotPosition);
+        return BuySlot;
+    }
+
+    public void PressPutAllToKnapsack()
+    {
+        print("送出全部放進背包!");
+        var pos = new List<int>();
+        if (CurrentPanelPage > 1)
+        {
+            MessageBox.Show("購買視窗頁碼錯誤");
+            return;
+        }
+        for (int i = 0; i < slotLists[CurrentPanelPage].Length; i++)
+        {
+            CashShopBuyPanelSlot BuySlot = (CashShopBuyPanelSlot)slotLists[CurrentPanelPage][i];
+            if (BuySlot.GetComponentInChildren<ItemUI>() != null)
+            {
+                pos.Add(i);
+            }
+        }
+        bool IsFashionPanel = CurrentPanelPage == 0 ? true : false;
+        new CashShopSender(4, pos, IsFashionPanel);
+    }
+    public List<CartItem> cartItems = new List<CartItem>();
+    public void SetCart()
+    {
+
+    }
+    public void RefreshCart()
+    {
+
+    }
+    public void ClearCart()
+    {
+        cartItems.Clear();
+    }
     public void ProcessCashShopResponse(CashShopResponse rsp)
     {
+        if (!rsp.IsSuccess)
+        {
+            string s = "";
+            switch (rsp.ErrorLogType)
+            {
+                case 1:
+                    s = "CashShopReq 為空";
+                    break;
+                case 2:
+                    s = "數量錯誤";
+                    break;
+                case 3:
+                    s = "總價錯誤";
+                    break;
+                case 4:
+                    s = "現金不足";
+                    break;
+                case 5:
+                    s = "格子不足";
+                    break;
+                default:
+                    s = "錯誤";
+                    break;
+            }
+            MessageBox.Show(s);
+            return;
+        }
+        print("購買成功 放入商城倉庫");
+        Dictionary<int, Item> FashionPanel = null;
+        Dictionary<int, Item> OtherPanel = null;
+        AccountData data = GameRoot.Instance.AccountData;
+        switch (GameRoot.Instance.ActiveServer)
+        {
+            case 0:
+                FashionPanel = data.CashShopBuyPanelFashionServer1 != null ? data.CashShopBuyPanelFashionServer1 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer1 != null ? data.CashShopBuyPanelOtherServer1 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer1 = FashionPanel;
+                data.CashShopBuyPanelOtherServer1 = OtherPanel;
+                break;
+            case 1:
+                FashionPanel = data.CashShopBuyPanelFashionServer2 != null ? data.CashShopBuyPanelFashionServer2 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer2 != null ? data.CashShopBuyPanelOtherServer2 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer2 = FashionPanel;
+                data.CashShopBuyPanelOtherServer2 = OtherPanel;
+                break;
+            case 2:
+                FashionPanel = data.CashShopBuyPanelFashionServer3 != null ? data.CashShopBuyPanelFashionServer3 : new Dictionary<int, Item>();
+                OtherPanel = data.CashShopBuyPanelOtherServer3 != null ? data.CashShopBuyPanelOtherServer3 : new Dictionary<int, Item>();
+                data.CashShopBuyPanelFashionServer3 = FashionPanel;
+                data.CashShopBuyPanelOtherServer3 = OtherPanel;
+                break;
+        }
+        switch (rsp.OperationType)
+        {
+            case 1:
+                if (rsp.FashionItems != null && rsp.FashionItems.Count > 0)
+                {
+                    foreach (var pos in rsp.FashionItems.Keys)
+                    {
+                        Tools.SetDictionary(FashionPanel, pos, rsp.FashionItems[pos]);
+                    }
+                    if (CurrentPanelPage == 0)
+                    {
+                        foreach (var pos in rsp.FashionItems.Keys)
+                        {
+                            ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos], rsp.FashionItems[pos].Count);
+                        }
+                    }
+                }
+                if (rsp.OtherItems != null && rsp.OtherItems.Count > 0)
+                {
+                    foreach (var pos in rsp.OtherItems.Keys)
+                    {
+                        Tools.SetDictionary(OtherPanel, pos, rsp.OtherItems[pos]);
+                    }
+                    if (CurrentPanelPage == 1)
+                    {
+                        foreach (var pos in rsp.OtherItems.Keys)
+                        {
+                            ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos], rsp.OtherItems[pos].Count);
+                        }
+                    }
+                }
+                return;
+            case 4:
+                Dictionary<int, Item> outputNonCashKnapsack = rsp.NonCashKnapsack != null ? rsp.NonCashKnapsack : new Dictionary<int, Item>();
+                Dictionary<int, Item> outputCashKnapsack = rsp.CashKnapsack != null ? rsp.CashKnapsack : new Dictionary<int, Item>();
+                Dictionary<int, Item> outputMailBox = rsp.MailBox != null ? rsp.MailBox : new Dictionary<int, Item>();
+
+                Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.NotCashKnapsack = nk;
+                Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.CashKnapsack = ck;
+                Dictionary<int, Item> mailBox = GameRoot.Instance.ActivePlayer.MailBoxItems != null ? GameRoot.Instance.ActivePlayer.MailBoxItems : new Dictionary<int, Item>();
+                GameRoot.Instance.ActivePlayer.MailBoxItems = mailBox;
+                if (outputNonCashKnapsack.Keys != null)
+                {
+                    if (outputNonCashKnapsack.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputNonCashKnapsack.Keys)
+                        {
+                            if (!outputNonCashKnapsack[pos].IsCash)
+                            {
+                                if (!nk.ContainsKey(pos))
+                                {
+                                    nk.Add(pos, outputNonCashKnapsack[pos]);
+                                }
+                                else
+                                {
+                                    nk[pos] = outputNonCashKnapsack[pos];
+                                }
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(nk[pos], nk[pos].Count);
+                            }
+                        }
+                    }
+                }
+                if (outputCashKnapsack.Keys != null)
+                {
+                    if (outputCashKnapsack.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputCashKnapsack.Keys)
+                        {
+                            if (outputCashKnapsack[pos].IsCash)
+                            {
+                                if (!ck.ContainsKey(pos))
+                                {
+                                    ck.Add(pos, outputCashKnapsack[pos]);
+                                }
+                                else
+                                {
+                                    ck[pos] = outputCashKnapsack[pos];
+                                }
+                                KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(ck[pos], ck[pos].Count);
+                            }
+                        }
+                    }
+                }
+                if (outputMailBox.Keys != null)
+                {
+                    if (outputMailBox.Keys.Count > 0)
+                    {
+                        foreach (int pos in outputMailBox.Keys)
+                        {
+                            if (!outputMailBox[pos].IsCash)
+                            {
+                                if (!mailBox.ContainsKey(pos))
+                                {
+                                    mailBox.Add(pos, outputMailBox[pos]);
+                                }
+                                else
+                                {
+                                    mailBox[pos] = outputMailBox[pos];
+                                }
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(mailBox[pos], mailBox[pos].Count);
+                            }
+                        }
+                    }
+                }
+                //刪除
+                List<int> ProcessedPositions = rsp.ProcessPositions;
+                bool IsFashion = rsp.IsFashion;
+                Slot[] slots = null;
+                if (ProcessedPositions == null || ProcessedPositions.Count == 0)
+                {
+                    return;
+                }
+                if (IsFashion)
+                {
+                    slots = slotLists[0];
+                    foreach (var pos in ProcessedPositions)
+                    {
+                        Destroy(slots[pos].GetComponentInChildren<ItemUI>().gameObject);
+                        if (FashionPanel.ContainsKey(pos))
+                        {
+                            FashionPanel.Remove(pos);
+                        }
+                    }
+                }
+                else
+                {
+                    slots = slotLists[1];
+                    foreach (var pos in ProcessedPositions)
+                    {
+                        Destroy(slots[pos].GetComponentInChildren<ItemUI>().gameObject);
+                        if (OtherPanel.ContainsKey(pos))
+                        {
+                            OtherPanel.Remove(pos);
+                        }
+                    }
+                }
+                return;
+        }
 
     }
     #endregion

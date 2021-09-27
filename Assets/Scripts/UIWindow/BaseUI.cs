@@ -107,8 +107,8 @@ public class BaseUI : WindowRoot
         float ratio = (float)exp / maxExp;
         float width = ratio * 1184.97f;
         float x = 0.5f * width;
-        expbar.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 16.9f);
-
+        //expbar.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 16.9f);
+        expbar.GetComponent<Image>().fillAmount = ratio;
         //2.顯示趴數
         ratio *= 10000;
         ratio = ratio - (ratio % 1);

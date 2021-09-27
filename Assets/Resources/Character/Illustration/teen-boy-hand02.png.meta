@@ -1,9 +1,45 @@
 fileFormatVersion: 2
 guid: 42b04624f12c3064295b2523b71a9397
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6986549850777830230
+    second: teen-boy-hand02_0
+  - first:
+      213: 868866510560681501
+    second: teen-boy-hand02_1
+  - first:
+      213: -4492954290569135984
+    second: teen-boy-hand02_2
+  - first:
+      213: -7024395766167887489
+    second: teen-boy-hand02_3
+  - first:
+      213: 4778531972062436503
+    second: teen-boy-hand02_4
+  - first:
+      213: 3919409537828207786
+    second: teen-boy-hand02_5
+  - first:
+      213: -5916934652086366078
+    second: teen-boy-hand02_6
+  - first:
+      213: -3216511042088278158
+    second: teen-boy-hand02_7
+  - first:
+      213: 8940248363240055905
+    second: teen-boy-hand02_8
+  - first:
+      213: 8382550878819328386
+    second: teen-boy-hand02_9
+  - first:
+      213: 5820809945466152594
+    second: teen-boy-hand02_10
+  - first:
+      213: 8280628137823024981
+    second: teen-boy-hand02_11
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +59,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +91,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +110,274 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-boy-hand02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 185
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 653cb2da21635f060800000000000000
+      internalID: 6986549850777830230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 193
+        width: 70
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ed337ec75de0c00800000000000000
+      internalID: 868866510560681501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 120
+        width: 62
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0983f8e90e1d5a1c0800000000000000
+      internalID: -4492954290569135984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 117
+        width: 67
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f712ecb7445548e90800000000000000
+      internalID: -7024395766167887489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_4
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 120
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79cd0a6c281c05240800000000000000
+      internalID: 4778531972062436503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_5
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 196
+        width: 68
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac378f653a846630800000000000000
+      internalID: 3919409537828207786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_6
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 218
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280513f7843d2eda0800000000000000
+      internalID: -5916934652086366078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 55
+        width: 68
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277e430cf38ac53d0800000000000000
+      internalID: -3216511042088278158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_8
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 80
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164e0b6d484221c70800000000000000
+      internalID: 8940248363240055905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_9
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 74
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2812aa39c9dc45470800000000000000
+      internalID: 8382550878819328386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 53
+        width: 62
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29622903ecba7c050800000000000000
+      internalID: 5820809945466152594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hand02_11
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 6
+        width: 56
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 557bb003b63bae270800000000000000
+      internalID: 8280628137823024981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

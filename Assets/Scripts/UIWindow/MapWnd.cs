@@ -140,7 +140,7 @@ public class MapWnd : WindowRoot, IStackWnd
     public void CloseAndPop()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         UIManager.Instance.ForcePop(this);
         MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
         GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");

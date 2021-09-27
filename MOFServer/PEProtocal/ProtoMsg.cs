@@ -279,7 +279,7 @@ namespace PEProtocal
         public AccountData accountData { get; set; }
     }
     [ProtoContract]
-    public class AccountData 
+    public class AccountData
     {
         [ProtoMember(1, IsRequired = false)]
         public string Account { get; set; }
@@ -309,6 +309,18 @@ namespace PEProtocal
         public Dictionary<int, string> Friends { get; set; }
         [ProtoMember(14, IsRequired = false)]
         public Dictionary<int, string> BlockedPeople { get; set; }
+        [ProtoMember(15, IsRequired = false)]
+        public int GMLevel { get; set; }
+        [ProtoMember(16, IsRequired = false)]
+        public string LastLoginTime { get; set; }
+        [ProtoMember(17, IsRequired = false)]
+        public string LastLogoutTime { get; set; }
+        [ProtoMember(18, IsRequired = false)]
+        public long LockerServer1Ribi { get; set; }
+        [ProtoMember(19, IsRequired = false)]
+        public long LockerServer2Ribi { get; set; }
+        [ProtoMember(20, IsRequired = false)]
+        public long LockerServer3Ribi { get; set; }
 
         public Dictionary<int, Item> GetNewBuyPanelFashionS1()
         {
@@ -378,175 +390,7 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public string LogoutTime;
     }
-    [ProtoContract]
-    public class Player //For self
-    {
-        [ProtoMember(1, IsRequired = false)]
-        public string Name { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public int Gender { get; set; }
-        [ProtoMember(3, IsRequired = false)]
-        public int Job { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public int Level { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public long Exp { get; set; }
-        [ProtoMember(6, IsRequired = false)]
-        public int HP { get; set; }
-        [ProtoMember(7, IsRequired = false)]
-        public int MP { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public int MAXHP { get; set; }
-        [ProtoMember(9, IsRequired = false)]
-        public int MAXMP { get; set; }
-        [ProtoMember(10, IsRequired = false)]
-        public long Ribi { get; set; }
-        [ProtoMember(11, IsRequired = false)]
-        public int Att { get; set; }
-        [ProtoMember(12, IsRequired = false)]
-        public int Strength { get; set; }
-        [ProtoMember(13, IsRequired = false)]
-        public int Agility { get; set; }
-        [ProtoMember(14, IsRequired = false)]
-        public int Intellect { get; set; }
-        [ProtoMember(15, IsRequired = false)]
-        public int Grade { get; set; }
-        [ProtoMember(16, IsRequired = false)]
-        public bool IsNew { get; set; }
-        [ProtoMember(17, IsRequired = false)]
-        public string Guild { get; set; }
-        [ProtoMember(18, IsRequired = false)]
-        public long MailBoxRibi { get; set; }
-        [ProtoMember(19, IsRequired = false)]
-        public int RestPoint { get; set; }
-        [ProtoMember(20, IsRequired = false)]
-        public int SwordPoint { get; set; }
-        [ProtoMember(21, IsRequired = false)]
-        public int ArcheryPoint { get; set; }
-        [ProtoMember(22, IsRequired = false)]
-        public int MagicPoint { get; set; }
-        [ProtoMember(23, IsRequired = false)]
-        public int TheologyPoint { get; set; }
-        [ProtoMember(24, IsRequired = false)]
-        public int MajorPoint { get; set; }
-        [ProtoMember(25, IsRequired = false)]
-        public string CoupleName { get; set; }
-        [ProtoMember(26, IsRequired = false)]
-        public string Title { get; set; }
-        [ProtoMember(27, IsRequired = false)]
-        public int MapID { get; set; }
-        [ProtoMember(28, IsRequired = false)]
-        public PlayerEquipments playerEquipments { get; set; }
-        [ProtoMember(29, IsRequired = false)]
-        public Dictionary<int, Item> NotCashKnapsack { get; set; }
-        [ProtoMember(30, IsRequired = false)]
-        public Dictionary<int, Item> CashKnapsack { get; set; }
-        [ProtoMember(31, IsRequired = false)]
-        public Dictionary<int, Item> MailBoxItems { get; set; }
-        [ProtoMember(32, IsRequired = false)]
-        public Dictionary<int, Item> PetItems { get; set; }
-        [ProtoMember(33, IsRequired = false)]
-        public int Server { get; set; }
-        [ProtoMember(34, IsRequired = false)]
-        public string CreateTime { get; set; }
-        [ProtoMember(35, IsRequired = false)]
-        public string LastLoginTime { get; set; }
-        [ProtoMember(36, IsRequired = false)]
-        public int[] MiniGameArr { get; set; }
-        [ProtoMember(37, IsRequired = false)]
-        public int MiniGameRatio { get; set; }
-        [ProtoMember(38, IsRequired = false)]
-        public int[] HighestMiniGameScores { get; set; }
-        [ProtoMember(39, IsRequired = false)]
-        public int[] TotalMiniGameScores { get; set; }
-        [ProtoMember(40, IsRequired = false)]
-        public int[] HardSuccess { get; set; }
-        [ProtoMember(41, IsRequired = false)]
-        public int[] NormalSuccess { get; set; }
-        [ProtoMember(42, IsRequired = false)]
-        public int[] EasySuccess { get; set; }
-        [ProtoMember(43, IsRequired = false)]
-        public int[] HardFail { get; set; }
-        [ProtoMember(44, IsRequired = false)]
-        public int[] NormalFail { get; set; }
-        [ProtoMember(45, IsRequired = false)]
-        public int[] EasyFail { get; set; }
-        [ProtoMember(46, IsRequired = false)]
-        public List<int> BadgeCollection { get; set; }
-        [ProtoMember(47, IsRequired = false)]
-        public int CurrentBadge { get; set; }
-        [ProtoMember(48, IsRequired = false)]
-        public DiaryInformation diaryInformation { get; set; }
-        [ProtoMember(49, IsRequired = false)]
-        public List<Quest> ProcessingQuests { get; set; }
-        [ProtoMember(50, IsRequired = false)]
-        public List<Quest> FinishedQuests { get; set; }
-        [ProtoMember(51, IsRequired = false)]
-        public List<Quest> AcceptableQuests { get; set; }
-        [ProtoMember(52, IsRequired = false)]
-        public List<int> TitleCollection { get; set; }
-        [ProtoMember(53, IsRequired = false)]
-        public int Honor { get; set; }
-
-        public Dictionary<int,Item> GetNewNotCashKnapsack()
-        {
-            NotCashKnapsack = new Dictionary<int, Item>();
-            return NotCashKnapsack;
-        }
-        public Dictionary<int, Item> GetNewCashKnapsack()
-        {
-            CashKnapsack = new Dictionary<int, Item>();
-            return CashKnapsack;
-        }
-    }
-    [ProtoContract]
-    public class TrimedPlayer //For other people
-    {
-        [ProtoMember(1, IsRequired = false)]
-        public string Name { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public int Gender { get; set; }
-        [ProtoMember(3, IsRequired = false)]
-        public int Job { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public int Level { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public long Exp { get; set; }
-        [ProtoMember(6, IsRequired = false)]
-        public int HP { get; set; }
-        [ProtoMember(7, IsRequired = false)]
-        public int MP { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public int MAXHP { get; set; }
-        [ProtoMember(9, IsRequired = false)]
-        public int MAXMP { get; set; }
-        [ProtoMember(10, IsRequired = false)]
-        public long Ribi { get; set; }
-        [ProtoMember(11, IsRequired = false)]
-        public int Att { get; set; }
-        [ProtoMember(12, IsRequired = false)]
-        public int Strength { get; set; }
-        [ProtoMember(13, IsRequired = false)]
-        public int Agility { get; set; }
-        [ProtoMember(14, IsRequired = false)]
-        public int Intellect { get; set; }
-        [ProtoMember(15, IsRequired = false)]
-        public int Grade { get; set; }
-        [ProtoMember(16, IsRequired = false)]
-        public string Guild { get; set; }
-        [ProtoMember(17, IsRequired = false)]
-        public string CoupleName { get; set; }
-        [ProtoMember(18, IsRequired = false)]
-        public string Title { get; set; }
-        [ProtoMember(19, IsRequired = false)]
-        public int MapID { get; set; }
-        [ProtoMember(20, IsRequired = false)]
-        public PlayerEquipments playerEquipments { get; set; }
-        [ProtoMember(21, IsRequired = false)]
-        public int Server { get; set; }
-        [ProtoMember(22, IsRequired = false)]
-        public float[] Position { get; set; }
-    }
+    
     [ProtoContract]
     public class PlayerEquipments
     {
@@ -1415,13 +1259,19 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public List<string> Tag { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public List<int> ID { get; set; }
+        public List<int> Orders { get; set; }
         [ProtoMember(6, IsRequired = false)]
         public List<int> Amount { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放進背包
         [ProtoMember(8, IsRequired = false)]
         public string GiftPlayerName { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public List<int> Quantity { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public List<int> Positions { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public bool IsFashionPanel { get; set; }
     }
 
     [ProtoContract]
@@ -1432,14 +1282,29 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public long TotalPrice { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public Dictionary<int, Item> Items { get; set; } // position, Item
+        public Dictionary<int, Item> FashionItems { get; set; } // position, Item
         [ProtoMember(4, IsRequired = false)]
         public int ErrorLogType { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放東西進背包或信箱
         [ProtoMember(6, IsRequired = false)]
         public string GiftPlayerName { get; set; }
         [ProtoMember(7, IsRequired = false)] //
         public bool IsSuccess { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+        [ProtoMember(9, IsRequired = false)] //
+        public List<int> ProcessPositions { get; set; }
+        [ProtoMember(10, IsRequired = false)] //
+        public bool IsFull { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public Dictionary<int, Item> CashKnapsack { get; set; } // position, Item
+        [ProtoMember(12, IsRequired = false)]
+        public Dictionary<int, Item> NonCashKnapsack { get; set; } // position, Item
+        [ProtoMember(13, IsRequired = false)]
+        public Dictionary<int, Item> MailBox { get; set; } // position, Item
+
+        [ProtoMember(14, IsRequired = false)]
+        public bool IsFashion { get; set; } // position, Item
     }
 }

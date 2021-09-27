@@ -1,9 +1,75 @@
 fileFormatVersion: 2
 guid: 6e20d9b175de3b3409190c7f081721af
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1155478832555969182
+    second: teen-boy-hear04_0
+  - first:
+      213: 3875927793893774260
+    second: teen-boy-hear04_1
+  - first:
+      213: -7552449805380979565
+    second: teen-boy-hear04_2
+  - first:
+      213: 8247038204597739523
+    second: teen-boy-hear04_3
+  - first:
+      213: 1107584263232292579
+    second: teen-boy-hear04_4
+  - first:
+      213: 1672475565504814809
+    second: teen-boy-hear04_5
+  - first:
+      213: -4838194242399167144
+    second: teen-boy-hear04_6
+  - first:
+      213: -7170752104187252300
+    second: teen-boy-hear04_7
+  - first:
+      213: 2126103104506742542
+    second: teen-boy-hear04_8
+  - first:
+      213: -4207212838039101250
+    second: teen-boy-hear04_9
+  - first:
+      213: -4225622737843697724
+    second: teen-boy-hear04_10
+  - first:
+      213: 6532284018033932831
+    second: teen-boy-hear04_11
+  - first:
+      213: -6783429586762257376
+    second: teen-boy-hear04_12
+  - first:
+      213: -58528235663748340
+    second: teen-boy-hear04_13
+  - first:
+      213: -8222980570318213190
+    second: teen-boy-hear04_14
+  - first:
+      213: -3871549921706809385
+    second: teen-boy-hear04_15
+  - first:
+      213: -3431333605478888008
+    second: teen-boy-hear04_16
+  - first:
+      213: 3795886186989473442
+    second: teen-boy-hear04_17
+  - first:
+      213: 3620582865580673209
+    second: teen-boy-hear04_18
+  - first:
+      213: 5806261527713956718
+    second: teen-boy-hear04_19
+  - first:
+      213: -8647660036010231678
+    second: teen-boy-hear04_20
+  - first:
+      213: -3842264832111796342
+    second: teen-boy-hear04_21
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +89,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +107,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +121,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +140,484 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-boy-hear04_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 341
+        width: 81
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a4bff40e5190010800000000000000
+      internalID: 1155478832555969182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 376
+        width: 72
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b31a120bcf0ac530800000000000000
+      internalID: 3875927793893774260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 420
+        width: 88
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3947c46aaee403790800000000000000
+      internalID: -7552449805380979565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 317
+        width: 87
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300af1a6d8d537270800000000000000
+      internalID: 8247038204597739523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 295
+        width: 67
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e606c8e40eee5f00800000000000000
+      internalID: 1107584263232292579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 163
+        width: 100
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de5f696aa3d53710800000000000000
+      internalID: 1672475565504814809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 200
+        width: 78
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d157b68f74bdcb0800000000000000
+      internalID: -4838194242399167144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_7
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 225
+        width: 83
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1b88914fe5c7c90800000000000000
+      internalID: -7170752104187252300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_8
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 141
+        width: 73
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e07cafb428f618d10800000000000000
+      internalID: 2126103104506742542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_9
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 124
+        width: 82
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0673ee63afc95c0800000000000000
+      internalID: -4207212838039101250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_10
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 63
+        width: 68
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7430c12829b55c0800000000000000
+      internalID: -4225622737843697724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_11
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 14
+        width: 86
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1abfd274b557aa50800000000000000
+      internalID: 6532284018033932831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_12
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 14
+        width: 50
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c29222bba6cd1a0800000000000000
+      internalID: -6783429586762257376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_13
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 23
+        width: 84
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c039ee731e0103ff0800000000000000
+      internalID: -58528235663748340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_14
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 5
+        width: 82
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf6e3f0dba12ed80800000000000000
+      internalID: -8222980570318213190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_15
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 84
+        width: 93
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d7697acbdd754ac0800000000000000
+      internalID: -3871549921706809385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_16
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 75
+        width: 86
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bd029b04447160d0800000000000000
+      internalID: -3431333605478888008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_17
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 190
+        width: 127
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aec1572062bda430800000000000000
+      internalID: 3795886186989473442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_18
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 185
+        width: 80
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b84dcefee4ee3230800000000000000
+      internalID: 3620582865580673209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_19
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 306
+        width: 72
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e634868b81cf39050800000000000000
+      internalID: 5806261527713956718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_20
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 410
+        width: 87
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 288b447b3075df780800000000000000
+      internalID: -8647660036010231678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-boy-hear04_21
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 414
+        width: 89
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f100d0e788daac0800000000000000
+      internalID: -3842264832111796342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

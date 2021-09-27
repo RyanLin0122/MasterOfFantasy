@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: c53f2a45b37dd9641b3aaed22c382619
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2458796280116967641
+    second: Lv.50 Skeleton Wizard Attack_0
+  - first:
+      213: 6933040136899727199
+    second: Lv.50 Skeleton Wizard Attack_1
+  - first:
+      213: -4087501660064143924
+    second: Lv.50 Skeleton Wizard Attack_2
+  - first:
+      213: 645536492584046313
+    second: Lv.50 Skeleton Wizard Attack_3
+  - first:
+      213: 2184270478960398044
+    second: Lv.50 Skeleton Wizard Attack_4
+  - first:
+      213: 5365939060998146536
+    second: Lv.50 Skeleton Wizard Attack_5
+  - first:
+      213: -7120229161785515015
+    second: Lv.50 Skeleton Wizard Attack_6
+  - first:
+      213: -247223074280276767
+    second: Lv.50 Skeleton Wizard Attack_7
+  - first:
+      213: -7081887669941501066
+    second: Lv.50 Skeleton Wizard Attack_8
+  - first:
+      213: 2368367195293527379
+    second: Lv.50 Skeleton Wizard Attack_9
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +87,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +100,244 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 385
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727839c7fc990edd0800000000000000
+      internalID: -2458796280116967641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 385
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f0f6d854b173060800000000000000
+      internalID: 6933040136899727199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_2
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 385
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5ae0d85e64647c0800000000000000
+      internalID: -4087501660064143924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 123
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee0602150865f800800000000000000
+      internalID: 645536492584046313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 258
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde8ec78d66105e10800000000000000
+      internalID: 2184270478960398044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 257
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e900316525a77a40800000000000000
+      internalID: 5365939060998146536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 256
+        width: 113
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f3a56c4d4ddf2d90800000000000000
+      internalID: -7120229161785515015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 257
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec7e3d7cefa19cf0800000000000000
+      internalID: -247223074280276767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 128
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6730be58fa418bd90800000000000000
+      internalID: -7081887669941501066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.50 Skeleton Wizard Attack_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 127
+        width: 123
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35da82d7a612ed020800000000000000
+      internalID: 2368367195293527379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

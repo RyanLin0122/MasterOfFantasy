@@ -1,9 +1,42 @@
 fileFormatVersion: 2
 guid: 11b38a56ee3a50e498fb71bbd75674f9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4223072910174667784
+    second: Lv.99 Alucard Attack_0
+  - first:
+      213: 2205533599487164329
+    second: Lv.99 Alucard Attack_1
+  - first:
+      213: 3776243752477185658
+    second: Lv.99 Alucard Attack_2
+  - first:
+      213: 4492504832545591648
+    second: Lv.99 Alucard Attack_3
+  - first:
+      213: -637374991042535421
+    second: Lv.99 Alucard Attack_4
+  - first:
+      213: -4310414393544032803
+    second: Lv.99 Alucard Attack_5
+  - first:
+      213: 6226847359540308883
+    second: Lv.99 Alucard Attack_6
+  - first:
+      213: 6331602189117836612
+    second: Lv.99 Alucard Attack_7
+  - first:
+      213: 5234712817783608827
+    second: Lv.99 Alucard Attack_8
+  - first:
+      213: 5793640816335543406
+    second: Lv.99 Alucard Attack_9
+  - first:
+      213: -8875291664660837119
+    second: Lv.99 Alucard Attack_10
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +73,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +90,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +103,265 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_0
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 166
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804498fdf6e5b9a30800000000000000
+      internalID: 4223072910174667784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_1
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 116
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9affe919f11ab9e10800000000000000
+      internalID: 2205533599487164329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 61
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76d0bb7fa9e76430800000000000000
+      internalID: 3776243752477185658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_3
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 7
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0611b97c755985e30800000000000000
+      internalID: 4492504832545591648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 98
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300213692d69727f0800000000000000
+      internalID: -637374991042535421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 240
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddb31652f45e24c0800000000000000
+      internalID: -4310414393544032803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_6
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 241
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39baaf7aea43a6650800000000000000
+      internalID: 6226847359540308883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 238
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d447d05ae5ed750800000000000000
+      internalID: 6331602189117836612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 380
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf51d25b29f65a840800000000000000
+      internalID: 5234712817783608827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_9
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 379
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c52ed50a5276050800000000000000
+      internalID: 5793640816335543406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.99 Alucard Attack_10
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 378
+        width: 150
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10dc7e91141a4d480800000000000000
+      internalID: -8875291664660837119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

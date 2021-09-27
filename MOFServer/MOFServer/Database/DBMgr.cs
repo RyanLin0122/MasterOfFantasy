@@ -28,7 +28,8 @@ public class DBMgr
     IMongoCollection<BsonDocument> CharacterNames;
     public async void Init()
     {
-        Task task = ServerRoot.Instance.taskFactory.StartNew(()=> {
+        Task task = ServerRoot.Instance.taskFactory.StartNew(() =>
+        {
             var mongourl = new MongoUrl(ServerConstants.DBconnStr);
             MongoClient client = new MongoClient(mongourl);
             var mongoDatabase = client.GetDatabase(mongourl.DatabaseName);
@@ -65,7 +66,10 @@ public class DBMgr
                     {"CashShopBuyPanelOtherServer2", new BsonArray()},
                     {"CashShopBuyPanelOtherServer3", new BsonArray()},
                     {"Friends", new BsonArray() },
-                    {"BlockedPeople", new BsonArray() }
+                    {"BlockedPeople", new BsonArray() },
+                    {"LockerRibiServer1", 0L },
+                    {"LockerRibiServer2", 0L },
+                    {"LockerRibiServer3", 0L }
             };
             CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, doc);
             AccCollection.InsertOne(doc);
@@ -150,7 +154,9 @@ public class DBMgr
                     { "FinishedQuests",new BsonArray()},
                     { "TitleCollection",new BsonArray()},
                     { "DiaryInformation",new BsonDocument{ { "NPC", new BsonArray() },{ "Monster",new BsonArray()} } },
-                    { "Honor", 0}
+                    { "Honor", 0},
+                    { "Cart", new BsonArray()},
+                    { "PetItems",new BsonArray()}
                  };
             var filter = Builders<BsonDocument>.Filter.Eq("Account", Account);
             var update = Builders<BsonDocument>.Update.Push("Players", bd
@@ -306,7 +312,44 @@ public class DBMgr
         await task;
         LogSvc.Info("Save Character " + player.Name + " Complete!");
     }
-
+    public async Task AsyncSaveAccount(string acc, AccountData data)
+    {
+        LogSvc.Info("準備儲存帳號: " + acc);
+        var factory = ServerRoot.Instance.taskFactory;
+        Task task = factory.StartNew(() =>
+        {
+            var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
+            var Result = cursor.ToList();
+            BsonDocument AccountData;
+            if (Result.Count == 0)
+            {
+                Console.WriteLine("沒有此帳號");
+            };
+            AccountData = Result[0];
+            var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
+            var update = Builders<BsonDocument>.Update.Set("GMLevel", data.GMLevel).Set("Cash", data.Cash)
+                .Set("LastLoginTime", data.LastLoginTime)
+                .Set("LastLogoutTime", data.LastLogoutTime)
+                .Set("LockerServer1", Utility.Dic_Int_Item2BsonArr(data.LockerServer1))
+                .Set("LockerServer2", Utility.Dic_Int_Item2BsonArr(data.LockerServer2))
+                .Set("LockerServer3", Utility.Dic_Int_Item2BsonArr(data.LockerServer3))
+                .Set("CashShopBuyPanelFashionServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer1))
+                .Set("CashShopBuyPanelFashionServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer2))
+                .Set("CashShopBuyPanelFashionServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer3))
+                .Set("CashShopBuyPanelOtherServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer1))
+                .Set("CashShopBuyPanelOtherServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer2))
+                .Set("CashShopBuyPanelOtherServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer3))
+                .Set("Friends", new BsonArray())
+                .Set("BlockedPeople", new BsonArray())
+                .Set("LockerRibiServer1", data.LockerServer1Ribi)
+                .Set("LockerRibiServer2", data.LockerServer2Ribi)
+                .Set("LockerRibiServer3", data.LockerServer3Ribi);
+            AccCollection.UpdateOneAsync(filter, update);
+        }
+        );
+        await task;
+        LogSvc.Info("Save Account " + data.Account + " Complete!");
+    }
     #region 小遊戲相關
     //查詢排名
     public async Task<Dictionary<string, int>[]> QueryMiniGameRanking()
@@ -323,7 +366,7 @@ public class DBMgr
             {
                 s.Add(item.AsBsonArray);
             }
-            
+
             for (int i = 0; i < 8; i++)
             {
                 ranking[i] = new Dictionary<string, int>();

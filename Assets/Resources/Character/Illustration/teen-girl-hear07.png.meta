@@ -1,9 +1,57 @@
 fileFormatVersion: 2
 guid: 503d4bbe735ac4246a54f6b1ff7db886
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1541604840960591719
+    second: teen-girl-hear07_0
+  - first:
+      213: -3050528798694335114
+    second: teen-girl-hear07_1
+  - first:
+      213: 3321089842837081355
+    second: teen-girl-hear07_2
+  - first:
+      213: 3934677587996174906
+    second: teen-girl-hear07_3
+  - first:
+      213: 797178450867237259
+    second: teen-girl-hear07_4
+  - first:
+      213: -579870410816083500
+    second: teen-girl-hear07_5
+  - first:
+      213: 752153724959515489
+    second: teen-girl-hear07_6
+  - first:
+      213: -8688012703493555171
+    second: teen-girl-hear07_7
+  - first:
+      213: 5758748212499429470
+    second: teen-girl-hear07_8
+  - first:
+      213: -3952304494836762819
+    second: teen-girl-hear07_9
+  - first:
+      213: 4347077888113918531
+    second: teen-girl-hear07_10
+  - first:
+      213: 223377080360269239
+    second: teen-girl-hear07_11
+  - first:
+      213: 804590743966987339
+    second: teen-girl-hear07_12
+  - first:
+      213: -7046654460633368937
+    second: teen-girl-hear07_13
+  - first:
+      213: -4054800965881649940
+    second: teen-girl-hear07_14
+  - first:
+      213: 404270157716941519
+    second: teen-girl-hear07_15
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +71,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +89,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +103,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +122,358 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-girl-hear07_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 380
+        width: 126
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998758e909e1b9ae0800000000000000
+      internalID: -1541604840960591719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 413
+        width: 30
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d99b058385aa5d0800000000000000
+      internalID: -3050528798694335114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_2
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 364
+        width: 146
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d467dbd91e61e20800000000000000
+      internalID: 3321089842837081355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_3
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 368
+        width: 165
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3ae3326b68ca9630800000000000000
+      internalID: 3934677587996174906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 273
+        width: 79
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81b982d395201b00800000000000000
+      internalID: 797178450867237259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 277
+        width: 67
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d92c830fe2e3f7f0800000000000000
+      internalID: -579870410816083500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 75
+        width: 111
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163e2b8e3df207a00800000000000000
+      internalID: 752153724959515489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_7
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 42
+        width: 94
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c7f2c2a7afd6780800000000000000
+      internalID: -8688012703493555171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_8
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 10
+        width: 94
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e58b1f4fcfe2bef40800000000000000
+      internalID: 5758748212499429470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_9
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 46
+        width: 98
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37331d80089629c0800000000000000
+      internalID: -3952304494836762819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_10
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 106
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3424cf3be4ce35c30800000000000000
+      internalID: 4347077888113918531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_11
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 30
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b576d56548991300800000000000000
+      internalID: 223377080360269239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_12
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 185
+        width: 78
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4438bbc40b7a2b00800000000000000
+      internalID: 804590743966987339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_13
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 270
+        width: 37
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796b6035a11453e90800000000000000
+      internalID: -7046654460633368937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_14
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 194
+        width: 88
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4a6b931047ab7c0800000000000000
+      internalID: -4054800965881649940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-hear07_15
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 144
+        width: 173
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca620801914c9500800000000000000
+      internalID: 404270157716941519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

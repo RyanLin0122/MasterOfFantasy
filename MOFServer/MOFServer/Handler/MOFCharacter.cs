@@ -651,9 +651,12 @@ public class MOFCharacter
     }
     public async void AsyncSaveCharacter()
     {
-        Task task = ServerRoot.Instance.taskFactory.StartNew(() => CacheSvc.Instance.AsyncSaveCharacter(session.Account, player));
-        await task;
+        await CacheSvc.Instance.AsyncSaveCharacter(session.Account, player);
         return;
+    }
+    public async void AsyncSaveAccount()
+    {
+        await CacheSvc.Instance.AsyncSaveAccount(session.Account, session.AccountData);
     }
 }
 

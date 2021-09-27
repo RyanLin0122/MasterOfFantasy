@@ -1,9 +1,120 @@
 fileFormatVersion: 2
 guid: e8210d276d61bd240bdaf51a7478a576
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3578692686700363235
+    second: Lv.19 Countess Spritesheet_0
+  - first:
+      213: -5758554822220549738
+    second: Lv.19 Countess Spritesheet_1
+  - first:
+      213: -8482703220048159288
+    second: Lv.19 Countess Spritesheet_2
+  - first:
+      213: 8266909449192721804
+    second: Lv.19 Countess Spritesheet_3
+  - first:
+      213: 1988155095508769644
+    second: Lv.19 Countess Spritesheet_4
+  - first:
+      213: -7695984662829210474
+    second: Lv.19 Countess Spritesheet_5
+  - first:
+      213: -4749239115130458191
+    second: Lv.19 Countess Spritesheet_6
+  - first:
+      213: 296824840339022027
+    second: Lv.19 Countess Spritesheet_7
+  - first:
+      213: -3226161890431933703
+    second: Lv.19 Countess Spritesheet_8
+  - first:
+      213: -3801398271965497250
+    second: Lv.19 Countess Spritesheet_9
+  - first:
+      213: -22899402213721111
+    second: Lv.19 Countess Spritesheet_10
+  - first:
+      213: -3149498657237180664
+    second: Lv.19 Countess Spritesheet_11
+  - first:
+      213: 1620733924329800945
+    second: Lv.19 Countess Spritesheet_12
+  - first:
+      213: 5151626167481550512
+    second: Lv.19 Countess Spritesheet_13
+  - first:
+      213: 856086562820959438
+    second: Lv.19 Countess Spritesheet_14
+  - first:
+      213: -7723679064452320241
+    second: Lv.19 Countess Spritesheet_15
+  - first:
+      213: -2381938535164612063
+    second: Lv.19 Countess Spritesheet_16
+  - first:
+      213: 6021773066798913293
+    second: Lv.19 Countess Spritesheet_17
+  - first:
+      213: 3137359056303943689
+    second: Lv.19 Countess Spritesheet_18
+  - first:
+      213: -1358299993228511694
+    second: Lv.19 Countess Spritesheet_19
+  - first:
+      213: 6603524723636844054
+    second: Lv.19 Countess Spritesheet_20
+  - first:
+      213: 6635209242103248120
+    second: Lv.19 Countess Spritesheet_21
+  - first:
+      213: 5867547899042302818
+    second: Lv.19 Countess Spritesheet_22
+  - first:
+      213: -8891242115934256646
+    second: Lv.19 Countess Spritesheet_23
+  - first:
+      213: -669120884339556712
+    second: Lv.19 Countess Spritesheet_24
+  - first:
+      213: -3940056790467684666
+    second: Lv.19 Countess Spritesheet_25
+  - first:
+      213: 8938546622033002709
+    second: Lv.19 Countess Spritesheet_26
+  - first:
+      213: -4022220943651929817
+    second: Lv.19 Countess Spritesheet_27
+  - first:
+      213: 2225284198329478067
+    second: Lv.19 Countess Spritesheet_28
+  - first:
+      213: -4521776275100258034
+    second: Lv.19 Countess Spritesheet_29
+  - first:
+      213: -9102675905995821692
+    second: Lv.19 Countess Spritesheet_30
+  - first:
+      213: -5279919320278432761
+    second: Lv.19 Countess Spritesheet_31
+  - first:
+      213: -6778940428098441929
+    second: Lv.19 Countess Spritesheet_32
+  - first:
+      213: -2466065119902408786
+    second: Lv.19 Countess Spritesheet_33
+  - first:
+      213: -6208642513947111835
+    second: Lv.19 Countess Spritesheet_34
+  - first:
+      213: -5602924158147962152
+    second: Lv.19 Countess Spritesheet_35
+  - first:
+      213: 1947588235844349204
+    second: Lv.19 Countess Spritesheet_36
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +151,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +168,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +181,811 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed301fa9021aa130800000000000000
+      internalID: 3578692686700363235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6917ee936e08510b0800000000000000
+      internalID: -5758554822220549738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd97f95d52674a80800000000000000
+      internalID: -8482703220048159288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8dc3751856f9b270800000000000000
+      internalID: 8266909449192721804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6bde229688579b10800000000000000
+      internalID: 1988155095508769644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 694e53769be523590800000000000000
+      internalID: -7695984662829210474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 882
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf2245ff20571eb0800000000000000
+      internalID: -4749239115130458191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 764
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc06be0ae988e1400800000000000000
+      internalID: 296824840339022027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 764
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f2e6e48ade5a33d0800000000000000
+      internalID: -3226161890431933703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 764
+        width: 184
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5876bd8968be3bc0800000000000000
+      internalID: -3801398271965497250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 764
+        width: 95
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb7b717d15aeaff0800000000000000
+      internalID: -22899402213721111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 764
+        width: 95
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80fdec278abba44d0800000000000000
+      internalID: -3149498657237180664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 657
+        width: 184
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f44a1bcae00e7610800000000000000
+      internalID: 1620733924329800945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 657
+        width: 184
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6485074b04e7740800000000000000
+      internalID: 5151626167481550512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 650
+        width: 95
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccade1713e61eb00800000000000000
+      internalID: 856086562820959438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 536
+        width: 95
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04b23c00daffc490800000000000000
+      internalID: -7723679064452320241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 536
+        width: 95
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 122f2b6b587a1fed0800000000000000
+      internalID: -2381938535164612063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 536
+        width: 95
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07509413b2a19350800000000000000
+      internalID: 6021773066798913293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 536
+        width: 53
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900f9d370732a8b20800000000000000
+      internalID: 3137359056303943689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 536
+        width: 53
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236f23d4a59562de0800000000000000
+      internalID: -1358299993228511694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 536
+        width: 53
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61632e9cfbe64ab50800000000000000
+      internalID: 6603524723636844054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 403
+        width: 86
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4f3fd96aff41c50800000000000000
+      internalID: 6635209242103248120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 403
+        width: 86
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b81010ab7bd6150800000000000000
+      internalID: 5867547899042302818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 403
+        width: 89
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af10fb34766fb9480800000000000000
+      internalID: -8891242115934256646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 403
+        width: 86
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e3521d91ec6b6f0800000000000000
+      internalID: -669120884339556712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 403
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6de41793b1259c0800000000000000
+      internalID: -3940056790467684666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 279
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d08b865bc81c0c70800000000000000
+      internalID: 8938546622033002709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 279
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7218d75cc533e28c0800000000000000
+      internalID: -4022220943651929817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 279
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbe7b5303cc1ee10800000000000000
+      internalID: 2225284198329478067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 279
+        width: 92
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e013cd86f6c6f31c0800000000000000
+      internalID: -4521776275100258034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 279
+        width: 92
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48dac95dd7ccca180800000000000000
+      internalID: -9102675905995821692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151
+        width: 92
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70405183a55f9b6b0800000000000000
+      internalID: -5279919320278432761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 151
+        width: 92
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d68a5d89d5ce1a0800000000000000
+      internalID: -6778940428098441929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 144
+        width: 120
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf5c37d6d6c6cdd0800000000000000
+      internalID: -2466065119902408786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 144
+        width: 120
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e4bc2478876d9a0800000000000000
+      internalID: -6208642513947111835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 19
+        width: 120
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dad22ae92a6e32b0800000000000000
+      internalID: -5602924158147962152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.19 Countess Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 19
+        width: 120
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41d6b368e29370b10800000000000000
+      internalID: 1947588235844349204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

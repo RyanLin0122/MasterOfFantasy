@@ -1,9 +1,51 @@
 fileFormatVersion: 2
 guid: a1550348aa2131944b6986110ab50c79
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7684907069513313461
+    second: Lv.30 Red Devil Attack_0
+  - first:
+      213: 2086853037893723464
+    second: Lv.30 Red Devil Attack_1
+  - first:
+      213: 2602802527428151764
+    second: Lv.30 Red Devil Attack_2
+  - first:
+      213: -4210576362447690382
+    second: Lv.30 Red Devil Attack_3
+  - first:
+      213: -2252563512286383145
+    second: Lv.30 Red Devil Attack_4
+  - first:
+      213: 3004578547923011152
+    second: Lv.30 Red Devil Attack_5
+  - first:
+      213: -6649594651465433033
+    second: Lv.30 Red Devil Attack_6
+  - first:
+      213: -707193982287508505
+    second: Lv.30 Red Devil Attack_7
+  - first:
+      213: -2310046150986456409
+    second: Lv.30 Red Devil Attack_8
+  - first:
+      213: -7531339325601363021
+    second: Lv.30 Red Devil Attack_9
+  - first:
+      213: 1067540198258647808
+    second: Lv.30 Red Devil Attack_10
+  - first:
+      213: -6640882398228924266
+    second: Lv.30 Red Devil Attack_11
+  - first:
+      213: -3695350971096309843
+    second: Lv.30 Red Devil Attack_12
+  - first:
+      213: 3364557895947417552
+    second: Lv.30 Red Devil Attack_13
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +82,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +99,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +112,328 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 195
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4355c59cb9b95590800000000000000
+      internalID: -7684907069513313461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 195
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845a91608cdf5fc10800000000000000
+      internalID: 2086853037893723464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 132
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d908d3cb130f1420800000000000000
+      internalID: 2602802527428151764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_3
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 132
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27526a06b170195c0800000000000000
+      internalID: -4210576362447690382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 68
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3f9209b694db0e0800000000000000
+      internalID: -2252563512286383145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_5
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 68
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056c5b8354862b920800000000000000
+      internalID: 3004578547923011152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 4
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 730c01345e4e7b3a0800000000000000
+      internalID: -6649594651465433033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_7
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 4
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eb857ae1da8f26f0800000000000000
+      internalID: -707193982287508505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_8
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 195
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2a1bbc34111ffd0800000000000000
+      internalID: -2310046150986456409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_9
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 196
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbc99e39ce4b7790800000000000000
+      internalID: -7531339325601363021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_10
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 132
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00328ac772aa0de00800000000000000
+      internalID: 1067540198258647808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_11
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 134
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698bb6ac4a8d6d3a0800000000000000
+      internalID: -6640882398228924266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_12
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 69
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dafd86fded977bcc0800000000000000
+      internalID: -3695350971096309843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.30 Red Devil Attack_13
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 68
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d77e26849f41be20800000000000000
+      internalID: 3364557895947417552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

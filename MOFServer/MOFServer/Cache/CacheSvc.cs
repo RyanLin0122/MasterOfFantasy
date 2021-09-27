@@ -51,9 +51,16 @@ public class CacheSvc
 
     public async Task AsyncSaveCharacter(string acc, Player player)
     {
+        /*
         var factory = ServerRoot.Instance.taskFactory;
         Task task = factory.StartNew(() => dbMgr.AsyncSaveCharacter(acc, player));
         await task;
+        */
+        await dbMgr.AsyncSaveCharacter(acc, player);
+    }
+    public async Task AsyncSaveAccount(string account, AccountData data)
+    {
+        await dbMgr.AsyncSaveAccount(account, data);
     }
     public bool SyncSaveCharacter(string acc, Player player)
     {
@@ -544,6 +551,7 @@ public class CacheSvc
                             , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString())
                             , (float)Convert.ToDouble(jo["MagicDefense"].ToString()), (EquipmentType)Enum.Parse(typeof(EquipmentType), jo["EquipmentType"].str)
                             , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
+                            , (float)Convert.ToDouble(jo["ExpRate"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()), Convert.ToInt32(jo["Stars"].ToString())
                             );
                         ItemList.Add(EquipItem.ItemID, EquipItem);
                         break;
@@ -559,7 +567,7 @@ public class CacheSvc
                             , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["Job"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
                             , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString()), (WeaponType)Enum.Parse(typeof(WeaponType), jo["WeapType"].str)
                             , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
-                            );
+                            , Convert.ToInt32(jo["Additional"].ToString()), Convert.ToInt32(jo["Stars"].ToString()), Convert.ToInt32(jo["AdditionalLevel"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()));
                         ItemList.Add(WeapItem.ItemID, WeapItem);
                         break;
                     case ItemType.EtcItem:
@@ -974,13 +982,14 @@ public class CacheSvc
                     List<CashShopData> ItemList = new List<CashShopData>();
                     //第二層 小分類
                     var list = jo[cata][key].list;
-                    foreach (var item in list)
+                    for (int i = 0; i < list.Count; i++)
                     {
                         //第三層 商品
                         CashShopData data = new CashShopData
                         {
-                            ItemID = (int)item["ID"].n,
-                            SellPrice = (int)item["SellPrice"].n
+                            ItemID = (int)list[i]["ID"].n,
+                            SellPrice = (int)list[i]["SellPrice"].n,
+                            Quantity = (int)list[i]["Quantity"].n
                         };
                         ItemList.Add(data);
                     }

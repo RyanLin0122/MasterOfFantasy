@@ -82,6 +82,21 @@ public class LoginRequestHandler : ChannelHandlerAdapter
             //無此帳號，默認新增新帳號
             CacheSvc.Instance.InsertNewAccount(msg);
             session.Bind();
+            var accountData = new AccountData
+            {
+                Account = msg.Account,
+                Password = msg.loginRequest.Password,
+                Cash = 50000,
+                CashShopBuyPanelFashionServer1 = new System.Collections.Generic.Dictionary<int, Item>(),
+                CashShopBuyPanelFashionServer2 = new System.Collections.Generic.Dictionary<int, Item>(),
+                CashShopBuyPanelFashionServer3 = new System.Collections.Generic.Dictionary<int, Item>(),
+                CashShopBuyPanelOtherServer1 = new System.Collections.Generic.Dictionary<int, Item>(),
+                CashShopBuyPanelOtherServer2 = new System.Collections.Generic.Dictionary<int, Item>(),
+                CashShopBuyPanelOtherServer3 = new System.Collections.Generic.Dictionary<int, Item>(),
+                LockerServer1 = new System.Collections.Generic.Dictionary<int, Item>(),
+                LockerServer2 = new System.Collections.Generic.Dictionary<int, Item>(),
+                LockerServer3 = new System.Collections.Generic.Dictionary<int, Item>(),
+            };
             ProtoMsg outmsg = new ProtoMsg
             {
                 MessageType = 2,
@@ -102,9 +117,22 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         ServerStatus = NetSvc.Instance.GameServerStatus,
                         ChannelNums = NetSvc.Instance.ChannelsNum
                     },
-                    PrivateKey = ServerConstants.PrivateKey
-                },
+                    PrivateKey = ServerConstants.PrivateKey,
+                    accountData = accountData
+                }   
             };
+            //把帳號資料暫存到快取           
+            session.AccountData = accountData;
+            //存下帳號資料進CacheSvc
+            if (CacheSvc.Instance.AccountDataDict.ContainsKey(accountData.Account))
+            {
+                CacheSvc.Instance.AccountDataDict.TryAdd(accountData.Account, accountData);
+            }
+            else
+            {
+                CacheSvc.Instance.AccountDataDict[accountData.Account] = accountData;
+
+            }
             session.WriteAndFlush(outmsg,false);
             return true;
         }
@@ -127,11 +155,6 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         characters[i] = Utility.Convert2Player(item.AsBsonDocument);
                         i++;
                     }
-                    //for(int i = 0; i < CharacterCount; i++)
-                    //{
-                    //    characters[i] = CacheSvc.Instance.Convert2Player(((check.Item2[msg.Account])["Players"].AsBsonArray)[i].AsBsonDocument);
-                    //}
-
                 }
                 //把帳號資料暫存到快取
                 CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, check.Item2);
@@ -170,6 +193,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                     },
                     players = characters
                 };
+                session.AccountData = accountData;
                 //存下帳號資料進CacheSvc
                 if (CacheSvc.Instance.AccountDataDict.ContainsKey(accountData.Account))
                 {

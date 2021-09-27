@@ -1018,4 +1018,19 @@ public class Tools
         }
         return Timestr;
     }
+
+    public static void SetDictionary<TDicKey, TDicValue>(Dictionary<TDicKey,TDicValue> dic, TDicKey key,TDicValue value )
+    {
+        if (dic != null)
+        {
+            if (dic.ContainsKey(key))
+            {
+                dic[key] = value;
+            }
+            else
+            {
+                dic.Add(key, value);
+            }
+        }
+    }
 }

@@ -1,9 +1,105 @@
 fileFormatVersion: 2
 guid: 07d9b7669eae03f479689572c62cc0aa
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3296276559943815424
+    second: Lv.1 Chocolate Ring Spritesheet_0
+  - first:
+      213: -32140310452049165
+    second: Lv.1 Chocolate Ring Spritesheet_1
+  - first:
+      213: 5334564212977504919
+    second: Lv.1 Chocolate Ring Spritesheet_2
+  - first:
+      213: 6275404121935286364
+    second: Lv.1 Chocolate Ring Spritesheet_3
+  - first:
+      213: -4248112865715326102
+    second: Lv.1 Chocolate Ring Spritesheet_4
+  - first:
+      213: -7280593314747078444
+    second: Lv.1 Chocolate Ring Spritesheet_5
+  - first:
+      213: 6956576988234737229
+    second: Lv.1 Chocolate Ring Spritesheet_6
+  - first:
+      213: 90858729537536464
+    second: Lv.1 Chocolate Ring Spritesheet_7
+  - first:
+      213: -9201399223911573692
+    second: Lv.1 Chocolate Ring Spritesheet_8
+  - first:
+      213: 6174734796678632864
+    second: Lv.1 Chocolate Ring Spritesheet_9
+  - first:
+      213: 3737260948663524259
+    second: Lv.1 Chocolate Ring Spritesheet_10
+  - first:
+      213: -5780326183898582861
+    second: Lv.1 Chocolate Ring Spritesheet_11
+  - first:
+      213: -2860815950170400695
+    second: Lv.1 Chocolate Ring Spritesheet_12
+  - first:
+      213: 4746980655405735552
+    second: Lv.1 Chocolate Ring Spritesheet_13
+  - first:
+      213: 8494676045329376853
+    second: Lv.1 Chocolate Ring Spritesheet_14
+  - first:
+      213: 4162854562048924598
+    second: Lv.1 Chocolate Ring Spritesheet_15
+  - first:
+      213: 5751923218016089574
+    second: Lv.1 Chocolate Ring Spritesheet_16
+  - first:
+      213: 8391659287576241192
+    second: Lv.1 Chocolate Ring Spritesheet_17
+  - first:
+      213: 1372395059340190644
+    second: Lv.1 Chocolate Ring Spritesheet_18
+  - first:
+      213: 6902181587500316336
+    second: Lv.1 Chocolate Ring Spritesheet_19
+  - first:
+      213: -7431399205622471076
+    second: Lv.1 Chocolate Ring Spritesheet_20
+  - first:
+      213: 438416207118148925
+    second: Lv.1 Chocolate Ring Spritesheet_21
+  - first:
+      213: -5586944656966373009
+    second: Lv.1 Chocolate Ring Spritesheet_22
+  - first:
+      213: -6195165109141118061
+    second: Lv.1 Chocolate Ring Spritesheet_23
+  - first:
+      213: 8769592621508370535
+    second: Lv.1 Chocolate Ring Spritesheet_24
+  - first:
+      213: -5944237540931919449
+    second: Lv.1 Chocolate Ring Spritesheet_25
+  - first:
+      213: -3554540812923410865
+    second: Lv.1 Chocolate Ring Spritesheet_26
+  - first:
+      213: -1643747585562472213
+    second: Lv.1 Chocolate Ring Spritesheet_27
+  - first:
+      213: 3639172530675044006
+    second: Lv.1 Chocolate Ring Spritesheet_28
+  - first:
+      213: 969352467434130045
+    second: Lv.1 Chocolate Ring Spritesheet_29
+  - first:
+      213: 8494959919844072555
+    second: Lv.1 Chocolate Ring Spritesheet_30
+  - first:
+      213: -1949909257627901645
+    second: Lv.1 Chocolate Ring Spritesheet_31
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +136,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +153,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +166,706 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 307
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f2a13eee54142d0800000000000000
+      internalID: -3296276559943815424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 307
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fae884de80dd8ff0800000000000000
+      internalID: -32140310452049165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 307
+        width: 50
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 792190253ed280a40800000000000000
+      internalID: 5334564212977504919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 307
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5099f5ecc6b61750800000000000000
+      internalID: 6275404121935286364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 307
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6375492bdbab05c0800000000000000
+      internalID: -4248112865715326102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 241
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8aa6854f226fa90800000000000000
+      internalID: -7280593314747078444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 241
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46636cc9e9ba8060800000000000000
+      internalID: 6956576988234737229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 241
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d104da788bc24100800000000000000
+      internalID: 90858729537536464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 241
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 447123e28201e4080800000000000000
+      internalID: -9201399223911573692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 240
+        width: 56
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a5164a159011b550800000000000000
+      internalID: 6174734796678632864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 240
+        width: 51
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab570e280b6dd330800000000000000
+      internalID: 3737260948663524259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 51
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b0f5d216f728cfa0800000000000000
+      internalID: -5780326183898582861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 240
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9485252fc075c48d0800000000000000
+      internalID: -2860815950170400695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 178
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e1c1961c9a0e140800000000000000
+      internalID: 4746980655405735552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 178
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 556a0e34bd623e570800000000000000
+      internalID: 8494676045329376853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 178
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb5a8e1b2e65c930800000000000000
+      internalID: 4162854562048924598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 178
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5bb2911bfe2df40800000000000000
+      internalID: 5751923218016089574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 124
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824e61049a9257470800000000000000
+      internalID: 8391659287576241192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 124
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b32973090abb0310800000000000000
+      internalID: 1372395059340190644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 124
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6b232a59979cf50800000000000000
+      internalID: 6902181587500316336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 124
+        width: 64
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56a0c4bbcd5ed890800000000000000
+      internalID: -7431399205622471076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 71
+        width: 66
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d352d01b731951600800000000000000
+      internalID: 438416207118148925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 71
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61b0c57f6f2772b0800000000000000
+      internalID: -5586944656966373009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 71
+        width: 67
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393efb8182a560aa0800000000000000
+      internalID: -6195165109141118061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 71
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760a4e5a60ad3b970800000000000000
+      internalID: 8769592621508370535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 71
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a126305373d18da0800000000000000
+      internalID: -5944237540931919449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 30
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f466212a6fbbbaec0800000000000000
+      internalID: -3554540812923410865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 30
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be09426a74c3039e0800000000000000
+      internalID: -1643747585562472213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 30
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aece3fa220f08230800000000000000
+      internalID: 3639172530675044006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 30
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a4f8beee4d37d00800000000000000
+      internalID: 969352467434130045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 30
+        width: 66
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c9c73f90924e570800000000000000
+      internalID: 8494959919844072555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.1 Chocolate Ring Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 56
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331e7da7cd780f4e0800000000000000
+      internalID: -1949909257627901645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

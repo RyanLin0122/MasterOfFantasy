@@ -1,9 +1,51 @@
 fileFormatVersion: 2
 guid: 2dbd45322d288274bb937b80d3adc434
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8047796061950750504
+    second: Lv.110 Medusa Attack_0
+  - first:
+      213: -2532496459566416857
+    second: Lv.110 Medusa Attack_1
+  - first:
+      213: 9095870261541654432
+    second: Lv.110 Medusa Attack_2
+  - first:
+      213: -3841131198794564121
+    second: Lv.110 Medusa Attack_3
+  - first:
+      213: -4226957692988329290
+    second: Lv.110 Medusa Attack_4
+  - first:
+      213: 8134262460173739590
+    second: Lv.110 Medusa Attack_5
+  - first:
+      213: 8752560547053185076
+    second: Lv.110 Medusa Attack_6
+  - first:
+      213: 9051698894251477045
+    second: Lv.110 Medusa Attack_7
+  - first:
+      213: 7310207948449956377
+    second: Lv.110 Medusa Attack_8
+  - first:
+      213: 3048604780958608011
+    second: Lv.110 Medusa Attack_9
+  - first:
+      213: -3112743667527227479
+    second: Lv.110 Medusa Attack_10
+  - first:
+      213: 9121711875871427357
+    second: Lv.110 Medusa Attack_11
+  - first:
+      213: -6746689823040811351
+    second: Lv.110 Medusa Attack_12
+  - first:
+      213: 395767661032703528
+    second: Lv.110 Medusa Attack_13
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +82,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +99,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +112,328 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 543
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d053a6ee1c705090800000000000000
+      internalID: -8047796061950750504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_1
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 543
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72cfb9443e3cadcd0800000000000000
+      internalID: -2532496459566416857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_2
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 543
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0afca369fc50b3e70800000000000000
+      internalID: 9095870261541654432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 655
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edfd20a68f81bac0800000000000000
+      internalID: -3841131198794564121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_4
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 655
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b273d4af54d655c0800000000000000
+      internalID: -4226957692988329290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_5
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 341
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64663704c94b2e070800000000000000
+      internalID: 8134262460173739590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 341
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438243ac177577970800000000000000
+      internalID: 8752560547053185076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_7
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 341
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538c7a5bf281e9d70800000000000000
+      internalID: 9051698894251477045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 158
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912c891e563137560800000000000000
+      internalID: 7310207948449956377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_9
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 158
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a689565e1de4a20800000000000000
+      internalID: 3048604780958608011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_10
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 158
+        width: 160
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a7613c50205dc4d0800000000000000
+      internalID: -3112743667527227479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_11
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 160
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1b47c84f94d69e70800000000000000
+      internalID: 9121711875871427357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_12
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 45
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aec8e7f951fe52a0800000000000000
+      internalID: -6746689823040811351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.110 Medusa Attack_13
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 40
+        width: 140
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8260171479c0e7500800000000000000
+      internalID: 395767661032703528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

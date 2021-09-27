@@ -1,9 +1,45 @@
 fileFormatVersion: 2
 guid: ec9a20b1048aa9c45a7b68069c7301c0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1124730883946382208
+    second: adult-girl-hear02_0
+  - first:
+      213: -7027956704811954988
+    second: adult-girl-hear02_1
+  - first:
+      213: 6196617987861516448
+    second: adult-girl-hear02_2
+  - first:
+      213: -497574832780639585
+    second: adult-girl-hear02_3
+  - first:
+      213: -2344565702737363103
+    second: adult-girl-hear02_4
+  - first:
+      213: -2303672010330262414
+    second: adult-girl-hear02_5
+  - first:
+      213: -8631592952286128790
+    second: adult-girl-hear02_6
+  - first:
+      213: 9122925640475003177
+    second: adult-girl-hear02_7
+  - first:
+      213: -7117801769518339957
+    second: adult-girl-hear02_8
+  - first:
+      213: 795893122459904748
+    second: adult-girl-hear02_9
+  - first:
+      213: 8182979453009782157
+    second: adult-girl-hear02_10
+  - first:
+      213: 8839624900471897118
+    second: adult-girl-hear02_11
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +59,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +91,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +110,274 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: adult-girl-hear02_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 415
+        width: 136
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0830985a7c8db9f00800000000000000
+      internalID: 1124730883946382208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 448
+        width: 90
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dccbd8dc9ea77e90800000000000000
+      internalID: -7027956704811954988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_2
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 346
+        width: 103
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a018479a3fcef550800000000000000
+      internalID: 6196617987861516448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_3
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 303
+        width: 148
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f928fea63524819f0800000000000000
+      internalID: -497574832780639585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 286
+        width: 175
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16f76c75aed667fd0800000000000000
+      internalID: -2344565702737363103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 130
+        width: 86
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27431411386b700e0800000000000000
+      internalID: -2303672010330262414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 179
+        width: 98
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65583921fb663880800000000000000
+      internalID: -8631592952286128790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_7
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 138
+        width: 84
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929c0d0e8842b9e70800000000000000
+      internalID: 9122925640475003177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_8
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 21
+        width: 200
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88663a900d783d90800000000000000
+      internalID: -7117801769518339957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_9
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 34
+        width: 76
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea266bf3949b0b00800000000000000
+      internalID: 795893122459904748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_10
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 11
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85e7fc0578cf8170800000000000000
+      internalID: 8182979453009782157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-girl-hear02_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 88
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c335c3308acaa70800000000000000
+      internalID: 8839624900471897118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

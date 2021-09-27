@@ -1,9 +1,54 @@
 fileFormatVersion: 2
 guid: 411aa4c2703122e4aa129993ab75050e
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3179520605616818364
+    second: adult-boy-hear03_0
+  - first:
+      213: 4168610756245963228
+    second: adult-boy-hear03_1
+  - first:
+      213: -6450145509486879331
+    second: adult-boy-hear03_2
+  - first:
+      213: -1254239680477442936
+    second: adult-boy-hear03_3
+  - first:
+      213: -6492950115457984137
+    second: adult-boy-hear03_4
+  - first:
+      213: -3832071557935466395
+    second: adult-boy-hear03_5
+  - first:
+      213: 4352302123093462143
+    second: adult-boy-hear03_6
+  - first:
+      213: -6988453955435580240
+    second: adult-boy-hear03_7
+  - first:
+      213: 781443779295537012
+    second: adult-boy-hear03_8
+  - first:
+      213: 5096966607764685347
+    second: adult-boy-hear03_9
+  - first:
+      213: 5684779166701587835
+    second: adult-boy-hear03_10
+  - first:
+      213: -3948919465129112492
+    second: adult-boy-hear03_11
+  - first:
+      213: -5490238866344420605
+    second: adult-boy-hear03_12
+  - first:
+      213: 4847077773482762998
+    second: adult-boy-hear03_13
+  - first:
+      213: -1469213721793854737
+    second: adult-boy-hear03_14
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +68,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +86,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +100,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +119,337 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: adult-boy-hear03_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 351
+        width: 188
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 447bc22ead210e3d0800000000000000
+      internalID: -3179520605616818364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 187
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1c9e48561e9d930800000000000000
+      internalID: 4168610756245963228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 125
+        width: 151
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d147d55da7c76a0800000000000000
+      internalID: -6450145509486879331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 23
+        width: 96
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88c41f5e7ab089ee0800000000000000
+      internalID: -1254239680477442936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_4
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 24
+        width: 83
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7799bc7654864e5a0800000000000000
+      internalID: -6492950115457984137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_5
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 54
+        width: 99
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568f063a83fb1dac0800000000000000
+      internalID: -3832071557935466395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 149
+        width: 82
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c0a22b8bb766c30800000000000000
+      internalID: 4352302123093462143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 239
+        width: 96
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4b6196726040f90800000000000000
+      internalID: -6988453955435580240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_8
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 337
+        width: 98
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47769dc1afe38da00800000000000000
+      internalID: 781443779295537012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_9
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 236
+        width: 92
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32287d7ff101cb640800000000000000
+      internalID: 5096966607764685347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_10
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 88
+        width: 153
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7d0ac9688464ee40800000000000000
+      internalID: 5684779166701587835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_11
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 318
+        width: 94
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c8a523bae9239c0800000000000000
+      internalID: -3948919465129112492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_12
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 352
+        width: 81
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b5f7fe6d0cec3b0800000000000000
+      internalID: -5490238866344420605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_13
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 415
+        width: 115
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2a127dd87444340800000000000000
+      internalID: 4847077773482762998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adult-boy-hear03_14
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 399
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2095d77ed4c9be0800000000000000
+      internalID: -1469213721793854737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -1,9 +1,54 @@
 fileFormatVersion: 2
 guid: f8ecf3bb9324a5f41bf8e7ad1c78ca37
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3032376466688365185
+    second: Adult-girl-HEAR08_0
+  - first:
+      213: -5347417241851330693
+    second: Adult-girl-HEAR08_1
+  - first:
+      213: 585524107270149965
+    second: Adult-girl-HEAR08_2
+  - first:
+      213: 6109728565431524538
+    second: Adult-girl-HEAR08_3
+  - first:
+      213: 6243319989633072051
+    second: Adult-girl-HEAR08_4
+  - first:
+      213: 1503213151340248691
+    second: Adult-girl-HEAR08_5
+  - first:
+      213: -4992967861431230715
+    second: Adult-girl-HEAR08_6
+  - first:
+      213: -3117131624559070073
+    second: Adult-girl-HEAR08_7
+  - first:
+      213: 1827694712974560364
+    second: Adult-girl-HEAR08_8
+  - first:
+      213: -1042786874597766487
+    second: Adult-girl-HEAR08_9
+  - first:
+      213: 8297988648361906362
+    second: Adult-girl-HEAR08_10
+  - first:
+      213: 5408667569650632299
+    second: Adult-girl-HEAR08_11
+  - first:
+      213: 535531546985723170
+    second: Adult-girl-HEAR08_12
+  - first:
+      213: -2814505260354005538
+    second: Adult-girl-HEAR08_13
+  - first:
+      213: -7933485038470414946
+    second: Adult-girl-HEAR08_14
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +68,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +86,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +100,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +119,337 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 355
+        width: 99
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d29c57ba5dae5d0800000000000000
+      internalID: -3032376466688365185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_1
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 406
+        width: 89
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ff6a1b9582ac5b0800000000000000
+      internalID: -5347417241851330693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_2
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 401
+        width: 86
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47d345c213302800800000000000000
+      internalID: 585524107270149965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 241
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc5a9072cd1ac450800000000000000
+      internalID: 6109728565431524538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_4
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 409
+        width: 33
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbbc29b37ab4a650800000000000000
+      internalID: 6243319989633072051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_5
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 408
+        width: 72
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37eb453956c7cd410800000000000000
+      internalID: 1503213151340248691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_6
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 215
+        width: 98
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f13741f2a65bab0800000000000000
+      internalID: -4992967861431230715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_7
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 114
+        width: 41
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78435008d49bdb4d0800000000000000
+      internalID: -3117131624559070073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_8
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 19
+        width: 83
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c45bc68a64d5910800000000000000
+      internalID: 1827694712974560364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_9
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 84
+        width: 178
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa092bccd64781f0800000000000000
+      internalID: -1042786874597766487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_10
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 206
+        width: 136
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0d5d706b0682370800000000000000
+      internalID: 8297988648361906362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 57
+        width: 135
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66833d8f727f0b40800000000000000
+      internalID: 5408667569650632299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 79
+        width: 71
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2257918ca179e6700800000000000000
+      internalID: 535531546985723170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_13
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 213
+        width: 66
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5912aa06ed0f8d0800000000000000
+      internalID: -2814505260354005538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Adult-girl-HEAR08_14
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 332
+        width: 92
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d3813146996e190800000000000000
+      internalID: -7933485038470414946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

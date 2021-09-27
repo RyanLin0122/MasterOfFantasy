@@ -1,9 +1,87 @@
 fileFormatVersion: 2
 guid: 498485e9b512539449c66bd2fd048abe
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8682179197020571686
+    second: Lv.54 Lightning Jelly Spritesheet_0
+  - first:
+      213: 3297258922421223585
+    second: Lv.54 Lightning Jelly Spritesheet_1
+  - first:
+      213: 4693335070017406672
+    second: Lv.54 Lightning Jelly Spritesheet_2
+  - first:
+      213: -2218719029024722539
+    second: Lv.54 Lightning Jelly Spritesheet_3
+  - first:
+      213: -6614931114132906058
+    second: Lv.54 Lightning Jelly Spritesheet_4
+  - first:
+      213: -7665361321573839943
+    second: Lv.54 Lightning Jelly Spritesheet_5
+  - first:
+      213: 3636005105096465211
+    second: Lv.54 Lightning Jelly Spritesheet_6
+  - first:
+      213: -428541303485094949
+    second: Lv.54 Lightning Jelly Spritesheet_7
+  - first:
+      213: 561525615094965334
+    second: Lv.54 Lightning Jelly Spritesheet_8
+  - first:
+      213: 861269600397511755
+    second: Lv.54 Lightning Jelly Spritesheet_9
+  - first:
+      213: 7461633253709178989
+    second: Lv.54 Lightning Jelly Spritesheet_10
+  - first:
+      213: -6933562809015895800
+    second: Lv.54 Lightning Jelly Spritesheet_11
+  - first:
+      213: 1800060306200951310
+    second: Lv.54 Lightning Jelly Spritesheet_12
+  - first:
+      213: -6309426155451651322
+    second: Lv.54 Lightning Jelly Spritesheet_13
+  - first:
+      213: 5999925076691037337
+    second: Lv.54 Lightning Jelly Spritesheet_14
+  - first:
+      213: 5742047193218981662
+    second: Lv.54 Lightning Jelly Spritesheet_15
+  - first:
+      213: -8539776289600207505
+    second: Lv.54 Lightning Jelly Spritesheet_16
+  - first:
+      213: 1844611188632147617
+    second: Lv.54 Lightning Jelly Spritesheet_17
+  - first:
+      213: -2581581786893722587
+    second: Lv.54 Lightning Jelly Spritesheet_18
+  - first:
+      213: 6079633719979088924
+    second: Lv.54 Lightning Jelly Spritesheet_19
+  - first:
+      213: 3015259047227070365
+    second: Lv.54 Lightning Jelly Spritesheet_20
+  - first:
+      213: -7691424504019247266
+    second: Lv.54 Lightning Jelly Spritesheet_21
+  - first:
+      213: 5285284237247705236
+    second: Lv.54 Lightning Jelly Spritesheet_22
+  - first:
+      213: 654080670093836874
+    second: Lv.54 Lightning Jelly Spritesheet_23
+  - first:
+      213: 8194313562593225512
+    second: Lv.54 Lightning Jelly Spritesheet_24
+  - first:
+      213: -3673437994652336547
+    second: Lv.54 Lightning Jelly Spritesheet_25
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,7 +118,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -57,6 +135,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +148,580 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 7
+        width: 110
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad77d4d3504b28780800000000000000
+      internalID: -8682179197020571686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 5
+        width: 110
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a08763358732cd20800000000000000
+      internalID: 3297258922421223585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 6
+        width: 110
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6454c3163122140800000000000000
+      internalID: 4693335070017406672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 102
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591f4926cc68531e0800000000000000
+      internalID: -2218719029024722539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 61
+        width: 110
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfdd68f23b0334a0800000000000000
+      internalID: -6614931114132906058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 86
+        width: 110
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bb8298ad7a2f9590800000000000000
+      internalID: -7665361321573839943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 56
+        width: 110
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b18c2f06fa57230800000000000000
+      internalID: 3636005105096465211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 73
+        width: 100
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd3203a74f38d0af0800000000000000
+      internalID: -428541303485094949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 165
+        width: 93
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 654a4046290fac700800000000000000
+      internalID: 561525615094965334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 169
+        width: 93
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c498b6328d3fb00800000000000000
+      internalID: 861269600397511755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 195
+        width: 93
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d68e39b29eb0d8760800000000000000
+      internalID: 7461633253709178989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 195
+        width: 93
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8097fbc5c5907cf90800000000000000
+      internalID: -6933562809015895800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 178
+        width: 95
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a7365bf491bf810800000000000000
+      internalID: 1800060306200951310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 257
+        width: 95
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60beeb3275a6078a0800000000000000
+      internalID: -6309426155451651322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 244
+        width: 95
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ca02b7114044350800000000000000
+      internalID: 5999925076691037337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 269
+        width: 107
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f9853ef79dfaf40800000000000000
+      internalID: 5742047193218981662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 277
+        width: 106
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f658315d5be9c7980800000000000000
+      internalID: -8539776289600207505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273
+        width: 111
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a651275a10699910800000000000000
+      internalID: 1844611188632147617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 351
+        width: 132
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52cd499ea016c2cd0800000000000000
+      internalID: -2581581786893722587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 345
+        width: 112
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c17d338a23f5450800000000000000
+      internalID: 6079633719979088924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 353
+        width: 112
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9790cfb02a58d920800000000000000
+      internalID: 3015259047227070365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 350
+        width: 112
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f923d1a22924590800000000000000
+      internalID: -7691424504019247266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 434
+        width: 118
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490fe1ad20a195940800000000000000
+      internalID: 5285284237247705236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 434
+        width: 118
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42846b67e2c31900800000000000000
+      internalID: 654080670093836874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 434
+        width: 115
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82be88415cc08b170800000000000000
+      internalID: 8194313562593225512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.54 Lightning Jelly Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 434
+        width: 97
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ef2584b93550dc0800000000000000
+      internalID: -3673437994652336547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

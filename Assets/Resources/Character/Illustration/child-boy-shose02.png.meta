@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: c7238a2dec9461a4faa7cfa0ce150fe8
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4490753056564881045
+    second: child-boy-shose02_0
+  - first:
+      213: -7663606097681314844
+    second: child-boy-shose02_1
+  - first:
+      213: -1228767820171708266
+    second: child-boy-shose02_2
+  - first:
+      213: -3503626640785862705
+    second: child-boy-shose02_3
+  - first:
+      213: 2359814918176927223
+    second: child-boy-shose02_4
+  - first:
+      213: 2561821749229705349
+    second: child-boy-shose02_5
+  - first:
+      213: 6724512722784329467
+    second: child-boy-shose02_6
+  - first:
+      213: 7503096474695599904
+    second: child-boy-shose02_7
+  - first:
+      213: -793203144679263856
+    second: child-boy-shose02_8
+  - first:
+      213: 7619153503783719483
+    second: child-boy-shose02_9
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +71,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +85,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +104,232 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: child-boy-shose02_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 319
+        width: 83
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69537953e3ada1c0800000000000000
+      internalID: -4490753056564881045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 315
+        width: 88
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb00319bd665a590800000000000000
+      internalID: -7663606097681314844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_2
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 314
+        width: 90
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698fb378d2a82fee0800000000000000
+      internalID: -1228767820171708266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_3
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 299
+        width: 86
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf0d5a122e906fc0800000000000000
+      internalID: -3503626640785862705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_4
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 318
+        width: 85
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd6a9d4a2fbfb020800000000000000
+      internalID: 2359814918176927223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_5
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 98
+        width: 81
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 588d4bcce4b6d8320800000000000000
+      internalID: 2561821749229705349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_6
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 106
+        width: 83
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfe972181b4425d50800000000000000
+      internalID: 6724512722784329467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_7
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 96
+        width: 89
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02787b99d7a502860800000000000000
+      internalID: 7503096474695599904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_8
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 101
+        width: 91
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0917ba641f9fdf4f0800000000000000
+      internalID: -793203144679263856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-boy-shose02_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 99
+        width: 93
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3293326ebbacb960800000000000000
+      internalID: 7619153503783719483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

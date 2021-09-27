@@ -1,9 +1,57 @@
 fileFormatVersion: 2
 guid: 0449f794472a5ce46a591198956f668a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4994821520117220434
+    second: child-girl-hear05_0
+  - first:
+      213: -8281920675244822735
+    second: child-girl-hear05_1
+  - first:
+      213: -5031101794528807552
+    second: child-girl-hear05_2
+  - first:
+      213: 8103935164703877940
+    second: child-girl-hear05_3
+  - first:
+      213: -8023292118935867446
+    second: child-girl-hear05_4
+  - first:
+      213: 2230645265435346058
+    second: child-girl-hear05_5
+  - first:
+      213: -712602352668606017
+    second: child-girl-hear05_6
+  - first:
+      213: -5093915609820719476
+    second: child-girl-hear05_7
+  - first:
+      213: 7316071824133975100
+    second: child-girl-hear05_8
+  - first:
+      213: 6195433695811764055
+    second: child-girl-hear05_9
+  - first:
+      213: -7603197914881559475
+    second: child-girl-hear05_10
+  - first:
+      213: -3681497678210987468
+    second: child-girl-hear05_11
+  - first:
+      213: -4120845865992708629
+    second: child-girl-hear05_12
+  - first:
+      213: 949837608528149051
+    second: child-girl-hear05_13
+  - first:
+      213: 6504279818505308265
+    second: child-girl-hear05_14
+  - first:
+      213: 4245616865508988345
+    second: child-girl-hear05_15
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +71,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +89,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +103,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +122,358 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: child-girl-hear05_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 375
+        width: 86
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eabbfe88a44deaab0800000000000000
+      internalID: -4994821520117220434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 393
+        width: 62
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13fa11e7605b01d80800000000000000
+      internalID: -8281920675244822735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 350
+        width: 109
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 085b744e29fed2ab0800000000000000
+      internalID: -5031101794528807552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_3
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 412
+        width: 73
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ba8f68816f67070800000000000000
+      internalID: 8103935164703877940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_4
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 372
+        width: 75
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acfe2a9b35a87a090800000000000000
+      internalID: -8023292118935867446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_5
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 401
+        width: 88
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a844e2aec08d4fe10800000000000000
+      internalID: 2230645265435346058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_6
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 322
+        width: 90
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1841f8fe35c16f0800000000000000
+      internalID: -712602352668606017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_7
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 295
+        width: 63
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8691d8ddb6ce49b0800000000000000
+      internalID: -5093915609820719476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_8
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 223
+        width: 140
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3cefb4df88e78560800000000000000
+      internalID: 7316071824133975100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_9
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 127
+        width: 167
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f785c1f1a9af550800000000000000
+      internalID: 6195433695811764055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_10
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 201
+        width: 48
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d447e76a7c30c7690800000000000000
+      internalID: -7603197914881559475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_11
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 1
+        width: 92
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43a0fc8fd51b8ecc0800000000000000
+      internalID: -3681497678210987468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_12
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 7
+        width: 93
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed1e5f9480dfc6c0800000000000000
+      internalID: -4120845865992708629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_13
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 2
+        width: 177
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a70a2c5408e2d00800000000000000
+      internalID: 949837608528149051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 117
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96840c5a808d34a50800000000000000
+      internalID: 6504279818505308265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child-girl-hear05_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 163
+        width: 148
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b512118b067bea30800000000000000
+      internalID: 4245616865508988345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

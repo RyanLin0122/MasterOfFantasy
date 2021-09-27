@@ -1,9 +1,36 @@
 fileFormatVersion: 2
 guid: 15315664a061a1c45bcbe63f480d89ee
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1600135822385235858
+    second: teen-girl-coat02_0
+  - first:
+      213: -4201634763732709222
+    second: teen-girl-coat02_1
+  - first:
+      213: 68985949899101151
+    second: teen-girl-coat02_2
+  - first:
+      213: -8715248705861537888
+    second: teen-girl-coat02_3
+  - first:
+      213: -584152971046748951
+    second: teen-girl-coat02_4
+  - first:
+      213: -2004566711054112671
+    second: teen-girl-coat02_5
+  - first:
+      213: -4355920405368010742
+    second: teen-girl-coat02_6
+  - first:
+      213: -5294488715394974769
+    second: teen-girl-coat02_7
+  - first:
+      213: 1242721316484389041
+    second: teen-girl-coat02_8
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +50,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +68,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +82,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +101,211 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: teen-girl-coat02_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 390
+        width: 154
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e68b95a82fc2bc9e0800000000000000
+      internalID: -1600135822385235858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 389
+        width: 157
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9097cf817bc0b5c0800000000000000
+      internalID: -4201634763732709222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_2
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 344
+        width: 171
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd39a3e1b5615f000800000000000000
+      internalID: 68985949899101151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 251
+        width: 156
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0afa0f53a773d0780800000000000000
+      internalID: -8715248705861537888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_4
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 264
+        width: 156
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ecf442c7fba4e7f0800000000000000
+      internalID: -584152971046748951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_5
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 196
+        width: 171
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168eb0b62395e24e0800000000000000
+      internalID: -2004566711054112671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 116
+        width: 159
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a080a205879ac83c0800000000000000
+      internalID: -4355920405368010742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_7
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 116
+        width: 161
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb719390923686b0800000000000000
+      internalID: -5294488715394974769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teen-girl-coat02_8
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 52
+        width: 160
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b89bdff3780f3110800000000000000
+      internalID: 1242721316484389041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

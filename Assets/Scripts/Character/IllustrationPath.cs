@@ -13,7 +13,7 @@ public class IllustrationPath : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = InventoryManager.Instance.GetComponent<IllustrationPath>();
+                instance = InventorySys.Instance.GetComponent<IllustrationPath>();
             }
             return instance;
         }

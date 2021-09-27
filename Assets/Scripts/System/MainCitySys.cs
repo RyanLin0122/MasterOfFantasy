@@ -34,6 +34,8 @@ public class MainCitySys : SystemRoot
     public StrengthenWnd strengthenWnd;
     public TransationWnd transationWnd;
     public MGFWnd mGFWnd;
+    public CommunityWnd communityWnd;
+    public PetWnd petWnd;
 
     public GameObject playerprefab;
     public bool IsChatWnd = true;
@@ -46,13 +48,15 @@ public class MainCitySys : SystemRoot
     public string LastLocation = "";
     public string NewLocation = "";
 
+    public Canvas MainCanvas = null;
+    public Canvas MapCanvas = null;
 
     public override void InitSys()
     {
         base.InitSys();
 
         Instance = this;
-        
+
         Knapsack.InitKnapsack();
         lockerWnd.InitLocker();
         MailBoxWnd.InitMailBox();
@@ -87,15 +91,17 @@ public class MainCitySys : SystemRoot
     }
     public void LoginMap(EnterGameRsp rsp) //加載某地圖，特定位置
     {
-        equipmentWnd.LoadWnd();
+        equipmentWnd.InitEquipWndWhenLogin();
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
 
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
+            
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
-            equipmentWnd.ReadCharacterEquipment(GameRoot.Instance.ActivePlayer.playerEquipments);
+            
+            equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             Knapsack.ReadItems();
             //打開主UI
             baseUI.SetWndState();
@@ -121,7 +127,8 @@ public class MainCitySys : SystemRoot
             baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
-            BattleSys.Instance.MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+            
+            BattleSys.Instance.MapCanvas = MapCanvas;
 
             if (rsp.Monsters != null)
             {
@@ -134,6 +141,7 @@ public class MainCitySys : SystemRoot
             }
             miniMap.Init();
             UpdateWeather(rsp.weather);
+            
             MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.PlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
         });
     }
@@ -152,7 +160,7 @@ public class MainCitySys : SystemRoot
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
             NewLocation = ResSvc.Instance.GetMapCfgData(rsp.MapID).Location;
-
+            
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
             InfoWnd.RefreshIInfoUI();
@@ -179,7 +187,7 @@ public class MainCitySys : SystemRoot
             baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
-            BattleSys.Instance.MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+            BattleSys.Instance.MapCanvas = MapCanvas;
             if (rsp.Monsters != null)
             {
                 BattleSys.Instance.SetupMonsters(rsp.Monsters);
@@ -280,23 +288,25 @@ public class MainCitySys : SystemRoot
     #region 加載角色
     private void LoadPlayer(MapCfg mapData, Vector2 position) //傳點傳送
     {
-        GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, GameObject.Find("Canvas2").transform, new Vector3(position.x, position.y, 200f));
+        Camera mainCam = Camera.main;
+        MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+        MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
+        GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
         GameRoot.Instance.PlayerControl = player.GetComponent<PlayerCtrl>();
         GameRoot.Instance.PlayerControl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
         GameRoot.Instance.PlayerControl.GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("Job", GameRoot.Instance.ActivePlayer.Job);
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
         player.GetComponent<Namebox>().SetNameBox(GameRoot.Instance.ActivePlayer.Name);
-        GameObject canvas = GameObject.Find("Canvas");
-        canvas.GetComponent<Canvas>().worldCamera = Camera.main;
-        GameRoot.Instance.NearCanvas.worldCamera = canvas.GetComponent<Canvas>().worldCamera;
-        GameObject.Find("MainCharacter(Clone)").GetComponent<Transform>().SetAsLastSibling();
-        equipmentWnd.SetAllEquipment(GameRoot.Instance.ActivePlayer);
-        equipmentWnd.SetFace(GameRoot.Instance.ActivePlayer);
+        GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
+        player.GetComponent<Transform>().SetAsLastSibling();
+        equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+        equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
     }
 
     public void LoadMonster()
     {
-        GameObject enemy = resSvc.LoadPrefab(PathDefine.Enemy, GameObject.Find("Canvas2").transform, new Vector3(-100f, -300f, 200f), true);
+        GameObject enemy = resSvc.LoadPrefab(PathDefine.Enemy, MapCanvas.transform, new Vector3(-100f, -300f, 200f), true);
         GameObject player = GameObject.Find("MainCharacter(Clone)").gameObject;
     }
 
@@ -394,6 +404,7 @@ public class MainCitySys : SystemRoot
     public void CloseCashShopWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        cashShopWnd.ClearPanel();
         cashShopWnd.SetWndState(false);
         cashShopWnd.IsOpen = false;
     }
@@ -439,6 +450,30 @@ public class MainCitySys : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();
         transationWnd.IsOpen = true;
+    }
+    public void CloseCommunityWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        communityWnd.SetWndState(false);
+        communityWnd.IsOpen = false;
+    }
+    public void OpenCommunityWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        communityWnd.SetWndState();
+        communityWnd.IsOpen = true;
+    }
+    public void ClosePetWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        petWnd.SetWndState(false);
+        petWnd.IsOpen = false;
+    }
+    public void OpenPetWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        petWnd.SetWndState();
+        petWnd.IsOpen = true;
     }
     public void OpenLockerWnd()
     {
@@ -568,7 +603,7 @@ public class MainCitySys : SystemRoot
     }
     public void CloseOption()
     {
-        optionWnd.PressCancel();  
+        optionWnd.PressCancel();
     }
     #endregion
 
@@ -576,13 +611,13 @@ public class MainCitySys : SystemRoot
     {
         LastLocation = ResSvc.Instance.GetMapCfgData(GameRoot.Instance.ActivePlayer.MapID).Location;
         PortalData portalData = ResSvc.Instance.PortalDic[PortalID];
-        TransferToAnyMap(portalData.Destination,portalData.Position);
+        TransferToAnyMap(portalData.Destination, portalData.Position);
         if (act != null)
         {
             act.Invoke();
         }
     }
-    public void TransferToAnyMap(int mapID, Vector2 position) 
+    public void TransferToAnyMap(int mapID, Vector2 position)
     {
         CancelCalculatorReport();
         if (IsCalculator)
@@ -646,5 +681,10 @@ public class MainCitySys : SystemRoot
         GameRoot.Instance.ActivePlayer.MiniGameArr = setting.MiniGameArray;
         GameRoot.Instance.ActivePlayer.MiniGameRatio = setting.MiniGameRatio;
         baseUI.SetClassImg();
+    }
+
+    public void SaveAccount()
+    {
+        new ChatSender(1, "!Save");
     }
 }

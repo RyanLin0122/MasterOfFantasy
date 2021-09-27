@@ -14,13 +14,17 @@ public class CashShopItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Button BuyBtn;
     public Button GiftBtn;
     public Button SelectBtn;
-    public void SetItem(int ItemID, int SellPrice = 999)
+    public void SetItem(int ItemID, int SellPrice = 999, int Quantity = 1)
     {
-        this.CurrentItem = InventoryManager.Instance.GetItemById(ItemID);
+        this.CurrentItem = InventorySys.Instance.GetItemById(ItemID);
         if (CurrentItem != null)
         {
             this.image.sprite = Resources.Load<Sprite>(CurrentItem.Sprite);
             this.NameText.text = CurrentItem.Name;
+            if (Quantity != 1)
+            {
+                NameText.text = NameText.text + " " + Quantity.ToString() + " ­Ó";
+            }
             this.PriceText.text = SellPrice.ToString();
         }
         else
@@ -39,6 +43,6 @@ public class CashShopItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (CurrentItem != null)
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
     }
 }
