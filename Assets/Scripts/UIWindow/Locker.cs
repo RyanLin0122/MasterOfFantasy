@@ -67,6 +67,7 @@ public class Locker : Inventory
                 break;
         }
         RibiTxt.text = LockerRibi.ToString("N0");
+        ReadItems();
         base.InitWnd();
     }
     public void InitLocker()
@@ -81,27 +82,42 @@ public class Locker : Inventory
             HasInitialized = true;
         }
     }
-    /*
-    public void ReadCharacterLocker(ReqCharacterItem msg)
+    public void ReadItems()
     {
-        if (msg.LockerItems != null)
+        ClearLockers();
+        Dictionary<int, Item> locker = null;
+        switch (GameRoot.Instance.ActivePlayer.Server)
         {
-            foreach (var item in msg.LockerItems.Values)
-            {
-                //InventoryManager.Instance.LockerItems.Add(item.position, item);
-                //FindSlot(item.position).StoreItem(item.item, item.amount);
-            }
+            case 0:
+                locker = GameRoot.Instance.AccountData.LockerServer1;
+                break;
+            case 1:
+                locker = GameRoot.Instance.AccountData.LockerServer2;
+                break;
+            case 2:
+                locker = GameRoot.Instance.AccountData.LockerServer3;
+                break;
+            default:
+                break;
         }
-        if (msg.LockerCashItems != null)
+        if (locker != null && locker.Count > 0)
         {
-            foreach (var item in msg.LockerCashItems.Values)
+            foreach (var item in locker.Values)
             {
-                //InventoryManager.Instance.LockerCashItems.Add(item.position, item);
-                FindCashSlot(item.position).StoreItem(item.item, item.amount);
+                FindSlot(item.Position).StoreItem(item, item.Count);
             }
         }
     }
-    */
+    public void ClearLockers()
+    {
+        foreach (var slotArr in slotLists)
+        {
+            foreach (var slot in slotArr)
+            {
+                DestroyImmediate(slot.GetComponentInChildren<ItemUI>().gameObject);
+            }
+        }
+    }
     public void PressBag1()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
@@ -113,10 +129,10 @@ public class Locker : Inventory
         Bag2Btn.GetComponent<Image>().sprite = PanelSprite2;
         Bag3Btn.GetComponent<Image>().sprite = PanelSprite2;
         FashionBtn.GetComponent<Image>().sprite = PanelSprite2;
-        panel1Text.text = "<color=#ffffff>背包1</color>";
-        panel2Text.text = "背包2";
-        panel3Text.text = "背包3";
-        panel4Text.text = "流行裝備";
+        panel1Text.text = "<color=#ffffff>倉庫1</color>";
+        panel2Text.text = "倉庫2";
+        panel3Text.text = "倉庫3";
+        panel4Text.text = "倉庫4";
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
@@ -133,10 +149,10 @@ public class Locker : Inventory
         Bag2Btn.GetComponent<Image>().sprite = PanelSprite1;
         Bag3Btn.GetComponent<Image>().sprite = PanelSprite2;
         FashionBtn.GetComponent<Image>().sprite = PanelSprite2;
-        panel2Text.text = "<color=#ffffff>背包2</color>";
-        panel1Text.text = "背包1";
-        panel3Text.text = "背包3";
-        panel4Text.text = "流行裝備";
+        panel2Text.text = "<color=#ffffff>倉庫2</color>";
+        panel1Text.text = "倉庫1";
+        panel3Text.text = "倉庫3";
+        panel4Text.text = "倉庫4";
         panel1Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
@@ -152,10 +168,10 @@ public class Locker : Inventory
         Bag2Btn.GetComponent<Image>().sprite = PanelSprite2;
         Bag3Btn.GetComponent<Image>().sprite = PanelSprite1;
         FashionBtn.GetComponent<Image>().sprite = PanelSprite2;
-        panel3Text.text = "<color=#ffffff>背包3</color>";
-        panel1Text.text = "背包1";
-        panel2Text.text = "背包2";
-        panel4Text.text = "流行裝備";
+        panel3Text.text = "<color=#ffffff>倉庫3</color>";
+        panel1Text.text = "倉庫1";
+        panel2Text.text = "倉庫2";
+        panel4Text.text = "倉庫4";
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
@@ -171,10 +187,10 @@ public class Locker : Inventory
         Bag2Btn.GetComponent<Image>().sprite = PanelSprite2;
         Bag3Btn.GetComponent<Image>().sprite = PanelSprite2;
         FashionBtn.GetComponent<Image>().sprite = PanelSprite1;
-        panel4Text.text = "<color=#ffffff>流行裝備</color>";
-        panel1Text.text = "背包1";
-        panel2Text.text = "背包2";
-        panel3Text.text = "背包3";
+        panel4Text.text = "<color=#ffffff>倉庫4</color>";
+        panel1Text.text = "倉庫1";
+        panel2Text.text = "倉庫2";
+        panel3Text.text = "倉庫3";
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
@@ -206,6 +222,7 @@ public class Locker : Inventory
         InventorySys.Instance.HideToolTip();
         IsOpen = false;
     }
+
     /*
     public void StoreItem(int KnapsackPosition, bool Iscash)
     {
@@ -354,7 +371,111 @@ public class Locker : Inventory
                 }
                 break;
         }
-        
+    }
+    public void ProcessLockerExchage(LockerRelated msg)
+    {
+        PECommon.Log("處理交換狀況");
+        if (msg.encodedItems.Count == 1)
+        {
+            //移到第二格，刪除第一格
+            if (msg.NewDBID != -1)
+            {
+                PECommon.Log("移到第二格，刪除第一格");
+                if (!msg.encodedItems[0].item.IsCash)
+                { 
+                    LockerItems.Remove(msg.OldPosition);
+                    msg.encodedItems[0].DataBaseID = msg.NewDBID;
+                    msg.encodedItems[0].position = msg.NewPosition;
+                    LockerItems[msg.NewPosition] = msg.encodedItems[0];
+                    Locker.Instance.FindSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+                else
+                {
+                    LockerCashItems.Remove(msg.OldPosition);
+                    msg.encodedItems[0].DataBaseID = msg.NewDBID;
+                    msg.encodedItems[0].position = msg.NewPosition;
+                    LockerCashItems[msg.NewPosition] = msg.encodedItems[0];
+                    Locker.Instance.FindCashSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+            }
+            //移到空格，直接修改position
+            else
+            {
+                PECommon.Log("移到空格，直接修改position");
+                PECommon.Log("OldPosition=" + msg.OldPosition);
+                PECommon.Log("NewPosition=" + msg.NewPosition);
+                msg.encodedItems[0].position = msg.NewPosition;
+                if (!msg.encodedItems[0].item.IsCash)
+                {
+                    LockerItems.Add(msg.NewPosition, msg.encodedItems[0]);
+                    LockerItems.Remove(msg.OldPosition);
+
+                    Locker.Instance.FindSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+                else
+                {
+                    LockerCashItems.Add(msg.NewPosition, msg.encodedItems[0]);
+                    LockerCashItems.Remove(msg.OldPosition);
+
+                    Locker.Instance.FindCashSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+            }
+        }
+        else if (msg.encodedItems.Count == 2)
+        {
+            //兩格交換           
+            if (msg.encodedItems[0].item.ItemID != msg.encodedItems[1].item.ItemID)
+            {
+                PECommon.Log("交換兩格");
+                if (!msg.encodedItems[0].item.IsCash)
+                {
+                    EncodedItem item = LockerItems[msg.NewPosition];
+                    LockerItems[msg.NewPosition] = LockerItems[msg.OldPosition];
+                    LockerItems[msg.OldPosition] = item;
+                    LockerItems[msg.NewPosition].position = msg.NewPosition;
+                    LockerItems[msg.NewPosition].DataBaseID = msg.NewDBID;
+                    LockerItems[msg.OldPosition].DataBaseID = msg.OldDBID;
+                    LockerItems[msg.OldPosition].position = msg.OldPosition;
+                    DestroyImmediate( Locker.Instance.FindSlot(msg.NewPosition).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+                    
+                    Locker.Instance.FindSlot(msg.OldPosition).StoreItem(msg.encodedItems[1].item, msg.encodedItems[1].amount);
+                    Locker.Instance.FindSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+                else
+                {
+                    EncodedItem item = LockerCashItems[msg.NewPosition];
+                    LockerCashItems[msg.NewPosition] = LockerCashItems[msg.OldPosition];
+                    LockerCashItems[msg.OldPosition] = item;
+                    LockerCashItems[msg.NewPosition].position = msg.NewPosition;
+                    LockerCashItems[msg.OldPosition].position = msg.OldPosition;
+                    LockerCashItems[msg.NewPosition].DataBaseID = msg.NewDBID;
+                    LockerCashItems[msg.OldPosition].DataBaseID = msg.OldDBID;
+                    DestroyImmediate( Locker.Instance.FindSlot(msg.NewPosition).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+                    
+                    Locker.Instance.FindCashSlot(msg.OldPosition).StoreItem(msg.encodedItems[1].item, msg.encodedItems[1].amount);
+                    Locker.Instance.FindCashSlot(msg.NewPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                }
+            }
+            //兩格數量改變
+            else
+            {
+                PECommon.Log("兩格數量改變");
+                if (!msg.encodedItems[0].item.IsCash)
+                {
+                    LockerItems[msg.OldPosition].amount = msg.encodedItems[0].amount;
+                    LockerItems[msg.NewPosition].amount = msg.encodedItems[1].amount;
+                    Locker.Instance.FindSlot(msg.OldPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                    Locker.Instance.FindSlot(msg.NewPosition).StoreItem(msg.encodedItems[1].item, msg.encodedItems[1].amount);
+                }
+                else
+                {
+                    LockerCashItems[msg.OldPosition].amount = msg.encodedItems[0].amount;
+                    LockerCashItems[msg.NewPosition].amount = msg.encodedItems[1].amount;
+                    Locker.Instance.FindCashSlot(msg.OldPosition).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
+                    Locker.Instance.FindCashSlot(msg.NewPosition).StoreItem(msg.encodedItems[1].item, msg.encodedItems[1].amount);
+                }
+            }
+        }
     }
     */
     public void ClkPlusBtn()
@@ -366,10 +487,10 @@ public class Locker : Inventory
 
     }
 
-    public List<int> GetEmptySlotPosition_NotCash()
+    public List<int> GetEmptySlotPosition()
     {
         List<int> list = new List<int>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             foreach (Slot slot in slotLists[i])
             {
@@ -381,22 +502,9 @@ public class Locker : Inventory
         }
         return list;
     }
-    public List<int> GetEmptySlotPosition_Cash()
-    {
-        List<int> list = new List<int>();
-        foreach (Slot slot in slotLists[3])
-        {
-            if (slot.transform.childCount == 0)
-            {
-                list.Add(slot.SlotPosition);
-            }
-        }
-
-        return list;
-    }
     public Slot FindSlot(int Position)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             foreach (Slot slot in slotLists[i])
             {
@@ -408,23 +516,11 @@ public class Locker : Inventory
         }
         return null;
     }
-    public Slot FindCashSlot(int Position)
-    {
-        foreach (Slot slot in slotLists[3])
-        {
-            if (slot.SlotPosition == Position)
-            {
-                return slot;
-            }
-        }
-        return null;
-    }
-
     public bool IsInLocker(int ItemID, int Amount = 1)
     {
         if (InventorySys.Instance.itemList.ContainsKey(ItemID))
         {
-            return CheckItemsExistInLocker(ItemID, Amount);
+            return CheckItemsExistInInventory(ItemID, Amount);
         }
         else
         {
@@ -432,52 +528,5 @@ public class Locker : Inventory
             return false;
         }
     }
-    public bool CheckItemsExistInLocker(int ItemID, int Amount = 1)
-    {
-        Item itemInfo = InventorySys.Instance.itemList[ItemID];
-        int RestAmount = Amount;
-        if (itemInfo.IsCash)
-        {
-            foreach (Slot slot in slotLists[3])
-            {
-                if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
-                {
-                    Item SlotItem = slot.GetItem();
-                    if (SlotItem.Count - RestAmount >= 0) //最後一次
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        RestAmount -= SlotItem.Count;
-                        continue;
-                    }
-                }
-            }
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                foreach (Slot slot in slotLists[i])
-                {
-                    if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
-                    {
-                        Item SlotItem = slot.GetItem();
-                        if (SlotItem.Count - RestAmount >= 0) //最後一次
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            RestAmount -= SlotItem.Count;
-                            continue;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-    }
+
 }
