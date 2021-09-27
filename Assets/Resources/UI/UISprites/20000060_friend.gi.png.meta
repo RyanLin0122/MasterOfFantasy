@@ -1,9 +1,63 @@
 fileFormatVersion: 2
 guid: e033924e902286f44af7b686e76df28a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -9016813422020646721
+    second: 20000060_friend.gi_3
+  - first:
+      213: 6998613892488595611
+    second: 20000060_friend.gi_4
+  - first:
+      213: 553841985244111107
+    second: 20000060_friend.gi_5
+  - first:
+      213: 7500900495006484195
+    second: 20000060_friend.gi_6
+  - first:
+      213: -1627409928968565628
+    second: 20000060_friend.gi_7
+  - first:
+      213: -7766182649183450995
+    second: 20000060_friend.gi_8
+  - first:
+      213: -8356910655174101461
+    second: 20000060_friend.gi_9
+  - first:
+      213: 1393124660860769368
+    second: 20000060_friend.gi_10
+  - first:
+      213: 8738997500813238903
+    second: 20000060_friend.gi_11
+  - first:
+      213: 6972032105619552683
+    second: 20000060_friend.gi_12
+  - first:
+      213: 2585365933778732881
+    second: 20000060_friend.gi_13
+  - first:
+      213: 9032707509186060989
+    second: 20000060_friend.gi_14
+  - first:
+      213: -836439608793949011
+    second: 20000060_friend.gi_15
+  - first:
+      213: 8692911583093115572
+    second: 20000060_friend.gi_16
+  - first:
+      213: -2279183281692411511
+    second: 20000060_friend.gi_17
+  - first:
+      213: -6955154601023882201
+    second: 20000060_friend.gi_18
+  - first:
+      213: 3663191953544588022
+    second: 20000060_friend.gi_19
+  - first:
+      213: -6618657386491718515
+    second: 20000060_friend.gi_20
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +77,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +95,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +109,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +128,463 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: 20000060_friend.gi_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 155
+        width: 250
+        height: 357
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99245b4008947ad10800000000000000
+      internalID: 2136757362394219161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_1
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 416
+        width: 46
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9091414b475b72c30800000000000000
+      internalID: 4334632679209441545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 440
+        width: 45
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f13450f4f8bd13030800000000000000
+      internalID: 3472798196231914271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 464
+        width: 45
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb82c7e37f7ddd280800000000000000
+      internalID: -9016813422020646721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 488
+        width: 45
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9885e54142102160800000000000000
+      internalID: 6998613892488595611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_5
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 494
+        width: 40
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 18, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3012c28e954afa700800000000000000
+      internalID: 553841985244111107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_6
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 476
+        width: 40
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 18, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6c96c324d881860800000000000000
+      internalID: 7500900495006484195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_7
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 458
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c82efba474a69e0800000000000000
+      internalID: -1627409928968565628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_8
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 440
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d884e9e070af83490800000000000000
+      internalID: -7766182649183450995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_9
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 500
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26bba2390a460c80800000000000000
+      internalID: -8356910655174101461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 488
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 854517a7f7f555310800000000000000
+      internalID: 1393124660860769368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_11
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 476
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772eff00de7274970800000000000000
+      internalID: 8738997500813238903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_12
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 464
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba9721ab242a1c060800000000000000
+      internalID: 6972032105619552683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_13
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 452
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15707417e9011e320800000000000000
+      internalID: 2585365933778732881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_14
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 440
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2e90d4f9f9a5d70800000000000000
+      internalID: 9032707509186060989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_15
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 428
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac15c18b9e5464f0800000000000000
+      internalID: -836439608793949011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_16
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 416
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bac42e170d63a870800000000000000
+      internalID: 8692911583093115572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_17
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 404
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989f6b481e6be50e0800000000000000
+      internalID: -2279183281692411511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_18
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 392
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c3c088db35a7f90800000000000000
+      internalID: -6955154601023882201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_19
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 409
+        width: 31
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa281f5ca546d230800000000000000
+      internalID: 3663191953544588022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000060_friend.gi_20
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 400
+        width: 1
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8455249c2ec524a0800000000000000
+      internalID: -6618657386491718515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
