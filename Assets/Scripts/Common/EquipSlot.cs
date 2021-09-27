@@ -21,12 +21,12 @@ public class EquipSlot : Slot
     /// </summary>
     public void PutOfftoKnapsackEvent()
     {
-        if (InventoryManager.Instance.IsPickedItem == false && transform.childCount > 0)
+        if (InventorySys.Instance.IsPickedItem == false && transform.childCount > 0)
         {
             ItemUI currentItemUI = transform.GetChild(0).GetComponent<ItemUI>();
             Item PutOffItem = currentItemUI.Item;
             //脱掉放到背包里面
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
             Slot EmptySlot;
             if (PutOffItem.IsCash)
             {

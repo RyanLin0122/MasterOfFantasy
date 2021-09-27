@@ -279,7 +279,7 @@ namespace PEProtocal
         public AccountData accountData { get; set; }
     }
     [ProtoContract]
-    public class AccountData 
+    public class AccountData
     {
         [ProtoMember(1, IsRequired = false)]
         public string Account { get; set; }
@@ -315,6 +315,12 @@ namespace PEProtocal
         public string LastLoginTime { get; set; }
         [ProtoMember(17, IsRequired = false)]
         public string LastLogoutTime { get; set; }
+        [ProtoMember(18, IsRequired = false)]
+        public long LockerServer1Ribi { get; set; }
+        [ProtoMember(19, IsRequired = false)]
+        public long LockerServer2Ribi { get; set; }
+        [ProtoMember(20, IsRequired = false)]
+        public long LockerServer3Ribi { get; set; }
 
         public Dictionary<int, Item> GetNewBuyPanelFashionS1()
         {

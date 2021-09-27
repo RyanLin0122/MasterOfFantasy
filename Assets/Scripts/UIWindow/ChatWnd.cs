@@ -199,21 +199,5 @@ public class ChatWnd : WindowRoot
                 Debug.Log(e.Message);
             }
         }
-        if (s.StartsWith("CheckItem"))
-        {
-            string[] str = s.Split(' ');
-            if(InventoryManager.IsInKnapsack(Convert.ToInt32(str[1]), Convert.ToInt32(str[2])))
-            {
-                Debug.Log("有喔");
-            }
-            else
-            {
-                Debug.Log("沒有喔");
-            }
-        }
-        if (s.StartsWith("show"))
-        {
-            InventoryManager.Instance.ShowKnapsackItems();
-        }
     }
 }

@@ -152,7 +152,7 @@ public class ShopWnd : Inventory
     }
     public void PressConsumableBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellConsumables.Count * SlotHeight));
         for (int i = 0; i < Info.SellConsumables.Count; i++)
@@ -160,14 +160,14 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellConsumables[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellConsumables[i]));
         }
 
 
     }
     public void PressEquipmentBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellEquipments.Count * SlotHeight));
         for (int i = 0; i < Info.SellEquipments.Count; i++)
@@ -175,12 +175,12 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellEquipments[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellEquipments[i]));
         }
     }
     public void PressWeaponBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellWeapons.Count * SlotHeight));
         for (int i = 0; i < Info.SellWeapons.Count; i++)
@@ -188,12 +188,12 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellWeapons[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellWeapons[i]));
         }
     }
     public void PressETCBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellETCItems.Count * SlotHeight));
         for (int i = 0; i < Info.SellETCItems.Count; i++)
@@ -201,12 +201,12 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellETCItems[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellETCItems[i]));
         }
     }
     public void PressMaterialBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellMaterials.Count * SlotHeight));
         for (int i = 0; i < Info.SellMaterials.Count; i++)
@@ -214,12 +214,12 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellMaterials[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellMaterials[i]));
         }
     }
     public void PressBadgeBtn()
     {
-        InventoryManager.Instance.toolTip.gameObject.SetActive(true);
+        InventorySys.Instance.toolTip.gameObject.SetActive(true);
         ClearSellPanel();
         SellPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(SellPanel.GetComponent<RectTransform>().rect.width, Mathf.Max(350, Info.SellBadges.Count * SlotHeight));
         for (int i = 0; i < Info.SellBadges.Count; i++)
@@ -227,7 +227,7 @@ public class ShopWnd : Inventory
             GameObject itemGameObject = Instantiate(SellSlotPrefab) as GameObject;
             itemGameObject.transform.SetParent(SellPanel.transform);
             itemGameObject.transform.localPosition = new Vector3(itemGameObject.transform.localPosition.x, itemGameObject.transform.localPosition.y, 0);
-            itemGameObject.GetComponent<SellSlot>().StoreItem(InventoryManager.Instance.GetNewItemByID(Info.SellBadges[i]));
+            itemGameObject.GetComponent<SellSlot>().StoreItem(InventorySys.Instance.GetNewItemByID(Info.SellBadges[i]));
         }
     }
     public void PressBuyBtn()

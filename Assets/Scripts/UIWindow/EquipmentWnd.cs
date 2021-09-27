@@ -57,7 +57,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             Txtcolor = referenceColor.color;
         }       
         PressBattleEquip();
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
         base.InitWnd();
 
@@ -123,7 +123,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         SetWndState(false);
         IsOpen = false;
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         UIManager.Instance.ForcePop(this);
     }
     public void ClickCloseBtn()
@@ -223,8 +223,8 @@ public class EquipmentWnd : Inventory, IStackWnd
     public void PutOnAllPlayerEquipments(PlayerEquipments equips)
     {
         //InventoryManager 的 Equipment 是根據裝備欄的key存的
-        Dictionary<int, Item> Equipments = InventoryManager.Instance.PlayerEquipments2Dic(equips);
-        InventoryManager.Instance.Equipments = Equipments;
+        Dictionary<int, Item> Equipments = InventorySys.Instance.PlayerEquipments2Dic(equips);
+        InventorySys.Instance.Equipments = Equipments;
         if (Equipments != null)
         {
             foreach (var key in Equipments.Keys)
@@ -425,13 +425,13 @@ public class EquipmentWnd : Inventory, IStackWnd
                     ck.Remove(msg.KnapsackPosition);
                     DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
                 }
-                if (InventoryManager.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
+                if (InventorySys.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
                 {
-                    InventoryManager.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
+                    InventorySys.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
                 }
                 else
                 {
-                    InventoryManager.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
+                    InventorySys.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
                 }
                 PutOn(msg.PutOnEquipment);
                 PutOnRing(msg.EquipmentPosition, msg.PutOnEquipment);
@@ -462,13 +462,13 @@ public class EquipmentWnd : Inventory, IStackWnd
                     DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
                     KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
                 }
-                if (InventoryManager.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
+                if (InventorySys.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
                 {
-                    InventoryManager.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
+                    InventorySys.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
                 }
                 else
                 {
-                    InventoryManager.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
+                    InventorySys.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
                 }
                 DestroyImmediate(FindEquipmentSlot(msg.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
                 PutOn(msg.PutOnEquipment);
@@ -498,7 +498,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     ck.Add(msg.KnapsackPosition, msg.PutOffEquipment);
                     KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
                 }
-                InventoryManager.Instance.Equipments.Remove(msg.EquipmentPosition);
+                InventorySys.Instance.Equipments.Remove(msg.EquipmentPosition);
                 DestroyImmediate(FindEquipmentSlot(msg.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
                 PutOffEquipment(msg.EquipmentPosition, GameRoot.Instance.ActivePlayer.playerEquipments);
                 if (msg.EquipmentPosition != 5)
@@ -518,7 +518,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 break;
         }
         Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
     }
     public Dictionary<string, float> CalculateEquipProperty()
     {
@@ -537,7 +537,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         float Avoid = 0;
         float MagicDefense = 0;
         Dictionary<string, float> dic = new Dictionary<string, float>();
-        foreach (var Equip in InventoryManager.Instance.Equipments.Values)
+        foreach (var Equip in InventorySys.Instance.Equipments.Values)
         {
             if (Equip is Equipment)
             {
@@ -1155,7 +1155,7 @@ public class EquipmentWnd : Inventory, IStackWnd
 
     public static Equipment GetEquipmentByItemID(int ItemID, PlayerEquipments equips)
     {
-        Item item = InventoryManager.Instance.GetItemById(ItemID);
+        Item item = InventorySys.Instance.GetItemById(ItemID);
         if(item is Equipment)
         {
             Equipment equip = (Equipment)item;

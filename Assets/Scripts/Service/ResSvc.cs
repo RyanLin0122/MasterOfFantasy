@@ -18,7 +18,7 @@ public class ResSvc : MonoBehaviour
         InitNpcCfg();
         InitShopInfo(PathDefine.NpcShop);
         InitEquipmentPath(PathDefine.EquipmentPath);
-        InventoryManager.Instance.ParseItemJson();
+        InventorySys.Instance.ParseItemJson();
         ParseMonsterJson();
         ParseSkillJson();
         IllustrationPath.Instance.Init();

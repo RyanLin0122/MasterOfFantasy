@@ -12,17 +12,17 @@ public class MapElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if(GameRoot.Instance.AccountOption.Language <2)
         {
-            InventoryManager.Instance.ShowToolTip(MapName);
+            InventorySys.Instance.ShowToolTip(MapName);
         }
         else if(GameRoot.Instance.AccountOption.Language >= 2)
         {
-            InventoryManager.Instance.ShowToolTip(EngMapName);
+            InventorySys.Instance.ShowToolTip(EngMapName);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
     }
     
     public void MoveToMap()

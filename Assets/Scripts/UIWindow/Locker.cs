@@ -40,9 +40,9 @@ public class Locker : Inventory
     public Text panel4Text;
     public Color Txtcolor;
     public bool HasInitialized = false;
+    public long LockerRibi = 0L;
     protected override void InitWnd()
     {
-        Debug.Log("初始化倉庫");
         if (!HasInitialized)
         {
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
@@ -53,8 +53,20 @@ public class Locker : Inventory
             Txtcolor = RibiTxt.color;
         }
         PressBag1();
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
-        //RibiTxt.text = GameRoot.Instance.CurrentPlayerData.LockerCoin.ToString("N0");
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
+        switch (GameRoot.Instance.ActivePlayer.Server)
+        {
+            case 0:
+                LockerRibi = GameRoot.Instance.AccountData.LockerServer1Ribi;
+                break;
+            case 1:
+                LockerRibi = GameRoot.Instance.AccountData.LockerServer2Ribi;
+                break;
+            case 2:
+                LockerRibi = GameRoot.Instance.AccountData.LockerServer3Ribi;
+                break;
+        }
+        RibiTxt.text = LockerRibi.ToString("N0");
         base.InitWnd();
     }
     public void InitLocker()
@@ -175,7 +187,7 @@ public class Locker : Inventory
         {
             MainCitySys.Instance.CloseLockerWnd();
             KnapsackWnd.Instance.CloseAndPop();
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
             IsOpen = false;
 
         }
@@ -191,7 +203,7 @@ public class Locker : Inventory
         MainCitySys.Instance.CloseLockerWnd();
         KnapsackWnd.Instance.CloseAndPop();
         MainCitySys.Instance.Knapsack.IsOpen = false;
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         IsOpen = false;
     }
     /*
@@ -406,5 +418,66 @@ public class Locker : Inventory
             }
         }
         return null;
+    }
+
+    public bool IsInLocker(int ItemID, int Amount = 1)
+    {
+        if (InventorySys.Instance.itemList.ContainsKey(ItemID))
+        {
+            return CheckItemsExistInLocker(ItemID, Amount);
+        }
+        else
+        {
+            Debug.Log("無此道具");
+            return false;
+        }
+    }
+    public bool CheckItemsExistInLocker(int ItemID, int Amount = 1)
+    {
+        Item itemInfo = InventorySys.Instance.itemList[ItemID];
+        int RestAmount = Amount;
+        if (itemInfo.IsCash)
+        {
+            foreach (Slot slot in slotLists[3])
+            {
+                if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
+                {
+                    Item SlotItem = slot.GetItem();
+                    if (SlotItem.Count - RestAmount >= 0) //最後一次
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        RestAmount -= SlotItem.Count;
+                        continue;
+                    }
+                }
+            }
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (Slot slot in slotLists[i])
+                {
+                    if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
+                    {
+                        Item SlotItem = slot.GetItem();
+                        if (SlotItem.Count - RestAmount >= 0) //最後一次
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            RestAmount -= SlotItem.Count;
+                            continue;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

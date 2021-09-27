@@ -31,7 +31,7 @@ public class PlayerCtrl : Controllable
         rigidbody = this.GetComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
         PlayerName = GameRoot.Instance.ActivePlayer.Name;
-        DustSprites = Resources.LoadAll<Sprite>("Effect/Effect Dust Cloak Walking Dust");
+        DustSprites = Resources.LoadAll<Sprite>("Effect/Dust/Effect Walking Car Dust");
     }
 
     private void Update()
@@ -87,7 +87,7 @@ public class PlayerCtrl : Controllable
     {
         if (IsMoving)
         {
-            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Dust/DustPrefab"));
+            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/DustPrefab"));
             go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
             int Sign = transform.localScale.x >= 0 ? -1 : 1;
             go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);

@@ -38,7 +38,7 @@ public class MGFWnd : Inventory
 
     protected override void InitWnd()
     {
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
         base.InitWnd();
     }
 

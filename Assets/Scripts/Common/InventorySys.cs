@@ -3,17 +3,17 @@ using UnityEngine;
 using PEProtocal;
 using System;
 
-public class InventoryManager : MonoBehaviour
+public class InventorySys : MonoBehaviour
 {
-    private static InventoryManager _instance;
+    private static InventorySys _instance;
 
-    public static InventoryManager Instance
+    public static InventorySys Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+                _instance = GameObject.Find("InventorySystem").GetComponent<InventorySys>();
             }
             return _instance;
         }
@@ -466,125 +466,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
     */
-    public void ProcessKnapsackExchage(KnapsackOperation ko)
-    {
-        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
-        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
-
-        Tools.Log("處理交換狀況");
-        if (ko.items.Count == 1)
-        {
-            //移到第二格，刪除第一格
-            Debug.Log("移到空格，直接修改position");
-            Debug.Log("OldPosition=" + ko.OldPosition[0]);
-            Debug.Log("NewPosition=" + ko.NewPosition[0]);
-            ko.items[0].Position = ko.NewPosition[0];
-            if (!ko.items[0].IsCash)
-            {
-                if (nk.ContainsKey(ko.NewPosition[0]))
-                {
-                    nk[ko.NewPosition[0]] = ko.items[0];
-                }
-                else
-                {
-                    nk.Add(ko.NewPosition[0], ko.items[0]);
-                }
-                nk.Remove(ko.OldPosition[0]);
-                KnapsackWnd.Instance.FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-            }
-            else
-            {
-                if (ck.ContainsKey(ko.NewPosition[0]))
-                {
-                    ck[ko.NewPosition[0]] = ko.items[0];
-                }
-                else
-                {
-                    ck.Add(ko.NewPosition[0], ko.items[0]);
-                }
-                ck.Remove(ko.OldPosition[0]);
-                KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-            }
-
-        }
-        else if (ko.items.Count == 2)
-        {
-            //兩格交換           
-            if (ko.items[0].ItemID != ko.items[1].ItemID)
-            {
-                Debug.Log("交換兩格");
-                if (!ko.items[0].IsCash)
-                {
-                    Item item = nk[ko.NewPosition[0]];
-                    nk[ko.NewPosition[0]] = nk[ko.OldPosition[0]];
-                    nk[ko.OldPosition[0]] = item;
-                    nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
-                    nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
-                    DestroyImmediate(KnapsackWnd.Instance.FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-
-                    KnapsackWnd.Instance.FindSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    KnapsackWnd.Instance.FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                }
-                else
-                {
-                    Item item = ck[ko.NewPosition[0]];
-                    ck[ko.NewPosition[0]] = ck[ko.OldPosition[0]];
-                    ck[ko.OldPosition[0]] = item;
-                    ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
-                    ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
-                    DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-
-                    KnapsackWnd.Instance.FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                }
-            }
-            //兩格數量改變
-            else
-            {
-                Debug.Log("兩格數量改變");
-                if (!ko.items[0].IsCash)
-                {
-                    nk[ko.OldPosition[0]].Count = ko.items[0].Count;
-                    nk[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    KnapsackWnd.Instance.FindSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    KnapsackWnd.Instance.FindSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                }
-                else
-                {
-                    ck[ko.OldPosition[0]].Count = ko.items[0].Count;
-                    ck[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    KnapsackWnd.Instance.FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                }
-            }
-        }
-    }
-
-
-
-    #region CheckItemsInInventory
-
-    public static bool IsInKnapsack(int ItemID, int Amount = 1)
-    {
-        if (Instance.itemList.ContainsKey(ItemID))
-        {
-            return IsInInventory(KnapsackWnd.Instance, ItemID, Amount);
-        }
-        else
-        {
-            Debug.Log("無此道具");
-            return false;
-        }
-    }
-    public static bool IsInLocker(int ItemID, int Amount = 1)
-    {
-        return IsInInventory(Locker.Instance, ItemID, Amount);
-    }
-    private static bool IsInInventory(Inventory inventory, int ItemID, int Amount = 1)
-    {
-        return inventory.CheckItems_AnyAmount(ItemID, Amount);
-    }
-    #endregion
 
     #region RecycleItemsRequest 在checkItem後才調用
     public static void RecycleItemsInKnapsack(Dictionary<int, int> ItemDic) //Key: ItemID Value: Amount
@@ -707,24 +588,6 @@ public class InventoryManager : MonoBehaviour
                 break;
             default:
                 break;
-        }
-    }
-    #endregion
-
-    #region
-    public void ShowKnapsackItems()
-    {
-        Inventory knapsack = KnapsackWnd.Instance;
-        for (int i = 0; i < knapsack.slotLists.Count; i++)
-        {
-            foreach (var slot in knapsack.slotLists[i])
-            {
-                if (slot.GetItem() != null)
-                {
-                    Item item = slot.GetItem();
-                    Debug.Log("第" + i + "背包" + " 第" + slot.SlotPosition + "格 " + item.ItemID + ": " + item.Count);
-                }
-            }
         }
     }
     #endregion

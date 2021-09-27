@@ -77,6 +77,6 @@ public class CashShopBuyPanelSlot : Slot, IPointerEnterHandler, IPointerExitHand
     }
     public override void OnPointerExit(PointerEventData eventData)
     {
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
     }
 }

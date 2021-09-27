@@ -40,7 +40,7 @@ public class MinigameSettingWnd : WindowRoot
     {
         if (CommonToggle.isOn)
         {
-            if (InventoryManager.IsInKnapsack(12001, 1))
+            if (KnapsackWnd.Instance.IsInKnapsack(12001, 1))
             {
                 SendMsg();
             }
@@ -51,7 +51,7 @@ public class MinigameSettingWnd : WindowRoot
         }
         else if (SuperToggle.isOn)
         {
-            if (InventoryManager.IsInKnapsack(12002, 1))
+            if (KnapsackWnd.Instance.IsInKnapsack(12002, 1))
             {
                 SendMsg();
             }
@@ -62,7 +62,7 @@ public class MinigameSettingWnd : WindowRoot
         }
         else if (HyperToggle.isOn)
         {
-            if (InventoryManager.IsInKnapsack(12003, 1))
+            if (KnapsackWnd.Instance.IsInKnapsack(12003, 1))
             {
                 SendMsg();
             }
@@ -121,7 +121,7 @@ public class MinigameSettingWnd : WindowRoot
             }
             if (rd.Count > 0)
             {
-                InventoryManager.RecycleItemsInKnapsack(rd);
+                InventorySys.RecycleItemsInKnapsack(rd);
             }
         }
         else

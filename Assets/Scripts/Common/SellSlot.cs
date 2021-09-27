@@ -40,13 +40,13 @@ public class SellSlot : Slot
         if (transform.childCount > 3)
         {
             string toolTipText = GetToolTipText(transform.GetChild(3).GetComponent<ItemUI>().Item);
-            InventoryManager.Instance.ShowToolTip(toolTipText);
+            InventorySys.Instance.ShowToolTip(toolTipText);
         }
     }
     public override void OnPointerExit(PointerEventData eventData)
     {
         if (transform.childCount > 3)
-            InventoryManager.Instance.HideToolTip();
+            InventorySys.Instance.HideToolTip();
     }
 
     

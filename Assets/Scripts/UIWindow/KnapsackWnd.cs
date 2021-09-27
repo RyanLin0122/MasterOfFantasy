@@ -52,7 +52,6 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     protected override void InitWnd()
     {
-        Debug.Log("初始化道具欄");
         if (!HasInitialized)
         {
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
@@ -63,7 +62,7 @@ public class KnapsackWnd : Inventory, IStackWnd
             Txtcolor = RibiTxt.color;
         }
         PressBag1();
-        SetActive(InventoryManager.Instance.toolTip.gameObject, true);
+        SetActive(InventorySys.Instance.toolTip.gameObject, true);
         RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
         base.InitWnd();
 
@@ -379,7 +378,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                             {
                                 if (i == 0)
                                 {
-                                    Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
+                                    Item newItem = InventorySys.Instance.GetNewItemByID(item.ItemID);
                                     newItem.Position = slot.SlotPosition;
                                     newItem.Count = item.Capacity;
                                     pos[i] = slot.SlotPosition;
@@ -389,7 +388,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                                 else if (tempAmount <= item.Capacity || reqSlotNum == 1) //最後一次
                                 {
                                     //最後一次
-                                    Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
+                                    Item newItem = InventorySys.Instance.GetNewItemByID(item.ItemID);
                                     newItem.Position = EmptySlotPositions[i - 1];
                                     newItem.Count = restNum;
                                     pos[i] = EmptySlotPositions[i - 1];
@@ -399,7 +398,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                                 else
                                 {
                                     //第i次
-                                    Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
+                                    Item newItem = InventorySys.Instance.GetNewItemByID(item.ItemID);
                                     newItem.Position = EmptySlotPositions[i - 1];
                                     newItem.Count = item.Capacity;
                                     pos[i] = EmptySlotPositions[i - 1];
@@ -450,7 +449,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                         {
                             if (tempAmount <= item.Capacity || reqSlotNum == 1) //最後一次
                             {
-                                Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
+                                Item newItem = InventorySys.Instance.GetNewItemByID(item.ItemID);
                                 newItem.Position = EmptySlotPositions[i];
                                 newItem.Count = tempAmount;
                                 pos[i] = EmptySlotPositions[i];
@@ -458,7 +457,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                             }
                             else
                             {
-                                Item newItem = InventoryManager.Instance.GetNewItemByID(item.ItemID);
+                                Item newItem = InventorySys.Instance.GetNewItemByID(item.ItemID);
                                 newItem.Position = EmptySlotPositions[i];
                                 newItem.Count = item.Capacity;
                                 pos[i] = EmptySlotPositions[i];
@@ -481,6 +480,160 @@ public class KnapsackWnd : Inventory, IStackWnd
         }
         #endregion
         return false;
+    }
+    public void ProcessKnapsackExchage(KnapsackOperation ko)
+    {
+        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+
+        Tools.Log("處理交換狀況");
+        if (ko.items.Count == 1)
+        {
+            //移到第二格，刪除第一格
+            Debug.Log("移到空格，直接修改position");
+            Debug.Log("OldPosition=" + ko.OldPosition[0]);
+            Debug.Log("NewPosition=" + ko.NewPosition[0]);
+            ko.items[0].Position = ko.NewPosition[0];
+            if (!ko.items[0].IsCash)
+            {
+                if (nk.ContainsKey(ko.NewPosition[0]))
+                {
+                    nk[ko.NewPosition[0]] = ko.items[0];
+                }
+                else
+                {
+                    nk.Add(ko.NewPosition[0], ko.items[0]);
+                }
+                nk.Remove(ko.OldPosition[0]);
+                FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+            }
+            else
+            {
+                if (ck.ContainsKey(ko.NewPosition[0]))
+                {
+                    ck[ko.NewPosition[0]] = ko.items[0];
+                }
+                else
+                {
+                    ck.Add(ko.NewPosition[0], ko.items[0]);
+                }
+                ck.Remove(ko.OldPosition[0]);
+                FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+            }
+
+        }
+        else if (ko.items.Count == 2)
+        {
+            //兩格交換           
+            if (ko.items[0].ItemID != ko.items[1].ItemID)
+            {
+                Debug.Log("交換兩格");
+                if (!ko.items[0].IsCash)
+                {
+                    Item item = nk[ko.NewPosition[0]];
+                    nk[ko.NewPosition[0]] = nk[ko.OldPosition[0]];
+                    nk[ko.OldPosition[0]] = item;
+                    nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
+                    nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
+                    DestroyImmediate(FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+
+                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                }
+                else
+                {
+                    Item item = ck[ko.NewPosition[0]];
+                    ck[ko.NewPosition[0]] = ck[ko.OldPosition[0]];
+                    ck[ko.OldPosition[0]] = item;
+                    ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
+                    ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
+                    DestroyImmediate(FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                }
+            }
+            //兩格數量改變
+            else
+            {
+                Debug.Log("兩格數量改變");
+                if (!ko.items[0].IsCash)
+                {
+                    nk[ko.OldPosition[0]].Count = ko.items[0].Count;
+                    nk[ko.NewPosition[0]].Count = ko.items[1].Count;
+                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                }
+                else
+                {
+                    ck[ko.OldPosition[0]].Count = ko.items[0].Count;
+                    ck[ko.NewPosition[0]].Count = ko.items[1].Count;
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                }
+            }
+        }
+    }
+
+    public bool IsInKnapsack(int ItemID, int Amount = 1)
+    {
+        if (InventorySys.Instance.itemList.ContainsKey(ItemID))
+        {
+            return CheckItemsExistInKnapsack(ItemID, Amount);
+        }
+        else
+        {
+            Debug.Log("無此道具");
+            return false;
+        }
+    }
+    public bool CheckItemsExistInKnapsack(int ItemID, int Amount = 1)
+    {
+        Item itemInfo = InventorySys.Instance.itemList[ItemID];
+        int RestAmount = Amount;
+        if (itemInfo.IsCash)
+        {
+            foreach (Slot slot in slotLists[3])
+            {
+                if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
+                {
+                    Item SlotItem = slot.GetItem();
+                    if (SlotItem.Count - RestAmount >= 0) //最後一次
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        RestAmount -= SlotItem.Count;
+                        continue;
+                    }
+                }
+            }
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (Slot slot in slotLists[i])
+                {
+                    if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
+                    {
+                        Item SlotItem = slot.GetItem();
+                        if (SlotItem.Count - RestAmount >= 0) //最後一次
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            RestAmount -= SlotItem.Count;
+                            continue;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
     }
     public List<int> GetEmptySlotPosition_NotCash()
     {
@@ -548,7 +701,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         SetWndState(false);
         IsOpen = false;
-        InventoryManager.Instance.HideToolTip();
+        InventorySys.Instance.HideToolTip();
         UIManager.Instance.ForcePop(this);
         RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
     }

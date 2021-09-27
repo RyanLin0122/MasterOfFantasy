@@ -10,7 +10,7 @@ public class Inventory : WindowRoot
 
     public bool StoreItem(int id, int num = 1)
     {
-        Item item = InventoryManager.Instance.GetNewItemByID(id);
+        Item item = InventorySys.Instance.GetNewItemByID(id);
         return StoreItem(item, num);
     }
     public virtual bool StoreItem(Item item, int num)
@@ -89,7 +89,6 @@ public class Inventory : WindowRoot
         }
         return true;
     }
-
     public Slot FindEmptySlot_NotCash() //背包倉庫適用
     {
         for (int i = 0; i < 3; i++)
@@ -142,7 +141,6 @@ public class Inventory : WindowRoot
         }
         return num;
     } //背包倉庫適用
-
     public Slot FindSameIdSlot_NotCash(Item item) //倉庫背包適用
     {
         for (int i = 0; i < 3; i++)
@@ -173,13 +171,13 @@ public class Inventory : WindowRoot
 
 
     #region CheckItemInInventory
-    public bool CheckItems_AnyAmount(int ItemID, int Amount = 1)
+    public bool CheckItemsExistInInventory(int ItemID, int Amount = 1)
     {
-        Item itemInfo = InventoryManager.Instance.itemList[ItemID];
+        Item itemInfo = InventorySys.Instance.itemList[ItemID];
         int RestAmount = Amount;
-        if (itemInfo.IsCash)
+        foreach (var slotArray in slotLists)
         {
-            foreach (Slot slot in slotLists[3])
+            foreach (Slot slot in slotArray)
             {
                 if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
                 {
@@ -195,31 +193,8 @@ public class Inventory : WindowRoot
                     }
                 }
             }
-            return false;
         }
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                foreach (Slot slot in slotLists[i])
-                {
-                    if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
-                    {
-                        Item SlotItem = slot.GetItem();
-                        if (SlotItem.Count - RestAmount >= 0) //最後一次
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            RestAmount -= SlotItem.Count;
-                            continue;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+        return false;
     }
     #endregion
 }

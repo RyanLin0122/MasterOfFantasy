@@ -440,7 +440,7 @@ public class NetSvc : MonoBehaviour
                         }
                         break;
                     case 4:
-                        InventoryManager.Instance.ProcessKnapsackExchage(ko);
+                        KnapsackWnd.Instance.ProcessKnapsackExchage(ko);
                         break;
                     case 5:
                         if (ko.items.Count > 0)
@@ -511,7 +511,7 @@ public class NetSvc : MonoBehaviour
 
     public void DoRecycleItems(ProtoMsg msg)
     {
-        InventoryManager.Instance.ProcessRecycleItem(msg.recycleItems);
+        InventorySys.Instance.ProcessRecycleItem(msg.recycleItems);
     }
 
     public void DoMiniGameSetting(ProtoMsg msg)
@@ -523,7 +523,7 @@ public class NetSvc : MonoBehaviour
     {
         if (msg.rewards.Character == GameRoot.Instance.ActivePlayer.Name)
         {
-            InventoryManager.Instance.RecieveRewards(msg.rewards);
+            InventorySys.Instance.RecieveRewards(msg.rewards);
         }
     }
 
