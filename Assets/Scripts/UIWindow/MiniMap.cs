@@ -13,11 +13,32 @@ public class MiniMap : MonoBehaviour
     public Text MapName2;
     public Text LocationName;
     public Text LocationName2;
+    public Image Player;
+    public int UpdateMiniMapID;
 
-    //private void FixedUpdate()
-    //{
-    //    //////////////////////////////////////////
-    //}
+
+    public void UpdateMiniMap()
+    {
+        if (GameRoot.Instance.PlayerControl != null && GameRoot.Instance.PlayerControl.gameObject != null)
+        {
+            Vector3 mainCharacterpos = GameRoot.Instance.PlayerControl.transform.localPosition;
+            Player.transform.localPosition = mainCharacterpos / 10.0f;
+
+
+            //更新怪物位置
+
+            //更新其他人位置
+
+
+        }
+    }
+
+    public void RemoveUpdateMiniMap()
+    {
+        TimerSvc.Instance.DeleteTimeTask(UpdateMiniMapID);
+    }
+
+
 
     public void Init()
     {
@@ -30,6 +51,9 @@ public class MiniMap : MonoBehaviour
         MapInfoContainer MapInfo = GameObject.FindGameObjectWithTag("MapContainer").GetComponent<MapInfoContainer>();
         Vector3 MapPosition = new Vector3(MapInfo.MapBG.transform.position.x, MapInfo.MapBG.transform.position.y, -100f);
         MiniMapCamera.transform.position = MapPosition;
+        int TaskID = TimerSvc.Instance.AddTimeTask((id) => { UpdateMiniMap(); }, 100, PETimeUnit.Millisecond, 0);
+        UpdateMiniMapID = TaskID;
+        //NPC Protal 擺好
     }
 
     public void ClickDownBtn()
@@ -56,7 +80,6 @@ public class MiniMap : MonoBehaviour
             MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
             wnd.CloseAndPop();
             GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");
-
         }
     }
     public void ClickRankBtn()

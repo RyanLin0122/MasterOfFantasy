@@ -407,12 +407,14 @@ public class MainCitySys : SystemRoot
         cashShopWnd.ClearPanel();
         cashShopWnd.SetWndState(false);
         cashShopWnd.IsOpen = false;
+        GameRoot.Instance.InUI = false;
     }
     public void OpenCashShopWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         cashShopWnd.SetWndState();
         cashShopWnd.IsOpen = true;
+        GameRoot.Instance.InUI = true;
     }
 
     public void CloseStrengthenWnd()
@@ -577,6 +579,7 @@ public class MainCitySys : SystemRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         baseUI.CloseNpcDialogue();
+        GameRoot.Instance.InUI = false;
     }
 
     public void OpenMiniGameSetting()
@@ -626,6 +629,7 @@ public class MainCitySys : SystemRoot
         }
         new ToOtherMapSender(mapID, position);
         TimerSvc.Instance.DeleteTimeTask(MoveTaskID);
+        miniMap.RemoveUpdateMiniMap();
     }
 
     public void UpdateWeather(WeatherType weather)

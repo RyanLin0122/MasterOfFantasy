@@ -6,6 +6,7 @@ public class RibiMap : AbstractMap
 {
     public override void GoBack()
     {
+        print("Using goback");
         transform.parent.parent.GetComponent<MapWnd>().CloseMap();
         Destroy(this.gameObject);
     }
