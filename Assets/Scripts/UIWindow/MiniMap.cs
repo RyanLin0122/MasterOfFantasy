@@ -14,6 +14,10 @@ public class MiniMap : MonoBehaviour
     public Text LocationName;
     public Text LocationName2;
 
+    //private void FixedUpdate()
+    //{
+    //    //////////////////////////////////////////
+    //}
 
     public void Init()
     {
