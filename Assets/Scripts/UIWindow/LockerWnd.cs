@@ -4,20 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 
-public class Locker : Inventory
+public class LockerWnd : Inventory
 {
-    private static Locker _instance;
-    public static Locker Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = UISystem.Instance.lockerWnd;
-            }
-            return _instance;
-        }
-    }
+    public static LockerWnd Instance = null;
+
     public bool IsOpen = false;
     public Button CloseBtn;
     public Button CloseBtn2;
@@ -45,6 +35,7 @@ public class Locker : Inventory
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -74,6 +65,7 @@ public class Locker : Inventory
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());

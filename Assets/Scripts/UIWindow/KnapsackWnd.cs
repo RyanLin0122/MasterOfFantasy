@@ -7,18 +7,7 @@ using System.Globalization;
 using System;
 public class KnapsackWnd : Inventory, IStackWnd
 {
-    private static KnapsackWnd _instance;
-    public static KnapsackWnd Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = UISystem.Instance.Knapsack;
-            }
-            return _instance;
-        }
-    }
+    public static KnapsackWnd Instance;
     public object encodedItems { get; private set; }
 
     public bool IsOpen = false;
@@ -50,10 +39,12 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool IsMailBox = false;
     public bool HasInitialized = false;
 
+
     protected override void InitWnd()
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -71,6 +62,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());

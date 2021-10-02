@@ -20,8 +20,8 @@ public class UISystem : SystemRoot
     public Information InfoWnd;
     public KnapsackWnd Knapsack;
     public EquipmentWnd equipmentWnd;
-    public Locker lockerWnd;
-    public MailBox MailBoxWnd;
+    public LockerWnd lockerWnd;
+    public MailBoxWnd MailBoxWnd;
     public ShopWnd shopWnd;
     public BaseUI baseUI;
     public ChatWnd chatWnd;
