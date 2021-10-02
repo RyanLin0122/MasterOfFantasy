@@ -203,7 +203,7 @@ public class ScreenController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.V))
                 {
-                    UISystem.Instance.learnSkillWnd.openCloseWnd();
+                    UISystem.Instance.AddMessageQueue(Time.realtimeSinceStartup.ToString());
                 }
             }
         }

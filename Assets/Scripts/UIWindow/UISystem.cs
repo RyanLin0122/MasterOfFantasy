@@ -42,6 +42,7 @@ public class UISystem : SystemRoot
     public MGFWnd mGFWnd;
     public CommunityWnd communityWnd;
     public PetWnd petWnd;
+    public MessageQueue messageQueue;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
 
@@ -90,6 +91,10 @@ public class UISystem : SystemRoot
         Pop();
     }
 
+    public void AddMessageQueue(string s)
+    {
+        messageQueue.AddMessage(s);
+    }
     #region 開關Wnd
     public void OpenInfoWnd()
     {
