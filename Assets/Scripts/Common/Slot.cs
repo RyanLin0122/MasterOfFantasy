@@ -368,7 +368,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
         }
-        if (!KnapsackWnd.Instance.IsForge && !KnapsackWnd.Instance.IsSell && !KnapsackWnd.Instance.IsTransaction && !Locker.Instance.IsOpen && !MailBox.Instance.IsOpen)
+        if (!KnapsackWnd.Instance.IsForge && !KnapsackWnd.Instance.IsSell && !KnapsackWnd.Instance.IsTransaction && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen)
         {
             if (eventData.button == PointerEventData.InputButton.Right)
             {

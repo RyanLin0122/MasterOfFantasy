@@ -12,7 +12,7 @@ public class MapElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if(GameRoot.Instance.AccountOption.Language <2)
         {
-            InventorySys.Instance.ShowToolTip(MapName);
+            InventorySys.Instance.ShowToolTip("Hi");
         }
         else if(GameRoot.Instance.AccountOption.Language >= 2)
         {

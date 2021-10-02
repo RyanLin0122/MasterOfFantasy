@@ -12,7 +12,7 @@ public class TransationWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.transationWnd;
+                _instance = UISystem.Instance.transationWnd;
             }
             return _instance;
         }
@@ -35,11 +35,9 @@ public class TransationWnd : Inventory
         base.InitWnd();
     }
 
-
-
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseTransationWnd();
+        UISystem.Instance.CloseTransationWnd();
         IsOpen = false;
     }
 

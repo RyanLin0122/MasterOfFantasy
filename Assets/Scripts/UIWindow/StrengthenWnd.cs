@@ -12,7 +12,7 @@ public class StrengthenWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.strengthenWnd;
+                _instance = UISystem.Instance.strengthenWnd;
             }
             return _instance;
         }
@@ -36,7 +36,7 @@ public class StrengthenWnd : Inventory
 
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseStrengthenWnd();
+        UISystem.Instance.CloseStrengthenWnd();
         IsOpen = false;
     }
 

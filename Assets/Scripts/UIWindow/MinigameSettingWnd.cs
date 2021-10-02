@@ -102,10 +102,10 @@ public class MinigameSettingWnd : WindowRoot
         if (!IsNullArr())
         {
             new MiniGameSettingSender(MiniGameArr, GetRatio());
-            MainCitySys.Instance.CloseDialogueWnd();
+            UISystem.Instance.CloseDialogueWnd();
             ResetSchedule();
             this.gameObject.SetActive(false);
-            MainCitySys.Instance.dialogueWnd.ActivateAllBtn();
+            UISystem.Instance.dialogueWnd.ActivateAllBtn();
             Dictionary<int, int> rd = new Dictionary<int, int>();
             if (CommonToggle.isOn)
             {
@@ -151,7 +151,7 @@ public class MinigameSettingWnd : WindowRoot
                 break;
             }
         }
-        BaseUI baseUi = MainCitySys.Instance.baseUI;
+        BaseUI baseUi = UISystem.Instance.baseUI;
         if (!IsFull && VacancyIndex != -1)
         {
             MiniGameArr[VacancyIndex] = Index2MiniGameID(num);
@@ -334,10 +334,10 @@ public class MinigameSettingWnd : WindowRoot
 
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseDialogueWnd();
+        UISystem.Instance.CloseDialogueWnd();
         ResetSchedule();
         this.gameObject.SetActive(false);
-        MainCitySys.Instance.dialogueWnd.ActivateAllBtn();
+        UISystem.Instance.dialogueWnd.ActivateAllBtn();
     }
     #region Text
     public void SetText()

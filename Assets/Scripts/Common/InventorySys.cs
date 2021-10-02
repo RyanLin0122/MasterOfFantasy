@@ -100,7 +100,7 @@ public class InventorySys : MonoBehaviour
 
         //丟棄物品
         if (isPickedItem && Input.GetMouseButtonDown(0) && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) == false
-            && !Locker.Instance.IsOpen && !MailBox.Instance.IsOpen)
+            && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen)
         {
             isPickedItem = false;
             PickedItem.Hide();
@@ -557,7 +557,7 @@ public class InventorySys : MonoBehaviour
                     {
                         player.MailBoxItems.Add(pos, rewards.MailBoxItems[pos]);
                     }
-                    MailBox.Instance.FindSlot(pos).StoreItem(rewards.MailBoxItems[pos], rewards.MailBoxItems[pos].Count);
+                    MailBoxWnd.Instance.FindSlot(pos).StoreItem(rewards.MailBoxItems[pos], rewards.MailBoxItems[pos].Count);
                 }
             }
         }

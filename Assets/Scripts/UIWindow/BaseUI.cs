@@ -58,7 +58,7 @@ public class BaseUI : WindowRoot
             {
                 pd.Exp = pd.Exp + value;
                 RefreshExpUI(pd.Exp, pd.Level);
-                MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
+                UISystem.Instance.InfoWnd.RefreshIInfoUI();
             }
         }
         if (GameRoot.Instance.PlayerControl != null)
@@ -77,14 +77,14 @@ public class BaseUI : WindowRoot
         if (pd.Level < 120)
         {
             pd.Level += 1;
-            MainCitySys.Instance.InfoWnd.CancelBtn();
+            UISystem.Instance.InfoWnd.CancelBtn();
             pd.RestPoint += 5;
-            MainCitySys.Instance.InfoWnd.txtPoint.text = pd.RestPoint.ToString();
+            UISystem.Instance.InfoWnd.txtPoint.text = pd.RestPoint.ToString();
             pd.MAXHP += 10;
             pd.MAXMP += 10;
             pd.Exp = RestExp;
             RefreshExpUI(RestExp, pd.Level);
-            MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
             //播放升級動畫和音效
             AudioSvc.Instance.PlayCharacterAudio(Constants.LevelUpAudio);
         }
@@ -273,21 +273,21 @@ public class BaseUI : WindowRoot
 
     public void OpenNpcDialogue(int id)
     {
-        MainCitySys.Instance.CloseEquipWnd2();
-        MainCitySys.Instance.CloseKnapsack2();
-        MainCitySys.Instance.CloseLocker2();
-        MainCitySys.Instance.CloseMailbox2();
-        MainCitySys.Instance.CloseMenuUI2();
-        MainCitySys.Instance.CloseInfo2();
+        UISystem.Instance.CloseEquipWnd2();
+        UISystem.Instance.CloseKnapsack2();
+        UISystem.Instance.CloseLocker2();
+        UISystem.Instance.CloseMailbox2();
+        UISystem.Instance.CloseMenuUI2();
+        UISystem.Instance.CloseInfo2();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        MainCitySys.Instance.baseUI.SetWndState(false);
-        MainCitySys.Instance.dialogueWnd.SetWndState(true, id);
+        UISystem.Instance.baseUI.SetWndState(false);
+        UISystem.Instance.dialogueWnd.SetWndState(true, id);
 
     }
     public void CloseNpcDialogue()
     {
-        MainCitySys.Instance.baseUI.SetWndState(true);
-        MainCitySys.Instance.dialogueWnd.SetWndState(false);
+        UISystem.Instance.baseUI.SetWndState(true);
+        UISystem.Instance.dialogueWnd.SetWndState(false);
     }
 
     public void SetClassImg()

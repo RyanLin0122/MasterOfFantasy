@@ -499,7 +499,7 @@ public class PlayerCtrl : Controllable
     }
     public void ProcessGetHurt(int damage, HurtType hurtType, int MonsterID)
     {
-        MainCitySys.Instance.InfoWnd.UpdateHp(GameRoot.Instance.ActivePlayer.HP - damage);
+        UISystem.Instance.InfoWnd.UpdateHp(GameRoot.Instance.ActivePlayer.HP - damage);
         if (!IsHurt)
         {
             //播受傷動畫
@@ -526,7 +526,22 @@ public class PlayerCtrl : Controllable
         blackboard.SetVariableValue("IsIdle", false);
         blackboard.SetVariableValue("IsDeath", true);
         tree.RestartBehaviour();
-        MainCitySys.Instance.InfoWnd.SetDeathHP();
+        UISystem.Instance.InfoWnd.SetDeathHP();
+    }
+    public void Enable()
+    {
+        Blackboard blackboard = GetComponent<Blackboard>();
+        NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
+        blackboard.SetVariableValue("CanMove", true);
+        tree.RestartBehaviour();
+
+    }
+    public void Disable()
+    {
+        Blackboard blackboard = GetComponent<Blackboard>();
+        NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
+        blackboard.SetVariableValue("CanMove", false);
+        tree.RestartBehaviour();
     }
     #endregion
     public void Print(string s)

@@ -23,6 +23,7 @@ public class GameRoot : MonoBehaviour
     public PlayerCtrl PlayerControl;
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
     public bool CanInput;
+    public bool InUI;
     public string ScreenSavingFolder = "C:/Users/";
 
     public MOFOption AccountOption = null;
@@ -51,11 +52,14 @@ public class GameRoot : MonoBehaviour
         login.InitSys();
         MainCitySys mainCitySys = GetComponent<MainCitySys>();
         mainCitySys.InitSys();
+        UISystem uiSys = GetComponent<UISystem>();
+        uiSys.InitSys();
         GotoMiniGame miniGame = GetComponent<GotoMiniGame>();
         miniGame.InitSys();
         //Entering LoginScene and Loading UIs
         login.EnterLoginWnd();
-
+        CanInput = true;
+        InUI = false;
 
 
     }

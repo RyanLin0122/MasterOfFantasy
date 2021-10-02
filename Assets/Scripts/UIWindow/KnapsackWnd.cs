@@ -7,18 +7,7 @@ using System.Globalization;
 using System;
 public class KnapsackWnd : Inventory, IStackWnd
 {
-    private static KnapsackWnd _instance;
-    public static KnapsackWnd Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = MainCitySys.Instance.Knapsack;
-            }
-            return _instance;
-        }
-    }
+    public static KnapsackWnd Instance;
     public object encodedItems { get; private set; }
 
     public bool IsOpen = false;
@@ -50,10 +39,12 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool IsMailBox = false;
     public bool HasInitialized = false;
 
+
     protected override void InitWnd()
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -71,6 +62,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     {
         if (!HasInitialized)
         {
+            Instance = this;
             slotLists.Add(panel1.GetComponentsInChildren<Slot>());
             slotLists.Add(panel2.GetComponentsInChildren<Slot>());
             slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -82,7 +74,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void ClickCloseBtn()
     {
-        if (MainCitySys.Instance.MailBoxWnd.gameObject.activeSelf == false && MainCitySys.Instance.lockerWnd.gameObject.activeSelf == false)
+        if (UISystem.Instance.MailBoxWnd.gameObject.activeSelf == false && UISystem.Instance.lockerWnd.gameObject.activeSelf == false)
         {
             CloseAndPop();
         }
@@ -694,7 +686,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
     public void CloseAndPop()
     {
@@ -702,7 +694,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
         RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
     }
 

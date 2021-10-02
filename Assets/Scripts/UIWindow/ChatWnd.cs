@@ -41,6 +41,7 @@ public class ChatWnd : WindowRoot
         switch (msg.chatResponse.MessageType)
         {
             case 1:
+                print("AddChatMsg case 1");
                 chatLst_All.Add(msg.chatResponse.CharacterName + " ： " + msg.chatResponse.Contents);
                 if (chatLst_All.Count > 18)
                 {
@@ -200,4 +201,6 @@ public class ChatWnd : WindowRoot
             }
         }
     }
+
+
 }

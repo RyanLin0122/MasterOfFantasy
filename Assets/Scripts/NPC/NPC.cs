@@ -14,7 +14,8 @@ public abstract class NPC : MonoBehaviour ,INPC
     
     public void LoadDialogue()
     {
-        MainCitySys.Instance.baseUI.OpenNpcDialogue(NPCID);
+        UISystem.Instance.baseUI.OpenNpcDialogue(NPCID);
+        GameRoot.Instance.InUI = true;
     }
 }
 

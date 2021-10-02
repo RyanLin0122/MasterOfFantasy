@@ -13,7 +13,7 @@ public class PetWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.petWnd;
+                _instance = UISystem.Instance.petWnd;
             }
             return _instance;
         }
@@ -48,7 +48,7 @@ public class PetWnd : Inventory
 
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.ClosePetWnd();
+        UISystem.Instance.ClosePetWnd();
         IsOpen = false;
     }
 

@@ -13,7 +13,7 @@ public class CashShopWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.cashShopWnd;
+                _instance = UISystem.Instance.cashShopWnd;
             }
             return _instance;
         }
@@ -258,19 +258,19 @@ public class CashShopWnd : Inventory
     #region UI Operation
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseCashShopWnd();
+        UISystem.Instance.CloseCashShopWnd();
         IsOpen = false;
     }
     public void openCloseWnd()
     {
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseCashShopWnd();
+            UISystem.Instance.CloseCashShopWnd();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.OpenCashShopWnd();
+            UISystem.Instance.OpenCashShopWnd();
             IsOpen = true;
         }
     }

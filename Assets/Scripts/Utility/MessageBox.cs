@@ -49,6 +49,7 @@ public class MessageBox : MonoBehaviour
     public static void Show(string str, MessageBoxType Type = MessageBoxType.Simple, Action action = null)
     {
         MessageBox box = null;
+        GameRoot.Instance.CanInput = false;
         switch (Type)
         {
             case MessageBoxType.Simple:
@@ -92,6 +93,7 @@ public class MessageBox : MonoBehaviour
                 var boxes = GameRoot.Instance.NearCanvas.GetComponentsInChildren<MessageBox>();
                 boxes[0].Confirm();
                 boxes[0].CloseMessageBox();
+
             }
         }
     }
@@ -99,6 +101,7 @@ public class MessageBox : MonoBehaviour
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         Destroy(gameObject);
+        GameRoot.Instance.CanInput = true;
     }
     public void AddConfirmAction(Action action)
     {

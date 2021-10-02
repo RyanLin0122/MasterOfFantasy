@@ -64,17 +64,23 @@ public class MapWnd : WindowRoot, IStackWnd
         btns.SetActive(false);
         PushMap(map);
         map.transform.localPosition = Vector3.zero;
+
+
+        //Todo
         Button[] AllBtns = map.GetComponentsInChildren<Button>();
         foreach (var btn in AllBtns)
         {
             if (btn.name == "CloseBtn")
             {
-                btn.onClick.AddListener(() => { GameObject.DestroyImmediate(map.gameObject); btns.SetActive(true); });
+                print("findcloseBtn");
+                btn.onClick.AddListener(() => { GameObject.DestroyImmediate(map.gameObject); btns.SetActive(true); print("closelisrener"); });
             }
         }
         map.ShowPosition();
 
     }
+
+    #region 沒有用到
 
     public void CloseMap()
     {
@@ -95,7 +101,7 @@ public class MapWnd : WindowRoot, IStackWnd
 
     public void ClickCloseBtn()
     {
-        MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
+        //MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
         CloseAndPop();
     }
     public void PushMap(AbstractMap map)
@@ -128,20 +134,23 @@ public class MapWnd : WindowRoot, IStackWnd
         }
     }
 
+    #endregion
+
+
     public bool IsOpen = true;
     public void OpenAndPush()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
 
     public void CloseAndPop()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
         MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
         GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");
         GameObject.DestroyImmediate(wnd.gameObject);
