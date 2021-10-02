@@ -3,20 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
-public class MailBox : Inventory
+public class MailBoxWnd : Inventory
 {
-    private static MailBox _instance;
-    public static MailBox Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = UISystem.Instance.MailBoxWnd;
-            }
-            return _instance;
-        }
-    }
+    public static MailBoxWnd Instance;
     public bool IsOpen = false;
     public Button CloseBtn;
     public Button CloseBtn2;
@@ -42,6 +31,7 @@ public class MailBox : Inventory
     protected override void InitWnd()
     {
         Debug.Log("初始化信箱");
+        Instance = this;
         slotLists.Add(panel1.GetComponentsInChildren<Slot>());
         slotLists.Add(panel2.GetComponentsInChildren<Slot>());
         slotLists.Add(panel3.GetComponentsInChildren<Slot>());
@@ -55,6 +45,7 @@ public class MailBox : Inventory
     public void InitMailBox()
     {
         Debug.Log("初始化信箱");
+        Instance = this;
         slotLists.Add(panel1.GetComponentsInChildren<Slot>());
         slotLists.Add(panel2.GetComponentsInChildren<Slot>());
         slotLists.Add(panel3.GetComponentsInChildren<Slot>());

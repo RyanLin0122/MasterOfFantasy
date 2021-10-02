@@ -11,7 +11,6 @@ public class MainCitySys : SystemRoot
 {
     public static MainCitySys Instance = null;
     public GameObject playerprefab;
-    public bool test = false;
     public int ReportTaskID;
     public bool IsCalculator = false;
     public int MoveTaskID;
