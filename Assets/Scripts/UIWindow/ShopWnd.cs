@@ -16,7 +16,7 @@ public class ShopWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.shopWnd;
+                _instance = UISystem.Instance.shopWnd;
             }
             return _instance;
         }
@@ -58,7 +58,7 @@ public class ShopWnd : Inventory
         BadgeBtn.SetActive(false);
         txtTotalPrice.text = "0";
         txtCoin.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
-        MainCitySys.Instance.dialogueWnd.ImportNpcShopItems();
+        UISystem.Instance.dialogueWnd.ImportNpcShopItems();
         SetupBuyPanel();
         SetCatagories();
         ClearBuyPanel();
@@ -69,13 +69,13 @@ public class ShopWnd : Inventory
 
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseShopWnd();
+            UISystem.Instance.CloseShopWnd();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.CloseEquipWnd2();
-            MainCitySys.Instance.OpenShopWnd();
+            UISystem.Instance.CloseEquipWnd2();
+            UISystem.Instance.OpenShopWnd();
             IsOpen = true;
         }
     }

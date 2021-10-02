@@ -10,40 +10,11 @@ using NodeCanvas;
 public class MainCitySys : SystemRoot
 {
     public static MainCitySys Instance = null;
-    public UIManager uIManager;
-    public Information InfoWnd;
-    public KnapsackWnd Knapsack;
-    public EquipmentWnd equipmentWnd;
-    public Locker lockerWnd;
-    public MailBox MailBoxWnd;
-    public ShopWnd shopWnd;
-    public BaseUI baseUI;
-    public ChatWnd chatWnd;
-    public DialogueWnd dialogueWnd;
-    public MenuUI menuUI;
-    public Button OpenChatBtn;
-    public Sprite OpenChat;
-    public Sprite CloseChat;
-    public LearnSkillWnd learnSkillWnd;
-    public MiniMap miniMap;
-    public GuideWnd guideWnd;
-    public MinigameSettingWnd miniGameSettingWnd;
-    public OptionWnd optionWnd;
-    public DiaryWnd diaryWnd;
-    public CashShopWnd cashShopWnd;
-    public StrengthenWnd strengthenWnd;
-    public TransationWnd transationWnd;
-    public MGFWnd mGFWnd;
-    public CommunityWnd communityWnd;
-    public PetWnd petWnd;
-
     public GameObject playerprefab;
-    public bool IsChatWnd = true;
     public bool test = false;
     public int ReportTaskID;
     public bool IsCalculator = false;
     public int MoveTaskID;
-
     public GameObject MapLogo;
     public string LastLocation = "";
     public string NewLocation = "";
@@ -54,12 +25,7 @@ public class MainCitySys : SystemRoot
     public override void InitSys()
     {
         base.InitSys();
-
         Instance = this;
-
-        Knapsack.InitKnapsack();
-        lockerWnd.InitLocker();
-        MailBoxWnd.InitMailBox();
         Debug.Log("Init MainCitySys...");
 
     }
@@ -85,13 +51,13 @@ public class MainCitySys : SystemRoot
             GameRoot.Instance.ActivePlayer.MapID = msg.MiniGameID;
             Debug.Log("Entering Mini Game");
             //關閉主UI
-            baseUI.SetWndState(false);
+            UISystem.Instance.baseUI.SetWndState(false);
             GameRoot.Instance.gameObject.GetComponent<GotoMiniGame>().ranking = msg.MiniGameRanking;
         });
     }
     public void LoginMap(EnterGameRsp rsp) //加載某地圖，特定位置
     {
-        equipmentWnd.InitEquipWndWhenLogin();
+        UISystem.Instance.equipmentWnd.InitEquipWndWhenLogin();
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
 
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
@@ -100,12 +66,12 @@ public class MainCitySys : SystemRoot
             
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
-            
-            equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
-            Knapsack.ReadItems();
+
+            UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
+            UISystem.Instance.Knapsack.ReadItems();
             //打開主UI
-            baseUI.SetWndState();
-            InfoWnd.RefreshIInfoUI();
+            UISystem.Instance.baseUI.SetWndState();
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
             //加載其他人
             try
             {
@@ -124,7 +90,7 @@ public class MainCitySys : SystemRoot
             {
                 Debug.Log(e.ToString());
             }
-            baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
+            UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
             
@@ -139,7 +105,7 @@ public class MainCitySys : SystemRoot
                 IsCalculator = true;
                 TimerSvc.Instance.AddTimeTask((a) => { new CalculatorReadySender(); Debug.Log("Ready"); LaunchCalculatorReport(); }, 0.1, PETimeUnit.Second, 1);
             }
-            miniMap.Init();
+            UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
             
             MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.PlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
@@ -163,9 +129,9 @@ public class MainCitySys : SystemRoot
             
             //加載主角
             LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
-            InfoWnd.RefreshIInfoUI();
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
             //打開主UI
-            baseUI.SetWndState();
+            UISystem.Instance.baseUI.SetWndState();
             //加載其他人
             try
             {
@@ -184,7 +150,7 @@ public class MainCitySys : SystemRoot
             {
                 Debug.Log(e.ToString());
             }
-            baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
+            UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
             BattleSys.Instance.MapCanvas = MapCanvas;
@@ -198,7 +164,7 @@ public class MainCitySys : SystemRoot
                 TimerSvc.Instance.AddTimeTask((a) => { new CalculatorReadySender(); Debug.Log("Ready"); LaunchCalculatorReport(); }, 0.1, PETimeUnit.Second, 1);
             }
             UpdateWeather(rsp.weather);
-            miniMap.Init();
+            UISystem.Instance.miniMap.Init();
             MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.PlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
             ShowMapLogo();
         });
@@ -300,8 +266,8 @@ public class MainCitySys : SystemRoot
         player.GetComponent<Namebox>().SetNameBox(GameRoot.Instance.ActivePlayer.Name);
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
-        equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-        equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+        UISystem.Instance.equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+        UISystem.Instance.equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
     }
 
     public void LoadMonster()
@@ -362,251 +328,7 @@ public class MainCitySys : SystemRoot
             AudioSvc.Instance.PlayembiAudio(Embi);
         }
     }
-    #region 開關Wnd
-    public void OpenInfoWnd()
-    {
-        CloseEquipWnd2();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        InfoWnd.SetWndState(true);
-    }
-    public void CloseInfo2()
-    {
-        InfoWnd.SetWndState(false);
-        InfoWnd.IsOpen = false;
-    }
-    public void CloseInfoWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        InfoWnd.SetWndState(false);
-        InfoWnd.IsOpen = false;
-    }
-    public void OpenShopWnd()
-    {
-        dialogueWnd.LockAllBtn();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        shopWnd.SetWndState();
-        shopWnd.IsOpen = true;
-        baseUI.SetWndState(false);
-    }
-    public void CloseShopWnd()
-    {
-        dialogueWnd.ActivateAllBtn();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        shopWnd.SetWndState(false);
-        shopWnd.IsOpen = false;
-    }
-
-    public void CloseKnapsack2()
-    {
-        Knapsack.SetWndState(false);
-        Knapsack.IsOpen = false;
-    }
-    public void CloseCashShopWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        cashShopWnd.ClearPanel();
-        cashShopWnd.SetWndState(false);
-        cashShopWnd.IsOpen = false;
-    }
-    public void OpenCashShopWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        cashShopWnd.SetWndState();
-        cashShopWnd.IsOpen = true;
-    }
-
-    public void CloseStrengthenWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        strengthenWnd.SetWndState(false);
-        strengthenWnd.IsOpen = false;
-    }
-    public void OpenStrengthenWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        strengthenWnd.SetWndState();
-        strengthenWnd.IsOpen = true;
-    }
-    public void CloseMGFWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        mGFWnd.SetWndState(false);
-        mGFWnd.IsOpen = false;
-    }
-    public void OpenMGFWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        mGFWnd.SetWndState();
-        mGFWnd.IsOpen = true;
-    }
-    public void CloseTransationWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        transationWnd.SetWndState(false);
-        transationWnd.IsOpen = false;
-    }
-    public void OpenTransationWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        transationWnd.SetWndState();
-        transationWnd.IsOpen = true;
-    }
-    public void CloseCommunityWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        communityWnd.SetWndState(false);
-        communityWnd.IsOpen = false;
-    }
-    public void OpenCommunityWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        communityWnd.SetWndState();
-        communityWnd.IsOpen = true;
-    }
-    public void ClosePetWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        petWnd.SetWndState(false);
-        petWnd.IsOpen = false;
-    }
-    public void OpenPetWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        petWnd.SetWndState();
-        petWnd.IsOpen = true;
-    }
-    public void OpenLockerWnd()
-    {
-        CloseEquipWnd2();
-        dialogueWnd.LockAllBtn();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        lockerWnd.SetWndState();
-        lockerWnd.IsOpen = true;
-    }
-    public void CloseLocker2()
-    {
-        lockerWnd.SetWndState(false);
-        lockerWnd.IsOpen = false;
-    }
-    public void CloseLockerWnd()
-    {
-        dialogueWnd.ActivateAllBtn();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        lockerWnd.SetWndState(false);
-        lockerWnd.IsOpen = false;
-    }
-    public void OpenMailBoxWnd()
-    {
-        CloseEquipWnd2();
-        dialogueWnd.LockAllBtn();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        MailBoxWnd.SetWndState();
-        MailBoxWnd.IsOpen = true;
-    }
-    public void CloseMailbox2()
-    {
-        MailBoxWnd.SetWndState(false);
-        MailBoxWnd.IsOpen = false;
-    }
-    public void CloseMailBoxWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        dialogueWnd.ActivateAllBtn();
-        MailBoxWnd.SetWndState(false);
-        MailBoxWnd.IsOpen = false;
-    }
-
-    public void CloseEquipWnd2()
-    {
-        equipmentWnd.SetWndState(false);
-        equipmentWnd.IsOpen = false;
-    }
-
-    public void OpenMenuUI()
-    {
-        CloseEquipWnd2();
-        CloseInfo2();
-        CloseLocker2();
-        CloseMailbox2();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        menuUI.SetWndState(true);
-    }
-    public void CloseMenuUI2()
-    {
-        menuUI.SetWndState(false);
-    }
-    public void CloseMenuUI()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        menuUI.SetWndState(false);
-    }
-    public void OpenLearnSkillUI()
-    {
-        CloseEquipWnd2();
-        CloseInfo2();
-        CloseLocker2();
-        CloseMailbox2();
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        learnSkillWnd.Init();
-        learnSkillWnd.SetWndState(true);
-    }
-    public void CloseLearnSkillUI()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        learnSkillWnd.SetWndState(false);
-    }
-    public void OpenCloseChatWnd()
-    {
-        if (IsChatWnd == true)
-        {
-            chatWnd.SetWndState(false);
-            IsChatWnd = false;
-            OpenChatBtn.image.sprite = OpenChat;
-            AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        }
-        else
-        {
-            chatWnd.SetWndState(true);
-            IsChatWnd = true;
-            OpenChatBtn.image.sprite = CloseChat;
-            AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        }
-    }
-
-    public void CloseDialogueWnd()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        baseUI.CloseNpcDialogue();
-    }
-
-    public void OpenMiniGameSetting()
-    {
-        dialogueWnd.LockAllBtn();
-        miniGameSettingWnd.OpenWnd();
-    }
-    public void OpenCloseOptionWnd()
-    {
-        if (optionWnd.gameObject.activeSelf)
-        {
-            CloseOption();
-        }
-        else
-        {
-            OpenOption();
-        }
-    }
-    public void OpenOption()
-    {
-        AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
-        menuUI.SetWndState(false);
-        optionWnd.SetWndState(true);
-    }
-    public void CloseOption()
-    {
-        optionWnd.PressCancel();
-    }
-    #endregion
-
+   
     public void Transfer(int PortalID, Action act)
     {
         LastLocation = ResSvc.Instance.GetMapCfgData(GameRoot.Instance.ActivePlayer.MapID).Location;
@@ -626,6 +348,7 @@ public class MainCitySys : SystemRoot
         }
         new ToOtherMapSender(mapID, position);
         TimerSvc.Instance.DeleteTimeTask(MoveTaskID);
+        UISystem.Instance.miniMap.RemoveUpdateMiniMap();
     }
 
     public void UpdateWeather(WeatherType weather)
@@ -680,7 +403,7 @@ public class MainCitySys : SystemRoot
     {
         GameRoot.Instance.ActivePlayer.MiniGameArr = setting.MiniGameArray;
         GameRoot.Instance.ActivePlayer.MiniGameRatio = setting.MiniGameRatio;
-        baseUI.SetClassImg();
+        UISystem.Instance.baseUI.SetClassImg();
     }
 
     public void SaveAccount()

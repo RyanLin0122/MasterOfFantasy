@@ -13,7 +13,7 @@ public class Locker : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.lockerWnd;
+                _instance = UISystem.Instance.lockerWnd;
             }
             return _instance;
         }
@@ -201,7 +201,7 @@ public class Locker : Inventory
 
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseLockerWnd();
+            UISystem.Instance.CloseLockerWnd();
             KnapsackWnd.Instance.CloseAndPop();
             InventorySys.Instance.HideToolTip();
             IsOpen = false;
@@ -209,16 +209,16 @@ public class Locker : Inventory
         }
         else
         {
-            MainCitySys.Instance.OpenLockerWnd();
+            UISystem.Instance.OpenLockerWnd();
             KnapsackWnd.Instance.CloseAndPop();
             IsOpen = true;
         }
     }
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseLockerWnd();
+        UISystem.Instance.CloseLockerWnd();
         KnapsackWnd.Instance.CloseAndPop();
-        MainCitySys.Instance.Knapsack.IsOpen = false;
+        UISystem.Instance.Knapsack.IsOpen = false;
         InventorySys.Instance.HideToolTip();
         IsOpen = false;
     }

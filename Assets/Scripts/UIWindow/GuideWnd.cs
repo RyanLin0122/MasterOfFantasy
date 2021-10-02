@@ -24,7 +24,7 @@ public class GuideWnd : WindowRoot, IStackWnd
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.guideWnd;
+                _instance = UISystem.Instance.guideWnd;
             }
             return _instance;
         }
@@ -106,7 +106,7 @@ public class GuideWnd : WindowRoot, IStackWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
     }
 
     public void OpenAndPush()
@@ -114,7 +114,7 @@ public class GuideWnd : WindowRoot, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
 
     public void KeyBoardCommand()

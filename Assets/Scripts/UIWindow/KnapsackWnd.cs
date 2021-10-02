@@ -14,7 +14,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.Knapsack;
+                _instance = UISystem.Instance.Knapsack;
             }
             return _instance;
         }
@@ -82,7 +82,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void ClickCloseBtn()
     {
-        if (MainCitySys.Instance.MailBoxWnd.gameObject.activeSelf == false && MainCitySys.Instance.lockerWnd.gameObject.activeSelf == false)
+        if (UISystem.Instance.MailBoxWnd.gameObject.activeSelf == false && UISystem.Instance.lockerWnd.gameObject.activeSelf == false)
         {
             CloseAndPop();
         }
@@ -694,7 +694,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
     public void CloseAndPop()
     {
@@ -702,7 +702,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
         RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
     }
 

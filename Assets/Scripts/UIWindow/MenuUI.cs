@@ -25,12 +25,12 @@ public class MenuUI : WindowRoot
         
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseMenuUI();
+            UISystem.Instance.CloseMenuUI();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.OpenMenuUI();
+            UISystem.Instance.OpenMenuUI();
             changeChannel.SetWndState(false);
             keyBind.SetWndState(false);
             IsOpen = true;
@@ -38,14 +38,14 @@ public class MenuUI : WindowRoot
     }
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseMenuUI();
+        UISystem.Instance.CloseMenuUI();
         IsOpen = false;
     }
 
     public void OpenKeyBind()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
-        MainCitySys.Instance.CloseMenuUI();
+        UISystem.Instance.CloseMenuUI();
         keyBind.SetWndState();
         IsOpen = false;
         IsKeyBind = true;
@@ -66,7 +66,7 @@ public class MenuUI : WindowRoot
         }
         else
         {
-            MainCitySys.Instance.CloseMenuUI();
+            UISystem.Instance.CloseMenuUI();
             OpenKeyBind();
             IsKeyBind = true;
         }

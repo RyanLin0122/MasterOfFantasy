@@ -13,7 +13,7 @@ public class CommunityWnd : WindowRoot
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.communityWnd;
+                _instance = UISystem.Instance.communityWnd;
             }
             return _instance;
         }
@@ -50,7 +50,7 @@ public class CommunityWnd : WindowRoot
 
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseCommunityWnd();
+        UISystem.Instance.CloseCommunityWnd();
         IsOpen = false;
     }
 
@@ -58,12 +58,12 @@ public class CommunityWnd : WindowRoot
     {
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseCommunityWnd();
+            UISystem.Instance.CloseCommunityWnd();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.OpenCommunityWnd();
+            UISystem.Instance.OpenCommunityWnd();
             IsOpen = true;
         }
     }

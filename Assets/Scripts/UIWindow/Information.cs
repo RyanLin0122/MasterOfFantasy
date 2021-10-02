@@ -137,19 +137,19 @@ public class Information : WindowRoot
     {
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseInfoWnd();
+            UISystem.Instance.CloseInfoWnd();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.OpenInfoWnd();
+            UISystem.Instance.OpenInfoWnd();
             SetIllustration();
             IsOpen = true;
         }
     }
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseInfoWnd();
+        UISystem.Instance.CloseInfoWnd();
         IsOpen = false;
     }
     public void OpenCloseAddition()

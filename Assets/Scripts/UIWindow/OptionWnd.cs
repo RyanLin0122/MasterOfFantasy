@@ -178,7 +178,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.optionWnd;
+                _instance = UISystem.Instance.optionWnd;
             }
             return _instance;
         }
