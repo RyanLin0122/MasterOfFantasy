@@ -195,7 +195,7 @@ public class NetSvc : MonoBehaviour
         BattleSys.Instance.ClearMonsters();
         LoginSys.Instance.selectCharacterWnd.SetWndState(false);
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
-        MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
+        UISystem.Instance.InfoWnd.RefreshIInfoUI();
 
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
@@ -238,7 +238,7 @@ public class NetSvc : MonoBehaviour
         player.Agility += ap.Agility;
         player.Intellect += ap.Intellect;
         player.RestPoint = ap.RestPoint;
-        MainCitySys.Instance.InfoWnd.RefreshIInfoUI();
+        UISystem.Instance.InfoWnd.RefreshIInfoUI();
     }
 
     public void DoEnterMiniGame(ProtoMsg msg)
@@ -261,7 +261,7 @@ public class NetSvc : MonoBehaviour
     }
     public void DoChatRsp(ProtoMsg msg)
     {
-        MainCitySys.Instance.chatWnd.AddChatMsg(msg);
+        UISystem.Instance.chatWnd.AddChatMsg(msg);
     }
     public void DoGenerateMonsters(ProtoMsg msg)
     {
@@ -292,7 +292,7 @@ public class NetSvc : MonoBehaviour
         ExpPacket exp = msg.expPacket;
         if (exp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
         {
-            MainCitySys.Instance.baseUI.AddExp(exp.Exp);
+            UISystem.Instance.baseUI.AddExp(exp.Exp);
         }
     }
     public void DoLevelUpPacket(ProtoMsg msg)
@@ -300,7 +300,7 @@ public class NetSvc : MonoBehaviour
         LevelUp levelUp = msg.levelUp;
         if (levelUp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
         {
-            MainCitySys.Instance.baseUI.ProcessLevelUpMsg(levelUp.RestExp);
+            UISystem.Instance.baseUI.ProcessLevelUpMsg(levelUp.RestExp);
         }
     }
     public void DoWeatherPacket(ProtoMsg msg)
@@ -313,11 +313,11 @@ public class NetSvc : MonoBehaviour
         UpdateHpMp update = msg.updateHpMp;
         if (update.UpdateHp != GameRoot.Instance.ActivePlayer.HP)
         {
-            MainCitySys.Instance.InfoWnd.UpdateHp(update.UpdateHp);
+            UISystem.Instance.InfoWnd.UpdateHp(update.UpdateHp);
         }
         if (update.UpdateMp != GameRoot.Instance.ActivePlayer.MP)
         {
-            MainCitySys.Instance.InfoWnd.UpdateMp(update.UpdateMp);
+            UISystem.Instance.InfoWnd.UpdateMp(update.UpdateMp);
         }
 
     }
@@ -506,7 +506,7 @@ public class NetSvc : MonoBehaviour
             eq = new PlayerEquipments();
         }
         EquipmentOperation eo = msg.equipmentOperation;
-        MainCitySys.Instance.equipmentWnd.ProcessEquipmentOperation(eo);
+        UISystem.Instance.equipmentWnd.ProcessEquipmentOperation(eo);
     }
 
     public void DoRecycleItems(ProtoMsg msg)

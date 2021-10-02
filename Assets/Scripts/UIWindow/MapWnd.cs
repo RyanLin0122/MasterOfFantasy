@@ -143,14 +143,14 @@ public class MapWnd : WindowRoot, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
 
     public void CloseAndPop()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
         MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
         GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");
         GameObject.DestroyImmediate(wnd.gameObject);

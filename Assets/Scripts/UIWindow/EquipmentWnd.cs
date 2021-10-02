@@ -14,7 +14,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.equipmentWnd;
+                _instance = UISystem.Instance.equipmentWnd;
             }
             return _instance;
         }
@@ -53,7 +53,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             slotLists.Add(Battlepanel.GetComponentsInChildren<EquipSlot>());
             slotLists.Add(Fashionpanel.GetComponentsInChildren<EquipSlot>());
             illustration.InitIllustration();
-            MainCitySys.Instance.InfoWnd.illustration.InitIllustration();
+            UISystem.Instance.InfoWnd.illustration.InitIllustration();
             Txtcolor = referenceColor.color;
         }       
         PressBattleEquip();
@@ -114,7 +114,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
         Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
     }
 
@@ -124,7 +124,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
     }
     public void ClickCloseBtn()
     {
@@ -447,7 +447,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
                 SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
                 illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                MainCitySys.Instance.InfoWnd.SetIllustration();
+                UISystem.Instance.InfoWnd.SetIllustration();
                 break;
             case 2:
                 if (!msg.PutOnEquipment.IsCash)
@@ -485,7 +485,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
                 SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
                 illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                MainCitySys.Instance.InfoWnd.SetIllustration();
+                UISystem.Instance.InfoWnd.SetIllustration();
                 break;
             case 3:
                 if (!msg.PutOffEquipment.IsCash)
@@ -514,7 +514,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 PlayChanegeEquipmentAudio(msg.EquipmentPosition);
 
                 illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                MainCitySys.Instance.InfoWnd.SetIllustration();
+                UISystem.Instance.InfoWnd.SetIllustration();
                 break;
         }
         Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);

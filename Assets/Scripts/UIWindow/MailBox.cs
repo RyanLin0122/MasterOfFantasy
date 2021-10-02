@@ -12,7 +12,7 @@ public class MailBox : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.MailBoxWnd;
+                _instance = UISystem.Instance.MailBoxWnd;
             }
             return _instance;
         }
@@ -67,26 +67,26 @@ public class MailBox : Inventory
 
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseMailBoxWnd();
+            UISystem.Instance.CloseMailBoxWnd();
             KnapsackWnd.Instance.CloseAndPop();
-            MainCitySys.Instance.Knapsack.IsOpen = false;
+            UISystem.Instance.Knapsack.IsOpen = false;
             InventorySys.Instance.HideToolTip();
             IsOpen = false;
 
         }
         else
         {
-            MainCitySys.Instance.OpenMailBoxWnd();
+            UISystem.Instance.OpenMailBoxWnd();
             KnapsackWnd.Instance.CloseAndPop();
-            MainCitySys.Instance.Knapsack.IsOpen = true;
+            UISystem.Instance.Knapsack.IsOpen = true;
             IsOpen = true;
         }
     }
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseMailBoxWnd();
+        UISystem.Instance.CloseMailBoxWnd();
         KnapsackWnd.Instance.CloseAndPop();
-        MainCitySys.Instance.Knapsack.IsOpen = false;
+        UISystem.Instance.Knapsack.IsOpen = false;
         InventorySys.Instance.HideToolTip();
         IsOpen = false;
     }

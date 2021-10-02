@@ -26,18 +26,18 @@ public class LearnSkillWnd : WindowRoot
     {
         if (IsOpen == true)
         {
-            MainCitySys.Instance.CloseLearnSkillUI();
+            UISystem.Instance.CloseLearnSkillUI();
             IsOpen = false;
         }
         else
         {
-            MainCitySys.Instance.OpenLearnSkillUI();
+            UISystem.Instance.OpenLearnSkillUI();
             IsOpen = true;
         }
     }
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseLearnSkillUI();
+        UISystem.Instance.CloseLearnSkillUI();
         IsOpen = false;
     }
 }

@@ -32,7 +32,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.diaryWnd;
+                _instance = UISystem.Instance.diaryWnd;
             }
             return _instance;
         }
@@ -231,7 +231,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
     }
 
     public void OpenAndPush()
@@ -239,7 +239,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState(true);
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
 
     public void PressCloseBtn()

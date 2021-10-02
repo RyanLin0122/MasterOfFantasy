@@ -12,7 +12,7 @@ public class MGFWnd : Inventory
         {
             if (_instance == null)
             {
-                _instance = MainCitySys.Instance.mGFWnd;
+                _instance = UISystem.Instance.mGFWnd;
             }
             return _instance;
         }
@@ -46,7 +46,7 @@ public class MGFWnd : Inventory
 
     public void ClickCloseBtn()
     {
-        MainCitySys.Instance.CloseMGFWnd();
+        UISystem.Instance.CloseMGFWnd();
         IsOpen = false;
     }
 

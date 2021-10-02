@@ -92,7 +92,7 @@ public class SkillWnd : WindowRoot, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
-        UIManager.Instance.Push(this);
+        UISystem.Instance.Push(this);
     }
 
     public void CloseAndPop()
@@ -101,7 +101,7 @@ public class SkillWnd : WindowRoot, IStackWnd
         SetWndState(false);
         IsOpen = false;
         InventorySys.Instance.HideToolTip();
-        UIManager.Instance.ForcePop(this);
+        UISystem.Instance.ForcePop(this);
     }
 
     public void KeyBoardCommand()

@@ -95,13 +95,13 @@ public class ScreenController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (UIManager.Instance.stack.Count > 0)
+                if (UISystem.Instance.stack.Count > 0)
                 {
-                    UIManager.Instance.PressEsc();
+                    UISystem.Instance.PressEsc();
                 }
                 else
                 {
-                    MainCitySys.Instance.menuUI.openCloseWnd();
+                    UISystem.Instance.menuUI.openCloseWnd();
                 }
 
             }
@@ -113,7 +113,7 @@ public class ScreenController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                MainCitySys.Instance.baseUI.AddExp(100000000);
+                UISystem.Instance.baseUI.AddExp(100000000);
             }
 
             //if (MainCitySys.Instance.shopWnd.gameObject.activeSelf == false && MainCitySys.Instance.menuUI.gameObject.activeSelf == false&&
@@ -123,11 +123,11 @@ public class ScreenController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.C))
                 {
-                    MainCitySys.Instance.InfoWnd.openCloseWnd();
+                    UISystem.Instance.InfoWnd.openCloseWnd();
                 }
                 if (Input.GetKeyDown(KeyCode.F2))
                 {
-                    MainCitySys.Instance.menuUI.OpenCloseKeyBind();
+                    UISystem.Instance.menuUI.OpenCloseKeyBind();
                 }
                 if (Input.GetKeyDown(KeyCode.I))
                 {
@@ -135,7 +135,7 @@ public class ScreenController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.O))
                 {
-                    MainCitySys.Instance.OpenCloseOptionWnd();
+                    UISystem.Instance.OpenCloseOptionWnd();
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -203,7 +203,7 @@ public class ScreenController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.V))
                 {
-                    MainCitySys.Instance.learnSkillWnd.openCloseWnd();
+                    UISystem.Instance.learnSkillWnd.openCloseWnd();
                 }
             }
         }
@@ -224,14 +224,14 @@ public class ScreenController : MonoBehaviour
             }
         }
 
-        if (MainCitySys.Instance.baseUI.Input.InputFieldAvaliable())
+        if (UISystem.Instance.baseUI.Input.InputFieldAvaliable())
         {
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                if (!MainCitySys.Instance.baseUI.Input.isSelect)
-                    MainCitySys.Instance.baseUI.Input.ActivateChat();
-                else MainCitySys.Instance.baseUI.Input.EndEdit();
+                if (!UISystem.Instance.baseUI.Input.isSelect)
+                    UISystem.Instance.baseUI.Input.ActivateChat();
+                else UISystem.Instance.baseUI.Input.EndEdit();
             }
         }
 

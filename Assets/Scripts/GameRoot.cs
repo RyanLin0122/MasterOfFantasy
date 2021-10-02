@@ -52,6 +52,8 @@ public class GameRoot : MonoBehaviour
         login.InitSys();
         MainCitySys mainCitySys = GetComponent<MainCitySys>();
         mainCitySys.InitSys();
+        UISystem uiSys = GetComponent<UISystem>();
+        uiSys.InitSys();
         GotoMiniGame miniGame = GetComponent<GotoMiniGame>();
         miniGame.InitSys();
         //Entering LoginScene and Loading UIs
