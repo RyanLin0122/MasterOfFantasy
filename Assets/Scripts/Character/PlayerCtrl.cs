@@ -528,6 +528,21 @@ public class PlayerCtrl : Controllable
         tree.RestartBehaviour();
         UISystem.Instance.InfoWnd.SetDeathHP();
     }
+    public void Enable()
+    {
+        Blackboard blackboard = GetComponent<Blackboard>();
+        NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
+        blackboard.SetVariableValue("CanMove", true);
+        tree.RestartBehaviour();
+
+    }
+    public void Disable()
+    {
+        Blackboard blackboard = GetComponent<Blackboard>();
+        NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
+        blackboard.SetVariableValue("CanMove", false);
+        tree.RestartBehaviour();
+    }
     #endregion
     public void Print(string s)
     {

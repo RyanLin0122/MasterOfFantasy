@@ -48,14 +48,6 @@ public class ScreenController : MonoBehaviour
 
         }
 
-        //UpBound = mapBound[0];
-        //print(UpBound);
-        //DownBound = mapBound[1];
-        //print(DownBound);
-        //LeftBound = mapBound[2];
-        //print(LeftBound);
-        //RightBound = mapBound[3];
-        //print(RightBound);
     }
     // Use this for initialization
     void Start()
@@ -69,6 +61,7 @@ public class ScreenController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         float tempx = transform.position.x; //+ Offset.x;
 
         float tempy = transform.position.y; //+ Offset.y;
@@ -77,6 +70,7 @@ public class ScreenController : MonoBehaviour
         camera.transform.position = tempPosition;//+ new Vector3(Offset.x,Offset.y,0);
                                                  //攝影機座標 = 玩家座標+相對位移
     }
+
 
     private void Update()
     {
@@ -232,6 +226,7 @@ public class ScreenController : MonoBehaviour
 
         if (UISystem.Instance.baseUI.Input.InputFieldAvaliable())
         {
+            
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 if (!UISystem.Instance.baseUI.Input.isSelect)

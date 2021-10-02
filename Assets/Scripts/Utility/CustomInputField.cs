@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using NodeCanvas.Framework;
 public class CustomInputField : InputField
 {
     public ChatWnd chatWnd;
@@ -79,6 +79,8 @@ public class CustomInputField : InputField
         Debug.Log("Onselect");
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = false;
         isSelect = true;
+        GameRoot.Instance.PlayerControl.Disable();
+
     }
 
     public override void OnDeselect(BaseEventData eventData)
@@ -88,6 +90,7 @@ public class CustomInputField : InputField
         CurrentPointer = NewPointer;
         isSelect = false;
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = true;
+        GameRoot.Instance.PlayerControl.Enable();
 
     }
     public void ActivateChat()
@@ -112,6 +115,9 @@ public class CustomInputField : InputField
             History[HistoryMaxNum - 1] = str;
         }
         CurrentPointer = NewPointer;
-
+    }
+    public bool InputFieldAvaliable()
+    {
+        return GameRoot.Instance.CanInput && !(GameRoot.Instance.InUI);
     }
 }
