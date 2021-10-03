@@ -48,7 +48,7 @@ public class BattleSys : SystemRoot
             damage *= 2;
         }
         bool FaceDir = false;
-        if (GameRoot.Instance.PlayerControl.transform.localScale.x >= 0)
+        if (GameRoot.Instance.MainPlayerControl.transform.localScale.x >= 0)
         {
             FaceDir = true;
         }
@@ -106,7 +106,7 @@ public class BattleSys : SystemRoot
                         if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
                         {
                             //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.PlayerControl);
+                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
                         }
                         else
                         {
@@ -134,7 +134,7 @@ public class BattleSys : SystemRoot
                         if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
                         {
                             //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.PlayerControl);
+                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
                         }
                         else
                         {

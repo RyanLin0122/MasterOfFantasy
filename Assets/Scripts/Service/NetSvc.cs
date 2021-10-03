@@ -331,7 +331,7 @@ public class NetSvc : MonoBehaviour
             if (GameRoot.Instance.ActivePlayer.HP - playerGetHurt.damage > 0)
             {
                 //不會死的受傷               
-                GameRoot.Instance.PlayerControl.ProcessGetHurt(playerGetHurt.damage, playerGetHurt.hurtType, playerGetHurt.MonsterID);
+                GameRoot.Instance.MainPlayerControl.ProcessGetHurt(playerGetHurt.damage, playerGetHurt.hurtType, playerGetHurt.MonsterID);
             }
             else
             {

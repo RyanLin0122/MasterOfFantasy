@@ -70,9 +70,9 @@ public class DiaryOtherWnd : MonoBehaviour, IMultiLanguageWnd
 
     public void ChangeTitle()
     {
-        if (GameRoot.Instance.PlayerControl != null)
+        if (GameRoot.Instance.MainPlayerControl != null)
         {
-            GameRoot.Instance.PlayerControl.SetTitle(TitleDropDown.options[TitleDropDown.value].text);
+            GameRoot.Instance.MainPlayerControl.SetTitle(TitleDropDown.options[TitleDropDown.value].text);
         }
     }
     public void SetUI()

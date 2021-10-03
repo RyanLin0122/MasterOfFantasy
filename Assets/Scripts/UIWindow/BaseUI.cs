@@ -61,9 +61,9 @@ public class BaseUI : WindowRoot
                 UISystem.Instance.InfoWnd.RefreshIInfoUI();
             }
         }
-        if (GameRoot.Instance.PlayerControl != null)
+        if (GameRoot.Instance.MainPlayerControl != null)
         {
-            GameRoot.Instance.PlayerControl.GenerateDamageNum(value, 4);
+            GameRoot.Instance.MainPlayerControl.GenerateDamageNum(value, 4);
         }
     }
     public void LevelUp(long RestExp)

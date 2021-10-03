@@ -8,24 +8,13 @@ using PolyNav;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 
-public class OtherPeopleCtrl : Controllable
+public class OtherPeopleCtrl : PlayerAgent
 {
-
-    public new Transform transform;
-    private new Rigidbody2D rigidbody;
-    public GameObject NameBox;
-    public Transform Shadow;
-    public bool IsRun = false;
-    public Text ChatBoxTxt;
-    public GameObject ChatBox;
-    public Image HpBar;
     public int IdleCounter = 0;
 
     void Awake()
     {
-        rigidbody = this.GetComponent<Rigidbody2D>();
-        rigidbody.freezeRotation = true;
-        Actions = new Queue<OtherPlayerTask>();
+        base.Init();
     }
 
     #region Player animation
@@ -526,50 +515,6 @@ public class OtherPeopleCtrl : Controllable
 
     #endregion
 
-    #region Number
-    public GameObject DamageContainer;
-    public void GenerateDamageNum(int damage, int mode)
-    {
-        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
-        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
-        obj.transform.SetParent(DamageContainer.transform);
-        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
-        obj.transform.localPosition = Vector3.zero;
-        obj.GetComponent<DamageController>().SetNumber(damage, mode);
-    }
-    public void GenerateDamageNum(long damage, int mode)
-    {
-        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
-        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
-        obj.transform.SetParent(DamageContainer.transform);
-        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
-        obj.transform.localPosition = Vector3.zero;
-        obj.GetComponent<DamageController>().SetNumber(damage, mode);
-    }
-    #endregion
-
-    #region ChatBox
-    public int ChatBoxNum = 0;
-    IEnumerator CloseChatBox()
-    {
-        ChatBoxNum += 1;
-        yield return new WaitForSeconds(5);
-        if (ChatBoxNum == 1)
-        {
-            ChatBoxTxt.text = "";
-            ChatBox.SetActive(false);
-        }
-        ChatBoxNum -= 1;
-
-    }
-    public void ShowChatBox(string txt)
-    {
-        ChatBoxTxt.text = txt;
-        ChatBox.SetActive(true);
-        StartCoroutine(CloseChatBox());
-
-    }
-    #endregion
     public void SetFaceDir(bool Dir)
     {
         if (Dir) //往右

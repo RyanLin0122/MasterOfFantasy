@@ -244,6 +244,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 }
             }
         }
+        GameRoot.Instance.MainPlayerControl.SetNameBox();
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
     }
     public void PutOn(Item item)
@@ -512,11 +513,11 @@ public class EquipmentWnd : Inventory, IStackWnd
                 SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
                 SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
                 PlayChanegeEquipmentAudio(msg.EquipmentPosition);
-
                 illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
                 UISystem.Instance.InfoWnd.SetIllustration();
                 break;
         }
+        GameRoot.Instance.MainPlayerControl.SetNameBox();
         Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
         InventorySys.Instance.HideToolTip();
     }
@@ -743,7 +744,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupEquipmentAnimation(Player pd, EquipmentType Type)
     {
-        PlayerCtrl Ctrl = GameRoot.Instance.PlayerControl;
+        MainPlayerCtrl Ctrl = GameRoot.Instance.MainPlayerControl;
         switch (Type)
         {
             case EquipmentType.Shoes:
@@ -986,7 +987,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupFaceAnimation(Player pd)
     {
-        PlayerCtrl Ctrl = GameRoot.Instance.PlayerControl;
+        MainPlayerCtrl Ctrl = GameRoot.Instance.MainPlayerControl;
         if (pd.Gender == 0)
         {
             if (pd.playerEquipments.F_FaceType == null)

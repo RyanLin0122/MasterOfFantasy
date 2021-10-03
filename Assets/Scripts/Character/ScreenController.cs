@@ -155,51 +155,51 @@ public class ScreenController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    GetComponent<PlayerCtrl>().PlayHurt();
+                    GetComponent<MainPlayerCtrl>().PlayHurt();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    GetComponent<PlayerCtrl>().PlayDeath();
+                    GetComponent<MainPlayerCtrl>().PlayDeath();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    GetComponent<PlayerCtrl>().PlayDown1();
+                    GetComponent<MainPlayerCtrl>().PlayDown1();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    GetComponent<PlayerCtrl>().PlayDown2();
+                    GetComponent<MainPlayerCtrl>().PlayDown2();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
-                    GetComponent<PlayerCtrl>().PlayHorizon1();
+                    GetComponent<MainPlayerCtrl>().PlayHorizon1();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha6))
                 {
-                    GetComponent<PlayerCtrl>().PlayHorizon2();
+                    GetComponent<MainPlayerCtrl>().PlayHorizon2();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha7))
                 {
-                    GetComponent<PlayerCtrl>().PlayMagic();
+                    GetComponent<MainPlayerCtrl>().PlayMagic();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha8))
                 {
-                    GetComponent<PlayerCtrl>().PlayCleric();
+                    GetComponent<MainPlayerCtrl>().PlayCleric();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha9))
                 {
-                    GetComponent<PlayerCtrl>().PlayCrossbow();
+                    GetComponent<MainPlayerCtrl>().PlayCrossbow();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha0))
                 {
-                    GetComponent<PlayerCtrl>().PlayBow();
+                    GetComponent<MainPlayerCtrl>().PlayBow();
                 }
                 if (Input.GetKeyDown(KeyCode.B))
                 {
-                    GetComponent<PlayerCtrl>().PlaySlash();
+                    GetComponent<MainPlayerCtrl>().PlaySlash();
                 }
                 if (Input.GetKeyDown(KeyCode.N))
                 {
-                    GetComponent<PlayerCtrl>().PlayUpper();
+                    GetComponent<MainPlayerCtrl>().PlayUpper();
                 }
                 if (Input.GetKeyDown(KeyCode.V))
                 {

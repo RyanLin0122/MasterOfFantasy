@@ -31,6 +31,10 @@ public class ServerSession
     }
     public static ServerSession GetSession(IChannelHandlerContext context)
     {
+        if (context.Channel == null)
+        {
+            return null;
+        }
         IChannel channel = context.Channel;
         return channel.GetAttribute(SESSION_KEY).Get();
     }

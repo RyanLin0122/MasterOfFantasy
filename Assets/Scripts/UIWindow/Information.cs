@@ -549,17 +549,17 @@ public class Information : WindowRoot
     {
         Player pd = GameRoot.Instance.ActivePlayer;
         //人物頭上數字
-        if (GameRoot.Instance.PlayerControl != null)
+        if (GameRoot.Instance.MainPlayerControl != null)
         {
             if (pd.HP > UpdateHP)
             {
                 //扣血
-                GameRoot.Instance.PlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
+                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
             else if (pd.HP < UpdateHP)
             {
                 //補血
-                GameRoot.Instance.PlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
+                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
 
         }
@@ -576,17 +576,17 @@ public class Information : WindowRoot
     public void UpdateMp(int UpdateMP)
     {
         Player pd = GameRoot.Instance.ActivePlayer;
-        if (GameRoot.Instance.PlayerControl != null)
+        if (GameRoot.Instance.MainPlayerControl != null)
         {
             if (pd.MP > UpdateMP)
             {
                 //扣魔
-                GameRoot.Instance.PlayerControl.GenerateDamageNum(UpdateMP - pd.MP, 3);
+                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(UpdateMP - pd.MP, 3);
             }
             else if (pd.MP < UpdateMP)
             {
                 //補魔
-                GameRoot.Instance.PlayerControl.GenerateDamageNum(pd.MP - UpdateMP, 3);
+                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.MP - UpdateMP, 3);
             }
         }
         if (UpdateMP <= RealMaxMp)

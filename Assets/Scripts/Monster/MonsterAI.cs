@@ -364,7 +364,7 @@ public class MonsterAI : MonoBehaviour
     }
     #endregion
 
-    public Controllable TargetPlayer = null;
+    public PlayerAgent TargetPlayer = null;
 
     private void Update()
     {
@@ -444,7 +444,7 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    public void SetTargetPlayer(Controllable target)
+    public void SetTargetPlayer(PlayerAgent target)
     {
         TargetPlayer = target;
     }
@@ -452,7 +452,7 @@ public class MonsterAI : MonoBehaviour
     {
         if (targetName == GameRoot.Instance.ActivePlayer.Name)
         {
-            TargetPlayer = GameRoot.Instance.PlayerControl;
+            TargetPlayer = GameRoot.Instance.MainPlayerControl;
         }
         else
         {
@@ -742,9 +742,9 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            if (GameRoot.Instance.PlayerControl != null)
+            if (GameRoot.Instance.MainPlayerControl != null)
             {
-                blackboard.SetVariableValue("Player", GameRoot.Instance.PlayerControl.gameObject);
+                blackboard.SetVariableValue("Player", GameRoot.Instance.MainPlayerControl.gameObject);
             }
             base.OnExecute();
             EndAction();
@@ -890,7 +890,7 @@ namespace NodeCanvas.Tasks.Actions
             if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
             {
                 agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Attack, false);
-                ((PlayerCtrl)ai.TargetPlayer).GetHurt(Random.Range(mindamage, maxdamage), HurtType.Normal, ai.MonsterID);
+                ((MainPlayerCtrl)ai.TargetPlayer).GetHurt(Random.Range(mindamage, maxdamage), HurtType.Normal, ai.MonsterID);
             }
             yield return new WaitForSeconds(Time_Attack);
             EndAction();
@@ -968,7 +968,7 @@ namespace NodeCanvas.Tasks.Actions
             MonsterAI ai = agent.GetComponent<MonsterAI>();
             if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
             {
-                if (((PlayerCtrl)ai.TargetPlayer).IsDeath)
+                if (((MainPlayerCtrl)ai.TargetPlayer).IsDeath)
                 {
                     ai.TargetPlayer = null;
                     ai.RefreshMonster();

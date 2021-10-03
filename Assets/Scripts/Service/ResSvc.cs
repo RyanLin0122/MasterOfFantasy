@@ -26,6 +26,7 @@ public class ResSvc : MonoBehaviour
         ParsePortalJson();
         ParseTitle();
         ParseCashShopInfo(PathDefine.CashShopInfoPath);
+        NameBoxDic = ParseNameBoxJson();
         Debug.Log("Init ResSvc...");
     }
     private Action prgCB = null;
@@ -740,6 +741,31 @@ public class ResSvc : MonoBehaviour
         }
     }
     #endregion
+
+    #region NameBox & ChatBox
+    public Dictionary<int, (string, int[])> NameBoxDic;
+    public Dictionary<int, (string, int[])> ParseNameBoxJson()
+    {
+        Dictionary<int, (string, int[])> result = new Dictionary<int, (string, int[])>();
+        TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/NameBox");
+        string NameBoxJson = itemText.text;
+        JSONObject j = new JSONObject(NameBoxJson);
+        foreach (JSONObject jo in j.list)
+        {
+            int ItemID = (int)jo["ItemID"].n;
+            string Path = jo["Path"].str;
+            int[] Order = new int[6];
+            List<JSONObject> Orders = jo["Order"].list;
+            for (int i = 0; i < Order.Length; i++)
+            {
+                Order[i] = (int)Orders[i].n;
+            }
+            result.Add(ItemID, (Path, Order));
+        }
+        return result;
+    }
+    #endregion
+
 
     #region 怪物區
     public Dictionary<int, MonsterInfo> MonsterInfoDic = new Dictionary<int, MonsterInfo>();

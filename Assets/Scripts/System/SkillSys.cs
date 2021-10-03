@@ -43,7 +43,7 @@ class SkillSys : SystemRoot
     {
         GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/SkillPrefab"));
         go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
-        go.transform.localPosition = GameRoot.Instance.PlayerControl.transform.localPosition;
+        go.transform.localPosition = GameRoot.Instance.MainPlayerControl.transform.localPosition;
         go.transform.localScale = new Vector3(100, 100, 1);
         SkillAnimator ani = go.GetComponent<SkillAnimator>();
         ani.Initialized("Effect/Skill Tracing Trap Explosion",8,14);

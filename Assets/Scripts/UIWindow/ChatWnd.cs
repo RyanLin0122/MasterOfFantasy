@@ -53,7 +53,7 @@ public class ChatWnd : WindowRoot
                 }
                 if (msg.chatResponse.CharacterName == GameRoot.Instance.ActivePlayer.Name)
                 {
-                    GameObject.Find("MainCharacter(Clone)").GetComponent<PlayerCtrl>().ShowChatBox(msg.chatResponse.Contents);
+                    GameRoot.Instance.MainPlayerControl.ShowChatBox(msg.chatResponse.Contents);
                 }
                 else
                 {

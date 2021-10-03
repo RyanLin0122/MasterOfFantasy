@@ -1,9 +1,72 @@
 fileFormatVersion: 2
 guid: bb2da4a3b76374940b5dc36f6dd9fb3d
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7642382708417409063
+    second: Namebox_0
+  - first:
+      213: -6483310594515114419
+    second: Namebox_1
+  - first:
+      213: -128646399571884440
+    second: Namebox_2
+  - first:
+      213: 3610628552739012606
+    second: Namebox_3
+  - first:
+      213: -8176827531120478933
+    second: Namebox_4
+  - first:
+      213: -6323056875516389636
+    second: Namebox_5
+  - first:
+      213: 4673053434899134223
+    second: Namebox_6
+  - first:
+      213: 594720599299899836
+    second: Namebox_7
+  - first:
+      213: -387969485424515258
+    second: Namebox_8
+  - first:
+      213: 4644686319915721641
+    second: Namebox_9
+  - first:
+      213: 5755227888551097814
+    second: Namebox_10
+  - first:
+      213: 5572150098477018535
+    second: Namebox_11
+  - first:
+      213: -4314767453622769100
+    second: Namebox_12
+  - first:
+      213: 5023451225168237848
+    second: Namebox_13
+  - first:
+      213: -4492213798811029168
+    second: Namebox_14
+  - first:
+      213: -775224580608193026
+    second: Namebox_15
+  - first:
+      213: -8811784234191071343
+    second: Namebox_16
+  - first:
+      213: -421139545461581045
+    second: Namebox_17
+  - first:
+      213: -6560529876000521192
+    second: Namebox_18
+  - first:
+      213: 513940095246700051
+    second: Namebox_19
+  - first:
+      213: 5124632975001780420
+    second: Namebox_20
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +86,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +104,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +118,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +137,487 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Namebox_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 129
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720becc05923f0a60800000000000000
+      internalID: 7642382708417409063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 129
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4666654d57a606a0800000000000000
+      internalID: -6483310594515114419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 129
+        width: 12
+        height: 19
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86682ebf7c4f63ef0800000000000000
+      internalID: -128646399571884440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 104
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff34ede9878b1230800000000000000
+      internalID: 3610628552739012606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_4
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 104
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b25fde1eea2168e80800000000000000
+      internalID: -8176827531120478933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_5
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 104
+        width: 12
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf61140d54dff38a0800000000000000
+      internalID: -6323056875516389636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 79
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07f49317550ad040800000000000000
+      internalID: 4673053434899134223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 79
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1c0edeb3fd04800800000000000000
+      internalID: 594720599299899836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_8
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 79
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647a49dfec7ad9af0800000000000000
+      internalID: -387969485424515258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_9
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 54
+        width: 16
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a361bf699d357040800000000000000
+      internalID: 4644686319915721641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_10
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 54
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5728aa54daedf40800000000000000
+      internalID: 5755227888551097814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_11
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 54
+        width: 15
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad61e6fdf0445d40800000000000000
+      internalID: 5572150098477018535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_12
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 29
+        width: 16
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ae56e8cddde14c0800000000000000
+      internalID: -4314767453622769100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_13
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 29
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81557ae1642e6b540800000000000000
+      internalID: 5023451225168237848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_14
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 29
+        width: 16
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 051b2cac95378a1c0800000000000000
+      internalID: -4492213798811029168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_15
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 4
+        width: 14
+        height: 19
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd82bbe959dd35f0800000000000000
+      internalID: -775224580608193026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_16
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 4
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19757a30de046b580800000000000000
+      internalID: -8811784234191071343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 4
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0b94ef80dfc72af0800000000000000
+      internalID: -421139545461581045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_18
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 127
+        width: 14
+        height: 21
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814c6a246d054f4a0800000000000000
+      internalID: -6560529876000521192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_19
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 127
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e820d2bc1e12700800000000000000
+      internalID: 513940095246700051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Namebox_20
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 127
+        width: 13
+        height: 21
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c00c3f0a8a5e1740800000000000000
+      internalID: 5124632975001780420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

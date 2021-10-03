@@ -24,7 +24,9 @@ class ProtobufEncoder : MessageToByteEncoder<byte[]>
             //3.加入版本號
             output.WriteInt(ServerConstants.Version);
             //4.加入是否用私鑰加密
-            output.WriteInt(ServerSession.GetSession(context).IsSecret);
+            ServerSession session = ServerSession.GetSession(context);
+            if (session == null) return;
+            output.WriteInt(session.IsSecret);
             ServerSession.GetSession(context).IsSecret = 1;
             //5.加入數據
             output.WriteBytes(message, 0, length);

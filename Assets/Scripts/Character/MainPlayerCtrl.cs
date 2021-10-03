@@ -8,30 +8,166 @@ using PolyNav;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 
-public class Controllable : MonoBehaviour
+public class PlayerAgent : MonoBehaviour
 {
     public string PlayerName;
-}
-public class PlayerCtrl : Controllable
-{
-    public new Transform transform;
-    private new Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody;
     public Transform Shadow;
     public GameObject NameBox;
-    public bool IsRun = false;
-    public Text ChatBoxTxt;
     public GameObject ChatBox;
-    public ScreenController screenCtrl;
+    public Image ChatBoxImg;
+    public Text ChatBoxTxt;
+    public Text TitleText;
     public Image HpBar;
-    public Text Title;
-    public bool IsMoving = false;
+    public Text GuildText;
     public Sprite[] DustSprites;
-    void Awake()
+    public bool IsMoving = false;
+    public bool IsRun = false;
+
+    public void Init()
     {
         rigidbody = this.GetComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
-        PlayerName = GameRoot.Instance.ActivePlayer.Name;
         DustSprites = Resources.LoadAll<Sprite>("Effect/Dust/Effect Walking Car Dust");
+    }
+
+    #region Title and Guild
+    public void SetTitle(string s)
+    {
+        if (s != "")
+        {
+            GuildText.text = "[" + s + "]";
+            GuildText.gameObject.SetActive(true);
+        }
+        else
+        {
+            GuildText.gameObject.SetActive(false);
+        }
+    }
+    #endregion
+
+    #region NameBox & ChatBox
+    public int ChatBoxSeconds = 0;
+    IEnumerator CloseChatBox()
+    {
+        ChatBoxSeconds += 1;
+        yield return new WaitForSeconds(5);
+        if (ChatBoxSeconds == 1)
+        {
+            ChatBoxTxt.text = "";
+            ChatBox.SetActive(false);
+        }
+        ChatBoxSeconds -= 1;
+
+    }
+    public void ShowChatBox(string txt)
+    {
+        ChatBoxTxt.text = txt;
+        ChatBox.SetActive(true);
+        try
+        {
+            StartCoroutine(CloseChatBox());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
+
+    }
+    public void SetChatBoxSprite(Sprite sprite)
+    {
+        ChatBoxImg.sprite = sprite;
+
+    }
+
+    public void SetNameBox(bool IsHighLight = false)
+    {
+        Namebox namebox = GetComponent<Namebox>();
+        PlayerEquipments equipments = GameRoot.Instance.ActivePlayer.playerEquipments;
+        if (PlayerName != null)
+        {
+            if (equipments != null)
+            {
+                if (equipments.F_NameBox == null)
+                {
+                    namebox.SetNameBox(PlayerName, 0);
+                }
+                else
+                {
+                    namebox.SetNameBox(PlayerName, equipments.F_NameBox.ItemID);
+                }
+            }
+            else
+            {
+                namebox.SetNameBox(PlayerName, 0);
+            }
+        }
+        else
+        {
+            print("PlayerName is null");
+        }
+    }
+    #endregion
+
+    #region Number and Hp Bar
+    public GameObject DamageContainer;
+    public void GenerateDamageNum(int damage, int mode)
+    {
+        //print("產生數字int:" + damage);
+        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
+        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
+        obj.transform.SetParent(DamageContainer.transform);
+        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
+        obj.transform.localPosition = Vector3.zero;
+        obj.GetComponent<DamageController>().SetNumber(damage, mode);
+    }
+    public void GenerateDamageNum(long damage, int mode)
+    {
+        //print("產生數字long:" + damage);
+        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
+        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
+        obj.transform.SetParent(DamageContainer.transform);
+        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
+        obj.transform.localPosition = Vector3.zero;
+        obj.GetComponent<DamageController>().SetNumber(damage, mode);
+    }
+    public void SetHpBar(int realHp)
+    {
+        HpBar.fillAmount = (float)(((double)GameRoot.Instance.ActivePlayer.HP) / realHp);
+    }
+    #endregion
+
+    #region Dust
+    public void ChangeDustSprite(int CapeID)
+    {
+
+    }
+    public void InstantiateDust()
+    {
+        if (IsMoving)
+        {
+            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/DustPrefab"));
+            go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
+            int Sign = transform.localScale.x >= 0 ? -1 : 1;
+            go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);
+            go.transform.localScale = new Vector3(30, 30, 1);
+            DustAnimator ani = go.GetComponent<DustAnimator>();
+            int spriteIndex = Tools.RDInt(0, DustSprites.Length - 1);
+            ani.Initialize(DustSprites[spriteIndex]);
+            int t = TimerSvc.Instance.AddTimeTask((a) => { InstantiateDust(); }, 0.13f, PETimeUnit.Second, 1);
+        }
+    }
+    #endregion
+
+}
+public class MainPlayerCtrl : PlayerAgent
+{
+    public ScreenController screenCtrl;
+    
+    void Awake()
+    {
+        PlayerName = GameRoot.Instance.ActivePlayer.Name;
+        base.Init();
     }
 
     private void Update()
@@ -77,27 +213,9 @@ public class PlayerCtrl : Controllable
                 return;
             }
         }
-        
-    }
-    public void ChangeDustSprite(int CapeID)
-    {
 
     }
-    public void InstantiateDust()
-    {
-        if (IsMoving)
-        {
-            GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/DustPrefab"));
-            go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
-            int Sign = transform.localScale.x >= 0 ? -1 : 1;
-            go.transform.localPosition = new Vector3(transform.localPosition.x + 12 * Sign, transform.localPosition.y - 35f, transform.localPosition.z);
-            go.transform.localScale = new Vector3(30, 30, 1);
-            DustAnimator ani = go.GetComponent<DustAnimator>();
-            int spriteIndex =Tools.RDInt(0, DustSprites.Length-1);
-            ani.Initialize(DustSprites[spriteIndex]);
-            int t = TimerSvc.Instance.AddTimeTask((a) => {InstantiateDust();}, 0.13f, PETimeUnit.Second, 1);
-        }
-    }
+    
     #region player animation
     public EquipmentAnimator ShoesCtrl;
     public EquipmentAnimator FaceCtrl;
@@ -426,65 +544,6 @@ public class PlayerCtrl : Controllable
 
     #endregion
 
-    #region ChatBox
-    public int ChatBoxNum = 0;
-    IEnumerator CloseChatBox()
-    {
-        ChatBoxNum += 1;
-        yield return new WaitForSeconds(5);
-        if (ChatBoxNum == 1)
-        {
-            ChatBoxTxt.text = "";
-            ChatBox.SetActive(false);
-        }
-        ChatBoxNum -= 1;
-
-    }
-    public void ShowChatBox(string txt)
-    {
-        ChatBoxTxt.text = txt;
-        ChatBox.SetActive(true);
-        try
-        {
-            StartCoroutine(CloseChatBox());
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.ToString());
-        }
-
-    }
-
-    #endregion
-
-    #region Number
-    public GameObject DamageContainer;
-    public void GenerateDamageNum(int damage, int mode)
-    {
-        //print("產生數字int:" + damage);
-        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
-        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
-        obj.transform.SetParent(DamageContainer.transform);
-        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
-        obj.transform.localPosition = Vector3.zero;
-        obj.GetComponent<DamageController>().SetNumber(damage, mode);
-    }
-    public void GenerateDamageNum(long damage, int mode)
-    {
-        //print("產生數字long:" + damage);
-        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
-        GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
-        obj.transform.SetParent(DamageContainer.transform);
-        obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
-        obj.transform.localPosition = Vector3.zero;
-        obj.GetComponent<DamageController>().SetNumber(damage, mode);
-    }
-    public void SetHpBar(int realHp)
-    {
-        HpBar.fillAmount = (float)(((double)GameRoot.Instance.ActivePlayer.HP) / realHp);
-    }
-    #endregion
-
     #region GetHurt or Death
     public bool IsHurt = false;
     public bool IsDeath = false;
@@ -544,25 +603,6 @@ public class PlayerCtrl : Controllable
         tree.RestartBehaviour();
     }
     #endregion
-    public void Print(string s)
-    {
-        print(s);
-    }
-
-    #region Title
-    public void SetTitle(string s)
-    {
-        if (s != "")
-        {
-            Title.text = "[" + s + "]";
-            Title.gameObject.SetActive(true);
-        }
-        else
-        {
-            Title.gameObject.SetActive(false);
-        }
-    }
-    #endregion
 }
 
 #region ActionTask
@@ -571,16 +611,16 @@ public class ChangeSpeed : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        agent.GetComponent<PlayerCtrl>().ShoesCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().FaceCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().UpwearCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().DownwearCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HairFrontCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HairBackCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HandBackCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HandFrontCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().SuitCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().PlayIdle();
+        agent.GetComponent<MainPlayerCtrl>().ShoesCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().FaceCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().UpwearCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().DownwearCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HairFrontCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HairBackCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HandBackCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HandFrontCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().SuitCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().PlayIdle();
         base.OnExecute();
         EndAction();
     }
@@ -591,16 +631,16 @@ public class StartAni : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        agent.GetComponent<PlayerCtrl>().ShoesCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().FaceCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().UpwearCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().DownwearCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HairFrontCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HairBackCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HandBackCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().HandFrontCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().SuitCtrl.IsAniPause = false;
-        agent.GetComponent<PlayerCtrl>().PlayIdle();
+        agent.GetComponent<MainPlayerCtrl>().ShoesCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().FaceCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().UpwearCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().DownwearCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HairFrontCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HairBackCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HandBackCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().HandFrontCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().SuitCtrl.IsAniPause = false;
+        agent.GetComponent<MainPlayerCtrl>().PlayIdle();
         base.OnExecute();
         EndAction();
     }
@@ -611,15 +651,15 @@ public class PauseAni : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        agent.GetComponent<PlayerCtrl>().ShoesCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().FaceCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().UpwearCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().DownwearCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().HairFrontCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().HairBackCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().HandBackCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().HandFrontCtrl.IsAniPause = true;
-        agent.GetComponent<PlayerCtrl>().SuitCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().ShoesCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().FaceCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().UpwearCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().DownwearCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().HairFrontCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().HairBackCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().HandBackCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().HandFrontCtrl.IsAniPause = true;
+        agent.GetComponent<MainPlayerCtrl>().SuitCtrl.IsAniPause = true;
         base.OnExecute();
         EndAction();
     }
@@ -634,7 +674,7 @@ public class SetFaceDirection : ActionTask<Transform>
     protected override void OnExecute()
     {
         float MoveX = Direction.value.x;
-        PlayerCtrl ctrl = agent.transform.GetComponent<PlayerCtrl>();
+        MainPlayerCtrl ctrl = agent.transform.GetComponent<MainPlayerCtrl>();
         //控制人物方向和動畫
         if (MoveX > 0)
         {
@@ -644,6 +684,8 @@ public class SetFaceDirection : ActionTask<Transform>
             ctrl.ChatBox.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
             ctrl.Shadow.localScale = new Vector3(100 * ctrl.transform.localScale.x, 100, 1);
             ctrl.HpBar.transform.localScale = new Vector3(-agent.transform.localScale.x, 1, 1);
+            ctrl.TitleText.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
+            ctrl.GuildText.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
         }
         else if (MoveX < 0)
         {
@@ -653,6 +695,8 @@ public class SetFaceDirection : ActionTask<Transform>
             ctrl.ChatBox.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
             ctrl.Shadow.localScale = new Vector3(100 * ctrl.transform.localScale.x, 100, 1);
             ctrl.HpBar.transform.localScale = new Vector3(-agent.transform.localScale.x, 1, 1);
+            ctrl.TitleText.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
+            ctrl.GuildText.transform.localScale = new Vector3(agent.transform.localScale.x, 1, 1);
         }
         base.OnExecute();
         EndAction();
@@ -735,13 +779,13 @@ public class PlayCharacterIdleAni : ActionTask<Transform>
     {
         try
         {
-            agent.GetComponent<PlayerCtrl>().PlayIdle();
+            agent.GetComponent<MainPlayerCtrl>().PlayIdle();
             base.OnExecute();
             EndAction();
         }
         catch (Exception)
         {
-            agent.GetComponent<PlayerCtrl>().PlayIdle();
+            agent.GetComponent<MainPlayerCtrl>().PlayIdle();
             EndAction();
         }
     }
@@ -752,7 +796,7 @@ public class PlayCharacterWalkAni : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        agent.GetComponent<PlayerCtrl>().PlayWalk();
+        agent.GetComponent<MainPlayerCtrl>().PlayWalk();
         base.OnExecute();
         EndAction();
     }
@@ -771,7 +815,7 @@ public class PlayCharacterRunAni : ActionTask<Transform>
     }
     protected override void OnExecute()
     {
-        agent.GetComponent<PlayerCtrl>().PlayRun();
+        agent.GetComponent<MainPlayerCtrl>().PlayRun();
         base.OnExecute();
         StartCoroutine(timer());
     }
@@ -794,7 +838,7 @@ public class PlayCommonAttackAni : ActionTask<Transform>
         switch (GameRoot.Instance.ActivePlayer.Job)
         {
             case 2:
-                agent.GetComponent<PlayerCtrl>().PlayBow();
+                agent.GetComponent<MainPlayerCtrl>().PlayBow();
                 break;
         }
         base.OnExecute();
@@ -843,7 +887,7 @@ public class PlayAttackSound : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        PlayerCtrl ai = agent.transform.GetComponent<PlayerCtrl>();
+        MainPlayerCtrl ai = agent.transform.GetComponent<MainPlayerCtrl>();
         AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_weapon_bow", true);
         agent.GetComponent<AudioSource>().clip = audio;
         agent.GetComponent<AudioSource>().Play();
@@ -872,7 +916,7 @@ public class PlayHurtAni : ActionTask<Transform>
         yield return new WaitForSeconds(DelayTime);
         try
         {
-            PlayerCtrl ai = agent.GetComponent<PlayerCtrl>();
+            MainPlayerCtrl ai = agent.GetComponent<MainPlayerCtrl>();
             ai.IsHurt = false;
             EndAction();
         }
@@ -883,7 +927,7 @@ public class PlayHurtAni : ActionTask<Transform>
     }
     protected override void OnExecute()
     {
-        PlayerCtrl ai = agent.GetComponent<PlayerCtrl>();
+        MainPlayerCtrl ai = agent.GetComponent<MainPlayerCtrl>();
         if (!ai.IsHurt)
         {
             ai.IsHurt = true;
@@ -901,12 +945,12 @@ public class PlayDeathAni : ActionTask<Transform>
     IEnumerator timer()
     {
         yield return new WaitForSeconds(DelayTime);
-        PlayerCtrl ai = agent.GetComponent<PlayerCtrl>();
+        MainPlayerCtrl ai = agent.GetComponent<MainPlayerCtrl>();
         EndAction();
     }
     protected override void OnExecute()
     {
-        PlayerCtrl ai = agent.GetComponent<PlayerCtrl>();
+        MainPlayerCtrl ai = agent.GetComponent<MainPlayerCtrl>();
         if (!ai.IsDeath)
         {
             ai.IsDeath = true;

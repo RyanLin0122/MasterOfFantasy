@@ -20,7 +20,7 @@ public class GameRoot : MonoBehaviour
     public Canvas NearCanvas;
     public bool IsChangeOK = false;
     public static GameRoot Instance = null;
-    public PlayerCtrl PlayerControl;
+    public MainPlayerCtrl MainPlayerControl;
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
     public bool CanInput;
     public bool InUI;
@@ -106,9 +106,9 @@ public class GameRoot : MonoBehaviour
     //更新角色
     public void UpdatePlayerHp(int realHp)
     {
-        if (PlayerControl != null)
+        if (MainPlayerControl != null)
         {
-            PlayerControl.SetHpBar(realHp);
+            MainPlayerControl.SetHpBar(realHp);
         }
     }
 

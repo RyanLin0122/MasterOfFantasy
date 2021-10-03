@@ -107,7 +107,7 @@ public class MainCitySys : SystemRoot
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
             
-            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.PlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
+            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.MainPlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
         });
     }
 
@@ -164,7 +164,7 @@ public class MainCitySys : SystemRoot
             }
             UpdateWeather(rsp.weather);
             UISystem.Instance.miniMap.Init();
-            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.PlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
+            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.MainPlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
             ShowMapLogo();
         });
 
@@ -257,12 +257,15 @@ public class MainCitySys : SystemRoot
         MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
         MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
+
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
-        GameRoot.Instance.PlayerControl = player.GetComponent<PlayerCtrl>();
-        GameRoot.Instance.PlayerControl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
-        GameRoot.Instance.PlayerControl.GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("Job", GameRoot.Instance.ActivePlayer.Job);
+        MainPlayerCtrl mainPlayerCtrl = player.GetComponent<MainPlayerCtrl>();
+        GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
+        mainPlayerCtrl.PlayerName = GameRoot.Instance.ActivePlayer.Name;
+        mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
+        mainPlayerCtrl.GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("Job", GameRoot.Instance.ActivePlayer.Job);    
+        mainPlayerCtrl.SetNameBox();
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
-        player.GetComponent<Namebox>().SetNameBox(GameRoot.Instance.ActivePlayer.Name);
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
         UISystem.Instance.equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
@@ -283,9 +286,9 @@ public class MainCitySys : SystemRoot
             GameObject player = ResSvc.Instance.LoadPrefab(PathDefine.OtherCharacter, GameObject.Find("Canvas2").transform, new Vector3(add.Position[0], add.Position[1], 200));
             try
             {
-                player.GetComponent<Namebox>().SetNameBox(add.Name);
                 player.GetComponent<OtherPeopleCtrl>().SetAllEquipment(add);
                 player.GetComponent<OtherPeopleCtrl>().PlayerName = add.Name;
+                player.GetComponent<OtherPeopleCtrl>().SetNameBox();
                 player.GetComponent<OtherPeopleCtrl>().UpdatePos = player.transform.localPosition;
                 GameRoot.Instance.otherPlayers.Add(add.Name, player.GetComponent<OtherPeopleCtrl>());
                 //player.transform.position = new Vector3(add.Position[0], add.Position[1], player.transform.position.z);
