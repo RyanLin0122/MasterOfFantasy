@@ -43,6 +43,8 @@ public class UISystem : SystemRoot
     public CommunityWnd communityWnd;
     public PetWnd petWnd;
     public MessageQueue messageQueue;
+    public PlayerOption playerOption;
+    public OtherPlayerOption otherPlayerOption;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
 
@@ -340,6 +342,35 @@ public class UISystem : SystemRoot
     public void CloseOption()
     {
         optionWnd.PressCancel();
+    }
+
+    public void OpenPlayerOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        playerOption.SetWndState();
+        playerOption.IsOpen = true;
+    }
+    public void ClosePlayOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        playerOption.SetWndState(false);
+        playerOption.IsOpen = false;
+    }
+    public void OpenOtherPlayerOption(Vector3 pos, string PlayerName)
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        otherPlayerOption.GetComponent<Transform>().position = pos;
+        otherPlayerOption.SetWndState();
+        otherPlayerOption.IsOpen = true;
+        otherPlayerOption.SetName(PlayerName);
+
+    }
+    public void CloseOtherPlayOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        otherPlayerOption.SetWndState(false);
+        otherPlayerOption.IsOpen = false;
+
     }
     #endregion
 
