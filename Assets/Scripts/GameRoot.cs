@@ -148,4 +148,61 @@ public class GameRoot : MonoBehaviour
         }
     }
     #endregion
+
+    public void ChangeGender()
+    {
+        if (ActivePlayer.Gender == 0)
+        {
+            ActivePlayer.Gender = 1;
+            ActivePlayer.Gender = 1;
+
+        }
+        else
+        {
+            ActivePlayer.Gender = 0;
+            ActivePlayer.Gender = 0;
+        }
+        PlayerEquipments ep = ActivePlayer.playerEquipments;
+        ep.Badge = null;
+        ep.B_Chest = null;
+        ep.B_Glove = null;
+        ep.B_Head = null;
+        ep.B_Neck = null;
+        ep.B_Pants = null;
+        ep.B_Ring1 = null;
+        ep.B_Ring2 = null;
+        ep.B_Shield = null;
+        ep.B_Shoes = null;
+        ep.B_Weapon = null;
+        ep.F_Cape = null;
+        ep.F_ChatBox = null;
+        ep.F_Chest = null;
+        ep.F_FaceAcc = null;
+        ep.F_FaceType = null;
+        ep.F_Glasses = null;
+        ep.F_Glove = null;
+        ep.F_Hairacc = null;
+        ep.F_HairStyle = null;
+        ep.F_NameBox = null;
+        ep.F_Pants = null;
+        ep.F_Shoes = null;
+        InventorySys.Instance.Equipments = new Dictionary<int, Item>();
+        EquipmentWnd.Instance.PutOnAllPlayerEquipments(ActivePlayer.playerEquipments);
+        new ChatSender(1, "!Gender");
+    }
+    public void Level10()
+    {
+        ActivePlayer.Level = 10;
+        new ChatSender(1, "!Level10");
+    }
+    public void Level30()
+    {
+        ActivePlayer.Level = 30;
+        new ChatSender(1, "!Level30");
+    }
+    public void Level50()
+    {
+        ActivePlayer.Level = 50;
+        new ChatSender(1, "!Level50");
+    }
 }

@@ -261,6 +261,55 @@ class MOFServerHandler : ChannelHandlerAdapter
                         LogSvc.Debug("Reward!!!");
                         RewardSys.Instance.TestSendKnapsack(GetMap(session).characters[session.ActivePlayer.Name]);
                         break;
+                    case "!Gender":
+                        if (GetMap(session).characters[session.ActivePlayer.Name].player.Gender == 0)
+                        {
+                            GetMap(session).characters[session.ActivePlayer.Name].player.Gender = 1;
+                            GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Gender = 1;
+                            
+                        }
+                        else
+                        {
+                            GetMap(session).characters[session.ActivePlayer.Name].player.Gender = 0;
+                            GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Gender = 0;
+                        }
+                        PlayerEquipments ep = GetMap(session).characters[session.ActivePlayer.Name].player.playerEquipments;
+                        ep.Badge = null;
+                        ep.B_Chest = null;
+                        ep.B_Glove = null;
+                        ep.B_Head = null;
+                        ep.B_Neck = null;
+                        ep.B_Pants = null;
+                        ep.B_Ring1 = null;
+                        ep.B_Ring2 = null;
+                        ep.B_Shield = null;
+                        ep.B_Shoes = null;
+                        ep.B_Weapon = null;
+                        ep.F_Cape = null;
+                        ep.F_ChatBox = null;
+                        ep.F_Chest = null;
+                        ep.F_FaceAcc = null;
+                        ep.F_FaceType = null;
+                        ep.F_Glasses = null;
+                        ep.F_Glove = null;
+                        ep.F_Hairacc = null;
+                        ep.F_HairStyle = null;
+                        ep.F_NameBox = null;
+                        ep.F_Pants = null;
+                        ep.F_Shoes = null;
+                        break;
+                    case "!Level10":
+                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 10;
+                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 10;
+                        break;
+                    case "!Level30":
+                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 30;
+                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 30;
+                        break;
+                    case "!Level50":
+                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 50;
+                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 50;
+                        break;
                     default:
                         break;
                 }

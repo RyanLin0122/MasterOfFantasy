@@ -47,39 +47,447 @@
   },
 
   "時尚": {
-    "商品組合": [
-
-      {
-        "ID": 1002,
-        "Quantity": 100,
-        "SellPrice": 100
-      }
-    ],
-    "頭髮": [
-
+    "基本上衣": [
       {
         "ID": 3001,
         "Quantity": 1,
-        "SellPrice": 100
+        "SellPrice": 50
       },
       {
-        "ID": 3004,
+        "ID": 3002,
         "Quantity": 1,
-        "SellPrice": 100
+        "SellPrice": 50
       },
       {
         "ID": 3003,
         "Quantity": 1,
-        "SellPrice": 100
+        "SellPrice": 50
+      },
+      {
+        "ID": 3004,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3005,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3006,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3007,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3008,
+        "Quantity": 1,
+        "SellPrice": 50
       }
-
     ],
-    "眼部裝飾": [
+    "基本褲裙": [
+      {
+        "ID": 3009,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3010,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3011,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3012,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3013,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3014,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3015,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3016,
+        "Quantity": 1,
+        "SellPrice": 50
+      }
+    ],
+    "基本鞋子": [
+      {
+        "ID": 3017,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3018,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3019,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3020,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3021,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3022,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3023,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 3024,
+        "Quantity": 1,
+        "SellPrice": 50
+      }
+    ],
+    "臉型": [
+      {
+        "ID": 5201,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5202,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5203,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5204,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5205,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5206,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
 
       {
-        "ID": 1002,
-        "Quantity": 100,
-        "SellPrice": 100
+        "ID": 5207,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5208,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5209,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5210,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5211,
+        "Quantity": 1,
+        "SellPrice": 80
+      },
+      {
+        "ID": 5212,
+        "Quantity": 1,
+        "SellPrice": 80
+      }
+    ],
+    "上衣": [
+      {
+        "ID": 5001,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5002,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5003,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5004,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5005,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5006,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5007,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5008,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5009,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5010,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5011,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5012,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5013,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5014,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5015,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5016,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5017,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5018,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5019,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5020,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5021,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5022,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5023,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5024,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5025,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5026,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5027,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5028,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5029,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5030,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5031,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5032,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5033,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5034,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5035,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5036,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5037,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5038,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5039,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5040,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5041,
+        "Quantity": 1,
+        "SellPrice": 109
+      },
+      {
+        "ID": 5042,
+        "Quantity": 1,
+        "SellPrice": 109
+      }
+    ],
+    "職業套服": [
+      {
+        "ID": 7001,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7002,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7003,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7004,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7005,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7006,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7007,
+        "Quantity": 1,
+        "SellPrice": 50
+      },
+      {
+        "ID": 7008,
+        "Quantity": 1,
+        "SellPrice": 50
       }
     ],
     "名牌": [
