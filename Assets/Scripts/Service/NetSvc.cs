@@ -131,6 +131,11 @@ public class NetSvc : MonoBehaviour
             case 47:
                 DoCashShopResponse(msg);
                 break;
+
+            case 49:
+                DoTransactionResponse(msg);
+                
+                break;
         }
     }
 
@@ -530,6 +535,12 @@ public class NetSvc : MonoBehaviour
     public void DoCashShopResponse(ProtoMsg msg)
     {
         CashShopWnd.Instance.ProcessCashShopResponse(msg.cashShopResponse);
+    }
+
+
+    public void DoTransactionResponse(ProtoMsg msg)
+    {
+        TransationWnd.Instance.ProessTransactionResponse(msg.transactionResponse);
     }
     #endregion
 

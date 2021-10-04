@@ -43,6 +43,8 @@ public class UISystem : SystemRoot
     public CommunityWnd communityWnd;
     public PetWnd petWnd;
     public MessageQueue messageQueue;
+    public PlayerOption playerOption;
+    public OtherPlayerOption otherPlayerOption;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
 
@@ -177,13 +179,15 @@ public class UISystem : SystemRoot
     public void CloseTransationWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        transationWnd.ClearItem();
         transationWnd.SetWndState(false);
         transationWnd.IsOpen = false;
     }
-    public void OpenTransationWnd()
+    public void OpenTransationWnd(string PlayerName, string OtherName)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();
+        transationWnd.SetNames(PlayerName,OtherName);
         transationWnd.IsOpen = true;
     }
     public void CloseCommunityWnd()
@@ -340,6 +344,35 @@ public class UISystem : SystemRoot
     public void CloseOption()
     {
         optionWnd.PressCancel();
+    }
+
+    public void OpenPlayerOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        playerOption.SetWndState();
+        playerOption.IsOpen = true;
+    }
+    public void ClosePlayOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        playerOption.SetWndState(false);
+        playerOption.IsOpen = false;
+    }
+    public void OpenOtherPlayerOption(Vector3 pos)
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        otherPlayerOption.GetComponent<Transform>().position = pos;
+        otherPlayerOption.SetWndState();
+        otherPlayerOption.IsOpen = true;
+        otherPlayerOption.SetName();
+
+    }
+    public void CloseOtherPlayOption()
+    {
+        //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        otherPlayerOption.SetWndState(false);
+        otherPlayerOption.IsOpen = false;
+
     }
     #endregion
 

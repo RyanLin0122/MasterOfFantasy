@@ -665,6 +665,7 @@ public enum PlayerStatus
     Normal, //正常
     Death, //死亡
     Hide, //隱身
-    RealHide //超級隱身
+    RealHide, //超級隱身
+    Transaction, // 交易
 }
 

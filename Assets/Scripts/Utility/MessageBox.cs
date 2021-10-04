@@ -12,6 +12,7 @@ public class MessageBox : MonoBehaviour
     public Image DownImage;
     public Button ConfirmBtn;
     public Button CloseBtn;
+    public Button CancelBtn;
 
     public static bool CheckIsMessageBox()
     {
@@ -46,7 +47,7 @@ public class MessageBox : MonoBehaviour
             return CheckIsMessageBox();
         }
     }
-    public static void Show(string str, MessageBoxType Type = MessageBoxType.Simple, Action action = null)
+    public static void Show(string str, MessageBoxType Type = MessageBoxType.Simple, Action action = null,Action cancelAction = null)
     {
         MessageBox box = null;
         GameRoot.Instance.CanInput = false;
@@ -71,7 +72,13 @@ public class MessageBox : MonoBehaviour
         box.messageBoxType = MessageBoxType.Simple;
         if (box.ConfirmBtn != null && action != null)
         {
+            if(cancelAction != null)
+            {
+                box.CloseBtn.onClick.AddListener(() => { cancelAction.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
+                box.CancelBtn.onClick.AddListener(() => { cancelAction.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
+            }
             box.ConfirmBtn.onClick.AddListener(() => { action.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
+
             if (Type == MessageBoxType.Simple)
             {
                 box.CloseBtn.onClick.AddListener(() => { action.Invoke(); });
@@ -111,8 +118,8 @@ public class MessageBox : MonoBehaviour
     {
         if (ConfirmAction != null)
         {
-            ConfirmAction.Invoke();
             CloseMessageBox();
+            ConfirmAction.Invoke();
         }
     }
     public void AdjustContentSize()

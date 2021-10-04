@@ -55,7 +55,8 @@ namespace PEProtocal
         ///45:Rewards獎品
         ///46:CashShopRequest商城請求
         ///47:CashShopResponse商城回應
-        ///
+        ///48:TransactionRequest交易請求
+        ///49:TransactionResponse交易回應
 
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
@@ -172,7 +173,10 @@ namespace PEProtocal
         public CashShopRequest cashShopRequest { get; set; }
         [ProtoMember(56, IsRequired = false)]
         public CashShopResponse cashShopResponse { get; set; }
-
+        [ProtoMember(57, IsRequired = false)]
+        public TransactionRequest transactionRequest { get; set; }
+        [ProtoMember(58, IsRequired = false)]
+        public TransactionResponse transactionResponse { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1306,5 +1310,36 @@ namespace PEProtocal
 
         [ProtoMember(14, IsRequired = false)]
         public bool IsFashion { get; set; } // position, Item
+    }
+
+    [ProtoContract]
+    public class TransactionRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string PlayerName { get; set; }
+
+        [ProtoMember(2, IsRequired = false)]
+        public string OtherPlayerName { get; set; }
+
+        [ProtoMember(3, IsRequired = false)]
+        public int OperationType { get; set; }
+
+    }
+    [ProtoContract]
+    public class TransactionResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string PlayerName { get; set; }
+
+        [ProtoMember(2, IsRequired = false)]
+        public string OtherPlayerName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool IsSuccess { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int ErrorLogType { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int OperationType { get; set; }
+
+
     }
 }
