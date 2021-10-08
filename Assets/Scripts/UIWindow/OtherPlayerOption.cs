@@ -38,10 +38,10 @@ public class OtherPlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterH
     {
         InRegion = true;
     }
-
     public void SetName()
     {
         NameText.text = OtherName;
+
     }
 
     void Update()
