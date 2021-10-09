@@ -101,23 +101,6 @@ public class WindowRoot : MonoBehaviour
         }
         return t;
     }
-    #region Events
-    protected void onClickDown(GameObject go, Action<PointerEventData> cb)
-    {
-        PEListener listener = GetorAddComponemt<PEListener>(go);
-        listener.onClickDown = cb;
-    }
-    protected void onClickUp(GameObject go, Action<PointerEventData> cb)
-    {
-        PEListener listener = GetorAddComponemt<PEListener>(go);
-        listener.onClickUp = cb;
-    }
-    protected void onDrag(GameObject go, Action<PointerEventData> cb)
-    {
-        PEListener listener = GetorAddComponemt<PEListener>(go);
-        listener.onDrag = cb;
-    }
-    #endregion
 }
 
 public interface IStackWnd
