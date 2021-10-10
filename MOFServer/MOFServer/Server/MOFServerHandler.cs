@@ -197,7 +197,8 @@ class MOFServerHandler : ChannelHandlerAdapter
                     GetMap(session).ProcessPlayerAction(msg);
                     break;
                 case 41: //背包操作
-                    CacheSvc.Instance.ProcessKnapsackOperation(msg, session);
+                    KnapsackHandler knapsackHandler = new KnapsackHandler();
+                    Task KnapsackTask = knapsackHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 42: //裝備操作
                     CacheSvc.Instance.ProcessEquipmentPkg(msg, session);

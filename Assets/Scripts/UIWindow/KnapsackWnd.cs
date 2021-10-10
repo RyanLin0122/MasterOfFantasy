@@ -473,6 +473,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         #endregion
         return false;
     }
+    
     public void ProcessKnapsackExchage(KnapsackOperation ko)
     {
         Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;

@@ -21,7 +21,7 @@ public class EquipSlot : ItemSlot
     /// </summary>
     public void PutOfftoKnapsackEvent()
     {
-        if (InventorySys.Instance.IsPickedItem == false && transform.childCount > 0)
+        if (DragSystem.IsPickedItem == false && transform.childCount > 0)
         {
             ItemUI currentItemUI = transform.GetChild(0).GetComponent<ItemUI>();
             Item PutOffItem = currentItemUI.Item;

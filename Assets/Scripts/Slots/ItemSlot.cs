@@ -9,7 +9,45 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
     public int SlotPosition;
     public GameObject itemPrefab;
+    public ItemDragSource dragSource;
+    public ItemDragTarget dragTarget;
+    public virtual void Awake()
+    {
+        TryGetComponent(out dragSource);
+        if (dragSource != null)
+        {
+            dragSource.SetSlot(this);
+        }
+        TryGetComponent(out dragTarget);
+        if (dragTarget != null)
+        {
+            dragTarget.SetSlot(this);
+        }
+    }
 
+    public virtual void PutItem_woItem(DragItemData data)
+    {
+        
+    } 
+    public virtual void PutItem_wItem(DragItemData data)
+    {
+
+    }
+    public void PutItem(DragItemData data)
+    {
+        if (HasItem())
+        {
+            PutItem_wItem(data);
+        }
+        else
+        {
+            PutItem_woItem(data);
+        }
+    }
+    public virtual void PickUpItem()
+    {
+
+    }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         
@@ -29,7 +67,6 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         if (transform.childCount > 0)
             InventorySys.Instance.HideToolTip();
     }
-
     public virtual void StoreItem(Item item, int amount = 1)
     {
 
@@ -41,6 +78,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
             itemGameObject.transform.localPosition = Vector3.zero;
             itemGameObject.GetComponent<ItemUI>().SetItem(item, amount);
             itemGameObject.transform.GetComponent<Image>().SetNativeSize();
+            itemGameObject.transform.GetComponent<Image>().raycastTarget = false;
             itemGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
             Transform[] t = itemGameObject.GetComponentsInRealChildren<RectTransform>();
             foreach (var transform in t)
@@ -353,7 +391,12 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         ItemUI itemUI = transform.GetChild(0).GetComponent<ItemUI>();
         return itemUI.Amount >= itemUI.Item.Capacity;//檢查格子是否已滿
     }
-
+    public virtual bool HasItem()
+    {
+        ItemUI itemUI;
+        TryGetComponent(out itemUI);
+        return itemUI != null;
+    }
     public virtual int GetItemId()
     {
         if (transform.childCount > 0)
@@ -365,4 +408,5 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
             return -1;
         }
     }
+
 }
