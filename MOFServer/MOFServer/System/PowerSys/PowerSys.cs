@@ -111,7 +111,6 @@ public class PowerSys : SystemBase
 
     public void AssignWeather(int tid)
     {
-        Console.WriteLine("更新天氣");
         for (int i = 0; i < ServerConstants.GameServerNum; i++)
         {
             foreach (ChannelServer server in NetSvc.Instance.gameServers[i].channels)
@@ -120,7 +119,7 @@ public class PowerSys : SystemBase
                 {
                     if (map.returnMapId >= 100)
                     {
-                        map.AssignWeather(RandomSys.Instance.GetRandomInt(0, 13));
+                        map.AssignWeather(RandomSys.Instance.GetRandomInt(0, 12));
                     }
                 }
             }

@@ -53,7 +53,7 @@ public class ForgeWnd : Inventory
         List<int> haveMaterialIDList = new List<int>();//存储当前拥有的材料的id
         foreach (var slotList in slotLists)
         {
-            foreach (Slot slot in slotList)
+            foreach (KnapsackSlot slot in slotList)
             {
                 if (slot.transform.childCount > 0)
                 {
@@ -82,7 +82,7 @@ public class ForgeWnd : Inventory
             {
                 foreach (var slotList in slotLists)
                 {
-                    foreach (Slot slot in slotList)
+                    foreach (KnapsackSlot slot in slotList)
                     {
                         if (slot.transform.childCount > 0)
                         {

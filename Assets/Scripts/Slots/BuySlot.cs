@@ -5,7 +5,7 @@ using PEProtocal;
 using UnityEngine.EventSystems;
 using System.Globalization;
 using UnityEngine.UI;
-public class BuySlot : Slot
+public class BuySlot : ItemSlot
 {
     public override void StoreItem(Item item, int amount = 1)
     {

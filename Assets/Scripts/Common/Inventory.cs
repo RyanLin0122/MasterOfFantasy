@@ -5,7 +5,7 @@ using PEProtocal;
 
 public class Inventory : WindowRoot
 {
-    public List<Slot[]> slotLists = new List<Slot[]>();
+    public List<ItemSlot[]> slotLists = new List<ItemSlot[]>();
 
 
     public bool StoreItem(int id, int num = 1)
@@ -24,7 +24,7 @@ public class Inventory : WindowRoot
         {
             if (!item.IsCash)
             {
-                Slot slot = FindEmptySlot_NotCash();
+                KnapsackSlot slot = FindEmptySlot_NotCash();
                 if (slot == null)
                 {
                     Debug.LogWarning("没有空的物品槽");
@@ -37,7 +37,7 @@ public class Inventory : WindowRoot
             }
             else
             {
-                Slot slot = FindEmptySlot_Cash();
+                KnapsackSlot slot = FindEmptySlot_Cash();
                 if (slot == null)
                 {
                     Debug.LogWarning("没有空的物品槽");
@@ -51,7 +51,7 @@ public class Inventory : WindowRoot
         }
         else //增加東西到同物品的欄位
         {
-            Slot slot = null;
+            KnapsackSlot slot = null;
             if (!item.IsCash)
             {
                 slot = FindSameIdSlot_NotCash(item);
@@ -67,7 +67,7 @@ public class Inventory : WindowRoot
             }
             else
             {
-                Slot emptySlot = null;
+                KnapsackSlot emptySlot = null;
                 if (!item.IsCash)
                 {
                     emptySlot = FindEmptySlot_NotCash();
@@ -89,11 +89,11 @@ public class Inventory : WindowRoot
         }
         return true;
     }
-    public Slot FindEmptySlot_NotCash() //背包倉庫適用
+    public KnapsackSlot FindEmptySlot_NotCash() //背包倉庫適用
     {
         for (int i = 0; i < 3; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -103,9 +103,9 @@ public class Inventory : WindowRoot
         }
         return null;
     }
-    public Slot FindEmptySlot_Cash() //背包倉庫適用
+    public KnapsackSlot FindEmptySlot_Cash() //背包倉庫適用
     {
-        foreach (Slot slot in slotLists[3])
+        foreach (KnapsackSlot slot in slotLists[3])
         {
             if (slot.transform.childCount == 0)
             {
@@ -119,7 +119,7 @@ public class Inventory : WindowRoot
         int num = 0;
         for (int i = 0; i < 3; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -132,7 +132,7 @@ public class Inventory : WindowRoot
     public int FindEmptySlotNum_Cash()
     {
         int num = 0;
-        foreach (Slot slot in slotLists[3])
+        foreach (KnapsackSlot slot in slotLists[3])
         {
             if (slot.transform.childCount == 0)
             {
@@ -141,13 +141,13 @@ public class Inventory : WindowRoot
         }
         return num;
     } //背包倉庫適用
-    public Slot FindSameIdSlot_NotCash(Item item) //倉庫背包適用
+    public KnapsackSlot FindSameIdSlot_NotCash(Item item) //倉庫背包適用
     {
         for (int i = 0; i < 3; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
-                if (slot.transform.childCount >= 1 && slot.GetItemId() == item.ItemID && slot.IsFilled() == false)
+                if (slot.transform.childCount >= 1 && slot.GetItemId() == item.ItemID && slot.IsItemFull() == false)
                 {
                     return slot;
                 }
@@ -155,12 +155,12 @@ public class Inventory : WindowRoot
         }
         return null;
     }
-    public Slot FindSameIdSlot_Cash(Item item) //倉庫背包適用
+    public KnapsackSlot FindSameIdSlot_Cash(Item item) //倉庫背包適用
     {
 
-        foreach (Slot slot in slotLists[3])
+        foreach (KnapsackSlot slot in slotLists[3])
         {
-            if (slot.transform.childCount >= 1 && slot.GetItemId() == item.ItemID && slot.IsFilled() == false)
+            if (slot.transform.childCount >= 1 && slot.GetItemId() == item.ItemID && slot.IsItemFull() == false)
             {
                 return slot;
             }
@@ -177,7 +177,7 @@ public class Inventory : WindowRoot
         int RestAmount = Amount;
         foreach (var slotArray in slotLists)
         {
-            foreach (Slot slot in slotArray)
+            foreach (KnapsackSlot slot in slotArray)
             {
                 if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
                 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MailBoxSlot : Slot
+public class MailBoxSlot : ItemSlot
 {
 
 }

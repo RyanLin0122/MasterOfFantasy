@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class SkillSlot : Slot
+public class SkillSlot : KnapsackSlot
 {
     public Text SkillName;
     public Text SkillLevel;

@@ -831,9 +831,6 @@ public class MOFMap
             case 11:
                 this.weather = WeatherType.StrongRain;
                 break;
-            case 12:
-                this.weather = WeatherType.Fog;
-                break;
             default:
                 this.weather = WeatherType.Normal;
                 break;

@@ -4,7 +4,7 @@ using UnityEngine;
 using PEProtocal;
 using UnityEngine.EventSystems;
 
-public class EquipSlot : Slot
+public class EquipSlot : ItemSlot
 {
     public EquipmentType equipType;
     public WeaponType weaponType;
@@ -27,7 +27,7 @@ public class EquipSlot : Slot
             Item PutOffItem = currentItemUI.Item;
             //脱掉放到背包里面
             InventorySys.Instance.HideToolTip();
-            Slot EmptySlot;
+            KnapsackSlot EmptySlot;
             if (PutOffItem.IsCash)
             {
                 EmptySlot = KnapsackWnd.Instance.FindEmptySlot_Cash();

@@ -5,7 +5,7 @@ using PEProtocal;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SellSlot : Slot
+public class SellSlot : ItemSlot
 {
     public Text ItemName;
     public Text ItemPrice;
@@ -29,11 +29,8 @@ public class SellSlot : Slot
                 {
                     transform.localScale = new Vector3(2f, 2f, 1f);
                 }
-            }
-            
-            
+            }          
         }
-        
     }
     public override void OnPointerEnter(PointerEventData eventData)
     {
@@ -60,8 +57,6 @@ public class SellSlot : Slot
                 transform.parent.parent.parent.SendMessage("ShowCalculator", currentItem);
             }
         }
-        
-
     }
     
 }

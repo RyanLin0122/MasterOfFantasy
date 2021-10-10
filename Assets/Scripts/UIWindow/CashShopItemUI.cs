@@ -37,7 +37,7 @@ public class CashShopItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (CurrentItem != null)
         {
-            string toolTipText = Slot.GetToolTipText(CurrentItem);
+            string toolTipText = KnapsackSlot.GetToolTipText(CurrentItem);
         }
     }
     public virtual void OnPointerExit(PointerEventData eventData)

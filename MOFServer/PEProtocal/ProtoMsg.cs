@@ -812,9 +812,7 @@ namespace PEProtocal
         [ProtoEnum]
         MiddleRain,
         [ProtoEnum]
-        StrongRain,
-        [ProtoEnum]
-        Fog
+        StrongRain
     }
 
     [ProtoContract]

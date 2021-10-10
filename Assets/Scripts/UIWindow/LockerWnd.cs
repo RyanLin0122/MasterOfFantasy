@@ -36,10 +36,10 @@ public class LockerWnd : Inventory
         if (!HasInitialized)
         {
             Instance = this;
-            slotLists.Add(panel1.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel2.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel3.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel4.GetComponentsInChildren<Slot>());
+            slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
             HasInitialized = true;
             Txtcolor = RibiTxt.color;
         }
@@ -66,10 +66,10 @@ public class LockerWnd : Inventory
         if (!HasInitialized)
         {
             Instance = this;
-            slotLists.Add(panel1.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel2.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel3.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel4.GetComponentsInChildren<Slot>());
+            slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
             Txtcolor = RibiTxt.color;
             HasInitialized = true;
         }
@@ -484,7 +484,7 @@ public class LockerWnd : Inventory
         List<int> list = new List<int>();
         for (int i = 0; i < 4; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -494,11 +494,11 @@ public class LockerWnd : Inventory
         }
         return list;
     }
-    public Slot FindSlot(int Position)
+    public KnapsackSlot FindSlot(int Position)
     {
         for (int i = 0; i < 4; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.SlotPosition == Position)
                 {
