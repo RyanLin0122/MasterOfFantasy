@@ -1,59 +1,113 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public interface IDragSource
 {
-    public void ShowToolTip();
-    public void HideToolTip();
-    public DragObject GenerateDragObject();
-    public void SetData(DragBaseData data);
-
+    public DragObject GenerateDragObject(DragBaseData data, DragMode mode);
 }
 
-public class DragSourceBase : MonoBehaviour, IDragSource, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragSource, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
-    public DragSystem dragSystem = DragSystem.Instance;
-    public int[] TagsFrom;
-    public int[] TagsTo;
-    public Image ObjectImg;
     public DragBaseData data;
-    public DragSourceGroup SourceGroup = null;
+    public DragMode mode = DragMode.DragImmediately;
+    public bool Enabled = true;
 
-    public virtual void ShowToolTip()
+    public virtual void OnEnable()
     {
-        Debug.Log("Show ToolTip!!");
-    }
-    public void HideToolTip()
-    {
-        Debug.Log("HideToolTip!!");
-    }
-    public virtual void OnPointerEnter(PointerEventData eventData)
-    {
-        if (dragSystem.state == DragState.UnDrag)
+        if (DragSystem.Instance != null)
         {
-            ShowToolTip();
+            if (!DragSystem.AllDragSource.Contains(this))
+            {
+                DragSystem.AllDragSource.Add(this);
+            }
+        }
+    }
+    public virtual void OnDisable()
+    {
+        if (DragSystem.Instance != null)
+        {
+            if (DragSystem.AllDragSource.Contains(this))
+            {
+                DragSystem.AllDragSource.Remove(this);
+            }
         }
     }
 
-    public virtual void OnPointerExit(PointerEventData eventData)
+    public virtual DragObject GenerateDragObject(DragBaseData data, DragMode mode) //子類要重寫
     {
-        HideToolTip();
+        Debug.Log("Generate Drag Object");
+        return null;
     }
 
-    public virtual void OnPointerClick(PointerEventData eventData)
+    //子類需要覆寫
+    public abstract void SetData(System.Object data);
+
+    //直接拖曳模式
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        if (SourceGroup != null)
+        Debug.Log("OnBeginDrag");
+        if (mode == DragMode.DragImmediately)
         {
+            StartDragObject();
+        }
+    }
+    void IDragHandler.OnDrag(PointerEventData eventData)
+    {
+
+    }
+    void IEndDragHandler.OnEndDrag(PointerEventData eventData)
+    {
+        DragObject dragObject = DragSystem.Instance.CurrentDragObject;
+        if (dragObject == null)
+        {
+            return;
+        }
+        if (dragObject.mode == DragMode.DragImmediately)
+        {
+            if (dragObject.data == null)
+            {
+                return;
+            }
+            if (eventData.button == PointerEventData.InputButton.Left && DragSystem.Instance.state == DragState.Dragging)
+            {
+
+                IDragTarget target = dragObject.CheckTarget();
+                if (target != null)
+                {
+                    target.ReceiveObject(dragObject);
+                }
+                DragSystem.Instance.state = DragState.UnDrag;
+                Destroy(dragObject.gameObject);
+                return;
+            }
+        }
+    }
+
+    //點一下才拖曳模式
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    {
+        if (!(mode == DragMode.MustPointerUp))
+        {
+            return;
+        }
+        StartDragObject();
+    }
+    private void StartDragObject()
+    {
+        Component component = null;
+        transform.parent.TryGetComponent(typeof(DragSourceGroup), out component);
+        if (component != null)
+        {
+            DragSourceGroup SourceGroup = (DragSourceGroup)component;
             if (SourceGroup.DragEnable)
             {
-                if (dragSystem.state == DragState.UnDrag)
+                if (DragSystem.Instance.state == DragState.UnDrag)
                 {
-                    dragSystem.state = DragState.Dragging;
+                    DragSystem.Instance.state = DragState.Dragging;
                     HideToolTip();
-                    dragSystem.CurrentDragObject = GenerateDragObject();
+                    DragSystem.Instance.CurrentDragObject = GenerateDragObject(data, mode);
+                    SetDragObject();
                 }
             }
             else
@@ -63,23 +117,55 @@ public class DragSourceBase : MonoBehaviour, IDragSource, IPointerEnterHandler, 
         }
         else
         {
-            if (dragSystem.state == DragState.UnDrag)
+            if (DragSystem.Instance.state == DragState.UnDrag)
             {
-                dragSystem.state = DragState.Dragging;
+                DragSystem.Instance.state = DragState.Dragging;
                 HideToolTip();
-                dragSystem.CurrentDragObject = GenerateDragObject();
+                DragSystem.Instance.CurrentDragObject = GenerateDragObject(data, mode);
+                SetDragObject();
             }
         }
     }
-
-    public virtual DragObject GenerateDragObject() //子類要重寫
+    public void SetDragObject()
     {
-        Debug.Log("Generate Drag Object");
-        return new DragObject();
+        if (DragSystem.Instance.CurrentDragObject != null)
+        {
+            DragSystem.Instance.CurrentDragObject.SetDragData(data, mode);
+            DragSystem.Instance.state = DragState.Dragging;
+        }
     }
 
-    public void SetData(DragBaseData data)
+
+    private void OnDestroy()
     {
-        this.data = data;
+        //if (DragSystem.AllDragSource.Contains(this))
+        //{
+        //    DragSystem.AllDragSource.Remove(this);
+        //}
     }
+    #region ToolTip
+    public virtual void ShowToolTip()
+    {
+        //Show ToolTip (物品類ItemSlot本身就寫好了，所以不需要複寫)
+    }
+    public void HideToolTip()
+    {
+        //Hide ToolTip (物品類ItemSlot本身就寫好了，所以不需要複寫)
+    }
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        if (DragSystem.Instance == null)
+        {
+            return;
+        }
+        if (DragSystem.Instance.state == DragState.UnDrag)
+        {
+            ShowToolTip();
+        }
+    }
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        HideToolTip();
+    }
+    #endregion
 }

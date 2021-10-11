@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class OtherPlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterHandler
 {
-    
+    public string OtherName;
     private static OtherPlayerOption _instance;
     public static OtherPlayerOption Instance
     {
@@ -38,10 +38,10 @@ public class OtherPlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterH
     {
         InRegion = true;
     }
-
-    public void SetName(string PlayerName)
+    public void SetName()
     {
-        NameText.text = PlayerName;
+        NameText.text = OtherName;
+
     }
 
     void Update()
@@ -53,6 +53,14 @@ public class OtherPlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterH
                 UISystem.Instance.CloseOtherPlayOption();
             }
         }
+    }
+
+    public Button TransactionBtn;
+
+    public void ClickTransaction()
+    {
+        UISystem.Instance.CloseOtherPlayOption();
+        new TransactionSender(1, OtherName);
     }
 
     

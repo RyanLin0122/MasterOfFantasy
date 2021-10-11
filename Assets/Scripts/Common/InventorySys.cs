@@ -31,30 +31,8 @@ public class InventorySys : MonoBehaviour
     public long KnapsackRibi = 0;
     public long LockerRibi = 0;
     public long MailBoxRibi = 0;
-    public Item PickedUpItem;
     public Vector3 toolTipPosionOffset;
-    #region 按slot跟隨滑鼠
-    private bool isPickedItem = false;
 
-    public bool IsPickedItem
-    {
-        get
-        {
-            return isPickedItem;
-        }
-    }
-
-    public ItemUI pickedItem;
-
-    public ItemUI PickedItem
-    {
-        get
-        {
-            return pickedItem;
-        }
-    }
-
-    #endregion
     public Dictionary<int, Item> PlayerEquipments2Dic(PlayerEquipments equips)
     {
         Dictionary<int, Item> Dic = new Dictionary<int, Item>();
@@ -80,35 +58,6 @@ public class InventorySys : MonoBehaviour
         Dic.Add(20, equips.F_Pants);
         Dic.Add(21, equips.F_Shoes);
         return Dic;
-    }
-    private void Update()
-    {
-        if (isPickedItem)
-        {
-            //讓選中的物體跟隨鼠標
-            Vector2 position;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, Camera.main, out position);
-            pickedItem.SetLocalPosition(new Vector3(position.x, position.y, -99));
-        }
-        else if (isToolTipShow)
-        {
-            //讓ToolTip跟隨鼠標
-            Vector2 position;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, Camera.main, out position);
-            toolTip.SetLocalPosition(new Vector3(position.x, position.y, -99));
-        }
-
-        //丟棄物品
-        if (isPickedItem && Input.GetMouseButtonDown(0) && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) == false
-            && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen)
-        {
-            isPickedItem = false;
-            PickedItem.Hide();
-            //寫刪除物品封包
-            List<Item> items = new List<Item>();
-            items.Add(PickedUpItem);
-            new KnapsackSender(5, items, null, null);
-        }
     }
 
     public void ParseItemJson()
@@ -286,7 +235,7 @@ public class InventorySys : MonoBehaviour
     }
     public void ShowToolTip(string content)
     {
-        if (this.isPickedItem) return;
+        if (DragSystem.IsPickedItem) return;
         isToolTipShow = true;
         toolTip.Show(content);
     }
@@ -295,69 +244,6 @@ public class InventorySys : MonoBehaviour
     {
         isToolTipShow = false;
         toolTip.Hide();
-    }
-
-    public virtual void PickupItem(Item item, int amount, int SlotPosition)
-    {
-        PickedItem.SetItem(item, amount);
-        isPickedItem = true;
-        if (item.IsCash)
-        {
-            PickedUpItem = GameRoot.Instance.ActivePlayer.CashKnapsack[SlotPosition];
-            PickedUpItem.Position = SlotPosition;
-        }
-        else
-        {
-            PickedUpItem = GameRoot.Instance.ActivePlayer.NotCashKnapsack[SlotPosition];
-            PickedUpItem.Position = SlotPosition;
-        }
-        PickedItem.Show();
-        this.toolTip.Hide();
-        //選中物體跟隨鼠標
-        Vector2 position;
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, Camera.main, out position);
-        pickedItem.SetLocalPosition(position);
-    }
-    public virtual void PickupLockerItem(Item item, int amount, int SlotPosition)
-    {
-        PickedItem.SetItem(item, amount);
-        isPickedItem = true;
-        if (item.IsCash)
-        {
-            PickedUpItem = LockerCashItems[SlotPosition];
-            //PickedUpItem.position = SlotPosition;
-        }
-        else
-        {
-            PickedUpItem = LockerItems[SlotPosition];
-            //PickedUpItem.position = SlotPosition;
-        }
-        PickedItem.Show();
-        this.toolTip.Hide();
-        //選中物體跟隨鼠標
-        Vector2 position;
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, Camera.main, out position);
-        pickedItem.SetLocalPosition(position);
-    }
-
-    /// <summary>
-    /// 把手上的東西放入物品槽
-    /// </summary>
-    public void RemovePickedItem()
-    {
-        isPickedItem = false;
-        PickedItem.Hide();
-    }
-    public void RemoveItem(int amount = 1)
-    {
-        PickedItem.ReduceAmount(amount);
-        if (PickedItem.Amount <= 0)
-        {
-            isPickedItem = false;
-            PickedItem.Hide();
-        }
     }
 
     #region RecycleItemsRequest 在checkItem後才調用
@@ -561,6 +447,17 @@ public class InventorySys : MonoBehaviour
                 }
             }
         }
+    }
+    #endregion
+
+    #region 丟棄物品
+    public void DisposeItem()
+    {
+        //寫刪除物品封包
+        Debug.Log("刪除物品: " + DragSystem.Instance.GetPickedItem().Name + " Item Position: " + DragSystem.Instance.GetPickedItem().Position);
+        List<Item> items = new List<Item>();
+        items.Add(DragSystem.Instance.GetPickedItem());
+        new KnapsackSender(5, items, null, null);
     }
     #endregion
 }

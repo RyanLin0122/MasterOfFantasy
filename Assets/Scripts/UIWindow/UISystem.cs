@@ -179,13 +179,15 @@ public class UISystem : SystemRoot
     public void CloseTransationWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        transationWnd.ClearItem();
         transationWnd.SetWndState(false);
         transationWnd.IsOpen = false;
     }
-    public void OpenTransationWnd()
+    public void OpenTransationWnd(string PlayerName, string OtherName)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();
+        transationWnd.SetNames(PlayerName,OtherName);
         transationWnd.IsOpen = true;
     }
     public void CloseCommunityWnd()
@@ -356,13 +358,13 @@ public class UISystem : SystemRoot
         playerOption.SetWndState(false);
         playerOption.IsOpen = false;
     }
-    public void OpenOtherPlayerOption(Vector3 pos, string PlayerName)
+    public void OpenOtherPlayerOption(Vector3 pos)
     {
         //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         otherPlayerOption.GetComponent<Transform>().position = pos;
         otherPlayerOption.SetWndState();
         otherPlayerOption.IsOpen = true;
-        otherPlayerOption.SetName(PlayerName);
+        otherPlayerOption.SetName();
 
     }
     public void CloseOtherPlayOption()

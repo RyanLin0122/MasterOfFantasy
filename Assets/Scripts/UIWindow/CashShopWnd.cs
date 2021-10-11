@@ -700,7 +700,7 @@ public class CashShopWnd : Inventory
                 break;
         }
         //¥Í¦¨slot
-        Slot[] slots = new Slot[100];
+        ItemSlot[] slots = new ItemSlot[100];
         for (int i = 0; i < 100; i++)
         {
             slots[i] = InstantiateSlot(i);
@@ -740,9 +740,9 @@ public class CashShopWnd : Inventory
     {
         if (slotLists == null || slotLists.Count == 0)
         {
-            slotLists = new List<Slot[]>();
-            slotLists.Add(new Slot[100]);
-            slotLists.Add(new Slot[100]);
+            slotLists = new List<ItemSlot[]>();
+            slotLists.Add(new ItemSlot[100]);
+            slotLists.Add(new ItemSlot[100]);
             return;
         }
         for (int i = 0; i < 2; i++)
@@ -960,7 +960,7 @@ public class CashShopWnd : Inventory
                 //§R°£
                 List<int> ProcessedPositions = rsp.ProcessPositions;
                 bool IsFashion = rsp.IsFashion;
-                Slot[] slots = null;
+                ItemSlot[] slots = null;
                 if (ProcessedPositions == null || ProcessedPositions.Count == 0)
                 {
                     return;

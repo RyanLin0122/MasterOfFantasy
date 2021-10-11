@@ -4,6 +4,7 @@ using DotNetty.Transport.Channels;
 using PEProtocal;
 using MongoDB.Bson;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 class MOFServerHandler : ChannelHandlerAdapter
 {
@@ -196,7 +197,8 @@ class MOFServerHandler : ChannelHandlerAdapter
                     GetMap(session).ProcessPlayerAction(msg);
                     break;
                 case 41: //背包操作
-                    CacheSvc.Instance.ProcessKnapsackOperation(msg, session);
+                    KnapsackHandler knapsackHandler = new KnapsackHandler();
+                    Task KnapsackTask = knapsackHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 42: //裝備操作
                     CacheSvc.Instance.ProcessEquipmentPkg(msg, session);
@@ -216,6 +218,14 @@ class MOFServerHandler : ChannelHandlerAdapter
                 case 46: //商城請求
                     CashShopHandler cashShopHandler = new CashShopHandler();
                     Task CashShopTask = cashShopHandler.ProcessMsgAsync(msg, session);
+                    break;
+
+                case 48: //交易請求
+                    TransactionHandler transactionHandler = new TransactionHandler();
+                    Task TransactionTask = transactionHandler.ProcessMsgAsync(msg, session);
+
+
+
                     break;
             }
         }

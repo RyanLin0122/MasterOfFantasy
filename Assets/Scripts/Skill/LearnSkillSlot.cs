@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LearnSkillSlot : Slot
+public class LearnSkillSlot : KnapsackSlot
 {
     public Text SkillName;
     public Text TxtSwordPoint;

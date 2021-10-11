@@ -754,6 +754,62 @@ public class MOFMap
         }
     }
 
+    //public void ProcessTransactionInvite(string PlayerName, string OtherPlayerName)
+    //{
+    //    ProtoMsg msg = new ProtoMsg
+    //    {
+    //        MessageType = 49,
+    //        transactionResponse = new TransactionResponse
+    //        {
+    //            PlayerName = PlayerName,
+    //            OtherPlayerName = OtherPlayerName,
+    //            OperationType = 1
+
+    //        }
+    //    };
+
+    //    characters[OtherPlayerName].session.WriteAndFlush(msg);
+ 
+
+    //}
+    //public void ProcessTransactionConfirm(string PlayerName, string OtherPlayerName)
+    //{
+    //    ProtoMsg msg = new ProtoMsg
+    //    {
+    //        MessageType = 49,
+    //        transactionResponse = new TransactionResponse
+    //        {
+    //            PlayerName = PlayerName,
+    //            OtherPlayerName = OtherPlayerName,
+    //            OperationType = 2
+
+    //        }
+    //    };
+    //    characters[OtherPlayerName].session.WriteAndFlush(msg);
+    //}
+
+
+    public void ProcessTransactionInvite(string PlayerName, string OtherPlayerName,int type)
+    {
+        
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                PlayerName = PlayerName,
+                OtherPlayerName = OtherPlayerName,
+                OperationType = type
+
+            }
+        };
+        
+        characters[OtherPlayerName].session.WriteAndFlush(msg);
+
+
+    }
+
+
     public WeatherType weather = WeatherType.Normal;
     public void AssignWeather(int weather)
     {
@@ -774,9 +830,6 @@ public class MOFMap
                 break;
             case 11:
                 this.weather = WeatherType.StrongRain;
-                break;
-            case 12:
-                this.weather = WeatherType.Fog;
                 break;
             default:
                 this.weather = WeatherType.Normal;

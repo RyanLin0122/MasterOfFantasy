@@ -14,7 +14,8 @@ public class OtherPlayerClick : MonoBehaviour, IPointerDownHandler
         {
             Vector3 pos = transform.position + new Vector3(80, -80, 0);
             string PlayerName = GetComponent<OtherPeopleCtrl>().PlayerName;
-            UISystem.Instance.OpenOtherPlayerOption(pos, PlayerName);
+            UISystem.Instance.otherPlayerOption.OtherName = PlayerName;
+            UISystem.Instance.OpenOtherPlayerOption(pos);
             
         }
     

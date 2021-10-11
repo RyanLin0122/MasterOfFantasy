@@ -562,4 +562,34 @@ public class CashShopSender : BaseSender
         base.SendMsg(msg);
     }
 
+
 }
+
+public class TransactionSender : BaseSender
+{
+    /// <summary>
+    /// 發起邀請,接受邀請，取消交易
+    /// </summary>
+    /// <param name="OperationType"></param>
+    /// <param name="items"></param>
+    /// <param name="OldPos"></param>
+    /// <param name="NewPos"></param>
+    /// <param name="ribi"></param>
+    public TransactionSender(int OperationType,string OtherName)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 48,
+            transactionRequest = new TransactionRequest
+            {
+                OperationType = OperationType,
+                PlayerName = GameRoot.Instance.ActivePlayer.Name,
+                OtherPlayerName = OtherName,
+            }
+        };
+        base.SendMsg(msg);
+    }
+
+
+}
+

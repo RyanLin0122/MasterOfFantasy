@@ -252,7 +252,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         Item exitItem = null;
         if (!item.IsCash)
         {
-            foreach (Slot slot in slotLists[0])
+            foreach (var slot in slotLists[0])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
@@ -277,7 +277,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         }
         else
         {
-            foreach (Slot slot in slotLists[1])
+            foreach (var slot in slotLists[1])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
@@ -307,7 +307,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         Item exitItem = null;
         if (!item.IsCash)
         {
-            foreach (Slot slot in slotLists[0])
+            foreach (var slot in slotLists[0])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
@@ -332,7 +332,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         }
         else
         {
-            foreach (Slot slot in slotLists[1])
+            foreach (var slot in slotLists[1])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
@@ -360,7 +360,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     public void PutOnRing(int Position, Item item)
     {
         Item exitItem = null;
-        foreach (Slot slot in slotLists[0])
+        foreach (var slot in slotLists[0])
         {
             EquipSlot equipmentSlot = (EquipSlot)slot;
             if (equipmentSlot.SlotPosition == Position)
@@ -1019,7 +1019,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     #endregion
 
     #region Slot Utility
-    public Slot FindEquipmentSlot(int Position)
+    public EquipSlot FindEquipmentSlot(int Position)
     {
         foreach (var slotlist in slotLists)
         {
@@ -1027,7 +1027,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             {
                 if (slot.SlotPosition == Position)
                 {
-                    return slot;
+                    return (EquipSlot)slot;
                 }
             }
         }
@@ -1106,7 +1106,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         bool Result = false;
         if (IsCash)
         {
-            foreach (Slot slot in slotLists[1])
+            foreach (var slot in slotLists[1])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.equipType == type)
@@ -1121,7 +1121,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         else
         {
             int RingAmount = 0;
-            foreach (Slot slot in slotLists[0])
+            foreach (var slot in slotLists[0])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.equipType == EquipmentType.Ring && type == EquipmentType.Ring)

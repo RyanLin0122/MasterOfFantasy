@@ -45,10 +45,10 @@ public class KnapsackWnd : Inventory, IStackWnd
         if (!HasInitialized)
         {
             Instance = this;
-            slotLists.Add(panel1.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel2.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel3.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel4.GetComponentsInChildren<Slot>());
+            slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
             HasInitialized = true;
             Txtcolor = RibiTxt.color;
         }
@@ -63,10 +63,10 @@ public class KnapsackWnd : Inventory, IStackWnd
         if (!HasInitialized)
         {
             Instance = this;
-            slotLists.Add(panel1.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel2.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel3.GetComponentsInChildren<Slot>());
-            slotLists.Add(panel4.GetComponentsInChildren<Slot>());
+            slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
+            slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
             Txtcolor = RibiTxt.color;
             HasInitialized = true;
         }
@@ -202,7 +202,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         #region 容量只有一，一定是找新空格放
         if (item.Capacity == 1)
         {
-            Slot slot = null;
+            KnapsackSlot slot = null;
             if (!item.IsCash)
             {
                 slot = FindEmptySlot_NotCash();
@@ -231,7 +231,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         #region 容量不是一
         else
         {
-            Slot slot = null;
+            KnapsackSlot slot = null;
             if (!item.IsCash)
             {
                 slot = FindSameIdSlot_NotCash(item);
@@ -261,7 +261,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     }
                     else //塞不下，放新空格
                     {
-                        Slot emptySlot = null;
+                        KnapsackSlot emptySlot = null;
                         if (!item.IsCash)
                         {
                             emptySlot = FindEmptySlot_NotCash();
@@ -290,7 +290,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                 //還沒有同物品的slot，放進新空格
                 else
                 {
-                    Slot emptySlot = null;
+                    KnapsackSlot emptySlot = null;
                     if (!item.IsCash)
                     {
                         emptySlot = FindEmptySlot_NotCash();
@@ -473,6 +473,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         #endregion
         return false;
     }
+    
     public void ProcessKnapsackExchage(KnapsackOperation ko)
     {
         Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
@@ -497,7 +498,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     nk.Add(ko.NewPosition[0], ko.items[0]);
                 }
                 nk.Remove(ko.OldPosition[0]);
-                FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
             }
             else
             {
@@ -510,7 +511,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     ck.Add(ko.NewPosition[0], ko.items[0]);
                 }
                 ck.Remove(ko.OldPosition[0]);
-                FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
             }
 
         }
@@ -529,8 +530,8 @@ public class KnapsackWnd : Inventory, IStackWnd
                     nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
-                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindSlot(ko.OldPosition[0]).StoreItem(nk[ko.OldPosition[0]], nk[ko.OldPosition[0]].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
                 }
                 else
                 {
@@ -541,8 +542,8 @@ public class KnapsackWnd : Inventory, IStackWnd
                     ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
-                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ck[ko.OldPosition[0]], ck[ko.OldPosition[0]].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
                 }
             }
             //兩格數量改變
@@ -553,15 +554,15 @@ public class KnapsackWnd : Inventory, IStackWnd
                 {
                     nk[ko.OldPosition[0]].Count = ko.items[0].Count;
                     nk[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindSlot(ko.OldPosition[0]).StoreItem(nk[ko.OldPosition[0]], nk[ko.OldPosition[0]].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
                 }
                 else
                 {
                     ck[ko.OldPosition[0]].Count = ko.items[0].Count;
                     ck[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ck[ko.OldPosition[0]], ck[ko.OldPosition[0]].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
                 }
             }
         }
@@ -585,7 +586,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         int RestAmount = Amount;
         if (itemInfo.IsCash)
         {
-            foreach (Slot slot in slotLists[3])
+            foreach (KnapsackSlot slot in slotLists[3])
             {
                 if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
                 {
@@ -607,7 +608,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         {
             for (int i = 0; i < 3; i++)
             {
-                foreach (Slot slot in slotLists[i])
+                foreach (KnapsackSlot slot in slotLists[i])
                 {
                     if (slot.transform.childCount >= 1 && slot.GetItemId() == ItemID) //有同ID的東西
                     {
@@ -632,7 +633,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         List<int> list = new List<int>();
         for (int i = 0; i < 3; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -645,7 +646,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public List<int> GetEmptySlotPosition_Cash()
     {
         List<int> list = new List<int>();
-        foreach (Slot slot in slotLists[3])
+        foreach (KnapsackSlot slot in slotLists[3])
         {
             if (slot.transform.childCount == 0)
             {
@@ -655,11 +656,11 @@ public class KnapsackWnd : Inventory, IStackWnd
 
         return list;
     }
-    public Slot FindSlot(int Position)
+    public KnapsackSlot FindSlot(int Position)
     {
         for (int i = 0; i < 3; i++)
         {
-            foreach (Slot slot in slotLists[i])
+            foreach (KnapsackSlot slot in slotLists[i])
             {
                 if (slot.SlotPosition == Position)
                 {
@@ -669,9 +670,9 @@ public class KnapsackWnd : Inventory, IStackWnd
         }
         return null;
     }
-    public Slot FindCashSlot(int Position)
+    public KnapsackSlot FindCashSlot(int Position)
     {
-        foreach (Slot slot in slotLists[3])
+        foreach (KnapsackSlot slot in slotLists[3])
         {
             if (slot.SlotPosition == Position)
             {

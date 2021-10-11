@@ -21,6 +21,7 @@ public class MainCitySys : SystemRoot
     public Canvas MainCanvas = null;
     public Canvas MapCanvas = null;
 
+    public Camera WeatherCamera;
     public override void InitSys()
     {
         base.InitSys();
@@ -359,43 +360,32 @@ public class MainCitySys : SystemRoot
         {
             return;
         }
-        Camera cam = Camera.main;
+        Camera cam = WeatherCamera;
         print("收到天氣封包: " + weather.ToString());
         switch (weather)
         {
             case WeatherType.Normal:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = false;
                 break;
             case WeatherType.Snow:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = true;
                 break;
             case WeatherType.LittleRain:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = true;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().ParticleMultiplier = 2.5f;
                 break;
             case WeatherType.MiddleRain:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = true;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().ParticleMultiplier = 10f;
                 break;
             case WeatherType.StrongRain:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = true;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = false;
                 cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().ParticleMultiplier = 50f;
-                break;
-            case WeatherType.Fog:
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().enabled = true;
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2FogsPE>().Density = 0.7f;
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2RainsPE>().enabled = false;
-                cam.GetComponent<AkilliMum.Standard.D2WeatherEffects.D2SnowsPE>().enabled = false;
                 break;
         }
     }
