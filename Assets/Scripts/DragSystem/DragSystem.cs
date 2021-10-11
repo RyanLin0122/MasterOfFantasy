@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PEProtocal;
-
+using UnityEngine.EventSystems;
 public class DragSystem : SystemRoot
 {
     public static DragSystem Instance = null;
@@ -69,6 +69,51 @@ public class DragSystem : SystemRoot
         return null;
     }
 
+    public void DisposeDragObject()
+    {
+        if (CurrentDragObject.data is DragItemData) //如果是拖曳道具
+        {
+            if (EventSystem.current.IsPointerOverGameObject(-1) == false && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen && ((DragItemData)CurrentDragObject.data).Source == 1)
+            {
+                DragItemData dragItemData = (DragItemData)CurrentDragObject.data;
+                Item item = (Item)dragItemData.Content;
+                if (dragItemData.Source == 1)  //來源是背包
+                {
+                    //判斷數量
+                    if (item.Count > 1)
+                    {
+                        //問要丟棄多少
+                        UISystem.Instance.AddMessageQueue("問要丟多少在地上ToDo");
+                    }
+                    else
+                    {
+                        //是否可交易
+                        if (item.Cantransaction)
+                        {
+                            UISystem.Instance.AddMessageQueue("丟在地上ToDo");
+                        }
+                        else
+                        {
+                            MessageBox.Show("此物品不可交易，確定要丟棄嗎?", MessageBoxType.Confirm, () => InventorySys.Instance.DisposeItem());
+                        }
+                    }
+                    //取消拖曳，放回背包
+                    if (item.IsCash)
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                    }
+                    else
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                    }
+                    RemoveDragObject();
+                }
+
+            }
+        }
+
+    }
+
     /// <summary>
     /// 強制刪除拖曳中的物體
     /// </summary>
@@ -77,23 +122,9 @@ public class DragSystem : SystemRoot
         if (CurrentDragObject != null)
         {
             Destroy(CurrentDragObject.gameObject);
-            
+
         }
         state = DragState.UnDrag;
-    }
-
-    public void FixedUpdate()
-    {
-        //丟棄物品
-        if (IsPickedItem && Input.GetMouseButtonDown(0) && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) == false
-            && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen && ((DragItemData)CurrentDragObject.data).Source == 1)
-        {
-            RemoveDragObject();
-            //寫刪除物品封包
-            List<Item> items = new List<Item>();
-            items.Add(GetPickedItem());
-            new KnapsackSender(5, items, null, null);
-        }
     }
 }
 public enum DragState

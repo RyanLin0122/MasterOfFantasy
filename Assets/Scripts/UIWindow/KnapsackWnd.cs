@@ -498,7 +498,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     nk.Add(ko.NewPosition[0], ko.items[0]);
                 }
                 nk.Remove(ko.OldPosition[0]);
-                FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
             }
             else
             {
@@ -511,7 +511,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                     ck.Add(ko.NewPosition[0], ko.items[0]);
                 }
                 ck.Remove(ko.OldPosition[0]);
-                FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
             }
 
         }
@@ -530,8 +530,8 @@ public class KnapsackWnd : Inventory, IStackWnd
                     nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
-                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindSlot(ko.OldPosition[0]).StoreItem(nk[ko.OldPosition[0]], nk[ko.OldPosition[0]].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
                 }
                 else
                 {
@@ -542,8 +542,8 @@ public class KnapsackWnd : Inventory, IStackWnd
                     ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
 
-                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
-                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ck[ko.OldPosition[0]], ck[ko.OldPosition[0]].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
                 }
             }
             //兩格數量改變
@@ -554,15 +554,15 @@ public class KnapsackWnd : Inventory, IStackWnd
                 {
                     nk[ko.OldPosition[0]].Count = ko.items[0].Count;
                     nk[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    FindSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    FindSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindSlot(ko.OldPosition[0]).StoreItem(nk[ko.OldPosition[0]], nk[ko.OldPosition[0]].Count);
+                    FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]], nk[ko.NewPosition[0]].Count);
                 }
                 else
                 {
                     ck[ko.OldPosition[0]].Count = ko.items[0].Count;
                     ck[ko.NewPosition[0]].Count = ko.items[1].Count;
-                    FindCashSlot(ko.OldPosition[0]).StoreItem(ko.items[0], ko.items[0].Count);
-                    FindCashSlot(ko.NewPosition[0]).StoreItem(ko.items[1], ko.items[1].Count);
+                    FindCashSlot(ko.OldPosition[0]).StoreItem(ck[ko.OldPosition[0]], ck[ko.OldPosition[0]].Count);
+                    FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]], ck[ko.NewPosition[0]].Count);
                 }
             }
         }
@@ -710,17 +710,6 @@ public class KnapsackWnd : Inventory, IStackWnd
         {
             OpenAndPush();
             IsOpen = true;
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            foreach (var slot in slotLists[3])
-            {
-                print("Slot Pos:" + slot.SlotPosition + "HasChild: " + slot.HasItem() + " ChildCount" + slot.transform.childCount);
-            }
         }
     }
 }

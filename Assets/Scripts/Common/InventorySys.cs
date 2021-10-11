@@ -449,4 +449,15 @@ public class InventorySys : MonoBehaviour
         }
     }
     #endregion
+
+    #region 丟棄物品
+    public void DisposeItem()
+    {
+        //寫刪除物品封包
+        Debug.Log("刪除物品: " + DragSystem.Instance.GetPickedItem().Name + " Item Position: " + DragSystem.Instance.GetPickedItem().Position);
+        List<Item> items = new List<Item>();
+        items.Add(DragSystem.Instance.GetPickedItem());
+        new KnapsackSender(5, items, null, null);
+    }
+    #endregion
 }

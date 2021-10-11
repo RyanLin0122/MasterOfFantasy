@@ -26,22 +26,18 @@ public class DragObject : EventTrigger
                 IDragTarget target = CheckTarget();
                 if (target != null)
                 {
-                    ItemDragTarget tg = (ItemDragTarget)target;
-                    ItemSlot slot = tg.GetComponent<ItemSlot>();
-                    ItemUI itemUI = tg.GetComponentInChildren<ItemUI>();
-                    print("[Drag Object 32] Slot Pos:" + slot.SlotPosition + " ChildCount" + slot.transform.childCount );
-                    if (itemUI == null)
-                    {
-                        print("itemUI is null");
-                    }
-                    else
-                    {
-                        print("ItemUI: " + itemUI.Item.Name);
-                    }
-                    target.ReceiveObject(this);                
+                    //ItemDragTarget tg = (ItemDragTarget)target;
+                    //ItemSlot slot = tg.GetComponent<ItemSlot>();
+                    //print("[Drag Object 32] Slot Pos:" + slot.SlotPosition + " ChildCount" + slot.transform.childCount );
+                    target.ReceiveObject(this);
+                    DragSystem.Instance.state = DragState.UnDrag;
+                    Destroy(gameObject);
                 }
-                DragSystem.Instance.state = DragState.UnDrag;
-                Destroy(gameObject);
+                else
+                {
+                    //判斷是否要丟棄拖曳中物品
+                    DragSystem.Instance.DisposeDragObject();
+                }
                 return;
             }
             return;

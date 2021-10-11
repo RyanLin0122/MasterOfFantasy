@@ -37,6 +37,11 @@ public class ItemDragSource : DragSourceBase
     }
     public override DragObject GenerateDragObject(DragBaseData data, DragMode mode)
     {
+        if (!slot.HasItem())
+        {
+            DragSystem.Instance.state = DragState.UnDrag;
+            return null;
+        }
         Item item = slot.GetItem();
         if (item == null)
         {
@@ -52,9 +57,11 @@ public class ItemDragSource : DragSourceBase
         obj.transform.localScale = Vector3.one;
         obj.transform.GetComponent<Image>().sprite = LoadSprite(item.Sprite);
         obj.transform.GetComponent<Image>().SetNativeSize();
-        obj.data = data;
+        obj.data = this.data;
         obj.mode = mode;
         slot.PickUpItem();
+        Item itemDrag = (Item)obj.data.Content;
+        print("[ItemDragSource 59] ItemName" + itemDrag.Name + "Item Position" + itemDrag.Position + " Slot Position: " +slot.SlotPosition );
         return obj;
     }
     public Sprite LoadSprite(string path)
