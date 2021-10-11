@@ -9,12 +9,11 @@ public interface IDragSource
 
 public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragSource, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
-    private DragSystem dragSystem = DragSystem.Instance;
     public DragBaseData data;
     public DragMode mode = DragMode.DragImmediately;
     public bool Enabled = true;
 
-    public virtual void Awake()
+    public virtual void OnEnable()
     {
         if (DragSystem.Instance != null)
         {
@@ -24,7 +23,16 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
             }
         }
     }
-
+    public virtual void OnDisable()
+    {
+        if (DragSystem.Instance != null)
+        {
+            if (DragSystem.AllDragSource.Contains(this))
+            {
+                DragSystem.AllDragSource.Remove(this);
+            }
+        }
+    }
 
     public virtual DragObject GenerateDragObject(DragBaseData data, DragMode mode) //子類要重寫
     {
@@ -50,7 +58,7 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
     }
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        DragObject dragObject = dragSystem.CurrentDragObject;
+        DragObject dragObject = DragSystem.Instance.CurrentDragObject;
         if (dragObject == null)
         {
             return;
@@ -69,8 +77,8 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
                 {
                     target.ReceiveObject(dragObject);
                 }
-                Destroy(dragObject.gameObject);
                 DragSystem.Instance.state = DragState.UnDrag;
+                Destroy(dragObject.gameObject);
                 return;
             }
         }
@@ -79,7 +87,6 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
     //點一下才拖曳模式
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("On Pointer Click");
         if (!(mode == DragMode.MustPointerUp))
         {
             return;
@@ -95,11 +102,11 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
             DragSourceGroup SourceGroup = (DragSourceGroup)component;
             if (SourceGroup.DragEnable)
             {
-                if (dragSystem.state == DragState.UnDrag)
+                if (DragSystem.Instance.state == DragState.UnDrag)
                 {
-                    dragSystem.state = DragState.Dragging;
+                    DragSystem.Instance.state = DragState.Dragging;
                     HideToolTip();
-                    dragSystem.CurrentDragObject = GenerateDragObject(data, mode);
+                    DragSystem.Instance.CurrentDragObject = GenerateDragObject(data, mode);
                     SetDragObject();
                 }
             }
@@ -110,20 +117,20 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
         }
         else
         {
-            if (dragSystem.state == DragState.UnDrag)
+            if (DragSystem.Instance.state == DragState.UnDrag)
             {
-                dragSystem.state = DragState.Dragging;
+                DragSystem.Instance.state = DragState.Dragging;
                 HideToolTip();
-                dragSystem.CurrentDragObject = GenerateDragObject(data, mode);
+                DragSystem.Instance.CurrentDragObject = GenerateDragObject(data, mode);
                 SetDragObject();
             }
         }
     }
     public void SetDragObject()
     {
-        if (dragSystem.CurrentDragObject != null)
+        if (DragSystem.Instance.CurrentDragObject != null)
         {
-            dragSystem.CurrentDragObject.SetDragData(data, mode);
+            DragSystem.Instance.CurrentDragObject.SetDragData(data, mode);
             DragSystem.Instance.state = DragState.Dragging;
         }
     }
@@ -131,27 +138,27 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void OnDestroy()
     {
-        if (DragSystem.AllDragSource.Contains(this))
-        {
-            DragSystem.AllDragSource.Remove(this);
-        }
+        //if (DragSystem.AllDragSource.Contains(this))
+        //{
+        //    DragSystem.AllDragSource.Remove(this);
+        //}
     }
     #region ToolTip
     public virtual void ShowToolTip()
     {
-        Debug.Log("Show ToolTip!!");
+        //Show ToolTip (物品類ItemSlot本身就寫好了，所以不需要複寫)
     }
     public void HideToolTip()
     {
-        Debug.Log("HideToolTip!!");
+        //Hide ToolTip (物品類ItemSlot本身就寫好了，所以不需要複寫)
     }
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if (dragSystem == null)
+        if (DragSystem.Instance == null)
         {
-            dragSystem = DragSystem.Instance;
+            return;
         }
-        if (dragSystem.state == DragState.UnDrag)
+        if (DragSystem.Instance.state == DragState.UnDrag)
         {
             ShowToolTip();
         }

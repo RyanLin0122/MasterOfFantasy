@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 using UnityEngine.EventSystems;
-
+using UnityEditor;
 public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public int SlotPosition;
@@ -27,8 +27,8 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 
     public virtual void PutItem_woItem(DragItemData data)
     {
-        
-    } 
+
+    }
     public virtual void PutItem_wItem(DragItemData data)
     {
 
@@ -50,7 +50,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        
+
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
@@ -67,6 +67,11 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         if (transform.childCount > 0)
             InventorySys.Instance.HideToolTip();
     }
+    /// <summary>
+    /// 如果格子禮的物品是特殊形狀(例如商店賣的欄位)需要複寫
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="amount"></param>
     public virtual void StoreItem(Item item, int amount = 1)
     {
 
@@ -375,6 +380,10 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         return Result;
     }
 
+    /// <summary>
+    /// 取得Slot內的Item
+    /// </summary>
+    /// <returns></returns>
     public virtual Item GetItem()
     {
         if (transform.childCount > 0)
@@ -386,17 +395,32 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
             return null;
         }
     }
+    /// <summary>
+    /// 判斷Slot內的Item是不是已經到達容量上限
+    /// </summary>
+    /// <returns></returns>
     public virtual bool IsItemFull()
     {
         ItemUI itemUI = transform.GetChild(0).GetComponent<ItemUI>();
         return itemUI.Amount >= itemUI.Item.Capacity;//檢查格子是否已滿
     }
+    /// <summary>
+    /// 判斷Slot裡面是否有Item
+    /// </summary>
+    /// <returns></returns>
     public virtual bool HasItem()
     {
-        ItemUI itemUI;
-        TryGetComponent(out itemUI);
-        return itemUI != null;
+        EditorApplication.RepaintHierarchyWindow();
+        //ItemUI itemUI = GetComponentInChildren<ItemUI>();    
+        RectTransform[] t = GetComponentsInChildren<RectTransform>();
+        bool r = t.Length > 1;
+        print("Slot Pos:" + SlotPosition + "HasChild: " + r.ToString() + " ChildCount" + transform.childCount);
+        return r;
     }
+    /// <summary>
+    /// 取得Slot內物品ID
+    /// </summary>
+    /// <returns></returns>
     public virtual int GetItemId()
     {
         if (transform.childCount > 0)

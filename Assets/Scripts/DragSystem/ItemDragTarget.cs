@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemDragTarget : DragTargetBase
 {
-    ItemSlot slot;
+    public ItemSlot slot;
     public override void ReceiveObject(DragObject dragObject)
     {
         slot.PutItem((DragItemData)dragObject.data);

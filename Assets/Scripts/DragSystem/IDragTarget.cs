@@ -8,30 +8,30 @@ public interface IDragTarget
 }
 public class DragTargetBase : MonoBehaviour, IDragTarget
 {
-    public int[] TagsTo;
-
-    public bool HasObject = false;
     public bool Enabled = true;
     public DragBaseData data;
-    public virtual void Awake()
+    public virtual void OnEnable()
     {
-        if (!DragSystem.AllDragTarget.Contains(this))
+        if (DragSystem.Instance != null)
         {
-            DragSystem.AllDragTarget.Add(this);
+            if (!DragSystem.AllDragTarget.Contains(this))
+            {
+                DragSystem.AllDragTarget.Add(this);
+            }
+        }
+    }
+    public virtual void OnDisable()
+    {
+        if (DragSystem.Instance != null)
+        {
+            if (DragSystem.AllDragTarget.Contains(this))
+            {
+                DragSystem.AllDragTarget.Remove(this);
+            }
         }
     }
     public virtual void ReceiveObject(DragObject dragObject)
     {
-        HasObject = true;
         Debug.Log("Receive Object");
-    }
-
-    public virtual void OnDestroy()
-    {
-        Debug.Log("Destroy Target");
-        //if (DragSystem.AllDragTarget.Contains(this))
-        //{
-        //    DragSystem.AllDragTarget.Remove(this);
-        //}
     }
 }

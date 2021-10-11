@@ -712,4 +712,15 @@ public class KnapsackWnd : Inventory, IStackWnd
             IsOpen = true;
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            foreach (var slot in slotLists[3])
+            {
+                print("Slot Pos:" + slot.SlotPosition + "HasChild: " + slot.HasItem() + " ChildCount" + slot.transform.childCount);
+            }
+        }
+    }
 }

@@ -23,9 +23,6 @@ public class KnapsackSlot : ItemSlot
     /// <param name="eventData"></param>
     public override void OnPointerDown(PointerEventData eventData)
     {
-        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
-        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
-
         if (!KnapsackWnd.Instance.IsForge && !KnapsackWnd.Instance.IsSell && !KnapsackWnd.Instance.IsTransaction && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen)
         {
             //按右鍵使用物品
@@ -141,7 +138,7 @@ public class KnapsackSlot : ItemSlot
                 if (currentItem.Capacity >= currentItem.Count + PickedUpItem.Count)
                 {
                     //夠放第一格全部數量，刪除第一格物品
-                    //寫交換封包
+                    //寫4號封包
                     List<Item> Items = new List<Item>();
                     if (!currentItem.IsCash)
                     {
@@ -250,8 +247,7 @@ public class KnapsackSlot : ItemSlot
                     Item item1 = PickedUpItem;
                     Items.Add(item1);
                 }
-                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
-                DragSystem.Instance.RemoveDragObject();
+                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });                
             }
             //同一格放下
             else
@@ -259,10 +255,9 @@ public class KnapsackSlot : ItemSlot
                 if (SlotPosition == PickedUpItem.Position)
                 {
                     StoreItem(PickedUpItem, PickedUpItem.Count);
-                    DragSystem.Instance.RemoveDragObject();
-                    return;
                 }
             }
+            DragSystem.Instance.RemoveDragObject();
         }
     }
 

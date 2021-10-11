@@ -77,8 +77,9 @@ public class DragSystem : SystemRoot
         if (CurrentDragObject != null)
         {
             Destroy(CurrentDragObject.gameObject);
-            state = DragState.UnDrag;
+            
         }
+        state = DragState.UnDrag;
     }
 
     public void FixedUpdate()

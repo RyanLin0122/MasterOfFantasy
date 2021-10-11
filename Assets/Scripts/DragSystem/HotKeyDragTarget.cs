@@ -8,12 +8,7 @@ public class HotKeyDragTarget : DragTargetBase, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (HasObject)
-            {
-                GetComponent<Image>().sprite = null;
-                this.data = null;
-                this.HasObject = false;
-            }
+
         }
     }
 
@@ -22,6 +17,5 @@ public class HotKeyDragTarget : DragTargetBase, IPointerClickHandler
         Debug.Log("HotKeyTarget Receive Object");
         GetComponent<Image>().sprite = dragObject.GetComponent<Image>().sprite;
         data = dragObject.data;
-        HasObject = true;
     }
 }

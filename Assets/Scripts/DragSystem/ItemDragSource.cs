@@ -6,7 +6,7 @@ using PEProtocal;
 
 public class ItemDragSource : DragSourceBase
 {
-    public int InventorySource; //1.背包 2.倉庫
+    public int InventorySource; //1.背包 2.倉庫 3.交易
     public bool IsCashOnly; 
     public ItemSlot slot;
 
