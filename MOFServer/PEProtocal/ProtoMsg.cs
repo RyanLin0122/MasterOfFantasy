@@ -1322,6 +1322,27 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public int OperationType { get; set; }
 
+        [ProtoMember(4, IsRequired = false)]
+        public long PlayerRubi { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
+
+        [ProtoMember(6, IsRequired = false)]
+        public long OtherRubi { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+
+        [ProtoMember(8, IsRequired = false)]
+        public int TransactionPos { get; set; }
+
+        [ProtoMember(9, IsRequired = false)]
+        public int KnapsackPos { get; set; }
+
+        [ProtoMember(10, IsRequired = false)]
+        public Item item { get; set; }
+
+
+
     }
     [ProtoContract]
     public class TransactionResponse
@@ -1338,6 +1359,23 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public int OperationType { get; set; }
 
+        [ProtoMember(6, IsRequired = false)]
+        public long PlayerRubi { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
+
+        [ProtoMember(8, IsRequired = false)]
+        public long OtherRubi { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+
+        [ProtoMember(10, IsRequired = false)]
+        public int TransactionPos { get; set; }
+
+
+
+        [ProtoMember(11, IsRequired = false)]
+        public Item item { get; set; }
 
     }
 }

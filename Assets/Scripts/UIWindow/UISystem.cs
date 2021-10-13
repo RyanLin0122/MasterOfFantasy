@@ -183,7 +183,7 @@ public class UISystem : SystemRoot
         transationWnd.SetWndState(false);
         transationWnd.IsOpen = false;
     }
-    public void OpenTransationWnd(string PlayerName, string OtherName)
+    public void OpenTransationWnd(string PlayerName , string OtherName)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();

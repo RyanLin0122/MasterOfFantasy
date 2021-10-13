@@ -173,7 +173,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                 }
                 else
                 {
-                    FindCashSlot(item.Position).StoreItem(item, item.Count);
+                    FindCashSlot(item.Position).StoreItem(item, item.Count);                              
                 }
             }
         }

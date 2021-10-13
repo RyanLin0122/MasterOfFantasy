@@ -782,7 +782,7 @@ public class MoveOtherPlayer : ActionTask<Transform>
                 }
             }
             ctrl.IdleCounter++;
-            Debug.Log("IdleCounter: " + ctrl.IdleCounter);
+            //Debug.Log("IdleCounter: " + ctrl.IdleCounter);
             EndAction();
         }
         else

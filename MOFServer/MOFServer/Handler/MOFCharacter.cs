@@ -14,7 +14,7 @@ public class MOFCharacter
     public ServerSession session;
     public Player player;
     public TrimedPlayer trimedPlayer;
-
+    public Transactor transactor;
 
 
     public Dictionary<string, float> EquipmentProperty;
@@ -658,6 +658,11 @@ public class MOFCharacter
     {
         await CacheSvc.Instance.AsyncSaveAccount(session.Account, session.AccountData);
     }
+
+
+
+
+
 }
 
 public enum PlayerStatus
@@ -669,3 +674,9 @@ public enum PlayerStatus
     Transaction, // 交易
 }
 
+public class Transactor
+{
+    public Dictionary<int, Item> Items =new Dictionary<int, Item>();
+
+    public int Rubi = 0;
+}

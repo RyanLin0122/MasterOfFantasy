@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 using UnityEngine.EventSystems;
-using UnityEditor;
 public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public int SlotPosition;
@@ -410,7 +409,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     /// <returns></returns>
     public virtual bool HasItem()
     {
-        EditorApplication.RepaintHierarchyWindow();
+
         //ItemUI itemUI = GetComponentInChildren<ItemUI>();    
         RectTransform[] t = GetComponentsInChildren<RectTransform>();
         bool r = t.Length > 1;

@@ -8,24 +8,35 @@ public class TransactionHandler : GameHandler
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
         TransactionRequest req = msg.transactionRequest;
+
+        Dictionary<int, Item> PlayerItem = null;
+
         if (req == null)
         {
             SendErrorBack(1, session);
             return;
         }
-        //處理種狀況 1. 交易邀請 2. 接受交易3. 取消交易 5.點擊交易
+        //收到封包後處理狀況
+        //1.發起邀請(右鍵人物option交易) 2. 發出接受. 3.開啟交易 4. 發出不想交易  5.上傳物品 6. 上船金錢 7.中斷交易 8.確定交易
         switch (req.OperationType)
         {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
+            case 1://1.發起邀請(右鍵人物option交易)
+            case 2://2.點及messageBox的確定
                 ProcessInvite(req, session);
                 break;
-            
-                //ProcessGift(req, session);
-                
+            case 3://開啟交易 建立transactor
+           
+                StartTransaction(req, session);
+
+                break;
+            case 4://在messageBox階段案取消或是叉叉
+                ProcessInvite(req, session);
+                break;
+
             case 5:
+                AddItem(req, session);
+                break;
+            case 10:
                 //ProcessToKnapsack(req, session);
                 break;
         }
@@ -34,6 +45,62 @@ public class TransactionHandler : GameHandler
     {
         (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].ProcessTransactionInvite(req.PlayerName, req.OtherPlayerName,req.OperationType);
       
+    }
+
+    public void StartTransaction(TransactionRequest req, ServerSession session)
+    {
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = new Transactor();
+    }
+
+
+    public void AddItem(TransactionRequest req, ServerSession session)
+    {
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items[req.TransactionPos] = req.item;
+        AddItemShow(session.ActivePlayer.Name, req.OtherPlayerName, req.TransactionPos, req.item);
+
+    }
+
+
+    public void AddItemShow(string PlayerName, string OtherPlayerName, int TransactionPos,Item item)
+    {
+        //自己欄位顯示
+        ProtoMsg msg1 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                //PlayerName = PlayerName,
+                //OtherPlayerName = OtherPlayerName,
+                TransactionPos = TransactionPos,
+                item = item,
+                OperationType = 5
+
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[PlayerName].session.WriteAndFlush(msg1);
+
+
+        //在對方的對方欄位顯示XDD
+        ProtoMsg msg2 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+
+                TransactionPos = TransactionPos,
+                item = item,
+                OperationType = 6
+
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[OtherPlayerName].session.WriteAndFlush(msg2);
+
+
+    }
+
+    public void CancelTransaction()
+    {
+
     }
 
     //public void ProcessConfirm(TransactionRequest req, ServerSession session)

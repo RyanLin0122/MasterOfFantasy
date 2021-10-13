@@ -568,7 +568,7 @@ public class CashShopSender : BaseSender
 public class TransactionSender : BaseSender
 {
     /// <summary>
-    /// 發起邀請,接受邀請，取消交易
+    /// 發起邀請,接受邀請，開啟交易，取消交易
     /// </summary>
     /// <param name="OperationType"></param>
     /// <param name="items"></param>
@@ -589,6 +589,39 @@ public class TransactionSender : BaseSender
         };
         base.SendMsg(msg);
     }
+
+    /// <summary>
+    /// 放東西進去
+    /// </summary>
+    /// <param name="OperationType"></param>
+    /// <param name="OtherName"></param>
+    public TransactionSender(int OperationType, string OtherName, int TransactionPos,int KnapsackPos,Item item)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 48,
+            transactionRequest = new TransactionRequest
+            {
+                OperationType = OperationType,
+                PlayerName = GameRoot.Instance.ActivePlayer.Name,
+                OtherPlayerName = OtherName,
+                TransactionPos = TransactionPos,
+                KnapsackPos = KnapsackPos,
+                item = item
+                
+            }
+        };
+        base.SendMsg(msg);
+    }
+
+    ///// <summary>
+    ///// 放東西上去，拿東西下來
+    ///// </summary>
+    ///// <param name="Operation"></param>
+    //public TransactionSender(int Operation)
+    //{
+
+    //}
 
 
 }
