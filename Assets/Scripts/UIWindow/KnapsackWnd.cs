@@ -40,6 +40,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool HasInitialized = false;
 
 
+
     protected override void InitWnd()
     {
         if (!HasInitialized)
@@ -701,15 +702,26 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void KeyBoardCommand()
     {
-        if (IsOpen)
+        if (Controllable())
         {
-            CloseAndPop();
-            IsOpen = false;
+            if (IsOpen)
+            {
+                CloseAndPop();
+                IsOpen = false;
+            }
+            else
+            {
+                OpenAndPush();
+                IsOpen = true;
+            }
+
         }
-        else
-        {
-            OpenAndPush();
-            IsOpen = true;
-        }
+
+    }
+
+
+    public bool Controllable()
+    {
+        return !IsTransaction;
     }
 }

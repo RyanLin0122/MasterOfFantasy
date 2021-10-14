@@ -77,6 +77,8 @@ public class TransationWnd : Inventory
     public void StartTransactioin(string PlayerName, string OtherName)
     {
         UISystem.Instance.OpenTransationWnd(PlayerName, OtherName);
+        KnapsackWnd.Instance.KeyBoardCommand();
+        KnapsackWnd.Instance.IsTransaction = true;
         Panel1 = new Dictionary<int, Item>();
         Panel2 = new Dictionary<int, Item>();
         new TransactionSender(3, OtherName);
@@ -122,7 +124,7 @@ public class TransationWnd : Inventory
             case 5://自己欄位顯示
 
                 Panel1.Add(rsp.TransactionPos,rsp.item);
-                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item);
+                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
 
 
                 break;
@@ -130,7 +132,7 @@ public class TransationWnd : Inventory
             case 6://對方欄位顯示
 
                 Panel2.Add(rsp.TransactionPos, rsp.item);
-                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item);
+                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
 
                 break;
 
