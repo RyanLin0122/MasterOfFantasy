@@ -413,7 +413,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         //ItemUI itemUI = GetComponentInChildren<ItemUI>();    
         RectTransform[] t = GetComponentsInChildren<RectTransform>();
         bool r = t.Length > 1;
-        print("Slot Pos:" + SlotPosition + "HasChild: " + r.ToString() + " ChildCount" + transform.childCount);
+        //print("Slot Pos:" + SlotPosition + "HasChild: " + r.ToString() + " ChildCount" + transform.childCount);
         return r;
     }
     /// <summary>

@@ -776,10 +776,6 @@ public class MOFMap
     }
 
 
-
-
-
-
     public WeatherType weather = WeatherType.Normal;
     public void AssignWeather(int weather)
     {

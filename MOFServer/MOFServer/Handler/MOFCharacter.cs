@@ -665,18 +665,16 @@ public class MOFCharacter
 
 }
 
-public enum PlayerStatus
-{
-    Normal, //正常
-    Death, //死亡
-    Hide, //隱身
-    RealHide, //超級隱身
-    Transaction, // 交易
-}
+
 
 public class Transactor
 {
+    //在交易的位置與物品
     public Dictionary<int, Item> Items =new Dictionary<int, Item>();
 
+    //存一下放進交易欄的東西原本從哪來
+    public Dictionary<int, Item> BackItem = new Dictionary<int, Item>();
     public int Rubi = 0;
+    public bool IsReady = false;
+
 }

@@ -685,6 +685,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void OpenAndPush()
     {
+
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
@@ -692,12 +693,15 @@ public class KnapsackWnd : Inventory, IStackWnd
     }
     public void CloseAndPop()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        SetWndState(false);
-        IsOpen = false;
-        InventorySys.Instance.HideToolTip();
-        UISystem.Instance.ForcePop(this);
-        RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
+        if (Controllable())
+        {
+            AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+            SetWndState(false);
+            IsOpen = false;
+            InventorySys.Instance.HideToolTip();
+            UISystem.Instance.ForcePop(this);
+            RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
+        }
     }
 
     public void KeyBoardCommand()
