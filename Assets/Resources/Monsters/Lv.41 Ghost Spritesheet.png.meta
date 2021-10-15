@@ -1,9 +1,129 @@
 fileFormatVersion: 2
 guid: 51f6ebf9242ae9d48b07df26b3658596
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7821728915462674852
+    second: Lv.41 Ghost Spritesheet_0
+  - first:
+      213: 3716211816268899633
+    second: Lv.41 Ghost Spritesheet_1
+  - first:
+      213: 2600556653279436578
+    second: Lv.41 Ghost Spritesheet_2
+  - first:
+      213: 6569385186113989288
+    second: Lv.41 Ghost Spritesheet_3
+  - first:
+      213: -4886573995972020996
+    second: Lv.41 Ghost Spritesheet_4
+  - first:
+      213: 5050702785477972468
+    second: Lv.41 Ghost Spritesheet_5
+  - first:
+      213: 8389206664767948224
+    second: Lv.41 Ghost Spritesheet_6
+  - first:
+      213: -1574942603465826893
+    second: Lv.41 Ghost Spritesheet_7
+  - first:
+      213: 1349265074622200378
+    second: Lv.41 Ghost Spritesheet_8
+  - first:
+      213: -3825390540740295524
+    second: Lv.41 Ghost Spritesheet_9
+  - first:
+      213: -6157792413675568938
+    second: Lv.41 Ghost Spritesheet_10
+  - first:
+      213: 2799616253582508253
+    second: Lv.41 Ghost Spritesheet_11
+  - first:
+      213: 5481432812974049535
+    second: Lv.41 Ghost Spritesheet_12
+  - first:
+      213: -6500000854867907140
+    second: Lv.41 Ghost Spritesheet_13
+  - first:
+      213: 3854450774775189913
+    second: Lv.41 Ghost Spritesheet_14
+  - first:
+      213: -3818889497437143627
+    second: Lv.41 Ghost Spritesheet_15
+  - first:
+      213: -6405076312886075395
+    second: Lv.41 Ghost Spritesheet_16
+  - first:
+      213: 7922607045901587767
+    second: Lv.41 Ghost Spritesheet_17
+  - first:
+      213: 7752727897737735879
+    second: Lv.41 Ghost Spritesheet_18
+  - first:
+      213: 6198081671593819878
+    second: Lv.41 Ghost Spritesheet_19
+  - first:
+      213: 1714422626900791111
+    second: Lv.41 Ghost Spritesheet_20
+  - first:
+      213: -1022807758220692827
+    second: Lv.41 Ghost Spritesheet_21
+  - first:
+      213: 6996813567796306971
+    second: Lv.41 Ghost Spritesheet_22
+  - first:
+      213: -2465160844249676342
+    second: Lv.41 Ghost Spritesheet_23
+  - first:
+      213: 7741634460035450987
+    second: Lv.41 Ghost Spritesheet_24
+  - first:
+      213: 7029831106589394850
+    second: Lv.41 Ghost Spritesheet_25
+  - first:
+      213: -6922211537521810735
+    second: Lv.41 Ghost Spritesheet_26
+  - first:
+      213: 5424639898655665488
+    second: Lv.41 Ghost Spritesheet_27
+  - first:
+      213: 5860215878520806535
+    second: Lv.41 Ghost Spritesheet_28
+  - first:
+      213: -7441620414207264641
+    second: Lv.41 Ghost Spritesheet_29
+  - first:
+      213: 5402146691165645947
+    second: Lv.41 Ghost Spritesheet_30
+  - first:
+      213: 2248940932601396822
+    second: Lv.41 Ghost Spritesheet_31
+  - first:
+      213: -4747998112789129400
+    second: Lv.41 Ghost Spritesheet_32
+  - first:
+      213: 7713126894965395422
+    second: Lv.41 Ghost Spritesheet_33
+  - first:
+      213: -7939977291420609746
+    second: Lv.41 Ghost Spritesheet_34
+  - first:
+      213: 6801880787510470589
+    second: Lv.41 Ghost Spritesheet_35
+  - first:
+      213: -5048255024415428936
+    second: Lv.41 Ghost Spritesheet_36
+  - first:
+      213: 646731144844918502
+    second: Lv.41 Ghost Spritesheet_37
+  - first:
+      213: 8486687870024805635
+    second: Lv.41 Ghost Spritesheet_38
+  - first:
+      213: 6402685868640385862
+    second: Lv.41 Ghost Spritesheet_39
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +143,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +161,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +175,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +194,862 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 445
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a9dd8fd10d5c8c60800000000000000
+      internalID: 7821728915462674852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 449
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13521d225f2a29330800000000000000
+      internalID: 3716211816268899633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 449
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22fdff07f78071420800000000000000
+      internalID: 2600556653279436578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 448
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aaa90b45052b2b50800000000000000
+      internalID: 6569385186113989288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 447
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf43d6147d66f2cb0800000000000000
+      internalID: -4886573995972020996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 446
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f19d727c63b71640800000000000000
+      internalID: 5050702785477972468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 445
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c545d083037c6470800000000000000
+      internalID: 8389206664767948224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 373
+        width: 62
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bd5acaeb0ea42ae0800000000000000
+      internalID: -1574942603465826893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 383
+        width: 75
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a72b8cf6d89b210800000000000000
+      internalID: 1349265074622200378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 364
+        width: 59
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94090c229b79eac0800000000000000
+      internalID: -3825390540740295524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 357
+        width: 74
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0c546dc602b8aa0800000000000000
+      internalID: -6157792413675568938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 360
+        width: 74
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0023e462c3ad620800000000000000
+      internalID: 2799616253582508253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 357
+        width: 60
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff80d7df916f11c40800000000000000
+      internalID: 5481432812974049535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 354
+        width: 60
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbdecd539ab5bc5a0800000000000000
+      internalID: -6500000854867907140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 295
+        width: 73
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99154b2de82cd7530800000000000000
+      internalID: 3854450774775189913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 282
+        width: 88
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bdf9c44c34900bc0800000000000000
+      internalID: -3818889497437143627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 282
+        width: 88
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff182b67099c17a0800000000000000
+      internalID: -6405076312886075395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 282
+        width: 88
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73598f9e121c2fd60800000000000000
+      internalID: 7922607045901587767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 270
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ce2be082f8379b60800000000000000
+      internalID: 7752727897737735879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee75340172040650800000000000000
+      internalID: 6198081671593819878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 193
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f4057bb4adac710800000000000000
+      internalID: 1714422626900791111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 192
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a2fdb153c14ec1f0800000000000000
+      internalID: -1022807758220692827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 193
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14e1248edca91160800000000000000
+      internalID: 6996813567796306971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 192
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac5cb4ce54df9cdd0800000000000000
+      internalID: -2465160844249676342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 191
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b680653468fcf6b60800000000000000
+      internalID: 7741634460035450987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 189
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a78043552afe8160800000000000000
+      internalID: 7029831106589394850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d2e6e5384d5fef90800000000000000
+      internalID: -6922211537521810735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 110
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d28c13f31384b40800000000000000
+      internalID: 5424639898655665488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 110
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78c1652fa4ba35150800000000000000
+      internalID: 5860215878520806535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 110
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7871e129ad0ab890800000000000000
+      internalID: -7441620414207264641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 101
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7cea773bc748fa40800000000000000
+      internalID: 5402146691165645947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 110
+        width: 68
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65eba80ecd7d53f10800000000000000
+      internalID: 2248940932601396822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 100
+        width: 72
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8479af45fd8bb1eb0800000000000000
+      internalID: -4747998112789129400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 12
+        width: 60
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf8ce98b088a0b60800000000000000
+      internalID: 7713126894965395422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 9
+        width: 72
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23d434a8b88fc190800000000000000
+      internalID: -7939977291420609746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 4
+        width: 72
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7ad10d982256e50800000000000000
+      internalID: 6801880787510470589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 1
+        width: 81
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be23265dcef0f9b0800000000000000
+      internalID: -5048255024415428936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 8
+        width: 56
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eeb9a9bc86a9f800800000000000000
+      internalID: 646731144844918502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 9
+        width: 56
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30de17447a5c6c570800000000000000
+      internalID: 8486687870024805635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.41 Ghost Spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 12
+        width: 56
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b39b8efd8ead850800000000000000
+      internalID: 6402685868640385862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

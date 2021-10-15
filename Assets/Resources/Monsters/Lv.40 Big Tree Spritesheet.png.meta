@@ -1,9 +1,123 @@
 fileFormatVersion: 2
 guid: 9ed120d5ca0e7aa47ba4a1ac09189ea1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7982273329354267545
+    second: Lv.40 Big Tree Spritesheet_0
+  - first:
+      213: 751830651322418546
+    second: Lv.40 Big Tree Spritesheet_1
+  - first:
+      213: 1677831604703941302
+    second: Lv.40 Big Tree Spritesheet_2
+  - first:
+      213: -230809290059660894
+    second: Lv.40 Big Tree Spritesheet_3
+  - first:
+      213: 6865553296579946924
+    second: Lv.40 Big Tree Spritesheet_4
+  - first:
+      213: -6116232356915544629
+    second: Lv.40 Big Tree Spritesheet_5
+  - first:
+      213: -7418633213913719322
+    second: Lv.40 Big Tree Spritesheet_6
+  - first:
+      213: -5111715588608449055
+    second: Lv.40 Big Tree Spritesheet_7
+  - first:
+      213: -8498053995173498501
+    second: Lv.40 Big Tree Spritesheet_8
+  - first:
+      213: -2329956690939834267
+    second: Lv.40 Big Tree Spritesheet_9
+  - first:
+      213: -6942902849111897724
+    second: Lv.40 Big Tree Spritesheet_10
+  - first:
+      213: -2075088486004079937
+    second: Lv.40 Big Tree Spritesheet_11
+  - first:
+      213: -7702994270448744941
+    second: Lv.40 Big Tree Spritesheet_12
+  - first:
+      213: -7726423750346779491
+    second: Lv.40 Big Tree Spritesheet_13
+  - first:
+      213: 5903858576329257066
+    second: Lv.40 Big Tree Spritesheet_14
+  - first:
+      213: 1741780189680195677
+    second: Lv.40 Big Tree Spritesheet_15
+  - first:
+      213: -2710845869544367225
+    second: Lv.40 Big Tree Spritesheet_16
+  - first:
+      213: 7707012496323583716
+    second: Lv.40 Big Tree Spritesheet_17
+  - first:
+      213: 2057856835651361042
+    second: Lv.40 Big Tree Spritesheet_18
+  - first:
+      213: 4877319312766565347
+    second: Lv.40 Big Tree Spritesheet_19
+  - first:
+      213: -4923792625530518212
+    second: Lv.40 Big Tree Spritesheet_20
+  - first:
+      213: -8512203179283002315
+    second: Lv.40 Big Tree Spritesheet_21
+  - first:
+      213: -6750192378837013527
+    second: Lv.40 Big Tree Spritesheet_22
+  - first:
+      213: -8910349218153385157
+    second: Lv.40 Big Tree Spritesheet_23
+  - first:
+      213: 3189039847483481444
+    second: Lv.40 Big Tree Spritesheet_24
+  - first:
+      213: 5516134062406992345
+    second: Lv.40 Big Tree Spritesheet_25
+  - first:
+      213: 6967899191752453035
+    second: Lv.40 Big Tree Spritesheet_26
+  - first:
+      213: -4582475454094969198
+    second: Lv.40 Big Tree Spritesheet_27
+  - first:
+      213: -1954059652468762346
+    second: Lv.40 Big Tree Spritesheet_28
+  - first:
+      213: 2267342713276186303
+    second: Lv.40 Big Tree Spritesheet_29
+  - first:
+      213: -6791051533323674654
+    second: Lv.40 Big Tree Spritesheet_31
+  - first:
+      213: 1178514843816225427
+    second: Lv.40 Big Tree Spritesheet_32
+  - first:
+      213: -5445430195436175365
+    second: Lv.40 Big Tree Spritesheet_33
+  - first:
+      213: -4629847581280505316
+    second: Lv.40 Big Tree Spritesheet_34
+  - first:
+      213: -5346547168474617646
+    second: Lv.40 Big Tree Spritesheet_35
+  - first:
+      213: -917016793873496699
+    second: Lv.40 Big Tree Spritesheet_36
+  - first:
+      213: -5265431498251094015
+    second: Lv.40 Big Tree Spritesheet_37
+  - first:
+      213: 3729643223284959175
+    second: Lv.40 Big Tree Spritesheet_38
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +137,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +155,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +169,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +188,841 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1409
+        width: 106
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 764a3c7e2b4493190800000000000000
+      internalID: -7982273329354267545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1410
+        width: 107
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 275c2577ef90f6a00800000000000000
+      internalID: 751830651322418546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1409
+        width: 102
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b25d4774fad84710800000000000000
+      internalID: 1677831604703941302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1409
+        width: 102
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a1422f6c200cccf0800000000000000
+      internalID: -230809290059660894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1286
+        width: 101
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9e8251958574f50800000000000000
+      internalID: 6865553296579946924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1286
+        width: 104
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd7c4a9317ce1ba0800000000000000
+      internalID: -6116232356915544629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 1285
+        width: 107
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed12c5c568bb0990800000000000000
+      internalID: -7418633213913719322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1285
+        width: 110
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5aa2451c98f09b0800000000000000
+      internalID: -5111715588608449055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1161
+        width: 110
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71389f7ae8d01a80800000000000000
+      internalID: -8498053995173498501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1161
+        width: 104
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5609c76fbb45aafd0800000000000000
+      internalID: -2329956690939834267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 1160
+        width: 117
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48943a0d4aad5af90800000000000000
+      internalID: -6942902849111897724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 1160
+        width: 117
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2493a240ec333e0800000000000000
+      internalID: -2075088486004079937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1031
+        width: 119
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3168803f587791590800000000000000
+      internalID: -7702994270448744941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1031
+        width: 119
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d945070198a36c490800000000000000
+      internalID: -7726423750346779491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1030
+        width: 127
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60bf3e5818bee150800000000000000
+      internalID: 5903858576329257066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 1028
+        width: 127
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5853baaadb0c2810800000000000000
+      internalID: 1741780189680195677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 865
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b19f85b04216ad0800000000000000
+      internalID: -2710845869544367225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 864
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ee1dda280fc4fa60800000000000000
+      internalID: 7707012496323583716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 863
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219db9793e9fe8c10800000000000000
+      internalID: 2057856835651361042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 863
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eb7a95e218bfa340800000000000000
+      internalID: 4877319312766565347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 702
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35c097c1bc2babb0800000000000000
+      internalID: -4923792625530518212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 704
+        width: 120
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53cc2eade449ed980800000000000000
+      internalID: -8512203179283002315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 721
+        width: 124
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ebeed5abcf7252a0800000000000000
+      internalID: -6750192378837013527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 720
+        width: 124
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33b94b5894185480800000000000000
+      internalID: -8910349218153385157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 415
+        width: 118
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46d91d358deb14c20800000000000000
+      internalID: 3189039847483481444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 262
+        width: 124
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1833b34be3d8c40800000000000000
+      internalID: 5516134062406992345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 550
+        width: 126
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: babe22bb563f2b060800000000000000
+      internalID: 6967899191752453035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 550
+        width: 119
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296f8be7ad6c760c0800000000000000
+      internalID: -4582475454094969198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 550
+        width: 126
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6191da06919c1e4e0800000000000000
+      internalID: -1954059652468762346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 551
+        width: 126
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbeb5e05f28377f10800000000000000
+      internalID: 2267342713276186303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 394
+        width: 135
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebee4bd3d3bc5f7e0800000000000000
+      internalID: -1732255017765376322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 426
+        width: 129
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebded86c9651c1a0800000000000000
+      internalID: -6791051533323674654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 424
+        width: 124
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ae034a10dea5010800000000000000
+      internalID: 1178514843816225427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 287
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff37df9612fd64b0800000000000000
+      internalID: -5445430195436175365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 278
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12f291a72a7fbfb0800000000000000
+      internalID: -4629847581280505316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d823307daf3dc5b0800000000000000
+      internalID: -5346547168474617646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 18
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5854a14a51a1643f0800000000000000
+      internalID: -917016793873496699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 148
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 108379523fd6de6b0800000000000000
+      internalID: -5265431498251094015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Big Tree Spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 140
+        width: 152
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c7c7d640ca52c330800000000000000
+      internalID: 3729643223284959175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
