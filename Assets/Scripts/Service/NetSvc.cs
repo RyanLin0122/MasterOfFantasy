@@ -131,10 +131,11 @@ public class NetSvc : MonoBehaviour
             case 47:
                 DoCashShopResponse(msg);
                 break;
-
             case 49:
                 DoTransactionResponse(msg);
-                
+                break;
+            case 50:
+                DoLockerOperation(msg);
                 break;
         }
     }
@@ -544,5 +545,9 @@ public class NetSvc : MonoBehaviour
     }
     #endregion
 
+    public void DoLockerOperation(ProtoMsg msg)
+    {
+        LockerWnd.Instance.ProcessLockerOperation(msg.lockerOperation);
+    }
 
 }

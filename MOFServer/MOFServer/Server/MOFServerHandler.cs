@@ -219,13 +219,13 @@ class MOFServerHandler : ChannelHandlerAdapter
                     CashShopHandler cashShopHandler = new CashShopHandler();
                     Task CashShopTask = cashShopHandler.ProcessMsgAsync(msg, session);
                     break;
-
                 case 48: //交易請求
                     TransactionHandler transactionHandler = new TransactionHandler();
                     Task TransactionTask = transactionHandler.ProcessMsgAsync(msg, session);
-
-
-
+                    break;
+                case 50: //倉庫操作
+                    LockerHandler lockerHandler = new LockerHandler();
+                    Task lockerTask = lockerHandler.ProcessMsgAsync(msg, session);
                     break;
             }
         }

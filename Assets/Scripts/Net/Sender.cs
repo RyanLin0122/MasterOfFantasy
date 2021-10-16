@@ -575,7 +575,7 @@ public class TransactionSender : BaseSender
     /// <param name="OldPos"></param>
     /// <param name="NewPos"></param>
     /// <param name="ribi"></param>
-    public TransactionSender(int OperationType,string OtherName)
+    public TransactionSender(int OperationType, string OtherName)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -595,7 +595,7 @@ public class TransactionSender : BaseSender
     /// </summary>
     /// <param name="OperationType"></param>
     /// <param name="OtherName"></param>
-    public TransactionSender(int OperationType, string OtherName, int TransactionPos,int KnapsackPos,Item item)
+    public TransactionSender(int OperationType, string OtherName, int TransactionPos, int KnapsackPos, Item item)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -608,21 +608,29 @@ public class TransactionSender : BaseSender
                 TransactionPos = TransactionPos,
                 KnapsackPos = KnapsackPos,
                 item = item
-                
+
             }
         };
         base.SendMsg(msg);
     }
-
-    ///// <summary>
-    ///// 放東西上去，拿東西下來
-    ///// </summary>
-    ///// <param name="Operation"></param>
-    //public TransactionSender(int Operation)
-    //{
-
-    //}
-
-
+}
+public class LockerSender : BaseSender
+{
+    public LockerSender(int OperationType, List<Item> items, int[] OldPos, int[] NewPos, long ribi = 0)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 50,
+            lockerOperation = new LockerOperation
+            {
+                OperationType = OperationType,
+                items = items,
+                OldPosition = OldPos,
+                NewPosition = NewPos,
+                Ribi = ribi
+            }
+        };
+        base.SendMsg(msg);
+    }
 }
 

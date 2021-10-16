@@ -179,7 +179,6 @@ public class KnapsackHandler : GameHandler
                             nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                             nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         }
-                        return;
                     }
                     //兩格數量改變，(同ItemID)第一格物品補滿第二格還有剩
                     else

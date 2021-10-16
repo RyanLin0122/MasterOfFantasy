@@ -432,4 +432,11 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         }
     }
 
+    public void RemoveItemUI()
+    {
+        if (transform.childCount > 0)
+        {
+            DestroyImmediate(transform.GetChild(0).GetComponent<ItemUI>());
+        }
+    }
 }

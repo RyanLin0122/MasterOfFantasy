@@ -267,6 +267,9 @@ public class KnapsackSlot : ItemSlot
     /// <param name="data"></param>
     public void PutItemFromOtherInventory(DragItemData data)
     {
+        if (data.Source == 2) //倉庫移到背包
+        {
 
+        }
     }
 }
