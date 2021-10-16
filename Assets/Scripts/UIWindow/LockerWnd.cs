@@ -416,6 +416,37 @@ public class LockerWnd : Inventory
                     }
                 }
                 break;
+            case 4: //從倉庫拿到背包空格
+                UISystem.Instance.AddMessageQueue("要放到第" + lo.items[0].Position + "格");
+                if (lo.items[0].IsCash)
+                {
+                    var dic = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
+                    GameRoot.Instance.ActivePlayer.CashKnapsack = dic;
+                    TryAddItemtoDic(dic, lo.items[0]);
+                    KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(lo.items[0],lo.items[0].Count);
+                }
+                else
+                {
+                    var dic = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
+                    GameRoot.Instance.ActivePlayer.NotCashKnapsack = dic;
+                    TryAddItemtoDic(dic, lo.items[0]);
+                    KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(lo.items[0], lo.items[0].Count);
+                }
+                locker.Remove(lo.OldPosition[0]);
+                FindSlot(lo.OldPosition[0]).RemoveItemUI();
+                break;
+            case 5: //從倉庫拿到背包不是空格
+
+                break;
+            case 6: //存錢
+
+                break;
+            case 7: //領錢
+
+                break;
+            case 8: //整理
+
+                break;
         }
         
     }

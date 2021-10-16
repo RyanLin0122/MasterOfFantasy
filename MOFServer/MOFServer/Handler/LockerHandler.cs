@@ -152,6 +152,16 @@ public class LockerHandler : GameHandler
                 }
                 session.WriteAndFlush(msg);
                 break;
+            case 4: //從倉庫拿到背包空格
+                var knap = lo.items[0].IsCash ? (session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                           (session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+                int KnapPos = lo.NewPosition[0];
+                int LockPos = lo.OldPosition[0];
+                lo.items[0].Position = KnapPos;
+                TryAddItemtoDic(knap, lo.items[0]);
+                locker.Remove(LockPos);
+                session.WriteAndFlush(msg);
+                break;
         }
     }
 

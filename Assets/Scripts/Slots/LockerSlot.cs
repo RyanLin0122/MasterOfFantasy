@@ -146,10 +146,6 @@ public class LockerSlot : ItemSlot
             }
             DragSystem.Instance.RemoveDragObject();
         }
-        else //不是從倉庫或背包來的，
-        {
-            PutItemFromOtherInventory(data);
-        }
     }
 
     /// <summary>
@@ -189,9 +185,5 @@ public class LockerSlot : ItemSlot
             Items.Add(item1);
             new LockerSender(2, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
         }
-    }
-    public void PutItemFromOtherInventory(DragItemData data)
-    {
-
     }
 }

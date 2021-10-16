@@ -219,7 +219,7 @@ public class KnapsackSlot : ItemSlot
         }
         else //不是從背包來的，可能是倉庫、信箱或商店之類
         {
-            PutItemFromOtherInventory(data);
+            PutItemFromOtherInventory_wItem(data);
         }
     }
 
@@ -259,17 +259,82 @@ public class KnapsackSlot : ItemSlot
             }
             DragSystem.Instance.RemoveDragObject();
         }
+        else
+        {
+            PutItemFromOtherInventory_woItem(data);
+        }
     }
 
     /// <summary>
     /// 處理從背包以外來的物品
     /// </summary>
     /// <param name="data"></param>
-    public void PutItemFromOtherInventory(DragItemData data)
+    public void PutItemFromOtherInventory_woItem(DragItemData data)
     {
         if (data.Source == 2) //倉庫移到背包
         {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {
+                if (KnapsackWnd.Instance.CurrentPage == 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new LockerSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem,PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new LockerSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+        }
+    }
+    public void PutItemFromOtherInventory_wItem(DragItemData data)
+    {
+        if (data.Source == 2) //倉庫移到背包
+        {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {
+                if (KnapsackWnd.Instance.CurrentPage == 4)
+                {
 
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4)
+                {
+
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                }
+            }
         }
     }
 }

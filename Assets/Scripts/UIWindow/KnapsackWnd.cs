@@ -38,7 +38,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool IsLocker = false;
     public bool IsMailBox = false;
     public bool HasInitialized = false;
-
+    public int CurrentPage = 0;
 
 
     protected override void InitWnd()
@@ -99,7 +99,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
-
+        CurrentPage = 1;
     }
     public void PressBag2()
     {
@@ -119,6 +119,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
+        CurrentPage = 2;
     }
     public void PressBag3()
     {
@@ -138,6 +139,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
+        CurrentPage = 3;
     }
     public void PressBag4()
     {
@@ -157,7 +159,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
-
+        CurrentPage = 4;
     }
 
     public void ReadItems()
