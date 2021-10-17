@@ -568,14 +568,14 @@ public class CashShopSender : BaseSender
 public class TransactionSender : BaseSender
 {
     /// <summary>
-    /// 發起邀請,接受邀請，取消交易
+    /// 發起邀請,接受邀請，開啟交易，取消交易
     /// </summary>
     /// <param name="OperationType"></param>
     /// <param name="items"></param>
     /// <param name="OldPos"></param>
     /// <param name="NewPos"></param>
     /// <param name="ribi"></param>
-    public TransactionSender(int OperationType,string OtherName)
+    public TransactionSender(int OperationType, string OtherName)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -590,6 +590,60 @@ public class TransactionSender : BaseSender
         base.SendMsg(msg);
     }
 
+    /// <summary>
+    /// 放東西進去
+    /// </summary>
+    /// <param name="OperationType"></param>
+    /// <param name="OtherName"></param>
+    public TransactionSender(int OperationType, string OtherName, int TransactionPos, int KnapsackPos, Item item)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 48,
+            transactionRequest = new TransactionRequest
+            {
+                OperationType = OperationType,
+                PlayerName = GameRoot.Instance.ActivePlayer.Name,
+                OtherPlayerName = OtherName,
+                TransactionPos = TransactionPos,
+                KnapsackPos = KnapsackPos,
+                item = item
 
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+public class LockerSender : BaseSender
+{
+    public LockerSender(int OperationType, List<Item> items, int[] OldPos, int[] NewPos)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 50,
+            lockerOperation = new LockerOperation
+            {
+                OperationType = OperationType,
+                items = items,
+                OldPosition = OldPos,
+                NewPosition = NewPos,
+                Ribi = 0
+            }
+        };
+        base.SendMsg(msg);
+    }
+    public LockerSender(int OperationType, long Ribi)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 50,
+            lockerOperation = new LockerOperation
+            {
+                OperationType = OperationType,
+                Ribi = Ribi
+            }
+        };
+        base.SendMsg(msg);
+    }
 }
 

@@ -165,8 +165,8 @@ public class CashShopHandler : GameHandler
     }
     public void ProcessToKnapsack(CashShopRequest req, ServerSession session)
     {
-        //try
-        //{
+        try
+        {
             var nk = session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : session.ActivePlayer.GetNewNotCashKnapsack();
             var ck = session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : session.ActivePlayer.GetNewCashKnapsack();
             var mailbox = session.ActivePlayer.MailBoxItems != null ? session.ActivePlayer.MailBoxItems : session.ActivePlayer.GetNewMailBox();
@@ -303,13 +303,11 @@ public class CashShopHandler : GameHandler
                 }
             };
             session.WriteAndFlush(msg);
-        //}
-        //catch (Exception e)
-        //{
-        //    LogSvc.Error(e.Message);
-        //}
-        //主角準備好
-
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e.Message);
+        }
     }
     public void SendErrorBack(int errorType, ServerSession session)
     {

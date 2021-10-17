@@ -118,8 +118,9 @@ public class MessageBox : MonoBehaviour
     {
         if (ConfirmAction != null)
         {
-            CloseMessageBox();
+            
             ConfirmAction.Invoke();
+            CloseMessageBox();
         }
     }
     public void AdjustContentSize()

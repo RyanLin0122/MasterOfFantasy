@@ -179,11 +179,11 @@ public class UISystem : SystemRoot
     public void CloseTransationWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        transationWnd.ClearItem();
+        //transationWnd.ClearItem();
         transationWnd.SetWndState(false);
         transationWnd.IsOpen = false;
     }
-    public void OpenTransationWnd(string PlayerName, string OtherName)
+    public void OpenTransationWnd(string PlayerName , string OtherName)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();

@@ -8,24 +8,46 @@ public class TransactionHandler : GameHandler
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
         TransactionRequest req = msg.transactionRequest;
+
+
+
         if (req == null)
         {
             SendErrorBack(1, session);
             return;
         }
-        //處理種狀況 1. 交易邀請 2. 接受交易3. 取消交易 5.點擊交易
+        //收到封包後處理狀況
+        //1.發起邀請(右鍵人物option交易) 2. 發出接受. 3.開啟交易 4. 發出不想交易  5.上傳物品 6. 上船金錢 7.中斷交易 8.確定交易
         switch (req.OperationType)
         {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
+            case 1://1.發起邀請(右鍵人物option交易)
+            case 2://2.點及messageBox的確定
                 ProcessInvite(req, session);
                 break;
-            
-                //ProcessGift(req, session);
-                
+            case 3://開啟交易 建立transactor
+           
+                StartTransaction(req, session);
+
+                break;
+            case 4://在messageBox階段案取消或是叉叉
+                ProcessInvite(req, session);
+                break;
+
             case 5:
+                AddItem(req, session);
+                break;
+
+            case 6:
+                PutRibi(req, session);
+                break;
+
+            case 7:
+                ProcessCancel(req, session);
+                break;
+            case 8:
+                ProcessTransaction(req, session);
+                break;
+            case 10:
                 //ProcessToKnapsack(req, session);
                 break;
         }
@@ -36,358 +58,262 @@ public class TransactionHandler : GameHandler
       
     }
 
-    //public void ProcessConfirm(TransactionRequest req, ServerSession session)
-    //{
-    //    (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].ProcessTransactionConfirm(req.PlayerName, req.OtherPlayerName);
-    //}
+    public void StartTransaction(TransactionRequest req, ServerSession session)
+    {
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = new Transactor();
+    }
 
-    //public void ProcessBuyEvent(CashShopRequest req, ServerSession session)
-    //{
-    //    try
-    //    {
-    //        int ItemNum = req.Cata.Count;
 
-    //        判斷數量
-    //        if (req.Orders.Count != ItemNum || req.Tag.Count != ItemNum || req.Amount.Count != ItemNum)
-    //        {
-    //            數量對不起來
-    //            SendErrorBack(2, session);
-    //            return;
-    //        }
-    //        驗證總價
-    //        long TotalPrice = 0;
-    //        for (int i = 0; i < ItemNum; i++)
-    //        {
-    //            TotalPrice += CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].SellPrice * req.Amount[i];
-    //        }
-    //        if (TotalPrice != req.TotalPrice)
-    //        {
-    //            SendErrorBack(3, session);
-    //            return;
-    //        }
-    //        驗證錢夠不夠
-    //        if (CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash < TotalPrice)
-    //        {
-    //            錢不夠
-    //            SendErrorBack(4, session);
-    //            return;
-    //        }
-    //        驗證格子夠不夠
-    //        int FashionNum = 0;
-    //        int OtherNum = 0;
-    //        for (int i = 0; i < ItemNum; i++)
-    //        {
-    //            int itemID = CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].ItemID;
-    //            int Amount = req.Amount[i];
-    //            int capacity = CacheSvc.ItemList[itemID].Capacity;
-    //            if (CacheSvc.ItemList[itemID].Type == ItemType.Equipment || CacheSvc.ItemList[itemID].Type == ItemType.Weapon)
-    //            {
-    //                FashionNum++;
-    //            }
-    //            else
-    //            {
-    //                int NeedSlotNum = (int)Math.Ceiling((double)Amount / capacity);
-    //                OtherNum += NeedSlotNum;
-    //            }
-    //        }
-    //        Dictionary<int, Item> FashionPanel = null;
-    //        Dictionary<int, Item> OtherPanel = null;
-    //        switch (session.ActivePlayer.Server)
-    //        {
-    //            case 0:
-    //                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer1 != null ? session.AccountData.CashShopBuyPanelFashionServer1 : session.AccountData.GetNewBuyPanelFashionS1();
-    //                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer1 != null ? session.AccountData.CashShopBuyPanelOtherServer1 : session.AccountData.GetNewBuyPanelOtherS1();
-    //                break;
-    //            case 1:
-    //                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer2 != null ? session.AccountData.CashShopBuyPanelFashionServer2 : session.AccountData.GetNewBuyPanelFashionS2();
-    //                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer2 != null ? session.AccountData.CashShopBuyPanelOtherServer2 : session.AccountData.GetNewBuyPanelOtherS2();
-    //                break;
-    //            case 2:
-    //                FashionPanel = session.AccountData.CashShopBuyPanelFashionServer3 != null ? session.AccountData.CashShopBuyPanelFashionServer3 : session.AccountData.GetNewBuyPanelFashionS3();
-    //                OtherPanel = session.AccountData.CashShopBuyPanelOtherServer3 != null ? session.AccountData.CashShopBuyPanelOtherServer3 : session.AccountData.GetNewBuyPanelOtherS3();
-    //                break;
-    //        }
-    //        var EmptyFashion = IsEmptySlotEnough(FashionPanel, FashionNum);
-    //        var EmptyOther = IsEmptySlotEnough(OtherPanel, OtherNum);
-    //        int EmptyFashionPointer = 0;
-    //        int EmptyOtherPointer = 0;
-    //        if (EmptyFashion.Item1 == false || EmptyOther.Item1 == false)
-    //        {
-    //            格子不夠
-    //            SendErrorBack(5, session);
-    //            return;
-    //        }
-    //        創造物品
-    //        List<Item> ItemList = new List<Item>();
-    //        for (int i = 0; i < ItemNum; i++)
-    //        {
-    //            int ItemID = CacheSvc.Instance.CashShopDic[req.Cata[i]][req.Tag[i]][req.Orders[i]].ItemID;
-    //            int Amount = req.Amount[i];
-    //            Item item = Utility.GetItemCopyByID(ItemID);
-    //            item.Count = Amount;
-    //            ItemList.Add(item);
-    //        }
-    //        放進Panel
-    //        for (int j = 0; j < ItemList.Count; j++)
-    //        {
-    //            if (ItemList[j].Type == ItemType.Equipment || ItemList[j].Type == ItemType.Weapon)
-    //            {
-    //                ItemList[j].Position = EmptyFashion.Item2[EmptyFashionPointer];
-    //                FashionPanel.Add(ItemList[j].Position, ItemList[j]);
-    //                EmptyFashionPointer++;
-    //            }
-    //            else
-    //            {
-    //                ItemList[j].Position = EmptyOther.Item2[EmptyOtherPointer];
-    //                OtherPanel.Add(ItemList[j].Position, ItemList[j]);
-    //                EmptyOtherPointer++; ;
-    //            }
-    //        }
-    //        回傳
-    //        ProtoMsg rsp = new ProtoMsg
-    //        {
-    //            MessageType = 47,
-    //            cashShopResponse = new CashShopResponse
-    //            {
-    //                OperationType = 1,
-    //                IsSuccess = true,
-    //                OtherItems = OtherPanel,
-    //                FashionItems = FashionPanel,
-    //                TotalPrice = TotalPrice
-    //            }
-    //        };
-    //        session.WriteAndFlush(rsp);
+    public void AddItem(TransactionRequest req, ServerSession session)
+    {
+        
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items[req.TransactionPos] = req.item;
+        AddItemShow(session.ActivePlayer.Name, req.OtherPlayerName, req.TransactionPos, req.item);
 
-    //    }
-    //    catch (Exception e)
-    //    {
-    //        LogSvc.Error(e.Message);
-    //    }
+        //先把原本物品位置存在transactor 再把物品從背包刪掉
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem[req.KnapsackPos] = req.item;
+        Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
+        nk.Remove(req.KnapsackPos);
+        
+    }
+    public void PutRibi(TransactionRequest req, ServerSession session)
+    {
+        //錢錢的部分
+    }
 
-    //}
-    //public void ProcessCheckCash(CashShopRequest req, ServerSession session)
-    //{
-    //    long cash = CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash;
-    //    ProtoMsg rsp = new ProtoMsg { MessageType = 47, cashShopResponse = new CashShopResponse { IsSuccess = true, Cash = cash } };
-    //}
-    //public void ProcessGift(CashShopRequest req, ServerSession session)
-    //{
 
-    //}
-    //public void ProcessToKnapsack(CashShopRequest req, ServerSession session)
-    //{
-    //    //try
-    //    //{
-    //        var nk = session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : session.ActivePlayer.GetNewNotCashKnapsack();
-    //        var ck = session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : session.ActivePlayer.GetNewCashKnapsack();
-    //        var mailbox = session.ActivePlayer.MailBoxItems != null ? session.ActivePlayer.MailBoxItems : session.ActivePlayer.GetNewMailBox();
-    //        List<int> ProcessedPositions = new List<int>(); //存已經放進背包或信箱的BuyPanel Position
-    //        Dictionary<int, Item> BuyPanel = null;
-    //        switch (session.ActivePlayer.Server)
-    //        {
-    //            case 0:
-    //                if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer1 != null ? session.AccountData.CashShopBuyPanelFashionServer1 : session.AccountData.GetNewBuyPanelFashionS1();
-    //                else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer1 != null ? session.AccountData.CashShopBuyPanelOtherServer1 : session.AccountData.GetNewBuyPanelOtherS1();
-    //                break;
-    //            case 1:
-    //                if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer2 != null ? session.AccountData.CashShopBuyPanelFashionServer2 : session.AccountData.GetNewBuyPanelFashionS2();
-    //                else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer2 != null ? session.AccountData.CashShopBuyPanelOtherServer2 : session.AccountData.GetNewBuyPanelOtherS2();
-    //                break;
-    //            case 2:
-    //                if (req.IsFashionPanel) BuyPanel = session.AccountData.CashShopBuyPanelFashionServer3 != null ? session.AccountData.CashShopBuyPanelFashionServer3 : session.AccountData.GetNewBuyPanelFashionS3();
-    //                else BuyPanel = session.AccountData.CashShopBuyPanelOtherServer3 != null ? session.AccountData.CashShopBuyPanelOtherServer3 : session.AccountData.GetNewBuyPanelOtherS3();
-    //                break;
-    //        }
-    //        if (req.Positions == null)
-    //        {
-    //            return;
-    //        }
-    //        List<int> Positions = req.Positions;
-    //        if (Positions.Count == 0)
-    //        {
-    //            return;
-    //        }
-    //        //計算空位
-    //        int RequiredCashSlotNum = 0;
-    //        int RequiredNonCashSlotNum = 0;
-    //        int RequiredMailBoxNum = 0;
-    //        List<int> CashPositions = new List<int>();
-    //        List<int> NonCashPositions = new List<int>();
-    //        foreach (var pos in Positions)
-    //        {
-    //            if (BuyPanel[pos].IsCash)
-    //            {
-    //                RequiredCashSlotNum++;
-    //                CashPositions.Add(pos);
-    //            }
-    //            else
-    //            {
-    //                RequiredNonCashSlotNum++;
-    //                NonCashPositions.Add(pos);
-    //            }
-    //        }
-    //        if (Positions.Count - RequiredCashSlotNum - RequiredNonCashSlotNum > 0)
-    //        {
-    //            RequiredMailBoxNum = Positions.Count - RequiredCashSlotNum - RequiredNonCashSlotNum;
-    //        }
-    //        //尋找空位，背包不夠再放信箱
-    //        (bool, List<int>) EmptyCashSlots = IsEmptySlotEnough(ck, RequiredCashSlotNum, 24, 1);
-    //        (bool, List<int>) EmptyNonCashSlots = IsEmptySlotEnough(nk, RequiredNonCashSlotNum, 72, 1);
-    //        (bool, List<int>) EmptyMailBoxSlots = IsEmptySlotEnough(mailbox, RequiredMailBoxNum, 96, 1);
-    //        int EmptyCashKnapsackPointer = 0;
-    //        int EmptyNonCashKnapsackPointer = 0;
-    //        Dictionary<int, Item> OutputCashKnapsack = new Dictionary<int, Item>();
-    //        Dictionary<int, Item> OutputNonCashKnapsack = new Dictionary<int, Item>();
-    //        Dictionary<int, Item> OutputMailbox = new Dictionary<int, Item>();
-    //        //開始放入
-    //        if (RequiredCashSlotNum != 0 && EmptyCashSlots.Item2.Count > 0)
-    //        {
-    //            for (int i = 0; i < EmptyCashSlots.Item2.Count; i++)
-    //            {
+    public void ProcessCancel(TransactionRequest req, ServerSession session)
+    {
 
-    //                if (EmptyCashKnapsackPointer == RequiredCashSlotNum) //指針超過所需格數
-    //                {
-    //                    break;
-    //                }
-    //                MoveItem(BuyPanel, ck, CashPositions[EmptyCashKnapsackPointer], EmptyCashSlots.Item2[EmptyCashKnapsackPointer]);
-    //                ProcessedPositions.Add(CashPositions[EmptyCashKnapsackPointer]);
-    //                OutputCashKnapsack.Add(EmptyCashSlots.Item2[EmptyCashKnapsackPointer], ck[EmptyCashSlots.Item2[EmptyCashKnapsackPointer]]);
-    //                EmptyCashKnapsackPointer++;
-    //            }
-    //        }
-    //        if (RequiredNonCashSlotNum != 0 && EmptyNonCashSlots.Item2.Count > 0)
-    //        {
-    //            for (int j = 0; j < EmptyNonCashSlots.Item2.Count; j++)
-    //            {
-    //                if (EmptyNonCashKnapsackPointer == RequiredNonCashSlotNum) //指針超過所需格數
-    //                {
-    //                    break;
-    //                }
-    //                MoveItem(BuyPanel, nk, NonCashPositions[EmptyNonCashKnapsackPointer], EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]);
-    //                ProcessedPositions.Add(NonCashPositions[EmptyNonCashKnapsackPointer]);
-    //                OutputNonCashKnapsack.Add(EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer], nk[EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]]);
-    //                EmptyNonCashKnapsackPointer++;
-    //            }
-    //        }
-    //        //背包不夠放
-    //        if (RequiredMailBoxNum != 0 && EmptyMailBoxSlots.Item2.Count > 0)
-    //        {
-    //            for (int EmptyMailBoxPointer = 0; EmptyMailBoxPointer < EmptyMailBoxSlots.Item2.Count; EmptyMailBoxPointer++)
-    //            {
-    //                for (int i = EmptyCashKnapsackPointer; i < RequiredCashSlotNum; i++)
-    //                {
-    //                    if (EmptyCashKnapsackPointer == CashPositions.Count)
-    //                    {
-    //                        break;
-    //                    }
-    //                    MoveItem(BuyPanel, mailbox, CashPositions[EmptyCashKnapsackPointer], EmptyMailBoxSlots.Item2[EmptyMailBoxPointer]);
-    //                    ProcessedPositions.Add(CashPositions[EmptyCashKnapsackPointer]);
-    //                    OutputMailbox.Add(EmptyMailBoxSlots.Item2[EmptyCashKnapsackPointer], ck[EmptyCashSlots.Item2[EmptyCashKnapsackPointer]]);
-    //                    EmptyCashKnapsackPointer++;
-    //                }
-    //                for (int i = EmptyNonCashKnapsackPointer; i < RequiredNonCashSlotNum; i++)
-    //                {
-    //                    if (EmptyNonCashKnapsackPointer == CashPositions.Count)
-    //                    {
-    //                        break;
-    //                    }
-    //                    MoveItem(BuyPanel, mailbox, CashPositions[EmptyNonCashKnapsackPointer], EmptyMailBoxSlots.Item2[EmptyMailBoxPointer]);
-    //                    ProcessedPositions.Add(CashPositions[EmptyNonCashKnapsackPointer]);
-    //                    OutputMailbox.Add(EmptyMailBoxSlots.Item2[EmptyNonCashKnapsackPointer], ck[EmptyNonCashSlots.Item2[EmptyNonCashKnapsackPointer]]);
-    //                    EmptyNonCashKnapsackPointer++;
-    //                }
-    //            }
-    //        }
-    //        ProtoMsg msg = new ProtoMsg
-    //        {
-    //            MessageType = 47,
-    //            cashShopResponse = new CashShopResponse
-    //            {
-    //                OperationType = 4,
-    //                IsSuccess = true,
-    //                IsFull = !EmptyMailBoxSlots.Item1,
-    //                CashKnapsack = OutputCashKnapsack,
-    //                NonCashKnapsack = OutputNonCashKnapsack,
-    //                MailBox = OutputMailbox,
-    //                ProcessPositions = ProcessedPositions,
-    //                IsFashion = req.IsFashionPanel
-    //            }
-    //        };
-    //        session.WriteAndFlush(msg);
-    //    //}
-    //    //catch (Exception e)
-    //    //{
-    //    //    LogSvc.Error(e.Message);
-    //    //}
-    //    //主角準備好
+        int type1 = (req.OperationType == 7) ? 8 : 9;
+        int type2 = (req.OperationType == 7) ? 7 : 9;
+        //回傳主動取消交易封包
+        
 
-    //}
+        Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> PlayerBackItem = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem;
+
+        foreach (var pos in PlayerBackItem.Keys)
+        {
+            nk.Add(pos, PlayerBackItem[pos]);
+        }
+
+        ProtoMsg msg1 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                OperationType = type1,
+                PlayerItems = PlayerBackItem
+
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].session.WriteAndFlush(msg1);
+
+        //回傳被取消交易封包
+
+        Dictionary<int, Item> othernk = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> OtherBackItem = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.BackItem;
+        foreach (var pos in OtherBackItem.Keys)
+        {
+            othernk.Add(pos, OtherBackItem[pos]);
+        }
+
+        ProtoMsg msg2 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                OperationType = type2,
+                PlayerItems = OtherBackItem
+
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg2);
+
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = null;
+        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor = null;
+
+    }
+    
+    public void ProcessTransaction(TransactionRequest req, ServerSession session)
+    {
+        //把自己狀態改成準備完成
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.IsReady = true;
+
+        //看對方是否準備完成
+        if (CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.IsReady)
+        {
+            //檢查囉...
+            //player要給出去的物品            //other 要給出去的物品             //player需要的空格            //other需要
+            Dictionary<int, Item> transactor1 = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items;
+            Dictionary<int, Item> transactor2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Items;
+            int RequiredNum1 = transactor2.Count;
+            int RequiredNum2 = transactor1.Count;
+
+            Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
+            Dictionary<int, Item> othernk = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
+
+            (bool, List<int>) EmptyNonCashSlots1 = IsEmptySlotEnough(nk, RequiredNum1, 72, 1);
+            (bool, List<int>) EmptyNonCashSlots2 = IsEmptySlotEnough(othernk, RequiredNum2, 72, 1);
+
+
+            if (EmptyNonCashSlots1.Item1 && EmptyNonCashSlots2.Item1)//格子都夠的話
+            {
+                ProtoMsg msg1 = new ProtoMsg
+                {
+                    MessageType = 49,
+                    transactionResponse = new TransactionResponse
+                    {
+                        OperationType = 8,
+                        PlayerItems = BackItemDict(transactor2, EmptyNonCashSlots1.Item2)
+                    }
+                };
+
+                ProtoMsg msg2 = new ProtoMsg
+                {
+                    MessageType = 49,
+                    transactionResponse = new TransactionResponse
+                    {
+                        OperationType = 8,
+                        PlayerItems = BackItemDict(transactor1, EmptyNonCashSlots2.Item2)
+                    }
+                };
+
+                
+                int iter = 0;
+                foreach (var pos in transactor2.Keys)
+                {
+                    Console.WriteLine("pos");
+                    nk.Add(EmptyNonCashSlots1.Item2[iter], transactor2[pos]);
+                    iter++;
+                }
+
+                iter = 0;
+                foreach (var pos in transactor1.Keys)
+                {
+                    othernk.Add(EmptyNonCashSlots2.Item2[iter], transactor1[pos]);
+                    iter++;
+                }
+
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = null;
+                CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor = null;
+
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].session.WriteAndFlush(msg1);
+                CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg2);
+
+            }
+            else//交易失敗 跑取消流程 
+            {
+                ProcessCancel(req, session);
+               
+            }
+
+        }
+        else//在對方的畫面顯示確認UI
+        {
+           
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 49,
+                transactionResponse = new TransactionResponse
+                {
+                    OperationType = 10
+                }
+            };
+            CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
+        }
+
+    }
+
+
+
+    public void AddItemShow(string PlayerName, string OtherPlayerName, int TransactionPos,Item item)
+    {
+        //自己欄位顯示 
+        ProtoMsg msg1 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                TransactionPos = TransactionPos,
+                item = item,
+                OperationType = 5
+
+            }
+        };
+ 
+        CacheSvc.Instance.MOFCharacterDict[PlayerName].session.WriteAndFlush(msg1);
+
+
+        //在對方的對方欄位顯示
+        ProtoMsg msg2 = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                TransactionPos = TransactionPos,
+                item = item,
+                OperationType = 6
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[OtherPlayerName].session.WriteAndFlush(msg2);
+
+
+    }
+
+
+    public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num, int Capacity = 100, int firstIndex = 0)
+    {
+        int EmptySlotNum = 0;
+        List<int> EmptySlotPosition = new List<int>();
+        for (int i = firstIndex; i < Capacity + firstIndex; i++)
+        {
+
+            if (Inventory.ContainsKey(i))
+            {
+                if (Inventory[i] == null)
+                {
+                    EmptySlotNum++;
+                    EmptySlotPosition.Add(i);
+                }
+            }
+            else
+            {
+                EmptySlotNum++;
+                EmptySlotPosition.Add(i);
+            }
+        }
+        if (Num <= EmptySlotNum)
+        {
+            return (true, EmptySlotPosition);
+        }
+        else
+        {
+            return (false, EmptySlotPosition);
+        }
+    }
+
+
     public void SendErrorBack(int errorType, ServerSession session)
     {
         ProtoMsg rsp = new ProtoMsg { MessageType = 48, transactionResponse = new TransactionResponse { IsSuccess = false, ErrorLogType = errorType } };
         session.WriteAndFlush(rsp);
     }
-    //public string GenerateErrorMsg(int ErrorType)
-    //{
-    //    switch (ErrorType)
-    //    {
-    //        case 1:
-    //            return "CashShopReq 為空";
-    //        case 2:
-    //            return "數量錯誤";
-    //        case 3:
-    //            return "總價錯誤";
-    //        case 4:
-    //            return "現金不足";
-    //        case 5:
-    //            return "格子不足";
-    //        default:
-    //            return "錯誤";
-    //    }
-    //}
+  
 
-    //public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num, int Capacity = 100, int firstIndex = 0)
-    //{
-    //    int EmptySlotNum = 0;
-    //    List<int> EmptySlotPosition = new List<int>();
-    //    for (int i = firstIndex; i < Capacity + firstIndex; i++)
-    //    {
-    //        if (Inventory.ContainsKey(i))
-    //        {
-    //            if (Inventory[i] == null)
-    //            {
-    //                EmptySlotNum++;
-    //                EmptySlotPosition.Add(i);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            EmptySlotNum++;
-    //            EmptySlotPosition.Add(i);
-    //        }
-    //    }
-    //    if (Num <= EmptySlotNum)
-    //    {
-    //        return (true, EmptySlotPosition);
-    //    }
-    //    else
-    //    {
-    //        return (false, EmptySlotPosition);
-    //    }
-    //}
+    public Dictionary<int, Item> BackItemDict(Dictionary<int, Item> tradeItems, List<int> slotpos)
+    {
+        Dictionary<int, Item> BackItems = new Dictionary<int, Item>();
 
-    //public void MoveItem(Dictionary<int, Item> From, Dictionary<int, Item> To, int PosFrom, int PosTo)
-    //{
-    //    if (To.ContainsKey(PosTo))
-    //    {
-    //        To[PosTo] = From[PosFrom];
-    //    }
-    //    else
-    //    {
-    //        To.Add(PosTo, From[PosFrom]);
-    //    }
-    //    To[PosTo].Position = PosTo;
-    //    From.Remove(PosFrom);
-    //}
+        int iter = 0;
+        foreach(var item in tradeItems.Values)
+        {
+            BackItems.Add(slotpos[iter], item);
+            iter++;
+        }
+
+        return BackItems;
+    }
 }
 

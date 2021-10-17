@@ -191,6 +191,7 @@ namespace PEProtocal
         }
     }
 
+
     [ProtoContract]
     public class TrimedPlayer //For other people
     {
@@ -239,6 +240,30 @@ namespace PEProtocal
         [ProtoMember(22, IsRequired = false)]
         public float[] Position { get; set; }
     }
+
+
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum PlayerStatus
+    {
+        [ProtoEnum]
+        Normal, //正常
+        [ProtoEnum]
+        Battle, //在打架
+        [ProtoEnum]
+        Death, //死亡
+        [ProtoEnum]
+        Hide, //隱身
+        [ProtoEnum]
+        RealHide, //超級隱身
+        [ProtoEnum]
+        Transaction, // 交易
+        [ProtoEnum]
+        Busy
+    }
+
+
+
 }
 
     #endregion

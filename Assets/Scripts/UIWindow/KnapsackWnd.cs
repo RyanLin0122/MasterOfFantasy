@@ -38,6 +38,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool IsLocker = false;
     public bool IsMailBox = false;
     public bool HasInitialized = false;
+    public int CurrentPage = 0;
 
 
     protected override void InitWnd()
@@ -98,7 +99,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
-
+        CurrentPage = 1;
     }
     public void PressBag2()
     {
@@ -118,6 +119,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
+        CurrentPage = 2;
     }
     public void PressBag3()
     {
@@ -137,6 +139,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel4Text.color = Txtcolor;
+        CurrentPage = 3;
     }
     public void PressBag4()
     {
@@ -156,7 +159,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
-
+        CurrentPage = 4;
     }
 
     public void ReadItems()
@@ -173,7 +176,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                 }
                 else
                 {
-                    FindCashSlot(item.Position).StoreItem(item, item.Count);
+                    FindCashSlot(item.Position).StoreItem(item, item.Count);                              
                 }
             }
         }
@@ -684,6 +687,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void OpenAndPush()
     {
+
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
@@ -691,25 +695,39 @@ public class KnapsackWnd : Inventory, IStackWnd
     }
     public void CloseAndPop()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        SetWndState(false);
-        IsOpen = false;
-        InventorySys.Instance.HideToolTip();
-        UISystem.Instance.ForcePop(this);
-        RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
+        if (Controllable())
+        {
+            AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+            SetWndState(false);
+            IsOpen = false;
+            InventorySys.Instance.HideToolTip();
+            UISystem.Instance.ForcePop(this);
+            RibiTxt.text = long.Parse(GameRoot.Instance.ActivePlayer.Ribi.ToString(), NumberStyles.AllowThousands).ToString();
+        }
     }
 
     public void KeyBoardCommand()
     {
-        if (IsOpen)
+        if (Controllable())
         {
-            CloseAndPop();
-            IsOpen = false;
+            if (IsOpen)
+            {
+                CloseAndPop();
+                IsOpen = false;
+            }
+            else
+            {
+                OpenAndPush();
+                IsOpen = true;
+            }
+
         }
-        else
-        {
-            OpenAndPush();
-            IsOpen = true;
-        }
+
+    }
+
+
+    public bool Controllable()
+    {
+        return !IsTransaction;
     }
 }

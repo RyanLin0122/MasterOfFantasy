@@ -251,13 +251,12 @@ public class ShopWnd : Inventory
             {
                 if (item.gameObject.GetComponentInChildren<ItemUI>().Item.IsCash)
                 {
-                    if (CashPointer <= EmptyCashSlot.Count)//目前空間夠的話
+                    if (CashPointer < EmptyCashSlot.Count)//目前空間夠的話
                     {
-                        Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
+                        Item Newitem = InventorySys.Instance.GetNewItemByID(item.gameObject.GetComponentInChildren<ItemUI>().Item.ItemID);
+
                         Newitem.Position = EmptyCashSlot[CashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
-                        Debug.Log("加一次");
-                        Debug.Log(Newitem.Type.ToString());
                         items.Add(Newitem);//把物品丟進items
                         CashPointer++;
                     }
@@ -269,13 +268,11 @@ public class ShopWnd : Inventory
                 }
                 else if (!item.gameObject.GetComponentInChildren<ItemUI>().Item.IsCash)
                 {
-                    if (NotCashPointer <= EmptyNotCashSlot.Count)
+                    if (NotCashPointer < EmptyNotCashSlot.Count)
                     {
-                        Item Newitem = item.gameObject.GetComponentInChildren<ItemUI>().Item;
+                        Item Newitem = InventorySys.Instance.GetNewItemByID(item.gameObject.GetComponentInChildren<ItemUI>().Item.ItemID);
                         Newitem.Position = EmptyNotCashSlot[NotCashPointer];
                         Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
-                        Debug.Log("加一次");
-                        Debug.Log(Newitem.Type.ToString());
                         items.Add(Newitem);
                         NotCashPointer++;
                     }

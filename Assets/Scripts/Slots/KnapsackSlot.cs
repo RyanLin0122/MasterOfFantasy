@@ -219,7 +219,7 @@ public class KnapsackSlot : ItemSlot
         }
         else //不是從背包來的，可能是倉庫、信箱或商店之類
         {
-            PutItemFromOtherInventory(data);
+            PutItemFromOtherInventory_wItem(data);
         }
     }
 
@@ -259,14 +259,150 @@ public class KnapsackSlot : ItemSlot
             }
             DragSystem.Instance.RemoveDragObject();
         }
+        else
+        {
+            PutItemFromOtherInventory_woItem(data);
+        }
     }
 
     /// <summary>
     /// 處理從背包以外來的物品
     /// </summary>
     /// <param name="data"></param>
-    public void PutItemFromOtherInventory(DragItemData data)
+    public void PutItemFromOtherInventory_woItem(DragItemData data)
     {
+        if (data.Source == 2) //倉庫移到背包
+        {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {
+                if (KnapsackWnd.Instance.CurrentPage == 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new LockerSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem,PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new LockerSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+        }
+    }
+    public void PutItemFromOtherInventory_wItem(DragItemData data)
+    {
+        if (data.Source == 2) //倉庫移到背包
+        {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {                
+                if (KnapsackWnd.Instance.CurrentPage == 4) //現金道具
+                {
+                    ExchangeItemFromLockerToKnapsack(PickedUpItem);
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4) //一般道具
+                {
+                    ExchangeItemFromLockerToKnapsack(PickedUpItem);
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                }
+            }
+        }
+    }
+    public void ExchangeItemFromLockerToKnapsack(Item PickedUpItem)
+    {
+        Dictionary<int, Item> locker = null;
+        switch (GameRoot.Instance.ActivePlayer.Server)
+        {
+            case 0:
+                locker = GameRoot.Instance.AccountData.LockerServer1 != null ? GameRoot.Instance.AccountData.LockerServer1 : new Dictionary<int, Item>();
+                GameRoot.Instance.AccountData.LockerServer1 = locker;
+                break;
+            case 1:
+                locker = GameRoot.Instance.AccountData.LockerServer2 != null ? GameRoot.Instance.AccountData.LockerServer2 : new Dictionary<int, Item>();
+                GameRoot.Instance.AccountData.LockerServer2 = locker;
+                break;
+            case 2:
+                locker = GameRoot.Instance.AccountData.LockerServer3 != null ? GameRoot.Instance.AccountData.LockerServer3 : new Dictionary<int, Item>();
+                GameRoot.Instance.AccountData.LockerServer3 = locker;
+                break;
+        }
+        Item currentItem = GetItem();
+        var knapsack = PickedUpItem.IsCash ? (GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                               (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+        //倉庫移到背包
+        if (currentItem.ItemID == PickedUpItem.ItemID)
+        {
+            //補充數量
+            if (currentItem.Capacity >= currentItem.Count + PickedUpItem.Count)
+            {
+                //夠放第一格全部數量，刪除第一格物品
+                //寫4號封包
+                List<Item> Items = new List<Item>();
+                Item item1 = knapsack[SlotPosition];
+                item1.Position = SlotPosition;
+                item1.Count = currentItem.Count + PickedUpItem.Count;
+                Items.Add(item1);
+                new LockerSender(5, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+            }
+            else
+            {
+                //不夠放所有物品，拆成兩格
+                List<Item> Items = new List<Item>();
+                int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
+                Item item1 = locker[PickedUpItem.Position];
+                item1.Position = PickedUpItem.Position;
+                item1.Count = RestAmount;
+                Items.Add(item1);
 
+                Item item2 = knapsack[SlotPosition];
+                item2.Position = SlotPosition;
+                item2.Count = currentItem.Capacity;
+                Items.Add(item2);
+                new LockerSender(5, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+            }
+        }
+        else
+        {
+            //把pickedItem和格子裡東西交換
+            List<Item> Items = new List<Item>();
+            Item item1 = locker[PickedUpItem.Position];
+            item1.Position = PickedUpItem.Position;
+            Items.Add(item1);
+
+            Item item2 = knapsack[SlotPosition];
+            item2.Position = SlotPosition;
+            Items.Add(item2);
+            new LockerSender(5, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+        }
+        DragSystem.Instance.RemoveDragObject();
     }
 }

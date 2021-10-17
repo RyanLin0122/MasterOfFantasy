@@ -205,6 +205,11 @@ public class ScreenController : MonoBehaviour
                 {
                     UISystem.Instance.AddMessageQueue(Time.realtimeSinceStartup.ToString());
                 }
+                //測試交易
+                if (Input.GetKeyDown(KeyCode.F10))
+                {
+                    UISystem.Instance.OpenTransationWnd("Test1", "Test2");
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Home)) //截圖

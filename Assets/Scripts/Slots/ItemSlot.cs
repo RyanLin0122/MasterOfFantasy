@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 using UnityEngine.EventSystems;
-using UnityEditor;
 public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public int SlotPosition;
@@ -410,11 +409,11 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     /// <returns></returns>
     public virtual bool HasItem()
     {
-        EditorApplication.RepaintHierarchyWindow();
+
         //ItemUI itemUI = GetComponentInChildren<ItemUI>();    
         RectTransform[] t = GetComponentsInChildren<RectTransform>();
         bool r = t.Length > 1;
-        print("Slot Pos:" + SlotPosition + "HasChild: " + r.ToString() + " ChildCount" + transform.childCount);
+        //print("Slot Pos:" + SlotPosition + "HasChild: " + r.ToString() + " ChildCount" + transform.childCount);
         return r;
     }
     /// <summary>
@@ -433,4 +432,11 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         }
     }
 
+    public void RemoveItemUI()
+    {
+        if (transform.childCount > 0)
+        {
+            DestroyImmediate(transform.GetChild(0).GetComponent<ItemUI>().gameObject);
+        }
+    }
 }

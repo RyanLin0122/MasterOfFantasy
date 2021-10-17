@@ -57,7 +57,8 @@ namespace PEProtocal
         ///47:CashShopResponse商城回應
         ///48:TransactionRequest交易請求
         ///49:TransactionResponse交易回應
-
+        ///50:LockerOperation 倉庫操作
+        ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -177,6 +178,10 @@ namespace PEProtocal
         public TransactionRequest transactionRequest { get; set; }
         [ProtoMember(58, IsRequired = false)]
         public TransactionResponse transactionResponse { get; set; }
+        [ProtoMember(60, IsRequired = false)]
+        public LockerOperation lockerOperation { get; set; }
+
+
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1322,13 +1327,32 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public int OperationType { get; set; }
 
+        [ProtoMember(4, IsRequired = false)]
+        public long PlayerRubi { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
+        [ProtoMember(6, IsRequired = false)]
+        public long OtherRubi { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+
+        [ProtoMember(8, IsRequired = false)]
+        public int TransactionPos { get; set; }
+
+        [ProtoMember(9, IsRequired = false)]
+        public int KnapsackPos { get; set; }
+
+        [ProtoMember(10, IsRequired = false)]
+        public Item item { get; set; }
+
+
+
     }
     [ProtoContract]
     public class TransactionResponse
     {
         [ProtoMember(1, IsRequired = false)]
         public string PlayerName { get; set; }
-
         [ProtoMember(2, IsRequired = false)]
         public string OtherPlayerName { get; set; }
         [ProtoMember(3, IsRequired = false)]
@@ -1337,7 +1361,44 @@ namespace PEProtocal
         public int ErrorLogType { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public int OperationType { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public long PlayerRubi { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
+        [ProtoMember(8, IsRequired = false)]
+        public long OtherRubi { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public Dictionary<int, Item> OtherItems { get; set; } // position, Item
+        [ProtoMember(10, IsRequired = false)]
+        public int TransactionPos { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public Item item { get; set; }
 
-
+    }
+    [ProtoContract]
+    public class LockerOperation
+    {
+        //第一種: 倉庫內操作
+        //第二種: 放東西到倉庫空格
+        //第三種: 放東西到倉庫非空格
+        //第四種: 從倉庫放東西到背包空格
+        //第五種: 從倉庫放東西到背包非空格
+        //第六種: 放錢到倉庫
+        //第七種: 從倉庫拿錢
+        //第八種: 整理背包
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public long Ribi { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public List<Item> items { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int[] OldPosition { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int[] NewPosition { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int ErrorType { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public string ErrorMessage { get; set; }
     }
 }

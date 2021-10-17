@@ -1,9 +1,114 @@
 fileFormatVersion: 2
 guid: 8e6d1e867b2571948b98b77dd14f7125
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -338044805330425650
+    second: Lv.40 Bibos Shaman Spritesheet_0
+  - first:
+      213: -4719051404290585058
+    second: Lv.40 Bibos Shaman Spritesheet_1
+  - first:
+      213: 847293701776042083
+    second: Lv.40 Bibos Shaman Spritesheet_2
+  - first:
+      213: 21118865716387955
+    second: Lv.40 Bibos Shaman Spritesheet_3
+  - first:
+      213: -7765333740498618404
+    second: Lv.40 Bibos Shaman Spritesheet_4
+  - first:
+      213: -2462612513103705565
+    second: Lv.40 Bibos Shaman Spritesheet_5
+  - first:
+      213: 215202958574637870
+    second: Lv.40 Bibos Shaman Spritesheet_6
+  - first:
+      213: -6865668290498904868
+    second: Lv.40 Bibos Shaman Spritesheet_7
+  - first:
+      213: 5901391592620087672
+    second: Lv.40 Bibos Shaman Spritesheet_8
+  - first:
+      213: -7758990771829123572
+    second: Lv.40 Bibos Shaman Spritesheet_9
+  - first:
+      213: 653217159737242905
+    second: Lv.40 Bibos Shaman Spritesheet_10
+  - first:
+      213: 938660391204145497
+    second: Lv.40 Bibos Shaman Spritesheet_11
+  - first:
+      213: 472093078663442951
+    second: Lv.40 Bibos Shaman Spritesheet_12
+  - first:
+      213: 8326693451582827165
+    second: Lv.40 Bibos Shaman Spritesheet_13
+  - first:
+      213: -3897844190562318148
+    second: Lv.40 Bibos Shaman Spritesheet_14
+  - first:
+      213: 1330466242087557158
+    second: Lv.40 Bibos Shaman Spritesheet_15
+  - first:
+      213: 386645081403227072
+    second: Lv.40 Bibos Shaman Spritesheet_16
+  - first:
+      213: 5341221438582435669
+    second: Lv.40 Bibos Shaman Spritesheet_17
+  - first:
+      213: -3982269127099852877
+    second: Lv.40 Bibos Shaman Spritesheet_18
+  - first:
+      213: 1874589807524339794
+    second: Lv.40 Bibos Shaman Spritesheet_19
+  - first:
+      213: 3550292603596003524
+    second: Lv.40 Bibos Shaman Spritesheet_20
+  - first:
+      213: -4675351526642229762
+    second: Lv.40 Bibos Shaman Spritesheet_21
+  - first:
+      213: 5453288156869144934
+    second: Lv.40 Bibos Shaman Spritesheet_22
+  - first:
+      213: 176655753412025029
+    second: Lv.40 Bibos Shaman Spritesheet_23
+  - first:
+      213: 3710825250849079461
+    second: Lv.40 Bibos Shaman Spritesheet_24
+  - first:
+      213: -4743995440089998756
+    second: Lv.40 Bibos Shaman Spritesheet_25
+  - first:
+      213: -6949991590086745740
+    second: Lv.40 Bibos Shaman Spritesheet_26
+  - first:
+      213: -3576402736996315932
+    second: Lv.40 Bibos Shaman Spritesheet_30
+  - first:
+      213: -1029355376963448398
+    second: Lv.40 Bibos Shaman Spritesheet_29
+  - first:
+      213: 1426227873125451357
+    second: Lv.40 Bibos Shaman Spritesheet_29
+  - first:
+      213: -7633577344339131656
+    second: Lv.40 Bibos Shaman Spritesheet_30
+  - first:
+      213: 8979598007738810763
+    second: Lv.40 Bibos Shaman Spritesheet_33
+  - first:
+      213: -9054722577290091719
+    second: Lv.40 Bibos Shaman Spritesheet_34
+  - first:
+      213: -732034462711087410
+    second: Lv.40 Bibos Shaman Spritesheet_35
+  - first:
+      213: 1910526981525892773
+    second: Lv.40 Bibos Shaman Spritesheet_36
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +128,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +146,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +160,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +179,757 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 623
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec82d146a060f4bf0800000000000000
+      internalID: -338044805330425650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 623
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e837a10cf828eb0800000000000000
+      internalID: -4719051404290585058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 623
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36869c2f12132cb00800000000000000
+      internalID: 847293701776042083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 623
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370a5191f770b4000800000000000000
+      internalID: 21118865716387955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 623
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd779330b1efb3490800000000000000
+      internalID: -7765333740498618404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 623
+        width: 57
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32a850187fa03ddd0800000000000000
+      internalID: -2462612513103705565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 623
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23547c53fd8cf200800000000000000
+      internalID: 215202958574637870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 618
+        width: 55
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc362fc01f38b0a0800000000000000
+      internalID: -6865668290498904868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 544
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879d896f264f5e150800000000000000
+      internalID: 5901391592620087672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 544
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06579d7007825490800000000000000
+      internalID: -7758990771829123572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 544
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 915f35fbb81b01900800000000000000
+      internalID: 653217159737242905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 544
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 959c37e07aac60d00800000000000000
+      internalID: 938660391204145497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 541
+        width: 74
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702b7ae57263d8600800000000000000
+      internalID: 472093078663442951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 542
+        width: 60
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a6a27d39b5e8370800000000000000
+      internalID: 8326693451582827165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 470
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb886bf3c5318e9c0800000000000000
+      internalID: -3897844190562318148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 470
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62817418ff3c67210800000000000000
+      internalID: 1330466242087557158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 470
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbf03b27a3ad5500800000000000000
+      internalID: 386645081403227072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 470
+        width: 81
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f28617994df1a40800000000000000
+      internalID: 5341221438582435669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 405
+        width: 97
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7553fe3532cb8c0800000000000000
+      internalID: -3982269127099852877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 404
+        width: 127
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2506e097f71e30a10800000000000000
+      internalID: 1874589807524339794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 404
+        width: 127
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c8590e005c254130800000000000000
+      internalID: 3550292603596003524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 404
+        width: 127
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efdd86ebe80dd1fb0800000000000000
+      internalID: -4675351526642229762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 339
+        width: 127
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661b7089fa8fdab40800000000000000
+      internalID: 5453288156869144934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 250
+        width: 98
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca17a5c87b937200800000000000000
+      internalID: 176655753412025029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 250
+        width: 98
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0c864a7ef7f7330800000000000000
+      internalID: 3710825250849079461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 250
+        width: 98
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5adc513841f92eb0800000000000000
+      internalID: -4743995440089998756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 250
+        width: 98
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4716de0b87bac8f90800000000000000
+      internalID: -6949991590086745740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 146
+        width: 105
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec8997c8a01e5ec0800000000000000
+      internalID: -3576402736996315932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 160
+        width: 105
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b194780dbef6b1f0800000000000000
+      internalID: -1029355376963448398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 160
+        width: 105
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d564762b1bafac310800000000000000
+      internalID: 1426227873125451357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 160
+        width: 105
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2423989d5101690800000000000000
+      internalID: -7633577344339131656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 51
+        width: 87
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81c315efc0fd9c70800000000000000
+      internalID: 8979598007738810763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 51
+        width: 87
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9332ae83ac9275280800000000000000
+      internalID: -9054722577290091719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 51
+        width: 87
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecef2ced88a47d5f0800000000000000
+      internalID: -732034462711087410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lv.40 Bibos Shaman Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 43
+        width: 87
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae66a3da2e838a10800000000000000
+      internalID: 1910526981525892773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
