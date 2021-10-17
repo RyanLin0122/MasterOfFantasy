@@ -161,21 +161,19 @@ public class KnapsackHandler : GameHandler
                 else
                 {
                     //兩格交換物品交換(不同ID的物品)
-                    if (ko.items[0].ItemID != ko.items[0].ItemID)
+                    if (ko.items[0].ItemID != ko.items[1].ItemID)
                     {
                         if (ko.items[0].IsCash)
                         {
-                            Item item = ck[ko.NewPosition[0]];
-                            ck[ko.NewPosition[0]] = ck[ko.OldPosition[0]];
-                            ck[ko.OldPosition[0]] = item;
+                            ck[ko.NewPosition[0]] = ko.items[0];
+                            ck[ko.OldPosition[0]] = ko.items[1];
                             ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
                             ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         }
                         else
                         {
-                            Item item = nk[ko.NewPosition[0]];
-                            nk[ko.NewPosition[0]] = nk[ko.OldPosition[0]];
-                            nk[ko.OldPosition[0]] = item;
+                            nk[ko.NewPosition[0]] = ko.items[0];
+                            nk[ko.OldPosition[0]] = ko.items[1];
                             nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                             nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
                         }

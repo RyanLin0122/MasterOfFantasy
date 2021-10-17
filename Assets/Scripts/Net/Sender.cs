@@ -616,7 +616,7 @@ public class TransactionSender : BaseSender
 }
 public class LockerSender : BaseSender
 {
-    public LockerSender(int OperationType, List<Item> items, int[] OldPos, int[] NewPos, long ribi = 0)
+    public LockerSender(int OperationType, List<Item> items, int[] OldPos, int[] NewPos)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -627,7 +627,20 @@ public class LockerSender : BaseSender
                 items = items,
                 OldPosition = OldPos,
                 NewPosition = NewPos,
-                Ribi = ribi
+                Ribi = 0
+            }
+        };
+        base.SendMsg(msg);
+    }
+    public LockerSender(int OperationType, long Ribi)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 50,
+            lockerOperation = new LockerOperation
+            {
+                OperationType = OperationType,
+                Ribi = Ribi
             }
         };
         base.SendMsg(msg);

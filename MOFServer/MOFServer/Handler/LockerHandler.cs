@@ -64,11 +64,10 @@ public class LockerHandler : GameHandler
                 else
                 {
                     //兩格交換物品交換(不同ID的物品)
-                    if (lo.items[0].ItemID != lo.items[0].ItemID)
+                    if (lo.items[0].ItemID != lo.items[1].ItemID)
                     {
-                        Item item = locker[lo.NewPosition[0]];
-                        locker[lo.NewPosition[0]] = locker[lo.OldPosition[0]];
-                        locker[lo.OldPosition[0]] = item;
+                        locker[lo.NewPosition[0]] = lo.items[0];
+                        locker[lo.OldPosition[0]] = lo.items[1];
                         locker[lo.OldPosition[0]].Position = lo.OldPosition[0];
                         locker[lo.NewPosition[0]].Position = lo.NewPosition[0];
 
@@ -126,11 +125,10 @@ public class LockerHandler : GameHandler
                     var knapsack = lo.items[0].IsCash ? (session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
                             (session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
                     //兩格交換物品交換(不同ID的物品)
-                    if (lo.items[0].ItemID != lo.items[0].ItemID)
+                    if (lo.items[0].ItemID != lo.items[1].ItemID)
                     {
-                        Item item = locker[lo.NewPosition[0]];
-                        locker[lo.NewPosition[0]] = knapsack[lo.OldPosition[0]];
-                        knapsack[lo.OldPosition[0]] = item;
+                        locker[lo.NewPosition[0]] = lo.items[0];
+                        knapsack[lo.OldPosition[0]] = lo.items[1];
                         knapsack[lo.OldPosition[0]].Position = lo.OldPosition[0];
                         locker[lo.NewPosition[0]].Position = lo.NewPosition[0];
                     }
@@ -161,6 +159,114 @@ public class LockerHandler : GameHandler
                 TryAddItemtoDic(knap, lo.items[0]);
                 locker.Remove(LockPos);
                 session.WriteAndFlush(msg);
+                break;
+            case 5: //從倉庫拿到背包非空格
+                if (lo.items.Count == 1)
+                {
+                    var knapsa = lo.items[0].IsCash ? (session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                           (session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+                    //移到第二格，刪除第一格(第一格物品數量完全補到第二格，或拖曳第一格到空格)
+                    if (!knapsa.ContainsKey(lo.NewPosition[0]))
+                    {
+                        knapsa.Add(lo.NewPosition[0], lo.items[0]);
+                    }
+                    else
+                    {
+                        knapsa[lo.NewPosition[0]] = lo.items[0];
+                    }
+                    knapsa[lo.NewPosition[0]].Position = lo.NewPosition[0];
+                    locker.Remove(lo.OldPosition[0]);
+                }
+                else
+                {
+                    var knapsack = lo.items[0].IsCash ? (session.ActivePlayer.CashKnapsack != null ? session.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                            (session.ActivePlayer.NotCashKnapsack != null ? session.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+                    //兩格交換物品交換(不同ID的物品)
+                    if (lo.items[0].ItemID != lo.items[1].ItemID)
+                    {
+                        knapsack[lo.NewPosition[0]] = lo.items[0];
+                        locker[lo.OldPosition[0]] = lo.items[1];
+                        locker[lo.OldPosition[0]].Position = lo.OldPosition[0];
+                        knapsack[lo.NewPosition[0]].Position = lo.NewPosition[0];
+                    }
+                    //兩格數量改變，(同ItemID)第一格物品補滿第二格還有剩
+                    else
+                    {
+                        for (int i = 0; i < lo.items.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                locker[lo.items[i].Position] = lo.items[i];
+                            }
+                            else
+                            {
+                                knapsack[lo.items[i].Position] = lo.items[i];
+                            }
+                        }
+                    }
+                }
+                session.WriteAndFlush(msg);
+                break;
+            case 6: //存錢
+                long AddRibi = lo.Ribi;
+                if (AddRibi > session.ActivePlayer.Ribi)
+                {
+                    //竄改資料Ban帳號
+                }
+                else
+                {
+                    switch (session.ActivePlayer.Server)
+                    {
+                        case 0:
+                            session.AccountData.LockerServer1Ribi += AddRibi;
+                            break;
+                        case 1:
+                            session.AccountData.LockerServer2Ribi += AddRibi;
+                            break;
+                        case 2:
+                            session.AccountData.LockerServer3Ribi += AddRibi;
+                            break;
+                    }
+                    session.ActivePlayer.Ribi -= AddRibi;
+                    session.WriteAndFlush(msg);
+                }
+                break;
+            case 7: //領錢
+                long MinusRibi = lo.Ribi;
+                long LockerRibi = 0;
+                switch (session.ActivePlayer.Server)
+                {
+                    case 0:
+                        LockerRibi = session.AccountData.LockerServer1Ribi;
+                        break;
+                    case 1:
+                        LockerRibi = session.AccountData.LockerServer2Ribi;
+                        break;
+                    case 2:
+                        LockerRibi = session.AccountData.LockerServer3Ribi;
+                        break;
+                }
+                if (MinusRibi > LockerRibi)
+                {
+                    //竄改資料Ban帳號
+                }
+                else
+                {
+                    switch (session.ActivePlayer.Server)
+                    {
+                        case 0:
+                            session.AccountData.LockerServer1Ribi -= MinusRibi;
+                            break;
+                        case 1:
+                            session.AccountData.LockerServer2Ribi -= MinusRibi;
+                            break;
+                        case 2:
+                            session.AccountData.LockerServer3Ribi -= MinusRibi;
+                            break;
+                    }
+                    session.ActivePlayer.Ribi += MinusRibi;
+                    session.WriteAndFlush(msg);
+                }
                 break;
         }
     }

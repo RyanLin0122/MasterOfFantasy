@@ -220,15 +220,93 @@ public class LockerWnd : Inventory
         IsOpen = false;
     }
 
+    #region 存錢和領錢
+    public GameObject AddRibiPanel;
+    public GameObject MinusRibiPanel;
+    public InputField AddRibiInput;
+    public InputField MinusRibiInput;
+    public long AddRibi = 0;
+    public long MinusRibi = 0;
     public void ClkPlusBtn()
     {
-
+        AddRibiPanel.SetActive(true);
+        MinusRibiPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddRibiInput.text = "";
+        AddRibi = 0;
+        MinusRibi = 0;
     }
     public void ClkMinusBtn()
     {
-
+        AddRibiPanel.SetActive(false);
+        MinusRibiPanel.SetActive(true);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        MinusRibiInput.text = "";
+        AddRibi = 0;
+        MinusRibi = 0;
+    }
+    public void CloseAddRibiPanel()
+    {
+        AddRibiPanel.SetActive(false);
+        MinusRibiPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddRibiInput.text = "";
+        MinusRibiInput.text = "";
+        AddRibi = 0;
+        MinusRibi = 0;
+    }
+    public void CloseMinusRibiPanel()
+    {
+        AddRibiPanel.SetActive(false);
+        MinusRibiPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddRibiInput.text = "";
+        MinusRibiInput.text = "";
+        AddRibi = 0;
+        MinusRibi = 0;
+    }
+    public void ClkSendAddRibi()
+    {
+        bool IsNumber = long.TryParse(AddRibiInput.text, out AddRibi);
+        if (IsNumber)
+        {
+            if (AddRibi > GameRoot.Instance.ActivePlayer.Ribi)
+            {
+                GameRoot.AddTips("你的背包沒那麼多錢喔");
+            }
+            else
+            {
+                new LockerSender(6, AddRibi);
+                CloseAddRibiPanel();
+            }
+        }
+        else
+        {
+            GameRoot.AddTips("請輸入數字喔");
+        }
+    }
+    public void ClkSendMinusRibi()
+    {
+        bool IsNumber = long.TryParse(MinusRibiInput.text, out MinusRibi);
+        if (IsNumber)
+        {
+            if(MinusRibi>LockerRibi)
+            {
+                GameRoot.AddTips("你的倉庫沒那麼多錢喔");
+            }
+            else
+            {
+                new LockerSender(7, MinusRibi);
+                CloseAddRibiPanel();
+            }
+        }
+        else
+        {
+            GameRoot.AddTips("請輸入數字喔");
+        }
     }
 
+    #endregion
     public List<int> GetEmptySlotPosition()
     {
         List<int> list = new List<int>();
@@ -381,18 +459,19 @@ public class LockerWnd : Inventory
                     if (lo.items[0].ItemID != lo.items[1].ItemID)
                     {
                         Debug.Log("交換兩格");
-                        Item item = locker[lo.NewPosition[0]];
-                        locker[lo.NewPosition[0]] = knapsack[lo.OldPosition[0]];
-                        knapsack[lo.OldPosition[0]] = item;
+                        locker[lo.NewPosition[0]] = lo.items[0];
+                        knapsack[lo.OldPosition[0]] = lo.items[1];
                         knapsack[lo.OldPosition[0]].Position = lo.OldPosition[0];
                         locker[lo.NewPosition[0]].Position = lo.NewPosition[0];
                         DestroyImmediate(FindSlot(lo.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
                         if (!knapsack[lo.OldPosition[0]].IsCash)
                         {
+                            KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).RemoveItemUI();
                             KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
                         }
                         else
                         {
+                            KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).RemoveItemUI();
                             KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
                         }
                         
@@ -436,13 +515,112 @@ public class LockerWnd : Inventory
                 FindSlot(lo.OldPosition[0]).RemoveItemUI();
                 break;
             case 5: //從倉庫拿到背包不是空格
-
+                var knap = lo.items[0].IsCash ? (GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                            (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+                if (lo.items.Count == 1)
+                {
+                    //移到第二格，刪除第一格
+                    lo.items[0].Position = lo.NewPosition[0];
+                    if (locker.ContainsKey(lo.NewPosition[0]))
+                    {
+                        locker[lo.NewPosition[0]] = lo.items[0];
+                    }
+                    else
+                    {
+                        locker.Add(lo.NewPosition[0], lo.items[0]);
+                    }
+                    locker.Remove(lo.OldPosition[0]);
+                    FindSlot(lo.OldPosition[0]).RemoveItemUI();
+                    if (lo.items[0].IsCash)
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                    }
+                    else
+                    {
+                        KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                    }
+                    
+                }
+                else if (lo.items.Count == 2)
+                {
+                    //兩格交換           
+                    if (lo.items[0].ItemID != lo.items[1].ItemID)
+                    {
+                        Debug.Log("交換兩格");
+                        knap[lo.NewPosition[0]] = lo.items[0];
+                        locker[lo.OldPosition[0]] = lo.items[1];
+                        locker[lo.OldPosition[0]].Position = lo.OldPosition[0];
+                        knap[lo.NewPosition[0]].Position = lo.NewPosition[0];
+                        if (!locker[lo.OldPosition[0]].IsCash)
+                        {
+                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).RemoveItemUI();
+                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        }
+                        else
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).RemoveItemUI();
+                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        }
+                        FindSlot(lo.OldPosition[0]).RemoveItemUI();
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
+                    }
+                    //兩格數量改變
+                    else
+                    {
+                        Debug.Log("兩格數量改變");
+                        locker[lo.OldPosition[0]].Count = lo.items[0].Count;
+                        knap[lo.NewPosition[0]].Count = lo.items[1].Count;
+                        if (!locker[lo.OldPosition[0]].IsCash)
+                        {
+                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        }
+                        else
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        }
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
+                    }
+                }
                 break;
             case 6: //存錢
-
+                switch (GameRoot.Instance.ActivePlayer.Server)
+                {
+                    case 0:
+                        GameRoot.Instance.AccountData.LockerServer1Ribi += lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer1Ribi;
+                        break;
+                    case 1:
+                        GameRoot.Instance.AccountData.LockerServer2Ribi += lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer2Ribi;
+                        break;
+                    case 2:
+                        GameRoot.Instance.AccountData.LockerServer3Ribi += lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer3Ribi;
+                        break;
+                }
+                RibiTxt.text = LockerRibi.ToString("N0");
+                GameRoot.Instance.ActivePlayer.Ribi -= lo.Ribi;
+                KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
                 break;
             case 7: //領錢
-
+                switch (GameRoot.Instance.ActivePlayer.Server)
+                {
+                    case 0:
+                        GameRoot.Instance.AccountData.LockerServer1Ribi -= lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer1Ribi;
+                        break;
+                    case 1:
+                        GameRoot.Instance.AccountData.LockerServer2Ribi -= lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer2Ribi;
+                        break;
+                    case 2:
+                        GameRoot.Instance.AccountData.LockerServer3Ribi -= lo.Ribi;
+                        LockerRibi = GameRoot.Instance.AccountData.LockerServer3Ribi;
+                        break;
+                }
+                RibiTxt.text = LockerRibi.ToString("N0");
+                GameRoot.Instance.ActivePlayer.Ribi += lo.Ribi;
+                KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
                 break;
             case 8: //整理
 

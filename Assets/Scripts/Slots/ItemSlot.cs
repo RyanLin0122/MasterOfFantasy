@@ -436,7 +436,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     {
         if (transform.childCount > 0)
         {
-            DestroyImmediate(transform.GetChild(0).GetComponent<ItemUI>());
+            DestroyImmediate(transform.GetChild(0).GetComponent<ItemUI>().gameObject);
         }
     }
 }
