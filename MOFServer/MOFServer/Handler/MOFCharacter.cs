@@ -670,7 +670,7 @@ public class MOFCharacter
 public class Transactor
 {
     //在交易的位置與物品
-    public Dictionary<int, Item> Items =new Dictionary<int, Item>();
+    public Dictionary<int, Item> Items = new Dictionary<int, Item>();
 
     //存一下放進交易欄的東西原本從哪來
     public Dictionary<int, Item> BackItem = new Dictionary<int, Item>();

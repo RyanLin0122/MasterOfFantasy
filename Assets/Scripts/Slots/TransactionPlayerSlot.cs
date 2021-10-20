@@ -24,16 +24,22 @@ public class TransactionPlayerSlot : ItemSlot
         {
             //把手上物品放進新格子
             Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.Capacity > 1 && PickedUpItem.Count > 1)
+            {
 
-            if (!PickedUpItem.IsCash)
-            {
-                GetComponent<ItemDragTarget>().Enabled = false;
-                new TransactionSender(5, UISystem.Instance.transationWnd.OtherName, SlotPosition, PickedUpItem.Position, PickedUpItem);
-                GameObject.Destroy(KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).GetComponentInChildren<ItemUI>());
             }
-            else//不可以交易的東西找到原本的位置存好
+            else
             {
-                KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                if (!PickedUpItem.Cantransaction)
+                {
+                    GetComponent<ItemDragTarget>().Enabled = false;
+                    new TransactionSender(5, UISystem.Instance.transationWnd.OtherName, SlotPosition, PickedUpItem.Position, PickedUpItem);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                }
+                else//不可以交易的東西找到原本的位置存好
+                {
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                }
             }
            
             
