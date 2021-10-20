@@ -26,7 +26,8 @@ public class TransactionPlayerSlot : ItemSlot
             Item PickedUpItem = (Item)data.Content;
             if (PickedUpItem.Capacity > 1 && PickedUpItem.Count > 1)
             {
-
+                TransationWnd.Instance.RegisterItem = PickedUpItem;
+                DragSystem.Instance.RemoveDragObject();
             }
             else
             {
@@ -34,11 +35,25 @@ public class TransactionPlayerSlot : ItemSlot
                 {
                     GetComponent<ItemDragTarget>().Enabled = false;
                     new TransactionSender(5, UISystem.Instance.transationWnd.OtherName, SlotPosition, PickedUpItem.Position, PickedUpItem);
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                    if (!PickedUpItem.IsCash)
+                    {
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                    }
+                    else
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).RemoveItemUI();
+                    }
                 }
                 else//不可以交易的東西找到原本的位置存好
                 {
-                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    if (!PickedUpItem.IsCash)
+                    {
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    }
+                    else
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    }
                 }
             }
            

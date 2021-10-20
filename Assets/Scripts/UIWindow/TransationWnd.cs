@@ -35,8 +35,8 @@ public class TransationWnd : Inventory
     public GameObject SlotPanel2;
     public GameObject PlayerConfirm;
     public GameObject OtherConfirm;
-
-
+    public int RegisterCount = 0;
+    public Item RegisterItem = null;
 
     protected override void InitWnd()
     {
@@ -50,7 +50,7 @@ public class TransationWnd : Inventory
         coin2Txt.text = "0";
         AddRibiPanel.SetActive(false);
         base.InitWnd();
-        
+
     }
 
     public void ClickCloseBtn()
@@ -59,7 +59,7 @@ public class TransationWnd : Inventory
     }
 
 
-    public void SetNames(string PlayerName,string OtherName)
+    public void SetNames(string PlayerName, string OtherName)
     {
         this.OtherName = PlayerName;
         this.PlayerName = OtherName;
@@ -67,8 +67,6 @@ public class TransationWnd : Inventory
         Name2Txt.text = this.OtherName + "的項目";
 
     }
-
-
 
     public void StartTransactioin(string PlayerName, string OtherName)
     {
@@ -88,8 +86,8 @@ public class TransationWnd : Inventory
         {
             foreach (var slot in slotLists[i])
             {
-                
-                if(slot.HasItem())
+
+                if (slot.HasItem())
                 {
                     GameObject obj = slot.GetComponentInChildren<ItemUI>().gameObject;
                     Destroy(obj);
@@ -143,13 +141,13 @@ public class TransationWnd : Inventory
 
     }
 
-    public void StoreItemToBag(Dictionary<int,Item> Items,long ribi = 0)
+    public void StoreItemToBag(Dictionary<int, Item> Items, long ribi = 0)
     {
         GameRoot.Instance.ActivePlayer.Ribi += ribi;
         KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
 
 
-        if(Items!=null)
+        if (Items != null)
         {
             foreach (var pos in Items.Keys)
             {
@@ -157,11 +155,6 @@ public class TransationWnd : Inventory
             }
 
         }
-
-        
-
-
-
     }
 
     public GameObject AddRibiPanel;
@@ -189,8 +182,8 @@ public class TransationWnd : Inventory
             {
                 Rubisum += AddRibi;
                 coin1Txt.text = Rubisum.ToString("N0");
-                KnapsackWnd.Instance.RibiTxt.text = (GameRoot.Instance.ActivePlayer.Ribi- Rubisum).ToString("N0");
-                new TransactionSender(6,OtherName, Rubisum);
+                KnapsackWnd.Instance.RibiTxt.text = (GameRoot.Instance.ActivePlayer.Ribi - Rubisum).ToString("N0");
+                new TransactionSender(6, OtherName, Rubisum);
                 CloseAddRibiPanel();
             }
         }
@@ -199,7 +192,10 @@ public class TransationWnd : Inventory
             GameRoot.AddTips("請輸入數字喔");
         }
     }
+    public void ClickRegisterItemNumber()
+    {
 
+    }
     public void CloseAddRibiPanel()
     {
         AddRibiPanel.SetActive(false);
@@ -238,21 +234,21 @@ public class TransationWnd : Inventory
                 //開啟交易
                 StartTransactioin(rsp.PlayerName, rsp.OtherPlayerName);
                 break;
-            
+
 
             case 4://不回應
                 MessageBox.Show(rsp.PlayerName + "可能再忙，或不想理你");
                 break;
 
             case 5://自己欄位顯示物品
-                Panel1.Add(rsp.TransactionPos,rsp.item);
-                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
+                Panel1.Add(rsp.TransactionPos, rsp.item);
+                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item, rsp.item.Count);
                 break;
 
             case 6://對方欄位顯示物品
 
                 Panel2.Add(rsp.TransactionPos, rsp.item);
-                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
+                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item, rsp.item.Count);
 
                 break;
 
@@ -261,20 +257,20 @@ public class TransationWnd : Inventory
                 MessageBox.Show(OtherName + "已取消交易");
                 StoreItemToBag(rsp.PlayerItems);
 
-                
+
 
                 break;
             case 8://主動取消交易 交易成功
                 EndTransaction();
                 StoreItemToBag(rsp.PlayerItems, rsp.PutRubi);
-                
+
                 break;
 
             case 9:
                 EndTransaction();
                 MessageBox.Show("交易失敗，檢查一下空間是否不足");
                 StoreItemToBag(rsp.PlayerItems);
-                
+
                 break;
 
             case 10://對方已確認
