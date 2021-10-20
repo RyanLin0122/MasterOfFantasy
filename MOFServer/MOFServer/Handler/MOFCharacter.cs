@@ -674,7 +674,7 @@ public class Transactor
 
     //存一下放進交易欄的東西原本從哪來
     public Dictionary<int, Item> BackItem = new Dictionary<int, Item>();
-    public int Rubi = 0;
+    public long Rubi = 0;
     public bool IsReady = false;
 
 }

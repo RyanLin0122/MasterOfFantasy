@@ -613,6 +613,24 @@ public class TransactionSender : BaseSender
         };
         base.SendMsg(msg);
     }
+
+    public TransactionSender(int OperationType, string OtherName, long Ribi)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 48,
+            transactionRequest = new TransactionRequest
+            {
+                OperationType = OperationType,
+                PlayerName = GameRoot.Instance.ActivePlayer.Name,
+                OtherPlayerName = OtherName,
+                PutRubi = Ribi
+            }
+        };
+        base.SendMsg(msg);
+
+    }
+
 }
 public class LockerSender : BaseSender
 {

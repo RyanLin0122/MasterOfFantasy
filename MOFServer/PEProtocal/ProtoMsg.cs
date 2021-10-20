@@ -1328,7 +1328,7 @@ namespace PEProtocal
         public int OperationType { get; set; }
 
         [ProtoMember(4, IsRequired = false)]
-        public long PlayerRubi { get; set; }
+        public long PutRubi { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
         [ProtoMember(6, IsRequired = false)]
@@ -1362,7 +1362,7 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public int OperationType { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public long PlayerRubi { get; set; }
+        public long PutRubi { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public Dictionary<int, Item> PlayerItems { get; set; } // position, Item
         [ProtoMember(8, IsRequired = false)]

@@ -28,6 +28,8 @@ public class TransationWnd : Inventory
     public Text Name1Txt;
     public Text Name2Txt;
     public Text coin1Txt;
+    int ribi1;
+    int ribi2;
     public Text coin2Txt;
     public GameObject SlotPanel1;
     public GameObject SlotPanel2;
@@ -43,8 +45,12 @@ public class TransationWnd : Inventory
         slotLists.Add(SlotPanel2.GetComponentsInChildren<TransactionPlayerSlot>());
         PlayerConfirm.SetActive(false);
         OtherConfirm.SetActive(false);
-;
+        Rubisum = 0;
+        coin1Txt.text = "0";
+        coin2Txt.text = "0";
+        AddRibiPanel.SetActive(false);
         base.InitWnd();
+        
     }
 
     public void ClickCloseBtn()
@@ -67,7 +73,7 @@ public class TransationWnd : Inventory
     public void StartTransactioin(string PlayerName, string OtherName)
     {
         UISystem.Instance.OpenTransationWnd(PlayerName, OtherName);
-        KnapsackWnd.Instance.KeyBoardCommand();
+        KnapsackWnd.Instance.OpenAndPush();
         KnapsackWnd.Instance.IsTransaction = true;
         Panel1 = new Dictionary<int, Item>();
         Panel2 = new Dictionary<int, Item>();
@@ -95,10 +101,11 @@ public class TransationWnd : Inventory
     public void EndTransaction()
     {
         KnapsackWnd.Instance.IsTransaction = false;
-        KnapsackWnd.Instance.KeyBoardCommand();
+        KnapsackWnd.Instance.CloseAndPop();
         UISystem.Instance.CloseTransationWnd();
 
         TradeBtn.interactable = true;
+        InputBtn.interactable = true;
         SetDragable(true);
         ClearPanel();
         Panel1 = null;
@@ -117,6 +124,7 @@ public class TransationWnd : Inventory
     {
         PlayerConfirm.SetActive(true);
         TradeBtn.interactable = false;
+        InputBtn.interactable = false;
         SetDragable(false);
     }
 
@@ -135,15 +143,75 @@ public class TransationWnd : Inventory
 
     }
 
-    public void StoreItemToBag(Dictionary<int,Item> Items)
+    public void StoreItemToBag(Dictionary<int,Item> Items,long ribi = 0)
     {
-        foreach(var pos in Items.Keys)
+        GameRoot.Instance.ActivePlayer.Ribi += ribi;
+        KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
+
+
+        if(Items!=null)
         {
-            KnapsackWnd.Instance.FindSlot(pos).StoreItem(Items[pos], Items[pos].Count);
+            foreach (var pos in Items.Keys)
+            {
+                KnapsackWnd.Instance.FindSlot(pos).StoreItem(Items[pos], Items[pos].Count);
+            }
+
+        }
+
+        
+
+
+
+    }
+
+    public GameObject AddRibiPanel;
+    public InputField AddRibiInput;
+    public long AddRibi = 0;
+    public long Rubisum = 0;
+
+    public void ClkPlusBtn()
+    {
+        AddRibiPanel.SetActive(true);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddRibiInput.text = "";
+        AddRibi = 0;
+    }
+    public void ClkSendAddRibi()
+    {
+        bool IsNumber = long.TryParse(AddRibiInput.text, out AddRibi);
+        if (IsNumber)
+        {
+            if ((Rubisum + AddRibi) > GameRoot.Instance.ActivePlayer.Ribi)
+            {
+                GameRoot.AddTips("你的背包沒那麼多錢喔");
+            }
+            else
+            {
+                Rubisum += AddRibi;
+                coin1Txt.text = Rubisum.ToString("N0");
+                KnapsackWnd.Instance.RibiTxt.text = (GameRoot.Instance.ActivePlayer.Ribi- Rubisum).ToString("N0");
+                new TransactionSender(6,OtherName, Rubisum);
+                CloseAddRibiPanel();
+            }
+        }
+        else
+        {
+            GameRoot.AddTips("請輸入數字喔");
         }
     }
 
+    public void CloseAddRibiPanel()
+    {
+        AddRibiPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddRibiInput.text = "";
+        AddRibi = 0;
+    }
 
+    public void ShowRibi(long ribi)
+    {
+        coin2Txt.text = (ribi).ToString("N0");
+    }
 
     Dictionary<int, Item> Panel1 = null;
     Dictionary<int, Item> Panel2 = null;
@@ -176,12 +244,12 @@ public class TransationWnd : Inventory
                 MessageBox.Show(rsp.PlayerName + "可能再忙，或不想理你");
                 break;
 
-            case 5://自己欄位顯示
+            case 5://自己欄位顯示物品
                 Panel1.Add(rsp.TransactionPos,rsp.item);
                 slotLists[0][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
                 break;
 
-            case 6://對方欄位顯示
+            case 6://對方欄位顯示物品
 
                 Panel2.Add(rsp.TransactionPos, rsp.item);
                 slotLists[1][rsp.TransactionPos].StoreItem(rsp.item,rsp.item.Count);
@@ -198,7 +266,7 @@ public class TransationWnd : Inventory
                 break;
             case 8://主動取消交易 交易成功
                 EndTransaction();
-                StoreItemToBag(rsp.PlayerItems);
+                StoreItemToBag(rsp.PlayerItems, rsp.PutRubi);
                 
                 break;
 
@@ -214,13 +282,18 @@ public class TransationWnd : Inventory
                 OtherConfirmUI();
                 break;
 
+            case 11://錢錢放上去
+
+                ShowRibi(rsp.PutRubi);
+
+                break;
+
 
         }
 
 
 
     }
-
 
 
 

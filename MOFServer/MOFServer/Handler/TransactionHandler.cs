@@ -25,14 +25,11 @@ public class TransactionHandler : GameHandler
                 ProcessInvite(req, session);
                 break;
             case 3://開啟交易 建立transactor
-           
                 StartTransaction(req, session);
-
                 break;
             case 4://在messageBox階段案取消或是叉叉
                 ProcessInvite(req, session);
                 break;
-
             case 5:
                 AddItem(req, session);
                 break;
@@ -78,7 +75,30 @@ public class TransactionHandler : GameHandler
     }
     public void PutRibi(TransactionRequest req, ServerSession session)
     {
-        //錢錢的部分
+        long AddRibi = req.PutRubi;
+
+        if (AddRibi > session.ActivePlayer.Ribi)
+        {
+            //竄改資料Ban帳號
+        }
+        else
+        {
+
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Rubi = AddRibi;
+
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 49,
+                transactionResponse = new TransactionResponse
+                {
+                    OperationType = 11,
+                    PutRubi = AddRibi,
+
+                }
+            };
+
+            CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
+        }
     }
 
 
@@ -104,7 +124,8 @@ public class TransactionHandler : GameHandler
             transactionResponse = new TransactionResponse
             {
                 OperationType = type1,
-                PlayerItems = PlayerBackItem
+                PlayerItems = PlayerBackItem,
+                PutRubi = 0
 
             }
         };
@@ -125,8 +146,8 @@ public class TransactionHandler : GameHandler
             transactionResponse = new TransactionResponse
             {
                 OperationType = type2,
-                PlayerItems = OtherBackItem
-
+                PlayerItems = OtherBackItem,
+                PutRubi = 0
             }
         };
         CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg2);
@@ -150,6 +171,13 @@ public class TransactionHandler : GameHandler
             Dictionary<int, Item> transactor2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Items;
             int RequiredNum1 = transactor2.Count;
             int RequiredNum2 = transactor1.Count;
+            long Ribi1 = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Rubi;//player 給出去的錢
+            long Ribi2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Rubi;      //other 給出去的錢
+
+            session.ActivePlayer.Ribi += (Ribi2-Ribi1);
+            CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.Ribi += (Ribi1-Ribi2);
+
+
 
             Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
             Dictionary<int, Item> othernk = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
@@ -166,7 +194,9 @@ public class TransactionHandler : GameHandler
                     transactionResponse = new TransactionResponse
                     {
                         OperationType = 8,
-                        PlayerItems = BackItemDict(transactor2, EmptyNonCashSlots1.Item2)
+                        PlayerItems = BackItemDict(transactor2, EmptyNonCashSlots1.Item2),
+                        PutRubi = Ribi2 - Ribi1
+
                     }
                 };
 
@@ -176,7 +206,8 @@ public class TransactionHandler : GameHandler
                     transactionResponse = new TransactionResponse
                     {
                         OperationType = 8,
-                        PlayerItems = BackItemDict(transactor1, EmptyNonCashSlots2.Item2)
+                        PlayerItems = BackItemDict(transactor1, EmptyNonCashSlots2.Item2),
+                        PutRubi = Ribi1 - Ribi2
                     }
                 };
 
@@ -195,6 +226,10 @@ public class TransactionHandler : GameHandler
                     othernk.Add(EmptyNonCashSlots2.Item2[iter], transactor1[pos]);
                     iter++;
                 }
+
+
+
+
 
                 CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = null;
                 CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor = null;
