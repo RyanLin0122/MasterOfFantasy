@@ -35,8 +35,7 @@ public class TransationWnd : Inventory
     public GameObject SlotPanel2;
     public GameObject PlayerConfirm;
     public GameObject OtherConfirm;
-    public int RegisterCount = 0;
-    public Item RegisterItem = null;
+
 
     protected override void InitWnd()
     {
@@ -49,6 +48,7 @@ public class TransationWnd : Inventory
         coin1Txt.text = "0";
         coin2Txt.text = "0";
         AddRibiPanel.SetActive(false);
+        RegisterNumPanel.SetActive(false);
         base.InitWnd();
 
     }
@@ -145,13 +145,39 @@ public class TransationWnd : Inventory
     {
         GameRoot.Instance.ActivePlayer.Ribi += ribi;
         KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
-
+        //0-8 item
+        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
 
         if (Items != null)
         {
             foreach (var pos in Items.Keys)
             {
-                KnapsackWnd.Instance.FindSlot(pos).StoreItem(Items[pos], Items[pos].Count);
+                Item item = Items[pos];
+                if (!Items[pos].IsCash)
+                {
+                    if (nk.ContainsKey(item.Position))//如果原本的空位上有東西  家數量上去
+                    {
+                        KnapsackWnd.Instance.FindSlot(Items[pos].Position).RemoveItemUI();
+                        item.Count += nk[item.Position].Count;
+                        
+
+                    }
+                    KnapsackWnd.Instance.FindSlot(Items[pos].Position).StoreItem(Items[pos], Items[pos].Count);
+                    nk[item.Position] = item;
+                }
+
+                else
+                {
+                    if (ck.ContainsKey(item.Position))
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(Items[pos].Position).RemoveItemUI();
+                        item.Count += nk[item.Position].Count;
+                    }
+                    KnapsackWnd.Instance.FindCashSlot(Items[pos].Position).StoreItem(Items[pos], Items[pos].Count);
+                    ck[item.Position] = item;
+                }
+
             }
 
         }
@@ -192,10 +218,7 @@ public class TransationWnd : Inventory
             GameRoot.AddTips("請輸入數字喔");
         }
     }
-    public void ClickRegisterItemNumber()
-    {
 
-    }
     public void CloseAddRibiPanel()
     {
         AddRibiPanel.SetActive(false);
@@ -209,6 +232,113 @@ public class TransationWnd : Inventory
         coin2Txt.text = (ribi).ToString("N0");
     }
 
+
+
+    public GameObject RegisterNumPanel;
+    public InputField RegisterNumInput;
+    int AddNum;
+    public int RegisterCount = 0;
+    public Item RegisterItem = null;
+    public int slotPosition = 0;
+
+    public void ClickCancelRigisterBtn()
+    {
+        if (!RegisterItem.IsCash)
+        {
+            KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+        }
+        else
+        {
+            KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+        }
+        ClosRegisterNumPanel();
+    }
+
+    public void ClosRegisterNumPanel()
+    {
+        RegisterNumPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        RegisterNumInput.text = "";
+        AddNum = 0;
+    }
+    public void OpenRegisterNumPanel()
+    {
+        RegisterNumPanel.SetActive(true);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        AddNum = 0;
+        RegisterNumInput.text = "";
+    }
+    public void SendRegisterItemNumber()
+    {
+        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+        bool IsNumber = int.TryParse(RegisterNumInput.text, out AddNum);
+        if (IsNumber && AddNum>0)
+        {
+            if ((AddNum) > RegisterItem.Count)
+            {
+                GameRoot.AddTips($"物品只有{RegisterItem.Count}個喔");
+            }
+            else
+            {
+                if(AddNum == RegisterItem.Count)//數量若為最大數量
+                {
+                    new TransactionSender(5, OtherName, slotPosition, RegisterItem.Position, RegisterItem);
+                    if (!RegisterItem.IsCash)
+                    {
+                        nk.Remove(RegisterItem.Position);
+                        
+                        KnapsackWnd.Instance.FindSlot(RegisterItem.Position).RemoveItemUI();
+                    }
+                    else
+                    {
+                        ck.Remove(RegisterItem.Position);
+                        KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).RemoveItemUI();
+                    }
+                }
+                else
+                {
+                    int count = RegisterItem.Count;
+                    RegisterItem.Count = AddNum;
+                    new TransactionSender(9, OtherName, slotPosition, RegisterItem.Position, RegisterItem);
+                    RegisterItem.Count = count - AddNum;
+                    if (!RegisterItem.IsCash)
+                    {
+                        nk[RegisterItem.Position].Count = RegisterItem.Count;
+                        KnapsackWnd.Instance.FindSlot(RegisterItem.Position).RemoveItemUI();
+                        KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                    }
+                    else
+                    {
+                        ck[RegisterItem.Position].Count = RegisterItem.Count;
+                        KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).RemoveItemUI();
+                        KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                    }
+                }
+                slotLists[0][slotPosition].GetComponent<ItemDragTarget>().enabled = false;
+                print("false");
+                ClosRegisterNumPanel();
+            }
+        }
+        else
+        {
+            if(!IsNumber)
+                GameRoot.AddTips("請輸入數字喔");
+            else
+            {
+                ClosRegisterNumPanel();
+                if (!RegisterItem.IsCash)
+                {
+                    KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                }
+                else
+                {
+                    KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                }
+            }
+        }
+
+    }
     Dictionary<int, Item> Panel1 = null;
     Dictionary<int, Item> Panel2 = null;
 

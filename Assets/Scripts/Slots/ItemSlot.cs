@@ -126,6 +126,10 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
                 color = "red";
                 break;
         }
+        Result += item.Position;
+        Result += "\n";
+        Result += item.Count;
+        Result += "\n";
         Result += string.Format("<color={0}>{1}</color>\n", color, item.Name);
         color = "white";
         if (item.ItemID > 1000 && item.ItemID <= 3000)
