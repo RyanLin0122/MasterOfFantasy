@@ -31,6 +31,7 @@ public class LockerWnd : Inventory
     public Color Txtcolor;
     public bool HasInitialized = false;
     public long LockerRibi = 0L;
+
     protected override void InitWnd()
     {
         if (!HasInitialized)
@@ -307,6 +308,7 @@ public class LockerWnd : Inventory
     }
 
     #endregion
+
     public List<int> GetEmptySlotPosition()
     {
         List<int> list = new List<int>();

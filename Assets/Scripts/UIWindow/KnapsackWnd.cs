@@ -692,6 +692,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         SetWndState();
         IsOpen = true;
         UISystem.Instance.Push(this);
+
     }
     public void CloseAndPop()
     {

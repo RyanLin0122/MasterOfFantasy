@@ -2,60 +2,67 @@
 using System;
 using System.Collections.Generic;
 
-
 public class TransactionHandler : GameHandler
 {
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
         TransactionRequest req = msg.transactionRequest;
-
-
-
         if (req == null)
         {
             SendErrorBack(1, session);
             return;
         }
         //收到封包後處理狀況
-        //1.發起邀請(右鍵人物option交易) 2. 發出接受. 3.開啟交易 4. 發出不想交易  5.上傳物品 6. 上船金錢 7.中斷交易 8.確定交易
+        //1. 發起邀請(右鍵人物option交易)
+        //2. 發出接受
+        //3. 開啟交易
+        //4. 發出不想交易
+        //5. 上傳物品
+        //6. 上船金錢
+        //7. 中斷交易
+        //8. 確定交易
         switch (req.OperationType)
         {
-            case 1://1.發起邀請(右鍵人物option交易)
-            case 2://2.點及messageBox的確定
-                ProcessInvite(req, session);
+            case 1: //1.發起邀請(右鍵人物option交易)
+            case 2: //2.點擊messageBox的確定
+                ProcessInvitationResponse(req, session);
                 break;
             case 3://開啟交易 建立transactor
-           
                 StartTransaction(req, session);
-
                 break;
             case 4://在messageBox階段案取消或是叉叉
-                ProcessInvite(req, session);
+                ProcessInvitationResponse(req, session);
                 break;
-
             case 5:
                 AddItem(req, session);
                 break;
-
             case 6:
                 PutRibi(req, session);
                 break;
-
             case 7:
                 ProcessCancel(req, session);
                 break;
             case 8:
                 ProcessTransaction(req, session);
                 break;
-            case 10:
-                //ProcessToKnapsack(req, session);
+            case 9:
+                AddPartialItem(req, session);
                 break;
         }
     }
-    public void ProcessInvite(TransactionRequest req, ServerSession session)
+    public void ProcessInvitationResponse(TransactionRequest req, ServerSession session)
     {
-        (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].ProcessTransactionInvite(req.PlayerName, req.OtherPlayerName,req.OperationType);
-      
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 49,
+            transactionResponse = new TransactionResponse
+            {
+                PlayerName = session.ActivePlayer.Name,
+                OtherPlayerName = req.OtherPlayerName,
+                OperationType = req.OperationType
+            }
+        };
+        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
     }
 
     public void StartTransaction(TransactionRequest req, ServerSession session)
@@ -63,79 +70,165 @@ public class TransactionHandler : GameHandler
         CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = new Transactor();
     }
 
-
     public void AddItem(TransactionRequest req, ServerSession session)
     {
-        
         CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items[req.TransactionPos] = req.item;
         AddItemShow(session.ActivePlayer.Name, req.OtherPlayerName, req.TransactionPos, req.item);
 
         //先把原本物品位置存在transactor 再把物品從背包刪掉
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem[req.KnapsackPos] = req.item;
-        Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
-        nk.Remove(req.KnapsackPos);
-        
+        //CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem[req.KnapsackPos] = req.item;
+        Dictionary<int, Item> knapsack = null;
+        if (req.item.IsCash)
+        {
+            knapsack = session.ActivePlayer.CashKnapsack;
+        }
+        else
+        {
+            knapsack = session.ActivePlayer.NotCashKnapsack;
+        }
+        knapsack.Remove(req.KnapsackPos);
+
     }
-    public void PutRibi(TransactionRequest req, ServerSession session)
+    public void AddPartialItem(TransactionRequest req, ServerSession session)
     {
-        //錢錢的部分
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items[req.TransactionPos] = req.item;
+        AddItemShow(session.ActivePlayer.Name, req.OtherPlayerName, req.TransactionPos, req.item);
+
+        //CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem[req.KnapsackPos] = req.item;
+        Dictionary<int, Item> knapsack = null;
+        if (req.item.IsCash)
+        {
+            knapsack = session.ActivePlayer.CashKnapsack;
+        }
+        else
+        {
+            knapsack = session.ActivePlayer.NotCashKnapsack;
+        }
+        int RestCount = 0;
+        RestCount = knapsack[req.KnapsackPos].Count - req.item.Count;
+        if (RestCount > 0)
+        {
+            knapsack[req.KnapsackPos].Count = RestCount;
+        }
+        else
+        {
+            knapsack.Remove(req.KnapsackPos);
+        }
     }
 
+    public void PutRibi(TransactionRequest req, ServerSession session)
+    {
+        long AddRibi = req.PutRubi;
+
+        if (AddRibi > session.ActivePlayer.Ribi)
+        {
+            //竄改資料Ban帳號
+        }
+        else
+        {
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Rubi = AddRibi;
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 49,
+                transactionResponse = new TransactionResponse
+                {
+                    OperationType = 11,
+                    PutRubi = AddRibi,
+                }
+            };
+            CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
+        }
+    }
 
     public void ProcessCancel(TransactionRequest req, ServerSession session)
     {
-
         int type1 = (req.OperationType == 7) ? 8 : 9;
         int type2 = (req.OperationType == 7) ? 7 : 9;
         //回傳主動取消交易封包
-        
-
         Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
-        Dictionary<int, Item> PlayerBackItem = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem;
+        Dictionary<int, Item> ck = session.ActivePlayer.CashKnapsack;
+        Dictionary<int, Item> transactorItem1 = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items;
+       // Dictionary<int, Item> PlayerBackItem = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.BackItem;
 
-        foreach (var pos in PlayerBackItem.Keys)
+        foreach (var pos in transactorItem1.Keys)
         {
-            nk.Add(pos, PlayerBackItem[pos]);
+            Item item = transactorItem1[pos];
+            if (item.IsCash)
+            {
+                if(ck.ContainsKey(item.Position))
+                {
+                    ck[item.Position].Count += item.Count;
+                }
+                else
+                    ck.Add(item.Position, item);
+            }
+            else
+            {
+                if (nk.ContainsKey(item.Position))
+                {
+                    nk[item.Position].Count += item.Count;
+                }
+                else
+                    nk.Add(item.Position, item);
+            }
+            
         }
-
         ProtoMsg msg1 = new ProtoMsg
         {
             MessageType = 49,
             transactionResponse = new TransactionResponse
             {
                 OperationType = type1,
-                PlayerItems = PlayerBackItem
-
+                PlayerItems = transactorItem1,
+                PutRubi = 0
             }
         };
         CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].session.WriteAndFlush(msg1);
-
         //回傳被取消交易封包
+        Dictionary<int, Item> nk2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
+        Dictionary<int, Item> ck2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.CashKnapsack;
+        Dictionary<int, Item> transactorItem2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Items;
+        //Dictionary<int, Item> OtherBackItem = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.BackItem;
 
-        Dictionary<int, Item> othernk = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
-        Dictionary<int, Item> OtherBackItem = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.BackItem;
-        foreach (var pos in OtherBackItem.Keys)
+        foreach (var pos in transactorItem2.Keys)
         {
-            othernk.Add(pos, OtherBackItem[pos]);
-        }
+            Item item = transactorItem2[pos];
+            if (item.IsCash)
+            {
+                if (ck2.ContainsKey(item.Position))
+                {
+                    ck2[item.Position].Count += item.Count;
+                }
+                else
+                    ck2.Add(item.Position, item);
+            }
+            else
+            {
+                if (nk2.ContainsKey(item.Position))
+                {
+                    nk2[item.Position].Count += item.Count;
+                }
+                else
+                    nk2.Add(item.Position, item);
+            }
 
+        }
         ProtoMsg msg2 = new ProtoMsg
         {
             MessageType = 49,
             transactionResponse = new TransactionResponse
             {
                 OperationType = type2,
-                PlayerItems = OtherBackItem
-
+                PlayerItems = transactorItem2,
+                PutRubi = 0
             }
         };
-        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg2);
 
+        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg2);
         CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = null;
         CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor = null;
-
     }
-    
+
     public void ProcessTransaction(TransactionRequest req, ServerSession session)
     {
         //把自己狀態改成準備完成
@@ -145,20 +238,49 @@ public class TransactionHandler : GameHandler
         if (CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.IsReady)
         {
             //檢查囉...
-            //player要給出去的物品            //other 要給出去的物品             //player需要的空格            //other需要
+            //player要給出去的物品            
+            //other 要給出去的物品             
             Dictionary<int, Item> transactor1 = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Items;
             Dictionary<int, Item> transactor2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Items;
-            int RequiredNum1 = transactor2.Count;
-            int RequiredNum2 = transactor1.Count;
+            long Ribi1 = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor.Rubi;//player 給出去的錢
+            long Ribi2 = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].transactor.Rubi;      //other 給出去的錢
+            session.ActivePlayer.Ribi += (Ribi2 - Ribi1);
+            CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.Ribi += (Ribi1 - Ribi2);
 
+            //計算需要的空格
+            int RequiredNum1_NotCash = 0;
+            int RequiredNum1_Cash = 0;
+            if (transactor2.Count > 0)
+            {
+                foreach (var pos in transactor2.Keys)
+                {
+                    if (transactor2[pos].IsCash) RequiredNum1_Cash++;
+                    else RequiredNum1_NotCash++;
+                }
+            }
+
+            int RequiredNum2_NotCash = 0;
+            int RequiredNum2_Cash = 0;
+            if (transactor1.Count > 0)
+            {
+                foreach (var pos in transactor1.Keys)
+                {
+                    if (transactor1[pos].IsCash) RequiredNum2_Cash++;
+                    else RequiredNum2_NotCash++;
+                }
+            }
+
+            Dictionary<int, Item> ck = session.ActivePlayer.CashKnapsack;
             Dictionary<int, Item> nk = session.ActivePlayer.NotCashKnapsack;
+            Dictionary<int, Item> otherck = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.CashKnapsack;
             Dictionary<int, Item> othernk = CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.ActivePlayer.NotCashKnapsack;
 
-            (bool, List<int>) EmptyNonCashSlots1 = IsEmptySlotEnough(nk, RequiredNum1, 72, 1);
-            (bool, List<int>) EmptyNonCashSlots2 = IsEmptySlotEnough(othernk, RequiredNum2, 72, 1);
+            (bool, List<int>) EmptyNonCashSlots1 = IsEmptySlotEnough(nk, RequiredNum1_NotCash, 72, 1);
+            (bool, List<int>) EmptyCashSlots1 = IsEmptySlotEnough(ck, RequiredNum1_Cash, 24, 1);
+            (bool, List<int>) EmptyNonCashSlots2 = IsEmptySlotEnough(othernk, RequiredNum2_NotCash, 72, 1);
+            (bool, List<int>) EmptyCashSlots2 = IsEmptySlotEnough(otherck, RequiredNum2_Cash, 24, 1);
 
-
-            if (EmptyNonCashSlots1.Item1 && EmptyNonCashSlots2.Item1)//格子都夠的話
+            if (EmptyNonCashSlots1.Item1 && EmptyNonCashSlots2.Item1 && EmptyCashSlots1.Item1 && EmptyCashSlots2.Item1)//格子都夠的話
             {
                 ProtoMsg msg1 = new ProtoMsg
                 {
@@ -166,34 +288,60 @@ public class TransactionHandler : GameHandler
                     transactionResponse = new TransactionResponse
                     {
                         OperationType = 8,
-                        PlayerItems = BackItemDict(transactor2, EmptyNonCashSlots1.Item2)
+                        PlayerItems = transactor2,
+                        PutRubi = Ribi2 - Ribi1
                     }
                 };
-
                 ProtoMsg msg2 = new ProtoMsg
                 {
                     MessageType = 49,
                     transactionResponse = new TransactionResponse
                     {
                         OperationType = 8,
-                        PlayerItems = BackItemDict(transactor1, EmptyNonCashSlots2.Item2)
+                        PlayerItems = transactor1,
+                        PutRubi = Ribi1 - Ribi2
                     }
                 };
 
-                
-                int iter = 0;
+
+                int iter_Cash = 0;
+                int iter_NotCash = 0;
                 foreach (var pos in transactor2.Keys)
                 {
-                    Console.WriteLine("pos");
-                    nk.Add(EmptyNonCashSlots1.Item2[iter], transactor2[pos]);
-                    iter++;
+                    Item item = transactor2[pos];
+                    if (!item.IsCash)
+                    {
+                        item.Position = EmptyNonCashSlots1.Item2[iter_NotCash];
+                        iter_NotCash++;
+                        nk.Add(item.Position, item);
+                    }
+                    else
+                    {
+                        item.Position = EmptyCashSlots1.Item2[iter_Cash];
+                        iter_Cash++;
+                        ck.Add(item.Position, item);
+                    }
+                    
                 }
 
-                iter = 0;
+                iter_Cash = 0;
+                iter_NotCash = 0;
                 foreach (var pos in transactor1.Keys)
                 {
-                    othernk.Add(EmptyNonCashSlots2.Item2[iter], transactor1[pos]);
-                    iter++;
+                    Item item = transactor1[pos];
+                    if (!item.IsCash)
+                    {
+                        item.Position = EmptyNonCashSlots2.Item2[iter_NotCash];
+                        iter_NotCash++;
+                        othernk.Add(item.Position, item);
+                    }
+                    else
+                    {
+                        item.Position = EmptyCashSlots2.Item2[iter_Cash];
+                        iter_Cash++;
+                        otherck.Add(item.Position, item);
+                    }
+
                 }
 
                 CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = null;
@@ -206,13 +354,12 @@ public class TransactionHandler : GameHandler
             else//交易失敗 跑取消流程 
             {
                 ProcessCancel(req, session);
-               
             }
 
         }
         else//在對方的畫面顯示確認UI
         {
-           
+
             ProtoMsg msg = new ProtoMsg
             {
                 MessageType = 49,
@@ -223,12 +370,9 @@ public class TransactionHandler : GameHandler
             };
             CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
         }
-
     }
 
-
-
-    public void AddItemShow(string PlayerName, string OtherPlayerName, int TransactionPos,Item item)
+    public void AddItemShow(string PlayerName, string OtherPlayerName, int TransactionPos, Item item)
     {
         //自己欄位顯示 
         ProtoMsg msg1 = new ProtoMsg
@@ -239,10 +383,8 @@ public class TransactionHandler : GameHandler
                 TransactionPos = TransactionPos,
                 item = item,
                 OperationType = 5
-
             }
         };
- 
         CacheSvc.Instance.MOFCharacterDict[PlayerName].session.WriteAndFlush(msg1);
 
 
@@ -258,10 +400,7 @@ public class TransactionHandler : GameHandler
             }
         };
         CacheSvc.Instance.MOFCharacterDict[OtherPlayerName].session.WriteAndFlush(msg2);
-
-
     }
-
 
     public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num, int Capacity = 100, int firstIndex = 0)
     {
@@ -269,7 +408,6 @@ public class TransactionHandler : GameHandler
         List<int> EmptySlotPosition = new List<int>();
         for (int i = firstIndex; i < Capacity + firstIndex; i++)
         {
-
             if (Inventory.ContainsKey(i))
             {
                 if (Inventory[i] == null)
@@ -294,26 +432,12 @@ public class TransactionHandler : GameHandler
         }
     }
 
-
     public void SendErrorBack(int errorType, ServerSession session)
     {
         ProtoMsg rsp = new ProtoMsg { MessageType = 48, transactionResponse = new TransactionResponse { IsSuccess = false, ErrorLogType = errorType } };
         session.WriteAndFlush(rsp);
     }
-  
 
-    public Dictionary<int, Item> BackItemDict(Dictionary<int, Item> tradeItems, List<int> slotpos)
-    {
-        Dictionary<int, Item> BackItems = new Dictionary<int, Item>();
 
-        int iter = 0;
-        foreach(var item in tradeItems.Values)
-        {
-            BackItems.Add(slotpos[iter], item);
-            iter++;
-        }
-
-        return BackItems;
-    }
 }
 
