@@ -58,7 +58,7 @@ namespace PEProtocal
         ///48:TransactionRequest交易請求
         ///49:TransactionResponse交易回應
         ///50:LockerOperation 倉庫操作
-        ///
+        ///51:MailBoxOperation 信箱操作
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -180,8 +180,8 @@ namespace PEProtocal
         public TransactionResponse transactionResponse { get; set; }
         [ProtoMember(60, IsRequired = false)]
         public LockerOperation lockerOperation { get; set; }
-
-
+        [ProtoMember(61, IsRequired = false)]
+        public MailBoxOperation mailBoxOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1252,6 +1252,10 @@ namespace PEProtocal
         public Dictionary<int, Item> KnapsackItems_Cash { get; set; }
         [ProtoMember(13, IsRequired = false)]
         public Dictionary<int, Item> MailBoxItems { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public long MailBoxRibi { get; set; }
+        [ProtoMember(15, IsRequired = false)]
+        public string ErrorMsg { get; set; }
     }
 
     [ProtoContract]
@@ -1386,6 +1390,29 @@ namespace PEProtocal
         //第六種: 放錢到倉庫
         //第七種: 從倉庫拿錢
         //第八種: 整理背包
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public long Ribi { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public List<Item> items { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int[] OldPosition { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int[] NewPosition { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int ErrorType { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public string ErrorMessage { get; set; }
+    }
+    [ProtoContract]
+    public class MailBoxOperation
+    {
+        //第一種: 信箱內操作
+        //第二種: 從倉庫放東西到背包空格
+        //第三種: 從倉庫放東西到背包非空格
+        //第四種: 從倉庫拿錢
+        //第五種: 整理信箱
         [ProtoMember(1, IsRequired = false)]
         public int OperationType { get; set; }
         [ProtoMember(2, IsRequired = false)]

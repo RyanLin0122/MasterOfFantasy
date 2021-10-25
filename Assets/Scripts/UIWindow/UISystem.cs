@@ -241,6 +241,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         MailBoxWnd.SetWndState();
         MailBoxWnd.IsOpen = true;
+        Knapsack.OpenAndPush();
     }
     public void CloseMailbox2()
     {

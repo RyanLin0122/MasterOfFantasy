@@ -247,7 +247,7 @@ public class KnapsackSlot : ItemSlot
                     Item item1 = PickedUpItem;
                     Items.Add(item1);
                 }
-                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });                
+                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
             }
             //同一格放下
             else
@@ -286,7 +286,7 @@ public class KnapsackSlot : ItemSlot
                 else
                 {
                     UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
-                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem,PickedUpItem.Count);
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                     DragSystem.Instance.RemoveDragObject();
                 }
             }
@@ -307,6 +307,42 @@ public class KnapsackSlot : ItemSlot
                 }
             }
         }
+        if (data.Source == 3)
+        {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {
+                if (KnapsackWnd.Instance.CurrentPage == 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new MailBoxSender(2, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4)
+                {
+                    List<Item> Items = new List<Item>();
+                    Item item1 = PickedUpItem;
+                    Items.Add(item1);
+                    new MailBoxSender(2, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    DragSystem.Instance.RemoveDragObject();
+                }
+            }
+        }
     }
     public void PutItemFromOtherInventory_wItem(DragItemData data)
     {
@@ -314,7 +350,7 @@ public class KnapsackSlot : ItemSlot
         {
             Item PickedUpItem = (Item)data.Content;
             if (PickedUpItem.IsCash)
-            {                
+            {
                 if (KnapsackWnd.Instance.CurrentPage == 4) //現金道具
                 {
                     ExchangeItemFromLockerToKnapsack(PickedUpItem);
@@ -329,6 +365,32 @@ public class KnapsackSlot : ItemSlot
                 if (KnapsackWnd.Instance.CurrentPage != 4) //一般道具
                 {
                     ExchangeItemFromLockerToKnapsack(PickedUpItem);
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
+                }
+            }
+        }
+        if (data.Source == 3) //信箱移到背包
+        {
+            Item PickedUpItem = (Item)data.Content;
+            if (PickedUpItem.IsCash)
+            {
+                if (KnapsackWnd.Instance.CurrentPage == 4) //現金道具
+                {
+                    ExchangeItemFromMailBoxToKnapsack(PickedUpItem);
+                }
+                else
+                {
+                    UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
+                }
+            }
+            else
+            {
+                if (KnapsackWnd.Instance.CurrentPage != 4) //一般道具
+                {
+                    ExchangeItemFromMailBoxToKnapsack(PickedUpItem);
                 }
                 else
                 {
@@ -404,5 +466,47 @@ public class KnapsackSlot : ItemSlot
             new LockerSender(5, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
         }
         DragSystem.Instance.RemoveDragObject();
+    }
+
+    public void ExchangeItemFromMailBoxToKnapsack(Item PickedUpItem)
+    {
+        Dictionary<int, Item> mailbox = GameRoot.Instance.ActivePlayer.MailBoxItems != null ? GameRoot.Instance.ActivePlayer.MailBoxItems : new Dictionary<int, Item>();
+        GameRoot.Instance.ActivePlayer.MailBoxItems = mailbox;
+        Item currentItem = GetItem();
+        var knapsack = PickedUpItem.IsCash ? (GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                               (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+        //信箱移到背包
+        if (currentItem.ItemID == PickedUpItem.ItemID)
+        {
+            //補充數量
+            if (currentItem.Capacity >= currentItem.Count + PickedUpItem.Count)
+            {
+                //夠放第一格全部數量，刪除第一格物品
+                //寫3號封包
+                List<Item> Items = new List<Item>();
+                Item item1 = knapsack[SlotPosition];
+                item1.Position = SlotPosition;
+                item1.Count = currentItem.Count + PickedUpItem.Count;
+                Items.Add(item1);
+                new MailBoxSender(3, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+            }
+            else
+            {
+                //不夠放所有物品，拆成兩格
+                List<Item> Items = new List<Item>();
+                int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
+                Item item1 = mailbox[PickedUpItem.Position];
+                item1.Position = PickedUpItem.Position;
+                item1.Count = RestAmount;
+                Items.Add(item1);
+
+                Item item2 = knapsack[SlotPosition];
+                item2.Position = SlotPosition;
+                item2.Count = currentItem.Capacity;
+                Items.Add(item2);
+                new MailBoxSender(3, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+            }
+            DragSystem.Instance.RemoveDragObject();
+        }  
     }
 }

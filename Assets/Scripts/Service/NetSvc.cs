@@ -137,6 +137,9 @@ public class NetSvc : MonoBehaviour
             case 50:
                 DoLockerOperation(msg);
                 break;
+            case 51:
+                DoMailBoxOperation(msg);
+                break;
         }
     }
 
@@ -550,4 +553,8 @@ public class NetSvc : MonoBehaviour
         LockerWnd.Instance.ProcessLockerOperation(msg.lockerOperation);
     }
 
+    public void DoMailBoxOperation(ProtoMsg msg)
+    {
+        MailBoxWnd.Instance.ProcessMailBoxOperation(msg.mailBoxOperation);
+    }
 }

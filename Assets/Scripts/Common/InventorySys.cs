@@ -375,11 +375,17 @@ public class InventorySys : MonoBehaviour
     public void RecieveRewards(Rewards rewards)
     {
         Debug.Log("領獎");
+        if (rewards.ErrorMsg != "")
+        {
+            UISystem.Instance.AddMessageQueue(rewards.ErrorMsg);
+            return;
+        }
         Player player = GameRoot.Instance.ActivePlayer;
         if (player != null)
         {
             //EXP TODO
             player.Ribi += rewards.Ribi;
+            player.MailBoxRibi += rewards.MailBoxRibi;
             player.SwordPoint += rewards.SwordPoint;
             player.ArcheryPoint += rewards.ArcheryPoint;
             player.MagicPoint += rewards.MagicPoint;

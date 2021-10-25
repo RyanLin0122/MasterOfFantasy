@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using PEProtocal;
 public class MailBoxWnd : Inventory
 {
-    public static MailBoxWnd Instance;
+    public static MailBoxWnd Instance = null;
     public bool IsOpen = false;
     public Button CloseBtn;
     public Button CloseBtn2;
@@ -27,29 +27,62 @@ public class MailBoxWnd : Inventory
     public Text panel3Text;
     public Text panel4Text;
     public Color Txtcolor;
+    public bool HasInitialized = false;
+    public long MailBoxRibi = 0L;
 
     protected override void InitWnd()
     {
-        Debug.Log("初始化信箱");
-        Instance = this;
-        slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
-        Txtcolor = RibiTxt.color;
+        if (!HasInitialized)
+        {
+            Instance = this;
+            slotLists.Add(panel1.GetComponentsInChildren<MailBoxSlot>());
+            slotLists.Add(panel2.GetComponentsInChildren<MailBoxSlot>());
+            slotLists.Add(panel3.GetComponentsInChildren<MailBoxSlot>());
+            slotLists.Add(panel4.GetComponentsInChildren<MailBoxSlot>());
+            HasInitialized = true;
+            Txtcolor = RibiTxt.color;
+        }
         PressBag1();
         SetActive(InventorySys.Instance.toolTip.gameObject, true);
         RibiTxt.text = GameRoot.Instance.ActivePlayer.MailBoxRibi.ToString("N0");
         base.InitWnd();
+        ReadItems();
+        KnapsackWnd.Instance.OpenAndPush();
+    }
+    public void ReadItems()
+    {
+        ClearMailBox();
+        Dictionary<int, Item> mailbox = null;
+        mailbox = GameRoot.Instance.ActivePlayer.MailBoxItems != null ? GameRoot.Instance.ActivePlayer.MailBoxItems : new Dictionary<int, Item>();
+        GameRoot.Instance.ActivePlayer.MailBoxItems = mailbox;
+        if (mailbox != null && mailbox.Count > 0)
+        {
+            foreach (var item in mailbox.Values)
+            {
+                FindSlot(item.Position).StoreItem(item, item.Count);
+            }
+        }
+    }
+    public void ClearMailBox()
+    {
+        foreach (var slotArr in slotLists)
+        {
+            foreach (var slot in slotArr)
+            {
+                if (slot.transform.childCount > 0)
+                {
+                    DestroyImmediate(slot.GetComponentInChildren<ItemUI>().gameObject);
+                }
+            }
+        }
     }
     public void InitMailBox()
     {
-        Debug.Log("初始化信箱");
         Instance = this;
-        slotLists.Add(panel1.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel2.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel3.GetComponentsInChildren<KnapsackSlot>());
-        slotLists.Add(panel4.GetComponentsInChildren<KnapsackSlot>());
+        slotLists.Add(panel1.GetComponentsInChildren<MailBoxSlot>());
+        slotLists.Add(panel2.GetComponentsInChildren<MailBoxSlot>());
+        slotLists.Add(panel3.GetComponentsInChildren<MailBoxSlot>());
+        slotLists.Add(panel4.GetComponentsInChildren<MailBoxSlot>());
         Txtcolor = RibiTxt.color;
 
     }
@@ -159,171 +192,166 @@ public class MailBoxWnd : Inventory
         panel3Text.color = Txtcolor;
 
     }
-    /*
-    public void TestStoreMailBox()
-    {
-        List<EncodedItem> items = new List<EncodedItem>();
-        EncodedItem item1 = new EncodedItem
-        {
-            item = InventoryManager.Instance.GetNewItemByID(1001),
-            amount = 6,
-            position = 3
-        };
-        items.Add(item1);
-        EncodedItem item2 = new EncodedItem
-        {
-            item = InventoryManager.Instance.GetNewItemByID(3001),
-            amount = 1,
-            position = 6
-        };
-        items.Add(item2);
-        EncodedItem item3 = new EncodedItem
-        {
-            item = InventoryManager.Instance.GetNewItemByID(8001),
-            amount = 1,
-            position = 7
-        };
-        items.Add(item3);
-        EncodedItem item4 = new EncodedItem
-        {
-            item = InventoryManager.Instance.GetNewItemByID(8001),
-            amount = 1,
-            position = 70
-        };
-        items.Add(item4);
-        StoreItem(items);
-    }
-    public void StoreItem(List<EncodedItem> items)
-    {
-        if (FindEmptySlot() != null)
-        {           
-            MOFMsg msg = new MOFMsg();
-            msg.id = GameRoot.Instance.CurrentPlayerData.id;
-            msg.cmd = 24;
-            msg.mailBoxRelated = new MailBoxRelated
-            {
-                Type = 1,
-                encodedItems = items,
-                
-            };
-            //NetSvc.Instance.SendMOFMsg(msg);
-        }
-    }       
-    
-    public void ReadCharacterMailBox(ReqCharacterItem msg)
-    {
-        if (msg.MailBoxItems != null)
-        {
-            foreach (var item in msg.MailBoxItems.Values)
-            {
-            //    InventoryManager.Instance.MailBoxItems.Add(item.position, item);
-                FindSlot(item.position).StoreItem(item.item, item.amount);
-            }
-        }
-
-    }
-    public void MailBoxToKnapsack(Item item, int Amount, int MailBoxPosition, int MailBoxDBID)
-    {
-        List<EncodedItem> encodedItems = new List<EncodedItem>();
-        List<int> EmptyCashSlot = KnapsackWnd.Instance.GetEmptySlotPosition_Cash();
-        List<int> EmptyNotCashSlot = KnapsackWnd.Instance.GetEmptySlotPosition_NotCash();
-        int CashPointer = 0;
-        int NotCashPointer = 0;
-        if (item.IsCash)
-        {
-            if (EmptyCashSlot.Count > 0)
-            {
-                EncodedItem encoded = new EncodedItem
-                {
-                    item = item,
-                    position = EmptyCashSlot[CashPointer],
-                    amount = Amount
-                };
-                encodedItems.Add(encoded);
-                CashPointer++;
-            }
-            else
-            {
-                GameRoot.AddTips("道具欄空間不夠");
-                return;
-            }
-        }
-        else if (!item.IsCash)
-        {
-            if (EmptyNotCashSlot.Count > 0)
-            {
-                EncodedItem encoded = new EncodedItem
-                {
-                    item = item,
-                    position = EmptyNotCashSlot[NotCashPointer],
-                    amount = Amount
-                };
-                encodedItems.Add(encoded);
-                NotCashPointer++;
-            }
-            else
-            {
-                GameRoot.AddTips("道具欄空間不夠");
-                return;
-            }
-        }
-        MOFMsg msg = new MOFMsg();
-        msg.id = GameRoot.Instance.CurrentPlayerData.id;
-        msg.cmd = 24;
-        msg.mailBoxRelated = new MailBoxRelated
-        {
-            encodedItems = encodedItems,
-            Type = 2,
-            MailBoxPosition = MailBoxPosition,
-            OldDBID = MailBoxDBID
-        };
-        //NetSvc.Instance.SendMOFMsg(msg);
-    }
-
-    public void ProcessMailBoxMsg(MailBoxRelated msg)
-    {
-        InventoryManager.Instance.HideToolTip();
-        switch (msg.Type)
-        {
-            case 1: //存入倉庫
-                foreach (var item in msg.encodedItems)
-                {
-                //    InventoryManager.Instance.MailBoxItems.Add(item.position, item);
-                    FindSlot(item.position).StoreItem(item.item, item.amount);
-                }               
-                break;
-            case 2: //取出
-                if (msg.encodedItems[0].item.IsCash)
-                {
-                //    InventoryManager.Instance.KnapsackCashItems.Add(msg.encodedItems[0].position, msg.encodedItems[0]);
-                    KnapsackWnd.Instance.FindCashSlot(msg.encodedItems[0].position).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
-                }
-                else
-                {
-                //    InventoryManager.Instance.KnapsackItems.Add(msg.encodedItems[0].position, msg.encodedItems[0]);
-                    KnapsackWnd.Instance.FindSlot(msg.encodedItems[0].position).StoreItem(msg.encodedItems[0].item, msg.encodedItems[0].amount);
-                }
-                DestroyImmediate(FindSlot(msg.MailBoxPosition).GetComponentInChildren<ItemUI>().gameObject);
-                InventoryManager.Instance.MailBoxItems.Remove(msg.MailBoxPosition);
-                break;
-        }
-    }
-    */
-    public void ClkPlusBtn()
-    {
-
-    }
     public void ClkMinusBtn()
     {
 
     }
+    public void ProcessMailBoxOperation(MailBoxOperation mo)
+    {
+        Dictionary<int, Item> mailbox = GameRoot.Instance.ActivePlayer.MailBoxItems != null ? GameRoot.Instance.ActivePlayer.MailBoxItems : new Dictionary<int, Item>();
+        GameRoot.Instance.ActivePlayer.MailBoxItems = mailbox;
+        switch (mo.OperationType)
+        {
+            case 1:
+                UISystem.Instance.AddMessageQueue("進行倉庫內操作");
+                if (mo.items.Count == 1)
+                {
+                    //移到第二格，刪除第一格
+                    mo.items[0].Position = mo.NewPosition[0];
+                    if (mailbox.ContainsKey(mo.NewPosition[0]))
+                    {
+                        mailbox[mo.NewPosition[0]] = mo.items[0];
+                    }
+                    else
+                    {
+                        mailbox.Add(mo.NewPosition[0], mo.items[0]);
+                    }
+                    mailbox.Remove(mo.OldPosition[0]);
+                    FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
+                }
+                else if (mo.items.Count == 2)
+                {
+                    //兩格交換           
+                    if (mo.items[0].ItemID != mo.items[1].ItemID)
+                    {
+                        Debug.Log("交換兩格");
+                        Item item = mailbox[mo.NewPosition[0]];
+                        mailbox[mo.NewPosition[0]] = mailbox[mo.OldPosition[0]];
+                        mailbox[mo.OldPosition[0]] = item;
+                        mailbox[mo.NewPosition[0]].Position = mo.NewPosition[0];
+                        mailbox[mo.OldPosition[0]].Position = mo.OldPosition[0];
+                        DestroyImmediate(FindSlot(mo.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
 
+                    }
+                    //兩格數量改變
+                    else
+                    {
+                        Debug.Log("兩格數量改變");
+                        mailbox[mo.OldPosition[0]].Count = mo.items[0].Count;
+                        mailbox[mo.NewPosition[0]].Count = mo.items[1].Count;
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
+                    }
+                }
+                break;
+            case 2: //從信箱拿到背包空格
+                UISystem.Instance.AddMessageQueue("要放到第" + mo.items[0].Position + "格");
+                if (mo.items[0].IsCash)
+                {
+                    var dic = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
+                    GameRoot.Instance.ActivePlayer.CashKnapsack = dic;
+                    TryAddItemtoDic(dic, mo.items[0]);
+                    KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(mo.items[0], mo.items[0].Count);
+                }
+                else
+                {
+                    var dic = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
+                    GameRoot.Instance.ActivePlayer.NotCashKnapsack = dic;
+                    TryAddItemtoDic(dic, mo.items[0]);
+                    KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(mo.items[0], mo.items[0].Count);
+                }
+                mailbox.Remove(mo.OldPosition[0]);
+                FindSlot(mo.OldPosition[0]).RemoveItemUI();
+                break;
+            case 3: //從信箱拿到背包不是空格
+                var knap = mo.items[0].IsCash ? (GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
+                            (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>());
+                if (mo.items.Count == 1)
+                {
+                    //移到第二格，刪除第一格
+                    mo.items[0].Position = mo.NewPosition[0];
+                    if (mailbox.ContainsKey(mo.NewPosition[0]))
+                    {
+                        mailbox[mo.NewPosition[0]] = mo.items[0];
+                    }
+                    else
+                    {
+                        mailbox.Add(mo.NewPosition[0], mo.items[0]);
+                    }
+                    mailbox.Remove(mo.OldPosition[0]);
+                    FindSlot(mo.OldPosition[0]).RemoveItemUI();
+                    if (mo.items[0].IsCash)
+                    {
+                        KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                    }
+                    else
+                    {
+                        KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                    }
+
+                }
+                else if (mo.items.Count == 2)
+                {
+                    //兩格交換           
+                    if (mo.items[0].ItemID != mo.items[1].ItemID)
+                    {
+                        Debug.Log("交換兩格");
+                        knap[mo.NewPosition[0]] = mo.items[0];
+                        mailbox[mo.OldPosition[0]] = mo.items[1];
+                        mailbox[mo.OldPosition[0]].Position = mo.OldPosition[0];
+                        knap[mo.NewPosition[0]].Position = mo.NewPosition[0];
+                        if (!mailbox[mo.OldPosition[0]].IsCash)
+                        {
+                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).RemoveItemUI();
+                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        }
+                        else
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).RemoveItemUI();
+                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        }
+                        FindSlot(mo.OldPosition[0]).RemoveItemUI();
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                    }
+                    //兩格數量改變
+                    else
+                    {
+                        Debug.Log("兩格數量改變");
+                        mailbox[mo.OldPosition[0]].Count = mo.items[0].Count;
+                        knap[mo.NewPosition[0]].Count = mo.items[1].Count;
+                        if (!mailbox[mo.OldPosition[0]].IsCash)
+                        {
+                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        }
+                        else
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        }
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                    }
+                }
+                break;
+            case 4: //領錢
+                GameRoot.Instance.ActivePlayer.MailBoxRibi -= mo.Ribi;
+                MailBoxRibi = GameRoot.Instance.ActivePlayer.MailBoxRibi;
+                RibiTxt.text = MailBoxRibi.ToString("N0");
+                GameRoot.Instance.ActivePlayer.Ribi += mo.Ribi;
+                KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
+                break;
+            case 5: //整理
+
+                break;
+        }
+
+    }
     public List<int> GetEmptySlotPosition()
     {
         List<int> list = new List<int>();
         for (int i = 0; i < 4; i++)
         {
-            foreach (KnapsackSlot slot in slotLists[i])
+            foreach (ItemSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -333,11 +361,11 @@ public class MailBoxWnd : Inventory
         }
         return list;
     }
-    public KnapsackSlot FindSlot(int Position)
+    public ItemSlot FindSlot(int Position)
     {
         for (int i = 0; i < 4; i++)
         {
-            foreach (KnapsackSlot slot in slotLists[i])
+            foreach (ItemSlot slot in slotLists[i])
             {
                 if (slot.SlotPosition == Position)
                 {
@@ -347,11 +375,11 @@ public class MailBoxWnd : Inventory
         }
         return null;
     }
-    public KnapsackSlot FindEmptySlot() //信箱適用
+    public ItemSlot FindEmptySlot() //信箱適用
     {
         for (int i = 0; i < 4; i++)
         {
-            foreach (KnapsackSlot slot in slotLists[i])
+            foreach (ItemSlot slot in slotLists[i])
             {
                 if (slot.transform.childCount == 0)
                 {
@@ -360,5 +388,16 @@ public class MailBoxWnd : Inventory
             }
         }
         return null;
+    }
+    public void TryAddItemtoDic(Dictionary<int, Item> dic, Item item)
+    {
+        if (dic.ContainsKey(item.Position))
+        {
+            dic[item.Position] = item;
+        }
+        else
+        {
+            dic.Add(item.Position, item);
+        }
     }
 }

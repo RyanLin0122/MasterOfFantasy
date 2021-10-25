@@ -108,7 +108,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                         }
                         if (CacheSvc.Instance.AccountTempData.ContainsKey(msg.logoutReq.Account))
                         {
-                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);                        
+                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);
                         }
                         session.Close();
                         NetSvc.Instance.sessionMap.RemoveSession(msg.logoutReq.SessionID);
@@ -204,7 +204,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     CacheSvc.Instance.ProcessEquipmentPkg(msg, session);
                     break;
                 case 43: //回收物品
-                    if(GetMap(session).characters[session.ActivePlayer.Name].RecycleItem(session, msg.recycleItems))
+                    if (GetMap(session).characters[session.ActivePlayer.Name].RecycleItem(session, msg.recycleItems))
                     {
                         session.WriteAndFlush(msg);
                     }
@@ -227,6 +227,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     LockerHandler lockerHandler = new LockerHandler();
                     Task lockerTask = lockerHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 51: //信箱操作
+                    MailBoxHandler mailBoxHandler = new MailBoxHandler();
+                    Task mailboxTask = mailBoxHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)
@@ -240,12 +244,12 @@ class MOFServerHandler : ChannelHandlerAdapter
     {
         try
         {
-            var map =(NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps;
+            var map = (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps;
             return map[session.ActivePlayer.MapID];
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message +"\n" + e.StackTrace);
+            Console.WriteLine(e.Message + "\n" + e.StackTrace);
             return null;
         }
 
@@ -269,14 +273,14 @@ class MOFServerHandler : ChannelHandlerAdapter
                         break;
                     case "!reward":
                         LogSvc.Debug("Reward!!!");
-                        RewardSys.Instance.TestSendKnapsack(GetMap(session).characters[session.ActivePlayer.Name]);
+                        RewardSys.Instance.TestSendMailBox(GetMap(session).characters[session.ActivePlayer.Name]);
                         break;
                     case "!Gender":
                         if (GetMap(session).characters[session.ActivePlayer.Name].player.Gender == 0)
                         {
                             GetMap(session).characters[session.ActivePlayer.Name].player.Gender = 1;
                             GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Gender = 1;
-                            
+
                         }
                         else
                         {

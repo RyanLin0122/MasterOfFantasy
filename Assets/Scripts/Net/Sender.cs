@@ -665,3 +665,36 @@ public class LockerSender : BaseSender
     }
 }
 
+public class MailBoxSender : BaseSender
+{
+    public MailBoxSender(int OperationType, List<Item> items, int[] OldPos, int[] NewPos)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 51,
+            mailBoxOperation = new MailBoxOperation
+            {
+                OperationType = OperationType,
+                items = items,
+                OldPosition = OldPos,
+                NewPosition = NewPos,
+                Ribi = 0
+            }
+        };
+        base.SendMsg(msg);
+    }
+    public MailBoxSender(int OperationType, long Ribi)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 50,
+            mailBoxOperation = new MailBoxOperation
+            {
+                OperationType = OperationType,
+                Ribi = Ribi
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+
