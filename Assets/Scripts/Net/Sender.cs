@@ -687,7 +687,7 @@ public class MailBoxSender : BaseSender
     {
         ProtoMsg msg = new ProtoMsg
         {
-            MessageType = 50,
+            MessageType = 51,
             mailBoxOperation = new MailBoxOperation
             {
                 OperationType = OperationType,

@@ -298,7 +298,7 @@ public class LockerWnd : Inventory
             else
             {
                 new LockerSender(7, MinusRibi);
-                CloseAddRibiPanel();
+                CloseMinusRibiPanel();
             }
         }
         else

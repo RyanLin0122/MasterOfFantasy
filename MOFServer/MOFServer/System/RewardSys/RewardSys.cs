@@ -232,7 +232,7 @@ public class RewardSys
         Items.Add(Utility.GetEquipmentByID(6702));
         Items.Add(Utility.GetEquipmentByID(6703));
         Items.Add(Utility.GetEquipmentByID(6704));
-        SendRewardToMailBox(chr, 500, Items);
+        SendRewardToMailBox(chr, 50000, Items);
     }
     #endregion
 }

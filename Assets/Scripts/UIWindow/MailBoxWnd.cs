@@ -44,7 +44,8 @@ public class MailBoxWnd : Inventory
         }
         PressBag1();
         SetActive(InventorySys.Instance.toolTip.gameObject, true);
-        RibiTxt.text = GameRoot.Instance.ActivePlayer.MailBoxRibi.ToString("N0");
+        MailBoxRibi = GameRoot.Instance.ActivePlayer.MailBoxRibi;
+        RibiTxt.text = MailBoxRibi.ToString("N0");
         base.InitWnd();
         ReadItems();
         KnapsackWnd.Instance.OpenAndPush();
@@ -190,10 +191,6 @@ public class MailBoxWnd : Inventory
         panel1Text.color = Txtcolor;
         panel2Text.color = Txtcolor;
         panel3Text.color = Txtcolor;
-
-    }
-    public void ClkMinusBtn()
-    {
 
     }
     public void ProcessMailBoxOperation(MailBoxOperation mo)
@@ -346,6 +343,45 @@ public class MailBoxWnd : Inventory
         }
 
     }
+    #region 領錢
+    public GameObject MinusRibiPanel;
+    public InputField MinusRibiInput;
+    public long MinusRibi = 0;
+    public void ClkMinusBtn()
+    {
+        MinusRibiPanel.SetActive(true);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        MinusRibiInput.text = "";
+        MinusRibi = 0;
+    }
+    public void CloseMinusRibiPanel()
+    {
+        MinusRibiPanel.SetActive(false);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        MinusRibiInput.text = "";
+        MinusRibi = 0;
+    }
+    public void ClkSendMinusRibi()
+    {
+        bool IsNumber = long.TryParse(MinusRibiInput.text, out MinusRibi);
+        if (IsNumber)
+        {
+            if (MinusRibi > MailBoxRibi)
+            {
+                GameRoot.AddTips("你的信箱沒那麼多錢喔");
+            }
+            else
+            {
+                new MailBoxSender(4, MinusRibi);
+                CloseMinusRibiPanel();
+            }
+        }
+        else
+        {
+            GameRoot.AddTips("請輸入數字喔");
+        }
+    }
+    #endregion
     public List<int> GetEmptySlotPosition()
     {
         List<int> list = new List<int>();
