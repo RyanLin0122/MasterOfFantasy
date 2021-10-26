@@ -561,7 +561,7 @@ public static class Utility
             { "id",item.itemID},
             { "qt",item.quantity},
             { "sp",item.sellPrice},
-            { "am",item.amount}
+            { "od",item.order}
         };
         return b;
     }
@@ -869,7 +869,7 @@ public static class Utility
             tag = doc["tag"].AsString,
             sellPrice = doc["sp"].AsInt32,
             itemID = doc["id"].AsInt32,
-            amount = doc["am"].AsInt32,
+            order = doc["od"].AsInt32,
             quantity = doc["qt"].AsInt32
         };
         return item;

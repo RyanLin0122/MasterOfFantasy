@@ -346,14 +346,14 @@ namespace PEProtocal
         public int AdditionalLevel { get; set; }
         [ProtoMember(21, IsRequired = false)]
         public int ExpiredTime { get; set; }
-
+        public Weapon() { }
         public Weapon(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash, bool canTransaction, int count,
             int level, int Mindamage,int Maxdamage, int attSpeed, int range, string property, int attack, int strength, int agility, int intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum, int Additional, int Stars, int AdditionalLevel, int ExpiredTime)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Level = level;
             this.MinDamage = Mindamage;
-            this.MaxDamage = MaxDamage;
+            this.MaxDamage = Maxdamage;
             this.AttSpeed = attSpeed;
             this.Range = range;
             this.Property = property;

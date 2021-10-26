@@ -125,97 +125,114 @@ public class KnapsackSlot : ItemSlot
     /// <param name="data"></param>
     public override void PutItem_wItem(DragItemData data)
     {
+        Item PickedUpItem = (Item)data.Content;
         //先判斷是不是從背包內來的
         if (data.Source == 1)
         {
-            Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
-            Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
-            Item currentItem = GetItem();
-            Item PickedUpItem = (Item)data.Content;
-            if (currentItem.ItemID == PickedUpItem.ItemID)
+            if (TransationWnd.Instance.gameObject.activeSelf||StrengthenWnd.Instance.gameObject.activeSelf)
             {
-                //補充數量
-                if (currentItem.Capacity >= currentItem.Count + PickedUpItem.Count)
+                UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
+                if (PickedUpItem.IsCash)
                 {
-                    //夠放第一格全部數量，刪除第一格物品
-                    //寫4號封包
-                    List<Item> Items = new List<Item>();
-                    if (!currentItem.IsCash)
-                    {
-                        Item item1 = nk[SlotPosition];
-                        item1.Position = SlotPosition;
-                        item1.Count = currentItem.Count + PickedUpItem.Count;
-                        Items.Add(item1);
-                    }
-                    else
-                    {
-                        Item item1 = ck[SlotPosition];
-                        item1.Position = SlotPosition;
-                        item1.Count = currentItem.Count + PickedUpItem.Count;
-                        Items.Add(item1);
-                    }
-                    new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
                 else
                 {
-                    //不夠放所有物品，拆成兩格
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                }
+                DragSystem.Instance.RemoveDragObject();
+            }
+            else
+            {
+                Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
+                Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
+                Item currentItem = GetItem();
+                
+                if (currentItem.ItemID == PickedUpItem.ItemID)
+                {
+                    //補充數量
+                    if (currentItem.Capacity >= currentItem.Count + PickedUpItem.Count)
+                    {
+                        //夠放第一格全部數量，刪除第一格物品
+                        //寫4號封包
+                        List<Item> Items = new List<Item>();
+                        if (!currentItem.IsCash)
+                        {
+                            Item item1 = nk[SlotPosition];
+                            item1.Position = SlotPosition;
+                            item1.Count = currentItem.Count + PickedUpItem.Count;
+                            Items.Add(item1);
+                        }
+                        else
+                        {
+                            Item item1 = ck[SlotPosition];
+                            item1.Position = SlotPosition;
+                            item1.Count = currentItem.Count + PickedUpItem.Count;
+                            Items.Add(item1);
+                        }
+                        new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                    }
+                    else
+                    {
+                        //不夠放所有物品，拆成兩格
+                        List<Item> Items = new List<Item>();
+                        if (!currentItem.IsCash)
+                        {
+                            int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
+                            Item item1 = nk[PickedUpItem.Position];
+                            item1.Position = PickedUpItem.Position;
+                            item1.Count = RestAmount;
+                            Items.Add(item1);
+
+                            Item item2 = nk[SlotPosition];
+                            item2.Position = SlotPosition;
+                            item2.Count = currentItem.Capacity;
+                            Items.Add(item2);
+                        }
+                        else
+                        {
+                            int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
+                            Item item1 = ck[PickedUpItem.Position];
+                            item1.Position = PickedUpItem.Position;
+                            item1.Count = RestAmount;
+                            Items.Add(item1);
+
+                            Item item2 = ck[SlotPosition];
+                            item2.Position = SlotPosition;
+                            item2.Count = currentItem.Capacity;
+                            Items.Add(item2);
+                        }
+                        new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                    }
+                }
+                else
+                {
+                    //把pickedItem和格子裡東西交換
                     List<Item> Items = new List<Item>();
                     if (!currentItem.IsCash)
                     {
-                        int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
                         Item item1 = nk[PickedUpItem.Position];
                         item1.Position = PickedUpItem.Position;
-                        item1.Count = RestAmount;
                         Items.Add(item1);
 
                         Item item2 = nk[SlotPosition];
                         item2.Position = SlotPosition;
-                        item2.Count = currentItem.Capacity;
                         Items.Add(item2);
                     }
                     else
                     {
-                        int RestAmount = currentItem.Count + PickedUpItem.Count - currentItem.Capacity;
                         Item item1 = ck[PickedUpItem.Position];
                         item1.Position = PickedUpItem.Position;
-                        item1.Count = RestAmount;
                         Items.Add(item1);
 
                         Item item2 = ck[SlotPosition];
                         item2.Position = SlotPosition;
-                        item2.Count = currentItem.Capacity;
                         Items.Add(item2);
                     }
                     new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
                 }
-            }
-            else
-            {
-                //把pickedItem和格子裡東西交換
-                List<Item> Items = new List<Item>();
-                if (!currentItem.IsCash)
-                {
-                    Item item1 = nk[PickedUpItem.Position];
-                    item1.Position = PickedUpItem.Position;
-                    Items.Add(item1);
-
-                    Item item2 = nk[SlotPosition];
-                    item2.Position = SlotPosition;
-                    Items.Add(item2);
-                }
-                else
-                {
-                    Item item1 = ck[PickedUpItem.Position];
-                    item1.Position = PickedUpItem.Position;
-                    Items.Add(item1);
-
-                    Item item2 = ck[SlotPosition];
-                    item2.Position = SlotPosition;
-                    Items.Add(item2);
-                }
-                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
-            }
-            DragSystem.Instance.RemoveDragObject();
+                DragSystem.Instance.RemoveDragObject();
+            }   
         }
         else //不是從背包來的，可能是倉庫、信箱或商店之類
         {
@@ -233,31 +250,47 @@ public class KnapsackSlot : ItemSlot
         if (data.Source == 1)
         {
             Item PickedUpItem = (Item)data.Content;
-            //把手上物品放進新格子
-            if (SlotPosition != PickedUpItem.Position)
+            if (TransationWnd.Instance.gameObject.activeSelf || StrengthenWnd.Instance.gameObject.activeSelf)
             {
-                List<Item> Items = new List<Item>();
-                if (!PickedUpItem.IsCash)
+                UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
+                if (PickedUpItem.IsCash)
                 {
-                    Item item1 = PickedUpItem;
-                    Items.Add(item1);
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
                 else
                 {
-                    Item item1 = PickedUpItem;
-                    Items.Add(item1);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
-                new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
+                DragSystem.Instance.RemoveDragObject();
             }
-            //同一格放下
             else
             {
-                if (SlotPosition == PickedUpItem.Position)
+                //把手上物品放進新格子
+                if (SlotPosition != PickedUpItem.Position)
                 {
-                    StoreItem(PickedUpItem, PickedUpItem.Count);
+                    List<Item> Items = new List<Item>();
+                    if (!PickedUpItem.IsCash)
+                    {
+                        Item item1 = PickedUpItem;
+                        Items.Add(item1);
+                    }
+                    else
+                    {
+                        Item item1 = PickedUpItem;
+                        Items.Add(item1);
+                    }
+                    new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
                 }
-            }
-            DragSystem.Instance.RemoveDragObject();
+                //同一格放下
+                else
+                {
+                    if (SlotPosition == PickedUpItem.Position)
+                    {
+                        StoreItem(PickedUpItem, PickedUpItem.Count);
+                    }
+                }
+                DragSystem.Instance.RemoveDragObject();
+            }      
         }
         else
         {

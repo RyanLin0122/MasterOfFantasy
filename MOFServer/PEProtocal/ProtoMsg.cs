@@ -1274,7 +1274,7 @@ namespace PEProtocal
         [ProtoMember(6, IsRequired = false)]
         public List<int> Amount { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放進背包
+        public int OperationType { get; set; } //1. 買東西 2. 確認點數 3. 送禮給別人 4. 放進背包 5. 增加物品到購物車 6.購物車購買 7.刪除購物車
         [ProtoMember(8, IsRequired = false)]
         public string GiftPlayerName { get; set; }
         [ProtoMember(9, IsRequired = false)]
@@ -1283,6 +1283,8 @@ namespace PEProtocal
         public List<int> Positions { get; set; }
         [ProtoMember(11, IsRequired = false)]
         public bool IsFashionPanel { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public List<CartItem> CartItems { get; set; }
     }
 
     [ProtoContract]
@@ -1317,6 +1319,8 @@ namespace PEProtocal
 
         [ProtoMember(14, IsRequired = false)]
         public bool IsFashion { get; set; } // position, Item
+        [ProtoMember(15, IsRequired = false)]
+        public List<CartItem> CartItems { get; set; }
     }
 
     [ProtoContract]

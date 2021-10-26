@@ -237,7 +237,7 @@ public class CashShopWnd : Inventory
         PetBtn.GetComponent<Image>().sprite = PanelSprite1;
         ConBtn.GetComponent<Image>().sprite = PanelSprite1;
         CartBtn.GetComponent<Image>().sprite = PanelSprite2;
-
+        SetCartItems();
         panel1Text.text = "<color=#4F0D0D>新商品</color>";
         panel2Text.text = "<color=#4F0D0D>人氣商品</color>";
         panel3Text.text = "<color=#4F0D0D>時尚</color>";
@@ -398,6 +398,7 @@ public class CashShopWnd : Inventory
         }
 
     }
+
     public void ClearTags()
     {
         int childCount = ButtonGroup.transform.childCount;
@@ -428,6 +429,42 @@ public class CashShopWnd : Inventory
         ItemUI.SetItem(ItemID, SellPrice, Quantity);
         ItemUI.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => TryOnOffEquipment(ItemID));
         ItemUI.BuyBtn.onClick.AddListener(() => PressBuyBtn(Order, SellPrice, Quantity));
+        //送禮
+
+        //放進購物車
+        ItemUI.SelectBtn.onClick.AddListener(() => PressAdd2CartBtn(ItemID, Order, SellPrice, Quantity));
+    }
+    public void InstantiateCartItem(CartItem cartItem)
+    {
+        CartItemUI ItemUI = ((GameObject)Instantiate(Resources.Load("Prefabs/CartItemUI"))).transform.GetComponent<CartItemUI>();
+        ItemUI.transform.SetParent(SellItemGroup.transform);
+        ItemUI.SetItem(cartItem);
+        ItemUI.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => TryOnOffEquipment(cartItem.itemID));
+        //購買
+
+        //送禮
+
+        //刪除購物車
+        ItemUI.DeleteBtn.onClick.AddListener(()=>DeleteFromCart(cartItem));
+    }
+    public void PressAdd2CartBtn(int ItemID, int Order, int SellPrice, int Quantity)
+    {
+        CartItem cartItem = new CartItem
+        {
+            cata = cata,
+            tag = CurrentTag,
+            itemID = ItemID,
+            quantity = Quantity,
+            sellPrice = SellPrice,
+            order = Order
+        };
+        if(GameRoot.Instance.ActivePlayer.Cart == null)
+        {
+            GameRoot.Instance.ActivePlayer.Cart = new List<CartItem>();
+        }
+        GameRoot.Instance.ActivePlayer.Cart.Add(cartItem);
+        new CashShopSender(5, GameRoot.Instance.ActivePlayer.Cart);
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
     public void ClearSellItems()
     {
@@ -784,18 +821,41 @@ public class CashShopWnd : Inventory
         bool IsFashionPanel = CurrentPanelPage == 0 ? true : false;
         new CashShopSender(4, pos, IsFashionPanel);
     }
-    public List<CartItem> cartItems = new List<CartItem>();
-    public void SetCart()
+    public void SetCartItems()
     {
-
+        List<CartItem> cartItems = GameRoot.Instance.ActivePlayer.Cart != null ? GameRoot.Instance.ActivePlayer.Cart : new List<CartItem>();
+        GameRoot.Instance.ActivePlayer.Cart = cartItems;
+        if (cartItems.Count < 1)
+        {
+            return;
+        }
+        ClearCartUI();
+        foreach (var item in cartItems)
+        {
+            InstantiateCartItem(item);
+        }
     }
-    public void RefreshCart()
+    public void ClearCartUI()
     {
-
+        if (SellItemGroup.transform.childCount > 0)
+        {
+            Transform[] gos = SellItemGroup.GetComponentsInRealChildren<Transform>();
+            if (gos != null && gos.Length > 0)
+            {
+                foreach (var go in gos)
+                {
+                    Destroy(go.gameObject);
+                }
+            }
+        }
     }
-    public void ClearCart()
+    public void DeleteFromCart(CartItem item)
     {
-        cartItems.Clear();
+        GameRoot.Instance.ActivePlayer.Cart.Remove(item);
+        new CashShopSender(7,GameRoot.Instance.ActivePlayer.Cart);
+        ClearCartUI();
+        SetCartItems();
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
     public void ProcessCashShopResponse(CashShopResponse rsp)
     {

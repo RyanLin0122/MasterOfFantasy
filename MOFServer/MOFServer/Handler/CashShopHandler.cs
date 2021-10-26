@@ -28,6 +28,15 @@ public class CashShopHandler : GameHandler
             case 4:
                 ProcessToKnapsack(req, session);
                 break;
+            case 5:
+                CartAdd(req, session);
+                break;
+            case 6:
+
+                break;
+            case 7:
+                CartRemove(req, session);
+                break;
         }
     }
     public void ProcessBuyEvent(CashShopRequest req, ServerSession session)
@@ -375,6 +384,40 @@ public class CashShopHandler : GameHandler
         }
         To[PosTo].Position = PosTo;
         From.Remove(PosFrom);
+    }
+    public void CartAdd(CashShopRequest req, ServerSession session)
+    {
+        session.ActivePlayer.Cart = req.CartItems;
+        /*
+        ProtoMsg rsp = new ProtoMsg
+        {
+            MessageType = 47,
+            cashShopResponse = new CashShopResponse
+            {
+                OperationType = 5,
+                IsSuccess = true,
+                CartItems = req.CartItems
+            }
+        };
+        session.WriteAndFlush(rsp);
+        */
+    }
+    public void CartRemove(CashShopRequest req, ServerSession session)
+    {
+        session.ActivePlayer.Cart = req.CartItems;
+        /*
+        ProtoMsg rsp = new ProtoMsg
+        {
+            MessageType = 47,
+            cashShopResponse = new CashShopResponse
+            {
+                OperationType = 7,
+                IsSuccess = true,
+                CartItems = req.CartItems
+            }
+        };
+        session.WriteAndFlush(rsp);
+        */
     }
 }
 

@@ -561,8 +561,23 @@ public class CashShopSender : BaseSender
         };
         base.SendMsg(msg);
     }
-
-
+    /// <summary>
+    /// 放東西進購物車，或從購物車刪除
+    /// </summary>
+    /// <param name="Operation"></param>
+    public CashShopSender(int Operation, List<CartItem> cartItems)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 46,
+            cashShopRequest = new CashShopRequest
+            {
+                OperationType = Operation,
+                CartItems = cartItems
+            }
+        };
+        base.SendMsg(msg);
+    }
 }
 
 public class TransactionSender : BaseSender

@@ -56,9 +56,9 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public int quantity { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int amount { get; set; }
-        [ProtoMember(6, IsRequired = false)]
         public int sellPrice { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int order { get; set; }
     }
 
     #region Player
