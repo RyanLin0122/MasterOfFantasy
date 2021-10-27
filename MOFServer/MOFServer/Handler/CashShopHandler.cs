@@ -388,36 +388,10 @@ public class CashShopHandler : GameHandler
     public void CartAdd(CashShopRequest req, ServerSession session)
     {
         session.ActivePlayer.Cart = req.CartItems;
-        /*
-        ProtoMsg rsp = new ProtoMsg
-        {
-            MessageType = 47,
-            cashShopResponse = new CashShopResponse
-            {
-                OperationType = 5,
-                IsSuccess = true,
-                CartItems = req.CartItems
-            }
-        };
-        session.WriteAndFlush(rsp);
-        */
     }
     public void CartRemove(CashShopRequest req, ServerSession session)
     {
         session.ActivePlayer.Cart = req.CartItems;
-        /*
-        ProtoMsg rsp = new ProtoMsg
-        {
-            MessageType = 47,
-            cashShopResponse = new CashShopResponse
-            {
-                OperationType = 7,
-                IsSuccess = true,
-                CartItems = req.CartItems
-            }
-        };
-        session.WriteAndFlush(rsp);
-        */
     }
 }
 

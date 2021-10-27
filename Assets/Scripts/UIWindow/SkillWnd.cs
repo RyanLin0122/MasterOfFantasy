@@ -38,15 +38,23 @@ public class SkillWnd : WindowRoot, IStackWnd
         ClearPanel();
         if (IsJobTab)
         {
-            int JobID = GameRoot.Instance.ActivePlayer.Job;
-            List<SkillInfo> skills = ResSvc.Instance.SkillDic[JobID];
-            foreach (var skill in skills)
+            var MySkills = GameRoot.Instance.ActivePlayer.Skills;
+            if (MySkills != null && MySkills.Count > 0)
             {
-                GameObject SkillGameObject = Instantiate(SkillPrefab) as GameObject;
-                SkillGameObject.transform.SetParent(SkillGroup.transform);
-                SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
-                SkillGameObject.GetComponent<SkillSlot>().SetInfo(skill.Icon, skill.SkillName, skill.IsActive, 1);
+                foreach (var skill in MySkills)
+                {
+                    SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
+                    GameObject SkillGameObject = Instantiate(SkillPrefab) as GameObject;
+                    SkillGameObject.transform.SetParent(SkillGroup.transform);
+                    SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
+                    SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                }
             }
+            
+        }
+        else
+        {
+
         }
     }
     public void ClearPanel() //清空欄位

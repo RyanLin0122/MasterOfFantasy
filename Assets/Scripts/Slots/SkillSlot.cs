@@ -5,26 +5,29 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class SkillSlot : KnapsackSlot
+public class SkillSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Text SkillName;
     public Text SkillLevel;
     public Image SkillImg;
     public bool IsActive;
 
-    public void SetInfo(Sprite sprite, string skillName, bool isActive,int skillLevel)
+    public void SetInfo(SkillInfo info, int skillLevel)
     {
-        SkillImg.sprite = sprite;
-        SkillName.text = skillName;
+        SkillImg.sprite = info.Icon;
+        SkillName.text = info.SkillName;
         SkillLevel.text = "LV. " + skillLevel;
-        IsActive = isActive;
+        IsActive = info.IsActive;
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
-        //ToolTip
-
 
     }
-
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+    }
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+    }
 }

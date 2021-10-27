@@ -142,7 +142,8 @@ public static class Utility
             FinishedQuests = BsonArr2QuestList(data["FinishedQuests"].AsBsonArray),
             Honor = data["Honor"].AsInt32,
             Cart = BsonArr2CartList(data["Cart"].AsBsonArray),
-            PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray)
+            PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray),
+            Skills = GetSkillsFromBson(data["Skills"].AsBsonArray)
 
         };
         return player;
@@ -233,6 +234,19 @@ public static class Utility
             }
         }
         return knapsack;
+    }
+    public static List<SkillData> GetSkillsFromBson(BsonArray array)
+    {
+        List<SkillData> skills = new List<SkillData>();
+        foreach (var item in array)
+        {
+            SkillData skill = new SkillData
+            {
+                SkillID = item["ID"].AsInt32,
+                SkillLevel = item["Level"].AsInt32
+            };
+        }
+        return skills;
     }
     public static PlayerEquipments ToPlayerEquipFromBson(BsonArray array)
     {
@@ -431,7 +445,8 @@ public static class Utility
                     { "DiaryInformation", new BsonDocument{ { "NPC", DiaryInfo2BsonArr(player.diaryInformation.NPC_Info) },{ "Monster", DiaryInfo2BsonArr(player.diaryInformation.Monster_Info) } } },
                     { "Honor", player.Honor},
                     { "Cart", CartList2BsonArr(player.Cart)},
-                    { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)}
+                    { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)},
+                    { "Skills", Skill2BsonArr(player.Skills) }
         };
         return bson;
     }
@@ -542,6 +557,56 @@ public static class Utility
             r.Add(ItemToBson(item));
         }
         return r;
+    }
+    public static BsonArray Skill2BsonArr(List<SkillData> skillDatas)
+    {
+        BsonArray r = new BsonArray();
+        foreach (var item in skillDatas)
+        {
+            r.Add(Skill2Bson(item));
+        }
+        return r;
+    }
+    public static BsonDocument Skill2Bson(SkillData skill)
+    {
+        BsonDocument b = new BsonDocument
+        {
+            { "ID", skill.SkillID },
+            { "Level", skill.SkillLevel}
+        };
+        return b;
+    }
+    public static BsonArray GenerateBeginnerSkills(int job)
+    {
+        BsonArray arr = new BsonArray();
+        switch (job)
+        {
+            case 1:
+                arr.Add(Skill2Bson(new SkillData { SkillID = 101, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 102, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 103, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 104, SkillLevel = 0 }));
+                break;
+            case 2:
+                arr.Add(Skill2Bson(new SkillData { SkillID = 201, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 202, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 203, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 204, SkillLevel = 0 }));
+                break;
+            case 3:
+                arr.Add(Skill2Bson(new SkillData { SkillID = 301, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 302, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 303, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 304, SkillLevel = 0 }));
+                break;
+            case 4:
+                arr.Add(Skill2Bson(new SkillData { SkillID = 401, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 402, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 403, SkillLevel = 0 }));
+                arr.Add(Skill2Bson(new SkillData { SkillID = 404, SkillLevel = 0 }));
+                break;
+        }
+        return arr;
     }
     public static BsonArray CartList2BsonArr(List<CartItem> cartItems)
     {

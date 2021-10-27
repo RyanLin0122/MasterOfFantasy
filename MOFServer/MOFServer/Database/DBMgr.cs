@@ -69,7 +69,7 @@ public class DBMgr
                     {"BlockedPeople", new BsonArray() },
                     {"LockerRibiServer1", 0L },
                     {"LockerRibiServer2", 0L },
-                    {"LockerRibiServer3", 0L }
+                    {"LockerRibiServer3", 0L },
             };
             CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, doc);
             AccCollection.InsertOne(doc);
@@ -116,11 +116,11 @@ public class DBMgr
                     {"Guild","" },
                     {"MailBoxRibi",0L },
                     {"RestPoint",0 },
-                    {"SwordPoint",0 },
-                    {"ArcheryPoint",0 },
-                    {"MagicPoint",0 },
-                    {"TheologyPoint",0 },
-                    {"MajorPoint",0 },
+                    {"SwordPoint",10000 },
+                    {"ArcheryPoint",10000 },
+                    {"MagicPoint",10000 },
+                    {"TheologyPoint",10000 },
+                    {"MajorPoint",30 },
                     {"CoupleName","" },
                     {"Title","" },
                     {"MapID",1000 },
@@ -156,7 +156,8 @@ public class DBMgr
                     { "DiaryInformation",new BsonDocument{ { "NPC", new BsonArray() },{ "Monster",new BsonArray()} } },
                     { "Honor", 0},
                     { "Cart", new BsonArray()},
-                    { "PetItems",new BsonArray()}
+                    { "PetItems",new BsonArray()},
+                    { "Skills", Utility.GenerateBeginnerSkills(Info.job)}
                  };
             var filter = Builders<BsonDocument>.Filter.Eq("Account", Account);
             var update = Builders<BsonDocument>.Update.Push("Players", bd

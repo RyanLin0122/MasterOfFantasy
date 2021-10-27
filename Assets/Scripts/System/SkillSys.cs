@@ -15,8 +15,6 @@ class SkillSys : SystemRoot
         Instance = this;
         Debug.Log("Init SkillSys...");
     }
-
-    public GameObject DragSkill;
     public SkillWnd skillWnd;
 
     public void OpenSkillWnd()
@@ -47,6 +45,11 @@ class SkillSys : SystemRoot
         go.transform.localScale = new Vector3(100, 100, 1);
         SkillAnimator ani = go.GetComponent<SkillAnimator>();
         ani.Initialized("Effect/Skill Tracing Trap Explosion",8,14);
+    }
+    public void ShowSkillToolTip(int skillID)
+    {
+        //ToDo
+        
     }
 
 }

@@ -38,6 +38,12 @@ namespace PEProtocal
         public string Korean;
     }
 
+    public class SkillData
+    {
+        public int SkillID;
+        public int SkillLevel;
+    }
+
     public class CashShopData : BaseData<CashShopData>
     {
         public int ItemID { get; set; }
@@ -173,6 +179,8 @@ namespace PEProtocal
         public int Honor { get; set; }
         [ProtoMember(54, IsRequired = false)]
         public List<CartItem> Cart { get; set;}
+        [ProtoMember(55, IsRequired = false)]
+        public List<SkillData> Skills { get; set; }
 
         public Dictionary<int, Item> GetNewNotCashKnapsack()
         {
