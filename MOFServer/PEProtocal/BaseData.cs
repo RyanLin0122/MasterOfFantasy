@@ -180,7 +180,7 @@ namespace PEProtocal
         [ProtoMember(54, IsRequired = false)]
         public List<CartItem> Cart { get; set;}
         [ProtoMember(55, IsRequired = false)]
-        public List<SkillData> Skills { get; set; }
+        public Dictionary<int, SkillData> Skills { get; set; }
 
         public Dictionary<int, Item> GetNewNotCashKnapsack()
         {

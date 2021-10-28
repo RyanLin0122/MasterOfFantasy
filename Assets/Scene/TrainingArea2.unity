@@ -214,9 +214,6 @@ GameObject:
   - component: {fileID: 163714725}
   - component: {fileID: 163714724}
   - component: {fileID: 163714723}
-  - component: {fileID: 163714722}
-  - component: {fileID: 163714721}
-  - component: {fileID: 163714720}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -224,73 +221,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &163714720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163714719}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d336ac1fdf92448e8338fac542d77b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 163714725}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 180d06103598041839ed7c27ab719cdc, type: 3}
---- !u!114 &163714721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163714719}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdceed1528e6041839e5603d1718c0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 163714725}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Tail: 0.03
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 47821d93933cb47218a8afb75a8fc863, type: 3}
---- !u!114 &163714722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163714719}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 163714725}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  HorizontalSpeed: 0.2
-  VerticalSpeed: 0
-  Density: 2
-  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!124 &163714723
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1195,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc45af8dfb964142866edc3f85eb01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapBG: {fileID: 1383488293}
+  MapBG: {fileID: 1605907316}
 --- !u!114 &1627178806
 MonoBehaviour:
   m_ObjectHideFlags: 0

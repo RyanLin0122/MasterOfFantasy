@@ -141,6 +141,10 @@ public class ScreenController : MonoBehaviour
                 {
                     EquipmentWnd.Instance.KeyBoardCommand();
                 }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    UISystem.Instance.OpenLearnSkillUI();
+                }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
                     DiaryWnd.Instance.KeyBoardCommand();

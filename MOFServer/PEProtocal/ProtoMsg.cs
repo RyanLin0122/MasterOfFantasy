@@ -59,6 +59,10 @@ namespace PEProtocal
         ///49:TransactionResponse交易回應
         ///50:LockerOperation 倉庫操作
         ///51:MailBoxOperation 信箱操作
+        ///52:Strengthen 強化
+        ///53:LearnSkill 學技能
+        ///54:SkillRequest 放技能請求
+        ///55:SkillResponce 放技能回應
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -182,6 +186,8 @@ namespace PEProtocal
         public LockerOperation lockerOperation { get; set; }
         [ProtoMember(61, IsRequired = false)]
         public MailBoxOperation mailBoxOperation { get; set; }
+        [ProtoMember(62, IsRequired = false)]
+        public LearnSkill learnSkill { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1431,5 +1437,16 @@ namespace PEProtocal
         public int ErrorType { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public string ErrorMessage { get; set; }
+    }
+
+    [ProtoContract]
+    public class LearnSkill
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int SkillID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int Level { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool IsSuccess { get; set; }
     }
 }

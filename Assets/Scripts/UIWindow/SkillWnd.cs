@@ -41,7 +41,7 @@ public class SkillWnd : WindowRoot, IStackWnd
             var MySkills = GameRoot.Instance.ActivePlayer.Skills;
             if (MySkills != null && MySkills.Count > 0)
             {
-                foreach (var skill in MySkills)
+                foreach (var skill in MySkills.Values)
                 {
                     SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
                     GameObject SkillGameObject = Instantiate(SkillPrefab) as GameObject;

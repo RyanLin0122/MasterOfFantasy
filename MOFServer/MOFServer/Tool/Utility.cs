@@ -235,9 +235,9 @@ public static class Utility
         }
         return knapsack;
     }
-    public static List<SkillData> GetSkillsFromBson(BsonArray array)
+    public static Dictionary<int, SkillData> GetSkillsFromBson(BsonArray array)
     {
-        List<SkillData> skills = new List<SkillData>();
+        Dictionary<int, SkillData> skills = new Dictionary<int, SkillData>();
         foreach (var item in array)
         {
             SkillData skill = new SkillData
@@ -245,6 +245,7 @@ public static class Utility
                 SkillID = item["ID"].AsInt32,
                 SkillLevel = item["Level"].AsInt32
             };
+            skills.Add(item["ID"].AsInt32, skill);
         }
         return skills;
     }
@@ -558,10 +559,10 @@ public static class Utility
         }
         return r;
     }
-    public static BsonArray Skill2BsonArr(List<SkillData> skillDatas)
+    public static BsonArray Skill2BsonArr(Dictionary<int, SkillData> skillDatas)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in skillDatas)
+        foreach (var item in skillDatas.Values)
         {
             r.Add(Skill2Bson(item));
         }

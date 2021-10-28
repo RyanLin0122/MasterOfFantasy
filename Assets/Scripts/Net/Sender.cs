@@ -712,4 +712,20 @@ public class MailBoxSender : BaseSender
         base.SendMsg(msg);
     }
 }
+public class LearnSkillSender : BaseSender
+{
+    public LearnSkillSender(int SkillID, int Level)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 53,
+            learnSkill = new LearnSkill
+            {
+                SkillID = SkillID,
+                Level = Level
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
 

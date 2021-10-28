@@ -238,8 +238,10 @@
     <Compile Include="Channel\PlayerStorage.cs" />
     <Compile Include="Common\LifeCycle.cs" />
     <Compile Include="Common\ObjectManager.cs" />
+    <Compile Include="Common\SkillInfo.cs" />
     <Compile Include="Handler\CashShopHandler.cs" />
     <Compile Include="Handler\KnapsackHandler.cs" />
+    <Compile Include="Handler\LearnSkillHandler.cs" />
     <Compile Include="Handler\LockerHandler.cs" />
     <Compile Include="Handler\MailBoxHandler.cs" />
     <Compile Include="Handler\TransactionHandler.cs" />
@@ -308,6 +310,7 @@
     <None Include="Common\log4net.config" />
     <None Include="Common\MonsterInfo.Json" />
     <None Include="Common\QuestInfo.json" />
+    <None Include="Common\SkillInfo.Json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

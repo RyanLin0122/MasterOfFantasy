@@ -231,6 +231,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     MailBoxHandler mailBoxHandler = new MailBoxHandler();
                     Task mailboxTask = mailBoxHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 53: //學技能
+                    LearnSkillHandler learnSkillHandler = new LearnSkillHandler();
+                    Task learnSkillTask = learnSkillHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

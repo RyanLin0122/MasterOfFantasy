@@ -30,6 +30,7 @@ public class CacheSvc
         ParseItemJson();
         ParseMonsterJson();
         ParseCashShopItems();
+        ParseSkillJson();
         dbMgr = DBMgr.Instance;
         Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
         await task;
@@ -226,7 +227,7 @@ public class CacheSvc
     #region InventorySystem 
     public static Dictionary<int, Item> ItemList = new Dictionary<int, Item>();
 
-    
+
     public void ParseItemJson()
     {
         Console.WriteLine("解析道具資訊");
@@ -729,7 +730,193 @@ public class CacheSvc
 
     #endregion
 
+    #region 技能區
+    public Dictionary<int, SkillInfo> SkillDic = new Dictionary<int, SkillInfo>();
+    //int: 職業代碼 
+    private void ParseSkillJson()
+    {
+        using (StreamReader sr = new StreamReader("../../Common/SkillInfo.Json"))
+        {
+            string SkillJson = sr.ReadToEnd();
+            JSONObject j = new JSONObject(SkillJson);
+            foreach (JSONObject Skill in j.list)
+            {
 
+                string Name = Skill["Name"].str;
+                int ID = (int)Skill["ID"].n;
+                bool IsActive = Skill["IsActive"].b;
+                var WeaponList = Skill["RequiredWeapon"].list;
+                List<WeaponType> RequiredWeapon = new List<WeaponType>();
+                if (WeaponList.Count > 0)
+                {
+                    foreach (var item in WeaponList)
+                    {
+                        RequiredWeapon.Add((WeaponType)Enum.Parse(typeof(WeaponType), item.str));
+                    }
+                }
+                int[] RequiredLevel = new int[5];
+                var LevelList = Skill["RequiredLevel"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    RequiredLevel[i] = (int)LevelList[i].n;
+                }
+                float[] Damage = new float[5];
+                var DamageList = Skill["Damage"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    Damage[i] = DamageList[i].n;
+                }
+                int[] SwordPoint = new int[5];
+                var SwordPointList = Skill["SwordPoint"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    SwordPoint[i] = (int)SwordPointList[i].n;
+                }
+                int[] ArcheryPoint = new int[5];
+                var ArcheryPointList = Skill["ArcheryPoint"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    ArcheryPoint[i] = (int)ArcheryPointList[i].n;
+                }
+                int[] MagicPoint = new int[5];
+                var MagicPointList = Skill["MagicPoint"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    MagicPoint[i] = (int)MagicPointList[i].n;
+                }
+                int[] TheologyPoint = new int[5];
+                var TheologyPointList = Skill["TheologyPoint"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    TheologyPoint[i] = (int)TheologyPointList[i].n;
+                }
+                string Des = Skill["Des"].str;
+                List<SkillEffect> Effects = new List<SkillEffect>();
+                var EffectList = Skill["Effect"].list;
+                if (EffectList.Count > 0)
+                {
+                    foreach (var item in EffectList)
+                    {
+                        SkillEffect effect = new SkillEffect();
+                        effect.EffectID = (int)item["EffectID"].n;
+                        float[] Values = new float[5];
+                        var ValuesList = item["Value"].list;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Values[i] = ValuesList[i].n;
+                        }
+                        Effects.Add(effect);
+                    }
+                }
+                if (!IsActive) //是被動技
+                {
+                    NegativeSkillInfo negativeSkillInfo = new NegativeSkillInfo
+                    {
+                        SkillID = ID,
+                        SkillName = Name,
+                        IsActive = IsActive,
+                        RequiredWeapon = RequiredWeapon,
+                        RequiredLevel = RequiredLevel,
+                        Damage = Damage,
+                        SwordPoint = SwordPoint,
+                        ArcheryPoint = ArcheryPoint,
+                        MagicPoint = MagicPoint,
+                        TheologyPoint = TheologyPoint,
+                        Des = Des,
+                        Effects = Effects
+                    };
+                    SkillDic.Add(ID, negativeSkillInfo);
+                }
+                else //主動技
+                {
+                    bool IsAttack = Skill["IsAttack"].b;
+                    bool IsAOE = Skill["IsAOE"].b;
+                    bool IsBuff = Skill["IsBuff"].b;
+                    bool IsSetup = Skill["IsSetup"].b;
+                    int[] Hp = new int[5];
+                    var HpList = Skill["HP"].list;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Hp[i] = (int)HpList[i].n;
+                    }
+                    int[] MP = new int[5];
+                    var MPList = Skill["MP"].list;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        MP[i] = (int)MPList[i].n;
+                    }
+                    float[] ColdTime = new float[5];
+                    var ColdTimeList = Skill["ColdTime"].list;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        ColdTime[i] = ColdTimeList[i].n;
+                    }
+                    int[] Times = new int[5];
+                    var TimesList = Skill["Times"].list;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Times[i] = (int)TimesList[i].n;
+                    }
+                    float[] Durations = new float[5];
+                    var DurationsList = Skill["Duration"].list;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Durations[i] = DurationsList[i].n;
+                    }
+                    bool IsSpecified = Skill["IsSpecified"].b;
+                    SkillRangeShape Shape = (SkillRangeShape)Enum.Parse(typeof(SkillRangeShape), Skill["Shape"].str);
+                    int[] Range = new int[3];
+                    var RangeList = Skill["Range"].list;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Range[i] = (int)RangeList[i].n;
+                    }
+                    SkillProperty Property = (SkillProperty)Enum.Parse(typeof(SkillProperty), Skill["Property"].str);
+                    bool IsStun = Skill["IsStun"].b;
+                    bool IsStop = Skill["IsStop"].b;
+                    bool IsShoot = Skill["IsShoot"].b;
+                    string[] AniPath = new string[3];
+                    AniPath[0] = Skill["AniPath"]["Self"].str;
+                    AniPath[1] = Skill["AniPath"]["Shoot"].str;
+                    AniPath[2] = Skill["AniPath"]["Other"].str;
+                    ActiveSkillInfo activeSkillInfo = new ActiveSkillInfo
+                    {
+                        SkillID = ID,
+                        SkillName = Name,
+                        IsActive = IsActive,
+                        RequiredWeapon = RequiredWeapon,
+                        RequiredLevel = RequiredLevel,
+                        Damage = Damage,
+                        SwordPoint = SwordPoint,
+                        ArcheryPoint = ArcheryPoint,
+                        MagicPoint = MagicPoint,
+                        TheologyPoint = TheologyPoint,
+                        Des = Des,
+                        Effects = Effects,
+                        IsAttack = IsAttack,
+                        IsAOE = IsAOE,
+                        IsBuff = IsBuff,
+                        IsSetup = IsSetup,
+                        Hp = Hp,
+                        MP = MP,
+                        ColdTime = ColdTime,
+                        Times = Times,
+                        Durations = Durations,
+                        IsSpecified = IsSpecified,
+                        Shape = Shape,
+                        Range = Range,
+                        Property = Property,
+                        IsStun = IsStun,
+                        IsStop = IsStop,
+                        IsShoot = IsShoot,
+                        AniPath = AniPath
+                    };
+                    SkillDic.Add(ID, activeSkillInfo);
+                }
+            }
+        }
+    }
+    #endregion
     #region CashShop
     public Dictionary<string, Dictionary<string, List<CashShopData>>> CashShopDic { get; set; }
     public void ParseCashShopItems()

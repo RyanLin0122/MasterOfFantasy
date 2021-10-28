@@ -140,6 +140,9 @@ public class NetSvc : MonoBehaviour
             case 51:
                 DoMailBoxOperation(msg);
                 break;
+            case 53:
+                DoLearnSkill(msg);
+                break;
         }
     }
 
@@ -556,5 +559,10 @@ public class NetSvc : MonoBehaviour
     public void DoMailBoxOperation(ProtoMsg msg)
     {
         MailBoxWnd.Instance.ProcessMailBoxOperation(msg.mailBoxOperation);
+    }
+
+    public void DoLearnSkill(ProtoMsg msg)
+    {
+        UISystem.Instance.learnSkillWnd.ProcessLearnSkillResponse(msg);
     }
 }

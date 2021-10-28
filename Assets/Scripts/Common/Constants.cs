@@ -20,7 +20,7 @@ public class Constants
     private const string ColorBlue = "<color=#00B4FFFF>";
     private const string ColorYellow = "<color=#FFFF00FF>";
     private const string ColorEnd = "</color>";
-
+    public static Color BrownColor = new Vector4(77,22,2,255);
     public static string Color(string str, TxtColor c)
     {
         string result = "";
