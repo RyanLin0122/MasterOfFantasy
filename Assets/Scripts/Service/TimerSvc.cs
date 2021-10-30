@@ -34,6 +34,10 @@ public class TimerSvc : MonoBehaviour
     }
     public void DeleteTimeTask(int tid)
     {
+        if (tid == -1)
+        {
+            return;
+        }
         try
         {
             pt.DeleteTimeTask(tid);

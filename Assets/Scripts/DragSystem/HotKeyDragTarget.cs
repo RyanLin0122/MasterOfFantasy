@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class HotKeyDragTarget : DragTargetBase, IPointerClickHandler
 {
+    public HotKeySlot slot;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -16,6 +17,6 @@ public class HotKeyDragTarget : DragTargetBase, IPointerClickHandler
     {
         Debug.Log("HotKeyTarget Receive Object");
         GetComponent<Image>().sprite = dragObject.GetComponent<Image>().sprite;
-        data = dragObject.data;
+        slot.SetHotKey(dragObject.data);
     }
 }

@@ -143,6 +143,9 @@ public class NetSvc : MonoBehaviour
             case 53:
                 DoLearnSkill(msg);
                 break;
+            case 57:
+                DoHotKeyOperation(msg);
+                break;
         }
     }
 
@@ -564,5 +567,10 @@ public class NetSvc : MonoBehaviour
     public void DoLearnSkill(ProtoMsg msg)
     {
         UISystem.Instance.learnSkillWnd.ProcessLearnSkillResponse(msg);
+    }
+
+    public void DoHotKeyOperation(ProtoMsg msg)
+    {
+        BattleSys.Instance.HotKeyManager.ProcessHotKeyOperation(msg);
     }
 }

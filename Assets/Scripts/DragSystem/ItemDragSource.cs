@@ -51,6 +51,7 @@ public class ItemDragSource : DragSourceBase
         {
             SetData(item);
         }
+        AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
         DragObject obj = ((GameObject)Instantiate(Resources.Load("Prefabs/ItemDragObject"))).GetComponent<DragObject>();
         obj.transform.SetParent(DragSystem.Instance.DragContainer.transform);
         obj.transform.position = transform.position;
@@ -62,6 +63,7 @@ public class ItemDragSource : DragSourceBase
         slot.PickUpItem();
         Item itemDrag = (Item)obj.data.Content;
         print("[ItemDragSource 59] ItemName" + itemDrag.Name + "Item Position" + itemDrag.Position + " Slot Position: " +slot.SlotPosition );
+        InventorySys.Instance.HideToolTip();
         return obj;
     }
     public Sprite LoadSprite(string path)

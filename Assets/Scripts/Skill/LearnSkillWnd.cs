@@ -92,23 +92,27 @@ public class LearnSkillWnd : WindowRoot
     {
         foreach (var Skill in SkillList)
         {
-            if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(Skill)) //已經有這技能了
+            if (GameRoot.Instance.ActivePlayer.Skills != null)
             {
-                if (GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel < 5)
+                if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(Skill)) //已經有這技能了
+                {
+                    if (GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel < 5)
+                    {
+                        Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
+                        Skilltransform.SetParent(LearnSkillContainer);
+                        LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
+                        learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
+                    }
+                }
+                else //還沒學
                 {
                     Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
                     Skilltransform.SetParent(LearnSkillContainer);
                     LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
-                    learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
+                    learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, 1);
                 }
             }
-            else //還沒學
-            {
-                Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
-                Skilltransform.SetParent(LearnSkillContainer);
-                LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
-                learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, 1);
-            }
+            
         }
     }
     public bool IsOpen;
@@ -198,6 +202,7 @@ public class LearnSkillWnd : WindowRoot
         {
             if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(learn.SkillID))
             {
+                GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillID = learn.SkillID;
                 GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillLevel += 1;
                 GameRoot.Instance.ActivePlayer.SwordPoint -= info.SwordPoint[learn.Level - 1];
                 GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[learn.Level - 1];

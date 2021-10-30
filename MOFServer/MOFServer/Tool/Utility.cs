@@ -143,8 +143,8 @@ public static class Utility
             Honor = data["Honor"].AsInt32,
             Cart = BsonArr2CartList(data["Cart"].AsBsonArray),
             PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray),
-            Skills = GetSkillsFromBson(data["Skills"].AsBsonArray)
-
+            Skills = GetSkillsFromBson(data["Skills"].AsBsonArray),
+            Hotkeys = GetHotkeyDatasFromBson(data["HotKeys"].AsBsonArray)
         };
         return player;
     }
@@ -179,7 +179,7 @@ public static class Utility
             }
             else if (item["Type"].AsString == ItemType.Weapon.ToString())
             {
-                Weapon w = Utility.GetWeaponByID(item["itemID"].AsInt32);
+                Weapon w = Utility.GetWeaponByID(item["ItemID"].AsInt32);
                 w.Position = item["Position"].AsInt32;
                 w.Quality = Utility.GetItemQuality(item["Quality"].AsInt32);
                 w.MinDamage = item["MinDamage"].AsInt32;
@@ -234,6 +234,25 @@ public static class Utility
             }
         }
         return knapsack;
+    }
+    public static List<HotkeyData> GetHotkeyDatasFromBson(BsonArray array)
+    {
+        List<HotkeyData> result = new List<HotkeyData>();
+        if(array!=null && array.Count > 0)
+        {
+            foreach (var data in array)
+            {
+                HotkeyData hotkey = new HotkeyData
+                {
+                    KeyCode = data["KeyCode"].AsString,
+                    HotKeyState = data["State"].AsInt32,
+                    PageIndex = data["Index"].AsInt32,
+                    ID = data["ID"].AsInt32
+                };
+                result.Add(hotkey);
+            }
+        }
+        return result;
     }
     public static Dictionary<int, SkillData> GetSkillsFromBson(BsonArray array)
     {
@@ -447,7 +466,8 @@ public static class Utility
                     { "Honor", player.Honor},
                     { "Cart", CartList2BsonArr(player.Cart)},
                     { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)},
-                    { "Skills", Skill2BsonArr(player.Skills) }
+                    { "Skills", Skill2BsonArr(player.Skills) },
+                    { "HotKeys", HotKeyList2BsonArr(player.Hotkeys)}
         };
         return bson;
     }
@@ -556,6 +576,25 @@ public static class Utility
         foreach (var item in input.Values)
         {
             r.Add(ItemToBson(item));
+        }
+        return r;
+    }
+    public static BsonArray HotKeyList2BsonArr(List<HotkeyData> list)
+    {
+        BsonArray r = new BsonArray();
+        if (list.Count > 0)
+        {
+            foreach (var hotkey in list)
+            {
+                BsonDocument b = new BsonDocument
+                {
+                    { "KeyCode", hotkey.KeyCode },
+                    { "State", hotkey.HotKeyState},
+                    { "Index", hotkey.PageIndex},
+                    { "ID", hotkey.ID}
+                };
+                r.Add(b);
+            }
         }
         return r;
     }

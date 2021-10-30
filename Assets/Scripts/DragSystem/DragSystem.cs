@@ -126,6 +126,53 @@ public class DragSystem : SystemRoot
         }
         state = DragState.UnDrag;
     }
+    /// <summary>
+    /// 把手上物品還原回去原本地方
+    /// </summary>
+    public void ReturnDragItem()
+    {
+        print("Return DragObject");
+        if (CurrentDragObject != null)
+        {
+            DragBaseData data = CurrentDragObject.data;
+            if(data is DragItemData)
+            {
+                Item item = (Item)data.Content;
+                switch (data.Source)
+                {
+                    case 1:
+                        if (item.IsCash)
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                        }
+                        else
+                        {
+                            KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                        }
+                        break;
+                    case 2:
+                        LockerWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                        break;
+                    case 3:
+                        MailBoxWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                        break;
+                }
+            }
+            else if(data is DragSkillData)
+            {
+
+            }
+            else if(data is DragHotKeyData)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        RemoveDragObject();
+    }
 }
 public enum DragState
 {
@@ -168,4 +215,24 @@ public class DragItemData : DragBaseData
 }
 
 
-//public class DragSkillData : DragBaseData<>
+public class DragSkillData : DragBaseData
+{
+    public DragSkillData(System.Object item)
+    {
+        if (item.GetType().IsSubclassOf(typeof(SkillInfo)))
+        {
+            base.SetData(item);
+        }
+    }
+}
+
+public class DragHotKeyData : DragBaseData
+{
+    public DragHotKeyData(System.Object item)
+    {
+        if (item.GetType().IsSubclassOf(typeof(HotkeyData)))
+        {
+            base.SetData(item);
+        }
+    }
+}

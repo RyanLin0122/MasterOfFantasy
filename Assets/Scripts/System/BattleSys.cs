@@ -10,13 +10,14 @@ public class BattleSys : SystemRoot
     public static BattleSys Instance = null;
     public Dictionary<int, MonsterAI> Monsters;
     public Canvas MapCanvas = null;
-
+    public HotKeyManager HotKeyManager;
     public MonsterAI CurrentTarget = null;
     public override void InitSys()
     {
         base.InitSys();
         Instance = this;
         Monsters = new Dictionary<int, MonsterAI>();
+        this.HotKeyManager.Init();
         Debug.Log("Init BattleSys...");
     }
 
@@ -239,5 +240,10 @@ public class BattleSys : SystemRoot
             }
         }
     }
+
+    #region Buff 和 冷卻時間
+
+
+    #endregion
 }
 

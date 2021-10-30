@@ -5,49 +5,88 @@ using System.IO;
 
 namespace PEProtocal
 {
-    public class BaseData<T>
+    [ProtoContract]
+    public class MapCfg
     {
+        [ProtoMember(1, IsRequired = false)]
         public int ID;
-    }
-
-    public class MapCfg : BaseData<MapCfg>
-    {
+        [ProtoMember(2, IsRequired = false)]
         public string mapName;
+        [ProtoMember(3, IsRequired = false)]
         public string Location;
+        [ProtoMember(4, IsRequired = false)]
         public string SceneName;
+        [ProtoMember(5, IsRequired = false)]
         public float[] PlayerBornPos;
+        [ProtoMember(6, IsRequired = false)]
         public bool Islimited;
+        [ProtoMember(7, IsRequired = false)]
         public bool IsVillage;
+        [ProtoMember(8, IsRequired = false)]
         public int MonsterMax;
+        [ProtoMember(9, IsRequired = false)]
         public int BornTime;
     }
-
-    public class NpcConfig : BaseData<NpcConfig>
+    [ProtoContract]
+    public class NpcConfig
     {
+        [ProtoMember(1, IsRequired = false)]
+        public int ID;
+        [ProtoMember(2, IsRequired = false)]
         public string Name;
+        [ProtoMember(3, IsRequired = false)]
         public List<int> Functions;
+        [ProtoMember(4, IsRequired = false)]
         public string Sprite;
+        [ProtoMember(5, IsRequired = false)]
         public string[] FixedText;
     }
 
-    public class TitleData : BaseData<TitleData>
+    [ProtoContract]
+    public class TitleData
     {
+        [ProtoMember(1, IsRequired = false)]
+        public int ID;
+        [ProtoMember(2, IsRequired = false)]
         public string Tra_ChineseName;
+        [ProtoMember(3, IsRequired = false)]
         public string Sim_ChineseName;
+        [ProtoMember(4, IsRequired = false)]
         public string English;
+        [ProtoMember(5, IsRequired = false)]
         public string Korean;
     }
 
+    [ProtoContract]
+    public class HotkeyData
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string KeyCode { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int PageIndex { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int HotKeyState { get; set; } //0: 空的， 1: 道具， 2: 技能
+        [ProtoMember(4, IsRequired = false)]
+        public int ID { get; set; }
+    }
+
+    [ProtoContract]
     public class SkillData
     {
+        [ProtoMember(1, IsRequired = false)]
         public int SkillID;
+        [ProtoMember(2, IsRequired = false)]
         public int SkillLevel;
     }
 
-    public class CashShopData : BaseData<CashShopData>
+    [ProtoContract]
+    public class CashShopData
     {
+        [ProtoMember(1, IsRequired = false)]
         public int ItemID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
         public int SellPrice { get; set; }
+        [ProtoMember(3, IsRequired = false)]
         public int Quantity { get; set; }
     }
     [ProtoContract]
@@ -181,7 +220,8 @@ namespace PEProtocal
         public List<CartItem> Cart { get; set;}
         [ProtoMember(55, IsRequired = false)]
         public Dictionary<int, SkillData> Skills { get; set; }
-
+        [ProtoMember(56, IsRequired = false)]
+        public List<HotkeyData> Hotkeys { get; set; }
         public Dictionary<int, Item> GetNewNotCashKnapsack()
         {
             NotCashKnapsack = new Dictionary<int, Item>();

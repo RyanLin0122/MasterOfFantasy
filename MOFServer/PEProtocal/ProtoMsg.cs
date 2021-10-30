@@ -59,10 +59,12 @@ namespace PEProtocal
         ///49:TransactionResponse交易回應
         ///50:LockerOperation 倉庫操作
         ///51:MailBoxOperation 信箱操作
-        ///52:Strengthen 強化
-        ///53:LearnSkill 學技能
+        ///52:強化請求
+        ///53:強化回應
         ///54:SkillRequest 放技能請求
         ///55:SkillResponce 放技能回應
+        ///56: LearnSkill 學技能
+        ///57: HotKey 快捷鍵相關
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -187,7 +189,13 @@ namespace PEProtocal
         [ProtoMember(61, IsRequired = false)]
         public MailBoxOperation mailBoxOperation { get; set; }
         [ProtoMember(62, IsRequired = false)]
+        public StrengthenRequest strengthenRequest { get; set; }
+        [ProtoMember(63, IsRequired = false)]
+        public StrengthenResponse strengthenResponse { get; set; }
+        [ProtoMember(64, IsRequired = false)]
         public LearnSkill learnSkill { get; set; }
+        [ProtoMember(65, IsRequired = false)]
+        public HotKeyOperation hotKeyOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1440,6 +1448,34 @@ namespace PEProtocal
     }
 
     [ProtoContract]
+    public class StrengthenRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public Item item { get; set; }
+
+
+
+    }
+    [ProtoContract]
+    public class StrengthenResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string Effect { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public Weapon StrengthenWeapon { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public Item Stone { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public Weapon Weapon { get; set; }
+
+        [ProtoMember(6, IsRequired = false)]
+        public long Ribi { get; set; }
+    }
+    [ProtoContract]
     public class LearnSkill
     {
         [ProtoMember(1, IsRequired = false)]
@@ -1449,4 +1485,15 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public bool IsSuccess { get; set; }
     }
+    [ProtoContract]
+    public class HotKeyOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; } //1.註冊快捷鍵 2.刪除快捷鍵 3.取代
+        [ProtoMember(2, IsRequired = false)]
+        public HotkeyData OldHotKeyData { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public HotkeyData NewHotKeyData { get; set; }
+    }
+
 }

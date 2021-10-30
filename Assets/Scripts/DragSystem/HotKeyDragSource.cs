@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HotKeyDragSource : MonoBehaviour
+public class HotKeyDragSource : DragSourceBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public HotKeySlot slot;
+    public override void SetData(object data)
+    { 
+    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

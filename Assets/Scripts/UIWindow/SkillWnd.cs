@@ -36,33 +36,46 @@ public class SkillWnd : WindowRoot, IStackWnd
     public void InitSkillWnd()
     {
         ClearPanel();
-        if (IsJobTab)
+
+        var MySkills = GameRoot.Instance.ActivePlayer.Skills;
+        if (MySkills != null && MySkills.Count > 0)
         {
-            var MySkills = GameRoot.Instance.ActivePlayer.Skills;
-            if (MySkills != null && MySkills.Count > 0)
+            foreach (var skill in MySkills.Values)
             {
-                foreach (var skill in MySkills.Values)
+                if (IsJobTab)
                 {
-                    SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
-                    GameObject SkillGameObject = Instantiate(SkillPrefab) as GameObject;
-                    SkillGameObject.transform.SetParent(SkillGroup.transform);
-                    SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
-                    SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                    if (skill.SkillID >= 100)
+                    {
+                        SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
+                        GameObject SkillGameObject = Instantiate(SkillPrefab);
+                        SkillGameObject.transform.SetParent(SkillGroup.transform);
+                        //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
+                        SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                    }
+                }
+                else
+                {
+                    if (skill.SkillID < 100)
+                    {
+                        SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
+                        GameObject SkillGameObject = Instantiate(SkillPrefab);
+                        SkillGameObject.transform.SetParent(SkillGroup.transform);
+                        //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
+                        SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                    }
                 }
             }
-            
-        }
-        else
-        {
-
         }
     }
     public void ClearPanel() //清空欄位
     {
-        SkillSlot[] slots = SkillGroup.transform.GetComponentsInChildren<SkillSlot>();
-        foreach (var item in slots)
+        if (SkillGroup.transform.childCount > 0)
         {
-            DestroyImmediate(item.gameObject);
+            SkillSlot[] slots = SkillGroup.transform.GetComponentsInChildren<SkillSlot>();
+            foreach (var item in slots)
+            {
+                DestroyImmediate(item.gameObject);
+            }
         }
     }
 
@@ -81,6 +94,7 @@ public class SkillWnd : WindowRoot, IStackWnd
         JobSkillText.text = "<color=#ffffff>職業技能</color>";
         MajorSkillText.text = "專攻技能";
         MajorSkillText.color = referenceColor;
+        InitSkillWnd();
     }
 
     public void PressMajorSkillBtn()
@@ -93,6 +107,7 @@ public class SkillWnd : WindowRoot, IStackWnd
         JobSkillText.text = "職業技能";
         MajorSkillText.text = "<color=#ffffff>專攻技能</color>";
         JobSkillText.color = referenceColor;
+        InitSkillWnd();
     }
 
     public void OpenAndPush()
@@ -100,6 +115,8 @@ public class SkillWnd : WindowRoot, IStackWnd
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;
+        IsJobTab = true;
+        InitSkillWnd();
         UISystem.Instance.Push(this);
     }
 

@@ -718,11 +718,28 @@ public class LearnSkillSender : BaseSender
     {
         ProtoMsg msg = new ProtoMsg
         {
-            MessageType = 53,
+            MessageType = 56,
             learnSkill = new LearnSkill
             {
                 SkillID = SkillID,
                 Level = Level
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+
+public class HotKeySender : BaseSender
+{
+    public HotKeySender(int OperationType, HotkeyData NewData)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 57,
+            hotKeyOperation = new HotKeyOperation
+            {
+                OperationType = OperationType,
+                NewHotKeyData = NewData
             }
         };
         base.SendMsg(msg);
