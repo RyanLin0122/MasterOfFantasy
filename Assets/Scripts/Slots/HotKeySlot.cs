@@ -32,6 +32,10 @@ public class HotKeySlot : MonoBehaviour
                 else
                 {
                     ColdTimeImg.fillAmount = 0;
+                    Transform tr = (Instantiate(Resources.Load("Prefabs/ColdTimeEffect")) as GameObject).GetComponent<Transform>();
+                    tr.SetParent(transform);
+                    tr.localScale = Vector3.one;
+                    tr.localPosition = Vector3.zero;
                 }
             }
             , Period, PETimeUnit.Second, MinusTimes);
