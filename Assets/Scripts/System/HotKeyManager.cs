@@ -35,7 +35,6 @@ public class HotKeyManager : MonoBehaviour
     {
         if (GameRoot.Instance.ActivePlayer.Hotkeys != null && GameRoot.Instance.ActivePlayer.Hotkeys.Count > 0)
         {
-            print("Åª¨ú§Ö±¶Áä³]¸m");
             SetHotKey(CurrentPage);
         }
     }
@@ -99,21 +98,39 @@ public class HotKeyManager : MonoBehaviour
                 {
                     if (HotKeyDataList.Count > 0)
                     {
-                        int index = 0;
+                        int index = -1;
+                        int OldIndex = -1;
                         for (int i = 0; i < HotKeyDataList.Count; i++)
                         {
                             if (ho.NewHotKeyData.PageIndex == HotKeyDataList[i].PageIndex && ho.NewHotKeyData.KeyCode == HotKeyDataList[i].KeyCode)
                             {
                                 index = i;
                             }
+                            if (ho.OldHotKeyData != null)
+                            {
+                                if (HotKeyDataList[i].PageIndex == ho.NewHotKeyData.PageIndex && HotKeyDataList[i].KeyCode != ho.NewHotKeyData.KeyCode
+                                && HotKeyDataList[i].HotKeyState == ho.NewHotKeyData.HotKeyState && HotKeyDataList[i].ID == ho.NewHotKeyData.ID)
+                                {
+                                    OldIndex = i;
+                                }
+                            }
                         }
-                        if (index == 0)
+                        if (index == -1)
                         {
                             HotKeyDataList.Add(ho.NewHotKeyData);
                         }
                         else
                         {
                             HotKeyDataList[index] = ho.NewHotKeyData;
+                        }
+                        if (OldIndex != -1)
+                        {
+                            HotKeyDataList.RemoveAt(OldIndex);
+                        }
+                        if (ho.OldHotKeyData != null && OldIndex != -1)
+                        {
+                            KeyCode OldCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), ho.OldHotKeyData.KeyCode);
+                            HotKeySlots[OldCode].ResetUI();
                         }
                     }
                     else
@@ -127,6 +144,7 @@ public class HotKeyManager : MonoBehaviour
                     HotKeySlots[code].ResetUI();
                     HotKeySlots[code].SetHotKeyUI(ho.NewHotKeyData);
                 }
+                
                 break;
         }
     }

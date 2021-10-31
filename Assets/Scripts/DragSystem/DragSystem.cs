@@ -230,7 +230,7 @@ public class DragHotKeyData : DragBaseData
 {
     public DragHotKeyData(System.Object item)
     {
-        if (item.GetType().IsSubclassOf(typeof(HotkeyData)))
+        if (item.GetType() == typeof(HotkeyData))
         {
             base.SetData(item);
         }

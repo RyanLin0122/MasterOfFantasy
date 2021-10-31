@@ -211,7 +211,7 @@ public class NetSvc : MonoBehaviour
         LoginSys.Instance.selectCharacterWnd.SetWndState(false);
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
         UISystem.Instance.InfoWnd.RefreshIInfoUI();
-
+        BattleSys.Instance.HotKeyManager.ReadHotKey();
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
     {

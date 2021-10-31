@@ -11,7 +11,7 @@ public class DragObject : EventTrigger
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp");
+    
     }
     public override void OnPointerDown(PointerEventData eventData)
     {

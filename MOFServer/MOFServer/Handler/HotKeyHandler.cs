@@ -25,21 +25,35 @@ public class HotKeyHandler : GameHandler
                 {
                     if (HotKeyDataList.Count > 0)
                     {
-                        int index = 0;
+                        int index = -1;
+                        int OldIndex = -1; 
                         for (int i = 0; i < HotKeyDataList.Count; i++)
                         {
                             if(req.NewHotKeyData.PageIndex == HotKeyDataList[i].PageIndex && req.NewHotKeyData.KeyCode == HotKeyDataList[i].KeyCode)
                             {
                                 index = i;
                             }
+                            if (req.OldHotKeyData != null)
+                            {
+                                if (HotKeyDataList[i].PageIndex == req.NewHotKeyData.PageIndex && HotKeyDataList[i].KeyCode != req.NewHotKeyData.KeyCode
+                                && HotKeyDataList[i].HotKeyState == req.NewHotKeyData.HotKeyState && HotKeyDataList[i].ID == req.NewHotKeyData.ID)
+                                {
+                                    OldIndex = i;
+                                }
+                            }
+
                         }
-                        if(index == 0)
+                        if(index == -1)
                         {
                             HotKeyDataList.Add(req.NewHotKeyData);
                         }
                         else
                         {
                             HotKeyDataList[index] = req.NewHotKeyData;
+                        }
+                        if (OldIndex != -1)
+                        {
+                            HotKeyDataList.RemoveAt(OldIndex);
                         }
                     }
                     else

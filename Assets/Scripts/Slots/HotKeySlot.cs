@@ -64,7 +64,6 @@ public class HotKeySlot : MonoBehaviour
             Item item = (Item)data.Content;
             if (item is Consumable)
             {
-                print("Set Consumable");
                 SendHotKeyRequest(item);
             }
             DragSystem.Instance.ReturnDragItem();
@@ -77,35 +76,34 @@ public class HotKeySlot : MonoBehaviour
         }
         else if (data is DragHotKeyData)
         {
-
+            if (((HotkeyData)(data.Content)).HotKeyState == 1)
+            {
+                Item item = InventorySys.Instance.itemList[((HotkeyData)(data.Content)).ID];
+                if (item is Consumable)
+                {
+                    SendHotKeyRequest(item);
+                }
+                DragSystem.Instance.ReturnDragItem();
+            }
+            else if (((HotkeyData)(data.Content)).HotKeyState == 2)
+            {
+                SkillInfo info = ResSvc.Instance.SkillDic[((HotkeyData)data.Content).ID];
+                SendHotKeyRequest(info);
+                DragSystem.Instance.RemoveDragObject();
+            }
+            DragSystem.Instance.ReturnDragItem();
         }
         else
         {
-
+            DragSystem.Instance.ReturnDragItem();
         }
     }
     public void SendHotKeyRequest(System.Object obj)
     {
         HotkeyData data = null;
-        if (GameRoot.Instance.ActivePlayer.Hotkeys != null)
-        {
-            if(GameRoot.Instance.ActivePlayer.Hotkeys.Count > 0)
-            {
-                foreach (var hotkeyData in GameRoot.Instance.ActivePlayer.Hotkeys)
-                {
-                    if (hotkeyData.PageIndex == BattleSys.Instance.HotKeyManager.CurrentPage && hotkeyData.KeyCode == keyCode.ToString())
-                    {
-                        data = hotkeyData;
-                    }
-                }
-            }
-        }
-        else
-        {
-            GameRoot.Instance.ActivePlayer.Hotkeys = new List<HotkeyData>();
-        }
+        HotkeyData sameHotKeyData = null;
         HotkeyData newData = null;
-        if(obj is SkillInfo)
+        if (obj is SkillInfo)
         {
             newData = new HotkeyData
             {
@@ -115,7 +113,7 @@ public class HotKeySlot : MonoBehaviour
                 ID = ((SkillInfo)obj).SkillID
             };
         }
-        else if(obj is Consumable)
+        else if (obj is Consumable)
         {
             newData = new HotkeyData
             {
@@ -125,9 +123,32 @@ public class HotKeySlot : MonoBehaviour
                 ID = ((Consumable)obj).ItemID
             };
         }
-        if(newData!=null) //新增一個
+        if (GameRoot.Instance.ActivePlayer.Hotkeys != null)
         {
-            new HotKeySender(1, newData);
+            if (GameRoot.Instance.ActivePlayer.Hotkeys.Count > 0)
+            {
+                foreach (var hotkeyData in GameRoot.Instance.ActivePlayer.Hotkeys)
+                {
+                    if (hotkeyData.PageIndex == BattleSys.Instance.HotKeyManager.CurrentPage && hotkeyData.KeyCode == keyCode.ToString())
+                    {
+                        data = hotkeyData;
+                    }
+                    if (hotkeyData.PageIndex == BattleSys.Instance.HotKeyManager.CurrentPage && hotkeyData.KeyCode != keyCode.ToString()
+                        && hotkeyData.HotKeyState == newData.HotKeyState && hotkeyData.ID == newData.ID)
+                    {
+                        sameHotKeyData = hotkeyData;
+                    }
+                }
+            }
+        }
+        else
+        {
+            GameRoot.Instance.ActivePlayer.Hotkeys = new List<HotkeyData>();
+        }
+
+        if (newData != null) //新增一個
+        {
+            new HotKeySender(1, newData, sameHotKeyData);
         }
     }
     public void SetHotKeyUI(HotkeyData data)

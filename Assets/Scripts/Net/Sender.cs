@@ -731,7 +731,7 @@ public class LearnSkillSender : BaseSender
 
 public class HotKeySender : BaseSender
 {
-    public HotKeySender(int OperationType, HotkeyData NewData)
+    public HotKeySender(int OperationType, HotkeyData NewData, HotkeyData OldData)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -739,7 +739,8 @@ public class HotKeySender : BaseSender
             hotKeyOperation = new HotKeyOperation
             {
                 OperationType = OperationType,
-                NewHotKeyData = NewData
+                NewHotKeyData = NewData,
+                OldHotKeyData = OldData
             }
         };
         base.SendMsg(msg);
