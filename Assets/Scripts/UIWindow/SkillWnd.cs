@@ -47,10 +47,13 @@ public class SkillWnd : WindowRoot, IStackWnd
                     if (skill.SkillID >= 100)
                     {
                         SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
-                        GameObject SkillGameObject = Instantiate(SkillPrefab);
-                        SkillGameObject.transform.SetParent(SkillGroup.transform);
-                        //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
-                        SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                        if (skill.SkillLevel > 0)
+                        {
+                            GameObject SkillGameObject = Instantiate(SkillPrefab);
+                            SkillGameObject.transform.SetParent(SkillGroup.transform);
+                            //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
+                            SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                        }
                     }
                 }
                 else
@@ -58,10 +61,13 @@ public class SkillWnd : WindowRoot, IStackWnd
                     if (skill.SkillID < 100)
                     {
                         SkillInfo info = ResSvc.Instance.SkillDic[skill.SkillID];
-                        GameObject SkillGameObject = Instantiate(SkillPrefab);
-                        SkillGameObject.transform.SetParent(SkillGroup.transform);
-                        //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
-                        SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                        if (skill.SkillLevel > 0)
+                        {
+                            GameObject SkillGameObject = Instantiate(SkillPrefab);
+                            SkillGameObject.transform.SetParent(SkillGroup.transform);
+                            //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
+                            SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                        }
                     }
                 }
             }

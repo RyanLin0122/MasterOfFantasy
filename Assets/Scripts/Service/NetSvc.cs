@@ -140,7 +140,7 @@ public class NetSvc : MonoBehaviour
             case 51:
                 DoMailBoxOperation(msg);
                 break;
-            case 53:
+            case 56:
                 DoLearnSkill(msg);
                 break;
             case 57:
