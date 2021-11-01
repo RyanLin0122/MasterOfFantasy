@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class BossMonster:AbstractMonster
+public class Monster : AbstractMonster
 {
 
 }

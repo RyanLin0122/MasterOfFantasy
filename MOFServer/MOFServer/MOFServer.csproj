@@ -254,7 +254,7 @@
     <Compile Include="Common\ServerStart.cs" />
     <Compile Include="Database\DBMgr.cs" />
     <Compile Include="GameServer\GameServer.cs" />
-    <Compile Include="Handler\MOFCharacter.cs" />
+    <Compile Include="Entity\MOFCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\MOFServerHandler.cs" />
     <Compile Include="Service\NetService\HeartBeatServerHandler.cs" />
@@ -265,12 +265,12 @@
     <Compile Include="Service\NetService\SessionMap.cs" />
     <Compile Include="Service\TimerService\Petimer.cs" />
     <Compile Include="Service\TimerService\TimerSvc.cs" />
-    <Compile Include="System\BattleSys\AbstractMonster.cs" />
+    <Compile Include="Entity\AbstractMonster.cs" />
     <Compile Include="System\BattleSys\BattleSys.cs" />
-    <Compile Include="System\BattleSys\BossMonster.cs" />
-    <Compile Include="System\BattleSys\CommonMonster.cs" />
-    <Compile Include="System\BattleSys\IEntity.cs" />
-    <Compile Include="System\BattleSys\Monster.cs" />
+    <Compile Include="Entity\BossMonster.cs" />
+    <Compile Include="Entity\CommonMonster.cs" />
+    <Compile Include="Entity\IEntity.cs" />
+    <Compile Include="Entity\Monster.cs" />
     <Compile Include="System\BattleSys\MonsterInfo.cs" />
     <Compile Include="System\LoginSys\LoginRequestHandler.cs" />
     <Compile Include="System\LoginSys\LoginSys.cs" />

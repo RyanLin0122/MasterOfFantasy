@@ -186,7 +186,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     session.ActivePlayer.RestPoint += 5;
                     session.ActivePlayer.MAXHP += 10;
                     session.ActivePlayer.MAXMP += 10;
-                    GetMap(session).characters[session.ActivePlayer.Name].CalculateRealProperty();
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].InitAllAtribute();
                     session.ActivePlayer.Exp = msg.levelUp.RestExp;
                     session.WriteAndFlush(msg);
                     break;

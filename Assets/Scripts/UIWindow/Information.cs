@@ -64,20 +64,6 @@ public class Information : WindowRoot
         RefreshIInfoUI();
     }
 
-    public int RealAttack = 0;
-    public int RealStrength = 0;
-    public int RealAgility = 0;
-    public int RealIntellect = 0;
-    public int RealMaxHp = 0;
-    public int RealMaxMp = 0;
-    public int RealMaxDamage = 0;
-    public int RealMinDamage = 0;
-    public int RealDefense = 0;
-    public float RealAccuracy = 0;
-    public float RealCritical = 0;
-    public float RealAvoid = 0;
-    public float RealMagicDefense = 0;
-    public int RealPoint = 0;
 
     public void RefreshIInfoUI() //根據GameRoot.Instance.ActivePlayer更新角色屬性相關UI(沒有回傳)
     {
@@ -88,20 +74,8 @@ public class Information : WindowRoot
         tempStrength.text = "0";
         tempAgility.text = "0";
         tempIntellect.text = "0";
-        RealAttack = player.Att + (int)EquipmentProperty["Attack"];
-        RealStrength = player.Strength + (int)EquipmentProperty["Strength"];
-        RealAgility = player.Agility + (int)EquipmentProperty["Agility"];
-        RealIntellect = player.Intellect + (int)EquipmentProperty["Intellect"];
-        RealMaxHp = 36 + (player.Level * 10) + (RealStrength * 16) + (int)EquipmentProperty["HP"];
-        RealMaxMp = (player.Level * 10) + (RealIntellect * 12) + (int)EquipmentProperty["MP"];
-        RealMaxDamage = player.Att * 2 + (int)EquipmentProperty["MaxDamage"];
-        RealMinDamage = player.Att * 1 + (int)EquipmentProperty["MinDamage"];
-        RealDefense = player.Strength * 2 + (int)EquipmentProperty["Defense"];
-        RealAccuracy = 0.5f + 0.3f * RealAgility + EquipmentProperty["Accuracy"];
-        RealCritical = 0.5f + 0.3f * RealAgility + EquipmentProperty["Critical"];
-        RealAvoid = 0.5f + 0.3f * RealAgility + EquipmentProperty["Avoid"];
-        RealMagicDefense = 0.3f + EquipmentProperty["MagicDefense"];
-
+        BattleSys.Instance.InitAllAtribute();
+        PlayerAttribute attr = BattleSys.Instance.FinalAttribute;
         //UI更新
         JobImg.sprite = ResSvc.Instance.GetJobImgByID(GameRoot.Instance.ActivePlayer.Job);
         LevelText.text = "LV." + player.Level;
@@ -111,27 +85,26 @@ public class Information : WindowRoot
         txtLevel.text = player.Level.ToString();
         txtGrade.text = player.Grade.ToString();
         txtTitle.text = player.Title;
-        txtHP.text = player.HP + " / " + RealMaxHp;
-        txtMP.text = player.MP + " / " + RealMaxMp;
-        HpImg.fillAmount = (float)(((double)player.HP) / RealMaxHp);
-        MpImg.fillAmount = (float)(((double)player.MP) / RealMaxMp);
-        HpImg2.fillAmount = (float)(((double)player.HP) / RealMaxHp);
-        MpImg2.fillAmount = (float)(((double)player.MP) / RealMaxMp);
-        GameRoot.Instance.UpdatePlayerHp(RealMaxHp); //角色頭上血條
+        txtHP.text = player.HP + " / " + attr.MAXHP;
+        txtMP.text = player.MP + " / " + attr.MAXMP;
+        HpImg.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
+        MpImg.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
+        HpImg2.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
+        MpImg2.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
+        GameRoot.Instance.UpdatePlayerHp(attr.MAXHP); //角色頭上血條
         txtEXP.text = Convert.ToString(player.Exp) + " / " + Tools.GetExpMax(player.Level);
         ExpImage.fillAmount = (float)(((double)player.Exp) / ((double)Tools.GetExpMax(player.Level)));
 
-        txtAtt.text = RealAttack.ToString();
-        txtStrength.text = RealStrength.ToString();
-        txtAgility.text = RealAgility.ToString();
-        txtIntellect.text = RealIntellect.ToString();
-        txtDamage.text = RealMinDamage + "~" + RealMaxDamage;
-        txtDefense.text = RealDefense.ToString();
-        txtAccuracy.text = RealAccuracy * 100 + "%";
-        txtAvoidRate.text = RealAvoid * 100 + "%";
-        txtCriticalRate.text = RealCritical * 100 + "%";
-        txtMagicDefense.text = RealMagicDefense * 100 + "%";
-        print("RealMP:" + RealMaxMp);
+        txtAtt.text = attr.Att.ToString();
+        txtStrength.text = attr.Strength.ToString();
+        txtAgility.text = attr.Agility.ToString();
+        txtIntellect.text = attr.Intellect.ToString();
+        txtDamage.text = attr.MinDamage + "~" + attr.MaxDamage;
+        txtDefense.text = attr.Defense.ToString();
+        txtAccuracy.text = attr.Accuracy * 100 + "%";
+        txtAvoidRate.text = attr.Avoid * 100 + "%";
+        txtCriticalRate.text = attr.Critical * 100 + "%";
+        txtMagicDefense.text = attr.MagicDefense * 100 + "%";
     }
     public void openCloseWnd()
     {
@@ -563,14 +536,14 @@ public class Information : WindowRoot
             }
 
         }
-        if (UpdateHP <= RealMaxHp)
+        if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
         {
             pd.HP = UpdateHP;
         }
-        txtHP.text = pd.HP + " / " + RealMaxHp;
-        HpImg.fillAmount = (float)(((double)pd.HP) / RealMaxHp);
-        HpImg2.fillAmount = (float)(((double)pd.HP) / RealMaxHp);
-        GameRoot.Instance.UpdatePlayerHp(RealMaxHp);
+        txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
+        HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+        HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+        GameRoot.Instance.UpdatePlayerHp(BattleSys.Instance.FinalAttribute.MAXHP);
 
     }
     public void UpdateMp(int UpdateMP)
@@ -589,21 +562,21 @@ public class Information : WindowRoot
                 GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.MP - UpdateMP, 3);
             }
         }
-        if (UpdateMP <= RealMaxMp)
+        if (UpdateMP <= BattleSys.Instance.FinalAttribute.MAXMP)
         {
             pd.MP = UpdateMP;
         }
-        txtMP.text = pd.MP + " / " + RealMaxMp;
-        MpImg.fillAmount = (float)(((double)pd.MP) / RealMaxMp);
-        MpImg2.fillAmount = (float)(((double)pd.MP) / RealMaxMp);
+        txtMP.text = pd.MP + " / " + BattleSys.Instance.FinalAttribute.MAXMP;
+        MpImg.fillAmount = (float)(((double)pd.MP) / BattleSys.Instance.FinalAttribute.MAXMP);
+        MpImg2.fillAmount = (float)(((double)pd.MP) / BattleSys.Instance.FinalAttribute.MAXMP);
     }
     public void SetDeathHP()
     {
         Player pd = GameRoot.Instance.ActivePlayer;
         pd.HP = 0;
-        txtHP.text = pd.HP + " / " + RealMaxHp;
-        HpImg.fillAmount = (float)(((double)pd.HP) / RealMaxHp);
-        HpImg2.fillAmount = (float)(((double)pd.HP) / RealMaxHp);
-        GameRoot.Instance.UpdatePlayerHp(RealMaxHp);
+        txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
+        HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+        HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+        GameRoot.Instance.UpdatePlayerHp(BattleSys.Instance.FinalAttribute.MAXHP);
     }
 }

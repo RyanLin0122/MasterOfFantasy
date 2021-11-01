@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class BattleSys
+public class BattleSys
 {
     private static BattleSys instance = null;
     public static BattleSys Instance

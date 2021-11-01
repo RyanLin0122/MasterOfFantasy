@@ -52,11 +52,6 @@ public class CacheSvc
 
     public async Task AsyncSaveCharacter(string acc, Player player)
     {
-        /*
-        var factory = ServerRoot.Instance.taskFactory;
-        Task task = factory.StartNew(() => dbMgr.AsyncSaveCharacter(acc, player));
-        await task;
-        */
         await dbMgr.AsyncSaveCharacter(acc, player);
     }
     public async Task AsyncSaveAccount(string account, AccountData data)
@@ -148,11 +143,9 @@ public class CacheSvc
             player = pd,
             trimedPlayer = tp,
             MoveState = MoveState,
-            IsRun = IsRun,
-            EquipmentProperty = new Dictionary<string, float>()
+            IsRun = IsRun
         };
-        chr.CalculateEquipProperty();
-        chr.CalculateRealProperty();
+        chr.InitAllAtribute();
         if (!MOFCharacterDict.ContainsKey(player.Name))
         {
             MOFCharacterDict.TryAdd(player.Name, chr);

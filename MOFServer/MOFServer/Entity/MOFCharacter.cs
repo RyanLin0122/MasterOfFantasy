@@ -1,24 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using PEProtocal;
-using Random = UnityEngine.Random;
-using System;
+using System.Threading.Tasks;
 
-public class BattleSys : SystemRoot
+public class MOFCharacter
 {
-    public static BattleSys Instance = null;
-    public Dictionary<int, MonsterAI> Monsters;
-    public Canvas MapCanvas = null;
-    public HotKeyManager HotKeyManager;
-    public MonsterAI CurrentTarget = null;
+    public int ID;
+    public string CharacterName;
+    public float[] position;
+    public int MapID;
+    public int channel;
+    public int MoveState;
+    public bool IsRun;
+    public ServerSession session;
+    public Player player;
+    public TrimedPlayer trimedPlayer;
+    public Transactor transactor;
+    public PlayerStatus status = PlayerStatus.Normal;
 
     #region Attribute
     public PlayerAttribute BasicAttribute;
     public void InitAllAtribute()
     {
-        InitBasicAttribute(GameRoot.Instance.ActivePlayer);
-        InitEquipmentAttribute(GameRoot.Instance.ActivePlayer.playerEquipments);
+        InitBasicAttribute(this.player);
+        InitEquipmentAttribute(this.player.playerEquipments);
         InitNegativeAttribute();
         InitBuffAttribute();
         InitFinalAttribute();
@@ -79,7 +83,7 @@ public class BattleSys : SystemRoot
         EquipmentAttribute.HPRate = 0;
         EquipmentAttribute.MPRate = 0;
         EquipmentAttribute.MinusHurt = 0;
-        if (Equip.Badge != null)
+        if(Equip.Badge != null)
         {
             CalculateEquipmentAttribute(Equip.Badge);
         }
@@ -194,7 +198,7 @@ public class BattleSys : SystemRoot
         {
             EquipmentAttribute.ExpRate += (eq.ExpRate - 1);
         }
-        if (eq.DropRate - 1 >= 0)
+        if(eq.DropRate - 1>= 0)
         {
             EquipmentAttribute.DropRate += (eq.DropRate - 1);
         }
@@ -214,7 +218,7 @@ public class BattleSys : SystemRoot
         EquipmentAttribute.Critical += wp.Critical;
         EquipmentAttribute.Avoid += wp.Avoid;
         EquipmentAttribute.AttRange += wp.Range;
-        EquipmentAttribute.AttDelay += 200f / wp.AttSpeed;
+        EquipmentAttribute.AttDelay += 200f/wp.AttSpeed;
         if (wp.DropRate - 1 >= 0)
         {
             EquipmentAttribute.DropRate += (wp.DropRate - 1);
@@ -308,240 +312,117 @@ public class BattleSys : SystemRoot
         FinalAttribute.MinusHurt = BasicAttribute.MinusHurt + EquipmentAttribute.MinusHurt + NegativeAttribute.MinusHurt + BuffAttribute.MinusHurt; ;
     }
     #endregion
-
-
-    public override void InitSys()
+    
+    public void AddPropertyPoint(AddPropertyPoint ap)
     {
-        base.InitSys();
-        Instance = this;
-        Monsters = new Dictionary<int, MonsterAI>();
-        this.HotKeyManager.Init();
-        Debug.Log("Init BattleSys...");
+        player.Att += ap.Att;
+        player.Strength += ap.Strength;
+        player.Agility += ap.Agility;
+        player.Intellect += ap.Intellect;
+        player.RestPoint = ap.RestPoint;
+
+        trimedPlayer.Att += ap.Att;
+        trimedPlayer.Strength += ap.Strength;
+        trimedPlayer.Agility += ap.Agility;
+        trimedPlayer.Intellect += ap.Intellect;
     }
 
-    public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
+    public bool SetMiniGame(MiniGameSetting setting)
     {
-        GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
-        mon.transform.SetParent(MapCanvas.transform);
-        mon.transform.localPosition = new Vector3(pos[0], pos[1], 0f);
-        if (Monsters.ContainsKey(MapMonsterID))
+        if (setting.MiniGameRatio > 4)
         {
-            Monsters[MapMonsterID] = mon.GetComponent<MonsterAI>();
+            //錯誤，鎖帳
+            return false;
         }
-        else
+        for (int i = 0; i < setting.MiniGameArray.Length; i++)
         {
-            Monsters.Add(MapMonsterID, mon.GetComponent<MonsterAI>());
-        }
-        Monsters[MapMonsterID].Init(ResSvc.Instance.MonsterInfoDic[MonsterID], MapMonsterID);
-    }
-
-    public void CommonAttack(int MapMonsterID)
-    {
-        Random.InitState(Guid.NewGuid().GetHashCode());
-        int damage = Random.Range(5, 15);
-        bool isCritical = false;
-        float probibility = Random.Range(0f, 1f);
-        if (probibility >= 0.8)
-        {
-            isCritical = true;
-            damage *= 2;
-        }
-        bool FaceDir = false;
-        if (GameRoot.Instance.MainPlayerControl.transform.localScale.x >= 0)
-        {
-            FaceDir = true;
-        }
-        float Delay = 0.5f;
-        int AnimType = Constants.GetCommonAttackAnimID(WeaponType.Bow);
-        AttackType type = AttackType.Common;
-        AttackMonster(MapMonsterID, damage, isCritical, type, Delay, AnimType, FaceDir);
-    }
-    public void AttackMonster(int MapMonsterID, int damage, bool IsCritical, AttackType attackType, float Delay, int AnimType, bool FaceDir)
-    {
-        Dictionary<int, int> monsterMapID = new Dictionary<int, int>();
-        monsterMapID.Add(MapMonsterID, MapMonsterID);
-        Dictionary<int, int[]> damages = new Dictionary<int, int[]>();
-        damages.Add(MapMonsterID, new int[] { damage });
-        Dictionary<int, bool> isCritical = new Dictionary<int, bool>();
-        isCritical.Add(MapMonsterID, IsCritical);
-        Dictionary<int, AttackType> attackTypes = new Dictionary<int, AttackType>();
-        attackTypes.Add(MapMonsterID, attackType);
-        new DamageSender(monsterMapID, damages, isCritical, attackTypes, AnimType, FaceDir, Delay);
-    }
-
-
-    public void AttackMonsters(int[] MapMonsterID, List<int[]> Damage, bool[] IsCritical, AttackType[] attackType)
-    {
-        //To-Do
-    }
-
-    public void MonsterGetHurt(MonsterGetHurt gh)
-    {
-        foreach (var ID in gh.MonsterMapID.Keys) //遍歷怪物
-        {
-            if (Monsters.ContainsKey(ID) && Monsters[ID] != null)
+            if (setting.MiniGameArray[i] > 1000)
             {
-                if (!Monsters[ID].IsReadyDeath)
+                //鎖帳
+                return false;
+            }
+        }
+        player.MiniGameRatio = setting.MiniGameRatio;
+        player.MiniGameArr = setting.MiniGameArray;
+        return true;
+    }
+
+    public bool RecycleItem(ServerSession session, RecycleItems rc)
+    {
+        var ItemIDs = rc.ItemID;
+        var Amounts = rc.Amount;
+        var Positions = rc.Positions;
+        switch (rc.InventoryType)
+        {
+            case 0: //knapsack
+                var NotCashKnapsack = session.ActivePlayer.NotCashKnapsack;
+                var CashKnapsack = session.ActivePlayer.CashKnapsack;
+                for (int i = 0; i < ItemIDs.Count; i++)
                 {
-                    if (gh.IsDeath[ID])
+                    bool IsCash = CacheSvc.ItemList[ItemIDs[i]].IsCash;
+                    if (IsCash && CashKnapsack.ContainsKey(Positions[i]))
                     {
-                        Monsters[ID].ReadyToDeath();
-                    }
-                    int totalDamage = 0;
-                    foreach (var damage in gh.Damage[ID])
-                    {
-                        totalDamage += damage;
-                    }
-                    Monsters[ID].MinusHP(totalDamage);
-                    if (gh.IsCritical[ID] == false) //不是爆擊
-                    {
-                        TimerSvc.Instance.AddTimeTask((a) =>
+                        if (CashKnapsack[Positions[i]].ItemID == ItemIDs[i])
                         {
-                            Monsters[ID].GenerateAttackEffect();
-                            Monsters[ID].GenerateDamageNum(totalDamage, 0);
-                            Monsters[ID].PlayHitSound();
-                            Monsters[ID].HurtMonster();
-                        }, gh.Delay, PETimeUnit.Second, 1);
-                        if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
-                        {
-                            //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
-                        }
-                        else
-                        {
-                            //其他人打的 只處理播動畫
-                            if (GameRoot.Instance.otherPlayers.ContainsKey(gh.CharacterName))
+                            if (CashKnapsack[Positions[i]].Count - Amounts[i] > 0)
                             {
-                                if (GameRoot.Instance.otherPlayers[gh.CharacterName] != null)
-                                {
-                                    OtherPeopleCtrl ctrl = GameRoot.Instance.otherPlayers[gh.CharacterName];
-                                    OtherPlayerTask task = new OtherPlayerTask(ctrl, gh.AnimID, gh.FaceDir);
-                                    ctrl.Actions.Enqueue(task);
-                                }
+                                CashKnapsack[Positions[i]].Count -= Amounts[i];
+
                             }
-                        }
-                    }
-                    else //爆擊
-                    {
-                        TimerSvc.Instance.AddTimeTask((a) =>
-                        {
-                            Monsters[ID].GenerateAttackEffect();
-                            Monsters[ID].GenerateDamageNum(totalDamage, 1);
-                            Monsters[ID].PlayHitSound();
-                            Monsters[ID].HurtMonster();
-                        }, gh.Delay, PETimeUnit.Second, 1);
-                        if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
-                        {
-                            //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
-                        }
-                        else
-                        {
-                            //其他人打的
-                            if (GameRoot.Instance.otherPlayers.ContainsKey(gh.CharacterName))
+                            else
                             {
-                                if (GameRoot.Instance.otherPlayers[gh.CharacterName] != null)
-                                {
-                                    OtherPeopleCtrl ctrl = GameRoot.Instance.otherPlayers[gh.CharacterName];
-                                    OtherPlayerTask task = new OtherPlayerTask(ctrl, gh.AnimID, gh.FaceDir);
-                                    ctrl.Actions.Enqueue(task);
-                                }
+                                CashKnapsack.Remove(Positions[i]);
                             }
+
                         }
                     }
-                    
-                }
-            }
-
-        }
-    }
-
-    public void AddPlayerAction()
-    {
-
-    }
-
-    public void MonsterDeath(MonsterDeath md)
-    {
-        if (md.MonsterID != null)
-        {
-            foreach (var ID in md.MonsterID)
-            {
-                if (Monsters.ContainsKey(ID))
-                {
-                    Monsters[ID].MonsterDeath();
-                    if (CurrentTarget == Monsters[ID])
+                    else if (!IsCash && NotCashKnapsack.ContainsKey(Positions[i]))
                     {
-                        CurrentTarget = null;
+                        if (NotCashKnapsack[Positions[i]].ItemID == ItemIDs[i])
+                        {
+                            if (NotCashKnapsack[Positions[i]].Count - Amounts[i] > 0)
+                            {
+                                NotCashKnapsack[Positions[i]].Count -= Amounts[i];
+
+                            }
+                            else
+                            {
+                                NotCashKnapsack.Remove(Positions[i]);
+                            }
+
+                        }
                     }
                 }
-            }
+                break;
+            default:
+                break;
         }
-
+        return true;
     }
 
-    public void LockTarget(MonsterAI monAi)
+    public bool SyncSaveCharacter()
     {
-        CurrentTarget = monAi;
+        return CacheSvc.Instance.SyncSaveCharacter(session.Account, player);
     }
-
-    public void ClearTarget()
+    public async void AsyncSaveCharacter()
     {
-        CurrentTarget = null;
+        await CacheSvc.Instance.AsyncSaveCharacter(session.Account, player);
+        return;
     }
-
-    public void ClearMonsters()
+    public async void AsyncSaveAccount()
     {
-        Monsters = new Dictionary<int, MonsterAI>();
+        await CacheSvc.Instance.AsyncSaveAccount(session.Account, session.AccountData);
     }
-    public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
-    {
-        if (mons.Count > 0)
-        {
-            print("怪量:" + mons.Count);
-            foreach (var id in mons.Keys)
-            {
-                AddMonster(id, mons[id].MonsterID, mons[id].Position);
-                Monsters[id].hp = mons[id].HP;
-                Monsters[id].SetHpBar();
-                Monsters[id].TrySetTargetPlayer(mons[id].Targets);
-                mons[id].status = mons[id].status;
-            }
-        }
-
-    }
-
-    public void RefreshMonster()
-    {
-        if (MapCanvas != null)
-        {
-            MonsterAI[] ais = MapCanvas.GetComponentsInChildren<MonsterAI>();
-            if (ais.Length > 0)
-            {
-                Monsters.Clear();
-                foreach (var ai in ais)
-                {
-                    Monsters.Add(ai.MapMonsterID, ai);
-                }
-            }
-        }
-    }
-
-    public void ClearBugMonster()
-    {
-        if(MapCanvas != null)
-        {
-            MonsterAI[] ais = MapCanvas.GetComponentsInChildren<MonsterAI>();
-            if (ais.Length > 0)
-            {
-                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath",true);
-            }
-        }
-    }
-
-    #region Buff 和 冷卻時間
-
-
-    #endregion
 }
 
+public class Transactor
+{
+    //在交易的位置與物品
+    public Dictionary<int, Item> Items = new Dictionary<int, Item>();
+
+    //存一下放進交易欄的東西原本從哪來
+    public Dictionary<int, Item> BackItem = new Dictionary<int, Item>();
+    public long Rubi = 0;
+    public bool IsReady = false;
+
+}

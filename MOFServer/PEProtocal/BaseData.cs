@@ -217,7 +217,7 @@ namespace PEProtocal
         [ProtoMember(53, IsRequired = false)]
         public int Honor { get; set; }
         [ProtoMember(54, IsRequired = false)]
-        public List<CartItem> Cart { get; set;}
+        public List<CartItem> Cart { get; set; }
         [ProtoMember(55, IsRequired = false)]
         public Dictionary<int, SkillData> Skills { get; set; }
         [ProtoMember(56, IsRequired = false)]
@@ -238,8 +238,52 @@ namespace PEProtocal
             return MailBoxItems;
         }
     }
-
-
+    [ProtoContract]
+    public class PlayerAttribute
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int MAXHP { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int MAXMP { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Att { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int Strength { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int Agility { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int Intellect { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int MaxDamage { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int MinDamage { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int Defense { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public float Accuracy { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public float Critical { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public float Avoid { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public float MagicDefense { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public float RunSpeed { get; set; }
+        [ProtoMember(15, IsRequired = false)]
+        public float AttRange { get; set; }
+        [ProtoMember(16, IsRequired = false)]
+        public float AttDelay{ get; set; }
+        [ProtoMember(17, IsRequired = false)]
+        public float ExpRate { get; set; }
+        [ProtoMember(18, IsRequired = false)]
+        public float DropRate { get; set; }
+        [ProtoMember(19, IsRequired = false)]
+        public float HPRate { get; set; }
+        [ProtoMember(20, IsRequired = false)]
+        public float MPRate { get; set; }
+        [ProtoMember(21, IsRequired = false)]
+        public float MinusHurt { get; set; }
+    }
     [ProtoContract]
     public class TrimedPlayer //For other people
     {

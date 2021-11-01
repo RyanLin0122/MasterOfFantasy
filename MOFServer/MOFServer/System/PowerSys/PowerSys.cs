@@ -46,10 +46,10 @@ public class PowerSys : SystemBase
                         int AddHp = 10 + (int)(chr.player.Level * 2f / 3f) + chr.player.Strength;
                         if (chr.status != PlayerStatus.Death)
                         {
-                            if (chr.player.HP + AddHp >= chr.RealMaxHp)
+                            if (chr.player.HP + AddHp >= chr.FinalAttribute.MAXHP)
                             {
-                                chr.player.HP = chr.RealMaxHp;
-                                chr.trimedPlayer.HP = chr.RealMaxHp;
+                                chr.player.HP = chr.FinalAttribute.MAXHP;
+                                chr.trimedPlayer.HP = chr.FinalAttribute.MAXHP;
                             }
                             else
                             {
@@ -85,10 +85,10 @@ public class PowerSys : SystemBase
                         int AddMp = 6 + (chr.player.Level * 2) + (chr.player.Intellect * 2);
                         if(chr.status!= PlayerStatus.Death)
                         {
-                            if (chr.player.MP + AddMp >= chr.RealMaxMp)
+                            if (chr.player.MP + AddMp >= chr.FinalAttribute.MAXMP)
                             {
-                                chr.player.MP = chr.RealMaxMp;
-                                chr.trimedPlayer.MP = chr.RealMaxMp;
+                                chr.player.MP = chr.FinalAttribute.MAXMP;
+                                chr.trimedPlayer.MP = chr.FinalAttribute.MAXMP;
                             }
                             else
                             {
