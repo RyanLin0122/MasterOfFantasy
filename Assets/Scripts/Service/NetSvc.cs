@@ -212,6 +212,7 @@ public class NetSvc : MonoBehaviour
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
         UISystem.Instance.InfoWnd.RefreshIInfoUI();
         BattleSys.Instance.HotKeyManager.ReadHotKey();
+        BattleSys.Instance.InitAllAtribute();
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
     {
