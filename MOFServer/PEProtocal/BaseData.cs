@@ -332,7 +332,7 @@ namespace PEProtocal
         [ProtoMember(22, IsRequired = false)]
         public float[] Position { get; set; }
     }
-
+    #endregion
 
 
     [ProtoContract(EnumPassthru = false)]
@@ -349,14 +349,28 @@ namespace PEProtocal
         [ProtoEnum]
         RealHide, //超級隱身
         [ProtoEnum]
-        Transaction, // 交易
+        Transaction, //交易
         [ProtoEnum]
         Busy
     }
 
-
-
+    public enum SkillResult //技能檢測結果
+    {
+        [ProtoEnum]
+        OK,
+        [ProtoEnum]
+        CoolDown,
+        [ProtoEnum]
+        WeaponInvalid,
+        [ProtoEnum]
+        TargetInvalid,
+        [ProtoEnum]
+        Delay,
+        [ProtoEnum]
+        OutOfMP,
+        [ProtoEnum]
+        Invalid
+    }
 }
 
-    #endregion
 

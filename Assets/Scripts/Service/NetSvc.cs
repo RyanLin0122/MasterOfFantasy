@@ -140,6 +140,9 @@ public class NetSvc : MonoBehaviour
             case 51:
                 DoMailBoxOperation(msg);
                 break;
+			case 53:
+                DoStrengthenResponse(msg);
+                break;
             case 56:
                 DoLearnSkill(msg);
                 break;
@@ -564,7 +567,10 @@ public class NetSvc : MonoBehaviour
     {
         MailBoxWnd.Instance.ProcessMailBoxOperation(msg.mailBoxOperation);
     }
-
+	public void DoStrengthenResponse(ProtoMsg msg)
+    {
+        StrengthenWnd.Instance.ProessStrengthenReaponse(msg.strengthenResponse);
+    }
     public void DoLearnSkill(ProtoMsg msg)
     {
         UISystem.Instance.learnSkillWnd.ProcessLearnSkillResponse(msg);

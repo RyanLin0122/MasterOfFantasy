@@ -346,7 +346,8 @@ namespace PEProtocal
         public int AdditionalLevel { get; set; }
         [ProtoMember(21, IsRequired = false)]
         public int ExpiredTime { get; set; }
-        public Weapon() { }
+        public Weapon()
+        { }
         public Weapon(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash, bool canTransaction, int count,
             int level, int Mindamage,int Maxdamage, int attSpeed, int range, string property, int attack, int strength, int agility, int intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum, int Additional, int Stars, int AdditionalLevel, int ExpiredTime)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
@@ -380,30 +381,30 @@ namespace PEProtocal
         [ProtoEnum]
         None,
         [ProtoEnum]
-        Axe,
+        Axe,//斧頭 1
         [ProtoEnum]
-        Book,
+        Bow,//弓 1
         [ProtoEnum]
-        Bow,
+        Dagger,//短劍 1
         [ProtoEnum]
-        Cross,
+        Gun,//槍 1
         [ProtoEnum]
-        Crossbow,
+        Hammer,//鈍器 1
         [ProtoEnum]
-        Dagger,
+        LongSword,//雙手劍1
         [ProtoEnum]
-        DualSword,
+        Spear,//鎗 1
         [ProtoEnum]
-        Gun,
+        Staff,//法杖 1
         [ProtoEnum]
-        Hammer,
+        Sword, //刀劍1
         [ProtoEnum]
-        LongSword,
+        Book,//書 2
         [ProtoEnum]
-        Spear,
+        Cross,//十字架 2
         [ProtoEnum]
-        Staff,
+        Crossbow,//石弓 2
         [ProtoEnum]
-        Sword
+        DualSword,//雙刀 2
     }
 }

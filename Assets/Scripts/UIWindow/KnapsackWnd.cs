@@ -729,6 +729,6 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public bool Controllable()
     {
-        return !IsTransaction;
+        return (!IsTransaction) && (!IsForge);
     }
 }

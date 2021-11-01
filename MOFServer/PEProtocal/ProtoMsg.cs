@@ -59,12 +59,12 @@ namespace PEProtocal
         ///49:TransactionResponse交易回應
         ///50:LockerOperation 倉庫操作
         ///51:MailBoxOperation 信箱操作
-        ///52:強化請求
-        ///53:強化回應
+        ///52:StrengthenRequest強化請求
+        ///53:StrengthenResponse強化回應
         ///54:SkillRequest 放技能請求
         ///55:SkillResponce 放技能回應
-        ///56: LearnSkill 學技能
-        ///57: HotKey 快捷鍵相關
+        ///56:LearnSkill 學技能
+        ///57:HotKey 快捷鍵相關
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -1466,11 +1466,11 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public string Effect { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public Weapon StrengthenWeapon { get; set; }
+        public Item strengthenItem { get; set; }
         [ProtoMember(4, IsRequired = false)]
         public Item Stone { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public Weapon Weapon { get; set; }
+        public Item item { get; set; }
 
         [ProtoMember(6, IsRequired = false)]
         public long Ribi { get; set; }

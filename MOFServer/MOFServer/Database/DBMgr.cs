@@ -69,7 +69,7 @@ public class DBMgr
                     {"BlockedPeople", new BsonArray() },
                     {"LockerRibiServer1", 0L },
                     {"LockerRibiServer2", 0L },
-                    {"LockerRibiServer3", 0L },
+                    {"LockerRibiServer3", 0L }
             };
             CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, doc);
             AccCollection.InsertOne(doc);

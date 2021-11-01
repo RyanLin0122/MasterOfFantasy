@@ -712,6 +712,35 @@ public class MailBoxSender : BaseSender
         base.SendMsg(msg);
     }
 }
+public class StrengthenSender : BaseSender
+{
+    public StrengthenSender(int OperationType, Item item)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 52,
+            strengthenRequest = new StrengthenRequest
+            {
+                OperationType = OperationType,
+                item = item
+            }
+        };
+        base.SendMsg(msg);
+    }
+    public StrengthenSender(int OperationType)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 52,
+            strengthenRequest = new StrengthenRequest
+            {
+                OperationType = OperationType,
+            }
+        };
+        base.SendMsg(msg);
+
+    }
+}
 public class LearnSkillSender : BaseSender
 {
     public LearnSkillSender(int SkillID, int Level)

@@ -2,7 +2,7 @@
 using PEProtocal;
 using System.Threading.Tasks;
 
-public class MOFCharacter
+public class MOFCharacter : IEntity
 {
     public int ID;
     public string CharacterName;
@@ -15,6 +15,7 @@ public class MOFCharacter
     public Player player;
     public TrimedPlayer trimedPlayer;
     public Transactor transactor;
+    public Strengthen strengthen;
     public PlayerStatus status = PlayerStatus.Normal;
 
     #region Attribute
@@ -283,6 +284,9 @@ public class MOFCharacter
         BuffAttribute.MinusHurt = 0;
     }
     public PlayerAttribute FinalAttribute;
+
+    public Vector2 Position { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public void InitFinalAttribute()
     {
         if (FinalAttribute == null)
@@ -425,4 +429,15 @@ public class Transactor
     public long Rubi = 0;
     public bool IsReady = false;
 
+}
+
+public class Strengthen
+{
+    public Item Item = null;
+    public Item Stone = null;
+    //public Item Equipment = null;
+    public long Ribi = 0;
+    public Item StrengthenItem = null;
+    public int Probablity = 0;
+    public string description = "";
 }

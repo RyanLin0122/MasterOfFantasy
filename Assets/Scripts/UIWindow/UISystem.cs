@@ -160,6 +160,7 @@ public class UISystem : SystemRoot
     }
     public void OpenStrengthenWnd()
     {
+        new StrengthenSender(5);
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         strengthenWnd.SetWndState();
         strengthenWnd.IsOpen = true;
