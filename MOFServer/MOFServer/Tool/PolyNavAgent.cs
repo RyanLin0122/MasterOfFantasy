@@ -61,10 +61,10 @@ namespace PolyNav
         private Vector2 _primeGoal = Vector2.zero;
         MOFMap MofMap { get; set; }
         private static List<PolyNavAgent> allAgents = new List<PolyNavAgent>();
-        IEntity entity { get; set; }
+        Entity entity { get; set; }
         ///----------------------------------------------------------------------------------------------
 
-        public PolyNavAgent(MOFMap MofMap, PolyNav2D _map, IEntity entity, Vector2 position)
+        public PolyNavAgent(MOFMap MofMap, PolyNav2D _map, Entity entity, Vector2 position)
         {
             this.MofMap = MofMap;
             this._map = _map;

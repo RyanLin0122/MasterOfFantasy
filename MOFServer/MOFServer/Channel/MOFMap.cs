@@ -24,8 +24,8 @@ public class MOFMap
     public ServerSession Calculator; //負責計算碰撞事件、怪物移動的客戶端
     public int MonstersBornTID;
     public ConcurrentDictionary<int, MonsterPoint> MonsterPoints;
-
-
+    public ConcurrentDictionary<int, AbstractMonster> Monsters;
+    public Battle Battle;
     public MOFMap(int mapid, int channel, int returnMapId,
         float recoveryTime, string mapName, string Location, string SceneName,
         float[] PlayerBornPos, bool Islimited,
@@ -44,7 +44,7 @@ public class MOFMap
         this.monsternum = MonsterMax;
         this.MonsterPoints = points;
         this.channelServer = server;
-
+        this.Battle = new Battle(this);
     }
 
     #region 新增移除人物相關
@@ -65,9 +65,9 @@ public class MOFMap
                 ActivePlayer.MapID = mapid;
                 TrimedPlayer trimedPlayer = Utility.Convert2TrimedPlayer(ActivePlayer); //給別人看的
                 trimedPlayer.Position = msg.enterGameReq.Position;
-                characters.TryAdd(msg.enterGameReq.CharacterName, CacheSvc.Instance.MakeCharacter(
+                characters.TryAdd(msg.enterGameReq.CharacterName, new MOFCharacter(
                 msg.enterGameReq.Position,
-                this.mapid, channel, session, ActivePlayer, trimedPlayer, 3, false
+                this, channel, session, ActivePlayer, trimedPlayer, 3, false
                 ));
                 channelServer.characters.TryAdd(msg.enterGameReq.CharacterName, characters[msg.enterGameReq.CharacterName]);
                 //刪除暫存帳號資料
@@ -133,9 +133,9 @@ public class MOFMap
             LastMap.RemovePlayer(CharacterName);
             characters[CharacterName].player.MapID = mapid;
             characters[CharacterName].trimedPlayer.MapID = mapid;
-            characters[CharacterName].MapID = mapid;
+            characters[CharacterName].mofMap = this;
             characters[CharacterName].trimedPlayer.Position = msg.toOtherMapReq.Position;
-            characters[CharacterName].position = msg.toOtherMapReq.Position;
+            characters[CharacterName].Position = new Vector2(msg.toOtherMapReq.Position[0], msg.toOtherMapReq.Position[1]);
             characters[CharacterName].MoveState = 3;
             //蒐集所有人資料
             List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
@@ -331,7 +331,7 @@ public class MOFMap
         MoveMapPlayer mv = msg.moveMapPlayer;
         if (characters.ContainsKey(mv.PlayerName))
         {
-            characters[mv.PlayerName].position = mv.Destination;
+            characters[mv.PlayerName].Position = new Vector2(mv.Destination[0], mv.Destination[1]);
             characters[mv.PlayerName].trimedPlayer.Position = mv.Destination;
             characters[mv.PlayerName].IsRun = mv.IsRun;
             characters[mv.PlayerName].MoveState = mv.MoveState;
@@ -412,7 +412,7 @@ public class MOFMap
                 Dictionary<int, float[]> MonstersPosition = new Dictionary<int, float[]>();
                 foreach (var chr in characters.Values)
                 {
-                    CharactersPosition.Add(chr.CharacterName, chr.position);
+                    CharactersPosition.Add(chr.CharacterName, new float[] { chr.Position.x, chr.Position.y });
                     CharactersMoveState.Add(chr.CharacterName, chr.MoveState);
                     CharactersIsRun.Add(chr.CharacterName, chr.IsRun);
                 }
@@ -579,6 +579,11 @@ public class MOFMap
 
 
     #region 怪物人物相關
+    internal void Update()
+    {
+        //this.SpawnManager.Update();
+        this.Battle.Update();
+    }
     public void ProcessMonsterDamage(ProtoMsg msg)
     {
         MonsterGetHurt gh = msg.monsterGetHurt; //gh 收到的怪物傷害封包，包含玩家攻擊動畫，和延遲，和方向

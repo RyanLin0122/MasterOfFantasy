@@ -47,6 +47,7 @@ public class StrengthenWnd : Inventory
         AnimaInit();
         StrengthenBtn.interactable = false;
         KnapsackWnd.Instance.OpenAndPush();
+        InfoPanel.SetActive(true);
     }
 
     public void AnimaInit()
@@ -104,7 +105,10 @@ public class StrengthenWnd : Inventory
     
     public void PressStrengthenBtn()
     {
-        MessageBox.Show("確定要強化嗎?", MessageBoxType.Confirm,() => { img1.SetActive(true);TimerSvc.Instance.AddTimeTask(SetProgress, 100, PETimeUnit.Millisecond, 25); });
+        MessageBox.Show("確定要強化嗎?", MessageBoxType.Confirm,() => { 
+            img1.SetActive(true);TimerSvc.Instance.AddTimeTask(SetProgress, 100, PETimeUnit.Millisecond, 25);
+            AudioSvc.Instance.PlayUIAudio(Constants.UIEnchant);
+        });
     }
 
     public void GetWeapon(Item item)
@@ -128,7 +132,7 @@ public class StrengthenWnd : Inventory
             knapsack[item.Position] = item;
             KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
         }
-            
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
     public void ConsumeItem(Item item)
     {
@@ -194,12 +198,14 @@ public class StrengthenWnd : Inventory
                 slotLists[2][0].StoreItem(rsp.strengthenItem, rsp.strengthenItem.Count);
                 EffectText.text = rsp.Effect;
                 StrengthenBtn.interactable = true;
+                AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                 break;
             case 2://把原強化石放回背包再顯示效果和物品
                 slotLists[2][0].StoreItem(rsp.strengthenItem, rsp.strengthenItem.Count);
                 EffectText.text = rsp.Effect;
                 AddItemInKnap(rsp.Stone);
                 StrengthenBtn.interactable = true;
+                AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                 break;
             case 3://換一把武器強化
                 EffectText.text = "";
@@ -210,6 +216,7 @@ public class StrengthenWnd : Inventory
                     AddItemInKnap(rsp.Stone);
                 }
                 StrengthenBtn.interactable = false;
+                AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                 break;
             case 4://取消強化
                 CancelStrengthen(rsp.item, rsp.Stone);
@@ -220,21 +227,41 @@ public class StrengthenWnd : Inventory
                 MessageBox.Show("強化成功!!");
                 CostRibi(rsp.Ribi);
                 EndStrengthen();
-
+                AudioSvc.Instance.PlayUIAudio(Constants.EnchantSuccess);
                 break;
             case 6://強化失敗
                 GetWeapon(rsp.item);
                 MessageBox.Show("強化失敗QQ");
                 CostRibi(rsp.Ribi);
                 EndStrengthen();
+                AudioSvc.Instance.PlayUIAudio(Constants.EnchantFail);
                 break;
 
         }
 
     }
+    public GameObject InfoPanel;
+    public void CloseInfoPanel()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        InfoPanel.SetActive(false);
+    }
+    public void OpenInfoPanel()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        InfoPanel.SetActive(true);
+    }
 
-
-
-
-
+    public void OpenCloseInfoPanel()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        if (InfoPanel.activeSelf)
+        {
+            InfoPanel.SetActive(false);
+        }
+        else
+        {
+            InfoPanel.SetActive(true);
+        }
+    }
 }

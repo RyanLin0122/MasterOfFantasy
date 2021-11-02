@@ -283,12 +283,12 @@ public class StrengthenHandler : GameHandler
             strengthenResponse = new StrengthenResponse
             {
                 OperationType = 6,
-                item = (Weapon)strengthen.Item,
+                item = strengthen.Item,
                 Ribi = strengthen.Ribi
             }
         };
         
-        AddItemInKnap((Weapon)strengthen.Item, session);
+        AddItemInKnap(strengthen.Item, session);
         session.WriteAndFlush(msg);
     }
 

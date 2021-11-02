@@ -73,6 +73,7 @@ public class DialogueWnd : WindowRoot
         NPCID = NpcId;
         NpcName.text = npcCfg.Name;
         NpcDialogue.text = npcCfg.FixedText[0];
+        NpcImage.sprite = null;
         SetSprite(NpcImage, "NPC/" + npcCfg.Sprite);
         NpcImage.SetNativeSize();
         //調位置

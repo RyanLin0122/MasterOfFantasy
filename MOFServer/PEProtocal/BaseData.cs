@@ -272,7 +272,7 @@ namespace PEProtocal
         [ProtoMember(15, IsRequired = false)]
         public float AttRange { get; set; }
         [ProtoMember(16, IsRequired = false)]
-        public float AttDelay{ get; set; }
+        public float AttDelay { get; set; }
         [ProtoMember(17, IsRequired = false)]
         public float ExpRate { get; set; }
         [ProtoMember(18, IsRequired = false)]
@@ -354,6 +354,7 @@ namespace PEProtocal
         Busy
     }
 
+    [ProtoContract(EnumPassthru = false)]
     public enum SkillResult //技能檢測結果
     {
         [ProtoEnum]
@@ -369,8 +370,81 @@ namespace PEProtocal
         [ProtoEnum]
         OutOfMP,
         [ProtoEnum]
-        Invalid
+        Invalid,
+        [ProtoEnum]
+        Casting,
+        [ProtoEnum]
+        OutOfRange
     }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillCasterType //技能釋放者類型
+    {
+        [ProtoEnum]
+        Player,
+        [ProtoEnum]
+        Monster
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillTargetType //技能釋放者類型
+    {
+        [ProtoEnum]
+        Player,
+        [ProtoEnum]
+        Monster,
+        [ProtoEnum]
+        Position
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillStatus //技能狀態
+    {
+        [ProtoEnum]
+        None,
+        [ProtoEnum]
+        Casting,
+        [ProtoEnum]
+        Running
+    }
+
+    [ProtoContract]
+    public class SkillCastInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int SkillID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public SkillCasterType CasterType { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public SkillTargetType TargetType { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public string CasterName { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int CasterID { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public string TargetName { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int TargetID { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public float[] Position { get; set; }
+    }
+
+    [ProtoContract]
+    public class DamageInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int EntityID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int[] Damage { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool will_Dead { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public bool IsMonster { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public string EntityName { get; set; }
+    }
+
+
 }
 
 

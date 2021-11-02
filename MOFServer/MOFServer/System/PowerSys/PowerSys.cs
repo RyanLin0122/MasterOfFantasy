@@ -56,10 +56,10 @@ public class PowerSys : SystemBase
                                 chr.player.HP += AddHp;
                                 chr.trimedPlayer.HP += AddHp;
                             }
-                            if (server.getMapFactory().maps[chr.MapID].characters.ContainsKey(chr.player.Name))
+                            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                             {
                                 ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
-                                server.getMapFactory().maps[chr.MapID].characters[chr.player.Name].session.WriteAndFlush(msg);
+                                server.getMapFactory().maps[chr.mofMap.mapid].characters[chr.player.Name].session.WriteAndFlush(msg);
                             }
                         }
                     }
@@ -95,10 +95,10 @@ public class PowerSys : SystemBase
                                 chr.player.MP += AddMp;
                                 chr.trimedPlayer.MP += AddMp;
                             }
-                            if (server.getMapFactory().maps[chr.MapID].characters.ContainsKey(chr.player.Name))
+                            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                             {
                                 ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
-                                server.getMapFactory().maps[chr.MapID].characters[chr.player.Name].session.WriteAndFlush(msg);
+                                server.getMapFactory().maps[chr.mofMap.mapid].characters[chr.player.Name].session.WriteAndFlush(msg);
                             }
                         }
                         

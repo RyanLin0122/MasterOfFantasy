@@ -130,32 +130,7 @@ public class CacheSvc
         return dbMgr.DeletePlayer(Account, PlayerName);
     }
 
-    public MOFCharacter MakeCharacter(float[] position, int MapID, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
-    {
-        Player pd = player;
-        MOFCharacter chr = new MOFCharacter
-        {
-            CharacterName = pd.Name,
-            position = position,
-            MapID = MapID,
-            channel = channel,
-            session = session,
-            player = pd,
-            trimedPlayer = tp,
-            MoveState = MoveState,
-            IsRun = IsRun
-        };
-        chr.InitAllAtribute();
-        if (!MOFCharacterDict.ContainsKey(player.Name))
-        {
-            MOFCharacterDict.TryAdd(player.Name, chr);
-        }
-        else
-        {
-            MOFCharacterDict[player.Name] = chr;
-        }
-        return chr;
-    }
+    
 
     #region MiniGameSystem <Name,Score>
     public Dictionary<string, int>[] MiniGame_Records;
@@ -858,11 +833,11 @@ public class CacheSvc
                     }
                     bool IsSpecified = Skill["IsSpecified"].b;
                     SkillRangeShape Shape = (SkillRangeShape)Enum.Parse(typeof(SkillRangeShape), Skill["Shape"].str);
-                    int[] Range = new int[3];
+                    float[] Range = new float[3];
                     var RangeList = Skill["Range"].list;
                     for (int i = 0; i < 3; i++)
                     {
-                        Range[i] = (int)RangeList[i].n;
+                        Range[i] = RangeList[i].n;
                     }
                     SkillProperty Property = (SkillProperty)Enum.Parse(typeof(SkillProperty), Skill["Property"].str);
                     bool IsStun = Skill["IsStun"].b;
@@ -887,7 +862,6 @@ public class CacheSvc
                         Des = Des,
                         Effects = Effects,
                         IsAttack = IsAttack,
-                        IsAOE = IsAOE,
                         IsBuff = IsBuff,
                         IsSetup = IsSetup,
                         Hp = Hp,
@@ -895,7 +869,7 @@ public class CacheSvc
                         ColdTime = ColdTime,
                         Times = Times,
                         Durations = Durations,
-                        IsSpecified = IsSpecified,
+
                         Shape = Shape,
                         Range = Range,
                         Property = Property,

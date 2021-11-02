@@ -196,6 +196,11 @@ namespace PEProtocal
         public LearnSkill learnSkill { get; set; }
         [ProtoMember(65, IsRequired = false)]
         public HotKeyOperation hotKeyOperation { get; set; }
+        [ProtoMember(66, IsRequired = false)]
+        public SkillCastRequest skillCastRequest { get; set; }
+        [ProtoMember(67, IsRequired = false)]
+        public SkillCastResponse skillCastResponse { get; set; }
+        
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -413,7 +418,7 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public string LogoutTime;
     }
-    
+
     [ProtoContract]
     public class PlayerEquipments
     {
@@ -1496,4 +1501,23 @@ namespace PEProtocal
         public HotkeyData NewHotKeyData { get; set; }
     }
 
+    [ProtoContract]
+    public class SkillCastRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public SkillCastInfo CastInfo { get; set; }
+    }
+
+    [ProtoContract]
+    public class SkillCastResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public SkillResult Result { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public SkillCastInfo CastInfo { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public DamageInfo Damage { get; set; }
+    }
 }

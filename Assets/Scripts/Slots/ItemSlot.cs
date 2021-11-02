@@ -73,7 +73,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     /// <param name="amount"></param>
     public virtual void StoreItem(Item item, int amount = 1)
     {
-
+        
         if (transform.childCount == 0)
         {
             GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
@@ -102,35 +102,43 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     {
         string Result = "";
         string color = "";
+        string QualityStr = "";
         switch (item.Quality)
         {
             case ItemQuality.Common:
                 color = "white";
+                QualityStr = "";
                 break;
             case ItemQuality.Uncommon:
                 color = "lime";
+                QualityStr = "I";
                 break;
             case ItemQuality.Rare:
-                color = "navy";
+                color = "blue";
+                QualityStr = "II";
                 break;
             case ItemQuality.Epic:
                 color = "magenta";
+                QualityStr = "III";
                 break;
             case ItemQuality.Perfect:
-                color = "gray";
+                color = "yellow";
+                QualityStr = "IV";
                 break;
             case ItemQuality.Legendary:
                 color = "orange";
+                QualityStr = "V";
                 break;
             case ItemQuality.Artifact:
                 color = "red";
+                QualityStr = "VI";
                 break;
         }
-        Result += item.Position;
-        Result += "\n";
-        Result += item.Count;
-        Result += "\n";
-        Result += string.Format("<color={0}>{1}</color>\n", color, item.Name);
+        //Result += item.Position;
+        //Result += "\n";
+        //Result += item.Count;
+        //Result += "\n";
+        Result += string.Format("<color={0}>{1} {2}</color>\n", color, item.Name, QualityStr);
         color = "white";
         if (item.ItemID > 1000 && item.ItemID <= 3000)
         {

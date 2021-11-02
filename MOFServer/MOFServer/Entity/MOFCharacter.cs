@@ -2,12 +2,10 @@
 using PEProtocal;
 using System.Threading.Tasks;
 
-public class MOFCharacter : IEntity
+public class MOFCharacter : Entity
 {
     public int ID;
     public string CharacterName;
-    public float[] position;
-    public int MapID;
     public int channel;
     public int MoveState;
     public bool IsRun;
@@ -17,7 +15,6 @@ public class MOFCharacter : IEntity
     public Transactor transactor;
     public Strengthen strengthen;
     public PlayerStatus status = PlayerStatus.Normal;
-
     #region Attribute
     public PlayerAttribute BasicAttribute;
     public void InitAllAtribute()
@@ -84,7 +81,7 @@ public class MOFCharacter : IEntity
         EquipmentAttribute.HPRate = 0;
         EquipmentAttribute.MPRate = 0;
         EquipmentAttribute.MinusHurt = 0;
-        if(Equip.Badge != null)
+        if (Equip.Badge != null)
         {
             CalculateEquipmentAttribute(Equip.Badge);
         }
@@ -199,7 +196,7 @@ public class MOFCharacter : IEntity
         {
             EquipmentAttribute.ExpRate += (eq.ExpRate - 1);
         }
-        if(eq.DropRate - 1>= 0)
+        if (eq.DropRate - 1 >= 0)
         {
             EquipmentAttribute.DropRate += (eq.DropRate - 1);
         }
@@ -219,7 +216,7 @@ public class MOFCharacter : IEntity
         EquipmentAttribute.Critical += wp.Critical;
         EquipmentAttribute.Avoid += wp.Avoid;
         EquipmentAttribute.AttRange += wp.Range;
-        EquipmentAttribute.AttDelay += 200f/wp.AttSpeed;
+        EquipmentAttribute.AttDelay += 200f / wp.AttSpeed;
         if (wp.DropRate - 1 >= 0)
         {
             EquipmentAttribute.DropRate += (wp.DropRate - 1);
@@ -284,9 +281,6 @@ public class MOFCharacter : IEntity
         BuffAttribute.MinusHurt = 0;
     }
     public PlayerAttribute FinalAttribute;
-
-    public Vector2 Position { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
     public void InitFinalAttribute()
     {
         if (FinalAttribute == null)
@@ -316,7 +310,37 @@ public class MOFCharacter : IEntity
         FinalAttribute.MinusHurt = BasicAttribute.MinusHurt + EquipmentAttribute.MinusHurt + NegativeAttribute.MinusHurt + BuffAttribute.MinusHurt; ;
     }
     #endregion
-    
+    public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
+    {
+        this.player = player;
+        this.CharacterName = player.Name;
+        this.Position = new Vector2(position[0], position[1]);
+        this.channel = channel;
+        this.session = session;
+        this.mofMap = map;
+        this.trimedPlayer = tp;
+        this.MoveState = MoveState;
+        this.IsRun = IsRun;
+        InitAllAtribute();
+        this.skillManager = new SkillManager(this);
+        if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
+        {
+            CacheSvc.Instance.MOFCharacterDict.TryAdd(player.Name, this);
+        }
+        else
+        {
+            CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
+        }
+    }
+    public override void Update()
+    {
+        this.skillManager.Update();
+    }
+
+    public override void InitSkill()
+    {
+
+    }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {
         player.Att += ap.Att;
@@ -417,6 +441,8 @@ public class MOFCharacter : IEntity
     {
         await CacheSvc.Instance.AsyncSaveAccount(session.Account, session.AccountData);
     }
+
+
 }
 
 public class Transactor
