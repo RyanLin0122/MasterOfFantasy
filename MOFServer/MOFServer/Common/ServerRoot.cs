@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Threading;
+using System.Collections.Generic;
 using System;
 public class ServerRoot : Singleton<ServerRoot>
 {
@@ -28,21 +29,18 @@ public class ServerRoot : Singleton<ServerRoot>
     {
         TimerSvc.Instance.Update();
     }
-
-    public void Tick()
+    public async void Tick()
     {
         while (true)
         {
             Time.Tick();
-            foreach (var action in LifeCycle.Update)
+            List<Task> UpdateList = new List<Task>();
+            foreach (var task in LifeCycle.Update)
             {
-                action.Invoke();
-            }
-            foreach (var action in LifeCycle.LastUpdate)
-            {
-                action.Invoke();
+                UpdateList.Add(Task.Run(task));
             }
             Thread.Sleep(68); //15fps
+            await Task.WhenAll(UpdateList);            
             //Console.WriteLine("{0} {1} {2} {3} {4}", Time.deltaTime, Time.frameCount, Time.ticks, Time.time, Time.realtimeSinceStartup);
         }
     }

@@ -20,9 +20,10 @@ public class NetSvc : Singleton<NetSvc>
         {
             ChannelsNum[i] = 0;
         }
-        List<Task> tasks = new List<Task>();
-        tasks.Add(NettySetup());
-        await Task.WhenAny(tasks);
+        //List<Task> tasks = new List<Task>();
+        //tasks.Add(NettySetup());
+        //await Task.WhenAny(tasks);
+        await NettySetup();
         GameServerStatus = new int[] { 1, 1, 1 };
         LogSvc.Info("NetSvc Init Done! ");
     }
@@ -51,7 +52,7 @@ public class NetSvc : Singleton<NetSvc>
                     }));
 
             IChannel boundChannel = await bootstrap.BindAsync(8051);
-            Console.WriteLine("channel " + (8051) + " Listening.");
+            LogSvc.Info("channel " + (8051) + " Listening.");
         }
         catch (Exception e)
         {

@@ -198,7 +198,6 @@ public class CacheSvc
 
     public void ParseItemJson()
     {
-        Console.WriteLine("解析道具資訊");
         var jsonStr = "";
         using (StreamReader r = new StreamReader("../../Common/ItemInfo.Json"))
         {
@@ -325,7 +324,6 @@ public class CacheSvc
     public void ParseMonsterJson()
     {
         MonsterInfoDic = new Dictionary<int, MonsterInfo>();
-        Console.WriteLine("Parse Monster Info");
         using (StreamReader sr = new StreamReader("../../Common/MonsterInfo.Json"))
         {
             string jsonStr = "";

@@ -10,7 +10,6 @@ public class RandomSys : Singleton<RandomSys>
 
     public int GetRandomInt(int LowerBound, int UpperBound) //包含Lower，不包含UpperBound
     {
-        random = new Random((int)DateTime.Now.Ticks);
         return random.Next(LowerBound, UpperBound);
     }
 }

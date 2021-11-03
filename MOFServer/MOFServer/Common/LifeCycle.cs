@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 public class LifeCycle
 {
     public static HashSet<Action> Start = new HashSet<Action>();

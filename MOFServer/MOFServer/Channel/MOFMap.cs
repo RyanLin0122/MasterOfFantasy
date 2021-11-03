@@ -578,9 +578,16 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
-        //LogSvc.Info("Map: "+ mapid + " update." + System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+        if(mapid == 1001 && channel == 5)
+        {
+            //LogSvc.Info("Map: " + mapid + " " + " Tick: " +Time.frameCount + " ThreadID: " + System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+        }
         //this.SpawnManager.Update();
         this.Battle.Update();
+        for (int i = 0; i < RandomSys.Instance.GetRandomInt(1,1000000); i++)
+        {
+            int a = 3 + i;
+        }
     }
     public void ProcessMonsterDamage(ProtoMsg msg)
     {
