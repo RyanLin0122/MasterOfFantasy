@@ -5,6 +5,22 @@ using PEProtocal;
 public class Skill
 {
     public SkillInfo Info;
+    private ActiveSkillInfo ActiveInfo 
+    { 
+        get 
+        { 
+            if (ActiveInfo == null) 
+            {
+                ActiveInfo = (ActiveSkillInfo)this.Info;
+                return ActiveInfo;
+            }
+            else
+            {
+                return ActiveInfo;
+            }
+        }
+        set {} 
+    }
     public IEntity Owner;
     public int Level; //Owner的技能等級
     public SkillStatus status; //技能目前狀態
@@ -63,19 +79,18 @@ public class Skill
         {
             return SkillResult.Invalid;
         }
-        ActiveSkillInfo activeInfo = (ActiveSkillInfo)Info;
         if (this.CD > 0)
         {
             return SkillResult.CoolDown;
         }
         if (this.Owner is MOFCharacter)
         {
-            if (((MOFCharacter)this.Owner).player.MP < activeInfo.MP[this.Level - 1])
+            if (((MOFCharacter)this.Owner).player.MP < ActiveInfo.MP[this.Level - 1])
             {
                 return SkillResult.OutOfMP;
             }
         }
-        if (!CheckRange(activeInfo.Shape, activeInfo.Range, ((Entity)Owner).Position, ((Entity)context.Target).Position))
+        if (!CheckRange(ActiveInfo.Shape, ActiveInfo.Range, ((Entity)Owner).Position, ((Entity)context.Target).Position))
         {
             return SkillResult.OutOfRange;
         }
@@ -87,10 +102,9 @@ public class Skill
         SkillResult result = CanCast(context);
         if (result == SkillResult.OK)
         {
-            ActiveSkillInfo info = (ActiveSkillInfo)this.Info;
             this.CastingTime = 0;
             this.SkillTime = 0;
-            this.CD = info.ColdTime[this.Level - 1];
+            this.CD = ActiveInfo.ColdTime[this.Level - 1];
             this.context = context;
             this.Hit = 0;
             if (this.Instant)
@@ -99,7 +113,7 @@ public class Skill
             }
             else
             {
-                if (info.CastTime > 0)
+                if (ActiveInfo.CastTime > 0)
                 {
                     this.status = SkillStatus.Casting;
                 }
@@ -116,18 +130,16 @@ public class Skill
     {
         get
         {
-            ActiveSkillInfo info = (ActiveSkillInfo)this.Info;
-            if (info.CastTime > 0) return false; //施法吟唱時間
-            if (info.IsShoot) return false; //是不是子彈技能
-            if (info.IsContinue) return false; //如果是連續技的話，技能持續時間
-            if (info.HitTimes != null && (info.HitTimes.Length > 0)) return false; //如果是DOT的話，每次施放的時間
+            if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
+            if (ActiveInfo.IsShoot) return false; //是不是子彈技能
+            if (ActiveInfo.IsContinue) return false; //如果是連續技的話，技能持續時間
+            if (ActiveInfo.HitTimes != null && (ActiveInfo.HitTimes.Length > 0)) return false; //如果是DOT的話，每次施放的時間
             return true;
         }
     }
     private void UpdateCasting()
     {
-        ActiveSkillInfo info = (ActiveSkillInfo)this.Info;
-        if (this.CastingTime < info.CastTime)
+        if (this.CastingTime < ActiveInfo.CastTime)
         {
             this.CastingTime += Time.deltaTime;
         }
@@ -135,32 +147,31 @@ public class Skill
         {
             this.CastingTime = 0;
             this.status = SkillStatus.Running;
-            LogSvc.Info("Skill[" + info.SkillName + "].UpdateCastingFinish");
+            LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateCastingFinish");
         }
     }
     private void UpdateSkill()
     {
-        ActiveSkillInfo info = (ActiveSkillInfo)this.Info;
         this.SkillTime += Time.deltaTime;
-        if (info.ContiDurations != null && info.ContiDurations[this.Level - 1] > 0)
+        if (ActiveInfo.ContiDurations != null && ActiveInfo.ContiDurations[this.Level - 1] > 0)
         {
             //是持續技能
-            if (this.SkillTime > info.ContiInterval * (this.Hit + 1))
+            if (this.SkillTime > ActiveInfo.ContiInterval * (this.Hit + 1))
             {
                 this.DoHit();
             }
-            if (this.SkillTime >= info.ContiDurations[this.Level - 1])
+            if (this.SkillTime >= ActiveInfo.ContiDurations[this.Level - 1])
             {
                 this.status = SkillStatus.None;
-                LogSvc.Info("Skill[" + info.SkillName + "].UpdateSkill Finish");
+                LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
             }
         }
-        else if (info.HitTimes != null && info.HitTimes.Length > 0)
+        else if (ActiveInfo.HitTimes != null && ActiveInfo.HitTimes.Length > 0)
         {
             //多次攻擊
-            if (Hit < info.HitTimes.Length)
+            if (Hit < ActiveInfo.HitTimes.Length)
             {
-                if (this.SkillTime > info.HitTimes[this.Hit])
+                if (this.SkillTime > ActiveInfo.HitTimes[this.Hit])
                 {
                     this.DoHit();
                 }
@@ -168,20 +179,45 @@ public class Skill
             else
             {
                 this.status = SkillStatus.None;
-                LogSvc.Info("Skill[" + info.SkillName + "].UpdateSkill Finish");
+                LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
             }
         }
     }
+    private void InitHitInfo()
+    {
+
+    }
     public void DoHit() //找到Entity
     {
-        if(this.damage != null)
+        InitHitInfo();
+        this.Hit++;
+        if (ActiveInfo.IsShoot)
         {
-            if (damage.IsMonster)
-            {
-                
-            }
-            
+            CastBullet();
+            return;
         }
+        if (ActiveInfo.IsMultiple)
+        {
+            HitRange();
+            return;
+        }
+        //判斷目標類型
+        if(ActiveInfo.targetType == SkillTargetType.Monster || ActiveInfo.targetType == SkillTargetType.Player)
+        {
+            //HitTarget(context.Target);
+        }
+    }
+    private void HitTarget()
+    {
+
+    }
+    private void CastBullet()
+    {
+
+    }
+    private void HitRange()
+    {
+
     }
     //判斷敵人是否在技能有效範圍內
     public bool CheckRange(SkillRangeShape Shape, float[] Range, Vector2 CasterPosition, Vector2 TargetPosition)

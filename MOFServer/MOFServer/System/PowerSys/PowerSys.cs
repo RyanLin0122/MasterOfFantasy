@@ -59,7 +59,10 @@ public class PowerSys : SystemBase
                             if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                             {
                                 ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
-                                server.getMapFactory().maps[chr.mofMap.mapid].characters[chr.player.Name].session.WriteAndFlush(msg);
+                                if (CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session != null)
+                                {
+                                    CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session.WriteAndFlush(msg);
+                                }                    
                             }
                         }
                     }
@@ -79,11 +82,11 @@ public class PowerSys : SystemBase
             {
                 foreach (MOFCharacter chr in server.characters.Values)
                 {
-                    
+
                     if (chr.player != null)
                     {
                         int AddMp = 6 + (chr.player.Level * 2) + (chr.player.Intellect * 2);
-                        if(chr.status!= PlayerStatus.Death)
+                        if (chr.status != PlayerStatus.Death)
                         {
                             if (chr.player.MP + AddMp >= chr.FinalAttribute.MAXMP)
                             {
@@ -98,12 +101,10 @@ public class PowerSys : SystemBase
                             if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                             {
                                 ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
-                                server.getMapFactory().maps[chr.mofMap.mapid].characters[chr.player.Name].session.WriteAndFlush(msg);
+                                CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session.WriteAndFlush(msg);
                             }
                         }
-                        
-                    }
-                    
+                    }                    
                 }
             }
         }

@@ -970,7 +970,7 @@ public class Constants
     public const string Setup = "ui_item_box";
     public const string EnchantSuccess = "ui_se_enchant_success";
     public const string EnchantFail = "ui_se_enchant_fail";
-    public const string UIEnchant = "ui_se_enchant_fail";
+    public const string UIEnchant = "ui_se_enchant";
     public const string BookAudio = "ui_item_book";
     public const string WindowOpen = "ui_se_window_open";
     public const string WindowClose = "ui_se_window_close";

@@ -59,6 +59,10 @@ public class StrengthenWnd : Inventory
     }
     public void SetProgress(int tid)
     {
+        if (timeForProgress == 0)
+        {
+            AudioSvc.Instance.PlayUIAudio(Constants.UIEnchant);
+        }
         LockButton();
         timeForProgress += 0.04f;
         imgFG.fillAmount = timeForProgress;
@@ -107,7 +111,6 @@ public class StrengthenWnd : Inventory
     {
         MessageBox.Show("確定要強化嗎?", MessageBoxType.Confirm,() => { 
             img1.SetActive(true);TimerSvc.Instance.AddTimeTask(SetProgress, 100, PETimeUnit.Millisecond, 25);
-            AudioSvc.Instance.PlayUIAudio(Constants.UIEnchant);
         });
     }
 
@@ -224,14 +227,14 @@ public class StrengthenWnd : Inventory
 
             case 5://強化成功
                 GetWeapon(rsp.strengthenItem);
-                MessageBox.Show("強化成功!!");
+                MessageBox.Show("強化成功。");
                 CostRibi(rsp.Ribi);
                 EndStrengthen();
                 AudioSvc.Instance.PlayUIAudio(Constants.EnchantSuccess);
                 break;
             case 6://強化失敗
                 GetWeapon(rsp.item);
-                MessageBox.Show("強化失敗QQ");
+                MessageBox.Show("強化失敗。");
                 CostRibi(rsp.Ribi);
                 EndStrengthen();
                 AudioSvc.Instance.PlayUIAudio(Constants.EnchantFail);

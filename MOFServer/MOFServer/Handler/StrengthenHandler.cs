@@ -166,8 +166,6 @@ public class StrengthenHandler : GameHandler
                 ConsumeItem(req.item, session);
                 CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
                 Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-
-                //(Weapon weapon, String effect) = WeaponStrengthen(strengthen);
                 WeaponStrengthen(strengthen);
                 ProtoMsg msg = new ProtoMsg
                 {
@@ -217,8 +215,6 @@ public class StrengthenHandler : GameHandler
                 ConsumeItem(req.item, session);
                 CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
                 Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-
-                //(Weapon weapon, String effect) = WeaponStrengthen(strengthen);
                 EquipmentStrengthen(strengthen);
                 ProtoMsg msg = new ProtoMsg
                 {

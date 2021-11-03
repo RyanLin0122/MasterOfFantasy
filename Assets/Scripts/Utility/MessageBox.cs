@@ -47,7 +47,7 @@ public class MessageBox : MonoBehaviour
             return CheckIsMessageBox();
         }
     }
-    public static void Show(string str, MessageBoxType Type = MessageBoxType.Simple, Action action = null,Action cancelAction = null)
+    public static void Show(string str, MessageBoxType Type = MessageBoxType.Simple, Action action = null, Action cancelAction = null)
     {
         MessageBox box = null;
         GameRoot.Instance.CanInput = false;
@@ -72,7 +72,7 @@ public class MessageBox : MonoBehaviour
         box.messageBoxType = MessageBoxType.Simple;
         if (box.ConfirmBtn != null && action != null)
         {
-            if(cancelAction != null)
+            if (cancelAction != null)
             {
                 box.CloseBtn.onClick.AddListener(() => { cancelAction.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
                 box.CancelBtn.onClick.AddListener(() => { cancelAction.Invoke(); AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn); });
@@ -118,7 +118,6 @@ public class MessageBox : MonoBehaviour
     {
         if (ConfirmAction != null)
         {
-            
             ConfirmAction.Invoke();
             CloseMessageBox();
         }
@@ -128,9 +127,9 @@ public class MessageBox : MonoBehaviour
         float Overlap_Offset = 3f;
         LayoutRebuilder.ForceRebuildLayoutImmediate(msgtxt.GetComponent<RectTransform>());
         float TextHeight = msgtxt.rectTransform.rect.height;
-        ContentImage.rectTransform.sizeDelta = new Vector2(ContentImage.rectTransform.rect.width, TextHeight);
-        UpImage.transform.localPosition = new Vector2(UpImage.transform.localPosition.x, UpImage.rectTransform.rect.height / 2 + TextHeight / 2 - Overlap_Offset);
-        DownImage.transform.localPosition = new Vector2(DownImage.transform.localPosition.x, -DownImage.rectTransform.rect.height / 2 - TextHeight / 2 + Overlap_Offset);
+        ContentImage.rectTransform.sizeDelta = new Vector2(ContentImage.rectTransform.rect.width, TextHeight + Overlap_Offset * 2);
+        UpImage.transform.localPosition = new Vector2(UpImage.transform.localPosition.x, UpImage.rectTransform.rect.height / 2 + TextHeight / 2 );
+        DownImage.transform.localPosition = new Vector2(DownImage.transform.localPosition.x, -DownImage.rectTransform.rect.height / 2 - TextHeight / 2 -2.3f);
     }
 }
 public enum MessageBoxType
