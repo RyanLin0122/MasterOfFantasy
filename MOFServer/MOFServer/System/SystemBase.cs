@@ -9,6 +9,5 @@ public class SystemBase
     public TimerSvc timerSvc = TimerSvc.Instance;
     public CacheSvc cacheSvc = CacheSvc.Instance;
     public NetSvc netSvc = NetSvc.Instance;
-
 }
 

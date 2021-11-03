@@ -115,7 +115,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     }
                     break;
                 case 11: //收到進入遊戲
-                    maps = (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps;
+                    maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
                     if (msg.enterGameReq.Isnew) //新角色
                     {
                         if (msg.enterGameReq.Istrain)
@@ -136,16 +136,16 @@ class MOFServerHandler : ChannelHandlerAdapter
                     GetMap(session).MovePlayer(msg);
                     break;
                 case 15: //去別張地圖請求
-                    maps = (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps;
+                    maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
                     maps[msg.toOtherMapReq.MapID].DoToOtherMapReq(msg, session);
 
                     break;
                 case 18: //收到點屬性請求 
-                    (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].characters[session.ActivePlayer.Name].AddPropertyPoint(msg.addPropertyPoint);
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].AddPropertyPoint(msg.addPropertyPoint);
                     session.WriteAndFlush(new ProtoMsg { MessageType = 19, addPropertyPoint = msg.addPropertyPoint });
                     break;
                 case 20: //進入小遊戲
-                    (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[msg.miniGameReq.MiniGameID].EnterMiniGameMapReq(msg, session);
+                    MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][msg.miniGameReq.MiniGameID].EnterMiniGameMapReq(msg, session);
 
                     break;
                 case 22: //小遊戲分數回報
@@ -260,7 +260,7 @@ class MOFServerHandler : ChannelHandlerAdapter
     {
         try
         {
-            var map = (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps;
+            var map = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
             return map[session.ActivePlayer.MapID];
         }
         catch (Exception e)
@@ -270,7 +270,6 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
 
     }
-
 
     public void ProcessChatReq(ServerSession session, ProtoMsg msg)
     {
@@ -349,7 +348,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                 switch (chatreq.MessageType)
                 {
                     case 1: //正常講話
-                        (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].ProcessNormalChat(chatreq.CharacterName, chatreq.Contents);
+                        GetMap(session).ProcessNormalChat(chatreq.CharacterName, chatreq.Contents);
                         break;
                 }
             }

@@ -232,9 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\CacheSvc.cs" />
-    <Compile Include="Channel\ChannelServer.cs" />
     <Compile Include="Channel\MOFMap.cs" />
-    <Compile Include="Channel\MOFMapFactory.cs" />
     <Compile Include="Channel\PlayerStorage.cs" />
     <Compile Include="Common\LifeCycle.cs" />
     <Compile Include="Common\ObjectManager.cs" />
@@ -250,12 +248,12 @@
     <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Server\GameHandler.cs" />
     <Compile Include="Service\LogService\LogSvc.cs" />
+    <Compile Include="Service\MapSvc.cs" />
     <Compile Include="Service\NetService\ByteArray.cs" />
     <Compile Include="Common\ServerConstants.cs" />
     <Compile Include="Common\ServerRoot.cs" />
     <Compile Include="Common\ServerStart.cs" />
     <Compile Include="Database\DBMgr.cs" />
-    <Compile Include="GameServer\GameServer.cs" />
     <Compile Include="Entity\MOFCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\MOFServerHandler.cs" />
@@ -279,7 +277,6 @@
     <Compile Include="System\BattleSys\Skill.cs" />
     <Compile Include="System\BattleSys\SkillManager.cs" />
     <Compile Include="System\LoginSys\LoginRequestHandler.cs" />
-    <Compile Include="System\LoginSys\LoginSys.cs" />
     <Compile Include="System\PowerSys\PowerSys.cs" />
     <Compile Include="System\QuestSys\QuestSys.cs" />
     <Compile Include="System\RandomSys\RandomSys.cs" />

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class TimerSvc
+public class TimerSvc : Singleton<TimerSvc>
 {
     class TaskPack
     {
@@ -15,18 +15,6 @@ public class TimerSvc
         {
             this.tid = tid;
             this.cb = cb;
-        }
-    }
-    private static TimerSvc instance = null;
-    public static TimerSvc Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new TimerSvc();
-            }
-            return instance;
         }
     }
     public PETimer pt = null;
@@ -81,26 +69,26 @@ public class TimerSvc
     private Dictionary<(int, int, int, int, int, int), DateTime> DateTimeDic = new Dictionary<(int, int, int, int, int, int), DateTime>();
     public static TimeSpan GetTimeSpan(int Days, int Hours, int Minutes, int Seconds) //日，小時，分，秒
     {
-        if (instance.TimeSpanDic.ContainsKey((Days, Hours, Minutes, Seconds)) && instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)] != null)
+        if (Instance.TimeSpanDic.ContainsKey((Days, Hours, Minutes, Seconds)) && Instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)] != null)
         {
-            return instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)];
+            return Instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)];
         }
         else
         {
-            instance.TimeSpanDic.Add((Days, Hours, Minutes, Seconds), new TimeSpan(Days, Hours, Minutes, Seconds));
-            return instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)];
+            Instance.TimeSpanDic.Add((Days, Hours, Minutes, Seconds), new TimeSpan(Days, Hours, Minutes, Seconds));
+            return Instance.TimeSpanDic[(Days, Hours, Minutes, Seconds)];
         }
     }
     public static DateTime GetDateTime(int Year, int Month, int Day, int Hour, int Minute, int Second)
     {
-        if (instance.DateTimeDic.ContainsKey((Year, Month, Day, Hour, Minute, Second)) && instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)] != null)
+        if (Instance.DateTimeDic.ContainsKey((Year, Month, Day, Hour, Minute, Second)) && Instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)] != null)
         {
-            return instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)];
+            return Instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)];
         }
         else
         {
-            instance.DateTimeDic.Add((Year, Month, Day, Hour, Minute, Second), new DateTime(Year, Month, Day, Hour, Minute, Second));
-            return instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)];
+            Instance.DateTimeDic.Add((Year, Month, Day, Hour, Minute, Second), new DateTime(Year, Month, Day, Hour, Minute, Second));
+            return Instance.DateTimeDic[(Year, Month, Day, Hour, Minute, Second)];
         }
     }
     public static void MinusTime(DateTime DateTime, int Seconds)

@@ -20,17 +20,17 @@ class HeartBeatServerHandler : IdleStateHandler
         ServerSession session = ServerSession.GetSession(context);
         try
         {
-
             if ( session.ActivePlayer!= null) //從遊戲中登出
             {
-                if ((NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].characters.ContainsKey(session.ActivePlayer.Name))
+                if (MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][session.ActivePlayer.MapID].characters.ContainsKey(session.ActivePlayer.Name))
                 {
-                    (NetSvc.Instance.gameServers[session.ActiveServer]).channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].RemovePlayer(session.ActivePlayer.Name);
+                    MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][session.ActivePlayer.MapID].RemovePlayer(session.ActivePlayer.Name);
                 }
                 if (CacheSvc.Instance.AccountTempData.ContainsKey(session.Account))
                 {
                     CacheSvc.Instance.AccountTempData.Remove(session.Account);
                 }
+                CacheSvc.Instance.MOFCharacterDict.Remove(session.ActivePlayer.Name);
                 session.Close();
                 NetSvc.Instance.sessionMap.RemoveSession(session.SessionID);
             }

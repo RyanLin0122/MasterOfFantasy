@@ -1,22 +1,10 @@
-﻿using PEProtocal;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Threading;
-public class ServerRoot
+using System;
+public class ServerRoot : Singleton<ServerRoot>
 {
     Thread Tick_thread;
-    private static ServerRoot instance = null;
     public TaskFactory taskFactory = null;
-    public static ServerRoot Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new ServerRoot();
-            }
-            return instance;
-        }
-    }
     public void Init()
     {
         taskFactory = new TaskFactory();
@@ -24,10 +12,10 @@ public class ServerRoot
         LogSvc.Init();
         TimerSvc.Instance.Init();
         CacheSvc.Instance.Init();
+        MapSvc.Instance.Init();
         NetSvc.Instance.Init();
         //System layer
         RandomSys.Instance.Init();
-        LoginSys.Instance.Init();
         PowerSys.Instance.Init();
         BattleSys.Instance.Init();
         RewardSys.Instance.Init();
@@ -46,13 +34,17 @@ public class ServerRoot
         while (true)
         {
             Time.Tick();
+            foreach (var action in LifeCycle.Update)
+            {
+                action.Invoke();
+            }
             foreach (var action in LifeCycle.LastUpdate)
             {
                 action.Invoke();
             }
-            Thread.Sleep(20); //50fps
+            Thread.Sleep(68); //15fps
             //Console.WriteLine("{0} {1} {2} {3} {4}", Time.deltaTime, Time.frameCount, Time.ticks, Time.time, Time.realtimeSinceStartup);
-        }      
+        }
     }
 }
 

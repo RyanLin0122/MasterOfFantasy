@@ -1,25 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
-
-public class RandomSys
+public class RandomSys : Singleton<RandomSys>
 {
-    private static RandomSys instance = null;
-    public static RandomSys Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new RandomSys();
-            }
-            return instance;
-        }
-    }
-
     public void Init()
     {
         random = new Random((int)DateTime.Now.Ticks);

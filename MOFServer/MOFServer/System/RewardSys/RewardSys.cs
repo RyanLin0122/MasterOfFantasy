@@ -5,27 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using PEProtocal;
 
-public class RewardSys
+public class RewardSys :Singleton<RewardSys>
 {
-    private static RewardSys instance = null;
-    public static RewardSys Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new RewardSys();
-            }
-            return instance;
-        }
-    }
-    private CacheSvc cacheSvc = null;
     public void Init()
     {
-        cacheSvc = CacheSvc.Instance;
+
     }
-
-
 
     public void SendRewardToKnapsack(MOFCharacter chr, long exp = 0L, long Ribi = 0L, int Cash = 0, int Title = -1, List<Item> Items = null, int Honor = 0, int SwordPoint = 0, int ArcheryPoint = 0, int MagicPoint = 0, int TheologyPoint = 0)
     {

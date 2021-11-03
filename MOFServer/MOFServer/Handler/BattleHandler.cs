@@ -14,6 +14,6 @@ public class BattleHandler : GameHandler
         {
             return;
         }
-        NetSvc.Instance.gameServers[session.ActiveServer].channels[session.ActiveChannel].getMapFactory().maps[session.ActivePlayer.MapID].Battle.ProcessBattleRequest(session, req);
+        MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][session.ActivePlayer.MapID].Battle.ProcessBattleRequest(session, req);
     }
 }

@@ -8,23 +8,9 @@ using DotNetty.Transport.Channels.Groups;
 using DotNetty.Transport.Channels.Sockets;
 using System.Threading.Tasks;
 using DotNetty.Codecs;
-public class NetSvc
+public class NetSvc : Singleton<NetSvc>
 {
-    private static NetSvc instance = null;
-    public static NetSvc Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new NetSvc();
-            }
-            return instance;
-        }
-    }
-
     public static readonly string obj = "lock";
-    public GameServer[] gameServers = new GameServer[ServerConstants.GameServerNum];
     public SessionMap sessionMap = new SessionMap();
     public int[] GameServerStatus = new int[ServerConstants.GameServerNum]; //1: 正常 2: 異常
     public int[] ChannelsNum = new int[ServerConstants.GameServerNum * ServerConstants.channelNum];
@@ -37,15 +23,9 @@ public class NetSvc
         List<Task> tasks = new List<Task>();
         tasks.Add(NettySetup());
         await Task.WhenAny(tasks);
-        for (int i = 0; i < ServerConstants.GameServerNum; i++)
-        {
-            gameServers[i] = new GameServer(i);
-            GameServerStatus[i] = 1;
-        }
-        TimerSvc.Instance.AddTimeTask(BattleSys.Instance.StartMoveRspTask, 100, PETimeUnit.Millisecond, 0);
+        GameServerStatus = new int[] { 1, 1, 1 };
         LogSvc.Info("NetSvc Init Done! ");
     }
- 
 
     public async Task NettySetup()
     {

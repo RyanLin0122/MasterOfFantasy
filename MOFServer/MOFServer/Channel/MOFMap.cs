@@ -19,7 +19,6 @@ public class MOFMap
     public int returnMapId, mapid;
     public bool IsVillage, Islimited, clock, personalShop, dropsDisabled = false;
     public string mapName, Location, SceneName = "";
-    private ChannelServer channelServer;
     private static readonly string obj = "lock";
     public ServerSession Calculator; //負責計算碰撞事件、怪物移動的客戶端
     public int MonstersBornTID;
@@ -29,7 +28,7 @@ public class MOFMap
     public MOFMap(int mapid, int channel, int returnMapId,
         float recoveryTime, string mapName, string Location, string SceneName,
         float[] PlayerBornPos, bool Islimited,
-        bool IsVillage, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points, ChannelServer server)
+        bool IsVillage, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points)
     {
         this.mapid = mapid;
         this.channel = (byte)channel;
@@ -43,7 +42,6 @@ public class MOFMap
         this.IsVillage = IsVillage;
         this.monsternum = MonsterMax;
         this.MonsterPoints = points;
-        this.channelServer = server;
         this.Battle = new Battle(this);
     }
 
@@ -69,7 +67,6 @@ public class MOFMap
                 msg.enterGameReq.Position,
                 this, channel, session, ActivePlayer, trimedPlayer, 3, false
                 ));
-                channelServer.characters.TryAdd(msg.enterGameReq.CharacterName, characters[msg.enterGameReq.CharacterName]);
                 //刪除暫存帳號資料
                 BsonDocument tempdata = null;
                 CacheSvc.Instance.AccountTempData.TryRemove(session.Account, out tempdata);
@@ -128,7 +125,7 @@ public class MOFMap
         lock (obj)
         {
             string CharacterName = msg.toOtherMapReq.CharacterName;
-            MOFMap LastMap = channelServer.getMapFactory().maps[msg.toOtherMapReq.LastMapID];
+            MOFMap LastMap = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][msg.toOtherMapReq.LastMapID];
             characters.TryAdd(CharacterName, LastMap.characters[CharacterName]);
             LastMap.RemovePlayer(CharacterName);
             characters[CharacterName].player.MapID = mapid;
@@ -305,7 +302,7 @@ public class MOFMap
         lock (obj)
         {
             string CharacterName = msg.miniGameReq.CharacterName;
-            MOFMap LastMap = channelServer.getMapFactory().maps[msg.miniGameReq.LastMapID];
+            MOFMap LastMap = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][msg.miniGameReq.LastMapID];
             characters.TryAdd(CharacterName, LastMap.characters[CharacterName]);
             LastMap.RemovePlayer(CharacterName);
             characters[CharacterName].player.MapID = mapid;
@@ -581,6 +578,7 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
+        //LogSvc.Info("Map: "+ mapid + " update." + System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
         //this.SpawnManager.Update();
         this.Battle.Update();
     }
@@ -714,13 +712,10 @@ public class MOFMap
                 }
                 else //暈眩攻擊，BOSS用
                 {
-
                 }
                 BroadCastMassege(msg);
             }
-
         }
-
     }
     public SerializedMonster MonsterPointToSerielizedMonster(MonsterPoint point)
     {
