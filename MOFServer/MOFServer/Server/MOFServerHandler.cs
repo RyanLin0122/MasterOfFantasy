@@ -27,9 +27,9 @@ class MOFServerHandler : ChannelHandlerAdapter
             switch (msg.MessageType)
             {
                 case 3:
-                    Console.WriteLine("收到選服消息");
                     session.ActiveChannel = msg.serverChooseRequest.ChoosedChannel - 1;
                     session.ActiveServer = msg.serverChooseRequest.ChoosedServer;
+                    Console.WriteLine("收到選頻消息: " + (session.ActiveChannel + 1) + " 頻");
                     if (NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] < ServerConstants.ChannelLimit)
                     {
                         NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] += 1;
@@ -133,7 +133,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     }
                     break;
                 case 14: //移動角色
-                    GetMap(session).MovePlayer(msg);
+                    MapSvc.Instance.OnMapEntitySync(msg, session);
                     break;
                 case 15: //去別張地圖請求
                     maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
@@ -231,7 +231,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     MailBoxHandler mailBoxHandler = new MailBoxHandler();
                     Task mailboxTask = mailBoxHandler.ProcessMsgAsync(msg, session);
                     break;
-				case 52: //強化道具請求
+                case 52: //強化道具請求
                     StrengthenHandler strengthenHandler = new StrengthenHandler();
                     Task StregthenTask = strengthenHandler.ProcessMsgAsync(msg, session);
                     break;

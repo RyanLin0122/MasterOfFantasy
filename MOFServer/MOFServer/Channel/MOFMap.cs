@@ -132,7 +132,7 @@ public class MOFMap
             characters[CharacterName].trimedPlayer.MapID = mapid;
             characters[CharacterName].mofMap = this;
             characters[CharacterName].trimedPlayer.Position = msg.toOtherMapReq.Position;
-            characters[CharacterName].Position = new Vector2(msg.toOtherMapReq.Position[0], msg.toOtherMapReq.Position[1]);
+            characters[CharacterName].nEntity.Position = new NVector3(msg.toOtherMapReq.Position[0], msg.toOtherMapReq.Position[1], 200);
             characters[CharacterName].MoveState = 3;
             //蒐集所有人資料
             List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
@@ -292,7 +292,6 @@ public class MOFMap
                     Console.WriteLine(ex.Message + ex.Source);
                     throw;
                 }
-
             }
         }
     }
@@ -319,23 +318,40 @@ public class MOFMap
                 }
             };
             session.WriteAndFlush(outmsg);
-
         }
     }
-
-    public void MovePlayer(ProtoMsg msg)
+    //收到同步請求
+    public void UpdateEntity(ProtoMsg msg)
     {
-        MoveMapPlayer mv = msg.moveMapPlayer;
-        if (characters.ContainsKey(mv.PlayerName))
+        EntitySyncRequest Es = msg.entitySyncReq;
+        if (Es.MapID == mapid)
         {
-            characters[mv.PlayerName].Position = new Vector2(mv.Destination[0], mv.Destination[1]);
-            characters[mv.PlayerName].trimedPlayer.Position = mv.Destination;
-            characters[mv.PlayerName].IsRun = mv.IsRun;
-            characters[mv.PlayerName].MoveState = mv.MoveState;
+            if (Es.nEntity.Count == 1) //單一同步玩家
+            {
+                if (Es.nEntity[0].Type == EntityType.Player)
+                {
+                    foreach (var chr in characters.Values)
+                    {
+                        if (chr.CharacterName == Es.nEntity[0].EntityName)
+                        {
+                            chr.nEntity.Position = new NVector3(Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y, 200);
+                            chr.nEntity = Es.nEntity[0];
+                            chr.trimedPlayer.Position = new float[] { Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y };
+                        }
+                    }
+                    SendEntityUpdate(msg);
+                }
+            }
+            else if (Es.nEntity.Count > 1) //同步怪物
+            {
+
+            }
         }
-
     }
-
+    private void SendEntityUpdate(ProtoMsg rsp)
+    {
+        BroadCastMassege(rsp);
+    }
     public void MapStart()
     {
         foreach (var id in MonsterPoints.Keys)
@@ -409,7 +425,7 @@ public class MOFMap
                 Dictionary<int, float[]> MonstersPosition = new Dictionary<int, float[]>();
                 foreach (var chr in characters.Values)
                 {
-                    CharactersPosition.Add(chr.CharacterName, new float[] { chr.Position.x, chr.Position.y });
+                    CharactersPosition.Add(chr.CharacterName, new float[] { chr.nEntity.Position.X, chr.nEntity.Position.Y });
                     CharactersMoveState.Add(chr.CharacterName, chr.MoveState);
                     CharactersIsRun.Add(chr.CharacterName, chr.IsRun);
                 }
@@ -476,6 +492,7 @@ public class MOFMap
     {
         try
         {
+            if (characters.Count < 1) return;
             byte[] result;
             using (var stream = new MemoryStream())
             {
@@ -578,13 +595,13 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
-        if(mapid == 1001 && channel == 5)
+        if (mapid == 1001 && channel == 5)
         {
             //LogSvc.Info("Map: " + mapid + " " + " Tick: " +Time.frameCount + " ThreadID: " + System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
         }
         //this.SpawnManager.Update();
         this.Battle.Update();
-        for (int i = 0; i < RandomSys.Instance.GetRandomInt(1,1000000); i++)
+        for (int i = 0; i < RandomSys.Instance.GetRandomInt(1, 1000000); i++)
         {
             int a = 3 + i;
         }

@@ -744,7 +744,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupEquipmentAnimation(Player pd, EquipmentType Type)
     {
-        MainPlayerCtrl Ctrl = GameRoot.Instance.MainPlayerControl;
+        PlayerController Ctrl = GameRoot.Instance.MainPlayerControl;
         switch (Type)
         {
             case EquipmentType.Shoes:
@@ -987,7 +987,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupFaceAnimation(Player pd)
     {
-        MainPlayerCtrl Ctrl = GameRoot.Instance.MainPlayerControl;
+        PlayerController Ctrl = GameRoot.Instance.MainPlayerControl;
         if (pd.Gender == 0)
         {
             if (pd.playerEquipments.F_FaceType == null)

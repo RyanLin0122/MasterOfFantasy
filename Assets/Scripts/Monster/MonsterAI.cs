@@ -364,7 +364,7 @@ public class MonsterAI : MonoBehaviour
     }
     #endregion
 
-    public PlayerAgent TargetPlayer = null;
+    public EntityController TargetPlayer = null;
 
     private void Update()
     {
@@ -444,7 +444,7 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    public void SetTargetPlayer(PlayerAgent target)
+    public void SetTargetPlayer(EntityController target)
     {
         TargetPlayer = target;
     }
@@ -456,13 +456,7 @@ public class MonsterAI : MonoBehaviour
         }
         else
         {
-            foreach (var other in GameRoot.Instance.otherPlayers.Keys)
-            {
-                if (other == targetName)
-                {
-                    TargetPlayer = GameRoot.Instance.otherPlayers[other];
-                }
-            }
+
         }
 
     }
@@ -890,7 +884,7 @@ namespace NodeCanvas.Tasks.Actions
             if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
             {
                 agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Attack, false);
-                ((MainPlayerCtrl)ai.TargetPlayer).GetHurt(Random.Range(mindamage, maxdamage), HurtType.Normal, ai.MonsterID);
+                ((PlayerController)ai.TargetPlayer).GetHurt(Random.Range(mindamage, maxdamage), HurtType.Normal, ai.MonsterID);
             }
             yield return new WaitForSeconds(Time_Attack);
             EndAction();
@@ -968,7 +962,7 @@ namespace NodeCanvas.Tasks.Actions
             MonsterAI ai = agent.GetComponent<MonsterAI>();
             if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
             {
-                if (((MainPlayerCtrl)ai.TargetPlayer).IsDeath)
+                if (((PlayerController)ai.TargetPlayer).IsDeath)
                 {
                     ai.TargetPlayer = null;
                     ai.RefreshMonster();

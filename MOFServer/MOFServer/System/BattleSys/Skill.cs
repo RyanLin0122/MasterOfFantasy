@@ -90,7 +90,7 @@ public class Skill
                 return SkillResult.OutOfMP;
             }
         }
-        if (!CheckRange(ActiveInfo.Shape, ActiveInfo.Range, ((Entity)Owner).Position, ((Entity)context.Target).Position))
+        if (!CheckRange(ActiveInfo.Shape, ActiveInfo.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target).nEntity.Position))
         {
             return SkillResult.OutOfRange;
         }
@@ -220,7 +220,7 @@ public class Skill
 
     }
     //判斷敵人是否在技能有效範圍內
-    public bool CheckRange(SkillRangeShape Shape, float[] Range, Vector2 CasterPosition, Vector2 TargetPosition)
+    public bool CheckRange(SkillRangeShape Shape, float[] Range, NVector3 CasterPosition, NVector3 TargetPosition)
     {
         switch (Shape)
         {

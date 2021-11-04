@@ -58,7 +58,7 @@ public class LoginSys : SystemRoot
         GameRoot.Instance.Password = null;
         GameRoot.Instance.PlayersDic.Clear();
         GameRoot.Instance.MainPlayerControl = null;
-        GameRoot.Instance.otherPlayers.Clear();
+        BattleSys.Instance.ClearMap();
         NetSvc.Instance.Nettyclient.close();
         NetSvc.Instance.NettySession.close();
         NetSvc.Instance.InitSvc();

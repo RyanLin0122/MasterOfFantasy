@@ -16,11 +16,10 @@ public class GameRoot : MonoBehaviour
     public string Password;
     public WindowLock windowLock;
     public Dictionary<int, List<Player>> PlayersDic = new Dictionary<int, List<Player>>();
-    public Dictionary<string, OtherPeopleCtrl> otherPlayers = new Dictionary<string, OtherPeopleCtrl>();
     public Canvas NearCanvas;
     public bool IsChangeOK = false;
     public static GameRoot Instance = null;
-    public MainPlayerCtrl MainPlayerControl;
+    public PlayerController MainPlayerControl;
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
     public bool CanInput;
     public bool InUI;

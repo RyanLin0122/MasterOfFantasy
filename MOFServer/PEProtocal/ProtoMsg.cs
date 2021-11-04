@@ -21,7 +21,7 @@ namespace PEProtocal
         ///11:EnterGameReq 登入請求
         ///12:EnterGameRsp 登入回應
         ///13:AddMapPlayer增加一名玩家回應
-        ///14:MoveMapPlayer移動角色請求
+        ///14:MoveMapPlayer移動同步請求
         ///15:ToOtherMapReq去別張地圖請求
         ///16:ToOtherMapRsp去別張地圖回應
         ///17:RemoveMapPlayerRsp移除一名角色回應
@@ -112,7 +112,7 @@ namespace PEProtocal
         [ProtoMember(23, IsRequired = false)]
         public AddMapPlayer addMapPlayer { get; set; }
         [ProtoMember(24, IsRequired = false)]
-        public MoveMapPlayer moveMapPlayer { get; set; }
+        public EntitySyncRequest entitySyncReq { get; set; }
         [ProtoMember(25, IsRequired = false)]
         public ToOtherMapReq toOtherMapReq { get; set; }
         [ProtoMember(26, IsRequired = false)]
@@ -576,20 +576,16 @@ namespace PEProtocal
         public int MapID { get; set; }
     }
 
-    //移動玩家
+    //移動同步
     [ProtoContract]
-    public class MoveMapPlayer
+    public class EntitySyncRequest
     {
         [ProtoMember(1, IsRequired = false)]
-        public string PlayerName { get; set; }
+        public List<EntityEvent> entityEvent { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public float[] Destination { get; set; }
+        public List<NEntity> nEntity { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public int MapID { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public int MoveState { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public bool IsRun { get; set; }
     }
 
     //去別張地圖請求

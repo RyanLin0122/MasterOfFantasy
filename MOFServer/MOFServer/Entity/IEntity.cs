@@ -15,8 +15,8 @@ public class Entity : IEntity
 {
     public bool IsDeath;
     public SkillManager skillManager;
-    public Vector2 Position;
     public MOFMap mofMap;
+    public NEntity nEntity;
     public virtual void Update()
     {
 

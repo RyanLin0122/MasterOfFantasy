@@ -12,7 +12,7 @@ public class BattleSys : SystemRoot
     public Canvas MapCanvas = null;
     public HotKeyManager HotKeyManager;
     public MonsterAI CurrentTarget = null;
-
+    public Dictionary<string, PlayerController> Players;
     #region Attribute
     public PlayerAttribute BasicAttribute;
     public void InitAllAtribute()
@@ -42,7 +42,7 @@ public class BattleSys : SystemRoot
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        BasicAttribute.RunSpeed = 200;
+        BasicAttribute.RunSpeed = 150;
         BasicAttribute.AttRange = 0;
         BasicAttribute.AttDelay = 0;
         BasicAttribute.ExpRate = 1;
@@ -315,10 +315,15 @@ public class BattleSys : SystemRoot
         base.InitSys();
         Instance = this;
         Monsters = new Dictionary<int, MonsterAI>();
+        Players = new Dictionary<string, PlayerController>();
         this.HotKeyManager.Init();
         Debug.Log("Init BattleSys...");
     }
-
+    public void ClearMap()
+    {
+        Monsters = new Dictionary<int, MonsterAI>();
+        Players = new Dictionary<string, PlayerController>();
+    }
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
@@ -410,13 +415,11 @@ public class BattleSys : SystemRoot
                         else
                         {
                             //其他人打的 只處理播動畫
-                            if (GameRoot.Instance.otherPlayers.ContainsKey(gh.CharacterName))
+                            if (BattleSys.Instance.Players.ContainsKey(gh.CharacterName))
                             {
-                                if (GameRoot.Instance.otherPlayers[gh.CharacterName] != null)
+                                if (BattleSys.Instance.Players[gh.CharacterName] != null)
                                 {
-                                    OtherPeopleCtrl ctrl = GameRoot.Instance.otherPlayers[gh.CharacterName];
-                                    OtherPlayerTask task = new OtherPlayerTask(ctrl, gh.AnimID, gh.FaceDir);
-                                    ctrl.Actions.Enqueue(task);
+                                    PlayerController ctrl = BattleSys.Instance.Players[gh.CharacterName];
                                 }
                             }
                         }
@@ -438,18 +441,10 @@ public class BattleSys : SystemRoot
                         else
                         {
                             //其他人打的
-                            if (GameRoot.Instance.otherPlayers.ContainsKey(gh.CharacterName))
-                            {
-                                if (GameRoot.Instance.otherPlayers[gh.CharacterName] != null)
-                                {
-                                    OtherPeopleCtrl ctrl = GameRoot.Instance.otherPlayers[gh.CharacterName];
-                                    OtherPlayerTask task = new OtherPlayerTask(ctrl, gh.AnimID, gh.FaceDir);
-                                    ctrl.Actions.Enqueue(task);
-                                }
-                            }
+
                         }
                     }
-                    
+
                 }
             }
 
@@ -494,6 +489,30 @@ public class BattleSys : SystemRoot
     {
         Monsters = new Dictionary<int, MonsterAI>();
     }
+
+    internal void UpdateEntity(EntityEvent entityEvent, NEntity nEntity)
+    {
+        if (nEntity == null) return;
+        if (nEntity.Type == EntityType.Player)
+        {
+            if (nEntity.EntityName != GameRoot.Instance.ActivePlayer.Name)
+            {
+                if (Players.ContainsKey(nEntity.EntityName))
+                {
+                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);
+                    Players[nEntity.EntityName].entity.entityData = nEntity;
+                    Players[nEntity.EntityName].entity.entityName = nEntity.EntityName;
+                    //Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
+                    //print(nEntity.FaceDirection);
+                }
+            }
+        }
+        else if (nEntity.Type == EntityType.Monster)
+        {
+
+        }
+    }
+
     public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
     {
         if (mons.Count > 0)
@@ -529,12 +548,12 @@ public class BattleSys : SystemRoot
 
     public void ClearBugMonster()
     {
-        if(MapCanvas != null)
+        if (MapCanvas != null)
         {
             MonsterAI[] ais = MapCanvas.GetComponentsInChildren<MonsterAI>();
             if (ais.Length > 0)
             {
-                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath",true);
+                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath", true);
             }
         }
     }

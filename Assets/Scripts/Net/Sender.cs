@@ -168,16 +168,16 @@ public class EnterGameSender : BaseSender
 
 public class MoveSender : BaseSender
 {
-    public MoveSender(int MapID, float[] Destination)
+    public MoveSender(EntityEvent entityEvent, NEntity nEntity)
     {
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 14,
-            moveMapPlayer = new MoveMapPlayer
+            entitySyncReq = new EntitySyncRequest
             {
-                MapID = MapID,
-                PlayerName = GameRoot.Instance.ActivePlayer.Name,
-                Destination = Destination
+                MapID = GameRoot.Instance.ActivePlayer.MapID,
+                entityEvent = new List<EntityEvent>() { entityEvent },
+                nEntity = new List<NEntity>() { nEntity }
             }
         };
         base.SendMsg(msg);

@@ -313,15 +313,24 @@ public class MOFCharacter : Entity
     public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
     {
         this.player = player;
+        InitAllAtribute();
         this.CharacterName = player.Name;
-        this.Position = new Vector2(position[0], position[1]);
+        this.nEntity = new NEntity
+        {
+            Speed = FinalAttribute.RunSpeed,
+            EntityName = this.player.Name,
+            FaceDirection = true,
+            Position = new NVector3(position[0], position[1], 200),
+            Type = EntityType.Player,
+            Direction = new NVector3(1,0,0)
+        };
         this.channel = channel;
         this.session = session;
         this.mofMap = map;
         this.trimedPlayer = tp;
         this.MoveState = MoveState;
         this.IsRun = IsRun;
-        InitAllAtribute();
+        
         this.skillManager = new SkillManager(this);
         if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
         {

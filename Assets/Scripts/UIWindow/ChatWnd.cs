@@ -57,11 +57,11 @@ public class ChatWnd : WindowRoot
                 }
                 else
                 {
-                    if (GameRoot.Instance.otherPlayers.ContainsKey(msg.chatResponse.CharacterName))
+                    if (BattleSys.Instance.Players.ContainsKey(msg.chatResponse.CharacterName))
                     {
-                        if (GameRoot.Instance.otherPlayers[msg.chatResponse.CharacterName] != null)
+                        if (BattleSys.Instance.Players[msg.chatResponse.CharacterName] != null)
                         {
-                            GameRoot.Instance.otherPlayers[msg.chatResponse.CharacterName].ShowChatBox(msg.chatResponse.Contents);
+                            BattleSys.Instance.Players[msg.chatResponse.CharacterName].ShowChatBox(msg.chatResponse.Contents);
                         }
                     }
                     

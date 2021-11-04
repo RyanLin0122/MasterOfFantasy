@@ -65,6 +65,9 @@ public class NetSvc : MonoBehaviour
             case 13:
                 DoAddMapPlayer(msg);
                 break;
+            case 14:
+                DoSyncEntities(msg);
+                break;
             case 16:
                 DoToOtherMapRsp(msg);
                 break;
@@ -140,7 +143,7 @@ public class NetSvc : MonoBehaviour
             case 51:
                 DoMailBoxOperation(msg);
                 break;
-			case 53:
+            case 53:
                 DoStrengthenResponse(msg);
                 break;
             case 56:
@@ -361,16 +364,7 @@ public class NetSvc : MonoBehaviour
         else
         {
             //別人受傷
-            if (GameRoot.Instance.otherPlayers.ContainsKey(playerGetHurt.CharacterName))
-            {
-                if (GameRoot.Instance.otherPlayers[playerGetHurt.CharacterName] != null)
-                {
-                    OtherPlayerTask task = new OtherPlayerTask(GameRoot.Instance.otherPlayers[playerGetHurt.CharacterName], 1, playerGetHurt.FaceDir);
-                    GameRoot.Instance.otherPlayers[playerGetHurt.CharacterName].ProcessGetHurt(playerGetHurt.damage, playerGetHurt.hurtType, playerGetHurt.MonsterID);
-                    GameRoot.Instance.otherPlayers[playerGetHurt.CharacterName].Actions.Enqueue(task);
-                }
 
-            }
         }
     }
     public void DoPlayerDeath(ProtoMsg msg)
@@ -403,8 +397,8 @@ public class NetSvc : MonoBehaviour
     public void DoPlayerAction(ProtoMsg msg)
     {
         PlayerAction action = msg.playerAction;
-        
-        
+
+
     }
     public void DoKnapsackOperation(ProtoMsg msg)
     {
@@ -441,7 +435,7 @@ public class NetSvc : MonoBehaviour
                                 else
                                 {
                                     nk[ko.NewPosition[i]] = ko.items[i];
-                                }               
+                                }
                                 KnapsackWnd.Instance.FindSlot(ko.NewPosition[i]).StoreItem(ko.items[i], ko.items[i].Count);
                             }
                             else
@@ -472,7 +466,7 @@ public class NetSvc : MonoBehaviour
                                     {
                                         nk.Remove(item.Position);
                                         GameObject.Destroy(KnapsackWnd.Instance.FindSlot(item.Position).GetComponentInChildren<ItemUI>());
-                                    }                                   
+                                    }
                                 }
                                 else
                                 {
@@ -509,7 +503,7 @@ public class NetSvc : MonoBehaviour
             catch (System.Exception e)
             {
                 Tools.Log(e.Message);
-            }           
+            }
         }
         else
         {
@@ -567,7 +561,7 @@ public class NetSvc : MonoBehaviour
     {
         MailBoxWnd.Instance.ProcessMailBoxOperation(msg.mailBoxOperation);
     }
-	public void DoStrengthenResponse(ProtoMsg msg)
+    public void DoStrengthenResponse(ProtoMsg msg)
     {
         StrengthenWnd.Instance.ProessStrengthenReaponse(msg.strengthenResponse);
     }
@@ -579,5 +573,13 @@ public class NetSvc : MonoBehaviour
     public void DoHotKeyOperation(ProtoMsg msg)
     {
         BattleSys.Instance.HotKeyManager.ProcessHotKeyOperation(msg);
+    }
+    public void DoSyncEntities(ProtoMsg msg)
+    {
+        EntitySyncRequest es = msg.entitySyncReq;
+        for (int i = 0; i < es.nEntity.Count; i++)
+        {
+            BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
+        }
     }
 }

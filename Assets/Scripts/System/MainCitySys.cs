@@ -37,14 +37,12 @@ public class MainCitySys : SystemRoot
     }
     public void EnterMap(EnterGameRsp rd)
     {
-        GameRoot.Instance.otherPlayers.Clear();
         LoginMap(rd);
     }
     //進入小遊戲
     public void EnterMiniGame(EnterMiniGameRsp msg)
     {
         MapCfg mapData = resSvc.GetMapCfgData(msg.MiniGameID);
-        GameRoot.Instance.otherPlayers.Clear();
         GameRoot.Instance.ActivePlayer.MapID = msg.MiniGameID;
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
@@ -63,10 +61,9 @@ public class MainCitySys : SystemRoot
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
-            
-            //加載主角
-            LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
 
+            //加載主角
+            LoadPlayer(GameRoot.Instance.ActivePlayer.Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
             UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             UISystem.Instance.Knapsack.ReadItems();
             //打開主UI
@@ -93,7 +90,7 @@ public class MainCitySys : SystemRoot
             UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
-            
+
             BattleSys.Instance.MapCanvas = MapCanvas;
 
             if (rsp.Monsters != null)
@@ -107,28 +104,26 @@ public class MainCitySys : SystemRoot
             }
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
-            
-            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.MainPlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
         });
     }
 
 
     public void GoToOtherMap(ToOtherMapRsp rsp)
     {
-        GameRoot.Instance.otherPlayers.Clear();
+        BattleSys.Instance.ClearMap();
         LoadMap(rsp);
     }
     public void LoadMap(ToOtherMapRsp rsp)
     {
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
-
+        BattleSys.Instance.ClearMap();
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
             NewLocation = ResSvc.Instance.GetMapCfgData(rsp.MapID).Location;
-            
+
             //加載主角
-            LoadPlayer(mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
+            LoadPlayer(GameRoot.Instance.ActivePlayer.Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
             //打開主UI
             UISystem.Instance.baseUI.SetWndState();
@@ -165,7 +160,6 @@ public class MainCitySys : SystemRoot
             }
             UpdateWeather(rsp.weather);
             UISystem.Instance.miniMap.Init();
-            MoveTaskID = TimerSvc.Instance.AddTimeTask((a) => { GameRoot.Instance.MainPlayerControl.SendMove(1); }, 0.1, PETimeUnit.Second, 0);
             ShowMapLogo();
         });
 
@@ -207,6 +201,7 @@ public class MainCitySys : SystemRoot
     }
     public void ProcessMapInformation(MapInformation info)
     {
+        /*
         if (info.CalculaterName != GameRoot.Instance.ActivePlayer.Name) //別人的計算結果
         {
             //處理人物跟怪物移動
@@ -250,27 +245,45 @@ public class MainCitySys : SystemRoot
             }
             return;
         }
+        */
     }
     #region 加載角色
-    private void LoadPlayer(MapCfg mapData, Vector2 position) //傳點傳送
+    private void LoadPlayer(string PlayerName, MapCfg mapData, Vector2 position) //傳點傳送
     {
         Camera mainCam = Camera.main;
         MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
         MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
-
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
-        MainPlayerCtrl mainPlayerCtrl = player.GetComponent<MainPlayerCtrl>();
+        PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
         GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
-        mainPlayerCtrl.PlayerName = GameRoot.Instance.ActivePlayer.Name;
+        mainPlayerCtrl.PlayerName = PlayerName;
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
-        mainPlayerCtrl.GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("Job", GameRoot.Instance.ActivePlayer.Job);    
         mainPlayerCtrl.SetNameBox();
+        BattleSys.Instance.InitAllAtribute();
+        PlayerInputController.Instance.Init(
+            new NEntity
+            {
+                FaceDirection = true,
+                Speed = BattleSys.Instance.FinalAttribute.RunSpeed,
+                Direction = new NVector3(1, 0, 0),
+                EntityName = GameRoot.Instance.ActivePlayer.Name,
+                Id = -0,
+                Position = new NVector3(position.x, position.y, 0),
+                Type = EntityType.Player
+            },
+            mainPlayerCtrl
+        );
+        BattleSys.Instance.Players.Add(mainPlayerCtrl.PlayerName, mainPlayerCtrl);
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
         UISystem.Instance.equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
         UISystem.Instance.equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+        if (PlayerName == GameRoot.Instance.ActivePlayer.Name)
+        {
+            player.GetComponent<ScreenController>().enabled = true;
+        }
     }
 
     public void LoadMonster()
@@ -284,34 +297,41 @@ public class MainCitySys : SystemRoot
     {
         if (add.Name != GameRoot.Instance.ActivePlayer.Name)
         {
-            GameObject player = ResSvc.Instance.LoadPrefab(PathDefine.OtherCharacter, GameObject.Find("Canvas2").transform, new Vector3(add.Position[0], add.Position[1], 200));
-            try
+            GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(add.Position[0], add.Position[1], 200f));
+            PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
+            GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
+            mainPlayerCtrl.PlayerName = add.Name;
+            mainPlayerCtrl.SetTitle(add.Title);
+            mainPlayerCtrl.SetNameBox();
+            BattleSys.Instance.InitAllAtribute();
+            mainPlayerCtrl.Init();
+            mainPlayerCtrl.entity = new Character
+            (new NEntity
             {
-                player.GetComponent<OtherPeopleCtrl>().SetAllEquipment(add);
-                player.GetComponent<OtherPeopleCtrl>().PlayerName = add.Name;
-                player.GetComponent<OtherPeopleCtrl>().SetNameBox();
-                player.GetComponent<OtherPeopleCtrl>().UpdatePos = player.transform.localPosition;
-                GameRoot.Instance.otherPlayers.Add(add.Name, player.GetComponent<OtherPeopleCtrl>());
-                //player.transform.position = new Vector3(add.Position[0], add.Position[1], player.transform.position.z);
-                player.GetComponent<OtherPeopleCtrl>().PlayIdle();
-                player.GetComponent<OtherPeopleCtrl>().WaitAMoment();
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.ToString());
-            }
-
+                FaceDirection = true,
+                Speed = BattleSys.Instance.FinalAttribute.RunSpeed,
+                Direction = new NVector3(1, 0, 0),
+                EntityName = add.Name,
+                Id = -0,
+                Position = new NVector3(add.Position[0], add.Position[1], 200f),
+                Type = EntityType.Player
+            });
+            BattleSys.Instance.Players.Add(mainPlayerCtrl.PlayerName, mainPlayerCtrl);
+            GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
+            //player.GetComponent<Transform>().SetAsLastSibling();
+            mainPlayerCtrl.SetAllEquipment(add);
+            mainPlayerCtrl.SetFace(add);
         }
 
     }
     public void RemovePlayer(RemoveMapPlayer remove)
     {
-        if (GameRoot.Instance.otherPlayers.ContainsKey(remove.Name))
+        if (BattleSys.Instance.Players.ContainsKey(remove.Name))
         {
-            if (GameRoot.Instance.otherPlayers[remove.Name] != null)
+            if (BattleSys.Instance.Players[remove.Name] != null)
             {
-                GameRoot.Instance.otherPlayers[remove.Name].DeleteThisChr();
-                GameRoot.Instance.otherPlayers.Remove(remove.Name);
+                BattleSys.Instance.Players[remove.Name].DeleteThisChr();
+                BattleSys.Instance.Players.Remove(remove.Name);
             }
         }
     }
@@ -331,7 +351,7 @@ public class MainCitySys : SystemRoot
             AudioSvc.Instance.PlayembiAudio(Embi);
         }
     }
-   
+
     public void Transfer(int PortalID, Action act)
     {
         LastLocation = ResSvc.Instance.GetMapCfgData(GameRoot.Instance.ActivePlayer.MapID).Location;

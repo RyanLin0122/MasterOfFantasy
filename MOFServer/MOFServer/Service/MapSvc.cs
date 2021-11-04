@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Collections.Concurrent;
+using PEProtocal;
 
 public class MapSvc : Singleton<MapSvc>
 {
@@ -34,6 +35,12 @@ public class MapSvc : Singleton<MapSvc>
         }
         return null;
     }
+
+    public void OnMapEntitySync(ProtoMsg msg, ServerSession session)
+    {
+        Maps[0][session.ActiveChannel][session.ActivePlayer.MapID].UpdateEntity(msg);
+    }
+
 
     public void Update()
     {

@@ -16,15 +16,10 @@ public class ScreenController : MonoBehaviour
  
     private void Awake()
     {
-        Scene scene = SceneManager.GetActiveScene();
         GameObject background = GameObject.Find("BG");
-        //print(background.name);
+
         float bound_x = background.GetComponent<Renderer>().bounds.size.x;
         float bound_y = background.GetComponent<Renderer>().bounds.size.y;
-
-        print("Hi");
-        //print(bound_x);
-        int[] mapBound = Tools.GetMapBoundary(scene.name);
 
         float cam_x = 535.0f;
         float cam_y = 300.0f;
@@ -58,22 +53,12 @@ public class ScreenController : MonoBehaviour
         //相對位移 = 攝影機座標-玩家座標
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-        float tempx = transform.position.x; //+ Offset.x;
-
-        float tempy = transform.position.y; //+ Offset.y;
-        Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound),
-                                          Mathf.Clamp(tempy, DownBound, UpBound), camera.transform.position.z);
-        camera.transform.position = tempPosition;//+ new Vector3(Offset.x,Offset.y,0);
-                                                 //攝影機座標 = 玩家座標+相對位移
-    }
-
-
     private void Update()
     {
+        float tempx = transform.position.x;
+        float tempy = transform.position.y;
+        Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), camera.transform.position.z);
+        camera.transform.position = tempPosition; //攝影機座標 = 玩家座標
         if (canCtrl)
         {
             if (Input.GetKeyDown(KeyCode.M))
@@ -159,51 +144,51 @@ public class ScreenController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayHurt();
+                    GetComponent<PlayerController>().PlayHurt();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayDeath();
+                    GetComponent<PlayerController>().PlayDeath();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayDown1();
+                    GetComponent<PlayerController>().PlayDown1();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayDown2();
+                    GetComponent<PlayerController>().PlayDown2();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayHorizon1();
+                    GetComponent<PlayerController>().PlayHorizon1();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha6))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayHorizon2();
+                    GetComponent<PlayerController>().PlayHorizon2();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha7))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayMagic();
+                    GetComponent<PlayerController>().PlayMagic();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha8))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayCleric();
+                    GetComponent<PlayerController>().PlayCleric();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha9))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayCrossbow();
+                    GetComponent<PlayerController>().PlayCrossbow();
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha0))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayBow();
+                    GetComponent<PlayerController>().PlayBow();
                 }
                 if (Input.GetKeyDown(KeyCode.B))
                 {
-                    GetComponent<MainPlayerCtrl>().PlaySlash();
+                    GetComponent<PlayerController>().PlaySlash();
                 }
                 if (Input.GetKeyDown(KeyCode.N))
                 {
-                    GetComponent<MainPlayerCtrl>().PlayUpper();
+                    GetComponent<PlayerController>().PlayUpper();
                 }
                 if (Input.GetKeyDown(KeyCode.V))
                 {

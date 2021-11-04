@@ -70,7 +70,7 @@ namespace PolyNav
             this._map = _map;
             this.position = position;
             this.entity = entity;
-            this.entity.Position = position;
+            //this.entity.nEntity.Position = position;
         }
 
         public void Init()
@@ -90,7 +90,7 @@ namespace PolyNav
                 if (entity != null)
                 {
                     Console.WriteLine("Update entity position");
-                    entity.Position = this.position;
+                    //entity.Position = this.position;
                 }
             }
         }

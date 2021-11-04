@@ -13,13 +13,10 @@ public class OtherPlayerClick : MonoBehaviour, IPointerDownHandler
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             Vector3 pos = transform.position + new Vector3(80, -80, 0);
-            string PlayerName = GetComponent<OtherPeopleCtrl>().PlayerName;
+            string PlayerName = GetComponent<PlayerController>().PlayerName;
             UISystem.Instance.otherPlayerOption.OtherName = PlayerName;
-            UISystem.Instance.OpenOtherPlayerOption(pos);
-            
+            UISystem.Instance.OpenOtherPlayerOption(pos);       
         }
-    
     }
-
 }
 

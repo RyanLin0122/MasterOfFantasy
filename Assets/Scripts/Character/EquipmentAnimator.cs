@@ -171,10 +171,8 @@ public class EquipmentAnimator : MonoBehaviour
             SpriteArray = AllSpriteArray[EquipAnimState.Idle];
             SpritePosition = AllSpritePos[EquipAnimState.Idle];
             HasInit = true;
-        }
-        
+        }      
     }
-
 
     public void ResetAni()
     {
@@ -246,7 +244,8 @@ public class EquipmentAnimator : MonoBehaviour
 }
 public enum PlayerStatus
 {
-    Normal,
+    Idle,
+    Move,
     Death,
 }
 public enum EquipAnimType
