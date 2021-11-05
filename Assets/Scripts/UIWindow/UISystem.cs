@@ -164,6 +164,8 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         strengthenWnd.SetWndState();
         strengthenWnd.IsOpen = true;
+        baseUI.CloseNpcDialogue();
+        GameRoot.Instance.InUI = false;
     }
     public void CloseMGFWnd()
     {

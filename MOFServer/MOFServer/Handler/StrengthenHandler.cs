@@ -50,6 +50,12 @@ public class StrengthenHandler : GameHandler
             case 9:
                 PutStoneInSlot(req, session);
                 break;
+            case 10:
+                TakeOffStone(req, session);
+                break;
+            case 11:
+                TakeOffWeaponEquipment(req, session);
+                break;
         }
     }
     public void OpenStrengthen(StrengthenRequest req, ServerSession session)
@@ -69,7 +75,49 @@ public class StrengthenHandler : GameHandler
         CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
         RemoveItemInKnap(req.item, session);
     }
+    public void TakeOffStone(StrengthenRequest req, ServerSession session)
+    {
+        Item stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
+        AddItemInKnap(stone, session);
 
+        //CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 53,
+            strengthenResponse = new StrengthenResponse
+            {
+                OperationType = 7,
+                Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+            }
+        };
+        session.WriteAndFlush(msg);
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+    }
+    public void TakeOffWeaponEquipment(StrengthenRequest req, ServerSession session)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 53,
+            strengthenResponse = new StrengthenResponse
+            {
+                OperationType = 8,
+                Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+            }
+        };
+        session.WriteAndFlush(msg);
+        RemoveItemInKnap(req.item, session);
+        Item Item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
+        AddItemInKnap(Item, session);
+
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = null;
+        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+        if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+        {
+            AddItemInKnap(CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+        }
+    }
 
     public void PutStrengthenItemInSlot(StrengthenRequest req, ServerSession session)
     {
@@ -243,13 +291,15 @@ public class StrengthenHandler : GameHandler
         if(IsSuccess)
         {
             StrengthenSucceed(req, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = new Strengthen();
         }
         else
         {
             Strengthenfail(req, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
         }
         session.ActivePlayer.Ribi -= strengthen.Ribi; //扣錢
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = new Strengthen();
     }
     public void StrengthenSucceed(StrengthenRequest req, ServerSession session)
     {
@@ -279,12 +329,9 @@ public class StrengthenHandler : GameHandler
             strengthenResponse = new StrengthenResponse
             {
                 OperationType = 6,
-                item = strengthen.Item,
                 Ribi = strengthen.Ribi
             }
         };
-        
-        AddItemInKnap(strengthen.Item, session);
         session.WriteAndFlush(msg);
     }
 
@@ -330,32 +377,32 @@ public class StrengthenHandler : GameHandler
         {
             case WeaponType.Sword:
             case WeaponType.Axe:
-                AttStrngthen(weapon, stone,strengthen.description);
+                AttStrngthen(weapon,strengthen);
                 break;
             case WeaponType.Bow:
-                AgilityStrngthen(weapon, stone, strengthen.description);
+                AgilityStrngthen(weapon, strengthen);
                 break;          
             case WeaponType.Crossbow:
             case WeaponType.Dagger:
-                Accuract2Strngthen(weapon, stone, strengthen.description);
+                Accuract2Strngthen(weapon, strengthen);
                 break;
             case WeaponType.Hammer:
             case WeaponType.DualSword:
-                AvoidStrngthen(weapon, stone, strengthen.description);
+                AvoidStrngthen(weapon, strengthen);
                 break;
             case WeaponType.Gun://沒有速度  幫他加致命性機率好了
             case WeaponType.Cross:
             case WeaponType.LongSword:
-                CriticalStrngthen(weapon, stone, strengthen.description);
+                CriticalStrngthen(weapon, strengthen);
                 break;
             case WeaponType.Spear:
-                AccuractStrngthen(weapon, stone, strengthen.description);
+                AccuractStrngthen(weapon, strengthen);
                 break;
             case WeaponType.Book:
-                RangeStrngthen(weapon, stone, strengthen.description);
+                RangeStrngthen(weapon, strengthen);
                 break;
             case WeaponType.Staff:
-                IntStrngthen(weapon, stone, strengthen.description);
+                IntStrngthen(weapon, strengthen);
                 break;
             default:
                 break;
@@ -368,60 +415,100 @@ public class StrengthenHandler : GameHandler
     }
 
     //攻擊屬性增加
-    public void AttStrngthen(Weapon weapon, Item stone,String text)
+    public void AttStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Attack = clean.Attack + Attribute1[(int)weapon.Quality];
-        text += $"\n攻擊屬性 + {Attribute1[(int)weapon.Quality]}\n";
+        int lastlevel = 0;
+        if((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute1[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"\n攻擊屬性 + {Attribute1[(int)weapon.Quality]- lastlevel}";
     }
     //智力屬性增加
-    public void IntStrngthen(Weapon weapon, Item stone, String text)
+    public void IntStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Intellect = clean.Intellect + Attribute1[(int)weapon.Quality];
-        text += $"\n智力屬性 + {Attribute1[(int)weapon.Quality]}\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute1[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"\n智力屬性 + {Attribute1[(int)weapon.Quality] - lastlevel}";
     }
     //敏捷屬性增加
-    public void AgilityStrngthen(Weapon weapon, Item stone, String text)
+    public void AgilityStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Agility = clean.Agility + Attribute1[(int)weapon.Quality];
-        text += $"\n敏捷屬性 + {Attribute1[(int)weapon.Quality]}\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute1[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"\n敏捷屬性 + {Attribute1[(int)weapon.Quality] - lastlevel}";
     }
     //命中率
-    public void AccuractStrngthen(Weapon weapon, Item stone, String text)
+    public void AccuractStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Accuracy = clean.Accuracy + (float)(Attribute1[(int)weapon.Quality] / 100.0f);
-        text += $"\n命中率 + {Attribute1[(int)weapon.Quality]} %\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute1[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"\n命中率 + {Attribute1[(int)weapon.Quality] - lastlevel} %";
     }
     //命中率2
-    public void Accuract2Strngthen(Weapon weapon, Item stone, String text)
+    public void Accuract2Strngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Accuracy = clean.Accuracy + (float)(Attribute2[(int)weapon.Quality] / 100.0f);
-        text += $"\n命中率 + {Attribute2[(int)weapon.Quality]} %\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute2[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"\n命中率 + {Attribute2[(int)weapon.Quality] - lastlevel} %";
     }
     //閃避率(鈍器、雙劍)
-    public void AvoidStrngthen(Weapon weapon, Item stone, String text)
+    public void AvoidStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Avoid = clean.Avoid + (float)(Attribute2[(int)weapon.Quality] / 100.0f);
-        text += $"閃避率 + {Attribute2[(int)weapon.Quality]} %\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute2[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"閃避率 + {Attribute2[(int)weapon.Quality] - lastlevel} %";
     }
     //致命性機率(雙手劍、十字架)
-    public void CriticalStrngthen(Weapon weapon, Item stone, String text)
+    public void CriticalStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Critical = clean.Critical + Attribute3[(int)weapon.Quality] / 100.0f;
-        text += $"致命性機率 + {Attribute3[(int)weapon.Quality]} %\n";
+        float lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute3[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"致命性機率 + {Attribute3[(int)weapon.Quality]- lastlevel} %";
     }
     //距離(書)
-    public void RangeStrngthen(Weapon weapon, Item stone, String text)
+    public void RangeStrngthen(Weapon weapon, Strengthen strengthen)
     {
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Range = clean.Range + Attribute5[(int)weapon.Quality];
-        text += $"致命性機率 + {Attribute5[(int)weapon.Quality]} %\n";
+        int lastlevel = 0;
+        if ((int)weapon.Quality != 0)
+        {
+            lastlevel = Attribute5[(int)weapon.Quality - 1];
+        }
+        strengthen.description += $"致命性機率 + {Attribute5[(int)weapon.Quality]-lastlevel} %";
     }
     public void EquipmentStrengthen(Strengthen strengthen)
     {
@@ -432,7 +519,7 @@ public class StrengthenHandler : GameHandler
         equipment.Attack = clean.Attack + Attribute4[(int)equipment.Quality];
         equipment.Intellect = clean.Intellect + Attribute4[(int)equipment.Quality];
         equipment.Strength = clean.Strength + Attribute4[(int)equipment.Quality];
-        strengthen.description += $"全屬性 + {Attribute4[(int)equipment.Quality]} \n";
+        strengthen.description += $"全屬性 + {1} \n";
         strengthen.description = equipment.Name + '\n' + strengthen.description;
         strengthen.Probablity = Probability(stone);
         strengthen.Ribi = CostRibiforEq(equipment, stone);
@@ -512,15 +599,24 @@ public class StrengthenHandler : GameHandler
         Weapon clean = (Weapon)CacheSvc.ItemList[strengthen.Item.ItemID];
         float probability;
         if ((int)(strengthen.StrengthenItem.Quality) == 4)
+        {
             probability = 0.27f;
+            strengthen.description = $"攻擊力上升 {3} % ";
+        }
         else if ((int)(strengthen.StrengthenItem.Quality) == 5)
+        {
             probability = 0.3f;
+            strengthen.description = $"攻擊力上升 {3} % ";
+        }
         else
+        {
             probability = 0.06f * (float)((int)(strengthen.StrengthenItem.Quality) + 1);
+            strengthen.description = $"攻擊力上升 {6} % ";
+        }
         ((Weapon)strengthen.StrengthenItem).MaxDamage = (int)(clean.MaxDamage * (1 + probability));
         ((Weapon)strengthen.StrengthenItem).MinDamage = (int)(clean.MinDamage * (1 + probability));
 
-        strengthen.description = $"攻擊力上升{(int)(probability * 100)} % ";
+        
     }
     public void DamageAtrengthenType2(Strengthen strengthen)
     {
@@ -529,7 +625,7 @@ public class StrengthenHandler : GameHandler
         float probability = (float)((int)clean.Quality + 1) * 0.05f;
         ((Weapon)strengthen.StrengthenItem).MaxDamage = (int)(clean.MaxDamage * (1 + probability));
         ((Weapon)strengthen.StrengthenItem).MinDamage = (int)(clean.MinDamage * (1 + probability));
-        strengthen.description = $"強化效果 :攻擊力上升{(int)(probability * 100)} % \n";
+        strengthen.description = $"強化效果 :攻擊力上升 {5} % \n";
     }
     public List<int> Attribute1 = new List<int>{1, 2, 4,8,10,12};//智力(法杖)、敏捷(弓)、攻擊(斧頭、刀劍)、命中率(鎗)
     public List<int> Attribute2 = new List<int> { 2, 4, 7, 12, 15, 18 };//命中率(短劍、石弓)、閃避率(鈍器、雙劍) 防禦力(盾牌)

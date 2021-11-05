@@ -161,23 +161,32 @@ public class StrengthenWnd : Inventory
         {
             AddItemInKnap(stone);
         }
-        EndStrengthen();
+        EndStrengthen(true);
         CloseStrengthenWnd();
         KnapsackWnd.Instance.IsForge = false;
         KnapsackWnd.Instance.CloseAndPop();
     }
 
-    public void EndStrengthen()
+    public void EndStrengthen(bool succeed)
     {
         AnimaInit();
-        ClearPanel();
-        EffectText.text = "";
-        RegisterStone = null;
-        RegisterStrengthenItem = null;
-        //StrengthenBtn.interactable()
         CloseBtn1.interactable = true;
         CloseBtn2.interactable = true;
         InfoBtn.interactable = true;
+        RegisterStone = null;
+
+        if(succeed)
+        {
+            RegisterStrengthenItem = null;
+            ClearPanel();
+            EffectText.text = "";
+        }
+        else
+        {
+            slotLists[1][0].RemoveItemUI();
+            slotLists[2][0].RemoveItemUI();
+            EffectText.text = $" 請使用{Stones[(int)RegisterStrengthenItem.Quality]}系列強化石";
+        }
     }
 
     public void CloseStrengthenWnd()
@@ -211,7 +220,7 @@ public class StrengthenWnd : Inventory
                 AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                 break;
             case 3://換一把武器強化
-                EffectText.text = "";
+                EffectText.text = $" 請使用{Stones[(int)RegisterStrengthenItem.Quality]}系列強化石";
                 slotLists[1][0].RemoveItemUI();
                 slotLists[2][0].RemoveItemUI();
                 if(rsp.Stone!=null)
@@ -229,16 +238,36 @@ public class StrengthenWnd : Inventory
                 GetWeapon(rsp.strengthenItem);
                 MessageBox.Show("強化成功。");
                 CostRibi(rsp.Ribi);
-                EndStrengthen();
+                EndStrengthen(true);
                 AudioSvc.Instance.PlayUIAudio(Constants.EnchantSuccess);
                 break;
             case 6://強化失敗
-                GetWeapon(rsp.item);
+                //GetWeapon(rsp.item);
                 MessageBox.Show("強化失敗。");
                 CostRibi(rsp.Ribi);
-                EndStrengthen();
+                EndStrengthen(false);
                 AudioSvc.Instance.PlayUIAudio(Constants.EnchantFail);
                 break;
+
+            case 7://拿掉石頭
+                slotLists[2][0].RemoveItemUI();
+                EffectText.text = $" 請使用{Stones[(int)RegisterStrengthenItem.Quality]}系列強化石";
+                AddItemInKnap(rsp.Stone);
+                StrengthenBtn.interactable = false;
+                break;
+
+            case 8://拿掉武器
+                EffectText.text = "";
+                RegisterStrengthenItem = null;
+                slotLists[1][0].RemoveItemUI();
+                slotLists[2][0].RemoveItemUI();
+                if (rsp.Stone != null)
+                {
+                    AddItemInKnap(rsp.Stone);
+                }
+                StrengthenBtn.interactable = false;
+                break;
+
 
         }
 
@@ -267,4 +296,5 @@ public class StrengthenWnd : Inventory
             InfoPanel.SetActive(true);
         }
     }
+    public List<string> Stones = new List<string> { "方石", "水石", "銀石", "金石", "紅寶石", "綠寶石" };
 }

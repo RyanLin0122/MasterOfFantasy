@@ -14,7 +14,19 @@ public class StrengthenStoneSlot : ItemSlot
         base.Awake();
 
     }
-   
+
+    public override void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        //石頭放回背包
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Item currentItem = GetItem();
+            RemoveItemUI();
+            StrengthenWnd.Instance.RegisterStone = null;
+            new StrengthenSender(10, currentItem); //發送封包
+
+        }
+    }
 
     //格子是空的才可以放
     public override void PutItem_woItem(DragItemData data)
@@ -46,20 +58,20 @@ public class StrengthenStoneSlot : ItemSlot
                     }
                     else//放錯誤素質的強化石顯示提醒並放回背包
                     {
-                        print("請放對應武器素質的強化石");
+                        UISystem.Instance.AddMessageQueue("請放對應武器素質的強化石");
                         KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                     }
                 }
                 else
                 {
-                    print("這不是強化石~");
+                    UISystem.Instance.AddMessageQueue("這不是強化石~");
                     KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
 
             }
             else//沒有先放武器顯示提醒並把強化石放回背包
             {
-                print("請先放要強化的武器或裝備");
+                UISystem.Instance.AddMessageQueue("請先放要強化的武器或裝備");
                 KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
             }
 
@@ -73,7 +85,7 @@ public class StrengthenStoneSlot : ItemSlot
             //把手上物品放進新格子
             Item PickedUpItem = (Item)data.Content;
             Item currentItem = GetItem();//原本的東西
-            if (currentItem.ItemID != PickedUpItem.ItemID)
+            if (currentItem.ItemID != PickedUpItem.ItemID)//新拿的石頭和原本的不一樣
             {
                 if (StrengthenWnd.Instance.RegisterStrengthenItem.Quality == PickedUpItem.Quality)
                 {

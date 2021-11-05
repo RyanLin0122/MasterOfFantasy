@@ -15,7 +15,6 @@ public class StrengthenItemSlot : ItemSlot
 
     }
 
-
     //空的時候
     public override void PutItem_woItem(DragItemData data)
     {
@@ -28,33 +27,59 @@ public class StrengthenItemSlot : ItemSlot
             Item PickedUpItem = (Item)data.Content;
             if(PickedUpItem.IsCash)
             {
-                print("點裝不能強化~");
+                UISystem.Instance.AddMessageQueue("點裝不能強化~");
             }
             else
             {
-                if (PickedUpItem.Type == ItemType.Weapon)
+                if(PickedUpItem.Quality == ItemQuality.Artifact)
                 {
-                    StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
-                    new StrengthenSender(1, PickedUpItem); //1是把武器放進空的slot中
-                    StoreItem(PickedUpItem, PickedUpItem.Count);
-                    nk.Remove(PickedUpItem.Position);
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
-                }
-                else if (PickedUpItem.Type == ItemType.Equipment)
-                {
-                    StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
-                    new StrengthenSender(7, PickedUpItem); //7是把裝備放進空的slot中
-                    StoreItem(PickedUpItem, PickedUpItem.Count);
-                    nk.Remove(PickedUpItem.Position);
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                    UISystem.Instance.AddMessageQueue("已經是最高階的武器了，無法再進行強化");
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
                 else
                 {
-                    print("請放要強化的武器或裝備喔");
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    if (PickedUpItem.Type == ItemType.Weapon)
+                    {
+                        StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
+                        StrengthenWnd.Instance.EffectText.text = $" 請使用{Stones[(int)PickedUpItem.Quality]}系列強化石";
+                        new StrengthenSender(1, PickedUpItem); //1是把武器放進空的slot中
+                        StoreItem(PickedUpItem, PickedUpItem.Count);
+                        AudioSvc.Instance.PlayUIAudio(Constants.Setup);
+                        nk.Remove(PickedUpItem.Position);
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                    }
+                    else if (PickedUpItem.Type == ItemType.Equipment)
+                    {
+                        StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
+                        StrengthenWnd.Instance.EffectText.text = $" 請使用{Stones[(int)PickedUpItem.Quality]}系列強化石";
+                        new StrengthenSender(7, PickedUpItem); //7是把裝備放進空的slot中
+                        StoreItem(PickedUpItem, PickedUpItem.Count);
+                        AudioSvc.Instance.PlayUIAudio(Constants.Setup);
+                        nk.Remove(PickedUpItem.Position);
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).RemoveItemUI();
+                    }
+                    else
+                    {
+                        UISystem.Instance.AddMessageQueue("請放要強化的武器或裝備喔");
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    }
                 }
+
+
             }
 
+        }
+    }
+    public override void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        //放武器回揹包
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Item currentItem = GetItem();
+            RemoveItemUI();
+            StrengthenWnd.Instance.RegisterStone = null;
+            new StrengthenSender(11, currentItem); //發送封包
+            KnapsackWnd.Instance.FindSlot(currentItem.Position).StoreItem(currentItem, currentItem.Count);
         }
     }
 
@@ -67,7 +92,7 @@ public class StrengthenItemSlot : ItemSlot
             Item PickedUpItem = (Item)data.Content;//新放進去的東西
             if (PickedUpItem.IsCash)
             {
-                print("點裝不能強化~");
+                UISystem.Instance.AddMessageQueue("點裝不能強化~");
             }
             else
             {
@@ -75,8 +100,10 @@ public class StrengthenItemSlot : ItemSlot
                 {
                     Item currentItem = GetItem();//原本的東西
                     StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
+                    StrengthenWnd.Instance.RegisterStone = null;
                     RemoveItemUI();
                     StoreItem(PickedUpItem, PickedUpItem.Count);
+                    AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                     nk.Remove(PickedUpItem.Position);
                     KnapsackWnd.Instance.FindSlot(currentItem.Position).StoreItem(currentItem, currentItem.Count);
                     new StrengthenSender(2, PickedUpItem);//2是把武器放進原本有武器的slot
@@ -85,15 +112,17 @@ public class StrengthenItemSlot : ItemSlot
                 {
                     Item currentItem = GetItem();//原本的東西
                     StrengthenWnd.Instance.RegisterStrengthenItem = PickedUpItem;
+                    StrengthenWnd.Instance.RegisterStone = null;
                     RemoveItemUI();
                     StoreItem(PickedUpItem, PickedUpItem.Count);
+                    AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                     nk.Remove(PickedUpItem.Position);
                     KnapsackWnd.Instance.FindSlot(currentItem.Position).StoreItem(currentItem, currentItem.Count);
                     new StrengthenSender(8, PickedUpItem);//8是把裝備放進原本有東西的slot
                 }
                 else
                 {
-                    print("請放要強化的武器或裝備喔");
+                    UISystem.Instance.AddMessageQueue("請放要強化的武器或裝備喔");
                     KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
                 }
             }
@@ -103,4 +132,8 @@ public class StrengthenItemSlot : ItemSlot
     }
 
 
+
+public List<string> Stones = new List<string> { "方石", "水石", "銀石", "金石", "紅寶石", "綠寶石" };
 }
+
+
