@@ -358,93 +358,93 @@ public class PlayerController : EntityController
     public void PlayIdle()
     {
         screenCtrl.canCtrl = true;
-        ShoesCtrl.PlayAni(EquipAnimState.Idle, true);
-        FaceCtrl.PlayAni(EquipAnimState.Idle, true);
-        UpwearCtrl.PlayAni(EquipAnimState.Idle, true);
-        DownwearCtrl.PlayAni(EquipAnimState.Idle, true);
-        HairBackCtrl.PlayAni(EquipAnimState.Idle, true);
-        HairFrontCtrl.PlayAni(EquipAnimState.Idle, true);
-        HandBackCtrl.PlayAni(EquipAnimState.Idle, true);
-        HandFrontCtrl.PlayAni(EquipAnimState.Idle, true);
-        SuitCtrl.PlayAni(EquipAnimState.Idle, true);
+        ShoesCtrl.PlayAni(PlayerAniType.Idle, true);
+        FaceCtrl.PlayAni(PlayerAniType.Idle, true);
+        UpwearCtrl.PlayAni(PlayerAniType.Idle, true);
+        DownwearCtrl.PlayAni(PlayerAniType.Idle, true);
+        HairBackCtrl.PlayAni(PlayerAniType.Idle, true);
+        HairFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+        HandBackCtrl.PlayAni(PlayerAniType.Idle, true);
+        HandFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+        SuitCtrl.PlayAni(PlayerAniType.Idle, true);
     }
     public void PlayWalk()
     {
         screenCtrl.canCtrl = true;
-        ShoesCtrl.PlayAni(EquipAnimState.Walk, true);
-        FaceCtrl.PlayAni(EquipAnimState.Walk, true);
-        UpwearCtrl.PlayAni(EquipAnimState.Walk, true);
-        DownwearCtrl.PlayAni(EquipAnimState.Walk, true);
-        HairBackCtrl.PlayAni(EquipAnimState.Walk, true);
-        HairFrontCtrl.PlayAni(EquipAnimState.Walk, true);
-        HandBackCtrl.PlayAni(EquipAnimState.Walk, true);
-        HandFrontCtrl.PlayAni(EquipAnimState.Walk, true);
-        SuitCtrl.PlayAni(EquipAnimState.Walk, true);
+        ShoesCtrl.PlayAni(PlayerAniType.Walk, true);
+        FaceCtrl.PlayAni(PlayerAniType.Walk, true);
+        UpwearCtrl.PlayAni(PlayerAniType.Walk, true);
+        DownwearCtrl.PlayAni(PlayerAniType.Walk, true);
+        HairBackCtrl.PlayAni(PlayerAniType.Walk, true);
+        HairFrontCtrl.PlayAni(PlayerAniType.Walk, true);
+        HandBackCtrl.PlayAni(PlayerAniType.Walk, true);
+        HandFrontCtrl.PlayAni(PlayerAniType.Walk, true);
+        SuitCtrl.PlayAni(PlayerAniType.Walk, true);
     }
     public void PlayRun()
     {
         screenCtrl.canCtrl = true;
-        ShoesCtrl.PlayAni(EquipAnimState.Run, true);
-        FaceCtrl.PlayAni(EquipAnimState.Run, true);
-        UpwearCtrl.PlayAni(EquipAnimState.Run, true);
-        DownwearCtrl.PlayAni(EquipAnimState.Run, true);
-        HairBackCtrl.PlayAni(EquipAnimState.Run, true);
-        HairFrontCtrl.PlayAni(EquipAnimState.Run, true);
-        HandBackCtrl.PlayAni(EquipAnimState.Run, true);
-        HandFrontCtrl.PlayAni(EquipAnimState.Run, true);
-        SuitCtrl.PlayAni(EquipAnimState.Run, true);
+        ShoesCtrl.PlayAni(PlayerAniType.Run, true);
+        FaceCtrl.PlayAni(PlayerAniType.Run, true);
+        UpwearCtrl.PlayAni(PlayerAniType.Run, true);
+        DownwearCtrl.PlayAni(PlayerAniType.Run, true);
+        HairBackCtrl.PlayAni(PlayerAniType.Run, true);
+        HairFrontCtrl.PlayAni(PlayerAniType.Run, true);
+        HandBackCtrl.PlayAni(PlayerAniType.Run, true);
+        HandFrontCtrl.PlayAni(PlayerAniType.Run, true);
+        SuitCtrl.PlayAni(PlayerAniType.Run, true);
     }
     public void PlayDagger()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.DaggerAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
     }
     public void PlaySlash()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.SlashAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.SlashAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.SlashAttack, false);
     }
     public void PlayUpper()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.UpperAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.UpperAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.UpperAttack, false);
     }
     public void PlayHurt()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.Hurt, false);
-        FaceCtrl.PlayAni(EquipAnimState.Hurt, false);
-        UpwearCtrl.PlayAni(EquipAnimState.Hurt, false);
-        DownwearCtrl.PlayAni(EquipAnimState.Hurt, false);
-        HairBackCtrl.PlayAni(EquipAnimState.Hurt, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.Hurt, false);
-        HandBackCtrl.PlayAni(EquipAnimState.Hurt, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.Hurt, false);
-        SuitCtrl.PlayAni(EquipAnimState.Hurt, false);
+        ShoesCtrl.PlayAni(PlayerAniType.Hurt, false);
+        FaceCtrl.PlayAni(PlayerAniType.Hurt, false);
+        UpwearCtrl.PlayAni(PlayerAniType.Hurt, false);
+        DownwearCtrl.PlayAni(PlayerAniType.Hurt, false);
+        HairBackCtrl.PlayAni(PlayerAniType.Hurt, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.Hurt, false);
+        HandBackCtrl.PlayAni(PlayerAniType.Hurt, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.Hurt, false);
+        SuitCtrl.PlayAni(PlayerAniType.Hurt, false);
     }
     public void ReLive()
     {
@@ -455,119 +455,119 @@ public class PlayerController : EntityController
     {
         IsDeath = true;
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.Death, false);
-        FaceCtrl.PlayAni(EquipAnimState.Death, false);
-        UpwearCtrl.PlayAni(EquipAnimState.Death, false);
-        DownwearCtrl.PlayAni(EquipAnimState.Death, false);
-        HairBackCtrl.PlayAni(EquipAnimState.Death, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.Death, false);
-        HandBackCtrl.PlayAni(EquipAnimState.Death, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.Death, false);
-        SuitCtrl.PlayAni(EquipAnimState.Death, false);
+        ShoesCtrl.PlayAni(PlayerAniType.Death, false);
+        FaceCtrl.PlayAni(PlayerAniType.Death, false);
+        UpwearCtrl.PlayAni(PlayerAniType.Death, false);
+        DownwearCtrl.PlayAni(PlayerAniType.Death, false);
+        HairBackCtrl.PlayAni(PlayerAniType.Death, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.Death, false);
+        HandBackCtrl.PlayAni(PlayerAniType.Death, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.Death, false);
+        SuitCtrl.PlayAni(PlayerAniType.Death, false);
     }
     public void PlayMagic()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.MagicAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.MagicAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.MagicAttack, false);
     }
     public void PlayCleric()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.ClericAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.ClericAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.ClericAttack, false);
     }
     public void PlayBow()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.BowAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.BowAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.BowAttack, false);
     }
     public void PlayCrossbow()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        FaceCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        UpwearCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        DownwearCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        HairBackCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        HandBackCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
-        SuitCtrl.PlayAni(EquipAnimState.CrossbowAttack, false);
+        ShoesCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        FaceCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        UpwearCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        DownwearCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        HairBackCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        HandBackCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        SuitCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
     }
     public void PlayDown1()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        FaceCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        UpwearCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        DownwearCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        HairBackCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        HandBackCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.DownAttack1, false);
-        SuitCtrl.PlayAni(EquipAnimState.DownAttack1, false);
+        ShoesCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        FaceCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        UpwearCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        DownwearCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        HairBackCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        HandBackCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        SuitCtrl.PlayAni(PlayerAniType.DownAttack1, false);
     }
     public void PlayDown2()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        FaceCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        UpwearCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        DownwearCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        HairBackCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        HandBackCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.DownAttack2, false);
-        SuitCtrl.PlayAni(EquipAnimState.DownAttack2, false);
+        ShoesCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        FaceCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        UpwearCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        DownwearCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        HairBackCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        HandBackCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        SuitCtrl.PlayAni(PlayerAniType.DownAttack2, false);
     }
     public void PlayHorizon1()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        FaceCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        UpwearCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        DownwearCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        HairBackCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        HandBackCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
-        SuitCtrl.PlayAni(EquipAnimState.HorizontalAttack1, false);
+        ShoesCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        FaceCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        UpwearCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        DownwearCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        HairBackCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        HandBackCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        SuitCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
     }
     public void PlayHorizon2()
     {
         screenCtrl.canCtrl = false;
-        ShoesCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        FaceCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        UpwearCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        DownwearCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        HairBackCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        HairFrontCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        HandBackCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        HandFrontCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
-        SuitCtrl.PlayAni(EquipAnimState.HorizontalAttack2, false);
+        ShoesCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        FaceCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        UpwearCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        DownwearCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        HairBackCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        HairFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        HandBackCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        HandFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        SuitCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
     }
     public void SetAllEquipment(TrimedPlayer playerData)
     {

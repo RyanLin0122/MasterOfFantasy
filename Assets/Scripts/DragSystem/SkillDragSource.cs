@@ -25,7 +25,7 @@ public class SkillDragSource : DragSourceBase
             obj.transform.SetParent(DragSystem.Instance.DragContainer.transform);
             obj.transform.position = transform.position;
             obj.transform.localScale = Vector3.one;
-            obj.transform.GetComponent<Image>().sprite = slot.Info.Icon;
+            obj.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(slot.Info.Icon);
             obj.transform.GetComponent<Image>().SetNativeSize();
             obj.data = this.data;
             obj.mode = mode;

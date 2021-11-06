@@ -53,7 +53,7 @@ public class LearnSkillSlot : MonoBehaviour, IPointerDownHandler
                 SkillName.text = info.SkillName + " V";
                 break;
         }
-        SkillImg.sprite = info.Icon;
+        SkillImg.sprite = Resources.Load<Sprite>(info.Icon);
         TxtRequiredLevel.text = info.RequiredLevel[SkillLevel - 1].ToString();
         TxtSwordPoint.text = info.SwordPoint[SkillLevel - 1].ToString();
         TxtArcheryPoint.text = info.ArcheryPoint[SkillLevel - 1].ToString();

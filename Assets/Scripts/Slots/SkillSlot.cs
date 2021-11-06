@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using PEProtocal;
 
 public class SkillSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -17,7 +17,7 @@ public class SkillSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandle
     {
         print("設定技能格子");
         Info = info;
-        SkillImg.sprite = info.Icon;
+        SkillImg.sprite = Resources.Load<Sprite>(info.Icon);
         SkillName.text = info.SkillName;
         SkillLevel.text = "LV. " + skillLevel;
         IsActive = info.IsActive;

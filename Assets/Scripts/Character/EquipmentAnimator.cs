@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PEProtocal;
 public class EquipmentAnimator : MonoBehaviour
 {
 
@@ -9,8 +9,8 @@ public class EquipmentAnimator : MonoBehaviour
     public float AnimSpeed;  //動畫幀數
     public float AnimTimeInterval = 0;  //每幀間隔時間
     public SpriteRenderer AnimRenderer;//動畫載體
-    public EquipAnimState NextState;
-    public EquipAnimState CurrentState;
+    public PlayerAniType NextState;
+    public PlayerAniType CurrentState;
     public Sprite[] SpriteArray; //序列幀數組
     public Vector2[] SpritePosition; //幀動畫位置
     public int FrameIndex = 0;  //幀索引
@@ -19,95 +19,95 @@ public class EquipmentAnimator : MonoBehaviour
     public bool IsLoop = true;
     private Sprite[] SpritePath;
     public Vector3 DefaultPosition;
-    public Dictionary<EquipAnimState, Sprite[]> AllSpriteArray = new Dictionary<EquipAnimState, Sprite[]>();
-    Dictionary<EquipAnimState, Vector2[]> AllSpritePos = new Dictionary<EquipAnimState, Vector2[]>();
+    public Dictionary<PlayerAniType, Sprite[]> AllSpriteArray = new Dictionary<PlayerAniType, Sprite[]>();
+    Dictionary<PlayerAniType, Vector2[]> AllSpritePos = new Dictionary<PlayerAniType, Vector2[]>();
     public bool HasInit = false;
     public void LoadDefaultSprite()
     {
         SpritePath = Resources.LoadAll<Sprite>(Constants.GetDefaultSpritePath(Type));
-        AddSpriteArray(EquipAnimState.Idle);
-        AddSpriteArray(EquipAnimState.Run);
-        AddSpriteArray(EquipAnimState.Walk);
-        AddSpriteArray(EquipAnimState.Hurt);
-        AddSpriteArray(EquipAnimState.Death);
-        AddSpriteArray(EquipAnimState.HorizontalAttack1);
-        AddSpriteArray(EquipAnimState.HorizontalAttack2);
-        AddSpriteArray(EquipAnimState.DownAttack1);
-        AddSpriteArray(EquipAnimState.DownAttack2);
-        AddSpriteArray(EquipAnimState.UpperAttack);
-        AddSpriteArray(EquipAnimState.SlashAttack);
-        AddSpriteArray(EquipAnimState.BowAttack);
-        AddSpriteArray(EquipAnimState.CrossbowAttack);
-        AddSpriteArray(EquipAnimState.MagicAttack);
-        AddSpriteArray(EquipAnimState.ClericAttack);
-        AddSpriteArray(EquipAnimState.DaggerAttack);
+        AddSpriteArray(PlayerAniType.Idle);
+        AddSpriteArray(PlayerAniType.Run);
+        AddSpriteArray(PlayerAniType.Walk);
+        AddSpriteArray(PlayerAniType.Hurt);
+        AddSpriteArray(PlayerAniType.Death);
+        AddSpriteArray(PlayerAniType.HorizontalAttack1);
+        AddSpriteArray(PlayerAniType.HorizontalAttack2);
+        AddSpriteArray(PlayerAniType.DownAttack1);
+        AddSpriteArray(PlayerAniType.DownAttack2);
+        AddSpriteArray(PlayerAniType.UpperAttack);
+        AddSpriteArray(PlayerAniType.SlashAttack);
+        AddSpriteArray(PlayerAniType.BowAttack);
+        AddSpriteArray(PlayerAniType.CrossbowAttack);
+        AddSpriteArray(PlayerAniType.MagicAttack);
+        AddSpriteArray(PlayerAniType.ClericAttack);
+        AddSpriteArray(PlayerAniType.DaggerAttack);
     }
     public void LoadDefaultSprite(int Gender)
     {
         if (Gender == 0)
         {
             SpritePath = Resources.LoadAll<Sprite>(Constants.GetDefaultSpritePath_Female(Type));
-            AddSpriteArray(EquipAnimState.Idle);
-            AddSpriteArray(EquipAnimState.Run);
-            AddSpriteArray(EquipAnimState.Walk);
-            AddSpriteArray(EquipAnimState.Hurt);
-            AddSpriteArray(EquipAnimState.Death);
-            AddSpriteArray(EquipAnimState.HorizontalAttack1);
-            AddSpriteArray(EquipAnimState.HorizontalAttack2);
-            AddSpriteArray(EquipAnimState.DownAttack1);
-            AddSpriteArray(EquipAnimState.DownAttack2);
-            AddSpriteArray(EquipAnimState.UpperAttack);
-            AddSpriteArray(EquipAnimState.SlashAttack);
-            AddSpriteArray(EquipAnimState.BowAttack);
-            AddSpriteArray(EquipAnimState.CrossbowAttack);
-            AddSpriteArray(EquipAnimState.MagicAttack);
-            AddSpriteArray(EquipAnimState.ClericAttack);
-            AddSpriteArray(EquipAnimState.DaggerAttack);
+            AddSpriteArray(PlayerAniType.Idle);
+            AddSpriteArray(PlayerAniType.Run);
+            AddSpriteArray(PlayerAniType.Walk);
+            AddSpriteArray(PlayerAniType.Hurt);
+            AddSpriteArray(PlayerAniType.Death);
+            AddSpriteArray(PlayerAniType.HorizontalAttack1);
+            AddSpriteArray(PlayerAniType.HorizontalAttack2);
+            AddSpriteArray(PlayerAniType.DownAttack1);
+            AddSpriteArray(PlayerAniType.DownAttack2);
+            AddSpriteArray(PlayerAniType.UpperAttack);
+            AddSpriteArray(PlayerAniType.SlashAttack);
+            AddSpriteArray(PlayerAniType.BowAttack);
+            AddSpriteArray(PlayerAniType.CrossbowAttack);
+            AddSpriteArray(PlayerAniType.MagicAttack);
+            AddSpriteArray(PlayerAniType.ClericAttack);
+            AddSpriteArray(PlayerAniType.DaggerAttack);
         }
         if (Gender == 1)
         {
             SpritePath = Resources.LoadAll<Sprite>(Constants.GetDefaultSpritePath_Male(Type));
-            AddSpriteArray(EquipAnimState.Idle);
-            AddSpriteArray(EquipAnimState.Run);
-            AddSpriteArray(EquipAnimState.Walk);
-            AddSpriteArray(EquipAnimState.Hurt);
-            AddSpriteArray(EquipAnimState.Death);
-            AddSpriteArray(EquipAnimState.HorizontalAttack1);
-            AddSpriteArray(EquipAnimState.HorizontalAttack2);
-            AddSpriteArray(EquipAnimState.DownAttack1);
-            AddSpriteArray(EquipAnimState.DownAttack2);
-            AddSpriteArray(EquipAnimState.UpperAttack);
-            AddSpriteArray(EquipAnimState.SlashAttack);
-            AddSpriteArray(EquipAnimState.BowAttack);
-            AddSpriteArray(EquipAnimState.CrossbowAttack);
-            AddSpriteArray(EquipAnimState.MagicAttack);
-            AddSpriteArray(EquipAnimState.ClericAttack);
-            AddSpriteArray(EquipAnimState.DaggerAttack);
+            AddSpriteArray(PlayerAniType.Idle);
+            AddSpriteArray(PlayerAniType.Run);
+            AddSpriteArray(PlayerAniType.Walk);
+            AddSpriteArray(PlayerAniType.Hurt);
+            AddSpriteArray(PlayerAniType.Death);
+            AddSpriteArray(PlayerAniType.HorizontalAttack1);
+            AddSpriteArray(PlayerAniType.HorizontalAttack2);
+            AddSpriteArray(PlayerAniType.DownAttack1);
+            AddSpriteArray(PlayerAniType.DownAttack2);
+            AddSpriteArray(PlayerAniType.UpperAttack);
+            AddSpriteArray(PlayerAniType.SlashAttack);
+            AddSpriteArray(PlayerAniType.BowAttack);
+            AddSpriteArray(PlayerAniType.CrossbowAttack);
+            AddSpriteArray(PlayerAniType.MagicAttack);
+            AddSpriteArray(PlayerAniType.ClericAttack);
+            AddSpriteArray(PlayerAniType.DaggerAttack);
         }
     }
     public void LoadSprite(string path)
     {
         SpritePath = Resources.LoadAll<Sprite>(path);
 
-        AddSpriteArray(EquipAnimState.Idle);
-        AddSpriteArray(EquipAnimState.Run);
-        AddSpriteArray(EquipAnimState.Walk);
-        AddSpriteArray(EquipAnimState.Hurt);
-        AddSpriteArray(EquipAnimState.Death);
-        AddSpriteArray(EquipAnimState.HorizontalAttack1);
-        AddSpriteArray(EquipAnimState.HorizontalAttack2);
-        AddSpriteArray(EquipAnimState.DownAttack1);
-        AddSpriteArray(EquipAnimState.DownAttack2);
-        AddSpriteArray(EquipAnimState.UpperAttack);
-        AddSpriteArray(EquipAnimState.SlashAttack);
-        AddSpriteArray(EquipAnimState.BowAttack);
-        AddSpriteArray(EquipAnimState.CrossbowAttack);
-        AddSpriteArray(EquipAnimState.MagicAttack);
-        AddSpriteArray(EquipAnimState.ClericAttack);
-        AddSpriteArray(EquipAnimState.DaggerAttack);
+        AddSpriteArray(PlayerAniType.Idle);
+        AddSpriteArray(PlayerAniType.Run);
+        AddSpriteArray(PlayerAniType.Walk);
+        AddSpriteArray(PlayerAniType.Hurt);
+        AddSpriteArray(PlayerAniType.Death);
+        AddSpriteArray(PlayerAniType.HorizontalAttack1);
+        AddSpriteArray(PlayerAniType.HorizontalAttack2);
+        AddSpriteArray(PlayerAniType.DownAttack1);
+        AddSpriteArray(PlayerAniType.DownAttack2);
+        AddSpriteArray(PlayerAniType.UpperAttack);
+        AddSpriteArray(PlayerAniType.SlashAttack);
+        AddSpriteArray(PlayerAniType.BowAttack);
+        AddSpriteArray(PlayerAniType.CrossbowAttack);
+        AddSpriteArray(PlayerAniType.MagicAttack);
+        AddSpriteArray(PlayerAniType.ClericAttack);
+        AddSpriteArray(PlayerAniType.DaggerAttack);
 
     }
-    public void AddSpriteArray(EquipAnimState state)
+    public void AddSpriteArray(PlayerAniType state)
     {
         if (!AllSpriteArray.ContainsKey(state))
         {
@@ -126,11 +126,11 @@ public class EquipmentAnimator : MonoBehaviour
             AllSpritePos[state] = GenSpritePos(state, Type);
         }
     }
-    public Vector2[] GenSpritePos(EquipAnimState state, EquipAnimType Type)
+    public Vector2[] GenSpritePos(PlayerAniType state, EquipAnimType Type)
     {
         return Constants.GetAnimPosition(state, Type);
     }
-    public Sprite[] GenSpriteArray(EquipAnimState state, EquipAnimType EquipType)
+    public Sprite[] GenSpriteArray(PlayerAniType state, EquipAnimType EquipType)
     {
 
         Sprite[] sp = new Sprite[Constants.GetAnimLength(state)];
@@ -149,7 +149,7 @@ public class EquipmentAnimator : MonoBehaviour
         }
         return sp;
     }
-    public void SetSpriteArray(EquipAnimState state)
+    public void SetSpriteArray(PlayerAniType state)
     {
         SpriteArray = AllSpriteArray[state];
         SpritePosition = AllSpritePos[state];
@@ -163,13 +163,13 @@ public class EquipmentAnimator : MonoBehaviour
         if (!HasInit)
         {
             DefaultPosition = transform.localPosition;
-            CurrentState = EquipAnimState.Idle;
-            AnimSpeed = Constants.GetAnimSpeed(EquipAnimState.Idle);
+            CurrentState = PlayerAniType.Idle;
+            AnimSpeed = Constants.GetAnimSpeed(PlayerAniType.Idle);
             AnimLength = Constants.GetAnimLength(CurrentState);
             AnimTimeInterval = 1 / AnimSpeed;//得到每一幀間隔
             LoadDefaultSprite();
-            SpriteArray = AllSpriteArray[EquipAnimState.Idle];
-            SpritePosition = AllSpritePos[EquipAnimState.Idle];
+            SpriteArray = AllSpriteArray[PlayerAniType.Idle];
+            SpritePosition = AllSpritePos[PlayerAniType.Idle];
             HasInit = true;
         }      
     }
@@ -182,7 +182,7 @@ public class EquipmentAnimator : MonoBehaviour
         SpritePosition = AllSpritePos[CurrentState];
         AnimRenderer.transform.localPosition = new Vector3(DefaultPosition.x + SpritePosition[FrameIndex].x, DefaultPosition.y + SpritePosition[FrameIndex].y, DefaultPosition.z);
     }
-    public void PlayAni(EquipAnimState state, bool isloop)
+    public void PlayAni(PlayerAniType state, bool isloop)
     {
         if (!HasInit)
         {
@@ -228,9 +228,9 @@ public class EquipmentAnimator : MonoBehaviour
                     }
                     else
                     {
-                        if (CurrentState != EquipAnimState.Death)
+                        if (CurrentState != PlayerAniType.Death)
                         {
-                            PlayAni(EquipAnimState.Idle, true);
+                            PlayAni(PlayerAniType.Idle, true);
                         }
                         else
                         {
@@ -262,22 +262,4 @@ public enum EquipAnimType
     HairFront,
     HairBack,
 }
-public enum EquipAnimState
-{
-    Idle,
-    Walk,
-    Run,
-    Hurt,
-    Death,
-    DaggerAttack,
-    DownAttack1,
-    DownAttack2,
-    HorizontalAttack1,
-    HorizontalAttack2,
-    UpperAttack,
-    BowAttack,
-    CrossbowAttack,
-    MagicAttack,
-    ClericAttack,
-    SlashAttack
-}
+

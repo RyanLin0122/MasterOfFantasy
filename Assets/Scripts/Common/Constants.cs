@@ -43,41 +43,41 @@ public class Constants
     }
     #endregion 
     #region
-    public static int GetAnimSpeed(EquipAnimState state)
+    public static int GetAnimSpeed(PlayerAniType state)
     {
         switch (state)
         {
-            case EquipAnimState.Idle:
+            case PlayerAniType.Idle:
                 return 4;
-            case EquipAnimState.Walk:
+            case PlayerAniType.Walk:
                 return 8;
-            case EquipAnimState.Run:
+            case PlayerAniType.Run:
                 return 8;
-            case EquipAnimState.Hurt:
+            case PlayerAniType.Hurt:
                 return 8;
-            case EquipAnimState.Death:
+            case PlayerAniType.Death:
                 return 8;
-            case EquipAnimState.MagicAttack:
+            case PlayerAniType.MagicAttack:
                 return 6;
-            case EquipAnimState.HorizontalAttack1:
+            case PlayerAniType.HorizontalAttack1:
                 return 6;
-            case EquipAnimState.HorizontalAttack2:
+            case PlayerAniType.HorizontalAttack2:
                 return 8;
-            case EquipAnimState.DownAttack1:
+            case PlayerAniType.DownAttack1:
                 return 6;
-            case EquipAnimState.DownAttack2:
+            case PlayerAniType.DownAttack2:
                 return 6;
-            case EquipAnimState.DaggerAttack:
+            case PlayerAniType.DaggerAttack:
                 return 8;
-            case EquipAnimState.BowAttack:
+            case PlayerAniType.BowAttack:
                 return 6;
-            case EquipAnimState.ClericAttack:
+            case PlayerAniType.ClericAttack:
                 return 6;
-            case EquipAnimState.SlashAttack:
+            case PlayerAniType.SlashAttack:
                 return 8;
-            case EquipAnimState.CrossbowAttack:
+            case PlayerAniType.CrossbowAttack:
                 return 6;
-            case EquipAnimState.UpperAttack:
+            case PlayerAniType.UpperAttack:
                 return 6;
         }
         return 0;
@@ -169,41 +169,41 @@ public class Constants
         }
         return "";
     }
-    public static int GetAnimLength(EquipAnimState state)
+    public static int GetAnimLength(PlayerAniType state)
     {
         switch (state)
         {
-            case EquipAnimState.Idle:
+            case PlayerAniType.Idle:
                 return 8;
-            case EquipAnimState.Walk:
+            case PlayerAniType.Walk:
                 return 8;
-            case EquipAnimState.Run:
+            case PlayerAniType.Run:
                 return 8;
-            case EquipAnimState.Hurt:
+            case PlayerAniType.Hurt:
                 return 4;
-            case EquipAnimState.Death:
+            case PlayerAniType.Death:
                 return 8;
-            case EquipAnimState.MagicAttack:
+            case PlayerAniType.MagicAttack:
                 return 4;
-            case EquipAnimState.HorizontalAttack1:
+            case PlayerAniType.HorizontalAttack1:
                 return 4;
-            case EquipAnimState.HorizontalAttack2:
+            case PlayerAniType.HorizontalAttack2:
                 return 4;
-            case EquipAnimState.DownAttack1:
+            case PlayerAniType.DownAttack1:
                 return 4;
-            case EquipAnimState.DownAttack2:
+            case PlayerAniType.DownAttack2:
                 return 4;
-            case EquipAnimState.DaggerAttack:
+            case PlayerAniType.DaggerAttack:
                 return 4;
-            case EquipAnimState.BowAttack:
+            case PlayerAniType.BowAttack:
                 return 4;
-            case EquipAnimState.ClericAttack:
+            case PlayerAniType.ClericAttack:
                 return 4;
-            case EquipAnimState.SlashAttack:
+            case PlayerAniType.SlashAttack:
                 return 4;
-            case EquipAnimState.CrossbowAttack:
+            case PlayerAniType.CrossbowAttack:
                 return 4;
-            case EquipAnimState.UpperAttack:
+            case PlayerAniType.UpperAttack:
                 return 4;
 
 
@@ -211,7 +211,7 @@ public class Constants
         return 0;
     }
 
-    public static float GetAnimTime(EquipAnimState state)
+    public static float GetAnimTime(PlayerAniType state)
     {
         return ((float)GetAnimLength(state)) / GetAnimSpeed(state);
     }
@@ -221,11 +221,11 @@ public class Constants
         switch (AnimID)
         {
             case 0:
-                return GetAnimTime(EquipAnimState.Hurt);
+                return GetAnimTime(PlayerAniType.Hurt);
             case 1:
-                return GetAnimTime(EquipAnimState.Death);
+                return GetAnimTime(PlayerAniType.Death);
             case 2:
-                return GetAnimTime(EquipAnimState.BowAttack);
+                return GetAnimTime(PlayerAniType.BowAttack);
             default:
                 return 0;
         }
@@ -236,7 +236,7 @@ public class Constants
         return ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[aniType].AnimSprite.Count/ ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[aniType].AnimSpeed;
     }
     
-    public static int[] GetAnimOrder(EquipAnimState state, EquipAnimType Type)
+    public static int[] GetAnimOrder(PlayerAniType state, EquipAnimType Type)
     {
         int[] Orders = new int[GetAnimLength(state)];
         switch (Type)
@@ -244,340 +244,340 @@ public class Constants
             case EquipAnimType.Shoes:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 9, 10, 40, 11, 12, 13, 14, 15 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 27, 28, 29, 30 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 27, 28, 29, 30, 32, 32, 32, 32 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 24, 25, 26, 26 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 16, 17, 18, 18 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 16, 17, 18, 18 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 19, 20, 21, 21 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 31, 23, 21, 21 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 22, 23, 21, 21 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 22, 23, 21, 21 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 35, 35, 36, 36 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 37, 37, 38, 38 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 33, 33, 34, 34 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 39, 39, 39, 39 };
                 }
                 break;
             case EquipAnimType.Upwear:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 1, 2, 1, 0, 1, 2, 1 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 3, 4, 5, 6, 7, 8, 9, 10 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 11, 12, 13, 14, 15, 16, 17, 18 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 35, 36, 37, 38 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 35, 36, 37, 38, 39, 39, 39, 39 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 31, 32, 32, 33 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 19, 20, 22, 23 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 19, 20, 21, 21 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 28, 29, 30, 30 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 50, 51, 52, 53 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 24, 25, 26, 27 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 24, 25, 26, 34 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 54, 55, 56, 56 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 47, 48, 49, 47 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 43, 44, 45, 46 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 40, 42, 41, 42 };
                 }
                 break;
             case EquipAnimType.Downwear:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 1, 2, 1, 0, 1, 2, 1 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 3, 4, 5, 6, 7, 8, 9, 10 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 11, 12, 13, 14, 15, 16, 17, 18 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 33, 34, 35, 36 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 33, 34, 35, 36, 38, 38, 38, 38 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 29, 30, 31, 32 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 23, 24, 25, 26 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 19, 20, 21, 22 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 28, 20, 21, 22 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 37, 20, 21, 22 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 27, 20, 21, 22 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 27, 20, 21, 22 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 47, 48, 49, 49 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 46, 46, 46, 46 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 42, 43, 44, 45 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 39, 40, 41, 40 };
                 }
                 break;
             case EquipAnimType.Face:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0, };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 5, 6, 5, 5 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 5, 6, 5, 5, 4, 4, 4, 4 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 3, 2, 2, 2 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 0, 1, 1, 1 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 0, 1, 1, 1 };
                 }
                 break;
             case EquipAnimType.HairFront:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 3, 4, 5, 3, 4, 6, 5, 3 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 3, 4, 5, 3, 4, 6, 5, 3 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 0, 2, 3, 3 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 0, 2, 3, 3, 9, 9, 9, 9 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 1, 2, 7, 7 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 0, 2, 1, 7 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 0, 2, 7, 0 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 0, 2, 5, 8 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 0, 2, 5, 8 };
                 }
                 break;
             case EquipAnimType.HairBack:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 3, 4, 5, 3, 4, 6, 5, 3 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 3, 4, 5, 3, 4, 6, 5, 3 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 0, 2, 3, 3 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 0, 2, 3, 3, 9, 9, 9, 9 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 1, 2, 7, 7 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 1, 2, 7, 5 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 0, 2, 1, 7 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 0, 2, 7, 5 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 0, 2, 7, 0 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 0, 2, 5, 8 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 0, 2, 5, 8 };
                 }
                 break;
             case EquipAnimType.HandFront:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 14, 14, 14, 14, 14, 14, 14, 14 };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 7, 2, 7, 8, 10, 9, 15, 8 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 0, 1, 2, 2, 7, 4, 3, 2 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 4, 33, 34, 34 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 4, 33, 34, 34, 27, 27, 27, 27 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 25, 25, 25, 25 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 24, 25, 19, 30 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { -1, 26, 26, 26 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 21, 22, 22, 22 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { -1, 18, 19, 19 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { -1, 19, 19, 19 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 17, -1, -1, -1 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 11, 12, 12, 12 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 16, 16, 16, 16 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 38, 38, 39, 39 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 35, 35, 35, 35 };
                 }
                 break;
             case EquipAnimType.HandBack:
                 switch (state)
                 {
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { -1, -1, -1, 5, 5, 5, 5, 5 };
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 5, 5, 5, 5, 5, 5, 5, 5 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { -1, -1, -1, 5, 5, 6, 5, 5 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 5, 5, 5, 5 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 5, 5, 5, 5, 28, 28, 28, 28 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 5, -1, -1, -1 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 5, -1, -1, 31 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 5, 5, 5, 5 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 23, -1, -1, -1 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 20, 5, 5, 5 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 20, 5, 5, 29 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { -1, -1, -1, -1 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 13, 13, 13, 13 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { -1, -1, -1, -1 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 40, 40, 40, 40 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 36, 36, 37, 37 };
                 }
                 break;
             case EquipAnimType.Suit:
                 switch (state)
                 {
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new int[] { 3, 4, 5, 6, 7, 8, 9, 10 };
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new int[] { 0, 1, 2, 1, 0, 1, 2, 1 };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new int[] { 11, 12, 13, 14, 15, 16, 17, 18 };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new int[] { 57, 58, 59, 60 };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new int[] { 57, 58, 59, 60, 61, 61, 61, 61 };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new int[] { 23, 24, 25, 26 };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new int[] { 23, 24, 40, 41 };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new int[] { 19, 20, 21, 22 };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new int[] { 42, 43, 44, 45 };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new int[] { 27, 28, 29, 30 };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new int[] { 27, 28, 29, 39 };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new int[] { 31, 32, 33, 34 };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new int[] { 46, 47, 48, 49 };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new int[] { 50, 51, 52, 51 };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new int[] { 35, 36, 37, 38 };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new int[] { 53, 54, 55, 56 };
                 }
                 break;
         }
         return Orders;
     }
-    public static Vector2[] GetAnimPosition(EquipAnimState state, EquipAnimType Type)
+    public static Vector2[] GetAnimPosition(PlayerAniType state, EquipAnimType Type)
     {
         Vector2[] Pos = new Vector2[GetAnimLength(state)];
         switch (Type)
@@ -585,37 +585,37 @@ public class Constants
             case EquipAnimType.Shoes:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }
@@ -623,37 +623,37 @@ public class Constants
             case EquipAnimType.Upwear:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(0, -0.1f), new Vector2(-0.5f, 0.1f), new Vector2(-0.8f, 0.2f), new Vector2(-0.5f, 0.2f), new Vector2(0, 0), new Vector2(-0.5f, 0.2f), new Vector2(-0.8f, 0.2f), new Vector2(-0.5f, 0.2f) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }
@@ -661,111 +661,111 @@ public class Constants
             case EquipAnimType.Downwear:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-4.6f, -0.4f), new Vector2(-4.6f, -0.6f), new Vector2(-4.5f, -0.7f) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-4.5f, -0.4f), new Vector2(-4.5f, -0.7f), new Vector2(-4.5f, -0.4f) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-4.5f, -0.4f), new Vector2(-4.5f, -0.4f), new Vector2(-4.5f, -0.4f) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-4.5f, -0.4f), new Vector2(-4.2f, -0.4f), new Vector2(-4.4f, -0.6f) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
                 }
                 break;
             case EquipAnimType.Face:
                 switch (state)
                 {
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0.5f, 0f), new Vector2(4f, 0f), new Vector2(4f, 0f), new Vector2(2.3f, 0f), new Vector2(2.3f, 0f), new Vector2(4.2f, 0.2f), new Vector2(3.6f, 0f), new Vector2(3.3f, 0.2f) };
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f), new Vector2(1f, 0.9f) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(5f, 0.9f), new Vector2(5f, 0.9f), new Vector2(6.1f, -1.9f), new Vector2(8.2f, -5.3f), new Vector2(11f, -5.1f), new Vector2(6.4f, -6f), new Vector2(8f, -3.8f), new Vector2(4.3f, 0.1f) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0.5f, 0.2f), new Vector2(-3.1f, -4.6f), new Vector2(-2f, -5.5f), new Vector2(1f, -6.1f) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0.5f, 0.2f), new Vector2(-3.1f, -4.6f), new Vector2(-2f, -5.5f), new Vector2(1f, -6.1f), new Vector2(-25.1f, -26f), new Vector2(-25.1f, -26f), new Vector2(-25.1f, -26f), new Vector2(-25.1f, -26f) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(7.4f, -4.8f), new Vector2(7.78f, -5.55f), new Vector2(7.78f, -5.55f) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(1.8f, -0.7f), new Vector2(8.3f, -5.3f), new Vector2(7.7f, -5f), new Vector2(7f, -6.9f) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(-2f, -4f), new Vector2(5.7f, 2.4f), new Vector2(5.7f, 2.4f), new Vector2(5.7f, 2.4f) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(-3.2f, -2f), new Vector2(0.5f, -5.3f), new Vector2(1.2f, -6f), new Vector2(1.2f, -6f) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(-6.8f, 2.7f), new Vector2(1.8f, -6.3f), new Vector2(2.8f, -7.3f), new Vector2(2.8f, -7.3f) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(2.4f, 0.6f), new Vector2(0.1f, -4.9f), new Vector2(2.1f, -5.8f), new Vector2(2.1f, -5.8f) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(1.8f, 0.7f), new Vector2(-0.1f, -4.9f), new Vector2(2.2f, -5.6f), new Vector2(1.1f, -5.9f) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0f, 0.3f), new Vector2(-1.7f, 0.7f), new Vector2(-1.7f, 0.7f), new Vector2(-1.7f, 0.7f) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(-2.5f, 0.3f), new Vector2(-2.5f, 0.3f), new Vector2(-4.8f, -0.8f), new Vector2(-4.8f, -0.8f) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(-0.8f, 0.66f), new Vector2(-3.3f, 0.4f), new Vector2(-4f, -0.5f), new Vector2(-4f, -0.5f) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0f, 1.5f), new Vector2(0f, 1.5f), new Vector2(0f, 1.5f), new Vector2(0f, 1.5f) };
                 }
                 break;
             case EquipAnimType.HairFront:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(-0.026f, 0.204f), new Vector2(-0.026f, 0.204f), new Vector2(-0.026f, 0.204f), new Vector2(-0.026f, 0.204f) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }
@@ -773,37 +773,37 @@ public class Constants
             case EquipAnimType.HairBack:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }
@@ -811,37 +811,37 @@ public class Constants
             case EquipAnimType.HandFront:
                 switch (state)
                 {
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(-0.1f, -12.3f), new Vector2(5.5f, -12.3f), new Vector2(1.5f, -12.7f), new Vector2(-5.4f, -13.6f), new Vector2(-6.8f, -10.9f), new Vector2(-9.5f, -9.5f), new Vector2(-7.7f, -10.4f), new Vector2(-5f, -13.5f) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(6.8f, -5.7f), new Vector2(14.8f, -1.5f), new Vector2(8.8f, -11.3f), new Vector2(3.9f, -16.2f), new Vector2(-0.8f, -14.2f), new Vector2(-7.7f, -11.7f), new Vector2(-2.3f, -13.9f), new Vector2(1f, -13.5f) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(-3.4f, -8.6f), new Vector2(19.6f, -11.7f), new Vector2(20.3f, -11.9f), new Vector2(20.3f, -11.9f) };
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(-9.1f, -13f), new Vector2(-10f, -13f), new Vector2(-10.9f, -13f), new Vector2(-10.1f, -13f), new Vector2(-9.3f, -12.8f), new Vector2(-10.2f, -12.8f), new Vector2(-10.9f, -12.7f), new Vector2(-10.3f, -12.5f) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(-2.2f, -11.3f), new Vector2(-15.4f, -10f), new Vector2(-15.9f, -12.9f), new Vector2(-7.6f, -16.5f) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(-2.2f, -11.3f), new Vector2(-15.4f, -10f), new Vector2(-15.9f, -12.9f), new Vector2(-7.6f, -16.5f), new Vector2(-28.8f, -29.2f), new Vector2(-28.8f, -29.2f), new Vector2(-28.8f, -29.2f), new Vector2(-28.8f, -29.2f) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(23f, -9.1f), new Vector2(23f, -2.2f), new Vector2(21.9f, -2.9f), new Vector2(21.9f, -2.9f) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(-1.5f, -19.9f), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-16f, -12.1f), new Vector2(-14.2f, -13.2f), new Vector2(-14.2f, -13.2f) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(4.3f, -6f), new Vector2(4.3f, -6f), new Vector2(4.3f, -6f), new Vector2(4.3f, -6f) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(-9.8f, 1.4f), new Vector2(8.3f, -17.6f), new Vector2(8.8f, -18.3f), new Vector2(8.8f, -18.3f) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(-3.5f, -11.2f), new Vector2(20.6f, -11.7f), new Vector2(-7.7f, -13.1f), new Vector2(6.4f, -21.8f) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(-15.3f, -12.7f), new Vector2(-13.9f, -12.7f), new Vector2(-14.4f, -12.9f) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(8.4f, -17.6f), new Vector2(9.7f, -18.5f), new Vector2(9.7f, -18.5f) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(6.3f, -1.6f), new Vector2(-8.8f, -1.4f), new Vector2(-8.8f, -2.7f), new Vector2(-8.8f, -2.7f) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(-6.1f, -4f), new Vector2(-6.1f, -4f), new Vector2(-13.4f, -6f), new Vector2(-9f, -4.9f) };
 
                 }
@@ -849,37 +849,37 @@ public class Constants
             case EquipAnimType.HandBack:
                 switch (state)
                 {
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(7.8f, -13.4f), new Vector2(14.7f, -12.2f), new Vector2(19.1f, -9.3f), new Vector2(11.8f, -10.3f), new Vector2(5.9f, -13.4f) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(8.8f, -14.3f), new Vector2(18.2f, -14.2f), new Vector2(20.4f, -4.4f), new Vector2(14.6f, -13.8f), new Vector2(8f, -12.4f) };
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(11f, -9.6f), new Vector2(10.4f, -9.6f), new Vector2(11.7f, -9.7f), new Vector2(11.7f, -9.7f), new Vector2(12.5f, -9.8f), new Vector2(12.5f, -9.8f), new Vector2(11.5f, -9.8f), new Vector2(11.5f, -9.8f) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(14.6f, -6.5f), new Vector2(7.1f, -5.7f), new Vector2(4.7f, -10.7f), new Vector2(10.1f, -17.2f) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(14.6f, -6.5f), new Vector2(7.1f, -5.7f), new Vector2(4.7f, -10.7f), new Vector2(10.1f, -17.2f), new Vector2(5.6f, -13.4f), new Vector2(5.6f, -13.4f), new Vector2(5.6f, -13.4f), new Vector2(5.6f, -13.4f) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(9f, -9.4f), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(9.3f, -10.2f), new Vector2(0, 0), new Vector2(0, 0), new Vector2(-7.6f, -5.7f) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(4.4f, -11.1f), new Vector2(3.2f, -14f), new Vector2(4.1f, -15.1f), new Vector2(4.1f, -14.9f) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(-14.8f, -1.1f), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(11.9f, -2f), new Vector2(6.6f, -16.3f), new Vector2(5.7f, -15.8f), new Vector2(5.5f, -15.5f) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(11.2f, -1.6f), new Vector2(5.2f, -18.5f), new Vector2(8.1f, -18.2f), new Vector2(21.4f, -7.8f) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(16.3f, -1.6f), new Vector2(21.3f, -1.8f), new Vector2(21.1f, -1.6f), new Vector2(20.3f, -1.6f) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(15.8f, -4.8f), new Vector2(15.8f, -4.8f), new Vector2(8.4f, -7.1f), new Vector2(12.5f, -6.2f) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(-10.6f, -16.2f), new Vector2(-6.7f, -15.4f), new Vector2(-4.6f, -17.1f), new Vector2(-4.4f, -16.8f) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }
@@ -887,37 +887,37 @@ public class Constants
             case EquipAnimType.Suit:
                 switch (state)
                 {
-                    case EquipAnimState.Idle:
+                    case PlayerAniType.Idle:
                         return new Vector2[] { new Vector2(1f, 1.3f), new Vector2(1.3f, 1.3f), new Vector2(1.3f, 1.3f), new Vector2(1.3f, 1.3f), new Vector2(1f, 1.3f), new Vector2(1.3f, 1.3f), new Vector2(1.3f, 1.3f), new Vector2(1.3f, 1.3f) };
-                    case EquipAnimState.Walk:
+                    case PlayerAniType.Walk:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0f, 1f) };
-                    case EquipAnimState.Run:
+                    case PlayerAniType.Run:
                         return new Vector2[] { new Vector2(0f, -0.7f), new Vector2(0f, -0.7f), new Vector2(0f, -0.7f), new Vector2(-1f, -2.7f), new Vector2(0.5f, -1.7f), new Vector2(0.5f, -1.7f), new Vector2(0.5f, -1.7f), new Vector2(-2f, -0.5f) };
-                    case EquipAnimState.Hurt:
+                    case PlayerAniType.Hurt:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.Death:
+                    case PlayerAniType.Death:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DaggerAttack:
+                    case PlayerAniType.DaggerAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.SlashAttack:
+                    case PlayerAniType.SlashAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.UpperAttack:
+                    case PlayerAniType.UpperAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack1:
+                    case PlayerAniType.DownAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.DownAttack2:
+                    case PlayerAniType.DownAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack1:
+                    case PlayerAniType.HorizontalAttack1:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.HorizontalAttack2:
+                    case PlayerAniType.HorizontalAttack2:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.BowAttack:
+                    case PlayerAniType.BowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.CrossbowAttack:
+                    case PlayerAniType.CrossbowAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.MagicAttack:
+                    case PlayerAniType.MagicAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
-                    case EquipAnimState.ClericAttack:
+                    case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
                 }

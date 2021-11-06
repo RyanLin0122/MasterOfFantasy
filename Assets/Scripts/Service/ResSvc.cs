@@ -746,7 +746,7 @@ public class ResSvc : MonoBehaviour
                 TheologyPoint[i] = (int)TheologyPointList[i].n;
             }
             string Des = Skill["Des"].str;
-            Sprite Icon = Resources.Load<Sprite>("Effect/SkillIcon/" + Skill["Icon"].str);
+            string Icon = "Effect/SkillIcon/" + Skill["Icon"].str;
             List<SkillEffect> Effects = new List<SkillEffect>();
             var EffectList = Skill["Effect"].list;
             if (EffectList.Count > 0)
@@ -780,7 +780,7 @@ public class ResSvc : MonoBehaviour
                     TheologyPoint = TheologyPoint,
                     Des = Des,
                     Icon = Icon,
-                    Effects = Effects
+                    Effect = Effects
                 };
                 SkillDic.Add(ID, negativeSkillInfo);
             }
@@ -820,22 +820,61 @@ public class ResSvc : MonoBehaviour
                 {
                     Durations[i] = DurationsList[i].n;
                 }
-                bool IsSpecified = Skill["IsSpecified"].b;
+                SkillTargetType targetType = (SkillTargetType)Enum.Parse(typeof(SkillTargetType), Skill["TargetType"].str);
+                bool IsMultiple = Skill["IsMultiple"].b;
                 SkillRangeShape Shape = (SkillRangeShape)Enum.Parse(typeof(SkillRangeShape), Skill["Shape"].str);
-                int[] Range = new int[3];
+                float[] Range = new float[3];
                 var RangeList = Skill["Range"].list;
                 for (int i = 0; i < 3; i++)
                 {
-                    Range[i] = (int)RangeList[i].n;
+                    Range[i] = RangeList[i].n;
                 }
                 SkillProperty Property = (SkillProperty)Enum.Parse(typeof(SkillProperty), Skill["Property"].str);
                 bool IsStun = Skill["IsStun"].b;
                 bool IsStop = Skill["IsStop"].b;
                 bool IsShoot = Skill["IsShoot"].b;
-                string[] AniPath = new string[3];
-                AniPath[0] = Skill["AniPath"]["Self"].str;
-                AniPath[1] = Skill["AniPath"]["Shoot"].str;
-                AniPath[2] = Skill["AniPath"]["Other"].str;
+                bool IsContinue = Skill["IsContinue"].b;
+                float[] ContiDurations = new float[5];
+                var ContiDurationsList = Skill["ContiDurations"].list;
+                for (int i = 0; i < 5; i++)
+                {
+                    ContiDurations[i] = ContiDurationsList[i].n;
+                }
+                float ContiInterval = Skill["ContiInterval"].n;
+                bool IsDOT = Skill["IsDOT"].b;
+                List<float> HitTimes = new List<float>();
+                var HitTimesList = Skill["Range"].list;
+                if (HitTimesList.Count > 0)
+                {
+                    for (int i = 0; i < HitTimesList.Count; i++)
+                    {
+                        HitTimes.Add(HitTimesList[i].n);
+                    }
+                }
+                PlayerAniType Action = (PlayerAniType)Enum.Parse(typeof(PlayerAniType), Skill["Action"].str);
+                Dictionary<string, string> AniPath = new Dictionary<string, string>();
+                AniPath.Add("Self", Skill["AniPath"]["Self"].str);
+                AniPath.Add("Shoot", Skill["AniPath"]["Shoot"].str);
+                AniPath.Add("Other", Skill["AniPath"]["Other"].str);
+                Dictionary<string, float[]> AniOffset = new Dictionary<string, float[]>();
+                var AniOffset_Self = Skill["AniOffset"]["Self"].list;
+                var AniOffset_Shoot = Skill["AniOffset"]["Shoot"].list;
+                var AniOffset_Target = Skill["AniOffset"]["Target"].list;
+                AniOffset.Add("Self", new float[3]);
+                AniOffset.Add("Shoot", new float[3]);
+                AniOffset.Add("Target", new float[3]);
+                for (int i = 0; i < 3; i++)
+                {
+                    AniOffset["Self"][i] = AniOffset_Self[i].n;
+                    AniOffset["Shoot"][i] = AniOffset_Shoot[i].n;
+                    AniOffset["Target"][i] = AniOffset_Target[i].n;
+                }
+                Dictionary<string, string> Sound = new Dictionary<string, string>();
+                Sound.Add("Cast", Skill["Sound"]["Cast"].str);
+                Sound.Add("Hit", Skill["Sound"]["Hit"].str);
+                float CastTime = Skill["CastTime"].n;
+                float ChargeTime = Skill["ChargeTime"].n;
+                float LockTime = Skill["LockTime"].n;
                 ActiveSkillInfo activeSkillInfo = new ActiveSkillInfo
                 {
                     SkillID = ID,
@@ -849,8 +888,7 @@ public class ResSvc : MonoBehaviour
                     MagicPoint = MagicPoint,
                     TheologyPoint = TheologyPoint,
                     Des = Des,
-                    Icon = Icon,
-                    Effects = Effects,
+                    Effect = Effects,
                     IsAttack = IsAttack,
                     IsAOE = IsAOE,
                     IsBuff = IsBuff,
@@ -860,14 +898,27 @@ public class ResSvc : MonoBehaviour
                     ColdTime = ColdTime,
                     Times = Times,
                     Durations = Durations,
-                    IsSpecified = IsSpecified,
+                    TargetType = targetType,
+                    IsMultiple = IsMultiple,
                     Shape = Shape,
                     Range = Range,
                     Property = Property,
                     IsStun = IsStun,
                     IsStop = IsStop,
                     IsShoot = IsShoot,
-                    AniPath = AniPath
+                    IsContinue = IsContinue,
+                    ContiDurations = ContiDurations,
+                    ContiInterval = ContiInterval,
+                    IsDOT = IsDOT,
+                    HitTimes = HitTimes,
+                    Action = Action,
+                    AniPath = AniPath,
+                    AniOffset = AniOffset,
+                    Sound = Sound,
+                    CastTime = CastTime,
+                    ChargeTime = ChargeTime,
+                    LockTime = LockTime,
+                    Icon = Icon
                 };
                 SkillDic.Add(ID, activeSkillInfo);
             }

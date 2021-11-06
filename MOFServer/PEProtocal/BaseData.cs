@@ -354,6 +354,176 @@ namespace PEProtocal
         Busy
     }
 
+    [ProtoContract]
+    [ProtoInclude(90, typeof(NegativeSkillInfo))]
+    [ProtoInclude(91, typeof(ActiveSkillInfo))]
+    public class SkillInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int SkillID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string SkillName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool IsActive { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public List<WeaponType> RequiredWeapon { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int[] RequiredLevel { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public float[] Damage { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int[] SwordPoint { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int[] ArcheryPoint { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int[] MagicPoint { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public int[] TheologyPoint { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public string Des { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public string Icon { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public List<SkillEffect> Effect { get; set; }
+    }
+    [ProtoContract]
+    public class NegativeSkillInfo : SkillInfo
+    {
+
+    }
+    [ProtoContract]
+    public class ActiveSkillInfo : SkillInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool IsAttack { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public bool IsAOE { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool IsBuff { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public bool IsSetup { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int[] Hp { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int[] MP { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public float[] ColdTime { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int[] Times { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public float[] Durations { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public SkillTargetType TargetType { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public bool IsMultiple { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public SkillRangeShape Shape { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public float[] Range { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public SkillProperty Property { get; set; }
+        [ProtoMember(15, IsRequired = false)]
+        public bool IsStun { get; set; }
+        [ProtoMember(16, IsRequired = false)]
+        public bool IsStop { get; set; }
+        [ProtoMember(17, IsRequired = false)]
+        public bool IsShoot { get; set; }
+        [ProtoMember(18, IsRequired = false)]
+        public bool IsContinue { get; set; }
+        [ProtoMember(19, IsRequired = false)]
+        public float[] ContiDurations { get; set; }
+        [ProtoMember(20, IsRequired = false)]
+        public float ContiInterval { get; set; }
+        [ProtoMember(21, IsRequired = false)]
+        public bool IsDOT { get; set; }
+        [ProtoMember(22, IsRequired = false)]
+        public List<float> HitTimes { get; set; }
+        [ProtoMember(23, IsRequired = false)]
+        public PlayerAniType Action { get; set; }
+        [ProtoMember(24, IsRequired = false)]
+        public Dictionary<string, string> AniPath { get; set; }
+        [ProtoMember(25, IsRequired = false)]
+        public Dictionary<string, float[]> AniOffset { get; set; }
+        [ProtoMember(26, IsRequired = false)]
+        public Dictionary<string, string> Sound { get; set; }
+        [ProtoMember(27, IsRequired = false)]
+        public float CastTime { get; set; }
+        [ProtoMember(28, IsRequired = false)]
+        public float ChargeTime { get; set; }
+        [ProtoMember(29, IsRequired = false)]
+        public float LockTime { get; set; }
+    }
+    [ProtoContract]
+    public class SkillEffect
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int EffectID;
+        [ProtoMember(2, IsRequired = false)]
+        public float[] Values;
+    }
+    [ProtoContract(EnumPassthru = false)]
+    public enum PlayerAniType
+    {
+        [ProtoEnum]
+        None,
+        [ProtoEnum]
+        Idle,
+        [ProtoEnum]
+        Walk,
+        [ProtoEnum]
+        Run,
+        [ProtoEnum]
+        Hurt,
+        [ProtoEnum]
+        Death,
+        [ProtoEnum]
+        DaggerAttack,
+        [ProtoEnum]
+        DownAttack1,
+        [ProtoEnum]
+        DownAttack2,
+        [ProtoEnum]
+        HorizontalAttack1,
+        [ProtoEnum]
+        HorizontalAttack2,
+        [ProtoEnum]
+        UpperAttack,
+        [ProtoEnum]
+        BowAttack,
+        [ProtoEnum]
+        CrossbowAttack,
+        [ProtoEnum]
+        MagicAttack,
+        [ProtoEnum]
+        ClericAttack,
+        [ProtoEnum]
+        SlashAttack
+    }
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillRangeShape //技能判定範圍形狀
+    {
+        [ProtoEnum]
+        None,
+        [ProtoEnum]
+        Circle,
+        [ProtoEnum]
+        Rect,
+        [ProtoEnum]
+        Sector
+    }
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillProperty //技能屬性
+    {
+        [ProtoEnum]
+        None,
+        [ProtoEnum]
+        Fire,
+        [ProtoEnum]
+        Ice,
+        [ProtoEnum]
+        Lighting
+    }
+
     [ProtoContract(EnumPassthru = false)]
     public enum SkillResult //技能檢測結果
     {

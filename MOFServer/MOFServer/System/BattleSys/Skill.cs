@@ -133,7 +133,7 @@ public class Skill
             if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
             if (ActiveInfo.IsShoot) return false; //是不是子彈技能
             if (ActiveInfo.IsContinue) return false; //如果是連續技的話，技能持續時間
-            if (ActiveInfo.HitTimes != null && (ActiveInfo.HitTimes.Length > 0)) return false; //如果是DOT的話，每次施放的時間
+            if (ActiveInfo.HitTimes != null && (ActiveInfo.HitTimes.Count > 0)) return false; //如果是DOT的話，每次施放的時間
             return true;
         }
     }
@@ -166,10 +166,10 @@ public class Skill
                 LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
             }
         }
-        else if (ActiveInfo.HitTimes != null && ActiveInfo.HitTimes.Length > 0)
+        else if (ActiveInfo.HitTimes != null && ActiveInfo.HitTimes.Count > 0)
         {
-            //多次攻擊
-            if (Hit < ActiveInfo.HitTimes.Length)
+            //DOT, 多時間，多次攻擊
+            if (Hit < ActiveInfo.HitTimes.Count)
             {
                 if (this.SkillTime > ActiveInfo.HitTimes[this.Hit])
                 {
@@ -202,7 +202,7 @@ public class Skill
             return;
         }
         //判斷目標類型
-        if(ActiveInfo.targetType == SkillTargetType.Monster || ActiveInfo.targetType == SkillTargetType.Player)
+        if(ActiveInfo.TargetType == SkillTargetType.Monster || ActiveInfo.TargetType == SkillTargetType.Player)
         {
             //HitTarget(context.Target);
         }

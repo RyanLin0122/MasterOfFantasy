@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using PEProtocal;
 public class SkillWnd : WindowRoot, IStackWnd
 {
     private static SkillWnd _instance;

@@ -28,7 +28,7 @@ public class HotKeyDragSource : DragSourceBase
             HotkeyData content = (HotkeyData)(this.data.Content);
             if(content.HotKeyState == 2)
             {
-                obj.transform.GetComponent<Image>().sprite = ResSvc.Instance.SkillDic[content.ID].Icon;
+                obj.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(ResSvc.Instance.SkillDic[content.ID].Icon);
                 obj.transform.GetComponent<Image>().SetNativeSize();
             }
             else if(content.HotKeyState == 1)

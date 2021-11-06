@@ -200,7 +200,7 @@ public class HotKeySlot : MonoBehaviour
                 this.data = data;
                 State = HotKeyState.Consumable;
                 ColdTimeImg.fillAmount = 0;
-                ContentImg.sprite = ResSvc.Instance.SkillDic[data.ID].Icon;
+                ContentImg.sprite = Resources.Load<Sprite>(ResSvc.Instance.SkillDic[data.ID].Icon);
                 ContentImg.gameObject.SetActive(true);
                 TxtItemCount.gameObject.SetActive(false);
                 ItemCountBG.gameObject.SetActive(false);

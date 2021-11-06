@@ -360,27 +360,27 @@ public class CharacterDemo : MonoBehaviour
 
     public void PlayIdle()
     {
-        ShoesCtrl.PlayAni(EquipAnimState.Idle, true);
-        FaceCtrl.PlayAni(EquipAnimState.Idle, true);
-        UpwearCtrl.PlayAni(EquipAnimState.Idle, true);
-        DownwearCtrl.PlayAni(EquipAnimState.Idle, true);
-        HairBackCtrl.PlayAni(EquipAnimState.Idle, true);
-        HairFrontCtrl.PlayAni(EquipAnimState.Idle, true);
-        HandBackCtrl.PlayAni(EquipAnimState.Idle, true);
-        HandFrontCtrl.PlayAni(EquipAnimState.Idle, true);
-        SuitCtrl.PlayAni(EquipAnimState.Idle, true);
+        ShoesCtrl.PlayAni(PlayerAniType.Idle, true);
+        FaceCtrl.PlayAni(PlayerAniType.Idle, true);
+        UpwearCtrl.PlayAni(PlayerAniType.Idle, true);
+        DownwearCtrl.PlayAni(PlayerAniType.Idle, true);
+        HairBackCtrl.PlayAni(PlayerAniType.Idle, true);
+        HairFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+        HandBackCtrl.PlayAni(PlayerAniType.Idle, true);
+        HandFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+        SuitCtrl.PlayAni(PlayerAniType.Idle, true);
     }
     public void PlayWalk()
     {
-        ShoesCtrl.PlayAni(EquipAnimState.Walk, true);
-        FaceCtrl.PlayAni(EquipAnimState.Walk, true);
-        UpwearCtrl.PlayAni(EquipAnimState.Walk, true);
-        DownwearCtrl.PlayAni(EquipAnimState.Walk, true);
-        HairBackCtrl.PlayAni(EquipAnimState.Walk, true);
-        HairFrontCtrl.PlayAni(EquipAnimState.Walk, true);
-        HandBackCtrl.PlayAni(EquipAnimState.Walk, true);
-        HandFrontCtrl.PlayAni(EquipAnimState.Walk, true);
-        SuitCtrl.PlayAni(EquipAnimState.Walk, true);
+        ShoesCtrl.PlayAni(PlayerAniType.Walk, true);
+        FaceCtrl.PlayAni(PlayerAniType.Walk, true);
+        UpwearCtrl.PlayAni(PlayerAniType.Walk, true);
+        DownwearCtrl.PlayAni(PlayerAniType.Walk, true);
+        HairBackCtrl.PlayAni(PlayerAniType.Walk, true);
+        HairFrontCtrl.PlayAni(PlayerAniType.Walk, true);
+        HandBackCtrl.PlayAni(PlayerAniType.Walk, true);
+        HandFrontCtrl.PlayAni(PlayerAniType.Walk, true);
+        SuitCtrl.PlayAni(PlayerAniType.Walk, true);
     }
     public void ForceSynchronizedPlayerCtrl()
     {
