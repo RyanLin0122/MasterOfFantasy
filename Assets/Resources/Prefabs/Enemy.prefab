@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.6}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -260,6 +262,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -301,13 +304,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7838351515917544507}
-  - component: {fileID: 7838351515917544500}
   - component: {fileID: 7838351515917544501}
   - component: {fileID: 7838351515917544502}
   - component: {fileID: 7838351515917544503}
   - component: {fileID: 7838351515917544504}
-  - component: {fileID: 7838351515917544505}
   - component: {fileID: 7838351515917544506}
+  - component: {fileID: 188909652}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -322,7 +324,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838351515917544508}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -200}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children:
@@ -338,43 +340,6 @@ RectTransform:
   m_AnchoredPosition: {x: -357, y: -144}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7838351515917544500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838351515917544508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf4f229e0253a046b2452427cead3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MapMonsterID: 0
-  NameText1: {fileID: 7828374271043353549}
-  NameText2: {fileID: 7828374270548170524}
-  Hpbar: {fileID: 7838351517378103092}
-  hp: 0
-  MaxHp: 0
-  HPBarBG: {fileID: 7838351517407567019}
-  status: 0
-  IsAniPause: 0
-  MonsterID: 1
-  Type: 0
-  AnimSpeed: 0
-  AnimTimeInterval: 0
-  AnimRenderer: {fileID: 7838351515917544501}
-  SpriteArray: []
-  SpritePosition: []
-  FrameIndex: 0
-  IsLoop: 1
-  IsReadyDeath: 0
-  audioSource: {fileID: 7838351515917544506}
-  DamageContainer: {fileID: 7838351516120071041}
-  TargetPlayer: {fileID: 0}
-  UpdatePos: {x: 0, y: 0, z: 0}
-  NextPos: {x: 0, y: 0, z: 0}
-  IdleCounter: 0
 --- !u!212 &7838351515917544501
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -390,6 +355,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -560,34 +526,6 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &7838351515917544505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838351515917544508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!82 &7838351515917544506
 AudioSource:
   m_ObjectHideFlags: 0
@@ -684,6 +622,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &188909652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838351515917544508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eea5d028d6e99a4e9be32878190f242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  rb: {fileID: 0}
+  Shadow: {fileID: 0}
+  NameBox: {fileID: 0}
+  ChatBox: {fileID: 0}
+  ChatBoxImg: {fileID: 0}
+  ChatBoxTxt: {fileID: 0}
+  TitleText: {fileID: 0}
+  HpBar: {fileID: 0}
+  GuildText: {fileID: 0}
+  DustSprites: []
+  IsMoving: 0
+  IsRun: 0
+  ChatBoxSeconds: 0
+  DamageContainer: {fileID: 7838351516120071041}
+  MapMonsterID: 0
+  NameText1: {fileID: 7828374271043353549}
+  NameText2: {fileID: 7828374270548170524}
+  Hpbar: {fileID: 7838351517378103092}
+  hp: 0
+  MaxHp: 0
+  HPBarBG: {fileID: 7838351517407567019}
+  status: 0
+  IsAniPause: 0
+  MonsterID: 0
+  Type: 0
+  AnimSpeed: 0
+  AnimTimeInterval: 0
+  AnimRenderer: {fileID: 7838351515917544501}
+  SpriteArray: []
+  SpritePosition: []
+  FrameIndex: 0
+  IsLoop: 1
+  IsReadyDeath: 0
+  audioSource: {fileID: 7838351515917544506}
+  TargetPlayer: {fileID: 0}
+  UpdatePos: {x: 0, y: 0, z: 0}
+  NextPos: {x: 0, y: 0, z: 0}
+  IdleCounter: 0
 --- !u!1 &7838351516120071041
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +769,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -872,6 +862,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -947,6 +938,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

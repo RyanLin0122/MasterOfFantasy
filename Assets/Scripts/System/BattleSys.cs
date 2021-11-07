@@ -8,10 +8,12 @@ using System;
 public class BattleSys : SystemRoot
 {
     public static BattleSys Instance = null;
-    public Dictionary<int, MonsterAI> Monsters;
+    public Dictionary<int, MonsterController> Monsters;
+    public HashSet<MonsterController> DeathMonsterPool;
     public Canvas MapCanvas = null;
     public HotKeyManager HotKeyManager;
-    public MonsterAI CurrentTarget = null;
+    public EntityController CurrentTarget = null;
+    public EntityController CurrentBattleTarget = null;
     public Dictionary<string, PlayerController> Players;
     #region Attribute
     public PlayerAttribute BasicAttribute;
@@ -314,16 +316,212 @@ public class BattleSys : SystemRoot
     {
         base.InitSys();
         Instance = this;
-        Monsters = new Dictionary<int, MonsterAI>();
+        Monsters = new Dictionary<int, MonsterController>();
         Players = new Dictionary<string, PlayerController>();
+        DeathMonsterPool = new HashSet<MonsterController>();
+        //SearchRange = new float[] { -15, 200, 120 };
         this.HotKeyManager.Init();
         Debug.Log("Init BattleSys...");
     }
     public void ClearMap()
     {
-        Monsters = new Dictionary<int, MonsterAI>();
+        Monsters = new Dictionary<int, MonsterController>();
         Players = new Dictionary<string, PlayerController>();
+        DeathMonsterPool = new HashSet<MonsterController>();
     }
+
+    #region 尋找目標
+    public SkillTargetType targetType = SkillTargetType.Monster;
+    public SkillRangeShape SearchShape = SkillRangeShape.Rect;
+    public float[] SearchRange;
+    public int Timer = 0;
+    private void Update()
+    {
+        Timer++;
+        if (Timer >= 4)
+        {
+            Timer = 0;
+            //偵測怪物
+            UpdateTarget();
+            OpenCurrentMonsterHPBar();
+            CloseAllMonsterHPBar();
+        }
+    }
+    public void UpdateDeathPool()
+    {
+
+    }
+    public void UpdateTarget() //做完之後沒意外會吐出一個currentTarget
+    {
+        if (PlayerInputController.Instance.entityController == null)
+        {
+            return;
+        }
+        bool IsPlayerDirRight = PlayerInputController.Instance.entityController.transform.localScale.x > 0;
+        //正常狀態下是找怪物
+        if (targetType == SkillTargetType.Monster)
+        {
+            //先判斷目前有沒有正在戰鬥中的目標
+            if (CurrentBattleTarget != null && CurrentTarget is MonsterController && !DeathMonsterPool.Contains((MonsterController)CurrentTarget))
+            {
+                //有活著的戰鬥目標
+                //if (CurrentTarget != null && !DeathMonsterPool.Contains((MonsterController)CurrentTarget))
+                //{
+                if (CheckInRange(IsPlayerDirRight, PlayerInputController.Instance.entityController, CurrentBattleTarget, SearchRange, SearchShape))
+                {
+                    CurrentTarget = CurrentBattleTarget;
+                    //print("繼續維持同一個攻擊目標");
+                    return;
+                }
+                else
+                {
+                    CurrentTarget = null;
+                    //print("攻擊目標脫離範圍");
+                }
+                //}
+            }
+            List<MonsterController> MonstersInRange = new List<MonsterController>();
+            foreach (var kv in Monsters)
+            {
+                if (DeathMonsterPool.Contains(kv.Value))
+                {
+                    continue;
+                }
+                if (CheckInRange(IsPlayerDirRight, PlayerInputController.Instance.entityController, kv.Value, SearchRange, SearchShape))
+                {
+                    MonstersInRange.Add(kv.Value);
+                }
+            }
+            float MinDistance = 99999;
+            MonsterController ClosestMonster = null;
+            Vector2 SourcePosition = new Vector2(PlayerInputController.Instance.entityController.transform.localPosition.x, PlayerInputController.Instance.entityController.transform.localPosition.y);
+
+            if (MonstersInRange.Count > 0)
+            {
+                foreach (var monster in MonstersInRange)
+                {
+                    Vector2 TargetPosition = new Vector2(monster.transform.localPosition.x, monster.transform.localPosition.y);
+                    float Distance = Vector2.Distance(SourcePosition, TargetPosition);
+                    if (Distance < MinDistance)
+                    {
+                        MinDistance = Distance;
+                        ClosestMonster = monster;
+                    }
+                }
+            }
+            else
+            {
+                CurrentTarget = null;
+                //print("沒有正在範圍內的怪物");
+                return;
+            }
+            if (ClosestMonster != null)
+            {
+                CurrentTarget = ClosestMonster;
+            }
+            else
+            {
+                CurrentTarget = null;
+            }
+            return;
+        }
+        else if (targetType == SkillTargetType.Player)
+        {
+            //PVP 的時候
+
+        }
+    }
+    public bool CheckInRange(bool IsDirectionRight, EntityController Source, EntityController Target, float[] Range, SkillRangeShape Shape = SkillRangeShape.Rect)
+    {
+        Vector2 SourcePosition = new Vector2(Source.transform.localPosition.x, Source.transform.localPosition.y);
+        Vector2 TargetPosition = new Vector2(Target.transform.localPosition.x, Target.transform.localPosition.y);
+        switch (Shape)
+        {
+            case SkillRangeShape.None:
+                return false;
+            case SkillRangeShape.Circle:
+                break;
+            case SkillRangeShape.Rect:
+                if (IsDirectionRight)
+                {
+                    Vector2 ReferencePoint = new Vector2(SourcePosition.x + Range[0], SourcePosition.y);
+                    if (TargetPosition.x < ReferencePoint.x)
+                    {
+                        return false;
+                    }
+                    if (Mathf.Abs(TargetPosition.x - ReferencePoint.x) > Range[1])
+                    {
+                        return false;
+                    }
+                    if (Mathf.Abs(TargetPosition.y - ReferencePoint.y) > Range[2] / 2)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    Vector2 ReferencePoint = new Vector2(SourcePosition.x - Range[0], SourcePosition.y);
+                    if (TargetPosition.x > ReferencePoint.x)
+                    {
+                        return false;
+                    }
+                    if (Mathf.Abs(TargetPosition.x - ReferencePoint.x) > Range[1])
+                    {
+                        return false;
+                    }
+                    if (Mathf.Abs(TargetPosition.y - ReferencePoint.y) > Range[2] / 2)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            case SkillRangeShape.Sector:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+    public void OpenCurrentMonsterHPBar()
+    {
+        if (CurrentTarget != null && CurrentTarget is MonsterController)
+        {
+            MonsterController current = (MonsterController)CurrentTarget;
+            if (!DeathMonsterPool.Contains(current))
+            {
+                current.ShowProfile();
+            }
+        }
+    }
+    public void CloseAllMonsterHPBar()
+    {
+        if (CurrentTarget != null && CurrentTarget is MonsterController)
+        {
+            MonsterController current = (MonsterController)CurrentTarget;
+            foreach (var ctrl in Monsters.Values)
+            {
+                if (ctrl != null && ctrl != current)
+                {
+                    ctrl.HideProfile();
+                }
+            }
+        }
+        else
+        {
+            if (Monsters.Count > 0)
+            {
+                foreach (var ctrl in Monsters.Values)
+                {
+                    ctrl.HideProfile();
+                }
+            }
+        }
+    }
+
+    #endregion
+
+
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
@@ -331,11 +529,11 @@ public class BattleSys : SystemRoot
         mon.transform.localPosition = new Vector3(pos[0], pos[1], 0f);
         if (Monsters.ContainsKey(MapMonsterID))
         {
-            Monsters[MapMonsterID] = mon.GetComponent<MonsterAI>();
+            Monsters[MapMonsterID] = mon.GetComponent<MonsterController>();
         }
         else
         {
-            Monsters.Add(MapMonsterID, mon.GetComponent<MonsterAI>());
+            Monsters.Add(MapMonsterID, mon.GetComponent<MonsterController>());
         }
         Monsters[MapMonsterID].Init(ResSvc.Instance.MonsterInfoDic[MonsterID], MapMonsterID);
     }
@@ -402,7 +600,7 @@ public class BattleSys : SystemRoot
                     {
                         TimerSvc.Instance.AddTimeTask((a) =>
                         {
-                            Monsters[ID].GenerateAttackEffect();
+                            //Monsters[ID].GenerateAttackEffect();
                             Monsters[ID].GenerateDamageNum(totalDamage, 0);
                             Monsters[ID].PlayHitSound();
                             Monsters[ID].HurtMonster();
@@ -428,7 +626,7 @@ public class BattleSys : SystemRoot
                     {
                         TimerSvc.Instance.AddTimeTask((a) =>
                         {
-                            Monsters[ID].GenerateAttackEffect();
+                            //Monsters[ID].GenerateAttackEffect();
                             Monsters[ID].GenerateDamageNum(totalDamage, 1);
                             Monsters[ID].PlayHitSound();
                             Monsters[ID].HurtMonster();
@@ -475,7 +673,7 @@ public class BattleSys : SystemRoot
 
     }
 
-    public void LockTarget(MonsterAI monAi)
+    public void LockTarget(MonsterController monAi)
     {
         CurrentTarget = monAi;
     }
@@ -487,7 +685,7 @@ public class BattleSys : SystemRoot
 
     public void ClearMonsters()
     {
-        Monsters = new Dictionary<int, MonsterAI>();
+        Monsters = new Dictionary<int, MonsterController>();
     }
 
     internal void UpdateEntity(EntityEvent entityEvent, NEntity nEntity)
@@ -534,7 +732,7 @@ public class BattleSys : SystemRoot
     {
         if (MapCanvas != null)
         {
-            MonsterAI[] ais = MapCanvas.GetComponentsInChildren<MonsterAI>();
+            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
             if (ais.Length > 0)
             {
                 Monsters.Clear();
@@ -550,7 +748,7 @@ public class BattleSys : SystemRoot
     {
         if (MapCanvas != null)
         {
-            MonsterAI[] ais = MapCanvas.GetComponentsInChildren<MonsterAI>();
+            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
             if (ais.Length > 0)
             {
                 ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath", true);

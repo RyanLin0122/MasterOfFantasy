@@ -56,6 +56,12 @@ public class AudioSvc : MonoBehaviour
             EmbiAudio.Stop();
         }      
     }
+    public void PlaySkillAudio(string path)
+    {
+        AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Skill/" + name, true);
+        CharacterAudio.clip = audio;
+        CharacterAudio.Play();
+    }
     public void PlayCharacterAudio(string name)
     {
         AudioClip audio = ResSvc.Instance.LoadAudio("Sound/etc/" + name, true);

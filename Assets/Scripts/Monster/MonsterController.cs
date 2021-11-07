@@ -11,7 +11,7 @@ using PEProtocal;
 
 
 [RequireComponent(typeof(PolyNavAgent))]
-public class MonsterAI : MonoBehaviour
+public class MonsterController : EntityController
 {
     public int MapMonsterID;
     public void Init(MonsterInfo info, int MapMonsterID)
@@ -34,7 +34,7 @@ public class MonsterAI : MonoBehaviour
         hp = info.MaxHp;
         MaxHp = info.MaxHp;
         SetHpBar();
-        GetComponent<Blackboard>().SetVariableValue("IsStop", false);
+        //GetComponent<Blackboard>().SetVariableValue("IsStop", false);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = AudioSvc.Instance.MonsterVolume;
         this.MapMonsterID = MapMonsterID;
@@ -338,10 +338,10 @@ public class MonsterAI : MonoBehaviour
     }
     #endregion
     #region Effect
-    public GameObject DamageContainer;
-    public void GenerateDamageNum(int damage, int mode)
+    /*
+    public override void GenerateDamageNum(int damage, int mode)
     {
-        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
+        DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), MonsterDamageContainer.transform.localScale.y, MonsterDamageContainer.transform.localScale.z);
         GameObject obj = Instantiate(Resources.Load("Prefabs/Damage") as GameObject);
         obj.transform.SetParent(DamageContainer.transform);
         obj.transform.localScale = new Vector3(0.01f, 0.01f, 1);
@@ -362,6 +362,7 @@ public class MonsterAI : MonoBehaviour
         obj.transform.localScale = new Vector3(1f, 1f, 1);
         obj.transform.localPosition = Vector3.zero;
     }
+    */
     #endregion
 
     public EntityController TargetPlayer = null;
@@ -419,18 +420,6 @@ public class MonsterAI : MonoBehaviour
             {
                 FaintMonster();
             }
-            if (Input.GetKeyDown(KeyCode.F7))
-            {
-                HurtMonster();
-                GenerateAttackEffect();
-                GenerateDamageNum(500, 0);
-            }
-            if (Input.GetKeyDown(KeyCode.F8))
-            {
-                HurtMonster();
-                GenerateCriticalEffect();
-                GenerateDamageNum(500, 1);
-            }
             if (Input.GetKeyDown(KeyCode.F9))
             {
                 ShockMonster();
@@ -470,11 +459,11 @@ public class MonsterAI : MonoBehaviour
 }
 public class MonsterTask
 {
-    public MonsterAI Ai;
+    public MonsterController Ai;
     public int ActionID;
     public bool FaceDir;
 
-    public MonsterTask(MonsterAI ai, int actionID, bool faceDir)
+    public MonsterTask(MonsterController ai, int actionID, bool faceDir)
     {
         Ai = ai;
         ActionID = actionID;
@@ -508,7 +497,7 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnExecute()
         {
 
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             if (ai.UpdatePos != null)
             {
                 ai.NextPos = ai.UpdatePos;
@@ -534,7 +523,7 @@ namespace NodeCanvas.Tasks.Actions
         {
             try
             {
-                Queue<MonsterTask> acitions = agent.GetComponent<MonsterAI>().Actions;
+                Queue<MonsterTask> acitions = agent.GetComponent<MonsterController>().Actions;
                 if (acitions.Count > 0)
                 {
 
@@ -593,13 +582,13 @@ namespace NodeCanvas.Tasks.Actions
         Vector3 targetPos = Vector3.zero;
         protected override string OnInit()
         {
-            targetPos = agent.transform.GetComponent<MonsterAI>().NextPos;
+            targetPos = agent.transform.GetComponent<MonsterController>().NextPos;
             return base.OnInit();
         }
         protected override void OnExecute()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
-            targetPos = agent.transform.GetComponent<MonsterAI>().NextPos;
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
+            targetPos = agent.transform.GetComponent<MonsterController>().NextPos;
             if (targetPos.x - agent.transform.localPosition.x > 0) //往右走
             {
                 agent.localScale = new Vector2(-Mathf.Abs(agent.localScale.x), agent.localScale.y);
@@ -627,9 +616,9 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnUpdate()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             Blackboard blackboard = agent.transform.GetComponent<Blackboard>();
-            targetPos = agent.transform.GetComponent<MonsterAI>().NextPos;
+            targetPos = agent.transform.GetComponent<MonsterController>().NextPos;
             //Debug.Log("Next:" + ai.NextPos.x + ", " + ai.NextPos.y + ", " + ai.NextPos.z);
             //Debug.Log("Update:" + ai.UpdatePos.x + ", " + ai.UpdatePos.y + ", " + ai.UpdatePos.z);
             //Debug.Log("agent:" + agent.transform.localPosition.x + ", " + agent.transform.localPosition.y + ", " + agent.transform.localPosition.z);
@@ -652,7 +641,7 @@ namespace NodeCanvas.Tasks.Actions
 
                 }
             }
-            if (Vector3.Distance(agent.transform.GetComponent<MonsterAI>().NextPos, agent.transform.localPosition) < 10)
+            if (Vector3.Distance(agent.transform.GetComponent<MonsterController>().NextPos, agent.transform.localPosition) < 10)
             {
                 if (ai.IdleCounter >= 10)
                 {
@@ -689,7 +678,7 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnExecute()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             Random.InitState(Guid.NewGuid().GetHashCode());
             float dx = Random.Range(-1f, 1f) * speed.value;
             float dy = Random.Range(-1f, 1f) * speed.value;
@@ -761,8 +750,8 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().IsAniPause = false;
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Idle, true);
+            agent.GetComponent<MonsterController>().IsAniPause = false;
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Idle, true);
             base.OnExecute();
             EndAction();
         }
@@ -772,7 +761,7 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().IsAniPause = true;
+            agent.GetComponent<MonsterController>().IsAniPause = true;
             base.OnExecute();
             EndAction();
         }
@@ -784,7 +773,7 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Idle, true);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Idle, true);
             base.OnExecute();
             EndAction();
         }
@@ -794,7 +783,7 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Walk, true);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Walk, true);
             base.OnExecute();
             EndAction();
         }
@@ -810,7 +799,7 @@ namespace NodeCanvas.Tasks.Actions
         }
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Frozen, false);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Frozen, false);
             base.OnExecute();
             StartCoroutine(timer());
         }
@@ -826,7 +815,7 @@ namespace NodeCanvas.Tasks.Actions
         }
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Burned, false);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Burned, false);
             base.OnExecute();
             StartCoroutine(timer());
         }
@@ -842,7 +831,7 @@ namespace NodeCanvas.Tasks.Actions
         }
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Shocked, false);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Shocked, false);
             base.OnExecute();
             StartCoroutine(timer());
         }
@@ -853,7 +842,7 @@ namespace NodeCanvas.Tasks.Actions
 
         IEnumerator timer()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Hurt];
             float Time_Hurt = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             Tools.Log("TimeHurt:" + Time_Hurt);
@@ -865,7 +854,7 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnExecute()
         {
             Tools.Log("HurtStart");
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Hurt, false);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Hurt, false);
             base.OnExecute();
             StartCoroutine(timer());
         }
@@ -876,14 +865,14 @@ namespace NodeCanvas.Tasks.Actions
 
         IEnumerator timer()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Death];
             float Time_Attack = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             int mindamage = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MinDamage;
             int maxdamage = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MaxDamage;
-            if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
+            if (ai.TargetPlayer != null && ai.TargetPlayer.Name == GameRoot.Instance.ActivePlayer.Name)
             {
-                agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Attack, false);
+                agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Attack, false);
                 ((PlayerController)ai.TargetPlayer).GetHurt(Random.Range(mindamage, maxdamage), HurtType.Normal, ai.MonsterID);
             }
             yield return new WaitForSeconds(Time_Attack);
@@ -907,7 +896,7 @@ namespace NodeCanvas.Tasks.Actions
         }
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Faint, true);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Faint, true);
             StartCoroutine(timer());
             base.OnExecute();
 
@@ -920,7 +909,7 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnExecute()
         {
             Tools.Log("CheckDeath");
-            MonsterAI ai = agent.GetComponent<MonsterAI>();
+            MonsterController ai = agent.GetComponent<MonsterController>();
             if (ai.IsReadyDeath)
             {
                 Tools.Log("ai.MonsterDeath()");
@@ -937,7 +926,7 @@ namespace NodeCanvas.Tasks.Actions
 
         IEnumerator timer()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Death];
             float Time_Death = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             Tools.Log("TimeDeath:" + Time_Death);
@@ -947,7 +936,7 @@ namespace NodeCanvas.Tasks.Actions
         }
         protected override void OnExecute()
         {
-            agent.GetComponent<MonsterAI>().PlayAni(MonsterAniType.Death, false);
+            agent.GetComponent<MonsterController>().PlayAni(MonsterAniType.Death, false);
             Tools.Log("PlayDeathAni start");
             StartCoroutine(timer());
             base.OnExecute();
@@ -959,8 +948,8 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            MonsterAI ai = agent.GetComponent<MonsterAI>();
-            if (ai.TargetPlayer != null && ai.TargetPlayer.PlayerName == GameRoot.Instance.ActivePlayer.Name)
+            MonsterController ai = agent.GetComponent<MonsterController>();
+            if (ai.TargetPlayer != null && ai.TargetPlayer.Name == GameRoot.Instance.ActivePlayer.Name)
             {
                 if (((PlayerController)ai.TargetPlayer).IsDeath)
                 {
@@ -984,7 +973,7 @@ namespace NodeCanvas.Tasks.Actions
     {
         protected override void OnExecute()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[ai.MonsterID].DeathSound, true);
             agent.GetComponent<AudioSource>().clip = audio;
             agent.GetComponent<AudioSource>().Play();
@@ -1003,7 +992,7 @@ namespace NodeCanvas.Tasks.Actions
         Vector3 targetPos = Vector3.zero;
         protected override void OnExecute()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             targetPos = agent.position;
             if (ai.TargetPlayer != null)
             {
@@ -1038,7 +1027,7 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnUpdate()
         {
-            MonsterAI ai = agent.transform.GetComponent<MonsterAI>();
+            MonsterController ai = agent.transform.GetComponent<MonsterController>();
             if (ai.IsReadyDeath)
             {
                 EndAction();

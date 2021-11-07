@@ -257,7 +257,7 @@ public class MainCitySys : SystemRoot
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
         PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
         GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
-        mainPlayerCtrl.PlayerName = PlayerName;
+        mainPlayerCtrl.Name = PlayerName;
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
         mainPlayerCtrl.SetNameBox();
         BattleSys.Instance.InitAllAtribute();
@@ -274,7 +274,7 @@ public class MainCitySys : SystemRoot
             },
             mainPlayerCtrl
         );
-        BattleSys.Instance.Players.Add(mainPlayerCtrl.PlayerName, mainPlayerCtrl);
+        BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
@@ -300,7 +300,7 @@ public class MainCitySys : SystemRoot
             GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(add.Position[0], add.Position[1], 200f));
             PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
             GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
-            mainPlayerCtrl.PlayerName = add.Name;
+            mainPlayerCtrl.Name = add.Name;
             mainPlayerCtrl.SetTitle(add.Title);
             mainPlayerCtrl.SetNameBox();
             BattleSys.Instance.InitAllAtribute();
@@ -316,7 +316,7 @@ public class MainCitySys : SystemRoot
                 Position = new NVector3(add.Position[0], add.Position[1], 200f),
                 Type = EntityType.Player
             });
-            BattleSys.Instance.Players.Add(mainPlayerCtrl.PlayerName, mainPlayerCtrl);
+            BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
             GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
             //player.GetComponent<Transform>().SetAsLastSibling();
             mainPlayerCtrl.SetAllEquipment(add);

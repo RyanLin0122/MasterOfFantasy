@@ -6,6 +6,12 @@ using PEProtocal;
 public class Skill
 {
     public SkillInfo info;
+    public float CD = 0;
+    public Skill(SkillInfo info)
+    {
+        this.info = info;
+    }
+
     #region Skill WorkFlow 技能總流程
     public bool CanCast() //判斷能不能使用技能
     {
@@ -14,7 +20,7 @@ public class Skill
             return false;
         }
         ActiveSkillInfo active = (ActiveSkillInfo)info;
-        if(info.SkillID == 304)
+        if (info.SkillID == 304)
         {
             return true;
         }
@@ -32,7 +38,7 @@ public class Skill
                 CasterID = 1,
                 CasterName = GameRoot.Instance.ActivePlayer.Name,
                 CasterType = SkillCasterType.Player,
-                Position = new float[] { 0,0,0},
+                Position = new float[] { 0, 0, 0 },
                 TargetID = 1,
                 TargetName = "娃娃草",
                 TargetType = SkillTargetType.Monster
@@ -43,7 +49,12 @@ public class Skill
 
     public void BeginCast(SkillCastInfo castInfo) //收到釋放技能請求之後，開始釋放流程
     {
-
+        SkillSys.Instance.InstantiateCasterSkillEffect(304, PlayerInputController.Instance.entityController.transform);
+        foreach (var item in BattleSys.Instance.Monsters.Values)
+        {
+            item.PlayAni(MonsterAniType.Hurt, false);
+            SkillSys.Instance.InstantiateTargetSkillEffect(304, item.transform);
+        }
     }
 
     //<-------- 蓄力階段 Charge Phase ---------->
@@ -61,8 +72,12 @@ public class Skill
     //<-------- 技能更新階段 Update Phase ---------->
     public void Update()
     {
-        
+
     }
     #endregion
 
+
+    #region Basic Logic
+
+    #endregion
 }

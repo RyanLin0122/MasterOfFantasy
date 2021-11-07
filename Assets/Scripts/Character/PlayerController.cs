@@ -10,7 +10,7 @@ using ParadoxNotion.Design;
 
 public class EntityController : MonoBehaviour
 {
-    public string PlayerName;
+    public string Name;
     public Rigidbody2D rb;
     public Transform Shadow;
     public GameObject NameBox;
@@ -85,22 +85,22 @@ public class EntityController : MonoBehaviour
     {
         Namebox namebox = GetComponent<Namebox>();
         PlayerEquipments equipments = GameRoot.Instance.ActivePlayer.playerEquipments;
-        if (PlayerName != null)
+        if (Name != null)
         {
             if (equipments != null)
             {
                 if (equipments.F_NameBox == null)
                 {
-                    namebox.SetNameBox(PlayerName, 0);
+                    namebox.SetNameBox(Name, 0);
                 }
                 else
                 {
-                    namebox.SetNameBox(PlayerName, equipments.F_NameBox.ItemID);
+                    namebox.SetNameBox(Name, equipments.F_NameBox.ItemID);
                 }
             }
             else
             {
-                namebox.SetNameBox(PlayerName, 0);
+                namebox.SetNameBox(Name, 0);
             }
         }
         else
@@ -222,7 +222,7 @@ public class PlayerController : EntityController
     {
         if (this.rb != null)
         {
-            if (PlayerName != GameRoot.Instance.ActivePlayer.Name)
+            if (Name != GameRoot.Instance.ActivePlayer.Name)
             {
                 if (IsMoving)
                 {
@@ -933,14 +933,14 @@ public class DetectEnemy : ActionTask<Transform>
     float cosx = 0.5f;
     protected override void OnExecute()
     {
-        Dictionary<int, MonsterAI> Monsters = BattleSys.Instance.Monsters;
+        Dictionary<int, MonsterController> Monsters = BattleSys.Instance.Monsters;
         GameObject target = blackboard.GetVariable<GameObject>("EnemyTarget").value;
         if (target != null) //有目標
         {
             if (Vector3.Distance(target.transform.position, agent.transform.position) > DetectionRange) //如果超過偵測範圍
             {
                 blackboard.SetVariableValue("EnemyTarget", null);
-                target.GetComponent<MonsterAI>().HideProfile();//隱藏怪物HP
+                target.GetComponent<MonsterController>().HideProfile();//隱藏怪物HP
                 BattleSys.Instance.ClearTarget(); //目標設空
             }
         }
@@ -984,9 +984,9 @@ public class DetectEnemy : ActionTask<Transform>
             }
             if (NewTarget != null)
             {
-                NewTarget.GetComponent<MonsterAI>().ShowProfile();
+                NewTarget.GetComponent<MonsterController>().ShowProfile();
                 blackboard.SetVariableValue("EnemyTarget", NewTarget.gameObject);
-                BattleSys.Instance.LockTarget(NewTarget.GetComponent<MonsterAI>());
+                BattleSys.Instance.LockTarget(NewTarget.GetComponent<MonsterController>());
             }
 
         }
@@ -1073,7 +1073,7 @@ public class AttackTarget : ActionTask<Transform>
 {
     protected override void OnExecute()
     {
-        MonsterAI monAi = BattleSys.Instance.CurrentTarget;
+        MonsterController monAi = (MonsterController)BattleSys.Instance.CurrentTarget;
         if (monAi != null && !monAi.IsReadyDeath)
         {
             bool CanSeeEnemy = false;

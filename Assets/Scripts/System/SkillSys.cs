@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-class SkillSys : SystemRoot
+class SkillSys : MonoSingleton<SkillSys>
 {
-    public static SkillSys Instance = null;
-
-    public override void InitSys()
+    public void InitSys()
     {
-        base.InitSys();
-
-        Instance = this;
         Debug.Log("Init SkillSys...");
     }
     public SkillWnd skillWnd;
@@ -29,28 +24,42 @@ class SkillSys : SystemRoot
         skillWnd.IsOpen = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            InstantiateSkill();
-        }
-    }
-
-    public void InstantiateSkill()
-    {
-        GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/SkillPrefab"));
-        go.transform.SetParent(MainCitySys.Instance.MapCanvas.transform);
-        go.transform.localPosition = GameRoot.Instance.MainPlayerControl.transform.localPosition;
-        go.transform.localScale = new Vector3(100, 100, 1);
-        SkillAnimator ani = go.GetComponent<SkillAnimator>();
-        ani.Initialized("Effect/Skill Tracing Trap Explosion",8,14);
-    }
     public void ShowSkillToolTip(int skillID)
     {
         //ToDo
         
     }
-
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Skill skill = new Skill(ResSvc.Instance.SkillDic[304]);
+            skill.BeginCast(new SkillCastInfo());
+        }
+    }
+    public void InstantiateCasterSkillEffect(int SkillID, Transform CasterTransform)
+    {
+        ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
+        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Self"]))).GetComponent<Transform>();
+        go.SetParent(CasterTransform);
+        go.localPosition = new Vector3(info.AniOffset["Self"][0], info.AniOffset["Self"][1], info.AniOffset["Self"][2]);
+        if (info.Sound["Cast"] != "")
+        {
+            AudioSvc.Instance.PlaySkillAudio(info.Sound["Cast"]);
+        }       
+    }
+    public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform)
+    {
+        ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
+        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Other"]))).GetComponent<Transform>();
+        go.SetParent(TargetTransform);
+        go.localScale = Vector3.one;
+        go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
+        if (info.Sound["Hit"] != "")
+        {
+            //AudioSvc.Instance.PlaySkillAudio(info.Sound["Hit"]);
+        }
+    }
+    
 }
 
