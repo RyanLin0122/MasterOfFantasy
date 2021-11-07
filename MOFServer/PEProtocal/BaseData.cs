@@ -614,7 +614,40 @@ namespace PEProtocal
         public string EntityName { get; set; }
     }
 
+    [ProtoContract]
+    public class DropItem
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int DropItemID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public DropItemState State { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public string OwnerID { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public Item Item { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public DropItemType Type { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public long Money { get; set; }
+    }
 
+    [ProtoContract(EnumPassthru = false)]
+    public enum DropItemState //掉落道具狀態
+    {
+        [ProtoEnum]
+        OwnerPrior, //優先
+        [ProtoEnum]
+        Common //任意
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum DropItemType
+    {
+        [ProtoEnum]
+        Item,
+        [ProtoEnum]
+        Money
+    }
 }
 
 
