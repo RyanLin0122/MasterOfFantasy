@@ -352,6 +352,7 @@ public class CacheSvc
                 float avoid = (jo["Avoid"].n);
                 float critical = (jo["Critical"].n);
                 float magicdefense = (jo["MagicDefense"].n);
+                float speed = (jo["Speed"].n);
                 Dictionary<int, float> DropItems = new Dictionary<int, float>();
                 string drop = jo["Drop"].str;
                 string[] drops = drop.Split(new char[] { '_' });
@@ -381,7 +382,8 @@ public class CacheSvc
                     Avoid = avoid,
                     Critical = critical,
                     MagicDefense = magicdefense,
-                    DropItems = DropItems
+                    DropItems = DropItems,
+                    Speed = speed
                 };
                 MonsterInfoDic.Add(monsterID, info);
             }

@@ -40,8 +40,8 @@ public class MonsterController : EntityController
         Actions = new Queue<MonsterTask>();
         UpdatePos = transform.localPosition;
         gameObject.name = "Monster:" + MapMonsterID;
-        AnimSpeed = info.AnimationDic[MonsterAniType.Idle].AnimSpeed;
-        AnimLength = info.AnimationDic[MonsterAniType.Idle].AnimSprite.Count;
+        AnimSpeed = info.MonsterAniDic[MonsterAniType.Idle].AnimSpeed;
+        AnimLength = info.MonsterAniDic[MonsterAniType.Idle].AnimSprite.Count;
         AnimTimeInterval = 1 / AnimSpeed;//得到每一幀間隔
         LoadSprite(info.Sprites);
         SpriteArray = AllSpriteArray[MonsterAniType.Idle];
@@ -55,6 +55,7 @@ public class MonsterController : EntityController
         NameText1.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         NameText2.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         HideProfile();
+        SetSpeed(info.Speed);
     }
 
     #region Profile
@@ -96,6 +97,11 @@ public class MonsterController : EntityController
         SetHpBar();
     }
     #endregion
+    public void SetSpeed(float Speed)
+    {
+        GetComponent<PolyNavAgent>().maxSpeed = Speed;
+    }
+
     #region Animation
     public bool IsAniPause = false;
     private PolyNavAgent _agent;
@@ -148,8 +154,8 @@ public class MonsterController : EntityController
 
     public Sprite[] GenSpriteArray(MonsterAniType type)
     {
-        Sprite[] sp = new Sprite[ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[type].AnimSprite.Count];
-        List<int> Orders = ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[type].AnimPosition;
+        Sprite[] sp = new Sprite[ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[type].AnimSprite.Count];
+        List<int> Orders = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[type].AnimPosition;
         for (int i = 0; i < Orders.Count; i++)
         {
             if (Orders[i] != -1)
@@ -170,8 +176,8 @@ public class MonsterController : EntityController
         IsAniPause = false;
         Type = type;
         SpriteArray = AllSpriteArray[type];
-        AnimLength = ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[type].AnimSprite.Count;
-        AnimSpeed = ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[type].AnimSpeed;
+        AnimLength = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[type].AnimSprite.Count;
+        AnimSpeed = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[type].AnimSpeed;
         AnimTimeInterval = 1.0f / AnimSpeed;
         AnimTimer = 0;
         FrameIndex = 0;
@@ -857,7 +863,7 @@ namespace NodeCanvas.Tasks.Actions
         IEnumerator timer()
         {
             MonsterController ai = agent.transform.GetComponent<MonsterController>();
-            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Hurt];
+            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MonsterAniDic[MonsterAniType.Hurt];
             float Time_Hurt = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             Tools.Log("TimeHurt:" + Time_Hurt);
             yield return new WaitForSeconds(Time_Hurt);
@@ -880,7 +886,7 @@ namespace NodeCanvas.Tasks.Actions
         IEnumerator timer()
         {
             MonsterController ai = agent.transform.GetComponent<MonsterController>();
-            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Death];
+            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MonsterAniDic[MonsterAniType.Death];
             float Time_Attack = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             int mindamage = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MinDamage;
             int maxdamage = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MaxDamage;
@@ -941,7 +947,7 @@ namespace NodeCanvas.Tasks.Actions
         IEnumerator timer()
         {
             MonsterController ai = agent.transform.GetComponent<MonsterController>();
-            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].AnimationDic[MonsterAniType.Death];
+            MonsterAnimation ani = ResSvc.Instance.MonsterInfoDic[ai.MonsterID].MonsterAniDic[MonsterAniType.Death];
             float Time_Death = 1 / ani.AnimSpeed * ani.AnimSprite.Count;
             Tools.Log("TimeDeath:" + Time_Death);
             yield return new WaitForSeconds(Time_Death);

@@ -986,6 +986,7 @@ public class ResSvc : MonoBehaviour
             float magicdefense = (float)(jo["MagicDefense"].n);
             string AttackSound = jo["AttackSound"].str;
             string DeathSound = jo["DeathSound"].str;
+            float speed = jo["Speed"].n;
             Dictionary<int, float> DropItems = new Dictionary<int, float>();
             string drop = jo["Drop"].str;
             string[] drops = drop.Split(new char[] { '_' });
@@ -1038,9 +1039,10 @@ public class ResSvc : MonoBehaviour
                 Critical = critical,
                 MagicDefense = magicdefense,
                 DropItems = DropItems,
-                AnimationDic = AnimationDic,
+                MonsterAniDic = AnimationDic,
                 AttackSound = AttackSound,
-                DeathSound = DeathSound
+                DeathSound = DeathSound,
+                Speed = speed
             };
             MonsterInfoDic.Add(monsterID, info);
         }

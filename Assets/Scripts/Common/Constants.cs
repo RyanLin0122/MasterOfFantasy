@@ -233,7 +233,7 @@ public class Constants
     }
     public static float GetMonsterAnimTime(int MonsterID, MonsterAniType aniType)
     {
-        return ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[aniType].AnimSprite.Count/ ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[aniType].AnimSpeed;
+        return ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSprite.Count/ ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSpeed;
     }
     
     public static int[] GetAnimOrder(PlayerAniType state, EquipAnimType Type)
