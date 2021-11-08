@@ -20,6 +20,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             this.rb = this.entityController.transform.GetComponent<Rigidbody2D>();
             entityController.transform.GetComponent<CapsuleCollider2D>().enabled = true;
+            SkillSys.Instance.InitPlayerSkills(GameRoot.Instance.ActivePlayer, this.entityController);
         }
         if (entityController != null) entityController.entity = this.character;
     }
@@ -132,6 +133,63 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         this.character.SetPosition(this.rb.transform.localPosition);
         print(character.entityData.Position.X + ", "+ character.entityData.Position.Y);
         new MoveSender(entityEvent, character.entityData);
+    }
+
+    public void Update()
+    {
+        HotKeySlot hotKeySlot = null;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha1, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha2, out hotKeySlot);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha3, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha4, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha5, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha6, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha7, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha8, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha9, out hotKeySlot);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
+        }
+        if (hotKeySlot != null)
+        {
+            var dict = Instance.entityController.SkillDict;
+            if (hotKeySlot.State == HotKeyState.Skill)
+            {
+                if (dict != null)
+                {
+                    dict[hotKeySlot.data.ID].Cast();
+                }
+            }
+        }
     }
 }
 

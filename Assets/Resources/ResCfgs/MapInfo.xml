@@ -50,37 +50,37 @@
     <MonsterMax>0</MonsterMax>
     <BornTime>0</BornTime>
   </item>
-	<item ID="0006">
-		<MapName>功夫遊戲</MapName>
-		<Location>RibiTown</Location>
-		<SceneName>MiniGame_KungFu</SceneName>
-		<PlayerBornPos>0,0</PlayerBornPos>
-		<Islimited>1</Islimited>
-		<IsVillage>1</IsVillage>
-		<MonsterMax>0</MonsterMax>
-		<BornTime>0</BornTime>
-	</item>
-	<item ID="0007">
-		<MapName>木人遊戲</MapName>
-		<Location>RibiTown</Location>
-		<SceneName>MiniGame_Dummy</SceneName>
-		<PlayerBornPos>0,0</PlayerBornPos>
-		<Islimited>1</Islimited>
-		<IsVillage>1</IsVillage>
-		<MonsterMax>0</MonsterMax>
-		<BornTime>0</BornTime>
-	</item>
-	<item ID="0008">
-		<MapName>治病遊戲</MapName>
-		<Location>RibiTown</Location>
-		<SceneName>MiniGame_Cure</SceneName>
-		<PlayerBornPos>0,0</PlayerBornPos>
-		<Islimited>1</Islimited>
-		<IsVillage>1</IsVillage>
-		<MonsterMax>0</MonsterMax>
-		<BornTime>0</BornTime>
-	</item>
-	
+  <item ID="0006">
+    <MapName>功夫遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_KungFu</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0007">
+    <MapName>木人遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_Dummy</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+  <item ID="0008">
+    <MapName>治病遊戲</MapName>
+    <Location>RibiTown</Location>
+    <SceneName>MiniGame_Cure</SceneName>
+    <PlayerBornPos>0,0</PlayerBornPos>
+    <Islimited>1</Islimited>
+    <IsVillage>1</IsVillage>
+    <MonsterMax>0</MonsterMax>
+    <BornTime>0</BornTime>
+  </item>
+
   <item ID="1000">
     <MapName>學習之路程</MapName>
     <Location>RibiTown</Location>
@@ -269,9 +269,9 @@
     <PlayerBornPos>-2170,-139</PlayerBornPos>
     <Islimited>0</Islimited>
     <IsVillage>0</IsVillage>
-    <MonsterMax>1</MonsterMax>
+    <MonsterMax>30</MonsterMax>
     <BornTime>10</BornTime>
-    <MonsterPoints>1#-2058,-28</MonsterPoints>
+    <MonsterPoints>1#-2058,-28:2#-2000,-240:1#-1846,-375:2#-1808,-202:1#-1641,-54:2#-1506,-214:1#-1493,-400:2#-1256,-233:1#-1185,-53:1#-1050,-220:2#-941,-66:1#-851,-393:2#-723,-220:1#-486,-117:2#-460,-361:1#-248,-233:2#-133,-79:1#53,-233:2#168,-393:1#316,-98:2#470,-348:1#573,-111:2#637,-348:1#778,-188:2#1060,-117:1#1201,-354:2#1329,-129:1#1547,-219:1#1759,-411:1#1817,-103</MonsterPoints>
   </item>
   <item ID="2002">
     <MapName>戰士之路</MapName>

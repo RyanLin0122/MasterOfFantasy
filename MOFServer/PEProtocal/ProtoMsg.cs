@@ -1514,6 +1514,6 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public SkillCastInfo CastInfo { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        public DamageInfo Damage { get; set; }
+        public DamageInfo[] Damage { get; set; }
     }
 }

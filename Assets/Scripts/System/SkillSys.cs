@@ -60,6 +60,34 @@ class SkillSys : MonoSingleton<SkillSys>
             //AudioSvc.Instance.PlaySkillAudio(info.Sound["Hit"]);
         }
     }
+    public void InitPlayerSkills(Player player, EntityController controller)
+    {
+        controller.SkillDict = new Dictionary<int, Skill>();
+        if(player.Skills!=null && player.Skills.Count > 0)
+        {
+            foreach (var kv in player.Skills)
+            {
+                controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
+                controller.SkillDict[kv.Key].CD = 0;
+                controller.SkillDict[kv.Key].EntityController = controller;
+                controller.SkillDict[kv.Key].SkillLevel = kv.Value.SkillLevel;
+            }
+        }
+    }
+    public void InitPlayerSkills(TrimedPlayer player, EntityController controller)
+    {
+        controller.SkillDict = new Dictionary<int, Skill>();
+        if (player.Skills != null && player.Skills.Count > 0)
+        {
+            foreach (var kv in player.Skills)
+            {
+                controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
+                controller.SkillDict[kv.Key].CD = 0;
+                controller.SkillDict[kv.Key].EntityController = controller;
+                controller.SkillDict[kv.Key].SkillLevel = kv.Value.SkillLevel;
+            }
+        }
+    }
     
 }
 

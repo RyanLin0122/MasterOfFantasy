@@ -59,7 +59,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private void ExecuteAction(SkillCastInfo skillCast)
     {
         BattleContext context = new BattleContext(this);
-        if(skillCast.CasterType == SkillCasterType.Player)
+        if (skillCast.CasterType == SkillCasterType.Player)
         {
             if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(skillCast.CasterName))
             {
@@ -67,7 +67,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 if (context.Caster != null) JoinBattle(context.Caster);
             }
         }
-        else if(skillCast.CasterType == SkillCasterType.Monster)
+        else if (skillCast.CasterType == SkillCasterType.Monster)
         {
             if (mofMap.Monsters.ContainsKey(skillCast.CasterID))
             {
@@ -75,11 +75,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 if (context.Caster != null) JoinBattle(context.Caster);
             }
         }
-        if(skillCast.TargetType == SkillTargetType.Player)
+        if (skillCast.TargetType == SkillTargetType.Player)
         {
-            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(skillCast.TargetName))
+            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(skillCast.TargetName[0]))
             {
-                context.Target = CacheSvc.Instance.MOFCharacterDict[skillCast.TargetName];
+                context.Target = CacheSvc.Instance.MOFCharacterDict[skillCast.TargetName[0]];
                 if (context.Target != null) JoinBattle(context.Caster);
             }
         }
@@ -87,23 +87,25 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             if (mofMap.Monsters.ContainsKey(skillCast.CasterID))
             {
-                context.Target = mofMap.Monsters[skillCast.TargetID];
+                context.Target = mofMap.Monsters[skillCast.TargetID[0]];
                 if (context.Target != null) JoinBattle(context.Target);
             }
         }
-        else if(skillCast.TargetType == SkillTargetType.Position) 
+        else if (skillCast.TargetType == SkillTargetType.Position)
         {
             //目標為特定位置，非怪物
 
         }
         context.CastSkill = skillCast;
-        context.Damage = new DamageInfo
+        context.Damage = new DamageInfo[]
         {
+            new DamageInfo{
             EntityID = 1,
             Damage = new int[] { 10 },
             will_Dead = false
+        }
         };
-        
+
         //回傳技能釋放結果
         ProtoMsg msg = new ProtoMsg
         {
@@ -136,7 +138,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
             MOFCharacter Chr = (MOFCharacter)entity;
             if (AllPlayers.ContainsKey(Chr.CharacterName)) AllPlayers.Remove(Chr.CharacterName);
         }
-        else if(entity is AbstractMonster)
+        else if (entity is AbstractMonster)
         {
             AbstractMonster monster = (AbstractMonster)entity;
             if (AllMonsters.ContainsKey(monster.ID)) AllMonsters.Remove(monster.ID);
@@ -159,6 +161,6 @@ public class Battle //戰鬥類，一個地圖綁定一個
         catch (System.Exception e)
         {
             LogSvc.Error(e.Message);
-        }      
+        }
     }
 }

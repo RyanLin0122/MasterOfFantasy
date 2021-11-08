@@ -298,14 +298,14 @@ public class MainCitySys : SystemRoot
         if (add.Name != GameRoot.Instance.ActivePlayer.Name)
         {
             GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(add.Position[0], add.Position[1], 200f));
-            PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
-            GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
-            mainPlayerCtrl.Name = add.Name;
-            mainPlayerCtrl.SetTitle(add.Title);
-            mainPlayerCtrl.SetNameBox();
+            PlayerController OtherPlayerCtrl = player.GetComponent<PlayerController>();
+            GameRoot.Instance.MainPlayerControl = OtherPlayerCtrl;
+            OtherPlayerCtrl.Name = add.Name;
+            OtherPlayerCtrl.SetTitle(add.Title);
+            OtherPlayerCtrl.SetNameBox();
             BattleSys.Instance.InitAllAtribute();
-            mainPlayerCtrl.Init();
-            mainPlayerCtrl.entity = new Character
+            OtherPlayerCtrl.Init();
+            OtherPlayerCtrl.entity = new Character
             (new NEntity
             {
                 FaceDirection = true,
@@ -316,11 +316,12 @@ public class MainCitySys : SystemRoot
                 Position = new NVector3(add.Position[0], add.Position[1], 200f),
                 Type = EntityType.Player
             });
-            BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
+            SkillSys.Instance.InitPlayerSkills(add, OtherPlayerCtrl);
+            BattleSys.Instance.Players.Add(OtherPlayerCtrl.Name, OtherPlayerCtrl);
             GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
             //player.GetComponent<Transform>().SetAsLastSibling();
-            mainPlayerCtrl.SetAllEquipment(add);
-            mainPlayerCtrl.SetFace(add);
+            OtherPlayerCtrl.SetAllEquipment(add);
+            OtherPlayerCtrl.SetFace(add);
         }
 
     }
@@ -330,7 +331,7 @@ public class MainCitySys : SystemRoot
         {
             if (BattleSys.Instance.Players[remove.Name] != null)
             {
-                BattleSys.Instance.Players[remove.Name].DeleteThisChr();
+                Destroy(BattleSys.Instance.Players[remove.Name].gameObject);
                 BattleSys.Instance.Players.Remove(remove.Name);
             }
         }

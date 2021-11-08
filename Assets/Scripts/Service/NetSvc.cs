@@ -152,6 +152,9 @@ public class NetSvc : MonoBehaviour
             case 57:
                 DoHotKeyOperation(msg);
                 break;
+            case 55:
+                DoSkillCastResponse(msg);
+                break;
         }
     }
 
@@ -218,7 +221,7 @@ public class NetSvc : MonoBehaviour
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
         UISystem.Instance.InfoWnd.RefreshIInfoUI();
         BattleSys.Instance.HotKeyManager.ReadHotKey();
-        BattleSys.Instance.InitAllAtribute();
+        BattleSys.Instance.InitAllAtribute();       
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
     {
@@ -353,7 +356,7 @@ public class NetSvc : MonoBehaviour
             if (GameRoot.Instance.ActivePlayer.HP - playerGetHurt.damage > 0)
             {
                 //不會死的受傷               
-                GameRoot.Instance.MainPlayerControl.ProcessGetHurt(playerGetHurt.damage, playerGetHurt.hurtType, playerGetHurt.MonsterID);
+                //GameRoot.Instance.MainPlayerControl.ProcessGetHurt(playerGetHurt.damage, playerGetHurt.hurtType, playerGetHurt.MonsterID);
             }
             else
             {
@@ -581,5 +584,9 @@ public class NetSvc : MonoBehaviour
         {
             BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
         }
+    }
+    public void DoSkillCastResponse(ProtoMsg msg)
+    {
+        BattleSys.Instance.ProcessSkillCastResponse(msg);
     }
 }

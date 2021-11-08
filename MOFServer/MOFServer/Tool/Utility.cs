@@ -35,7 +35,8 @@ public static class Utility
             playerEquipments = p.playerEquipments,
             CoupleName = p.CoupleName,
             Ribi = p.Ribi,
-            Server = p.Server
+            Server = p.Server,
+            Skills = p.Skills
         };
         return tp;
     }

@@ -20,10 +20,6 @@ public class DamageController : MonoBehaviour
             CritalImg0.SetActive(false);
             CritalImg1.SetActive(false);
         }
-        if (transform.parent.parent.transform.localScale.x < 0)
-        {
-            transform.parent.localScale = new Vector3(-transform.parent.localScale.x, transform.parent.localScale.y, transform.parent.localScale.z);
-        }
         text.text = Tools.GetFloatingDamage(num, mode);
     }
     public void SetNumber(long num, int mode)
@@ -37,10 +33,6 @@ public class DamageController : MonoBehaviour
         {
             CritalImg0.SetActive(false);
             CritalImg1.SetActive(false);
-        }
-        if (transform.parent.parent.transform.localScale.x < 0)
-        {
-            transform.parent.localScale = new Vector3(-transform.parent.localScale.x, transform.parent.localScale.y, transform.parent.localScale.z);
         }
         text.text = Tools.GetFloatingDamage(num, mode);
     }

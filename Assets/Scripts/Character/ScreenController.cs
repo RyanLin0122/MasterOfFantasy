@@ -11,9 +11,9 @@ public class ScreenController : MonoBehaviour
     [Header("相機下界")] public float DownBound;
     [Header("相機左界")] public float LeftBound;
     [Header("相機右界")] public float RightBound;
-    
+
     public bool canCtrl = true;
- 
+
     private void Awake()
     {
         GameObject background = GameObject.Find("BG");
@@ -24,7 +24,7 @@ public class ScreenController : MonoBehaviour
         float cam_x = 535.0f;
         float cam_y = 300.0f;
 
-        
+
 
         UpBound = bound_y / 2.0f - cam_y;
         DownBound = -UpBound;
@@ -36,7 +36,7 @@ public class ScreenController : MonoBehaviour
 
         RightBound = bound_x / 2.0f - cam_x;
         LeftBound = -RightBound;
-        if(RightBound < LeftBound)
+        if (RightBound < LeftBound)
         {
             RightBound = 0;
             LeftBound = 0;
@@ -100,105 +100,41 @@ public class ScreenController : MonoBehaviour
             {
                 UISystem.Instance.baseUI.AddExp(100000000);
             }
-
-            //if (MainCitySys.Instance.shopWnd.gameObject.activeSelf == false && MainCitySys.Instance.menuUI.gameObject.activeSelf == false&&
-            //    MainCitySys.Instance.dialogueWnd.gameObject.activeSelf==false&& MainCitySys.Instance.MailBoxWnd.gameObject.activeSelf == false&&
-            //    MainCitySys.Instance.lockerWnd.gameObject.activeSelf == false)
+            if (Input.GetKeyDown(KeyCode.C))
             {
-
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    UISystem.Instance.InfoWnd.openCloseWnd();
-                }
-                if (Input.GetKeyDown(KeyCode.F2))
-                {
-                    UISystem.Instance.menuUI.OpenCloseKeyBind();
-                }
-                if (Input.GetKeyDown(KeyCode.I))
-                {
-                    KnapsackWnd.Instance.KeyBoardCommand();
-                }
-                if (Input.GetKeyDown(KeyCode.O))
-                {
-                    UISystem.Instance.OpenCloseOptionWnd();
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    EquipmentWnd.Instance.KeyBoardCommand();
-                }
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    UISystem.Instance.OpenLearnSkillUI();
-                }
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    DiaryWnd.Instance.KeyBoardCommand();
-                }
-                if (Input.GetKeyDown(KeyCode.F1))
-                {
-                    GuideWnd.Instance.KeyBoardCommand();
-                }
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    SkillSys.Instance.skillWnd.KeyBoardCommand();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    GetComponent<PlayerController>().PlayHurt();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    GetComponent<PlayerController>().PlayDeath();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    GetComponent<PlayerController>().PlayDown1();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha4))
-                {
-                    GetComponent<PlayerController>().PlayDown2();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha5))
-                {
-                    GetComponent<PlayerController>().PlayHorizon1();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha6))
-                {
-                    GetComponent<PlayerController>().PlayHorizon2();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha7))
-                {
-                    GetComponent<PlayerController>().PlayMagic();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha8))
-                {
-                    GetComponent<PlayerController>().PlayCleric();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha9))
-                {
-                    GetComponent<PlayerController>().PlayCrossbow();
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha0))
-                {
-                    GetComponent<PlayerController>().PlayBow();
-                }
-                if (Input.GetKeyDown(KeyCode.B))
-                {
-                    GetComponent<PlayerController>().PlaySlash();
-                }
-                if (Input.GetKeyDown(KeyCode.N))
-                {
-                    GetComponent<PlayerController>().PlayUpper();
-                }
-                if (Input.GetKeyDown(KeyCode.V))
-                {
-                    UISystem.Instance.AddMessageQueue(Time.realtimeSinceStartup.ToString());
-                }
-                //測試交易
-                if (Input.GetKeyDown(KeyCode.F10))
-                {
-                    UISystem.Instance.OpenTransationWnd("Test1", "Test2");
-                }
+                UISystem.Instance.InfoWnd.openCloseWnd();
+            }
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                UISystem.Instance.menuUI.OpenCloseKeyBind();
+            }
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                KnapsackWnd.Instance.KeyBoardCommand();
+            }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                UISystem.Instance.OpenCloseOptionWnd();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EquipmentWnd.Instance.KeyBoardCommand();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                UISystem.Instance.OpenLearnSkillUI();
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                DiaryWnd.Instance.KeyBoardCommand();
+            }
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                GuideWnd.Instance.KeyBoardCommand();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                SkillSys.Instance.skillWnd.KeyBoardCommand();
             }
         }
         if (Input.GetKeyDown(KeyCode.Home)) //截圖
@@ -220,7 +156,7 @@ public class ScreenController : MonoBehaviour
 
         if (UISystem.Instance.baseUI.Input.InputFieldAvaliable())
         {
-            
+
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 if (!UISystem.Instance.baseUI.Input.isSelect)

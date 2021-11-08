@@ -9,7 +9,10 @@ public class EffectEnd : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
+    public void DestroyParent()
+    {
+        Destroy(transform.parent.gameObject);
+    }
     public void CloseObject()
     {
         gameObject.SetActive(false);

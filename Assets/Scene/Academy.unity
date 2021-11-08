@@ -944,7 +944,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3924,6 +3924,10 @@ MonoBehaviour:
   Name: 
   rb: {fileID: 0}
   Shadow: {fileID: 2252811615586103700}
+  IsMoving: 0
+  IsAIControlling: 0
+  DamageContainer: {fileID: 2820258108529215610}
+  screenCtrl: {fileID: 978474395890111764}
   NameBox: {fileID: 5042317235521859829}
   ChatBox: {fileID: 978474395262063745}
   ChatBoxImg: {fileID: 8235575880455096392}
@@ -3932,12 +3936,8 @@ MonoBehaviour:
   HpBar: {fileID: 5392222428388598437}
   GuildText: {fileID: 5370177067187005070}
   DustSprites: []
-  IsMoving: 0
   IsRun: 0
   ChatBoxSeconds: 0
-  DamageContainer: {fileID: 2820258108529215610}
-  screenCtrl: {fileID: 978474395890111764}
-  Destination: {x: 0, y: 0}
   ShoesCtrl: {fileID: 7916199060311189640}
   FaceCtrl: {fileID: 978474396169795087}
   UpwearCtrl: {fileID: 5671662636426772242}

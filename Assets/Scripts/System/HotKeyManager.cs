@@ -74,6 +74,8 @@ public class HotKeyManager : MonoBehaviour
                 KeyCode key = (KeyCode)System.Enum.Parse(typeof(KeyCode), data.KeyCode);
                 if (HotKeySlots.ContainsKey(key))
                 {
+                    if(data.HotKeyState == 1) HotKeySlots[key].State = HotKeyState.Consumable;
+                    if (data.HotKeyState == 2) HotKeySlots[key].State = HotKeyState.Skill;
                     HotKeySlots[key].SetHotKeyUI(data);
                 }
             }

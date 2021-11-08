@@ -485,6 +485,10 @@ public class BattleSys : SystemRoot
     }
     public void OpenCurrentMonsterHPBar()
     {
+        if (PlayerInputController.Instance.entityController == null)
+        {
+            return;
+        }
         if (CurrentTarget != null && CurrentTarget is MonsterController)
         {
             MonsterController current = (MonsterController)CurrentTarget;
@@ -496,6 +500,10 @@ public class BattleSys : SystemRoot
     }
     public void CloseAllMonsterHPBar()
     {
+        if (PlayerInputController.Instance.entityController == null)
+        {
+            return;
+        }
         if (CurrentTarget != null && CurrentTarget is MonsterController)
         {
             MonsterController current = (MonsterController)CurrentTarget;
@@ -521,6 +529,103 @@ public class BattleSys : SystemRoot
 
     #endregion
 
+    #region 處理技能釋放回應
+    public void ProcessSkillCastResponse(ProtoMsg msg)
+    {
+        print("受到技能響應");
+        if (msg.skillCastResponse != null)
+        {
+            SkillCastResponse scr = msg.skillCastResponse;
+            if (scr.Result != SkillResult.OK)
+            {
+                print("技能釋放失敗: " + scr.Result.ToString());
+            }
+            else
+            {
+                if (scr.CastInfo.CasterType == SkillCasterType.Player)
+                {
+                    if (scr.CastInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
+                    {
+                        PlayerController mainPlayerController = PlayerInputController.Instance.entityController;
+                        if (mainPlayerController != null)
+                        {
+                            Skill skill = null;
+                            mainPlayerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
+                            if (skill != null)
+                            {
+                                skill.BeginCast(scr.CastInfo);
+                            }
+                            else
+                            {
+                                print("無此技能");
+                            }
+                        }
+                        else
+                        {
+                            print("找不到角色控制器");
+                        }
+                    }
+                    else
+                    {
+                        PlayerController playerController = null;
+                        Players.TryGetValue(scr.CastInfo.CasterName, out playerController);
+                        if (playerController != null)
+                        {
+                            Skill skill = null;
+                            playerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
+                            if (skill != null)
+                            {
+                                skill.BeginCast(scr.CastInfo);
+                            }
+                            else
+                            {
+                                playerController.SkillDict[scr.CastInfo.SkillID] = new Skill(ResSvc.Instance.SkillDic[scr.CastInfo.SkillID]);
+                                playerController.SkillDict[scr.CastInfo.SkillID].CD = 0;
+                                playerController.SkillDict[scr.CastInfo.SkillID].EntityController = playerController;
+                                playerController.SkillDict[scr.CastInfo.SkillID].SkillLevel = 1;
+                            }
+                        }
+                        else
+                        {
+                            print("無此角色");
+                        }
+                    }
+                }
+                else if (scr.CastInfo.CasterType == SkillCasterType.Monster)
+                {
+
+                }
+            }
+            if (scr.Damage != null && scr.Damage.Length > 0) //處理傷害
+            {
+                DamageInfo[] damages = scr.Damage;
+                foreach (var damage in damages)
+                {
+                    if (damage.IsMonster)
+                    {
+                        int MonsterID = damage.EntityID;
+                        MonsterController mon = null;
+                        Monsters.TryGetValue(MonsterID, out mon);
+                        if (mon != null && !DeathMonsterPool.Contains(mon))
+                        {
+                            mon.DoDamage(damage);
+                        }
+                    }
+                    else
+                    {
+                        string PlayerName = damage.EntityName;
+                        PlayerController pc = null;
+                        Players.TryGetValue(PlayerName, out pc);
+                        if (pc != null)
+                        {
+                            pc.DoDamage(damage);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #endregion
 
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
@@ -715,7 +820,6 @@ public class BattleSys : SystemRoot
     {
         if (mons.Count > 0)
         {
-            print("怪量:" + mons.Count);
             foreach (var id in mons.Keys)
             {
                 AddMonster(id, mons[id].MonsterID, mons[id].Position);

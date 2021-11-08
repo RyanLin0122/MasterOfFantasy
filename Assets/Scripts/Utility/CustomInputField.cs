@@ -79,8 +79,7 @@ public class CustomInputField : InputField
         Debug.Log("Onselect");
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = false;
         isSelect = true;
-        GameRoot.Instance.MainPlayerControl.Disable();
-
+        PlayerInputController.Instance.enabled = false;
     }
 
     public override void OnDeselect(BaseEventData eventData)
@@ -90,8 +89,7 @@ public class CustomInputField : InputField
         CurrentPointer = NewPointer;
         isSelect = false;
         GameObject.Find("MainCharacter(Clone)").GetComponent<ScreenController>().canCtrl = true;
-        GameRoot.Instance.MainPlayerControl.Enable();
-
+        PlayerInputController.Instance.enabled = true;
     }
     public void ActivateChat()
     {

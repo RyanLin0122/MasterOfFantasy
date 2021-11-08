@@ -331,6 +331,8 @@ namespace PEProtocal
         public int Server { get; set; }
         [ProtoMember(22, IsRequired = false)]
         public float[] Position { get; set; }
+        [ProtoMember(23, IsRequired = false)]
+        public Dictionary<int, SkillData> Skills { get; set; }
     }
     #endregion
 
@@ -592,9 +594,9 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public int CasterID { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public string TargetName { get; set; }
+        public string[] TargetName { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int TargetID { get; set; }
+        public int[] TargetID { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public float[] Position { get; set; }
     }

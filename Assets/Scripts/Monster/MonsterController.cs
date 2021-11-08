@@ -21,27 +21,40 @@ public class MonsterController : EntityController
             Blackboard blackboard = GetComponent<Blackboard>();
             NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
             blackboard.SetVariableValue("IsCalculator", true);
-        }
+        }        
         MonsterID = info.MonsterID;
+        this.entity = new Entity
+        {
+            entityId = MapMonsterID,
+            entityName = info.Name,
+            Type = EntityType.Monster,
+            speed = 200,
+            entityData = new NEntity
+            {
+                Speed = 200,
+                Id = MapMonsterID,
+                FaceDirection = transform.localScale.x > 0,
+                Position = new NVector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z)
+            }
+        };
         Actions = new Queue<MonsterTask>();
         UpdatePos = transform.localPosition;
         gameObject.name = "Monster:" + MapMonsterID;
-        AnimSpeed = ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[MonsterAniType.Idle].AnimSpeed;
-        AnimLength = ResSvc.Instance.MonsterInfoDic[MonsterID].AnimationDic[MonsterAniType.Idle].AnimSprite.Count;
+        AnimSpeed = info.AnimationDic[MonsterAniType.Idle].AnimSpeed;
+        AnimLength = info.AnimationDic[MonsterAniType.Idle].AnimSprite.Count;
         AnimTimeInterval = 1 / AnimSpeed;//得到每一幀間隔
-        LoadSprite(ResSvc.Instance.MonsterInfoDic[MonsterID].Sprites);
+        LoadSprite(info.Sprites);
         SpriteArray = AllSpriteArray[MonsterAniType.Idle];
         hp = info.MaxHp;
         MaxHp = info.MaxHp;
         SetHpBar();
-        //GetComponent<Blackboard>().SetVariableValue("IsStop", false);
+        GetComponent<Blackboard>().SetVariableValue("IsStop", false);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = AudioSvc.Instance.MonsterVolume;
         this.MapMonsterID = MapMonsterID;
         NameText1.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         NameText2.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         HideProfile();
-
     }
 
     #region Profile
@@ -682,6 +695,7 @@ namespace NodeCanvas.Tasks.Actions
             Random.InitState(Guid.NewGuid().GetHashCode());
             float dx = Random.Range(-1f, 1f) * speed.value;
             float dy = Random.Range(-1f, 1f) * speed.value;
+            ai.PlayAni(MonsterAniType.Walk, true);
             if (dx > 0)
             {
                 agent.localScale = new Vector2(-Mathf.Abs(agent.localScale.x), agent.localScale.y);

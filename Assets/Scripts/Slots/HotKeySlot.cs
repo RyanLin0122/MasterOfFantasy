@@ -198,7 +198,7 @@ public class HotKeySlot : MonoBehaviour
             if (keyCode.ToString() == data.KeyCode)
             {
                 this.data = data;
-                State = HotKeyState.Consumable;
+                State = HotKeyState.Skill;
                 ColdTimeImg.fillAmount = 0;
                 ContentImg.sprite = Resources.Load<Sprite>(ResSvc.Instance.SkillDic[data.ID].Icon);
                 ContentImg.gameObject.SetActive(true);
