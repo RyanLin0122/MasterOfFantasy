@@ -58,7 +58,7 @@ public class AudioSvc : MonoBehaviour
     }
     public void PlaySkillAudio(string path)
     {
-        AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Skill/" + name, true);
+        AudioClip audio = ResSvc.Instance.LoadAudio(path, true);
         CharacterAudio.clip = audio;
         CharacterAudio.Play();
     }

@@ -776,3 +776,19 @@ public class HotKeySender : BaseSender
     }
 }
 
+public class SkillSender :BaseSender
+{
+    public SkillSender(SkillCastInfo castInfo)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 54,
+            skillCastRequest = new SkillCastRequest
+            {
+                CastInfo = castInfo
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+

@@ -27,7 +27,7 @@ class SkillSys : MonoSingleton<SkillSys>
     public void ShowSkillToolTip(int skillID)
     {
         //ToDo
-        
+
     }
     public void Update()
     {
@@ -45,8 +45,8 @@ class SkillSys : MonoSingleton<SkillSys>
         go.localPosition = new Vector3(info.AniOffset["Self"][0], info.AniOffset["Self"][1], info.AniOffset["Self"][2]);
         if (info.Sound["Cast"] != "")
         {
-            AudioSvc.Instance.PlaySkillAudio(info.Sound["Cast"]);
-        }       
+            AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Cast"]);
+        }
     }
     public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform)
     {
@@ -57,13 +57,13 @@ class SkillSys : MonoSingleton<SkillSys>
         go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
         if (info.Sound["Hit"] != "")
         {
-            //AudioSvc.Instance.PlaySkillAudio(info.Sound["Hit"]);
+            AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Hit"]);
         }
     }
     public void InitPlayerSkills(Player player, EntityController controller)
     {
         controller.SkillDict = new Dictionary<int, Skill>();
-        if(player.Skills!=null && player.Skills.Count > 0)
+        if (player.Skills != null && player.Skills.Count > 0)
         {
             foreach (var kv in player.Skills)
             {
@@ -88,6 +88,6 @@ class SkillSys : MonoSingleton<SkillSys>
             }
         }
     }
-    
+
 }
 

@@ -8,6 +8,8 @@ public class Skill
     public SkillInfo info;
     public float CD = 0;
     public int SkillLevel = 0;
+    public float CastTime = 0;
+    public float DelayTime = 0;
     public EntityController EntityController;
     public Skill(SkillInfo info)
     {
@@ -15,58 +17,127 @@ public class Skill
     }
 
     #region Skill WorkFlow 技能總流程
-    public bool CanCast() //判斷能不能使用技能
+    public SkillResult CanCast() //判斷能不能使用技能
     {
+        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        if (CD > 0)
+        {
+            return SkillResult.CoolDown;
+        }
         if (!info.IsActive)
         {
-            return false;
+            return SkillResult.Invalid;
         }
-        ActiveSkillInfo active = (ActiveSkillInfo)info;
-        if (info.SkillID == 304)
+        if(EntityController is PlayerController)
         {
-            return true;
+            if(EntityController.Name == GameRoot.Instance.ActivePlayer.Name)
+            {
+                if(active.MP[SkillLevel-1]> GameRoot.Instance.ActivePlayer.MP) 
+                {
+                    return SkillResult.OutOfMP;
+                }
+                //判斷武器
+            }
         }
-        return false;
+        if(active.TargetType != SkillTargetType.Position)
+        {
+            if (BattleSys.Instance.CurrentTarget == null)
+            {
+                return SkillResult.TargetInvalid;
+            }
+            if (active.TargetType == SkillTargetType.Monster)
+            {
+                if (!(BattleSys.Instance.CurrentTarget is MonsterController))
+                {
+                    return SkillResult.TargetInvalid;
+                }
+            }
+            else if (active.TargetType == SkillTargetType.Player)
+            {
+                if (!(BattleSys.Instance.CurrentTarget is PlayerController))
+                {
+                    return SkillResult.TargetInvalid;
+                }
+            }
+        }
+        
+        //判斷範圍
+        //BattleSys.Instance.CurrentTarget.entity.entityId
+
+        return SkillResult.OK;
     }
 
     public void Cast() //釋放技能，傳送釋放技能請求給server
     {
-        if (CanCast())
+        SkillResult result = CanCast(); 
+        if (result == SkillResult.OK)
         {
-            //假資料
             PlayerController playerController = PlayerInputController.Instance.entityController;
             if (BattleSys.Instance.CurrentTarget == null) return;
-            SkillCastInfo castInfo = new SkillCastInfo
+            int CastID = -1;
+            string CasterName = "";
+            int[] TargetID = null;
+            string[] TargetName = null;
+            SkillCasterType CasterType = SkillCasterType.Player;
+            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            if (EntityController is MonsterController)
             {
-                SkillID = 304,
-                CasterID = BattleSys.Instance.CurrentTarget.entity.entityId,
-                CasterName = GameRoot.Instance.ActivePlayer.Name,
-                CasterType = SkillCasterType.Player,
-                Position = new float[] { playerController.transform.localPosition.x, playerController.transform.localPosition.y, playerController.transform.localPosition.z },
-                TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId },
-                TargetName = new string[] { "" },
-                TargetType = SkillTargetType.Monster
-            };
-
-            NetSvc.Instance.DoSkillCastResponse(
-                new ProtoMsg
+                CastID = this.EntityController.entity.entityId;
+                CasterType = SkillCasterType.Monster;
+                if (active.IsMultiple)
                 {
-                    MessageType = 55,
-                    skillCastResponse = new SkillCastResponse
+                    Debug.Log("範圍技能Todo");
+                    return;
+                }
+                else
+                {
+                    if(active.TargetType == SkillTargetType.Monster)
                     {
-                        CastInfo = castInfo,
-                        Damage = new DamageInfo[] { new DamageInfo
-                        {
-                            Damage = new int[]{ Tools.RDInt(1,8)},
-                            EntityID = BattleSys.Instance.CurrentTarget.entity.entityId,
-                            EntityName = "",
-                            IsMonster = true
-                        }
-                        },
-                        Result = SkillResult.OK
+                        //TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                    }
+                    else
+                    {
+                        //TargetName = new string[] { };
                     }
                 }
-                );
+            }
+            else if(EntityController is PlayerController)
+            {
+                CasterName = this.EntityController.Name;
+                CasterType = SkillCasterType.Player;
+                if (active.IsMultiple)
+                {
+                    Debug.Log("範圍技能Todo");
+                    return;
+                }
+                else
+                {
+                    if (active.TargetType == SkillTargetType.Monster)
+                    {
+                        TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                    }
+                    else
+                    {
+                        TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName};
+                    }
+                }
+            }
+            SkillCastInfo castInfo = new SkillCastInfo
+            {
+                SkillID = info.SkillID,
+                CasterID = CastID,
+                CasterName = CasterName,
+                CasterType = CasterType,
+                Position = new float[] { EntityController.transform.localPosition.x, EntityController.transform.localPosition.y, EntityController.transform.localPosition.z },
+                TargetID = TargetID,
+                TargetName = TargetName,
+                TargetType = active.TargetType
+            };
+            new SkillSender(castInfo);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue(result.ToString());
         }
     }
 
