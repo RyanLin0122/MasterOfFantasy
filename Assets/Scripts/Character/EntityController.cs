@@ -31,15 +31,22 @@ public class EntityController : MonoBehaviour
     {
         //子類實現
         int NumberCount = damage.Damage.Length;
+
         if (NumberCount > 0)
         {
+            int[] t = new int[NumberCount];
             for (int i = 0; i < NumberCount; i++)
             {
-                if (i > 0) TimerSvc.Instance.AddTimeTask((t) => { GenerateDamageNum(damage.Damage[i], 2); }, 0.3f * i, PETimeUnit.Second);
+                if (i > 0)
+                {
+                    int index = i;
+                    TimerSvc.Instance.AddTimeTask((a) => { GenerateDamageNum(damage.Damage[index], 2); }, 300f * index, PETimeUnit.Millisecond, 1);
+                }
                 else GenerateDamageNum(damage.Damage[i], 2);
             }
         }
     }
+
     #region Generate Number
     public GameObject DamageContainer;
     public void GenerateDamageNum(int damage, int mode)

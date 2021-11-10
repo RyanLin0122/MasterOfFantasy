@@ -100,12 +100,12 @@ public class Skill
                     ErrorMsg = context.Result.ToString(),
                 }
             };
-            if(castInfo.CasterType == SkillCasterType.Player)
+            if (castInfo.CasterType == SkillCasterType.Player)
             {
 
             }
             this.Owner.mofMap.BroadCastMassege(msg);
-            
+
             //開始釋放
             /*
             this.CastingTime = 0;
@@ -213,7 +213,7 @@ public class Skill
             return;
         }
         //判斷目標類型
-        if(ActiveInfo.TargetType == SkillTargetType.Monster || ActiveInfo.TargetType == SkillTargetType.Player)
+        if (ActiveInfo.TargetType == SkillTargetType.Monster || ActiveInfo.TargetType == SkillTargetType.Player)
         {
             //HitTarget(context.Target);
         }
@@ -245,6 +245,39 @@ public class Skill
                 return true;
             default:
                 return true;
+        }
+    }
+    public int[] GetDamage(bool IsPlayer)
+    {
+        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        int Times = active.Times[this.Level - 1];
+        if (Times > 0)
+        {
+            int[] Damages = new int[Times];
+            if (IsPlayer)
+            {
+                PlayerAttribute playerAttribute = ((MOFCharacter)Owner).FinalAttribute;
+                int Mindamage = playerAttribute.MinDamage;
+                int Maxdamage = playerAttribute.MaxDamage;
+                
+                for (int i = 0; i < Damages.Length; i++)
+                {
+                    //根據玩家現在的素質計算傷害
+                    Damages[i] = RandomSys.Instance.GetRandomInt(1, 10);
+                    //Damages[i] = (int)(RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage)*active.Damage[this.Level-1]);
+                }
+                return Damages;
+            }
+            else //怪物的攻擊 Todo
+            {
+
+                return null;
+            }
+
+        }
+        else
+        {
+            return null;
         }
     }
 }

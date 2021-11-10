@@ -149,7 +149,8 @@ public class MapSvc : Singleton<MapSvc>
                                 monster = new AbstractMonster 
                                 {
                                     MonsterID = MonID, 
-                                    Hp = CacheSvc.Instance.MonsterInfoDic[MonID].MaxHp, 
+                                    Hp = CacheSvc.Instance.MonsterInfoDic[MonID].MaxHp,
+                                    laststatus = MonsterStatus.Death,
                                     status = MonsterStatus.Death
                                 } };
                             string[] t2 = t1[1].Split(new char[] { ',' });

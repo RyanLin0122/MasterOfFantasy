@@ -152,31 +152,39 @@ public class Battle //戰鬥類，一個地圖綁定一個
         context.CastSkill = skillCast;
         if (FinalTargets.Count > 0)
         {
+            ActiveSkillInfo active = (ActiveSkillInfo)CacheSvc.Instance.SkillDic[skillCast.SkillID];
             DamageInfo[] damages = new DamageInfo[FinalTargets.Count];
             for (int i = 0; i < FinalTargets.Count; i++)
             {
-                if (FinalTargets[i] is MOFCharacter)
+                if(skillCast.CasterType == SkillCasterType.Player)
                 {
-                    DamageInfo damage = new DamageInfo
+                    if (FinalTargets[i] is MOFCharacter)
                     {
-                        EntityName = FinalTargets[i].nEntity.EntityName,
-                        Damage = new int[] { 10 },
-                        will_Dead = false,
-                        IsMonster = false,
-                        EntityID = -1
-                    };
-                    damages[i] = damage;
-                }
-                else
+                        DamageInfo damage = new DamageInfo
+                        {
+                            EntityName = FinalTargets[i].nEntity.EntityName,
+                            Damage = mofMap.characters[skillCast.CasterName].skillManager.ActiveSkills[skillCast.SkillID].GetDamage(true),
+                            will_Dead = false,
+                            IsMonster = false,
+                            EntityID = -1
+                        };
+                        damages[i] = damage;
+                    }
+                    else
+                    {
+                        DamageInfo damage = new DamageInfo
+                        {
+                            EntityID = FinalTargets[i].nEntity.Id,
+                            Damage = mofMap.characters[skillCast.CasterName].skillManager.ActiveSkills[skillCast.SkillID].GetDamage(true),
+                            will_Dead = false,
+                            IsMonster = true
+                        };
+                        damages[i] = damage;
+                    }
+                } //玩家釋放技能
+                else //怪物釋放技能
                 {
-                    DamageInfo damage = new DamageInfo
-                    {
-                        EntityID = FinalTargets[i].nEntity.Id,
-                        Damage = new int[] { 10 },
-                        will_Dead = false,
-                        IsMonster = true
-                    };
-                    damages[i] = damage;
+
                 }
             }
             context.Damage = damages;
