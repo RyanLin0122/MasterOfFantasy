@@ -131,7 +131,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             entityController.OnEntityEvent(entityEvent);
         }
         this.character.SetPosition(this.rb.transform.localPosition);
-        print(character.entityData.Position.X + ", "+ character.entityData.Position.Y);
+        //print(character.entityData.Position.X + ", "+ character.entityData.Position.Y);
         new MoveSender(entityEvent, character.entityData);
     }
 

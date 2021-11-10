@@ -106,13 +106,13 @@ public class Skill
             }
             this.Owner.mofMap.BroadCastMassege(msg);
 
-            //開始釋放
-            /*
+            //開始釋放           
             this.CastingTime = 0;
             this.SkillTime = 0;
             this.CD = ActiveInfo.ColdTime[this.Level - 1];
             this.context = context;
             this.Hit = 0;
+            /*
             if (this.Instant)
             {
                 this.DoHit();

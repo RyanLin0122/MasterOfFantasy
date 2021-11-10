@@ -62,13 +62,21 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             MOFCharacter Caster = null;
             this.mofMap.characters.TryGetValue(skillCast.CasterName, out Caster);
-            if (context.Caster != null) JoinBattle(context.Caster);
+            if (Caster != null) 
+            {
+                context.Caster = Caster;
+                JoinBattle(context.Caster); 
+            }
         }
         else if (skillCast.CasterType == SkillCasterType.Monster)
         {
             AbstractMonster Caster = null;
             this.mofMap.Monsters.TryGetValue(skillCast.CasterID, out Caster);
-            if (context.Caster != null) JoinBattle(context.Caster);
+            if (Caster != null)
+            {
+                context.Caster = Caster;
+                JoinBattle(context.Caster);
+            }
         }
         List<Entity> FinalTargets = new List<Entity>();
         if (skillCast.TargetType == SkillTargetType.Player)

@@ -154,11 +154,14 @@ public class MOFMap
             }
             //回傳資料
             Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
-            foreach (var id in MonsterPoints.Keys)
+            foreach (var point in MonsterPoints.Values)
             {
-                if (MonsterPoints[id].monster.status != MonsterStatus.Death)
+                if (point.monster.status != MonsterStatus.Death)
                 {
-                    mons.Add(id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
+                    if (point.monster.nEntity != null)
+                    {
+                        mons.Add(point.monster.nEntity.Id, MonsterPointToSerielizedMonster(point));
+                    }
                 }
             }
             ProtoMsg outmsg = new ProtoMsg

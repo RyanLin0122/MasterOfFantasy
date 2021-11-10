@@ -144,6 +144,10 @@ public class Skill
     public void BeginCast(SkillCastInfo castInfo) //收到釋放技能請求之後，開始釋放流程
     {
         Charge(castInfo);
+        if(castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
+        {
+            SetCD();
+        }
     }
 
     //<-------- 蓄力階段 Charge Phase ---------->
@@ -190,7 +194,7 @@ public class Skill
             }
             if (castInfo.TargetType == SkillTargetType.Monster)
             {
-                foreach (var ID in castInfo.TargetID)
+                  foreach (var ID in castInfo.TargetID)
                 {
                     MonsterController monsterController = null;
                     BattleSys.Instance.Monsters.TryGetValue(ID, out monsterController);
@@ -235,9 +239,27 @@ public class Skill
     }
 
     //<-------- 技能更新階段 Update Phase ---------->
-    public void Update()
+    public void Update(float deltaTime)
     {
-
+        if (this.CD > 0)
+        {
+            this.CD = Mathf.Clamp(this.CD - deltaTime, 0, this.CD);
+        }
+        else
+        {
+            this.CD = 0;
+        }
+    }
+    public void SetCD()
+    {
+        this.CD = ((ActiveSkillInfo)info).ColdTime[this.SkillLevel - 1];
+        foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
+        {
+            if(slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
+            {
+                slot.SetColdTime(this.CD, this.CD);
+            }
+        } 
     }
     #endregion
 

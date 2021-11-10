@@ -16,18 +16,31 @@ public class HotKeySlot : MonoBehaviour
     public HotKeyState State;
     public HotkeyData data;
     public int ColdTimeTaskID = -1;
+    public int MinusTimes = 0;
     public void SetColdTime(float maxTime, float time)
     {
         ColdTimeImg.fillAmount = time / maxTime;
         float Period = 0.1f;
-        int MinusTimes = Mathf.CeilToInt(time / Period);
+        int TotalMinusTimes = Mathf.CeilToInt(time / Period);
+        if (maxTime == 0 || time == 0)
+        {
+            ColdTimeImg.fillAmount = 0;
+            return;
+        }
+        if (ColdTimeTaskID != -1)
+        {
+            RemoveColdTimeTask();
+        }
         ColdTimeTaskID = TimerSvc.Instance.AddTimeTask(
             (t) =>
             {
                 float num = ColdTimeImg.fillAmount;
-                if ((num - (1f / MinusTimes)) > 0)
+                float cd = num - (1f / TotalMinusTimes);
+                this.MinusTimes++;
+                print(this.MinusTimes + "¦¸ " + cd.ToString() + " " + (cd < 0.1f).ToString());
+                if (this.MinusTimes < TotalMinusTimes)
                 {
-                    ColdTimeImg.fillAmount = num - (1f / MinusTimes);
+                    ColdTimeImg.fillAmount = num - (1f / TotalMinusTimes);
                 }
                 else
                 {
@@ -36,9 +49,11 @@ public class HotKeySlot : MonoBehaviour
                     tr.SetParent(transform);
                     tr.localScale = Vector3.one;
                     tr.localPosition = Vector3.zero;
+                    this.MinusTimes = 1;
+                    RemoveColdTimeTask();
                 }
             }
-            , Period, PETimeUnit.Second, MinusTimes);
+            , Period, PETimeUnit.Second, TotalMinusTimes);
     }
     public void RemoveColdTimeTask()
     {
@@ -190,7 +205,6 @@ public class HotKeySlot : MonoBehaviour
                 TxtItemCount.text = Count.ToString();
                 TxtItemCount.gameObject.SetActive(true);
                 ItemCountBG.gameObject.SetActive(true);
-                SetColdTime(1, 1); //ToDo
             }
         }
         else if (data.HotKeyState == 2) //§Þ¯à
@@ -204,7 +218,10 @@ public class HotKeySlot : MonoBehaviour
                 ContentImg.gameObject.SetActive(true);
                 TxtItemCount.gameObject.SetActive(false);
                 ItemCountBG.gameObject.SetActive(false);
-                SetColdTime(1, 1); //ToDo
+                if (SkillSys.Instance.MainCharacterSkillDic != null)
+                {
+                    SetColdTime(((ActiveSkillInfo)ResSvc.Instance.SkillDic[data.ID]).ColdTime[SkillSys.Instance.MainCharacterSkillDic[data.ID].SkillLevel - 1], SkillSys.Instance.MainCharacterSkillDic[data.ID].CD);
+                }
             }
         }
     }

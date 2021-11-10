@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 
 class SkillSys : MonoSingleton<SkillSys>
 {
+    public Dictionary<int, Skill> MainCharacterSkillDic = null;
     public void InitSys()
-    {
+    {        
         Debug.Log("Init SkillSys...");
     }
     public SkillWnd skillWnd;
@@ -31,10 +32,12 @@ class SkillSys : MonoSingleton<SkillSys>
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if(MainCharacterSkillDic!=null && MainCharacterSkillDic.Count > 0)
         {
-            Skill skill = new Skill(ResSvc.Instance.SkillDic[304]);
-            skill.BeginCast(new SkillCastInfo());
+            foreach (var skill in MainCharacterSkillDic.Values)
+            {
+                skill.Update(Time.deltaTime);
+            }
         }
     }
     public void InstantiateCasterSkillEffect(int SkillID, Transform CasterTransform)
@@ -62,6 +65,26 @@ class SkillSys : MonoSingleton<SkillSys>
     }
     public void InitPlayerSkills(Player player, EntityController controller)
     {
+        if (MainCharacterSkillDic != null)
+        {
+            controller.SkillDict = MainCharacterSkillDic;
+            if (controller.SkillDict.Count > 0)
+            {
+                foreach (var skill in controller.SkillDict.Values)
+                {
+                    skill.EntityController = controller;
+                }
+            }
+            
+            foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
+            {
+                if (slot.State == HotKeyState.Skill)
+                {
+                    slot.SetColdTime(controller.SkillDict[slot.data.ID].CD, controller.SkillDict[slot.data.ID].CD);
+                }
+            }
+            return;
+        }
         controller.SkillDict = new Dictionary<int, Skill>();
         if (player.Skills != null && player.Skills.Count > 0)
         {
@@ -72,7 +95,9 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key].EntityController = controller;
                 controller.SkillDict[kv.Key].SkillLevel = kv.Value.SkillLevel;
             }
+
         }
+        MainCharacterSkillDic = controller.SkillDict;
     }
     public void InitPlayerSkills(TrimedPlayer player, EntityController controller)
     {
