@@ -257,7 +257,7 @@ public class Skill
         {
             if(slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
             {
-                slot.SetColdTime(this.CD, this.CD);
+                slot.SetColdTime(this);
             }
         } 
     }

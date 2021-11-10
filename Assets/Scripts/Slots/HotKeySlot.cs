@@ -17,9 +17,11 @@ public class HotKeySlot : MonoBehaviour
     public HotkeyData data;
     public int ColdTimeTaskID = -1;
     public int MinusTimes = 0;
-    public void SetColdTime(float maxTime, float time)
+    public Skill CurrentSkill;
+    public void SetColdTime(Skill skill)
     {
-        ColdTimeImg.fillAmount = time / maxTime;
+        float maxTime = ((ActiveSkillInfo)ResSvc.Instance.SkillDic[skill.info.SkillID]).ColdTime[skill.SkillLevel - 1];
+        float time = skill.CD;
         float Period = 0.1f;
         int TotalMinusTimes = Mathf.CeilToInt(time / Period);
         if (maxTime == 0 || time == 0)
@@ -31,16 +33,16 @@ public class HotKeySlot : MonoBehaviour
         {
             RemoveColdTimeTask();
         }
+        ColdTimeImg.fillAmount = time / maxTime;
         ColdTimeTaskID = TimerSvc.Instance.AddTimeTask(
             (t) =>
             {
                 float num = ColdTimeImg.fillAmount;
-                float cd = num - (1f / TotalMinusTimes);
+                float cd = num - ( Period / maxTime);
                 this.MinusTimes++;
-                print(this.MinusTimes + "¦¸ " + cd.ToString() + " " + (cd < 0.1f).ToString());
                 if (this.MinusTimes < TotalMinusTimes)
                 {
-                    ColdTimeImg.fillAmount = num - (1f / TotalMinusTimes);
+                    ColdTimeImg.fillAmount = cd;
                 }
                 else
                 {
@@ -59,6 +61,7 @@ public class HotKeySlot : MonoBehaviour
     {
         TimerSvc.Instance.DeleteTimeTask(ColdTimeTaskID);
         ColdTimeTaskID = -1;
+        MinusTimes = 1;
     }
     public void ResetUI()
     {
@@ -220,7 +223,7 @@ public class HotKeySlot : MonoBehaviour
                 ItemCountBG.gameObject.SetActive(false);
                 if (SkillSys.Instance.MainCharacterSkillDic != null)
                 {
-                    SetColdTime(((ActiveSkillInfo)ResSvc.Instance.SkillDic[data.ID]).ColdTime[SkillSys.Instance.MainCharacterSkillDic[data.ID].SkillLevel - 1], SkillSys.Instance.MainCharacterSkillDic[data.ID].CD);
+                    SetColdTime( SkillSys.Instance.MainCharacterSkillDic[data.ID]);
                 }
             }
         }

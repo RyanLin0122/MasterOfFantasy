@@ -80,7 +80,7 @@ class SkillSys : MonoSingleton<SkillSys>
             {
                 if (slot.State == HotKeyState.Skill)
                 {
-                    slot.SetColdTime(controller.SkillDict[slot.data.ID].CD, controller.SkillDict[slot.data.ID].CD);
+                    slot.SetColdTime(controller.SkillDict[slot.data.ID]);
                 }
             }
             return;
