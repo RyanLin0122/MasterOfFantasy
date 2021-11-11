@@ -29,5 +29,10 @@ public class Entity : IEntity
     {
 
     }
+
+    internal double Distance(NVector3 pos)
+    {
+        return Math.Sqrt(Math.Pow(this.nEntity.Position.X - pos.X, 2) + Math.Pow(this.nEntity.Position.Y - pos.Y, 2));
+    }
 }
 

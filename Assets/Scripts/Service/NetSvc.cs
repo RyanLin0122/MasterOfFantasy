@@ -155,6 +155,9 @@ public class NetSvc : MonoBehaviour
             case 55:
                 DoSkillCastResponse(msg);
                 break;
+            case 60:
+                DoSkillHitResponse(msg);
+                break;
         }
     }
 
@@ -588,5 +591,10 @@ public class NetSvc : MonoBehaviour
     public void DoSkillCastResponse(ProtoMsg msg)
     {
         BattleSys.Instance.ProcessSkillCastResponse(msg);
+    }
+
+    public void DoSkillHitResponse(ProtoMsg msg)
+    {
+        BattleSys.Instance.ProcessSkillHitResponse(msg);
     }
 }

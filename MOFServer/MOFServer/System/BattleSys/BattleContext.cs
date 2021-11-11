@@ -11,7 +11,7 @@ public class BattleContext
     public Entity Caster { get; set; }
     public List<Entity> Target { get; set; }
     public SkillCastInfo CastSkill { get; set; }
-    public DamageInfo[] Damage { get; set; }
+    public List<DamageInfo> Damage { get; set; }
     public SkillResult Result { get; set; }
     public BattleContext(Battle battle, SkillCastInfo castInfo)
     {

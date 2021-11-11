@@ -596,34 +596,46 @@ public class BattleSys : SystemRoot
 
                 }
             }
-            if (scr.Damage != null && scr.Damage.Length > 0) //處理傷害
+        }
+    }
+    public void ProcessSkillHitResponse(ProtoMsg msg)
+    {
+        SkillHitResponse shr = msg.skillHitResponse;
+        if (shr.Result != SkillResult.OK) return;
+        if (shr.skillHits != null && shr.skillHits.Count > 0)
+        {
+            foreach (var hit in shr.skillHits)
             {
-                DamageInfo[] damages = scr.Damage;
-                foreach (var damage in damages)
+                
+                if (hit.damageInfos != null && hit.damageInfos.Count > 0) //處理傷害
                 {
-                    if (damage.IsMonster)
+                    List<DamageInfo> damages = hit.damageInfos;
+                    foreach (var damage in damages)
                     {
-                        int MonsterID = damage.EntityID;
-                        MonsterController mon = null;
-                        Monsters.TryGetValue(MonsterID, out mon);
-                        if (mon != null && !DeathMonsterPool.Contains(mon))
+                        if (damage.IsMonster)
                         {
-                            mon.DoDamage(damage);
+                            int MonsterID = damage.EntityID;
+                            MonsterController mon = null;
+                            Monsters.TryGetValue(MonsterID, out mon);
+                            if (mon != null && !DeathMonsterPool.Contains(mon))
+                            {
+                                mon.DoDamage(damage, (ActiveSkillInfo)ResSvc.Instance.SkillDic[hit.SkillID]);
+                            }
                         }
-                    }
-                    else
-                    {
-                        string PlayerName = damage.EntityName;
-                        PlayerController pc = null;
-                        Players.TryGetValue(PlayerName, out pc);
-                        if (pc != null)
+                        else
                         {
-                            pc.DoDamage(damage);
+                            string PlayerName = damage.EntityName;
+                            PlayerController pc = null;
+                            Players.TryGetValue(PlayerName, out pc);
+                            if (pc != null)
+                            {
+                                pc.DoDamage(damage, (ActiveSkillInfo)ResSvc.Instance.SkillDic[hit.SkillID]);
+                            }
                         }
                     }
                 }
-            }
-        }
+            }          
+        }       
     }
     #endregion
 

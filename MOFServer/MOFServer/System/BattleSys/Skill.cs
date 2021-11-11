@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using PEProtocal;
+using System.Collections.Generic;
 
 public class Skill
 {
@@ -14,6 +15,7 @@ public class Skill
     public BattleContext context;
     public DamageInfo damage;
     public int Hit; //如果是持續技能，現在已經是第幾次攻擊
+    public SkillHitInfo HitInfo;
     public Skill(int SkillID, int Level, Entity Owner)
     {
         this.Info = CacheSvc.Instance.SkillDic[SkillID];
@@ -95,7 +97,6 @@ public class Skill
                 skillCastResponse = new SkillCastResponse
                 {
                     CastInfo = castInfo,
-                    Damage = context.Damage,
                     Result = context.Result,
                     ErrorMsg = context.Result.ToString(),
                 }
@@ -112,7 +113,7 @@ public class Skill
             this.CD = ActiveInfo.ColdTime[this.Level - 1];
             this.context = context;
             this.Hit = 0;
-            /*
+
             if (this.Instant)
             {
                 this.DoHit();
@@ -128,7 +129,7 @@ public class Skill
                     this.status = SkillStatus.Running;
                 }
             }
-            */
+
         }
         Console.WriteLine("Skill[{0}].Cast Result: [{1}] Status {2} ", Info.SkillName, result.ToString(), this.status.ToString());
         return result;
@@ -192,15 +193,16 @@ public class Skill
                 LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
             }
         }
+        if (!ActiveInfo.IsContinue && !ActiveInfo.IsDOT)
+        {
+            this.status = SkillStatus.None;
+        }
     }
-    private void InitHitInfo()
-    {
 
-    }
     public void DoHit() //找到Entity
     {
         ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
-        InitHitInfo();
+        InitHitInfo(ActiveInfo);
         this.Hit++;
         if (ActiveInfo.IsShoot)
         {
@@ -209,26 +211,64 @@ public class Skill
         }
         if (ActiveInfo.IsMultiple)
         {
-            HitRange();
+            HitRange(ActiveInfo);
             return;
         }
         //判斷目標類型
         if (ActiveInfo.TargetType == SkillTargetType.Monster || ActiveInfo.TargetType == SkillTargetType.Player)
         {
-            //HitTarget(context.Target);
+            if (context.Target.Count > 0)
+            {
+                foreach (var target in context.Target)
+                {
+                    HitTarget(target);
+                }
+            }
         }
     }
-    private void HitTarget()
+    private void InitHitInfo(ActiveSkillInfo active)
     {
-
+        this.HitInfo = new SkillHitInfo
+        {
+            damageInfos = new List<DamageInfo>(),
+            SkillID = this.Info.SkillID
+        };
+        if (this.Owner is AbstractMonster)
+        {
+            this.HitInfo.CasterID = this.context.Caster.nEntity.Id;
+            this.HitInfo.CasterType = SkillCasterType.Monster;
+        }
+        else
+        {
+            this.HitInfo.CastName = this.context.Caster.nEntity.EntityName;
+            this.HitInfo.CasterType = SkillCasterType.Player;
+        }
+        context.Battle.AddHitInfo(this.HitInfo);
+    }
+    private void HitTarget(Entity target)
+    {
+        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        if (!active.IsAttack) return;
+        DamageInfo damage = GetDamageInfo(active, this.context.CastSkill, target);
+        target.DoDamage(damage);
+        this.HitInfo.damageInfos.Add(damage);
     }
     private void CastBullet()
     {
 
     }
-    private void HitRange()
+    private void HitRange(ActiveSkillInfo active)
     {
-
+        NVector3 pos; //範圍技基準點
+        pos = this.Owner.nEntity.Position;
+        List<Entity> units = this.context.Battle.FindUnitsInRange(pos, active.Shape, active.Range, active.TargetType);
+        if (units != null && units.Count > 0)
+        {
+            foreach (var target in units)
+            {
+                HitTarget(target);
+            }
+        }
     }
     //判斷敵人是否在技能有效範圍內
     public bool CheckRange(SkillRangeShape Shape, float[] Range, NVector3 CasterPosition, NVector3 TargetPosition)
@@ -247,7 +287,52 @@ public class Skill
                 return true;
         }
     }
-    public int[] GetDamage(bool IsPlayer)
+
+    public DamageInfo GetDamageInfo(ActiveSkillInfo active, SkillCastInfo skillCast, Entity Target)
+    {
+        if (context.Damage == null) context.Damage = new List<DamageInfo>();
+        DamageInfo result = null;
+        if (Target != null)
+        {
+            if (skillCast.CasterType == SkillCasterType.Player)
+            {
+                float Crit = 0.3f; //假資料
+                bool IsCtrt = IsCrit(Crit);
+                if (Target is MOFCharacter)
+                {
+                    DamageInfo damage = new DamageInfo
+                    {
+                        EntityName = Target.nEntity.EntityName,
+                        Damage = CalculateDamage(true, IsCtrt),
+                        will_Dead = false,
+                        IsMonster = false,
+                        EntityID = -1,
+                        IsCritical = IsCtrt
+                    };
+                    result = damage;
+                }
+                else
+                {
+                    DamageInfo damage = new DamageInfo
+                    {
+                        EntityID = Target.nEntity.Id,
+                        Damage = CalculateDamage(true, IsCtrt),
+                        will_Dead = false,
+                        IsMonster = true,
+                        IsCritical = IsCtrt
+                    };
+                    result = damage;
+                }
+            } //玩家釋放技能
+            else //怪物釋放技能
+            {
+
+            }
+            context.Damage.Add(result);
+        }
+        return result;
+    }
+    public int[] CalculateDamage(bool IsPlayer, bool IsCritical)
     {
         ActiveSkillInfo active = (ActiveSkillInfo)Info;
         int Times = active.Times[this.Level - 1];
@@ -257,14 +342,24 @@ public class Skill
             if (IsPlayer)
             {
                 PlayerAttribute playerAttribute = ((MOFCharacter)Owner).FinalAttribute;
-                int Mindamage = playerAttribute.MinDamage;
-                int Maxdamage = playerAttribute.MaxDamage;
-                
+                //int Mindamage = playerAttribute.MinDamage;
+                //int Maxdamage = playerAttribute.MaxDamage;
+                int Mindamage = 1; //假資料
+                int Maxdamage = 10; //假資料          
+                int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);
+                float d_AfterCritical = 0;
+                if (IsCritical) //計算是否爆擊
+                {
+                    d_AfterCritical = 1.5f * d_beforeCritical;
+                }
+                else
+                {
+                    d_AfterCritical = d_beforeCritical;
+                }
                 for (int i = 0; i < Damages.Length; i++)
                 {
-                    //根據玩家現在的素質計算傷害
-                    Damages[i] = RandomSys.Instance.GetRandomInt(1, 10);
-                    //Damages[i] = (int)(RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage)*active.Damage[this.Level-1]);
+                    //根據玩家現在的數值計算傷害
+                    Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
                 }
                 return Damages;
             }
@@ -279,6 +374,10 @@ public class Skill
         {
             return null;
         }
+    }
+    public bool IsCrit(float Crit)
+    {
+        return RandomSys.Instance.NextDouble() < Crit;
     }
 }
 

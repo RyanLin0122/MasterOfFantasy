@@ -12,4 +12,9 @@ public class RandomSys : Singleton<RandomSys>
     {
         return random.Next(LowerBound, UpperBound);
     }
+
+    public double NextDouble()
+    {
+        return random.NextDouble();
+    }
 }

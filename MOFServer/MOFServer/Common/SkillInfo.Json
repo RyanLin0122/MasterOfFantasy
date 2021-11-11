@@ -76,12 +76,12 @@
     ],
     "Action": "MagicAttack",
     "AniPath": {
-      "Self": "DarkHandS",
-      "Shoot": "",
-      "Other": "DarkHandT"
+      "Self": "FireBallS",
+      "Shoot": "FireBallB",
+      "Other": ""
     },
     "AniOffset": {
-      "Self": [ 3.4, 26.4, 0 ],
+      "Self": [ 0, 0, 0 ],
       "Shoot": [ 0, 0, 0 ],
       "Target": [ 0, 0.1, 0 ]
     },
@@ -91,7 +91,12 @@
     },
     "CastTime": 0.1,
     "ChargeTime": 0,
-    "LockTime": 1
+    "LockTime": 1,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1, 1, 1 ]
+    }
   },
   {
     "ID": 304,
@@ -151,6 +156,11 @@
     },
     "CastTime": 0.1,
     "ChargeTime": 0,
-    "LockTime": 1
+    "LockTime": 1,
+    "AniScale": {
+      "Self": [1, 1, 1],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [1, 1, 1]
+    }
   }
 ]

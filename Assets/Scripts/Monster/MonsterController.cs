@@ -101,7 +101,25 @@ public class MonsterController : EntityController
     {
         GetComponent<PolyNavAgent>().maxSpeed = Speed;
     }
-
+    public override void PlayHitAni(ActiveSkillInfo active)
+    {
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform);
+        switch (active.Property)
+        {
+            case SkillProperty.None:
+                PlayAni(MonsterAniType.Hurt, false);
+                break;
+            case SkillProperty.Fire:
+                PlayAni(MonsterAniType.Burned, false);
+                break;
+            case SkillProperty.Ice:
+                PlayAni(MonsterAniType.Frozen, false);
+                break;
+            case SkillProperty.Lighting:
+                PlayAni(MonsterAniType.Shocked, false);
+                break;
+        }
+    }
     #region Animation
     public bool IsAniPause = false;
     private PolyNavAgent _agent;

@@ -11,9 +11,12 @@ public class Skill
     public float CastTime = 0;
     public float DelayTime = 0;
     public EntityController EntityController;
+    public Dictionary<int, List<DamageInfo>> HitMap;
+    public SkillStatus status = SkillStatus.None;
     public Skill(SkillInfo info)
     {
         this.info = info;
+        HitMap = new Dictionary<int, List<DamageInfo>>();
     }
 
     #region Skill WorkFlow 技能總流程
@@ -28,18 +31,18 @@ public class Skill
         {
             return SkillResult.Invalid;
         }
-        if(EntityController is PlayerController)
+        if (EntityController is PlayerController)
         {
-            if(EntityController.Name == GameRoot.Instance.ActivePlayer.Name)
+            if (EntityController.Name == GameRoot.Instance.ActivePlayer.Name)
             {
-                if(active.MP[SkillLevel-1]> GameRoot.Instance.ActivePlayer.MP) 
+                if (active.MP[SkillLevel - 1] > GameRoot.Instance.ActivePlayer.MP)
                 {
                     return SkillResult.OutOfMP;
                 }
                 //判斷武器
             }
         }
-        if(active.TargetType != SkillTargetType.Position)
+        if (active.TargetType != SkillTargetType.Position)
         {
             if (BattleSys.Instance.CurrentTarget == null)
             {
@@ -60,7 +63,7 @@ public class Skill
                 }
             }
         }
-        
+
         //判斷範圍
         //BattleSys.Instance.CurrentTarget.entity.entityId
 
@@ -69,7 +72,7 @@ public class Skill
 
     public void Cast() //釋放技能，傳送釋放技能請求給server
     {
-        SkillResult result = CanCast(); 
+        SkillResult result = CanCast();
         if (result == SkillResult.OK)
         {
             PlayerController playerController = PlayerInputController.Instance.entityController;
@@ -91,7 +94,7 @@ public class Skill
                 }
                 else
                 {
-                    if(active.TargetType == SkillTargetType.Monster)
+                    if (active.TargetType == SkillTargetType.Monster)
                     {
                         //TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
                     }
@@ -101,7 +104,7 @@ public class Skill
                     }
                 }
             }
-            else if(EntityController is PlayerController)
+            else if (EntityController is PlayerController)
             {
                 CasterName = this.EntityController.Name;
                 CasterType = SkillCasterType.Player;
@@ -118,7 +121,7 @@ public class Skill
                     }
                     else
                     {
-                        TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName};
+                        TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName };
                     }
                 }
             }
@@ -144,7 +147,7 @@ public class Skill
     public void BeginCast(SkillCastInfo castInfo) //收到釋放技能請求之後，開始釋放流程
     {
         Charge(castInfo);
-        if(castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
+        if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
         {
             SetCD();
         }
@@ -192,75 +195,144 @@ public class Skill
             {
 
             }
-            if (castInfo.TargetType == SkillTargetType.Monster)
-            {
-                  foreach (var ID in castInfo.TargetID)
-                {
-                    MonsterController monsterController = null;
-                    BattleSys.Instance.Monsters.TryGetValue(ID, out monsterController);
-                    SkillSys.Instance.InstantiateTargetSkillEffect(info.SkillID, monsterController.transform);
-                    if (monsterController != null)
-                    {
-                        switch (active.Property)
-                        {
-                            case SkillProperty.None:
-                                monsterController.PlayAni(MonsterAniType.Hurt, false);
-                                break;
-                            case SkillProperty.Fire:
-                                monsterController.PlayAni(MonsterAniType.Burned, false);
-                                break;
-                            case SkillProperty.Ice:
-                                monsterController.PlayAni(MonsterAniType.Frozen, false);
-                                break;
-                            case SkillProperty.Lighting:
-                                monsterController.PlayAni(MonsterAniType.Shocked, false);
-                                break;
-                        }
-                    }
-                }
-            }
-            else if (castInfo.TargetType == SkillTargetType.Player)
-            {
-                if (castInfo.TargetName.Length > 0)
-                {
-                    foreach (var name in castInfo.TargetName)
-                    {
-                        PlayerController PlayerController = null;
-                        SkillSys.Instance.InstantiateTargetSkillEffect(info.SkillID, PlayerController.transform);
-                        BattleSys.Instance.Players.TryGetValue(name, out PlayerController);
-                        if (PlayerController != null)
-                        {
-                            PlayerController.PlayHurt();
-                        }
-                    }
-                }
-            }
+
         }
     }
+
 
     //<-------- 技能更新階段 Update Phase ---------->
     public void Update(float deltaTime)
     {
-        if (this.CD > 0)
+        if (info != null && info.IsActive)
         {
-            this.CD = Mathf.Clamp(this.CD - deltaTime, 0, this.CD);
-        }
-        else
-        {
-            this.CD = 0;
-        }
+            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            if (this.CD > 0)
+            {
+                this.CD = Mathf.Clamp(this.CD - deltaTime, 0, this.CD);
+            }
+            else
+            {
+                this.CD = 0;
+            }
+            if (this.status == SkillStatus.Casting) this.UpdateCasting(active);
+            else if (this.status == SkillStatus.Running) this.UpdateSkill(active);
+        }      
     }
     public void SetCD()
     {
         this.CD = ((ActiveSkillInfo)info).ColdTime[this.SkillLevel - 1];
         foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
         {
-            if(slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
+            if (slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
             {
                 slot.SetColdTime(this);
             }
-        } 
+        }
     }
+
+    private float SkillTime = 0;
+    private int Hit = 0;
+    private bool IsCasting = false;
+    private void UpdateCasting(ActiveSkillInfo active)
+    {
+        if(this.CastTime < active.CastTime)
+        {
+            this.CastTime += Time.deltaTime;
+        }
+        else
+        {
+            this.CastTime = 0;
+            this.status = SkillStatus.Running;
+            Debug.Log("技能吟唱時間結束，進入技能執行階段");
+        }
+    }
+    private void UpdateSkill(ActiveSkillInfo active)
+    {
+        this.SkillTime += Time.deltaTime;
+        if (active.Durations[this.SkillLevel - 1] > 0)
+        {
+            //持續技能
+            if (this.SkillTime > active.ContiInterval * (Hit + 1))
+            {
+                this.DoHit();
+            }
+            if (this.SkillTime >= active.Durations[this.SkillLevel - 1])
+            {
+                this.status = SkillStatus.None;
+                this.IsCasting = false;
+                Debug.Log("持續技能刷新完畢");
+            }
+        }
+        else if (active.IsDOT)
+        {
+            //多時間，多次傷害DOT技能
+            if (this.Hit < active.HitTimes.Count)
+            {
+                if (this.SkillTime > active.HitTimes[this.Hit])
+                {
+                    this.DoHit();
+                }
+            }
+            else
+            {
+                this.status = SkillStatus.None;
+                this.IsCasting = false;
+                Debug.Log("DOT技能刷新完畢");
+            }
+        }
+
+    }
+    private void DoHit()
+    {
+        List<DamageInfo> damages;
+        if (this.HitMap.TryGetValue(this.Hit, out damages))
+        {
+            DoHitDamages(damages);
+        }
+        this.Hit++;
+    }
+    public void DoHitDamages(List<DamageInfo> damages)
+    {
+        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        foreach (var dmg in damages)
+        {
+            if(active.TargetType == SkillTargetType.Monster)
+            {
+                MonsterController target = null;
+                BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID ,out target);
+                if (target == null) continue;
+                target.DoDamage(dmg, active);
+            }
+            if(active.TargetType == SkillTargetType.Player)
+            {
+                PlayerController target = null;
+                if(dmg.EntityName == GameRoot.Instance.ActivePlayer.Name)
+                {
+                    target = PlayerInputController.Instance.entityController;
+                }
+                else
+                {
+                    BattleSys.Instance.Players.TryGetValue(dmg.EntityName, out target);
+                }
+                if (target != null) target.DoDamage(dmg, active);
+                
+            }
+        }
+    }
+    /// <summary>
+    /// 處理技能命中封包
+    /// </summary>
+    public void DoHit(int hitID, List<DamageInfo> damages)
+    {
+        if (hitID <= this.Hit)
+        {
+            this.HitMap[hitID] = damages;
+        }
+        else
+        {
+            DoHitDamages(damages);
+        }       
+    }   
     #endregion
 
 

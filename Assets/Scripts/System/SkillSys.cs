@@ -8,7 +8,7 @@ class SkillSys : MonoSingleton<SkillSys>
 {
     public Dictionary<int, Skill> MainCharacterSkillDic = null;
     public void InitSys()
-    {        
+    {
         Debug.Log("Init SkillSys...");
     }
     public SkillWnd skillWnd;
@@ -32,7 +32,7 @@ class SkillSys : MonoSingleton<SkillSys>
     }
     public void Update()
     {
-        if(MainCharacterSkillDic!=null && MainCharacterSkillDic.Count > 0)
+        if (MainCharacterSkillDic != null && MainCharacterSkillDic.Count > 0)
         {
             foreach (var skill in MainCharacterSkillDic.Values)
             {
@@ -43,9 +43,12 @@ class SkillSys : MonoSingleton<SkillSys>
     public void InstantiateCasterSkillEffect(int SkillID, Transform CasterTransform)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
-        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Self"]))).GetComponent<Transform>();
-        go.SetParent(CasterTransform);
-        go.localPosition = new Vector3(info.AniOffset["Self"][0], info.AniOffset["Self"][1], info.AniOffset["Self"][2]);
+        if (info.AniPath["Self"] != "")
+        {
+            Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Self"]))).GetComponent<Transform>();
+            go.SetParent(CasterTransform);
+            go.localPosition = new Vector3(info.AniOffset["Self"][0], info.AniOffset["Self"][1], info.AniOffset["Self"][2]);
+        }
         if (info.Sound["Cast"] != "")
         {
             AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Cast"]);
@@ -54,10 +57,14 @@ class SkillSys : MonoSingleton<SkillSys>
     public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
-        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Other"]))).GetComponent<Transform>();
-        go.SetParent(TargetTransform);
-        go.localScale = Vector3.one;
-        go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
+        if (info.AniPath["Other"] != "")
+        {
+            Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Other"]))).GetComponent<Transform>();
+            go.SetParent(TargetTransform);
+            go.localScale = Vector3.one;
+            go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
+        }
+
         if (info.Sound["Hit"] != "")
         {
             AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Hit"]);
@@ -75,7 +82,7 @@ class SkillSys : MonoSingleton<SkillSys>
                     skill.EntityController = controller;
                 }
             }
-            
+
             foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
             {
                 if (slot.State == HotKeyState.Skill)
