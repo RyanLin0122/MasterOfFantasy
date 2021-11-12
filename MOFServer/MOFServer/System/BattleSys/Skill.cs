@@ -15,7 +15,8 @@ public class Skill
     public BattleContext context;
     public DamageInfo damage;
     public int Hit; //如果是持續技能，現在已經是第幾次攻擊
-    public SkillHitInfo HitInfo;
+    public List<Bullet> Bullets = new List<Bullet>();
+
     public Skill(int SkillID, int Level, Entity Owner)
     {
         this.Info = CacheSvc.Instance.SkillDic[SkillID];
@@ -113,7 +114,7 @@ public class Skill
             this.CD = ActiveInfo.ColdTime[this.Level - 1];
             this.context = context;
             this.Hit = 0;
-
+            this.Bullets.Clear();
             if (this.Instant)
             {
                 this.DoHit();
@@ -139,7 +140,7 @@ public class Skill
         get
         {
             ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
-            if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
+            //if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
             if (ActiveInfo.IsShoot) return false; //是不是子彈技能
             if (ActiveInfo.IsContinue) return false; //如果是連續技的話，技能持續時間
             if (ActiveInfo.HitTimes != null && (ActiveInfo.HitTimes.Count > 0)) return false; //如果是DOT的話，每次施放的時間
@@ -157,14 +158,16 @@ public class Skill
         {
             this.CastingTime = 0;
             this.status = SkillStatus.Running;
-            LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateCastingFinish");
+            LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateCastingFinish, go to Running");
         }
     }
     private void UpdateSkill()
-    {
+    {      
         ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
+        LogSvc.Info("Skill[" + ActiveInfo.SkillName + "] Update skill");
         this.SkillTime += Time.deltaTime;
-        if (ActiveInfo.ContiDurations != null && ActiveInfo.ContiDurations[this.Level - 1] > 0)
+        Console.WriteLine(ActiveInfo.ContiDurations != null);
+        if (ActiveInfo.IsContinue)
         {
             //是持續技能
             if (this.SkillTime > ActiveInfo.ContiInterval * (this.Hit + 1))
@@ -177,23 +180,44 @@ public class Skill
                 LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
             }
         }
-        else if (ActiveInfo.HitTimes != null && ActiveInfo.HitTimes.Count > 0)
+        else if (ActiveInfo.IsDOT || ActiveInfo.IsShoot)
         {
-            //DOT, 多時間，多次攻擊
+            //DOT, 多時間，多次攻擊，或子彈技能
             if (Hit < ActiveInfo.HitTimes.Count)
             {
                 if (this.SkillTime > ActiveInfo.HitTimes[this.Hit])
                 {
+                    Console.WriteLine("[188] Hit = "+ Hit);
                     this.DoHit();
                 }
             }
             else
             {
-                this.status = SkillStatus.None;
-                LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
+                if (!ActiveInfo.IsShoot)
+                {
+                    this.status = SkillStatus.None;
+                    LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
+                }
             }
         }
-        if (!ActiveInfo.IsContinue && !ActiveInfo.IsDOT)
+        if (ActiveInfo.IsShoot) //更新子彈
+        {
+            bool finish = true;
+            if (this.Bullets.Count > 0)
+            {
+                foreach (var bullet in this.Bullets)
+                {
+                    bullet.Update();
+                    if (!bullet.Stopped) finish = false;
+                }
+                if (finish && this.Hit >= ActiveInfo.HitTimes.Count)
+                {
+                    this.status = SkillStatus.None;
+                    LogSvc.Info("子彈技能刷新完畢");
+                }
+            }
+        }
+        if (!ActiveInfo.IsShoot && !ActiveInfo.IsContinue && !ActiveInfo.IsDOT)
         {
             this.status = SkillStatus.None;
         }
@@ -201,63 +225,87 @@ public class Skill
 
     public void DoHit() //找到Entity
     {
+        Console.WriteLine("[231] Hit = " + Hit);
         ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
-        InitHitInfo(ActiveInfo);
+        var hitInfo = InitHitInfo(ActiveInfo);
         this.Hit++;
         if (ActiveInfo.IsShoot)
         {
-            CastBullet();
+            if (this.Hit <= ActiveInfo.HitTimes.Count) 
+            {
+                Console.WriteLine("[239] Hit = " + Hit + "Cast Bullet");
+                DoHit(hitInfo, ActiveInfo);
+                CastBullet(hitInfo, ActiveInfo); 
+            }
             return;
         }
-        if (ActiveInfo.IsMultiple)
+        DoHit(hitInfo, ActiveInfo);
+    }
+    public void DoHit(SkillHitInfo hitInfo, ActiveSkillInfo active)
+    {
+        Console.WriteLine("[249] Hit = " + Hit+ "AddHitInfo");
+        context.Battle.AddHitInfo(hitInfo);
+        if (active.IsAOE)
         {
-            HitRange(ActiveInfo);
+            this.HitRange(hitInfo, active);
             return;
         }
-        //判斷目標類型
-        if (ActiveInfo.TargetType == SkillTargetType.Monster || ActiveInfo.TargetType == SkillTargetType.Player)
+        //瞬發技能，判斷目標類型
+        if (active.TargetType == SkillTargetType.Monster || active.TargetType == SkillTargetType.Player)
         {
             if (context.Target.Count > 0)
             {
                 foreach (var target in context.Target)
                 {
-                    HitTarget(target);
+                    HitTarget(target, hitInfo);
                 }
             }
         }
     }
-    private void InitHitInfo(ActiveSkillInfo active)
+    private SkillHitInfo InitHitInfo(ActiveSkillInfo active)
     {
-        this.HitInfo = new SkillHitInfo
+        SkillHitInfo result = new SkillHitInfo
         {
             damageInfos = new List<DamageInfo>(),
-            SkillID = this.Info.SkillID
+            SkillID = this.Info.SkillID,
+            IsBullet = active.IsShoot,
+            Hit = this.Hit
         };
         if (this.Owner is AbstractMonster)
         {
-            this.HitInfo.CasterID = this.context.Caster.nEntity.Id;
-            this.HitInfo.CasterType = SkillCasterType.Monster;
+            result.CasterID = this.context.Caster.nEntity.Id;
+            result.CasterType = SkillCasterType.Monster;
         }
         else
         {
-            this.HitInfo.CastName = this.context.Caster.nEntity.EntityName;
-            this.HitInfo.CasterType = SkillCasterType.Player;
+            result.CastName = this.context.Caster.nEntity.EntityName;
+            result.CasterType = SkillCasterType.Player;
         }
-        context.Battle.AddHitInfo(this.HitInfo);
+        return result;
     }
-    private void HitTarget(Entity target)
+    private void HitTarget(Entity target, SkillHitInfo hit)
     {
         ActiveSkillInfo active = (ActiveSkillInfo)Info;
         if (!active.IsAttack) return;
         DamageInfo damage = GetDamageInfo(active, this.context.CastSkill, target);
         target.DoDamage(damage);
-        this.HitInfo.damageInfos.Add(damage);
+        hit.damageInfos.Add(damage);
     }
-    private void CastBullet()
+    private void CastBullet(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
+        LogSvc.Info("發射子彈");
+        if (this.context.Target != null && this.context.Target.Count > 0)
+        {
+            foreach (var target in this.context.Target)
+            {
+                context.Battle.AddHitInfo(hitInfo);
+                Bullet bullet = new Bullet(this, target, active, hitInfo);
+                this.Bullets.Add(bullet);
+            }
+        }
 
     }
-    private void HitRange(ActiveSkillInfo active)
+    private void HitRange(SkillHitInfo hit, ActiveSkillInfo active)
     {
         NVector3 pos; //範圍技基準點
         pos = this.Owner.nEntity.Position;
@@ -266,7 +314,7 @@ public class Skill
         {
             foreach (var target in units)
             {
-                HitTarget(target);
+                HitTarget(target, hit);
             }
         }
     }

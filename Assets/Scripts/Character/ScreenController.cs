@@ -136,6 +136,12 @@ public class ScreenController : MonoBehaviour
             {
                 SkillSys.Instance.skillWnd.KeyBoardCommand();
             }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/LightingS"))).GetComponent<Transform>();
+                go.SetParent(PlayerInputController.Instance.entityController.transform);
+                go.localPosition = new Vector3(0,-34.11f,0);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Home)) //截圖
         {

@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: c1dcb391a448e3544b3e408842914f12
+guid: f31c56fcba5813143a4e7b7386efcdad
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2347668164247723870
+    second: Skill Electric Charge + Lighting Attribute_0
+  - first:
+      213: -3373253096320402584
+    second: Skill Electric Charge + Lighting Attribute_1
+  - first:
+      213: 5141213192914727045
+    second: Skill Electric Charge + Lighting Attribute_2
+  - first:
+      213: 3822759712839034919
+    second: Skill Electric Charge + Lighting Attribute_3
+  - first:
+      213: 3591676528208769084
+    second: Skill Electric Charge + Lighting Attribute_4
+  - first:
+      213: -8351323063804283185
+    second: Skill Electric Charge + Lighting Attribute_5
+  - first:
+      213: 72032193324307226
+    second: Skill Electric Charge + Lighting Attribute_6
+  - first:
+      213: -2827995475512541499
+    second: Skill Electric Charge + Lighting Attribute_7
+  - first:
+      213: 7871470301216133786
+    second: Skill Electric Charge + Lighting Attribute_8
+  - first:
+      213: 7868246935047977120
+    second: Skill Electric Charge + Lighting Attribute_9
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +53,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +71,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +85,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +104,232 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 171
+        width: 117
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0658b3e386b6fd0800000000000000
+      internalID: -2347668164247723870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 126
+        width: 28
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bf5506e2ccf21d0800000000000000
+      internalID: -3373253096320402584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 126
+        width: 29
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 580fb3ed822495740800000000000000
+      internalID: 5141213192914727045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_3
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 126
+        width: 30
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728e17974bb2d0530800000000000000
+      internalID: 3822759712839034919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_4
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 126
+        width: 25
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30fdfbd5c238d130800000000000000
+      internalID: 3591676528208769084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_5
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 126
+        width: 33
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc63b61bbe32a1c80800000000000000
+      internalID: -8351323063804283185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_6
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 126
+        width: 30
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a13dc7fe5e8eff000800000000000000
+      internalID: 72032193324307226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_7
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 126
+        width: 30
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ceb9af2911f0c8d0800000000000000
+      internalID: -2827995475512541499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_8
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 126
+        width: 26
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a92560cb8841d3d60800000000000000
+      internalID: 7871470301216133786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill Electric Charge + Lighting Attribute_9
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 190
+        width: 94
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a8379056e0a13d60800000000000000
+      internalID: 7868246935047977120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

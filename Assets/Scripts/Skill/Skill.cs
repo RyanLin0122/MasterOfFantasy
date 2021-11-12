@@ -10,13 +10,19 @@ public class Skill
     public int SkillLevel = 0;
     public float CastTime = 0;
     public float DelayTime = 0;
+    private float SkillTime = 0;
+    public int Hit = 0;
+    private bool IsCasting = false;
     public EntityController EntityController;
+    public List<EntityController> Targets;
     public Dictionary<int, List<DamageInfo>> HitMap;
+    List<Bullet> Bullets;
     public SkillStatus status = SkillStatus.None;
     public Skill(SkillInfo info)
     {
         this.info = info;
         HitMap = new Dictionary<int, List<DamageInfo>>();
+        Bullets = new List<Bullet>();
     }
 
     #region Skill WorkFlow 技能總流程
@@ -144,61 +150,75 @@ public class Skill
         }
     }
 
-    public void BeginCast(SkillCastInfo castInfo) //收到釋放技能請求之後，開始釋放流程
+    //<-------- 技能執行階段 Execute Phase ---------->
+    public void BeginCast(SkillCastInfo castInfo) //收到釋放技能回應之後，開始釋放流程
     {
-        Charge(castInfo);
+        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        this.IsCasting = true;
+        this.CastTime = 0;
+        this.SkillTime = 0;
+        this.Hit = 0;
+        this.CD = active.ColdTime[this.SkillLevel - 1];
+        Targets = new List<EntityController>();
+        if(castInfo.TargetType == SkillTargetType.Monster)
+        {
+            foreach (var monsterID in castInfo.TargetID)
+            {
+                MonsterController monster = null; 
+                BattleSys.Instance.Monsters.TryGetValue(monsterID, out monster);
+                if (monster != null) Targets.Add(monster);
+            }
+        }
+        else
+        {
+            foreach (var PlayerName in castInfo.TargetName)
+            {
+                PlayerController player = null;
+                BattleSys.Instance.Players.TryGetValue(PlayerName, out player);
+                if (player != null) Targets.Add(player);
+            }
+        }
+
         if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
         {
-            SetCD();
+            SetHotKeySlotCDUI();
         }
+        //播放動畫
+        if (castInfo.CasterType == SkillCasterType.Player)
+        {
+            PlayerController controller = null;
+            if (castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name) controller = PlayerInputController.Instance.entityController;
+            else
+            {
+                BattleSys.Instance.Players.TryGetValue(castInfo.CasterName, out controller);
+            }
+            if (controller != null)
+            {
+                controller.PlayPlayerAni(active.Action);
+                SkillSys.Instance.InstantiateCasterSkillEffect(info.SkillID, controller.transform);
+            }
+        }
+        else //怪物釋放技能
+        {
+
+        }
+        this.Bullets.Clear();
+        this.HitMap.Clear();
+        if (active.CastTime > 0)
+        {
+            this.status = SkillStatus.Casting;
+        }
+        else
+        {
+            this.status = SkillStatus.Running;
+        }
+        Charge(castInfo);
     }
 
     //<-------- 蓄力階段 Charge Phase ---------->
     public void Charge(SkillCastInfo castInfo)
     {
-        if (info.IsActive)
-        {
-            ActiveSkillInfo active = (ActiveSkillInfo)info;
-            if (active.ChargeTime > 0)
-            {
-                //播蓄力動畫，但並沒有
-                TimerSvc.Instance.AddTimeTask((t) => { DoSkill(castInfo); }, active.ChargeTime, PETimeUnit.Second, 1);
-            }
-            else
-            {
-                DoSkill(castInfo);
-            }
-        }
     }
-
-    //<-------- 技能執行階段 Execute Phase ---------->
-    public void DoSkill(SkillCastInfo castInfo)
-    {
-        if (info.IsActive)
-        {
-            ActiveSkillInfo active = (ActiveSkillInfo)info;
-            if (castInfo.CasterType == SkillCasterType.Player)
-            {
-                PlayerController controller = null;
-                if (castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name) controller = PlayerInputController.Instance.entityController;
-                else
-                {
-                    BattleSys.Instance.Players.TryGetValue(castInfo.CasterName, out controller);
-                }
-                if (controller != null)
-                {
-                    controller.PlayPlayerAni(active.Action);
-                    SkillSys.Instance.InstantiateCasterSkillEffect(info.SkillID, controller.transform);
-                }
-            }
-            else //怪物釋放技能
-            {
-
-            }
-
-        }
-    }
-
 
     //<-------- 技能更新階段 Update Phase ---------->
     public void Update(float deltaTime)
@@ -218,9 +238,8 @@ public class Skill
             else if (this.status == SkillStatus.Running) this.UpdateSkill(active);
         }      
     }
-    public void SetCD()
-    {
-        this.CD = ((ActiveSkillInfo)info).ColdTime[this.SkillLevel - 1];
+    public void SetHotKeySlotCDUI()
+    {        
         foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
         {
             if (slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
@@ -230,9 +249,6 @@ public class Skill
         }
     }
 
-    private float SkillTime = 0;
-    private int Hit = 0;
-    private bool IsCasting = false;
     private void UpdateCasting(ActiveSkillInfo active)
     {
         if(this.CastTime < active.CastTime)
@@ -249,79 +265,105 @@ public class Skill
     private void UpdateSkill(ActiveSkillInfo active)
     {
         this.SkillTime += Time.deltaTime;
-        if (active.Durations[this.SkillLevel - 1] > 0)
+        if (active.IsContinue)
         {
-            //持續技能
-            if (this.SkillTime > active.ContiInterval * (Hit + 1))
+            //是持續技能
+            if (active.IsContinue)
             {
-                this.DoHit();
+                this.UpdateDoHit(active);
             }
-            if (this.SkillTime >= active.Durations[this.SkillLevel - 1])
+            if (this.SkillTime >= active.ContiDurations[this.SkillLevel - 1])
             {
                 this.status = SkillStatus.None;
-                this.IsCasting = false;
-                Debug.Log("持續技能刷新完畢");
             }
         }
-        else if (active.IsDOT)
+        else if (active.IsDOT || active.IsShoot)
         {
-            //多時間，多次傷害DOT技能
-            if (this.Hit < active.HitTimes.Count)
+            //DOT, 多時間，多次攻擊，或子彈技能
+            if (Hit < active.HitTimes.Count)
             {
                 if (this.SkillTime > active.HitTimes[this.Hit])
                 {
-                    this.DoHit();
+                    Debug.Log("[288] Hit = " + Hit);
+                    this.UpdateDoHit(active);
                 }
             }
             else
             {
-                this.status = SkillStatus.None;
-                this.IsCasting = false;
-                Debug.Log("DOT技能刷新完畢");
+                if (!active.IsShoot)
+                {
+                    this.status = SkillStatus.None;
+                    Debug.Log("Skill[" + active.SkillName + "].UpdateSkill Finish");
+                }
             }
         }
-
-    }
-    private void DoHit()
-    {
-        List<DamageInfo> damages;
-        if (this.HitMap.TryGetValue(this.Hit, out damages))
+        if (active.IsShoot) //更新子彈
         {
-            DoHitDamages(damages);
+            bool finish = true;
+            if (this.Bullets.Count > 0)
+            {
+                foreach (var bullet in this.Bullets)
+                {
+                    bullet.Update();
+                    if (!bullet.Stopped) finish = false;
+                }
+                if (finish && this.Hit >= active.HitTimes.Count)
+                {
+                    this.status = SkillStatus.None;
+                    Debug.Log("子彈技能刷新完畢");
+                }
+            }
         }
-        this.Hit++;
+        if (!active.IsShoot && !active.IsContinue && !active.IsDOT)
+        {
+            this.status = SkillStatus.None;
+        }
     }
-    public void DoHitDamages(List<DamageInfo> damages)
+    
+    private void CastBullet(ActiveSkillInfo active)
+    {
+        if(Targets!=null && Targets.Count > 0)
+        {
+            foreach (var target in Targets)
+            {
+                Bullets.Add(new Bullet(this, target, active));
+            }         
+        }       
+    }
+    //Update調用
+    private void UpdateDoHit(ActiveSkillInfo active)
+    {       
+        if (active.IsShoot)
+        {
+            if (this.Hit <= active.HitTimes.Count)
+            {
+                Debug.Log("[342] 發射子彈");
+                CastBullet(active);
+                this.Hit++;
+            }
+        }        
+        else
+        {
+            this.Hit++;
+            this.DoHitDamages(this.Hit);
+        }        
+    }
+    //從Server收到
+    internal void DoHit(SkillHitInfo hit)
     {
         ActiveSkillInfo active = (ActiveSkillInfo)info;
-        foreach (var dmg in damages)
+        if(!active.IsContinue && !active.IsDOT && !active.IsShoot)
         {
-            if(active.TargetType == SkillTargetType.Monster)
-            {
-                MonsterController target = null;
-                BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID ,out target);
-                if (target == null) continue;
-                target.DoDamage(dmg, active);
-            }
-            if(active.TargetType == SkillTargetType.Player)
-            {
-                PlayerController target = null;
-                if(dmg.EntityName == GameRoot.Instance.ActivePlayer.Name)
-                {
-                    target = PlayerInputController.Instance.entityController;
-                }
-                else
-                {
-                    BattleSys.Instance.Players.TryGetValue(dmg.EntityName, out target);
-                }
-                if (target != null) target.DoDamage(dmg, active);
-                
-            }
+            this.HitMap[hit.Hit] = hit.damageInfos;
+            DoHitDamages(hit.Hit);
+            return;
+        }
+        if(hit.IsBullet || !(active.IsShoot))
+        {
+            this.DoHit(hit.Hit, hit.damageInfos);
         }
     }
-    /// <summary>
-    /// 處理技能命中封包
-    /// </summary>
+    //緩存或釋放
     public void DoHit(int hitID, List<DamageInfo> damages)
     {
         if (hitID <= this.Hit)
@@ -330,13 +372,40 @@ public class Skill
         }
         else
         {
-            DoHitDamages(damages);
-        }       
-    }   
+            DoHitDamages(hitID);
+        }
+    }
+    public void DoHitDamages(int Hit)
+    {
+        List<DamageInfo> damages;
+        if(this.HitMap.TryGetValue(Hit,out damages))
+        {
+            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            foreach (var dmg in damages)
+            {
+                if (active.TargetType == SkillTargetType.Monster)
+                {
+                    MonsterController target = null;
+                    BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID, out target);
+                    if (target == null) continue;
+                    target.DoDamage(dmg, active);
+                }
+                if (active.TargetType == SkillTargetType.Player)
+                {
+                    PlayerController target = null;
+                    if (dmg.EntityName == GameRoot.Instance.ActivePlayer.Name)
+                    {
+                        target = PlayerInputController.Instance.entityController;
+                    }
+                    else
+                    {
+                        BattleSys.Instance.Players.TryGetValue(dmg.EntityName, out target);
+                    }
+                    if (target != null) target.DoDamage(dmg, active);
+                }
+            }
+        }
+    }
     #endregion
 
-
-    #region Basic Logic
-
-    #endregion
 }

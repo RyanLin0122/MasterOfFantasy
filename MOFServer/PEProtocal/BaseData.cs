@@ -504,6 +504,8 @@ namespace PEProtocal
         public float ChargeTime { get; set; }
         [ProtoMember(29, IsRequired = false)]
         public float LockTime { get; set; }
+        [ProtoMember(30, IsRequired = false)]
+        public float BulletSpeed { get; set; }
     }
     [ProtoContract]
     public class SkillEffect
@@ -683,6 +685,8 @@ namespace PEProtocal
         public List<DamageInfo> damageInfos { get; set; }
         [ProtoMember(6, IsRequired = false)]
         public SkillCasterType CasterType { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public bool IsBullet { get; set; }
     }
 
     [ProtoContract]

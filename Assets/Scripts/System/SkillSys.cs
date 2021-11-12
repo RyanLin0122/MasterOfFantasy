@@ -67,7 +67,7 @@ class SkillSys : MonoSingleton<SkillSys>
 
         if (info.Sound["Hit"] != "")
         {
-            AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Hit"]);
+            AudioSvc.Instance.PlaySkillAudio("Sound/" + info.Sound["Hit"]);
         }
     }
     public void InitPlayerSkills(Player player, EntityController controller)

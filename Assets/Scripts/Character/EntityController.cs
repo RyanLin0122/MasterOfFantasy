@@ -51,12 +51,12 @@ public class EntityController : MonoBehaviour
     {
         //子類實現
     }           
-    public void DoSkillHit(int SkillID, int HitID, List<DamageInfo> damages)
+    public void DoSkillHit(SkillHitInfo hit)
     {
         if (SkillDict == null) return;
         Skill skill = null;
-        SkillDict.TryGetValue(SkillID, out skill);
-        if (skill != null) skill.DoHit(HitID, damages);
+        SkillDict.TryGetValue(hit.SkillID, out skill);
+        if (skill != null) skill.DoHit(hit);
     }
 
     public void Update()

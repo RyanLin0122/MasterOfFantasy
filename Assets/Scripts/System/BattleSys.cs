@@ -600,13 +600,29 @@ public class BattleSys : SystemRoot
     }
     public void ProcessSkillHitResponse(ProtoMsg msg)
     {
+        Debug.Log("收到技能Hit信息");
         SkillHitResponse shr = msg.skillHitResponse;
         if (shr.Result != SkillResult.OK) return;
         if (shr.skillHits != null && shr.skillHits.Count > 0)
         {
             foreach (var hit in shr.skillHits)
             {
-                
+                if(hit.CasterType == SkillCasterType.Player)
+                {
+                    if(hit.CastName == GameRoot.Instance.ActivePlayer.Name)
+                    {
+                        PlayerInputController.Instance.entityController.DoSkillHit(hit);
+                    }
+                    else
+                    {
+                        BattleSys.Instance.Players[hit.CastName].DoSkillHit(hit);
+                    }
+                }
+                else
+                {
+                    BattleSys.Instance.Monsters[hit.CasterID].DoSkillHit(hit);
+                }
+                /*
                 if (hit.damageInfos != null && hit.damageInfos.Count > 0) //處理傷害
                 {
                     List<DamageInfo> damages = hit.damageInfos;
@@ -634,6 +650,7 @@ public class BattleSys : SystemRoot
                         }
                     }
                 }
+                */
             }          
         }       
     }

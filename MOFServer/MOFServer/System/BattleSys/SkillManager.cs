@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PEProtocal;
+using System.Threading;
 public class SkillManager
 {
     Entity Owner;
@@ -74,6 +75,7 @@ public class SkillManager
         }
         foreach (var skill in ActiveSkills.Values)
         {
+            //LogSvc.Info(skill.Info.SkillID + " " + System.Threading.Thread.CurrentThread.ManagedThreadId);
             skill.Update();
         }
     }   
