@@ -7,7 +7,8 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private Queue<SkillCastInfo> Actions;
     private Dictionary<string, Entity> AllPlayers;
     private Dictionary<int, Entity> AllMonsters;
-    private List<Entity> DeathPool;
+    private Dictionary<int, Entity> DeathPool;
+    private List<SkillHitInfo> Hits;
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -18,16 +19,23 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.Actions = new Queue<SkillCastInfo>();
         this.AllPlayers = new Dictionary<string, Entity>();
         this.AllMonsters = new Dictionary<int, Entity>();
-        this.DeathPool = new List<Entity>();
+        this.DeathPool = new Dictionary<int, Entity>();
+        this.Hits = new List<SkillHitInfo>();
+    }
+    public void AddHitInfo(SkillHitInfo hit)
+    {
+        this.Hits.Add(hit);
     }
     internal void Update()
     {
+        this.Hits.Clear();
         if (this.Actions.Count > 0)
         {
             SkillCastInfo skillCast = this.Actions.Dequeue();
             this.ExecuteAction(skillCast);
         }
         this.UpdateUnits();
+        this.BroadcastHitMessages();
     }
     private void UpdateUnits()
     {
@@ -37,7 +45,6 @@ public class Battle //戰鬥類，一個地圖綁定一個
             foreach (var kv in AllPlayers)
             {
                 kv.Value.Update();
-                if (kv.Value.IsDeath) this.DeathPool.Add(kv.Value);
             }
         }
         if (AllMonsters.Count > 0)
@@ -45,12 +52,12 @@ public class Battle //戰鬥類，一個地圖綁定一個
             foreach (var kv in AllMonsters)
             {
                 kv.Value.Update();
-                if (kv.Value.IsDeath) this.DeathPool.Add(kv.Value);
+                if (kv.Value.IsDeath) this.DeathPool.Add(kv.Key, kv.Value);
             }
         }
         if (DeathPool.Count > 0)
         {
-            foreach (var entity in DeathPool)
+            foreach (var entity in DeathPool.Values)
             {
                 LeaveBattle(entity);
             }
@@ -58,38 +65,100 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     private void ExecuteAction(SkillCastInfo skillCast)
     {
-        BattleContext context = new BattleContext(this);
+        BattleContext context = new BattleContext(this, skillCast);
         if (skillCast.CasterType == SkillCasterType.Player)
         {
-            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(skillCast.CasterName))
+            MOFCharacter Caster = null;
+            this.mofMap.characters.TryGetValue(skillCast.CasterName, out Caster);
+            if (Caster != null)
             {
-                context.Caster = CacheSvc.Instance.MOFCharacterDict[skillCast.CasterName];
-                if (context.Caster != null) JoinBattle(context.Caster);
+                context.Caster = Caster;
+                JoinBattle(context.Caster);
             }
         }
         else if (skillCast.CasterType == SkillCasterType.Monster)
         {
-            if (mofMap.Monsters.ContainsKey(skillCast.CasterID))
+            AbstractMonster Caster = null;
+            this.mofMap.Monsters.TryGetValue(skillCast.CasterID, out Caster);
+            if (Caster != null)
             {
-                context.Caster = mofMap.Monsters[skillCast.CasterID];
-                if (context.Caster != null) JoinBattle(context.Caster);
+                context.Caster = Caster;
+                JoinBattle(context.Caster);
             }
         }
+        List<Entity> FinalTargets = new List<Entity>();
         if (skillCast.TargetType == SkillTargetType.Player)
         {
-            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(skillCast.TargetName[0]))
+            string[] TargetName = skillCast.TargetName;
+            if (mofMap.characters.Count > 0 && TargetName.Length > 0)
             {
-                context.Target = CacheSvc.Instance.MOFCharacterDict[skillCast.TargetName[0]];
-                if (context.Target != null) JoinBattle(context.Caster);
+                foreach (var Name in TargetName)
+                {
+                    MOFCharacter chr = null;
+                    Entity entity = null;
+                    if (!entity.IsDeath)
+                    {
+                        mofMap.characters.TryGetValue(Name, out chr);
+                        if (chr != null)
+                        {
+                            //人物沒死
+                            //檢查人物位置是否在範圍內
+                            FinalTargets.Add(chr);
+                        }
+                    }
+                }
+                context.Target = FinalTargets;
+                if (context.Target != null && context.Target.Count > 0)
+                {
+                    foreach (var entity in context.Target)
+                    {
+                        JoinBattle(entity);
+                    }
+                };
             }
+            int[] FinalTarget = new int[FinalTargets.Count];
+            for (int i = 0; i < FinalTargets.Count; i++)
+            {
+                FinalTarget[i] = FinalTargets[i].nEntity.Id;
+            }
+            skillCast.TargetID = FinalTarget;
         }
-        else if (skillCast.TargetType == SkillTargetType.Monster)
+        else if (skillCast.TargetType == SkillTargetType.Monster) //攻擊目標為怪物
         {
-            if (mofMap.Monsters.ContainsKey(skillCast.CasterID))
+            int[] TargetID = skillCast.TargetID;
+            if (mofMap.Monsters.Count > 0 && TargetID.Length > 0)
             {
-                context.Target = mofMap.Monsters[skillCast.TargetID[0]];
-                if (context.Target != null) JoinBattle(context.Target);
+                foreach (var ID in TargetID)
+                {
+                    AbstractMonster mon = null;
+                    Entity entity = null;
+                    DeathPool.TryGetValue(ID, out entity);
+                    if (entity == null)
+                    {
+                        mofMap.Monsters.TryGetValue(ID, out mon);
+                        if (mon != null)
+                        {
+                            //怪物沒死
+                            //檢查怪物位置是否在範圍內
+                            FinalTargets.Add(mon);
+                        }
+                    }
+                }
+                context.Target = FinalTargets;
+                if (context.Target != null && context.Target.Count > 0)
+                {
+                    foreach (var entity in context.Target)
+                    {
+                        JoinBattle(entity);
+                    }
+                };
             }
+            int[] FinalTarget = new int[FinalTargets.Count];
+            for (int i = 0; i < FinalTargets.Count; i++)
+            {
+                FinalTarget[i] = FinalTargets[i].nEntity.Id;
+            }
+            skillCast.TargetID = FinalTarget;
         }
         else if (skillCast.TargetType == SkillTargetType.Position)
         {
@@ -97,28 +166,17 @@ public class Battle //戰鬥類，一個地圖綁定一個
 
         }
         context.CastSkill = skillCast;
-        context.Damage = new DamageInfo[]
-        {
-            new DamageInfo{
-            EntityID = 1,
-            Damage = new int[] { 10 },
-            will_Dead = false
-        }
-        };
 
-        //回傳技能釋放結果
-        ProtoMsg msg = new ProtoMsg
+        //找到Skill，Cast
+        if (skillCast.CasterType == SkillCasterType.Player)
         {
-            MessageType = 55,
-            skillCastResponse = new SkillCastResponse
-            {
-                Result = context.Result,
-                CastInfo = context.CastSkill,
-                Damage = context.Damage,
-                ErrorMsg = context.Result.ToString()
-            }
-        };
-        this.mofMap.BroadCastMassege(msg);
+            mofMap.characters[skillCast.CasterName].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
+        }
+        else
+        {
+            mofMap.Monsters[skillCast.CasterID].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
+        }
+
     }
     public void JoinBattle(Entity entity)
     {
@@ -162,5 +220,45 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             LogSvc.Error(e.Message);
         }
+    }
+
+    internal List<Entity> FindUnitsInRange(NVector3 pos, SkillRangeShape shape, float[] range, SkillTargetType targetType)
+    {
+        List<Entity> result = new List<Entity>();
+        if (targetType == SkillTargetType.Monster)
+        {
+            foreach (var unit in this.AllMonsters)
+            {
+                if (unit.Value.Distance(pos) < range[1])
+                {
+                    result.Add(unit.Value);
+                }
+            }
+        }
+        else if(targetType == SkillTargetType.Player)
+        {
+            foreach (var unit in this.AllPlayers)
+            {
+                if (unit.Value.Distance(pos) < range[1])
+                {
+                    result.Add(unit.Value);
+                }
+            }
+        }
+        return result;
+    }
+    private void BroadcastHitMessages() 
+    {
+        if (this.Hits.Count == 0) return;
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 60,
+            skillHitResponse = new SkillHitResponse
+            {
+                skillHits = this.Hits,
+                Result = SkillResult.OK
+            }
+        };
+        this.mofMap.BroadCastMassege(msg);
     }
 }

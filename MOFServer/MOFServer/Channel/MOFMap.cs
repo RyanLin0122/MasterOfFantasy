@@ -43,6 +43,7 @@ public class MOFMap
         this.monsternum = MonsterMax;
         this.MonsterPoints = points;
         this.Battle = new Battle(this);
+        this.Monsters = new ConcurrentDictionary<int, AbstractMonster>();
     }
 
     #region 新增移除人物相關
@@ -153,11 +154,14 @@ public class MOFMap
             }
             //回傳資料
             Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
-            foreach (var id in MonsterPoints.Keys)
+            foreach (var point in MonsterPoints.Values)
             {
-                if (MonsterPoints[id].monster.status != MonsterStatus.Death)
+                if (point.monster.status != MonsterStatus.Death)
                 {
-                    mons.Add(id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
+                    if (point.monster.nEntity != null)
+                    {
+                        mons.Add(point.monster.nEntity.Id, MonsterPointToSerielizedMonster(point));
+                    }
                 }
             }
             ProtoMsg outmsg = new ProtoMsg
@@ -533,27 +537,40 @@ public class MOFMap
         }
 
     }
-
+    int MonsterSpawnUUID = 0;
     public void MonstersBorn()
     {
         if (!IsVillage)
         {
-            Dictionary<int, float[]> MonsterPos = new Dictionary<int, float[]>();
-            Dictionary<int, int> MonsterId = new Dictionary<int, int>();
-            int counter = 0;
+            Dictionary<int, float[]> MonsterPositions = new Dictionary<int, float[]>();
+            Dictionary<int, int> MonsterIds = new Dictionary<int, int>();
+            int Counter = 0; //生怪計數器，一波只生10隻怪物
             for (int i = 0; i < monsternum; i++)
             {
-                if (counter < 10)
+                if (Counter < 10)
                 {
                     if (MonsterPoints[i].monster.status == MonsterStatus.Death)
                     {
+                        MonsterSpawnUUID++;
                         MonsterPoints[i].monster.Hp = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].monster.MonsterID].MaxHp;
                         MonsterPoints[i].monster.status = MonsterStatus.Idle;
-                        int monsterID = MonsterPoints[i].MonsterID;
                         float[] pos = MonsterPoints[i].InitialPos;
-                        MonsterPos.Add(i, pos);
-                        MonsterId.Add(i, monsterID);
-                        counter++;
+                        MonsterPoints[i].monster.nEntity = new NEntity
+                        {
+                            Id = MonsterSpawnUUID,
+                            Position = new NVector3(pos[0], pos[1], 0),
+                            Speed = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].monster.MonsterID].Speed,
+                            FaceDirection = true,
+                            Type = EntityType.Monster,
+                            Direction = new NVector3(0, 0, 0)
+                        };
+                        MonsterPoints[i].monster.ID = MonsterSpawnUUID;
+                        MonsterPoints[i].monster.InitSkill();
+                        MonsterPoints[i].monster.mofMap = this;
+                        MonsterPositions.Add(MonsterSpawnUUID, pos);
+                        MonsterIds.Add(MonsterSpawnUUID, MonsterPoints[i].MonsterID);
+                        Monsters.TryAdd(MonsterPoints[i].monster.nEntity.Id, MonsterPoints[i].monster);
+                        Counter++;
                     }
                 }
             }
@@ -563,7 +580,7 @@ public class MOFMap
                 ProtoMsg msg = new ProtoMsg
                 {
                     MessageType = 29,
-                    monsterGenerate = new MonsterGenerate { MonsterId = MonsterId, MonsterPos = MonsterPos }
+                    monsterGenerate = new MonsterGenerate { MonsterId = MonsterIds, MonsterPos = MonsterPositions }
                 };
                 byte[] result;
                 using (var stream = new MemoryStream())

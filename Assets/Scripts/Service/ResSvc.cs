@@ -834,6 +834,7 @@ public class ResSvc : MonoBehaviour
                 bool IsStun = Skill["IsStun"].b;
                 bool IsStop = Skill["IsStop"].b;
                 bool IsShoot = Skill["IsShoot"].b;
+                float BulletSpeed = Skill["BulletSpeed"].n;
                 bool IsContinue = Skill["IsContinue"].b;
                 float[] ContiDurations = new float[5];
                 var ContiDurationsList = Skill["ContiDurations"].list;
@@ -844,7 +845,7 @@ public class ResSvc : MonoBehaviour
                 float ContiInterval = Skill["ContiInterval"].n;
                 bool IsDOT = Skill["IsDOT"].b;
                 List<float> HitTimes = new List<float>();
-                var HitTimesList = Skill["Range"].list;
+                var HitTimesList = Skill["HitTimes"].list;
                 if (HitTimesList.Count > 0)
                 {
                     for (int i = 0; i < HitTimesList.Count; i++)
@@ -919,7 +920,8 @@ public class ResSvc : MonoBehaviour
                     CastTime = CastTime,
                     ChargeTime = ChargeTime,
                     LockTime = LockTime,
-                    Icon = Icon
+                    Icon = Icon,
+                    BulletSpeed = BulletSpeed
                 };
                 SkillDic.Add(ID, activeSkillInfo);
             }

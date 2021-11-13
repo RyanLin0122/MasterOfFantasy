@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PEProtocal;
+using System.Threading;
 public class SkillManager
 {
-    IEntity Owner;
+    Entity Owner;
     public Dictionary<int, Skill> ActiveSkills { get; private set; }
     public Dictionary<int, Skill> NegativeSkills { get; private set; }
-    public SkillManager(IEntity owner)
+    public SkillManager(Entity owner)
     {
         this.Owner = owner;
         this.ActiveSkills = new Dictionary<int, Skill>();
@@ -78,8 +79,9 @@ public class SkillManager
         }
         foreach (var skill in ActiveSkills.Values)
         {
+            //LogSvc.Info(skill.Info.SkillID + " " + System.Threading.Thread.CurrentThread.ManagedThreadId);
             skill.Update();
         }
-    }
+    }   
 }
 

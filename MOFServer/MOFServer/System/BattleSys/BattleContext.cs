@@ -9,13 +9,14 @@ public class BattleContext
 {
     public Battle Battle { get; set; }
     public Entity Caster { get; set; }
-    public Entity Target { get; set; }
+    public List<Entity> Target { get; set; }
     public SkillCastInfo CastSkill { get; set; }
-    public DamageInfo[] Damage { get; set; }
+    public List<DamageInfo> Damage { get; set; }
     public SkillResult Result { get; set; }
-    public BattleContext(Battle battle)
+    public BattleContext(Battle battle, SkillCastInfo castInfo)
     {
         this.Battle = battle;
+        this.CastSkill = castInfo;
     }
 }
 

@@ -504,6 +504,8 @@ namespace PEProtocal
         public float ChargeTime { get; set; }
         [ProtoMember(29, IsRequired = false)]
         public float LockTime { get; set; }
+        [ProtoMember(30, IsRequired = false)]
+        public float BulletSpeed { get; set; }
     }
     [ProtoContract]
     public class SkillEffect
@@ -664,6 +666,27 @@ namespace PEProtocal
         public bool IsMonster { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public string EntityName { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public bool IsCritical { get; set; }
+    }
+
+    [ProtoContract]
+    public class SkillHitInfo //技能擊中消息
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int CasterID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string CastName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int SkillID { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int Hit { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public List<DamageInfo> damageInfos { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public SkillCasterType CasterType { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public bool IsBullet { get; set; }
     }
 
     [ProtoContract]

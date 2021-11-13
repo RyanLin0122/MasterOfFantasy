@@ -25,7 +25,11 @@ public class PlayerController : EntityController
         DustSprites = Resources.LoadAll<Sprite>("Effect/Dust/Effect Walking Car Dust");
         base.Init();
     }
-
+    public override void PlayHitAni(ActiveSkillInfo active)
+    {
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform);
+        PlayHurt();
+    }
     public override void SetFaceDirection(bool FaceDir)
     {
         if (FaceDir)

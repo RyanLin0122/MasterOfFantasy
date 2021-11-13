@@ -65,6 +65,8 @@ namespace PEProtocal
         ///55:SkillResponce 放技能回應
         ///56:LearnSkill 學技能
         ///57:HotKey 快捷鍵相關
+        ///
+        ///60:SkillHitResponse 技能命中回應
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -200,7 +202,8 @@ namespace PEProtocal
         public SkillCastRequest skillCastRequest { get; set; }
         [ProtoMember(67, IsRequired = false)]
         public SkillCastResponse skillCastResponse { get; set; }
-        
+        [ProtoMember(68, IsRequired = false)]
+        public SkillHitResponse skillHitResponse { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1519,7 +1522,16 @@ namespace PEProtocal
         public string ErrorMsg { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public SkillCastInfo CastInfo { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public DamageInfo[] Damage { get; set; }
+        //[ProtoMember(4, IsRequired = false)]
+        //public DamageInfo[] Damage { get; set; }
+    }
+
+    [ProtoContract]
+    public class SkillHitResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public List<SkillHitInfo> skillHits { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public SkillResult Result { get; set; }
     }
 }

@@ -144,7 +144,15 @@ public class MapSvc : Singleton<MapSvc>
                         {
                             string[] t1 = total[j].Split(new char[] { '#' });
                             int MonID = Convert.ToInt32(t1[0]);
-                            MonsterPoint p = new MonsterPoint { MonsterID = MonID, monster = new AbstractMonster { MonsterID = MonID, Hp = CacheSvc.Instance.MonsterInfoDic[MonID].MaxHp, status = PEProtocal.MonsterStatus.Death } };
+                            MonsterPoint p = new MonsterPoint { 
+                                MonsterID = MonID, 
+                                monster = new AbstractMonster 
+                                {
+                                    MonsterID = MonID, 
+                                    Hp = CacheSvc.Instance.MonsterInfoDic[MonID].MaxHp,
+                                    laststatus = MonsterStatus.Death,
+                                    status = MonsterStatus.Death
+                                } };
                             string[] t2 = t1[1].Split(new char[] { ',' });
                             p.InitialPos = new float[] { (float)Convert.ToDouble(t2[0]), (float)Convert.ToDouble(t2[1]) };
                             p.Pos = p.InitialPos;
