@@ -573,41 +573,41 @@ public class PlayerController : EntityController
         HandFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
         SuitCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
     }
-    public void SetAllEquipment(TrimedPlayer playerData)
+    public void SetAllEquipment(PlayerEquipments pd, int Gender)
     {
-        SetEquipment(playerData, EquipmentType.Shoes);
-        SetEquipment(playerData, EquipmentType.Chest);
-        SetEquipment(playerData, EquipmentType.Pant);
-        SetEquipment(playerData, EquipmentType.Gloves);
-        SetEquipment(playerData, EquipmentType.HairStyle);
-        SetFace(playerData);
+        SetEquipment(pd, Gender, EquipmentType.Shoes);
+        SetEquipment(pd, Gender, EquipmentType.Chest);
+        SetEquipment(pd, Gender, EquipmentType.Pant);
+        SetEquipment(pd, Gender, EquipmentType.Gloves);
+        SetEquipment(pd, Gender, EquipmentType.HairStyle);
+        SetFace(pd, Gender);
     }
-    public void SetEquipment(TrimedPlayer pd, EquipmentType Type)
+    public void SetEquipment(PlayerEquipments pd, int Gender, EquipmentType Type)
     {
 
         switch (Type)
         {
             case EquipmentType.Shoes:
                 ShoesCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest.ItemID <= 7000)
                 {
-                    if (pd.playerEquipments.F_Shoes != null)
+                    if (pd.F_Shoes != null)
                     {
                         //顯示鞋子點裝
-                        ChangeEquipment(pd.playerEquipments.F_Shoes.ItemID, Type);
+                        ChangeEquipment(pd.F_Shoes.ItemID, Type);
                         return;
                     }
                     else
                     {
-                        if (pd.playerEquipments.B_Shoes != null)
+                        if (pd.B_Shoes != null)
                         {
                             //顯示鞋子
-                            ChangeEquipment(pd.playerEquipments.B_Shoes.ItemID, Type);
+                            ChangeEquipment(pd.B_Shoes.ItemID, Type);
                             return;
                         }
                         else
                         {
-                            ChangeDefaultEquipment(pd.Gender, EquipmentType.Shoes);
+                            ChangeDefaultEquipment(Gender, EquipmentType.Shoes);
                             //顯示無鞋子
                         }
                     }
@@ -621,25 +621,25 @@ public class PlayerController : EntityController
             case EquipmentType.Chest:
                 UpwearCtrl.gameObject.SetActive(true);
                 SuitCtrl.gameObject.SetActive(false);
-                if (pd.playerEquipments.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest.ItemID <= 7000)
                 {
-                    if (pd.playerEquipments.F_Chest != null)
+                    if (pd.F_Chest != null)
                     {
                         //顯示衣服點裝
-                        ChangeEquipment(pd.playerEquipments.F_Chest.ItemID, Type);
+                        ChangeEquipment(pd.F_Chest.ItemID, Type);
                         return;
                     }
                     else
                     {
-                        if (pd.playerEquipments.B_Chest != null)
+                        if (pd.B_Chest != null)
                         {
                             //顯示衣服
-                            ChangeEquipment(pd.playerEquipments.B_Chest.ItemID, Type);
+                            ChangeEquipment(pd.B_Chest.ItemID, Type);
                             return;
                         }
                         else
                         {
-                            ChangeDefaultEquipment(pd.Gender, EquipmentType.Chest);
+                            ChangeDefaultEquipment(Gender, EquipmentType.Chest);
                             //顯示無衣服
                         }
                     }
@@ -647,30 +647,30 @@ public class PlayerController : EntityController
                 else
                 {
                     //開套裝
-                    ChangeEquipment(pd.playerEquipments.F_Chest.ItemID, Type);
+                    ChangeEquipment(pd.F_Chest.ItemID, Type);
                 }
                 break;
             case EquipmentType.Pant:
                 DownwearCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest.ItemID <= 7000)
                 {
-                    if (pd.playerEquipments.F_Pants != null)
+                    if (pd.F_Pants != null)
                     {
                         //顯示褲子點裝
-                        ChangeEquipment(pd.playerEquipments.F_Pants.ItemID, Type);
+                        ChangeEquipment(pd.F_Pants.ItemID, Type);
                         return;
                     }
                     else
                     {
-                        if (pd.playerEquipments.B_Pants != null)
+                        if (pd.B_Pants != null)
                         {
                             //顯示褲子
-                            ChangeEquipment(pd.playerEquipments.B_Pants.ItemID, Type);
+                            ChangeEquipment(pd.B_Pants.ItemID, Type);
                             return;
                         }
                         else
                         {
-                            ChangeDefaultEquipment(pd.Gender, EquipmentType.Pant);
+                            ChangeDefaultEquipment(Gender, EquipmentType.Pant);
                             //顯示無褲子
                         }
                     }
@@ -684,25 +684,25 @@ public class PlayerController : EntityController
             case EquipmentType.Gloves:
                 HandBackCtrl.gameObject.SetActive(true);
                 HandFrontCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest.ItemID <= 7000)
                 {
-                    if (pd.playerEquipments.F_Glove != null)
+                    if (pd.F_Glove != null)
                     {
                         //顯示手套點裝
-                        ChangeEquipment(pd.playerEquipments.F_Glove.ItemID, Type);
+                        ChangeEquipment(pd.F_Glove.ItemID, Type);
                         return;
                     }
                     else
                     {
-                        if (pd.playerEquipments.B_Glove != null)
+                        if (pd.B_Glove != null)
                         {
                             //顯示手套
-                            ChangeEquipment(pd.playerEquipments.B_Glove.ItemID, Type);
+                            ChangeEquipment(pd.B_Glove.ItemID, Type);
                             return;
                         }
                         else
                         {
-                            ChangeDefaultEquipment(pd.Gender, EquipmentType.Gloves);
+                            ChangeDefaultEquipment(Gender, EquipmentType.Gloves);
                             //顯示無手套
                         }
                     }
@@ -718,42 +718,42 @@ public class PlayerController : EntityController
                 HairBackCtrl.gameObject.SetActive(true);
                 HairFrontCtrl.gameObject.SetActive(true);
 
-                if (pd.playerEquipments.F_HairStyle != null)
+                if (pd.F_HairStyle != null)
                 {
 
-                    ChangeEquipment(pd.playerEquipments.F_HairStyle.ItemID, Type);
+                    ChangeEquipment(pd.F_HairStyle.ItemID, Type);
                     return;
                 }
                 else
                 {
-                    ChangeDefaultEquipment(pd.Gender, EquipmentType.HairStyle);
+                    ChangeDefaultEquipment(Gender, EquipmentType.HairStyle);
                     //顯示默認髮型
                 }
                 break;
         }
     }
-    public void SetFace(TrimedPlayer pd)
+    public void SetFace(PlayerEquipments pd, int Gender)
     {
-        if (pd.Gender == 0)
+        if (Gender == 0)
         {
-            if (pd.playerEquipments.F_FaceType == null)
+            if (pd.F_FaceType == null)
             {
                 ChangeDefaultEquipment(0, EquipmentType.FaceType);
             }
             else
             {
-                ChangeEquipment(pd.playerEquipments.F_FaceType.ItemID, EquipmentType.FaceType);
+                ChangeEquipment(pd.F_FaceType.ItemID, EquipmentType.FaceType);
             }
         }
         else
         {
-            if (pd.playerEquipments.F_FaceType == null)
+            if (pd.F_FaceType == null)
             {
                 ChangeDefaultEquipment(1, EquipmentType.FaceType);
             }
             else
             {
-                ChangeEquipment(pd.playerEquipments.F_FaceType.ItemID, EquipmentType.FaceType);
+                ChangeEquipment(pd.F_FaceType.ItemID, EquipmentType.FaceType);
             }
         }
 

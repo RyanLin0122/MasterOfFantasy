@@ -32,21 +32,32 @@ public class LearnSkillHandler : GameHandler
             }
             else
             {
-                session.ActivePlayer.Skills.Add(req.SkillID, new SkillData { SkillID = req.SkillID, SkillLevel = 1});
+                session.ActivePlayer.Skills.Add(req.SkillID, new SkillData { SkillID = req.SkillID, SkillLevel = 1 });
                 session.ActivePlayer.SwordPoint -= info.SwordPoint[0];
                 session.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[0];
                 session.ActivePlayer.MagicPoint -= info.MagicPoint[0];
                 session.ActivePlayer.TheologyPoint -= info.TheologyPoint[0];
+                MOFCharacter character = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name];
+                Skill skill = new Skill(req.SkillID, 1, character);
+                if (info.IsActive)
+                {
+                    character.skillManager.ActiveSkills.Add(req.SkillID, skill);
+                }
+                else
+                {
+                    character.skillManager.NegativeSkills.Add(req.SkillID, skill);
+                }
+                character.InitNegativeAttribute(character.skillManager.NegativeSkills);
+                character.InitBuffAttribute();
+                character.InitFinalAttribute();
             }
             session.WriteAndFlush(msg);
-
         }
         else
         {
             //失敗
             req.IsSuccess = false;
             session.WriteAndFlush(msg);
-
         }
     }
 }

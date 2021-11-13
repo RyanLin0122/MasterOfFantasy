@@ -67,7 +67,6 @@ public class Information : WindowRoot
 
     public void RefreshIInfoUI() //根據GameRoot.Instance.ActivePlayer更新角色屬性相關UI(沒有回傳)
     {
-        Dictionary<string, float> EquipmentProperty = EquipmentWnd.Instance.CalculateEquipProperty();
         Player player = GameRoot.Instance.ActivePlayer;
         txtPoint.text = player.RestPoint.ToString();
         tempAtt.text = "0";

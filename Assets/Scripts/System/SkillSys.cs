@@ -29,14 +29,6 @@ class SkillSys : MonoSingleton<SkillSys>
         //ToDo
         
     }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Skill skill = new Skill(ResSvc.Instance.SkillDic[304]);
-            skill.BeginCast(new SkillCastInfo());
-        }
-    }
     public void InstantiateCasterSkillEffect(int SkillID, Transform CasterTransform)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];

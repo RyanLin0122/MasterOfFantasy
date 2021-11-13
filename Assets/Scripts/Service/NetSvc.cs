@@ -219,9 +219,7 @@ public class NetSvc : MonoBehaviour
         BattleSys.Instance.ClearMonsters();
         LoginSys.Instance.selectCharacterWnd.SetWndState(false);
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
-        UISystem.Instance.InfoWnd.RefreshIInfoUI();
         BattleSys.Instance.HotKeyManager.ReadHotKey();
-        BattleSys.Instance.InitAllAtribute();       
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
     {
@@ -390,10 +388,8 @@ public class NetSvc : MonoBehaviour
                 {
                     OtherPlayerTask task = new OtherPlayerTask(GameRoot.Instance.otherPlayers[death.CharacterName],2,death.FaceDir);
                     GameRoot.Instance.otherPlayers[death.CharacterName].Actions.Enqueue(task);
-                }
-                
-            }
-            
+                }                
+            }          
         }
         */
     }

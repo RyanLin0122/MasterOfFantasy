@@ -617,38 +617,7 @@ public static class Utility
         };
         return b;
     }
-    public static BsonArray GenerateBeginnerSkills(int job)
-    {
-        BsonArray arr = new BsonArray();
-        switch (job)
-        {
-            case 1:
-                arr.Add(Skill2Bson(new SkillData { SkillID = 101, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 102, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 103, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 104, SkillLevel = 0 }));
-                break;
-            case 2:
-                arr.Add(Skill2Bson(new SkillData { SkillID = 201, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 202, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 203, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 204, SkillLevel = 0 }));
-                break;
-            case 3:
-                arr.Add(Skill2Bson(new SkillData { SkillID = 301, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 302, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 303, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 304, SkillLevel = 0 }));
-                break;
-            case 4:
-                arr.Add(Skill2Bson(new SkillData { SkillID = 401, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 402, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 403, SkillLevel = 0 }));
-                arr.Add(Skill2Bson(new SkillData { SkillID = 404, SkillLevel = 0 }));
-                break;
-        }
-        return arr;
-    }
+   
     public static BsonArray CartList2BsonArr(List<CartItem> cartItems)
     {
         BsonArray r = new BsonArray();

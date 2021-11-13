@@ -8,7 +8,7 @@ using DotNetty.Transport.Channels;
 using PEProtocal;
 class HeartBeatServerHandler : IdleStateHandler
 {
-    public static int READ_IDLE_GAP = 30;
+    public static int READ_IDLE_GAP = 300;
     public HeartBeatServerHandler() :base(READ_IDLE_GAP,0,0)
     {
         

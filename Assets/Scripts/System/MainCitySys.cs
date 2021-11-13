@@ -260,12 +260,11 @@ public class MainCitySys : SystemRoot
         mainPlayerCtrl.Name = PlayerName;
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
         mainPlayerCtrl.SetNameBox();
-        BattleSys.Instance.InitAllAtribute();
         PlayerInputController.Instance.Init(
             new NEntity
             {
                 FaceDirection = true,
-                Speed = BattleSys.Instance.FinalAttribute.RunSpeed,
+                Speed = 200,
                 Direction = new NVector3(1, 0, 0),
                 EntityName = GameRoot.Instance.ActivePlayer.Name,
                 Id = -0,
@@ -320,8 +319,8 @@ public class MainCitySys : SystemRoot
             BattleSys.Instance.Players.Add(OtherPlayerCtrl.Name, OtherPlayerCtrl);
             GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
             //player.GetComponent<Transform>().SetAsLastSibling();
-            OtherPlayerCtrl.SetAllEquipment(add);
-            OtherPlayerCtrl.SetFace(add);
+            OtherPlayerCtrl.SetAllEquipment(add.playerEquipments, add.Gender);
+            OtherPlayerCtrl.SetFace(add.playerEquipments, add.Gender);
         }
 
     }

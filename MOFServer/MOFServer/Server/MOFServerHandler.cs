@@ -201,7 +201,8 @@ class MOFServerHandler : ChannelHandlerAdapter
                     Task KnapsackTask = knapsackHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 42: //裝備操作
-                    CacheSvc.Instance.ProcessEquipmentPkg(msg, session);
+                    EquipmentHandler equipmentHandler = new EquipmentHandler();
+                    Task equipmentTask = equipmentHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 43: //回收物品
                     if (GetMap(session).characters[session.ActivePlayer.Name].RecycleItem(session, msg.recycleItems))

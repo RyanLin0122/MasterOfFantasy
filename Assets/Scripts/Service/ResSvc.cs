@@ -761,6 +761,7 @@ public class ResSvc : MonoBehaviour
                     {
                         Values[i] = ValuesList[i].n;
                     }
+                    effect.Values = Values;
                     Effects.Add(effect);
                 }
             }

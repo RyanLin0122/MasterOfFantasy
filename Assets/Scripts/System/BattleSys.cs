@@ -21,7 +21,7 @@ public class BattleSys : SystemRoot
     {
         InitBasicAttribute(GameRoot.Instance.ActivePlayer);
         InitEquipmentAttribute(GameRoot.Instance.ActivePlayer.playerEquipments);
-        InitNegativeAttribute();
+        InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
         InitBuffAttribute();
         InitFinalAttribute();
     }
@@ -44,7 +44,7 @@ public class BattleSys : SystemRoot
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        BasicAttribute.RunSpeed = 150;
+        BasicAttribute.RunSpeed = 200;
         BasicAttribute.AttRange = 0;
         BasicAttribute.AttDelay = 0;
         BasicAttribute.ExpRate = 1;
@@ -223,7 +223,7 @@ public class BattleSys : SystemRoot
         }
     }
     public PlayerAttribute NegativeAttribute;
-    public void InitNegativeAttribute()
+    public void InitNegativeAttribute(Dictionary<int, Skill> NegativeSkills)
     {
         if (NegativeAttribute == null)
         {
@@ -250,6 +250,114 @@ public class BattleSys : SystemRoot
         NegativeAttribute.HPRate = 0;
         NegativeAttribute.MPRate = 0;
         NegativeAttribute.MinusHurt = 0;
+        if (NegativeSkills != null && NegativeSkills.Count > 0)
+        {
+            foreach (var skill in NegativeSkills.Values)
+            {
+                if (skill != null && !skill.info.IsActive)
+                {
+                    //是被動技能
+                    int SkillLevel = skill.SkillLevel;
+                    SkillInfo info = skill.info;
+                    if (SkillLevel > 5 || SkillLevel < 1) return;
+                    if (info.Effect != null && info.Effect.Count > 0)
+                    {
+                        foreach (var effect in info.Effect)
+                        {
+                            float value = effect.Values[SkillLevel - 1];
+                            switch (effect.EffectID)
+                            {
+                                case 1: //加血量
+                                    if (value >= 1) NegativeAttribute.MAXHP += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MAXHP += (int)(value * (BasicAttribute.MAXHP + EquipmentAttribute.MAXHP));
+                                    break;
+                                case 2: //加魔量
+                                    if (value >= 1) NegativeAttribute.MAXMP += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MAXMP += (int)(value * (BasicAttribute.MAXMP + EquipmentAttribute.MAXMP));
+                                    break;
+                                case 3: //加攻擊主屬
+                                    if (value >= 1) NegativeAttribute.Att += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Att += (int)(value * (BasicAttribute.Att + EquipmentAttribute.Att));
+                                    break;
+                                case 4: //加體力主屬
+                                    if (value >= 1) NegativeAttribute.Strength += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Strength += (int)(value * (BasicAttribute.Strength + EquipmentAttribute.Strength));
+                                    break;
+                                case 5: //加敏捷主屬
+                                    if (value >= 1) NegativeAttribute.Agility += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Agility += (int)(value * (BasicAttribute.Agility + EquipmentAttribute.Agility));
+                                    break;
+                                case 6: //加智力主屬
+                                    if (value >= 1) NegativeAttribute.Intellect += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Intellect += (int)(value * (BasicAttribute.Intellect + EquipmentAttribute.Intellect));
+                                    break;
+                                case 7: //加最小攻擊
+                                    if (value >= 1) NegativeAttribute.MinDamage += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MinDamage += (int)(value * (BasicAttribute.MinDamage + EquipmentAttribute.MinDamage));
+                                    break;
+                                case 8: //加最大攻擊
+                                    if (value >= 1) NegativeAttribute.MaxDamage += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MaxDamage += (int)(value * (BasicAttribute.MaxDamage + EquipmentAttribute.MaxDamage));
+                                    break;
+                                case 9: //加防禦
+                                    if (value >= 1) NegativeAttribute.Defense += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Defense += (int)(value * (BasicAttribute.Defense + EquipmentAttribute.Defense));
+                                    break;
+                                case 10: //加命中
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Accuracy += value;
+                                    break;
+                                case 11: //加爆擊
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Critical += value;
+                                    break;
+                                case 12: //加迴避
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.Avoid += value;
+                                    break;
+                                case 13: //加魔防
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MagicDefense += value;
+                                    break;
+                                case 14: //跑速
+                                    if (value >= 1) NegativeAttribute.RunSpeed += (int)value;
+                                    else if (value > 0 && value < 1) NegativeAttribute.RunSpeed += (int)(value * (BasicAttribute.RunSpeed + EquipmentAttribute.RunSpeed));
+                                    break;
+                                case 15: //攻擊距離，先不加
+                                    NegativeAttribute.AttRange = 0;
+                                    break;
+                                case 16: //攻擊延遲，先不處理
+                                    NegativeAttribute.AttDelay = 0;
+                                    break;
+                                case 17: //經驗倍率
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.ExpRate += value;
+                                    break;
+                                case 18: //掉寶倍率
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.DropRate += value;
+                                    break;
+                                case 19: //HP恢復率
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.HPRate += value;
+                                    break;
+                                case 20: //MP恢復率
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MPRate += value;
+                                    break;
+                                case 21: //減傷率
+                                    if (value >= 1) break;
+                                    else if (value > 0 && value < 1) NegativeAttribute.MinusHurt += value;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
     public PlayerAttribute BuffAttribute;
     public void InitBuffAttribute()

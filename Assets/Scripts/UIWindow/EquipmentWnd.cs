@@ -389,201 +389,148 @@ public class EquipmentWnd : Inventory, IStackWnd
         IsPutOff = !IsPutOff;
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
     }
-    public void ProcessEquipmentOperation(EquipmentOperation msg)
+    public void ProcessEquipmentOperation(EquipmentOperation eo)
     {
-        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
-        if (nk == null)
+        if(eo.PlayerName == GameRoot.Instance.ActivePlayer.Name)
         {
-            GameRoot.Instance.ActivePlayer.NotCashKnapsack = new Dictionary<int, Item>();
-            nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
-        }
-
-        Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
-        if (ck == null)
-        {
-            GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
-            ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
-        }
-        if (msg.PutOnEquipment != null)
-        {
-            msg.PutOnEquipment.Position = msg.EquipmentPosition;
-        }
-        if (msg.PutOffEquipment != null)
-        {
-            msg.PutOffEquipment.Position = msg.KnapsackPosition;
-        }
-
-        switch (msg.OperationType)
-        {
-            case 1:
-                if (!msg.PutOnEquipment.IsCash)
-                {
-                    nk.Remove(msg.KnapsackPosition);
-                    DestroyImmediate(KnapsackWnd.Instance.FindSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                }
-                else
-                {
-                    ck.Remove(msg.KnapsackPosition);
-                    DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                }
-                if (InventorySys.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
-                {
-                    InventorySys.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
-                }
-                else
-                {
-                    InventorySys.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
-                }
-                PutOn(msg.PutOnEquipment);
-                PutOnRing(msg.EquipmentPosition, msg.PutOnEquipment);
-                PlayChanegeEquipmentAudio(msg.EquipmentPosition);
-                if (msg.EquipmentPosition != 5)
-                {
-                    UpdatePlayerEquipments((Equipment)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, msg.EquipmentPosition);
-                }
-                else
-                {
-                    UpdatePlayerWeapon((Weapon)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                }
-                SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                UISystem.Instance.InfoWnd.SetIllustration();
-                break;
-            case 2:
-                if (!msg.PutOnEquipment.IsCash)
-                {
-                    nk[msg.KnapsackPosition] = msg.PutOffEquipment;
-                    DestroyImmediate(KnapsackWnd.Instance.FindSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                    KnapsackWnd.Instance.FindSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
-                }
-                else
-                {
-                    ck[msg.KnapsackPosition] = msg.PutOffEquipment;
-                    DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                    KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
-                }
-                if (InventorySys.Instance.Equipments.ContainsKey(msg.EquipmentPosition))
-                {
-                    InventorySys.Instance.Equipments[msg.EquipmentPosition] = msg.PutOnEquipment;
-                }
-                else
-                {
-                    InventorySys.Instance.Equipments.Add(msg.EquipmentPosition, msg.PutOnEquipment);
-                }
-                DestroyImmediate(FindEquipmentSlot(msg.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
-                PutOn(msg.PutOnEquipment);
-                PutOnRing(msg.EquipmentPosition, msg.PutOnEquipment);
-                PlayChanegeEquipmentAudio(msg.EquipmentPosition);
-                if (msg.EquipmentPosition != 5)
-                {
-                    UpdatePlayerEquipments((Equipment)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, msg.EquipmentPosition);
-                }
-                else
-                {
-                    UpdatePlayerWeapon((Weapon)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                }
-                SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                UISystem.Instance.InfoWnd.SetIllustration();
-                break;
-            case 3:
-                if (!msg.PutOffEquipment.IsCash)
-                {
-                    nk.Add(msg.KnapsackPosition, msg.PutOffEquipment);
-                    KnapsackWnd.Instance.FindSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
-                }
-                else
-                {
-                    ck.Add(msg.KnapsackPosition, msg.PutOffEquipment);
-                    KnapsackWnd.Instance.FindCashSlot(msg.KnapsackPosition).StoreItem(msg.PutOffEquipment, msg.PutOffEquipment.Count);
-                }
-                InventorySys.Instance.Equipments.Remove(msg.EquipmentPosition);
-                DestroyImmediate(FindEquipmentSlot(msg.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
-                PutOffEquipment(msg.EquipmentPosition, GameRoot.Instance.ActivePlayer.playerEquipments);
-                if (msg.EquipmentPosition != 5)
-                {
-                    UpdatePlayerEquipments((Equipment)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, msg.EquipmentPosition);
-                }
-                else
-                {
-                    UpdatePlayerWeapon((Weapon)msg.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                }
-                SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                PlayChanegeEquipmentAudio(msg.EquipmentPosition);
-                illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                UISystem.Instance.InfoWnd.SetIllustration();
-                break;
-        }
-        GameRoot.Instance.MainPlayerControl.SetNameBox();
-        Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
-        InventorySys.Instance.HideToolTip();
-    }
-    public Dictionary<string, float> CalculateEquipProperty()
-    {
-        print("CalculateEquipProperty");
-        int Attack = 0;
-        int Strength = 0;
-        int Agility = 0;
-        int Intellect = 0;
-        int Hp = 0;
-        int Mp = 0;
-        int MaxDamage = 0;
-        int MinDamage = 0;
-        int Defense = 0;
-        float Accuracy = 0;
-        float Critical = 0;
-        float Avoid = 0;
-        float MagicDefense = 0;
-        Dictionary<string, float> dic = new Dictionary<string, float>();
-        foreach (var Equip in InventorySys.Instance.Equipments.Values)
-        {
-            if (Equip is Equipment)
+            Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+            if (nk == null)
             {
-                Attack += ((Equipment)Equip).Attack;
-                Strength += ((Equipment)Equip).Strength;
-                Agility += ((Equipment)Equip).Agility;
-                Intellect += ((Equipment)Equip).Intellect;
-                Hp += ((Equipment)Equip).HP;
-                Mp += ((Equipment)Equip).MP;
-                MaxDamage += ((Equipment)Equip).MaxDamage;
-                MinDamage += ((Equipment)Equip).MinDamage;
-                Defense += ((Equipment)Equip).Defense;
-                Accuracy += ((Equipment)Equip).Accuracy;
-                Critical += ((Equipment)Equip).Critical;
-                Avoid += ((Equipment)Equip).Avoid;
-                MagicDefense += ((Equipment)Equip).MagicDefense;
-
+                GameRoot.Instance.ActivePlayer.NotCashKnapsack = new Dictionary<int, Item>();
+                nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
             }
-            else if (Equip is Weapon)
+
+            Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+            if (ck == null)
             {
-                Attack += ((Weapon)Equip).Attack;
-                Strength += ((Weapon)Equip).Strength;
-                Agility += ((Weapon)Equip).Agility;
-                Intellect += ((Weapon)Equip).Intellect;
-                MaxDamage += ((Weapon)Equip).MaxDamage;
-                Accuracy += ((Weapon)Equip).Accuracy;
-                Critical += ((Weapon)Equip).Critical;
-                Avoid += ((Weapon)Equip).Avoid;
+                GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
+                ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
             }
-        }
+            if (eo.PutOnEquipment != null)
+            {
+                eo.PutOnEquipment.Position = eo.EquipmentPosition;
+            }
+            if (eo.PutOffEquipment != null)
+            {
+                eo.PutOffEquipment.Position = eo.KnapsackPosition;
+            }
 
-        dic.Add("Attack", Attack);
-        dic.Add("Strength", Strength);
-        dic.Add("Agility", Agility);
-        dic.Add("Intellect", Intellect);
-        dic.Add("HP", Hp);
-        dic.Add("MP", Mp);
-        dic.Add("MaxDamage", MaxDamage);
-        dic.Add("MinDamage", MinDamage);
-        dic.Add("Defense", Defense);
-        dic.Add("Accuracy", Accuracy);
-        dic.Add("Critical", Critical);
-        dic.Add("Avoid", Avoid);
-        dic.Add("MagicDefense", MagicDefense);
-        return dic;
+            switch (eo.OperationType)
+            {
+                case 1:
+                    if (!eo.PutOnEquipment.IsCash)
+                    {
+                        nk.Remove(eo.KnapsackPosition);
+                        DestroyImmediate(KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
+                    }
+                    else
+                    {
+                        ck.Remove(eo.KnapsackPosition);
+                        DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
+                    }
+                    if (InventorySys.Instance.Equipments.ContainsKey(eo.EquipmentPosition))
+                    {
+                        InventorySys.Instance.Equipments[eo.EquipmentPosition] = eo.PutOnEquipment;
+                    }
+                    else
+                    {
+                        InventorySys.Instance.Equipments.Add(eo.EquipmentPosition, eo.PutOnEquipment);
+                    }
+                    PutOn(eo.PutOnEquipment);
+                    PutOnRing(eo.EquipmentPosition, eo.PutOnEquipment);
+                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
+                    if (eo.EquipmentPosition != 5)
+                    {
+                        UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
+                    }
+                    else
+                    {
+                        UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
+                    }
+                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
+                    UISystem.Instance.InfoWnd.SetIllustration();
+                    break;
+                case 2:
+                    if (!eo.PutOnEquipment.IsCash)
+                    {
+                        nk[eo.KnapsackPosition] = eo.PutOffEquipment;
+                        DestroyImmediate(KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
+                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                    }
+                    else
+                    {
+                        ck[eo.KnapsackPosition] = eo.PutOffEquipment;
+                        DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
+                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                    }
+                    if (InventorySys.Instance.Equipments.ContainsKey(eo.EquipmentPosition))
+                    {
+                        InventorySys.Instance.Equipments[eo.EquipmentPosition] = eo.PutOnEquipment;
+                    }
+                    else
+                    {
+                        InventorySys.Instance.Equipments.Add(eo.EquipmentPosition, eo.PutOnEquipment);
+                    }
+                    DestroyImmediate(FindEquipmentSlot(eo.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
+                    PutOn(eo.PutOnEquipment);
+                    PutOnRing(eo.EquipmentPosition, eo.PutOnEquipment);
+                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
+                    if (eo.EquipmentPosition != 5)
+                    {
+                        UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
+                    }
+                    else
+                    {
+                        UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
+                    }
+                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
+                    UISystem.Instance.InfoWnd.SetIllustration();
+                    break;
+                case 3:
+                    if (!eo.PutOffEquipment.IsCash)
+                    {
+                        nk.Add(eo.KnapsackPosition, eo.PutOffEquipment);
+                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                    }
+                    else
+                    {
+                        ck.Add(eo.KnapsackPosition, eo.PutOffEquipment);
+                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                    }
+                    InventorySys.Instance.Equipments.Remove(eo.EquipmentPosition);
+                    DestroyImmediate(FindEquipmentSlot(eo.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
+                    PutOffEquipment(eo.EquipmentPosition, GameRoot.Instance.ActivePlayer.playerEquipments);
+                    if (eo.EquipmentPosition != 5)
+                    {
+                        UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
+                    }
+                    else
+                    {
+                        UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
+                    }
+                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
+                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
+                    UISystem.Instance.InfoWnd.SetIllustration();
+                    break;
+            }
+            BattleSys.Instance.InitAllAtribute();
+            GameRoot.Instance.MainPlayerControl.SetNameBox();
+            Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
+            InventorySys.Instance.HideToolTip();
+        } //本人換裝
+        else //其他人換裝
+        {
+            if (eo.OtherPlayerEquipments == null) return;
+            PlayerController controller = null;
+            BattleSys.Instance.Players.TryGetValue(eo.PlayerName, out controller);
+            controller.SetAllEquipment(eo.OtherPlayerEquipments,eo.OtherGender);
+        }
     }
     /// <summary>
     /// Update PlayerEquipments data in Active player by EquipmentWnd SlotPosition

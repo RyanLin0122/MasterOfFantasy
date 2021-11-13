@@ -44,6 +44,10 @@ public class SkillManager
 
         }
     }
+    public void LoadNegativeSkill()
+    {
+
+    }
     public void AddSkill(Skill skill)
     {
         this.ActiveSkills.Add(skill.Info.SkillID, skill);

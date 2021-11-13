@@ -1031,6 +1031,12 @@ namespace PEProtocal
         public int EquipmentPosition;
         [ProtoMember(5, IsRequired = false)]
         public int OperationType { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public string PlayerName { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public PlayerEquipments OtherPlayerEquipments { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int OtherGender { get; set; }
     }
 
     [ProtoContract]
