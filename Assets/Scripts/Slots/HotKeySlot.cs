@@ -20,7 +20,7 @@ public class HotKeySlot : MonoBehaviour
     public Skill CurrentSkill;
     public void SetColdTime(Skill skill)
     {
-        float maxTime = ((ActiveSkillInfo)ResSvc.Instance.SkillDic[skill.info.SkillID]).ColdTime[skill.SkillLevel - 1];
+        float maxTime = ((ActiveSkillInfo)ResSvc.Instance.SkillDic[skill.Info.SkillID]).ColdTime[skill.Level - 1];
         float time = skill.CD;
         float Period = 0.1f;
         int TotalMinusTimes = Mathf.CeilToInt(time / Period);
@@ -96,7 +96,7 @@ public class HotKeySlot : MonoBehaviour
         {
             if (((HotkeyData)(data.Content)).HotKeyState == 1)
             {
-                Item item = InventorySys.Instance.itemList[((HotkeyData)(data.Content)).ID];
+                Item item = InventorySys.Instance.ItemList[((HotkeyData)(data.Content)).ID];
                 if (item is Consumable)
                 {
                     SendHotKeyRequest(item);
@@ -182,10 +182,10 @@ public class HotKeySlot : MonoBehaviour
                 this.data = data;
                 State = HotKeyState.Consumable;
                 ColdTimeImg.fillAmount = 0;
-                ContentImg.sprite = Resources.Load<Sprite>(InventorySys.Instance.itemList[data.ID].Sprite);
+                ContentImg.sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[data.ID].Sprite);
                 ContentImg.gameObject.SetActive(true);
                 int Count = 0;
-                if (InventorySys.Instance.itemList[data.ID].IsCash)
+                if (InventorySys.Instance.ItemList[data.ID].IsCash)
                 {
                     foreach (var item in GameRoot.Instance.ActivePlayer.CashKnapsack.Values)
                     {

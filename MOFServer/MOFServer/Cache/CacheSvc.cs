@@ -31,6 +31,7 @@ public class CacheSvc
         ParseMonsterJson();
         ParseCashShopItems();
         ParseSkillJson();
+        ParseBuffJson();
         dbMgr = DBMgr.Instance;
         Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
         await task;
@@ -130,7 +131,7 @@ public class CacheSvc
         return dbMgr.DeletePlayer(Account, PlayerName);
     }
 
-    
+
 
     #region MiniGameSystem <Name,Score>
     public Dictionary<string, int>[] MiniGame_Records;
@@ -225,7 +226,7 @@ public class CacheSvc
                 {
                     isCash = true;
                 }
-                if (Convert.ToInt32(jo["CanTransaction"].ToString()) == 1) { canTransaction = true; }
+                if ((int)jo["CanTransaction"].n == 1) { canTransaction = true; }
                 else { canTransaction = false; }
 
                 switch (type)
@@ -254,39 +255,33 @@ public class CacheSvc
                                 Effects[s] = Convert.ToInt32(EffectString[s]);
                             }
                         }
-                        Consumable itemc = new Consumable(Convert.ToInt32(jo["ItemID"].ToString())
+                        Consumable itemc = new Consumable((int)jo["ItemID"].n
                             , name, ItemType.Consumable
                             , quality, description
-                            , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                            , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1
-                            , Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                            , Convert.ToInt32(jo["Agility"].ToString())
-                            , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["HP"].ToString())
-                            , Convert.ToInt32(jo["MP"].ToString()), Convert.ToInt32(jo["Defense"].ToString())
-                            , Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                            , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString())
-                            , (float)Convert.ToDouble(jo["MagicDefense"].ToString()), (float)Convert.ToDouble(jo["ExpRate"].ToString())
-                            , Convert.ToInt32(jo["Exp"].ToString())
-                            , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["BuffTime"].ToString())
-                            , Convert.ToInt32(jo["ColdTime"].ToString())
-                            , Effects
+                            , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                            , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1
+                            , jo["Attack"].n, jo["Strength"].n, jo["Agility"].n
+                            , jo["Intellect"].n,jo["HP"].n
+                            , jo["MP"].n, jo["Defense"].n
+                            , jo["MinDamage"].n, jo["MaxDamage"].n, jo["Accuracy"].n
+                            , jo["Avoid"].n, jo["Critical"].n
+                            , jo["MagicDefense"].n, jo["ExpRate"].n, jo["Exp"].n
+                            , jo["DropRate"].n, jo["BuffTime"].n
+                            , jo["ColdTime"].n, Effects
                             );
                         ItemList.Add(itemc.ItemID, itemc);
                         break;
                     case ItemType.Equipment:
-                        Equipment EquipItem = new Equipment(Convert.ToInt32(jo["ItemID"].ToString())
+                        Equipment EquipItem = new Equipment((int)jo["ItemID"].n
                             , name, ItemType.Equipment
                             , quality, description
-                            , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                            , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1, Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                            , Convert.ToInt32(jo["Agility"].ToString())
-                            , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["Job"].ToString()), Convert.ToInt32(jo["Level"].ToString()), Convert.ToInt32(jo["Gender"].ToString())
-                            , Convert.ToInt32(jo["Defense"].ToString()), Convert.ToInt32(jo["HP"].ToString())
-                            , Convert.ToInt32(jo["MP"].ToString()), jo["Title"].ToString(), Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                            , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString())
-                            , (float)Convert.ToDouble(jo["MagicDefense"].ToString()), (EquipmentType)Enum.Parse(typeof(EquipmentType), jo["EquipmentType"].str)
-                            , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
-                            , (float)Convert.ToDouble(jo["ExpRate"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()), Convert.ToInt32(jo["Stars"].ToString())
+                            , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                            , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1, jo["Attack"].n, jo["Strength"].n
+                            , jo["Agility"].n, jo["Intellect"].n, (int)jo["Job"].n, (int)jo["Level"].n, (int)jo["Gender"].n
+                            , jo["Defense"].n, jo["HP"].n, jo["MP"].n, jo["Title"].str, jo["MinDamage"].n, jo["MaxDamage"].n, jo["Accuracy"].n
+                            , jo["Avoid"].n, jo["Critical"].n, jo["MagicDefense"].n, (EquipmentType)Enum.Parse(typeof(EquipmentType), jo["EquipmentType"].str)
+                            , jo["DropRate"].n, (int)jo["RestRNum"].n
+                            , jo["ExpRate"].n, (int)jo["ExpiredTime"].n, (int)jo["Stars"].n
                             );
                         ItemList.Add(EquipItem.ItemID, EquipItem);
                         break;
@@ -294,29 +289,27 @@ public class CacheSvc
                         Weapon WeapItem = new Weapon(Convert.ToInt32(jo["ItemID"].ToString())
                             , name, ItemType.Weapon
                             , quality, description
-                            , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                            , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1, Convert.ToInt32(jo["Level"].ToString())
-                            , Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), Convert.ToInt32(jo["AttSpeed"].ToString()), Convert.ToInt32(jo["Range"].ToString())
-                            , jo["Property"].ToString(), Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                            , Convert.ToInt32(jo["Agility"].ToString())
-                            , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["Job"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                            , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString()), (WeaponType)Enum.Parse(typeof(WeaponType), jo["WeapType"].str)
-                            , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
-                            , Convert.ToInt32(jo["Additional"].ToString()), Convert.ToInt32(jo["Stars"].ToString()), Convert.ToInt32(jo["AdditionalLevel"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()));
+                            , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                            , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1, (int)jo["Level"].n
+                            , (int)jo["MinDamage"].n, (int)jo["MaxDamage"].n,jo["AttSpeed"].n, jo["Range"].n
+                            , jo["Property"].ToString(), jo["Attack"].n, jo["Strength"].n
+                            , jo["Agility"].n
+                            , jo["Intellect"].n, (int)jo["Job"].n, jo["Accuracy"].n
+                            , jo["Avoid"].n, (float)Convert.ToDouble(jo["Critical"].ToString()), (WeaponType)Enum.Parse(typeof(WeaponType), jo["WeapType"].str)
+                            , jo["DropRate"].n, (int)jo["RestRNum"].n
+                            , (int)jo["Additional"].n, (int)jo["Stars"].n, (int)jo["AdditionalLevel"].n, (int)jo["ExpiredTime"].n);
                         ItemList.Add(WeapItem.ItemID, WeapItem);
                         break;
                     case ItemType.EtcItem:
-                        EtcItem etcItem = new EtcItem(Convert.ToInt32(jo["ItemID"].ToString())
+                        EtcItem etcItem = new EtcItem((int)jo["ItemID"].n
                             , name, ItemType.EtcItem
                             , quality, description
-                            , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                            , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1);
+                            , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                            , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1);
                         ItemList.Add(etcItem.ItemID, etcItem);
                         break;
                 }
             }
-
-
         }
     }
 
@@ -651,6 +644,7 @@ public class CacheSvc
                     float CastTime = Skill["CastTime"].n;
                     float ChargeTime = Skill["ChargeTime"].n;
                     float LockTime = Skill["LockTime"].n;
+                    int Buff = (int)Skill["Buff"].n;
                     ActiveSkillInfo activeSkillInfo = new ActiveSkillInfo
                     {
                         SkillID = ID,
@@ -695,7 +689,8 @@ public class CacheSvc
                         ChargeTime = ChargeTime,
                         LockTime = LockTime,
                         Icon = Icon,
-                        BulletSpeed = BulletSpeed
+                        BulletSpeed = BulletSpeed,
+                        Buff = Buff
                     };
                     SkillDic.Add(ID, activeSkillInfo);
                 }
@@ -704,6 +699,80 @@ public class CacheSvc
     }
     #endregion
 
+    public Dictionary<int, BuffDefine> BuffDic = new Dictionary<int, BuffDefine>();
+    public void ParseBuffJson()
+    {
+        using (StreamReader sr = new StreamReader("../../Common/BuffDefine.Json"))
+        {
+            string SkillJson = sr.ReadToEnd();
+            JSONObject j = new JSONObject(SkillJson);
+            foreach (JSONObject Buff in j.list)
+            {
+                int BuffID = (int)Buff["ID"].n;
+                string Icon = Buff["Icon"].str;
+                string BuffName = Buff["BuffName"].str;
+                string Description = Buff["Description"].str;
+                float Duration = Buff["Duration"].n;
+                float Inteval = Buff["Inteval"].n;
+                BUFF_TriggerType TriggerType = (BUFF_TriggerType)System.Enum.Parse(typeof(BUFF_TriggerType), Buff["TriggerType"].str);
+                float DamageFactor = Buff["DamageFactor"].n;
+                BUFF_TargetType TargetType = (BUFF_TargetType)System.Enum.Parse(typeof(BUFF_TargetType), Buff["TargetType"].str);
+                float CD = Buff["CD"].n;
+                BUFF_Effect buFF_Effect = (BUFF_Effect)System.Enum.Parse(typeof(BUFF_Effect), Buff["BuffState"].str);
+                List<int> ConflictBuffIDs = new List<int>();
+                var conlist = Buff["ConflictBuffs"].list;
+                if (conlist.Count > 0)
+                {
+                    foreach (var id in conlist)
+                    {
+                        ConflictBuffIDs.Add((int)id.n);
+                    }
+                }
+                JSONObject Attr = Buff["Attribute"];
+                PlayerAttribute attribute = new PlayerAttribute
+                {
+                    MAXHP = (int)(Attr["MAXHP"].n),
+                    MAXMP = (int)(Attr["MAXMP"].n),
+                    Att = (int)(Attr["Att"].n),
+                    Strength = (int)(Attr["Strength"].n),
+                    Agility = (int)(Attr["Agility"].n),
+                    Intellect = (int)(Attr["Intellect"].n),
+                    MaxDamage = (int)(Attr["MaxDamage"].n),
+                    MinDamage = (int)(Attr["MinDamage"].n),
+                    Defense = (int)(Attr["Defense"].n),
+                    Accuracy = Attr["Accuracy"].n,
+                    Critical = Attr["Critical"].n,
+                    Avoid = Attr["Avoid"].n,
+                    MagicDefense = Attr["MagicDefense"].n,
+                    RunSpeed = Attr["RunSpeed"].n,
+                    AttRange = Attr["AttRange"].n,
+                    AttDelay = Attr["AttDelay"].n,
+                    ExpRate = Attr["ExpRate"].n,
+                    DropRate = Attr["DropRate"].n,
+                    HPRate = Attr["HPRate"].n,
+                    MPRate = Attr["MPRate"].n,
+                    MinusHurt = Attr["MinusHurt"].n
+                };
+                BuffDefine buffDefine = new BuffDefine
+                {
+                    ID = BuffID,
+                    Icon = Icon,
+                    BuffName = BuffName,
+                    Description = Description,
+                    Duration = Duration,
+                    Interval = Inteval,
+                    TriggerType = TriggerType,
+                    DamageFactor = DamageFactor,
+                    TargetType = TargetType,
+                    CD = CD,
+                    BuffState = buFF_Effect,
+                    ConflictBuff = ConflictBuffIDs,
+                    AttributeGain = attribute
+                };
+                BuffDic.Add(BuffID, buffDefine);
+            }
+        }
+    }
     #region CashShop
     public Dictionary<string, Dictionary<string, List<CashShopData>>> CashShopDic { get; set; }
     public void ParseCashShopItems()

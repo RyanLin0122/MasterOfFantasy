@@ -5,9 +5,9 @@ using PEProtocal;
 
 public class Skill
 {
-    public SkillInfo info;
+    public SkillInfo Info;
     public float CD = 0;
-    public int SkillLevel = 0;
+    public int Level = 0;
     public float CastTime = 0;
     public float DelayTime = 0;
     private float SkillTime = 0;
@@ -20,7 +20,7 @@ public class Skill
     public SkillStatus status = SkillStatus.None;
     public Skill(SkillInfo info)
     {
-        this.info = info;
+        this.Info = info;
         HitMap = new Dictionary<int, List<DamageInfo>>();
         Bullets = new List<Bullet>();
     }
@@ -28,20 +28,21 @@ public class Skill
     #region Skill WorkFlow 技能總流程
     public SkillResult CanCast() //判斷能不能使用技能
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        ActiveSkillInfo active = (ActiveSkillInfo)Info;
         if (CD > 0)
         {
             return SkillResult.CoolDown;
         }
-        if (!info.IsActive)
+        if (!Info.IsActive)
         {
             return SkillResult.Invalid;
         }
+        if (active.TargetType == SkillTargetType.BuffOnly) return SkillResult.OK;
         if (EntityController is PlayerController)
         {
             if (EntityController.Name == GameRoot.Instance.ActivePlayer.Name)
             {
-                if (active.MP[SkillLevel - 1] > GameRoot.Instance.ActivePlayer.MP)
+                if (active.MP[Level - 1] > GameRoot.Instance.ActivePlayer.MP)
                 {
                     return SkillResult.OutOfMP;
                 }
@@ -82,13 +83,14 @@ public class Skill
         if (result == SkillResult.OK)
         {
             PlayerController playerController = PlayerInputController.Instance.entityController;
-            if (BattleSys.Instance.CurrentTarget == null) return;
+            ActiveSkillInfo active = (ActiveSkillInfo)Info;
+            if (BattleSys.Instance.CurrentTarget == null && active.TargetType != SkillTargetType.BuffOnly) return;
             int CastID = -1;
             string CasterName = "";
             int[] TargetID = null;
             string[] TargetName = null;
             SkillCasterType CasterType = SkillCasterType.Player;
-            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            
             if (EntityController is MonsterController)
             {
                 CastID = this.EntityController.entity.entityId;
@@ -100,13 +102,16 @@ public class Skill
                 }
                 else
                 {
-                    if (active.TargetType == SkillTargetType.Monster)
+                    if (active.TargetType != SkillTargetType.BuffOnly)
                     {
-                        //TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
-                    }
-                    else
-                    {
-                        //TargetName = new string[] { };
+                        if (active.TargetType == SkillTargetType.Monster)
+                        {
+                            //TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                        }
+                        else
+                        {
+                            //TargetName = new string[] { };
+                        }
                     }
                 }
             }
@@ -121,19 +126,23 @@ public class Skill
                 }
                 else
                 {
-                    if (active.TargetType == SkillTargetType.Monster)
+                    if (active.TargetType != SkillTargetType.BuffOnly)
                     {
-                        TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                        if (active.TargetType == SkillTargetType.Monster)
+                        {
+                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                        }
+                        else
+                        {
+                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName };
+                        }
                     }
-                    else
-                    {
-                        TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName };
-                    }
+                    
                 }
             }
             SkillCastInfo castInfo = new SkillCastInfo
             {
-                SkillID = info.SkillID,
+                SkillID = Info.SkillID,
                 CasterID = CastID,
                 CasterName = CasterName,
                 CasterType = CasterType,
@@ -153,31 +162,34 @@ public class Skill
     //<-------- 技能執行階段 Execute Phase ---------->
     public void BeginCast(SkillCastInfo castInfo) //收到釋放技能回應之後，開始釋放流程
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        ActiveSkillInfo active = (ActiveSkillInfo)Info;
         this.IsCasting = true;
         this.CastTime = 0;
         this.SkillTime = 0;
         this.Hit = 0;
-        this.CD = active.ColdTime[this.SkillLevel - 1];
+        this.CD = active.ColdTime[this.Level - 1];
         Targets = new List<EntityController>();
-        if(castInfo.TargetType == SkillTargetType.Monster)
+        if(active.TargetType != SkillTargetType.BuffOnly)
         {
-            foreach (var monsterID in castInfo.TargetID)
+            if (castInfo.TargetType == SkillTargetType.Monster)
             {
-                MonsterController monster = null; 
-                BattleSys.Instance.Monsters.TryGetValue(monsterID, out monster);
-                if (monster != null) Targets.Add(monster);
+                foreach (var monsterID in castInfo.TargetID)
+                {
+                    MonsterController monster = null;
+                    BattleSys.Instance.Monsters.TryGetValue(monsterID, out monster);
+                    if (monster != null) Targets.Add(monster);
+                }
             }
-        }
-        else
-        {
-            foreach (var PlayerName in castInfo.TargetName)
+            else
             {
-                PlayerController player = null;
-                BattleSys.Instance.Players.TryGetValue(PlayerName, out player);
-                if (player != null) Targets.Add(player);
+                foreach (var PlayerName in castInfo.TargetName)
+                {
+                    PlayerController player = null;
+                    BattleSys.Instance.Players.TryGetValue(PlayerName, out player);
+                    if (player != null) Targets.Add(player);
+                }
             }
-        }
+        }      
 
         if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
         {
@@ -195,7 +207,7 @@ public class Skill
             if (controller != null)
             {
                 controller.PlayPlayerAni(active.Action);
-                SkillSys.Instance.InstantiateCasterSkillEffect(info.SkillID, controller.transform);
+                SkillSys.Instance.InstantiateCasterSkillEffect(Info.SkillID, controller.transform);
             }
         }
         else //怪物釋放技能
@@ -223,9 +235,9 @@ public class Skill
     //<-------- 技能更新階段 Update Phase ---------->
     public void Update(float deltaTime)
     {
-        if (info != null && info.IsActive)
+        if (Info != null && Info.IsActive)
         {
-            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            ActiveSkillInfo active = (ActiveSkillInfo)Info;
             if (this.CD > 0)
             {
                 this.CD = Mathf.Clamp(this.CD - deltaTime, 0, this.CD);
@@ -242,7 +254,7 @@ public class Skill
     {        
         foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
         {
-            if (slot.State == HotKeyState.Skill && slot.data.ID == info.SkillID)
+            if (slot.State == HotKeyState.Skill && slot.data.ID == Info.SkillID)
             {
                 slot.SetColdTime(this);
             }
@@ -272,7 +284,7 @@ public class Skill
             {
                 this.UpdateDoHit(active);
             }
-            if (this.SkillTime >= active.ContiDurations[this.SkillLevel - 1])
+            if (this.SkillTime >= active.ContiDurations[this.Level - 1])
             {
                 this.status = SkillStatus.None;
             }
@@ -351,7 +363,7 @@ public class Skill
     //從Server收到
     internal void DoHit(SkillHitInfo hit)
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)info;
+        ActiveSkillInfo active = (ActiveSkillInfo)Info;
         if(!active.IsContinue && !active.IsDOT && !active.IsShoot)
         {
             this.HitMap[hit.Hit] = hit.damageInfos;
@@ -380,7 +392,7 @@ public class Skill
         List<DamageInfo> damages;
         if(this.HitMap.TryGetValue(Hit,out damages))
         {
-            ActiveSkillInfo active = (ActiveSkillInfo)info;
+            ActiveSkillInfo active = (ActiveSkillInfo)Info;
             foreach (var dmg in damages)
             {
                 if (active.TargetType == SkillTargetType.Monster)

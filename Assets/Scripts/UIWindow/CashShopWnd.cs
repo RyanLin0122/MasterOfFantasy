@@ -323,7 +323,7 @@ public class CashShopWnd : Inventory
     public void PressBuyBtn(int Order, int SellPrice, int Quantity)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        MessageBox.Show("確定要購買 " + InventorySys.Instance.itemList[ResSvc.Instance.CashShopDic[cata][CurrentTag][Order].ItemID].Name + "嗎?", MessageBoxType.Confirm,
+        MessageBox.Show("確定要購買 " + InventorySys.Instance.ItemList[ResSvc.Instance.CashShopDic[cata][CurrentTag][Order].ItemID].Name + "嗎?", MessageBoxType.Confirm,
             () =>
             {
                 new CashShopSender(

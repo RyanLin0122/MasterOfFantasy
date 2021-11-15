@@ -9,6 +9,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private Dictionary<int, Entity> AllMonsters;
     private Dictionary<int, Entity> DeathPool;
     private List<SkillHitInfo> Hits;
+    private List<BuffInfo> BuffActions;
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -21,14 +22,20 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.AllMonsters = new Dictionary<int, Entity>();
         this.DeathPool = new Dictionary<int, Entity>();
         this.Hits = new List<SkillHitInfo>();
+        this.BuffActions = new List<BuffInfo>();
     }
     public void AddHitInfo(SkillHitInfo hit)
     {
         this.Hits.Add(hit);
     }
+    public void AddBuffAction(BuffInfo buffInfo)
+    {
+        this.BuffActions.Add(buffInfo);
+    }
     internal void Update()
     {
         this.Hits.Clear();
+        this.BuffActions.Clear();
         if (this.Actions.Count > 0)
         {
             SkillCastInfo skillCast = this.Actions.Dequeue();
@@ -249,15 +256,31 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     private void BroadcastHitMessages() 
     {
-        if (this.Hits.Count == 0) return;
-        ProtoMsg msg = new ProtoMsg
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0) return;
+        SkillHitResponse skillHit = null;
+        BuffResponse buffRsp = null;
+        if (this.Hits != null && this.Hits.Count > 0)
         {
-            MessageType = 60,
-            skillHitResponse = new SkillHitResponse
+            skillHit = new SkillHitResponse
             {
                 skillHits = this.Hits,
                 Result = SkillResult.OK
-            }
+            };
+        }
+        if(this.BuffActions !=null && this.BuffActions.Count > 0)
+        {
+            buffRsp = new BuffResponse
+            {
+                Buffs = this.BuffActions,
+                SkillResult = SkillResult.OK
+            };
+        }      
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 60,
+
+            skillHitResponse = skillHit,
+            buffResponse = buffRsp
         };
         this.mofMap.BroadCastMassege(msg);
     }

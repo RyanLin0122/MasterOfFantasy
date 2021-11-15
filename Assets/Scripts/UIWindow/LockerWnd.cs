@@ -340,7 +340,7 @@ public class LockerWnd : Inventory
     }
     public bool IsInLocker(int ItemID, int Amount = 1)
     {
-        if (InventorySys.Instance.itemList.ContainsKey(ItemID))
+        if (InventorySys.Instance.ItemList.ContainsKey(ItemID))
         {
             return CheckItemsExistInInventory(ItemID, Amount);
         }

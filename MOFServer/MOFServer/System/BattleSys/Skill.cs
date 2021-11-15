@@ -87,7 +87,7 @@ public class Skill
     }
     internal SkillResult Cast(BattleContext context, SkillCastInfo castInfo)
     {
-        ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
+        ActiveSkillInfo active = (ActiveSkillInfo)this.Info;
         SkillResult result = CanCast(context);
         if (result == SkillResult.OK)
         {
@@ -99,7 +99,7 @@ public class Skill
                 {
                     CastInfo = castInfo,
                     Result = context.Result,
-                    ErrorMsg = context.Result.ToString(),
+                    ErrorMsg = context.Result.ToString()
                 }
             };
             if (castInfo.CasterType == SkillCasterType.Player)
@@ -111,17 +111,22 @@ public class Skill
             //開始釋放           
             this.CastingTime = 0;
             this.SkillTime = 0;
-            this.CD = ActiveInfo.ColdTime[this.Level - 1];
+            this.CD = active.ColdTime[this.Level - 1];
             this.context = context;
             this.Hit = 0;
             this.Bullets.Clear();
+
+            if (active.IsBuff)
+            {
+                this.AddBuff(BUFF_TriggerType.SkillStart, active);
+            }
             if (this.Instant)
             {
                 this.DoHit();
             }
             else
             {
-                if (ActiveInfo.CastTime > 0)
+                if (active.CastTime > 0)
                 {
                     this.status = SkillStatus.Casting;
                 }
@@ -141,6 +146,7 @@ public class Skill
         {
             ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
             //if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
+            if (!ActiveInfo.IsAttack) return false;
             if (ActiveInfo.IsShoot) return false; //是不是子彈技能
             if (ActiveInfo.IsContinue) return false; //如果是連續技的話，技能持續時間
             if (ActiveInfo.HitTimes != null && (ActiveInfo.HitTimes.Count > 0)) return false; //如果是DOT的話，每次施放的時間
@@ -162,65 +168,76 @@ public class Skill
         }
     }
     private void UpdateSkill()
-    {      
-        ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
-        LogSvc.Info("Skill[" + ActiveInfo.SkillName + "] Update skill");
+    {
+        ActiveSkillInfo active = (ActiveSkillInfo)this.Info;
+        LogSvc.Info("Skill[" + active.SkillName + "] Update skill");
         this.SkillTime += Time.deltaTime;
-        Console.WriteLine(ActiveInfo.ContiDurations != null);
-        if (ActiveInfo.IsContinue)
+        Console.WriteLine(active.ContiDurations != null);
+        if (active.IsAttack)
         {
-            //是持續技能
-            if (this.SkillTime > ActiveInfo.ContiInterval * (this.Hit + 1))
+            if (active.IsContinue)
             {
-                this.DoHit();
-            }
-            if (this.SkillTime >= ActiveInfo.ContiDurations[this.Level - 1])
-            {
-                this.status = SkillStatus.None;
-                LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
-            }
-        }
-        else if (ActiveInfo.IsDOT || ActiveInfo.IsShoot)
-        {
-            //DOT, 多時間，多次攻擊，或子彈技能
-            if (Hit < ActiveInfo.HitTimes.Count)
-            {
-                if (this.SkillTime > ActiveInfo.HitTimes[this.Hit])
+                //是持續技能
+                if (this.SkillTime > active.ContiInterval * (this.Hit + 1))
                 {
-                    Console.WriteLine("[188] Hit = "+ Hit);
                     this.DoHit();
                 }
-            }
-            else
-            {
-                if (!ActiveInfo.IsShoot)
+                if (this.SkillTime >= active.ContiDurations[this.Level - 1])
                 {
                     this.status = SkillStatus.None;
-                    LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateSkill Finish");
+                    LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
                 }
             }
-        }
-        if (ActiveInfo.IsShoot) //更新子彈
-        {
-            bool finish = true;
-            if (this.Bullets.Count > 0)
+            else if (active.IsDOT || active.IsShoot)
             {
-                foreach (var bullet in this.Bullets)
+                //DOT, 多時間，多次攻擊，或子彈技能
+                if (Hit < active.HitTimes.Count)
                 {
-                    bullet.Update();
-                    if (!bullet.Stopped) finish = false;
+                    if (this.SkillTime > active.HitTimes[this.Hit])
+                    {
+                        Console.WriteLine("[188] Hit = " + Hit);
+                        this.DoHit();
+                    }
                 }
-                if (finish && this.Hit >= ActiveInfo.HitTimes.Count)
+                else
                 {
-                    this.status = SkillStatus.None;
-                    LogSvc.Info("子彈技能刷新完畢");
+                    if (!active.IsShoot)
+                    {
+                        this.status = SkillStatus.None;
+                        LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
+                    }
                 }
             }
+            if (active.IsShoot) //更新子彈
+            {
+                bool finish = true;
+                if (this.Bullets.Count > 0)
+                {
+                    foreach (var bullet in this.Bullets)
+                    {
+                        bullet.Update();
+                        if (!bullet.Stopped) finish = false;
+                    }
+                    if (finish && this.Hit >= active.HitTimes.Count)
+                    {
+                        this.status = SkillStatus.None;
+                        LogSvc.Info("子彈技能刷新完畢");
+                    }
+                }
+            }
+            if (!active.IsShoot && !active.IsContinue && !active.IsDOT)
+            {
+                this.status = SkillStatus.None;
+            }
         }
-        if (!ActiveInfo.IsShoot && !ActiveInfo.IsContinue && !ActiveInfo.IsDOT)
+        else
         {
-            this.status = SkillStatus.None;
+            if(active.IsBuff && active.TargetType == SkillTargetType.BuffOnly) //如果不是攻擊技且純粹Buff
+            {
+                this.status = SkillStatus.None;
+            }
         }
+        
     }
 
     public void DoHit() //找到Entity
@@ -231,11 +248,11 @@ public class Skill
         this.Hit++;
         if (ActiveInfo.IsShoot)
         {
-            if (this.Hit <= ActiveInfo.HitTimes.Count) 
+            if (this.Hit <= ActiveInfo.HitTimes.Count)
             {
                 Console.WriteLine("[239] Hit = " + Hit + "Cast Bullet");
                 DoHit(hitInfo, ActiveInfo);
-                CastBullet(hitInfo, ActiveInfo); 
+                CastBullet(hitInfo, ActiveInfo);
             }
             return;
         }
@@ -243,7 +260,7 @@ public class Skill
     }
     public void DoHit(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
-        Console.WriteLine("[249] Hit = " + Hit+ "AddHitInfo");
+        Console.WriteLine("[249] Hit = " + Hit + "AddHitInfo");
         context.Battle.AddHitInfo(hitInfo);
         if (active.IsAOE)
         {
@@ -290,6 +307,10 @@ public class Skill
         DamageInfo damage = GetDamageInfo(active, this.context.CastSkill, target);
         target.DoDamage(damage);
         hit.damageInfos.Add(damage);
+        if (active.IsBuff)
+        {
+            this.AddBuff(BUFF_TriggerType.OnHit, active);
+        }
     }
     private void CastBullet(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
@@ -427,5 +448,24 @@ public class Skill
     {
         return RandomSys.Instance.NextDouble() < Crit;
     }
+
+    #region Buff
+    private void AddBuff(BUFF_TriggerType trigger, ActiveSkillInfo active)
+    {
+        if (!active.IsBuff) return;
+        BuffDefine buffDefine = CacheSvc.Instance.BuffDic[active.Buff];
+        if (buffDefine.TriggerType != trigger) return;
+        if (buffDefine.TargetType == BUFF_TargetType.Self) this.Owner.AddBuff(this.context, buffDefine);
+        else if (buffDefine.TargetType == BUFF_TargetType.Player || buffDefine.TargetType == BUFF_TargetType.Monster)
+        {
+            if (this.context.Target == null || this.context.Target.Count < 1) return;
+            foreach (var entity in this.context.Target)
+            {
+                entity.AddBuff(this.context, buffDefine);
+            }
+        }
+
+    }
+    #endregion
 }
 

@@ -90,7 +90,7 @@ public class Information : WindowRoot
         MpImg.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
         HpImg2.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
         MpImg2.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
-        GameRoot.Instance.UpdatePlayerHp(attr.MAXHP); //角色頭上血條
+        GameRoot.Instance.UpdatePlayerHp((int)attr.MAXHP); //角色頭上血條
         txtEXP.text = Convert.ToString(player.Exp) + " / " + Tools.GetExpMax(player.Level);
         ExpImage.fillAmount = (float)(((double)player.Exp) / ((double)Tools.GetExpMax(player.Level)));
 
@@ -542,7 +542,7 @@ public class Information : WindowRoot
         txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
         HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
         HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
-        GameRoot.Instance.UpdatePlayerHp(BattleSys.Instance.FinalAttribute.MAXHP);
+        GameRoot.Instance.UpdatePlayerHp((int)BattleSys.Instance.FinalAttribute.MAXHP);
 
     }
     public void UpdateMp(int UpdateMP)
@@ -576,6 +576,6 @@ public class Information : WindowRoot
         txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
         HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
         HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
-        GameRoot.Instance.UpdatePlayerHp(BattleSys.Instance.FinalAttribute.MAXHP);
+        GameRoot.Instance.UpdatePlayerHp((int)BattleSys.Instance.FinalAttribute.MAXHP);
     }
 }

@@ -48,7 +48,7 @@ public class LearnSkillHandler : GameHandler
                     character.skillManager.NegativeSkills.Add(req.SkillID, skill);
                 }
                 character.InitNegativeAttribute(character.skillManager.NegativeSkills);
-                character.InitBuffAttribute();
+                character.InitAllBuffAttribute();
                 character.InitFinalAttribute();
             }
             session.WriteAndFlush(msg);

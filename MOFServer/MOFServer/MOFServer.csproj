@@ -273,7 +273,10 @@
     <Compile Include="Entity\CommonMonster.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Entity\Monster.cs" />
+    <Compile Include="System\BattleSys\Buff.cs" />
+    <Compile Include="System\BattleSys\BuffManager.cs" />
     <Compile Include="System\BattleSys\Bullet.cs" />
+    <Compile Include="System\BattleSys\EffectManager.cs" />
     <Compile Include="System\BattleSys\Skill.cs" />
     <Compile Include="System\BattleSys\SkillManager.cs" />
     <Compile Include="System\LoginSys\LoginRequestHandler.cs" />
@@ -309,6 +312,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Common\BuffDefine.Json" />
     <None Include="Common\CashShopInfo.Json" />
     <None Include="Common\ItemInfo.Json" />
     <None Include="Common\log4net.config" />

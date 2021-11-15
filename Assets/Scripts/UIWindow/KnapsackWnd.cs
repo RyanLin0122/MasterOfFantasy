@@ -573,7 +573,7 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public bool IsInKnapsack(int ItemID, int Amount = 1)
     {
-        if (InventorySys.Instance.itemList.ContainsKey(ItemID))
+        if (InventorySys.Instance.ItemList.ContainsKey(ItemID))
         {
             return CheckItemsExistInKnapsack(ItemID, Amount);
         }
@@ -585,7 +585,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     }
     public bool CheckItemsExistInKnapsack(int ItemID, int Amount = 1)
     {
-        Item itemInfo = InventorySys.Instance.itemList[ItemID];
+        Item itemInfo = InventorySys.Instance.ItemList[ItemID];
         int RestAmount = Amount;
         if (itemInfo.IsCash)
         {

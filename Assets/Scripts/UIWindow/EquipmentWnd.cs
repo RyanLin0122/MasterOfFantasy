@@ -55,7 +55,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             illustration.InitIllustration();
             UISystem.Instance.InfoWnd.illustration.InitIllustration();
             Txtcolor = referenceColor.color;
-        }       
+        }
         PressBattleEquip();
         SetActive(InventorySys.Instance.toolTip.gameObject, true);
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
@@ -257,19 +257,26 @@ public class EquipmentWnd : Inventory, IStackWnd
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
                 {
-                    if (((Equipment)item).EquipType != EquipmentType.Ring)
+                    if (!(item is Weapon))
                     {
-                        if (equipmentSlot.transform.childCount > 0)
+                        if (((Equipment)item).EquipType != EquipmentType.Ring)
                         {
-                            ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
-                            exitItem = currentItemUI.Item;
-                            currentItemUI.SetItem(item, 1);
-                            //換下裝備                       
+                            if (equipmentSlot.transform.childCount > 0)
+                            {
+                                ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
+                                exitItem = currentItemUI.Item;
+                                currentItemUI.SetItem(item, 1);
+                                //換下裝備                       
+                            }
+                            else
+                            {
+                                equipmentSlot.StoreItem(item);
+                            }
                         }
-                        else
-                        {
-                            equipmentSlot.StoreItem(item);
-                        }
+                    }
+                    else
+                    {
+                        equipmentSlot.StoreItem(item);
                     }
                     break;
                 }
@@ -280,18 +287,22 @@ public class EquipmentWnd : Inventory, IStackWnd
             foreach (var slot in slotLists[1])
             {
                 EquipSlot equipmentSlot = (EquipSlot)slot;
+
                 if (equipmentSlot.IsEquipPositionCorrect(item))
                 {
-                    if (equipmentSlot.transform.childCount > 0)
+                    if (!(item is Weapon))
                     {
-                        ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
-                        exitItem = currentItemUI.Item;
-                        currentItemUI.SetItem(item, 1);
-                        //換下裝備
-                    }
-                    else
-                    {
-                        equipmentSlot.StoreItem(item);
+                        if (equipmentSlot.transform.childCount > 0)
+                        {
+                            ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
+                            exitItem = currentItemUI.Item;
+                            currentItemUI.SetItem(item, 1);
+                            //換下裝備
+                        }
+                        else
+                        {
+                            equipmentSlot.StoreItem(item);
+                        }
                     }
                     break;
                 }
@@ -312,7 +323,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
                 {
-                    if (((Equipment)item).EquipType != EquipmentType.Ring)
+                    if(item is Weapon)
                     {
                         if (equipmentSlot.transform.childCount > 0)
                         {
@@ -326,6 +337,23 @@ public class EquipmentWnd : Inventory, IStackWnd
                             equipmentSlot.StoreItem(item);
                         }
                     }
+                    else
+                    {
+                        if (((Equipment)item).EquipType != EquipmentType.Ring)
+                        {
+                            if (equipmentSlot.transform.childCount > 0)
+                            {
+                                ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
+                                exitItem = currentItemUI.Item;
+                                currentItemUI.SetItem(item, 1);
+                                //換下裝備                       
+                            }
+                            else
+                            {
+                                equipmentSlot.StoreItem(item);
+                            }
+                        }
+                    }                   
                     break;
                 }
             }
@@ -363,6 +391,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         foreach (var slot in slotLists[0])
         {
             EquipSlot equipmentSlot = (EquipSlot)slot;
+            if (item is Weapon) return;
             if (equipmentSlot.SlotPosition == Position)
             {
                 if (((Equipment)item).EquipType == EquipmentType.Ring)
@@ -391,7 +420,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void ProcessEquipmentOperation(EquipmentOperation eo)
     {
-        if(eo.PlayerName == GameRoot.Instance.ActivePlayer.Name)
+        if (eo.PlayerName == GameRoot.Instance.ActivePlayer.Name)
         {
             Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
             if (nk == null)
@@ -529,7 +558,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             if (eo.OtherPlayerEquipments == null) return;
             PlayerController controller = null;
             BattleSys.Instance.Players.TryGetValue(eo.PlayerName, out controller);
-            controller.SetAllEquipment(eo.OtherPlayerEquipments,eo.OtherGender);
+            controller.SetAllEquipment(eo.OtherPlayerEquipments, eo.OtherGender);
         }
     }
     /// <summary>
@@ -606,7 +635,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     } //Excluding 5
     private void UpdatePlayerWeapon(Item wp, PlayerEquipments pq)
     {
-        //pq.B_Weapon = (Weapon)wp;
+        pq.B_Weapon = (Weapon)wp;
     }
     private void PutOffEquipment(int pos, PlayerEquipments pq)
     {
@@ -1104,7 +1133,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     public static Equipment GetEquipmentByItemID(int ItemID, PlayerEquipments equips)
     {
         Item item = InventorySys.Instance.GetItemById(ItemID);
-        if(item is Equipment)
+        if (item is Equipment)
         {
             Equipment equip = (Equipment)item;
             switch (equip.EquipType)

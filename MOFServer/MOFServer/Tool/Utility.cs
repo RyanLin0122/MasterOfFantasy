@@ -160,18 +160,18 @@ public static class Utility
 
                 e.Position = item["Position"].AsInt32;
                 e.Quality = GetItemQuality(item["Quality"].AsInt32);
-                e.Attack = item["Attack"].AsInt32;
-                e.Strength = item["Strength"].AsInt32;
-                e.Agility = item["Agility"].AsInt32;
-                e.Intellect = item["Intellect"].AsInt32;
-                e.HP = item["HP"].AsInt32;
-                e.MP = item["MP"].AsInt32;
+                e.Attack = (float)item["Attack"].AsDouble;
+                e.Strength = (float)item["Strength"].AsDouble;
+                e.Agility = (float)item["Agility"].AsDouble;
+                e.Intellect = (float)item["Intellect"].AsDouble;
+                e.MaxHP = (float)item["HP"].AsDouble;
+                e.MaxMP = (float)item["MP"].AsDouble;
                 e.Accuracy = (float)item["Accuracy"].AsDouble;
                 e.Avoid = (float)item["Avoid"].AsDouble;
                 e.Critical = (float)item["Critical"].AsDouble;
-                e.Defense = item["Defense"].AsInt32;
-                e.MinDamage = item["MinDamage"].AsInt32;
-                e.MaxDamage = item["MaxDamage"].AsInt32;
+                e.Defense = (float)item["Defense"].AsDouble;
+                e.MinDamage = (float)item["MinDamage"].AsDouble;
+                e.MaxDamage = (float)item["MaxDamage"].AsDouble;
                 e.MagicDefense = (float)item["MagicDefense"].AsDouble;
                 e.DropRate = (float)item["DropRate"].AsDouble;
                 e.RestRNum = item["RestRNum"].AsInt32;
@@ -183,14 +183,14 @@ public static class Utility
                 Weapon w = Utility.GetWeaponByID(item["ItemID"].AsInt32);
                 w.Position = item["Position"].AsInt32;
                 w.Quality = Utility.GetItemQuality(item["Quality"].AsInt32);
-                w.MinDamage = item["MinDamage"].AsInt32;
-                w.MaxDamage = item["MaxDamage"].AsInt32;
-                w.AttSpeed = item["AttSpeed"].AsInt32;
-                w.Range = item["Range"].AsInt32;
-                w.Attack = item["Attack"].AsInt32;
-                w.Strength = item["Strength"].AsInt32;
-                w.Agility = item["Agility"].AsInt32;
-                w.Intellect = item["Intellect"].AsInt32;
+                w.MinDamage = (float)item["MinDamage"].AsDouble;
+                w.MaxDamage = (float)item["MaxDamage"].AsDouble;
+                w.AttSpeed = (float)item["AttSpeed"].AsDouble;
+                w.Range = (float)item["Range"].AsDouble;
+                w.Attack = (float)item["Attack"].AsDouble;
+                w.Strength = (float)item["Strength"].AsDouble;
+                w.Agility = (float)item["Agility"].AsDouble;
+                w.Intellect = (float)item["Intellect"].AsDouble;
                 w.Accuracy = (float)item["Accuracy"].AsDouble;
                 w.Avoid = (float)item["Avoid"].AsDouble;
                 w.Critical = (float)item["Critical"].AsDouble;
@@ -206,20 +206,20 @@ public static class Utility
 
                 c.Position = item["Position"].AsInt32;
                 c.Quality = Utility.GetItemQuality(item["Quality"].AsInt32);
-                c.Attack = item["Attack"].AsInt32;
-                c.Strength = item["Strength"].AsInt32;
-                c.Agility = item["Agility"].AsInt32;
-                c.Intellect = item["Intellect"].AsInt32;
-                c.HP = item["HP"].AsInt32;
-                c.MP = item["MP"].AsInt32;
+                c.Attack = (float)item["Attack"].AsDouble;
+                c.Strength = (float)item["Strength"].AsDouble;
+                c.Agility = (float)item["Agility"].AsDouble;
+                c.Intellect = (float)item["Intellect"].AsDouble;
+                c.HP = (float)item["HP"].AsDouble;
+                c.MP = (float)item["MP"].AsDouble;
                 c.Accuracy = (float)item["Accuracy"].AsDouble;
                 c.Avoid = (float)item["Avoid"].AsDouble;
                 c.Critical = (float)item["Critical"].AsDouble;
-                c.Defense = item["Defense"].AsInt32;
+                c.Defense = (float)item["Defense"].AsDouble;
                 c.MagicDefense = (float)item["MagicDefense"].AsDouble;
-                c.MinDamage = item["MinDamage"].AsInt32;
-                c.MaxDamage = item["MaxDamage"].AsInt32;
-                c.Exp = item["Exp"].AsInt32;
+                c.MinDamage = (float)item["MinDamage"].AsDouble;
+                c.MaxDamage = (float)item["MaxDamage"].AsDouble;
+                c.Exp = (float)item["Exp"].AsDouble;
                 c.ExpRate = (float)item["ExpRate"].AsDouble;
                 c.DropRate = (float)item["DropRate"].AsDouble;
                 c.Count = item["Count"].AsInt32;
@@ -279,18 +279,18 @@ public static class Utility
                 Equipment e = Utility.GetEquipmentByID(Equip["ItemID"].AsInt32);
                 e.Position = Equip["Position"].AsInt32;
                 e.Quality = Utility.GetItemQuality(Equip["Quality"].AsInt32);
-                e.Attack = Equip["Attack"].AsInt32;
-                e.Strength = Equip["Strength"].AsInt32;
-                e.Agility = Equip["Agility"].AsInt32;
-                e.Intellect = Equip["Intellect"].AsInt32;
-                e.HP = Equip["HP"].AsInt32;
-                e.MP = Equip["MP"].AsInt32;
+                e.Attack = (float)Equip["Attack"].AsDouble;
+                e.Strength = (float)Equip["Strength"].AsDouble;
+                e.Agility = (float)Equip["Agility"].AsDouble;
+                e.Intellect = (float)Equip["Intellect"].AsDouble;
+                e.MaxHP = (float)Equip["HP"].AsDouble;
+                e.MaxMP = (float)Equip["MP"].AsDouble;
                 e.Accuracy = (float)Equip["Accuracy"].AsDouble;
                 e.Avoid = (float)Equip["Avoid"].AsDouble;
                 e.Critical = (float)Equip["Critical"].AsDouble;
-                e.Defense = Equip["Defense"].AsInt32;
-                e.MinDamage = Equip["MinDamage"].AsInt32;
-                e.MaxDamage = Equip["MaxDamage"].AsInt32;
+                e.Defense = (float)Equip["Defense"].AsDouble;
+                e.MinDamage = (float)Equip["MinDamage"].AsDouble;
+                e.MaxDamage = (float)Equip["MaxDamage"].AsDouble;
                 e.MagicDefense = (float)Equip["MagicDefense"].AsDouble;
                 e.DropRate = (float)Equip["DropRate"].AsDouble;
                 e.RestRNum = Equip["RestRNum"].AsInt32;
@@ -386,18 +386,18 @@ public static class Utility
             }
             else if (Equip["Type"].AsString == ItemType.Weapon.ToString())
             {
-                Weapon e = Utility.GetWeaponByID(Equip["itemID"].AsInt32);
+                Weapon e = Utility.GetWeaponByID(Equip["ItemID"].AsInt32);
                 e.Position = Equip["Position"].AsInt32;
                 e.Quality = Utility.GetItemQuality(Equip["Quality"].AsInt32);
-                e.Attack = Equip["Attack"].AsInt32;
-                e.Strength = Equip["Strength"].AsInt32;
-                e.Agility = Equip["Agility"].AsInt32;
-                e.Intellect = Equip["Intellect"].AsInt32;
+                e.Attack = (float)Equip["Attack"].AsDouble;
+                e.Strength = (float)Equip["Strength"].AsDouble;
+                e.Agility = (float)Equip["Agility"].AsDouble;
+                e.Intellect = (float)Equip["Intellect"].AsDouble;
                 e.Accuracy = (float)Equip["Accuracy"].AsDouble;
                 e.Avoid = (float)Equip["Avoid"].AsDouble;
                 e.Critical = (float)Equip["Critical"].AsDouble;
-                e.MinDamage = Equip["MinDamage"].AsInt32;
-                e.MaxDamage = Equip["MaxDamage"].AsInt32;
+                e.MinDamage = (float)Equip["MinDamage"].AsDouble;
+                e.MaxDamage = (float)Equip["MaxDamage"].AsDouble;
                 e.DropRate = (float)Equip["DropRate"].AsDouble;
                 e.RestRNum = Equip["RestRNum"].AsInt32;
                 r.B_Weapon = e;
@@ -682,8 +682,8 @@ public static class Utility
                     {"Strength",((Equipment)item).Strength },
                     {"Agility",((Equipment)item).Agility },
                     {"Intellect",((Equipment)item).Intellect },
-                    {"HP",((Equipment)item).HP },
-                    {"MP",((Equipment)item).MP },
+                    {"HP",((Equipment)item).MaxHP },
+                    {"MP",((Equipment)item).MaxMP },
                     {"Accuracy",((Equipment)item).Accuracy },
                     {"Avoid",((Equipment)item).Avoid },
                     {"Critical",((Equipment)item).Critical },
@@ -897,7 +897,7 @@ public static class Utility
         Consumable item = new Consumable(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
             itemr.HP, itemr.MP, itemr.Defense, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.ExpRate,
-            itemr.Exp, itemr.DropRate, itemr.BuffTime, itemr.ColdTime, itemr.Effect);
+            itemr.Exp, itemr.DropRate, itemr.BuffTime, itemr.ColdTime, itemr.Buff);
         return item;
 
     }
@@ -906,7 +906,7 @@ public static class Utility
         Equipment itemr = (Equipment)CacheSvc.ItemList[ItemID];
         Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.HP, itemr.MP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate,itemr.ExpiredTime,itemr.Stars);
+            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.MaxHP, itemr.MaxMP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate,itemr.ExpiredTime,itemr.Stars);
 
         return item;
     }

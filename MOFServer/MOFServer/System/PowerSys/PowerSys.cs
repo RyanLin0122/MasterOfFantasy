@@ -22,13 +22,13 @@ public class PowerSys : Singleton<PowerSys>
         {
             if (chr.player != null)
             {
-                int AddHp = 10 + (int)(chr.player.Level * 2f / 3f) + chr.player.Strength;
+                int AddHp = (int)((10 + (int)(chr.player.Level * 2f / 3f) + chr.player.Strength)*chr.FinalAttribute.HPRate);
                 if (chr.status != PlayerStatus.Death)
                 {
-                    if (chr.player.HP + AddHp >= chr.FinalAttribute.MAXHP)
+                    if (chr.player.HP + AddHp >= (int)chr.FinalAttribute.MAXHP)
                     {
-                        chr.player.HP = chr.FinalAttribute.MAXHP;
-                        chr.trimedPlayer.HP = chr.FinalAttribute.MAXHP;
+                        chr.player.HP = (int)chr.FinalAttribute.MAXHP;
+                        chr.trimedPlayer.HP = (int)chr.FinalAttribute.MAXHP;
                     }
                     else
                     {
@@ -55,13 +55,13 @@ public class PowerSys : Singleton<PowerSys>
         {
             if (chr.player != null)
             {
-                int AddMp = 6 + (chr.player.Level * 2) + (chr.player.Intellect * 2);
+                int AddMp = (int)((6 + (chr.player.Level * 2) + (chr.player.Intellect * 2)) * chr.FinalAttribute.MPRate);
                 if (chr.status != PlayerStatus.Death)
                 {
-                    if (chr.player.MP + AddMp >= chr.FinalAttribute.MAXMP)
+                    if (chr.player.MP + AddMp >= (int)chr.FinalAttribute.MAXMP)
                     {
-                        chr.player.MP = chr.FinalAttribute.MAXMP;
-                        chr.trimedPlayer.MP = chr.FinalAttribute.MAXMP;
+                        chr.player.MP = (int)chr.FinalAttribute.MAXMP;
+                        chr.trimedPlayer.MP = (int)chr.FinalAttribute.MAXMP;
                     }
                     else
                     {

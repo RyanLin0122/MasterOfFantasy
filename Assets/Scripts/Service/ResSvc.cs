@@ -877,6 +877,7 @@ public class ResSvc : MonoBehaviour
                 float CastTime = Skill["CastTime"].n;
                 float ChargeTime = Skill["ChargeTime"].n;
                 float LockTime = Skill["LockTime"].n;
+                int Buff = (int)Skill["Buff"].n;
                 ActiveSkillInfo activeSkillInfo = new ActiveSkillInfo
                 {
                     SkillID = ID,
@@ -921,13 +922,89 @@ public class ResSvc : MonoBehaviour
                     ChargeTime = ChargeTime,
                     LockTime = LockTime,
                     Icon = Icon,
-                    BulletSpeed = BulletSpeed
+                    BulletSpeed = BulletSpeed,
+                    Buff = Buff
                 };
                 SkillDic.Add(ID, activeSkillInfo);
             }
 
         }
     }
+    #endregion
+
+    #region Buff
+    public Dictionary<int, BuffDefine> BuffDic = new Dictionary<int, BuffDefine>();
+    public void ParseBuffJson()
+    {
+            TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/BuffDefine");
+            string SkillJson = itemText.text;//物品信息的格式
+            JSONObject j = new JSONObject(SkillJson);
+            foreach (JSONObject Buff in j.list)
+            {
+                int BuffID = (int)Buff["ID"].n;
+                string Icon = Buff["Icon"].str;
+                string BuffName = Buff["BuffName"].str;
+                string Description = Buff["Description"].str;
+                float Duration = Buff["Duration"].n;
+                float Inteval = Buff["Inteval"].n;
+                BUFF_TriggerType TriggerType = (BUFF_TriggerType)System.Enum.Parse(typeof(BUFF_TriggerType), Buff["TriggerType"].str);
+                float DamageFactor = Buff["DamageFactor"].n;
+                BUFF_TargetType TargetType = (BUFF_TargetType)System.Enum.Parse(typeof(BUFF_TargetType), Buff["TargetType"].str);
+                float CD = Buff["CD"].n;
+                BUFF_Effect buFF_Effect = (BUFF_Effect)System.Enum.Parse(typeof(BUFF_Effect), Buff["BuffState"].str);
+                List<int> ConflictBuffIDs = new List<int>();
+                var conlist = Buff["ConflictBuffs"].list;
+                if (conlist.Count > 0)
+                {
+                    foreach (var id in conlist)
+                    {
+                        ConflictBuffIDs.Add((int)id.n);
+                    }
+                }
+                JSONObject Attr = Buff["Attribute"];
+                PlayerAttribute attribute = new PlayerAttribute
+                {
+                    MAXHP = (int)(Attr["MAXHP"].n),
+                    MAXMP = (int)(Attr["MAXMP"].n),
+                    Att = (int)(Attr["Att"].n),
+                    Strength = (int)(Attr["Strength"].n),
+                    Agility = (int)(Attr["Agility"].n),
+                    Intellect = (int)(Attr["Intellect"].n),
+                    MaxDamage = (int)(Attr["MaxDamage"].n),
+                    MinDamage = (int)(Attr["MinDamage"].n),
+                    Defense = (int)(Attr["Defense"].n),
+                    Accuracy = Attr["Accuracy"].n,
+                    Critical = Attr["Critical"].n,
+                    Avoid = Attr["Avoid"].n,
+                    MagicDefense = Attr["MagicDefense"].n,
+                    RunSpeed = Attr["RunSpeed"].n,
+                    AttRange = Attr["AttRange"].n,
+                    AttDelay = Attr["AttDelay"].n,
+                    ExpRate = Attr["ExpRate"].n,
+                    DropRate = Attr["DropRate"].n,
+                    HPRate = Attr["HPRate"].n,
+                    MPRate = Attr["MPRate"].n,
+                    MinusHurt = Attr["MinusHurt"].n
+                };
+                BuffDefine buffDefine = new BuffDefine
+                {
+                    ID = BuffID,
+                    Icon = Icon,
+                    BuffName = BuffName,
+                    Description = Description,
+                    Duration = Duration,
+                    Interval = Inteval,
+                    TriggerType = TriggerType,
+                    DamageFactor = DamageFactor,
+                    TargetType = TargetType,
+                    CD = CD,
+                    BuffState = buFF_Effect,
+                    ConflictBuff = ConflictBuffIDs,
+                    AttributeGain = attribute
+                };
+                BuffDic.Add(BuffID, buffDefine);
+            }
+        }
     #endregion
 
     #region NameBox & ChatBox

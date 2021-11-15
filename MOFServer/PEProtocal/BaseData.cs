@@ -292,23 +292,23 @@ namespace PEProtocal
     public class PlayerAttribute
     {
         [ProtoMember(1, IsRequired = false)]
-        public int MAXHP { get; set; }
+        public float MAXHP { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public int MAXMP { get; set; }
+        public float MAXMP { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public int Att { get; set; }
+        public float Att { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        public int Strength { get; set; }
+        public float Strength { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int Agility { get; set; }
+        public float Agility { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public int Intellect { get; set; }
+        public float Intellect { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int MaxDamage { get; set; }
+        public float MaxDamage { get; set; }
         [ProtoMember(8, IsRequired = false)]
-        public int MinDamage { get; set; }
+        public float MinDamage { get; set; }
         [ProtoMember(9, IsRequired = false)]
-        public int Defense { get; set; }
+        public float Defense { get; set; }
         [ProtoMember(10, IsRequired = false)]
         public float Accuracy { get; set; }
         [ProtoMember(11, IsRequired = false)]
@@ -333,6 +333,55 @@ namespace PEProtocal
         public float MPRate { get; set; }
         [ProtoMember(21, IsRequired = false)]
         public float MinusHurt { get; set; }
+
+        public static void Add(PlayerAttribute a, PlayerAttribute b)
+        {
+            a.MAXHP += b.MAXHP;
+            a.MAXMP += b.MAXMP;
+            a.Att += b.Att;
+            a.Strength += b.Strength;
+            a.Agility += b.Agility;
+            a.Intellect += b.Intellect;
+            a.MaxDamage += b.MaxDamage;
+            a.MinDamage += b.MinDamage;
+            a.Defense += b.Defense;
+            a.Accuracy += b.Accuracy;
+            a.Critical += b.Critical;
+            a.Avoid += b.Avoid;
+            a.MagicDefense += b.MagicDefense;
+            a.RunSpeed += b.RunSpeed;
+            a.AttRange += b.AttRange;
+            a.AttDelay += b.AttDelay;
+            a.ExpRate += b.ExpRate;
+            a.DropRate += b.DropRate;
+            a.HPRate += b.HPRate;
+            a.MPRate += b.MPRate;
+            a.MinusHurt += b.MinusHurt;
+        }
+        public static void Minus(PlayerAttribute a, PlayerAttribute b)
+        {
+            a.MAXHP -= b.MAXHP;
+            a.MAXMP -= b.MAXMP;
+            a.Att -= b.Att;
+            a.Strength -= b.Strength;
+            a.Agility -= b.Agility;
+            a.Intellect -= b.Intellect;
+            a.MaxDamage -= b.MaxDamage;
+            a.MinDamage -= b.MinDamage;
+            a.Defense -= b.Defense;
+            a.Accuracy -= b.Accuracy;
+            a.Critical -= b.Critical;
+            a.Avoid -= b.Avoid;
+            a.MagicDefense -= b.MagicDefense;
+            a.RunSpeed -= b.RunSpeed;
+            a.AttRange -= b.AttRange;
+            a.AttDelay -= b.AttDelay;
+            a.ExpRate -= b.ExpRate;
+            a.DropRate -= b.DropRate;
+            a.HPRate -= b.HPRate;
+            a.MPRate -= b.MPRate;
+            a.MinusHurt -= b.MinusHurt;
+        }
     }
     [ProtoContract]
     public class TrimedPlayer //For other people
@@ -506,6 +555,8 @@ namespace PEProtocal
         public float LockTime { get; set; }
         [ProtoMember(30, IsRequired = false)]
         public float BulletSpeed { get; set; }
+        [ProtoMember(31, IsRequired = false)]
+        public int Buff { get; set; }
     }
     [ProtoContract]
     public class SkillEffect
@@ -618,7 +669,9 @@ namespace PEProtocal
         [ProtoEnum]
         Monster,
         [ProtoEnum]
-        Position
+        Position,
+        [ProtoEnum]
+        BuffOnly
     }
 
     [ProtoContract(EnumPassthru = false)]
@@ -723,6 +776,96 @@ namespace PEProtocal
         [ProtoEnum]
         Money
     }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum BUFF_Effect
+    {
+        NONE,
+        STUN,
+        INVINCIBLE,
+        SLOWDOWN,
+        SPEEDUP,
+        POISONING
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum BUFF_Action
+    {
+        NONE,
+        ADD,
+        REMOVE,
+        HIT
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum BUFF_TriggerType
+    {
+        SkillStart,
+        OnHit
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum BUFF_TargetType
+    {
+        Self,
+        Monster,
+        Player
+    }
+
+    [ProtoContract]
+    public class BuffInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int BuffID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int BuffDefineID { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public BUFF_Action Action { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public SkillCasterType CastType { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int CasterID { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public string CasterName { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public SkillTargetType OwnerType { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int OwnerID { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public string OwnerName { get; set; }
+        public DamageInfo DamageInfo { get; set; }
+    }
+    [ProtoContract]
+    public class BuffDefine //Buff的定義
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int ID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string BuffName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public PlayerAttribute AttributeGain { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public string Description { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public string Icon { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public BUFF_TargetType TargetType { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public BUFF_Effect BuffState { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public BUFF_TriggerType TriggerType { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public float CD { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public float Duration { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public float Interval { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public float DamageFactor { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public List<int> ConflictBuff { get; set; }
+    }
+
 }
 
 

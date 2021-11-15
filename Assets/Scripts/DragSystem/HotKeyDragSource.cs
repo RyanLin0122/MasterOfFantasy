@@ -33,7 +33,7 @@ public class HotKeyDragSource : DragSourceBase
             }
             else if(content.HotKeyState == 1)
             {
-                obj.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(InventorySys.Instance.itemList[content.ID].Sprite);
+                obj.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[content.ID].Sprite);
                 obj.transform.GetComponent<Image>().SetNativeSize();
             }           
             obj.data = this.data;

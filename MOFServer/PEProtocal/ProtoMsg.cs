@@ -204,6 +204,8 @@ namespace PEProtocal
         public SkillCastResponse skillCastResponse { get; set; }
         [ProtoMember(68, IsRequired = false)]
         public SkillHitResponse skillHitResponse { get; set; }
+        [ProtoMember(69, IsRequired = false)]
+        public BuffResponse buffResponse { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1534,4 +1536,13 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public SkillResult Result { get; set; }
     }
+
+    [ProtoContract]
+    public class BuffResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public SkillResult SkillResult { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public List<BuffInfo> Buffs { get; set; }
+    } 
 }

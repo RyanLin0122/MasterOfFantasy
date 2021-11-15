@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using PEProtocal;
 using System.Threading.Tasks;
+using System;
 
 public class MOFCharacter : Entity
 {
@@ -17,12 +18,12 @@ public class MOFCharacter : Entity
     public PlayerStatus status = PlayerStatus.Normal;
     #region Attribute
     public PlayerAttribute BasicAttribute;
-    public void InitAllAtribute()
+    public void InitAllAtribute() //不包含Buff
     {
         InitBasicAttribute(this.player);
         InitEquipmentAttribute(this.player.playerEquipments);
         InitNegativeAttribute(this.skillManager.NegativeSkills);
-        InitBuffAttribute();
+        InitAllBuffAttribute();
         InitFinalAttribute();
     }
     public void InitBasicAttribute(Player player)
@@ -176,22 +177,45 @@ public class MOFCharacter : Entity
     }
     private void CalculateEquipmentAttribute(Equipment eq)
     {
-        EquipmentAttribute.MAXHP += eq.HP;
-        EquipmentAttribute.MAXMP += eq.MP;
-        EquipmentAttribute.Att += eq.Attack;
-        EquipmentAttribute.Strength += eq.Strength;
-        EquipmentAttribute.Agility += eq.Agility;
-        EquipmentAttribute.Intellect += eq.Intellect;
-        EquipmentAttribute.MaxDamage += eq.MaxDamage;
-        EquipmentAttribute.MinDamage += eq.MinDamage;
-        EquipmentAttribute.Defense += eq.Defense;
-        EquipmentAttribute.Accuracy += eq.Accuracy;
-        EquipmentAttribute.Critical += eq.Critical;
-        EquipmentAttribute.Avoid += eq.Avoid;
-        EquipmentAttribute.MagicDefense += eq.MagicDefense;
-        EquipmentAttribute.RunSpeed += 0;
-        EquipmentAttribute.AttRange += 0;
-        EquipmentAttribute.AttDelay += 0;
+        if (Math.Abs(eq.MaxHP) >= 1) EquipmentAttribute.MAXHP += eq.MaxHP;
+        else if (Math.Abs(eq.MaxHP) < 1) EquipmentAttribute.MAXHP += BasicAttribute.MAXHP * eq.MaxHP;
+
+        if (Math.Abs(eq.MaxMP) >= 1) EquipmentAttribute.MAXMP += eq.MaxMP;
+        else if (Math.Abs(eq.MaxMP) < 1) EquipmentAttribute.MAXMP += BasicAttribute.MAXMP * eq.MaxMP;
+
+        if (Math.Abs(eq.Attack) >= 1) EquipmentAttribute.Att += eq.Attack;
+        else if (Math.Abs(eq.Attack) < 1) EquipmentAttribute.Att += BasicAttribute.Att * eq.Attack;
+
+        if (Math.Abs(eq.Strength) >= 1) EquipmentAttribute.Strength += eq.Strength;
+        else if (Math.Abs(eq.Strength) < 1) EquipmentAttribute.Strength += BasicAttribute.Strength * eq.Strength;
+
+        if (Math.Abs(eq.Agility) >= 1) EquipmentAttribute.Agility += eq.Agility;
+        else if (Math.Abs(eq.Agility) < 1) EquipmentAttribute.Agility += BasicAttribute.Agility * eq.Agility;
+
+        if (Math.Abs(eq.Intellect) >= 1) EquipmentAttribute.Intellect += eq.Intellect;
+        else if (Math.Abs(eq.Intellect) < 1) EquipmentAttribute.Intellect += BasicAttribute.Intellect * eq.Intellect;
+
+        if (Math.Abs(eq.MaxDamage) >= 1) EquipmentAttribute.MaxDamage += eq.MaxDamage;
+        else if (Math.Abs(eq.MaxDamage) < 1) EquipmentAttribute.MaxDamage += BasicAttribute.MaxDamage * eq.MaxDamage;
+
+        if (Math.Abs(eq.MinDamage) >= 1) EquipmentAttribute.MinDamage += eq.MinDamage;
+        else if (Math.Abs(eq.MinDamage) < 1) EquipmentAttribute.MinDamage += BasicAttribute.MinDamage * eq.MinDamage;
+
+        if (Math.Abs(eq.Defense) >= 1) EquipmentAttribute.Defense += eq.Defense;
+        else if (Math.Abs(eq.Defense) < 1) EquipmentAttribute.Defense += BasicAttribute.Defense * eq.Defense;
+
+        if (Math.Abs(eq.Accuracy) >= 1) EquipmentAttribute.Accuracy += 0;
+        else if (Math.Abs(eq.Accuracy) < 1) EquipmentAttribute.Accuracy += BasicAttribute.Accuracy * eq.Accuracy;
+
+        if (Math.Abs(eq.Critical) >= 1) EquipmentAttribute.Critical += 0;
+        else if (Math.Abs(eq.Critical) < 1) EquipmentAttribute.Critical += BasicAttribute.Critical * eq.Critical;
+        
+        if (Math.Abs(eq.Avoid) >= 1) EquipmentAttribute.Avoid += 0;
+        else if (Math.Abs(eq.Avoid) < 1) EquipmentAttribute.Avoid += BasicAttribute.Avoid * eq.Avoid;
+        
+        if (Math.Abs(eq.MagicDefense) >= 1) EquipmentAttribute.MagicDefense += 0;
+        else if (Math.Abs(eq.MagicDefense) < 1) EquipmentAttribute.MagicDefense += BasicAttribute.MagicDefense * eq.MagicDefense;
+
         if (eq.ExpRate - 1 >= 0)
         {
             EquipmentAttribute.ExpRate += (eq.ExpRate - 1);
@@ -200,22 +224,38 @@ public class MOFCharacter : Entity
         {
             EquipmentAttribute.DropRate += (eq.DropRate - 1);
         }
-        EquipmentAttribute.HPRate += 0;
-        EquipmentAttribute.MPRate += 0;
-        EquipmentAttribute.MinusHurt += 0;
     }
     private void CalculateWeaponAttribute(Weapon wp)
     {
-        EquipmentAttribute.Att += wp.Attack;
-        EquipmentAttribute.Strength += wp.Strength;
-        EquipmentAttribute.Agility += wp.Agility;
-        EquipmentAttribute.Intellect += wp.Intellect;
-        EquipmentAttribute.MaxDamage += wp.MaxDamage;
-        EquipmentAttribute.MinDamage += wp.MinDamage;
-        EquipmentAttribute.Accuracy += wp.Accuracy;
-        EquipmentAttribute.Critical += wp.Critical;
-        EquipmentAttribute.Avoid += wp.Avoid;
+        if (Math.Abs(wp.Attack) >= 1) EquipmentAttribute.Att += wp.Attack;
+        else if (Math.Abs(wp.Attack) < 1) EquipmentAttribute.Att += BasicAttribute.Att * wp.Attack;
+
+        if (Math.Abs(wp.Strength) >= 1) EquipmentAttribute.Strength += wp.Strength;
+        else if (Math.Abs(wp.Strength) < 1) EquipmentAttribute.Strength += BasicAttribute.Strength * wp.Strength;
+
+        if (Math.Abs(wp.Agility) >= 1) EquipmentAttribute.Agility += wp.Agility;
+        else if (Math.Abs(wp.Agility) < 1) EquipmentAttribute.Agility += BasicAttribute.Agility * wp.Agility;
+
+        if (Math.Abs(wp.Intellect) >= 1) EquipmentAttribute.Intellect += wp.Intellect;
+        else if (Math.Abs(wp.Intellect) < 1) EquipmentAttribute.Intellect += BasicAttribute.Intellect * wp.Intellect;
+
+        if (Math.Abs(wp.MaxDamage) >= 1) EquipmentAttribute.MaxDamage += wp.MaxDamage;
+        else if (Math.Abs(wp.MaxDamage) < 1) EquipmentAttribute.MaxDamage += BasicAttribute.MaxDamage * wp.MaxDamage;
+
+        if (Math.Abs(wp.MinDamage) >= 1) EquipmentAttribute.MinDamage += wp.MinDamage;
+        else if (Math.Abs(wp.MinDamage) < 1) EquipmentAttribute.MinDamage += BasicAttribute.MinDamage * wp.MinDamage;
+
+        if (Math.Abs(wp.Accuracy) >= 1) EquipmentAttribute.Accuracy += 0;
+        else if (Math.Abs(wp.Accuracy) < 1) EquipmentAttribute.Accuracy += BasicAttribute.Accuracy * wp.Accuracy;
+
+        if (Math.Abs(wp.Critical) >= 1) EquipmentAttribute.Critical += 0;
+        else if (Math.Abs(wp.Critical) < 1) EquipmentAttribute.Critical += BasicAttribute.Critical * wp.Critical;
+
+        if (Math.Abs(wp.Avoid) >= 1) EquipmentAttribute.Avoid += 0;
+        else if (Math.Abs(wp.Avoid) < 1) EquipmentAttribute.Avoid += BasicAttribute.Avoid * wp.Avoid;
+
         EquipmentAttribute.AttRange += wp.Range;
+
         EquipmentAttribute.AttDelay += 200f / wp.AttSpeed;
         if (wp.DropRate - 1 >= 0)
         {
@@ -360,33 +400,160 @@ public class MOFCharacter : Entity
 
     }
     public PlayerAttribute BuffAttribute;
-    public void InitBuffAttribute()
+    public void InitAllBuffAttribute()
+    {
+        InitBuffAttribute(null);
+        if (this.buffManager != null && this.buffManager.Buffs.Count > 0)
+        {
+            foreach (var buff in this.buffManager.Buffs)
+            {
+                InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.BuffID].AttributeGain, "add");
+            }
+        }
+    }
+    public void InitBuffAttribute(PlayerAttribute input, string mode = "")
     {
         if (BuffAttribute == null)
         {
             BuffAttribute = new PlayerAttribute();
         }
-        BuffAttribute.MAXHP = 0;
-        BuffAttribute.MAXMP = 0;
-        BuffAttribute.Att = 0;
-        BuffAttribute.Strength = 0;
-        BuffAttribute.Agility = 0;
-        BuffAttribute.Intellect = 0;
-        BuffAttribute.MaxDamage = 0;
-        BuffAttribute.MinDamage = 0;
-        BuffAttribute.Defense = 0;
-        BuffAttribute.Accuracy = 0;
-        BuffAttribute.Critical = 0;
-        BuffAttribute.Avoid = 0;
-        BuffAttribute.MagicDefense = 0;
-        BuffAttribute.RunSpeed = 0;
-        BuffAttribute.AttRange = 0;
-        BuffAttribute.AttDelay = 0;
-        BuffAttribute.ExpRate = 0;
-        BuffAttribute.DropRate = 0;
-        BuffAttribute.HPRate = 0;
-        BuffAttribute.MPRate = 0;
-        BuffAttribute.MinusHurt = 0;
+        if (input == null)
+        {
+            BuffAttribute.MAXHP = 0;
+            BuffAttribute.MAXMP = 0;
+            BuffAttribute.Att = 0;
+            BuffAttribute.Strength = 0;
+            BuffAttribute.Agility = 0;
+            BuffAttribute.Intellect = 0;
+            BuffAttribute.MaxDamage = 0;
+            BuffAttribute.MinDamage = 0;
+            BuffAttribute.Defense = 0;
+            BuffAttribute.Accuracy = 0;
+            BuffAttribute.Critical = 0;
+            BuffAttribute.Avoid = 0;
+            BuffAttribute.MagicDefense = 0;
+            BuffAttribute.RunSpeed = 0;
+            BuffAttribute.AttRange = 0;
+            BuffAttribute.AttDelay = 0;
+            BuffAttribute.ExpRate = 0;
+            BuffAttribute.DropRate = 0;
+            BuffAttribute.HPRate = 0;
+            BuffAttribute.MPRate = 0;
+            BuffAttribute.MinusHurt = 0;
+            return;
+        }
+        switch (mode)
+        {
+            case "add":
+                if (Math.Abs(input.MAXHP) > 1) BuffAttribute.MAXHP += input.MAXHP;
+                else if (Math.Abs(input.MAXHP) <= 1) BuffAttribute.MAXHP += (BasicAttribute.MAXHP) * input.MAXHP;
+
+                if (Math.Abs(input.MAXMP) > 1) BuffAttribute.MAXMP += input.MAXMP;
+                else if (Math.Abs(input.MAXMP) <= 1) BuffAttribute.MAXMP += (BasicAttribute.MAXMP) * input.MAXMP;
+
+                if (Math.Abs(input.Att) > 1) BuffAttribute.Att += input.Att;
+                else if (Math.Abs(input.Att) <= 1) BuffAttribute.Att += (BasicAttribute.Att) * input.Att;
+
+                if (Math.Abs(input.Strength) > 1) BuffAttribute.Strength += input.Strength;
+                else if (Math.Abs(input.Strength) <= 1) BuffAttribute.Strength += (BasicAttribute.Strength) * input.Strength;
+
+                if (Math.Abs(input.Agility) > 1) BuffAttribute.Agility += input.Agility;
+                else if (Math.Abs(input.Agility) <= 1) BuffAttribute.Agility += (BasicAttribute.Agility) * input.Agility;
+
+                if (Math.Abs(input.Intellect) > 1) BuffAttribute.Intellect += input.Intellect;
+                else if (Math.Abs(input.Intellect) <= 1) BuffAttribute.Intellect += (BasicAttribute.Intellect) * input.Intellect;
+
+                if (Math.Abs(input.MinDamage) > 1) BuffAttribute.MinDamage += input.MinDamage;
+                else if (Math.Abs(input.MinDamage) <= 1) BuffAttribute.MinDamage += (BasicAttribute.MinDamage + EquipmentAttribute.MinDamage) * input.MinDamage;
+
+                if (Math.Abs(input.MaxDamage) > 1) BuffAttribute.MaxDamage += input.MaxDamage;
+                else if (Math.Abs(input.MaxDamage) <= 1) BuffAttribute.MaxDamage += (BasicAttribute.MaxDamage + EquipmentAttribute.MaxDamage) * input.MaxDamage;
+
+                if (Math.Abs(input.Defense) > 1) BuffAttribute.Defense += input.Defense;
+                else if (Math.Abs(input.Defense) <= 1) BuffAttribute.Defense += (BasicAttribute.Defense + EquipmentAttribute.Defense) * input.Defense;
+
+                if (Math.Abs(input.Accuracy) <= 1) BuffAttribute.Accuracy += (BasicAttribute.Accuracy + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy) * input.Accuracy;
+
+                if (Math.Abs(input.Critical) <= 1) BuffAttribute.Critical += (BasicAttribute.Critical + EquipmentAttribute.Critical + NegativeAttribute.Critical) * input.Critical;
+
+                if (Math.Abs(input.Avoid) <= 1) BuffAttribute.Avoid += (BasicAttribute.Avoid + EquipmentAttribute.Avoid + NegativeAttribute.Avoid) * input.Avoid;
+
+                if (Math.Abs(input.MagicDefense) <= 1) BuffAttribute.MagicDefense += (BasicAttribute.MagicDefense + EquipmentAttribute.MagicDefense + NegativeAttribute.MagicDefense) * input.MagicDefense;
+
+                if (Math.Abs(input.RunSpeed) > 1) BuffAttribute.RunSpeed += input.RunSpeed;
+                else if (Math.Abs(input.RunSpeed) <= 1) BuffAttribute.RunSpeed += (BasicAttribute.RunSpeed + EquipmentAttribute.RunSpeed) * input.RunSpeed;
+
+                //BuffAttribute.AttRange = 0;
+                //BuffAttribute.AttDelay = 0;
+                if (input.ExpRate > 0) BuffAttribute.ExpRate += (BasicAttribute.ExpRate + EquipmentAttribute.ExpRate + NegativeAttribute.ExpRate) * input.ExpRate;
+
+                if (input.DropRate > 0) BuffAttribute.DropRate += (BasicAttribute.DropRate + EquipmentAttribute.DropRate + NegativeAttribute.DropRate) * input.DropRate;
+
+                if (input.HPRate > 0) BuffAttribute.HPRate += (BasicAttribute.HPRate + EquipmentAttribute.HPRate + NegativeAttribute.HPRate) * input.HPRate;
+
+                if (input.MPRate > 0) BuffAttribute.MPRate += (BasicAttribute.MPRate + EquipmentAttribute.MPRate + NegativeAttribute.MPRate) * input.MPRate;
+
+                if (Math.Abs(input.MinusHurt) >= 1) BuffAttribute.MinusHurt = 1;
+                else if (Math.Abs(input.MinusHurt) <= 1) BuffAttribute.MinusHurt += (BasicAttribute.MinusHurt + EquipmentAttribute.MinusHurt) * input.MinusHurt;
+
+                break;
+            case "minus":
+                if (Math.Abs(input.MAXHP) > 1) BuffAttribute.MAXHP -= input.MAXHP;
+                else if (Math.Abs(input.MAXHP) <= 1) BuffAttribute.MAXHP -= (BasicAttribute.MAXHP) * input.MAXHP;
+
+                if (Math.Abs(input.MAXMP) > 1) BuffAttribute.MAXMP -= input.MAXMP;
+                else if (Math.Abs(input.MAXMP) <= 1) BuffAttribute.MAXMP -= (BasicAttribute.MAXMP) * input.MAXMP;
+
+                if (Math.Abs(input.Att) > 1) BuffAttribute.Att -= input.Att;
+                else if (Math.Abs(input.Att) <= 1) BuffAttribute.Att -= (BasicAttribute.Att) * input.Att;
+
+                if (Math.Abs(input.Strength) > 1) BuffAttribute.Strength -= input.Strength;
+                else if (Math.Abs(input.Strength) <= 1) BuffAttribute.Strength -= (BasicAttribute.Strength) * input.Strength;
+
+                if (Math.Abs(input.Agility) > 1) BuffAttribute.Agility -= input.Agility;
+                else if (Math.Abs(input.Agility) <= 1) BuffAttribute.Agility -= (BasicAttribute.Agility) * input.Agility;
+
+                if (Math.Abs(input.Intellect) > 1) BuffAttribute.Intellect -= input.Intellect;
+                else if (Math.Abs(input.Intellect) <= 1) BuffAttribute.Intellect -= (BasicAttribute.Intellect) * input.Intellect;
+
+                if (Math.Abs(input.MinDamage) > 1) BuffAttribute.MinDamage -= input.MinDamage;
+                else if (Math.Abs(input.MinDamage) <= 1) BuffAttribute.MinDamage -= (BasicAttribute.MinDamage + EquipmentAttribute.MinDamage) * input.MinDamage;
+
+                if (Math.Abs(input.MaxDamage) > 1) BuffAttribute.MaxDamage -= input.MaxDamage;
+                else if (Math.Abs(input.MaxDamage) <= 1) BuffAttribute.MaxDamage -= (BasicAttribute.MaxDamage + EquipmentAttribute.MaxDamage) * input.MaxDamage;
+
+                if (Math.Abs(input.Defense) > 1) BuffAttribute.Defense -= input.Defense;
+                else if (Math.Abs(input.Defense) <= 1) BuffAttribute.Defense -= (BasicAttribute.Defense + EquipmentAttribute.Defense) * input.Defense;
+
+                if (Math.Abs(input.Accuracy) <= 1) BuffAttribute.Accuracy -= (BasicAttribute.Accuracy + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy) * input.Accuracy;
+
+                if (Math.Abs(input.Critical) <= 1) BuffAttribute.Critical -= (BasicAttribute.Critical + EquipmentAttribute.Critical + NegativeAttribute.Critical) * input.Critical;
+
+                if (Math.Abs(input.Avoid) <= 1) BuffAttribute.Avoid -= (BasicAttribute.Avoid + EquipmentAttribute.Avoid + NegativeAttribute.Avoid) * input.Avoid;
+
+                if (Math.Abs(input.MagicDefense) <= 1) BuffAttribute.MagicDefense -= (BasicAttribute.MagicDefense + EquipmentAttribute.MagicDefense + NegativeAttribute.MagicDefense) * input.MagicDefense;
+
+                if (Math.Abs(input.RunSpeed) > 1) BuffAttribute.RunSpeed -= input.RunSpeed;
+                else if (Math.Abs(input.RunSpeed) <= 1) BuffAttribute.RunSpeed -= (BasicAttribute.RunSpeed + EquipmentAttribute.RunSpeed) * input.RunSpeed;
+
+                //BuffAttribute.AttRange = 0;
+                //BuffAttribute.AttDelay = 0;
+                if (input.ExpRate > 0) BuffAttribute.ExpRate -= (BasicAttribute.ExpRate + EquipmentAttribute.ExpRate + NegativeAttribute.ExpRate) * input.ExpRate;
+
+                if (input.DropRate > 0) BuffAttribute.DropRate -= (BasicAttribute.DropRate + EquipmentAttribute.DropRate + NegativeAttribute.DropRate) * input.DropRate;
+
+                if (input.HPRate > 0) BuffAttribute.HPRate -= (BasicAttribute.HPRate + EquipmentAttribute.HPRate + NegativeAttribute.HPRate) * input.HPRate;
+
+                if (input.MPRate > 0) BuffAttribute.MPRate -= (BasicAttribute.MPRate + EquipmentAttribute.MPRate + NegativeAttribute.MPRate) * input.MPRate;
+
+                if (Math.Abs(input.MinusHurt) >= 1) BuffAttribute.MinusHurt = 0;
+                else if (Math.Abs(input.MinusHurt) <= 1) BuffAttribute.MinusHurt -= (BasicAttribute.MinusHurt + EquipmentAttribute.MinusHurt) * input.MinusHurt;
+
+                break;
+            default:
+                break;
+        }
+
     }
     public PlayerAttribute FinalAttribute;
     public void InitFinalAttribute()
@@ -416,12 +583,17 @@ public class MOFCharacter : Entity
         FinalAttribute.HPRate = BasicAttribute.HPRate + EquipmentAttribute.HPRate + NegativeAttribute.HPRate + BuffAttribute.HPRate;
         FinalAttribute.MPRate = BasicAttribute.MPRate + EquipmentAttribute.MPRate + NegativeAttribute.MPRate + BuffAttribute.MPRate;
         FinalAttribute.MinusHurt = BasicAttribute.MinusHurt + EquipmentAttribute.MinusHurt + NegativeAttribute.MinusHurt + BuffAttribute.MinusHurt; ;
+        if (FinalAttribute.MinusHurt >= 1) FinalAttribute.MinusHurt = 1;
+        if (FinalAttribute.MinusHurt <= 0) FinalAttribute.MinusHurt = 0;
+        if (FinalAttribute.ExpRate < 1) FinalAttribute.ExpRate = 1;
+        if (FinalAttribute.DropRate < 1) FinalAttribute.DropRate = 1;
     }
     #endregion
     public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
     {
         this.player = player;
-        this.skillManager = new SkillManager(this);
+        InitSkill();
+        InitBuffs();
         InitAllAtribute();
         this.CharacterName = player.Name;
         this.nEntity = new NEntity
@@ -439,7 +611,7 @@ public class MOFCharacter : Entity
         this.trimedPlayer = tp;
         this.MoveState = MoveState;
         this.IsRun = IsRun;
-        
+
         if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
         {
             CacheSvc.Instance.MOFCharacterDict.TryAdd(player.Name, this);
@@ -452,12 +624,9 @@ public class MOFCharacter : Entity
     public override void Update()
     {
         this.skillManager.Update();
+        this.buffManager.Update();
     }
 
-    public override void InitSkill()
-    {
-
-    }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {
         player.Att += ap.Att;

@@ -100,7 +100,7 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
                 controller.SkillDict[kv.Key].CD = 0;
                 controller.SkillDict[kv.Key].EntityController = controller;
-                controller.SkillDict[kv.Key].SkillLevel = kv.Value.SkillLevel;
+                controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
 
         }
@@ -116,7 +116,7 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
                 controller.SkillDict[kv.Key].CD = 0;
                 controller.SkillDict[kv.Key].EntityController = controller;
-                controller.SkillDict[kv.Key].SkillLevel = kv.Value.SkillLevel;
+                controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
         }
     }

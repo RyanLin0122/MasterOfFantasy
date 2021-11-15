@@ -112,7 +112,8 @@
       "Self": [ 1, 1, 1 ],
       "Shoot": [ 1, 1, 1 ],
       "Target": [ 1, 1, 1 ]
-    }
+    },
+    "Buff": -1
   },
   {
     "ID": 304,
@@ -178,7 +179,8 @@
       "Self": [ 1, 1, 1 ],
       "Shoot": [ 1, 1, 1 ],
       "Target": [ 1, 1, 1 ]
-    }
+    },
+    "Buff": -1
   },
   {
     "ID": 305,
@@ -240,6 +242,70 @@
       "Self": [ 1, 1, 1 ],
       "Shoot": [ 1, 1, 1 ],
       "Target": [ 1, 1, 1 ]
-    }
+    },
+    "Buff": -1
+  },
+  {
+    "ID": 306,
+    "Name": "縮地法",
+    "IsActive": true,
+    "IsAttack": false,
+    "IsAOE": false,
+    "IsBuff": true,
+    "IsSetup": false,
+    "RequiredWeapon": [],
+    "RequiredLevel": [ 4, 8, 12, 16, 19 ],
+    "MP": [ 28, 28, 27, 27, 26 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 40, 36, 32, 28, 24 ],
+    "Damage": [ 0, 0, 0, 0, 0 ],
+    "Times": [ 0, 0, 0, 0, 0 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 50, 110, 160 ],
+    "MagicPoint": [ 140, 280, 420, 560, 700 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "BuffOnly",
+    "IsMultiple": false,
+    "Shape": "Circle",
+    "Range": [ 0, 0, 0 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": false,
+    "BulletSpeed": 0,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [],
+    "Des": "一定時間內提升跑步速度",
+    "Icon": "Archer_Skill2",
+    "Effect": [
+    ],
+    "Action": "MagicAttack",
+    "AniPath": {
+      "Self": "",
+      "Shoot": "",
+      "Other": ""
+    },
+    "AniOffset": {
+      "Self": [ 0, -34, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0, 0 ]
+    },
+    "Sound": {
+      "Cast": "",
+      "Hit": ""
+    },
+    "CastTime": 0.1,
+    "ChargeTime": 0,
+    "LockTime": 1,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1, 1, 1 ]
+    },
+    "Buff": 1
   }
 ]

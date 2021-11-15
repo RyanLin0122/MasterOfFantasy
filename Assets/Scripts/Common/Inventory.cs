@@ -173,7 +173,7 @@ public class Inventory : WindowRoot
     #region CheckItemInInventory
     public bool CheckItemsExistInInventory(int ItemID, int Amount = 1)
     {
-        Item itemInfo = InventorySys.Instance.itemList[ItemID];
+        Item itemInfo = InventorySys.Instance.ItemList[ItemID];
         int RestAmount = Amount;
         foreach (var slotArray in slotLists)
         {

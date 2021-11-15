@@ -18,7 +18,7 @@ public class InventorySys : MonoBehaviour
             return _instance;
         }
     }
-    public Dictionary<int, Item> itemList = new Dictionary<int, Item>();
+    public Dictionary<int, Item> ItemList = new Dictionary<int, Item>();
     public ToolTip toolTip;
     public Canvas canvas;
     public bool isToolTipShow = false;
@@ -87,7 +87,7 @@ public class InventorySys : MonoBehaviour
             {
                 isCash = true;
             }
-            if (Convert.ToInt32(jo["CanTransaction"].ToString()) == 1) { canTransaction = true; }
+            if ((int)jo["CanTransaction"].n == 1) { canTransaction = true; }
             else { canTransaction = false; }
 
             switch (type)
@@ -105,7 +105,6 @@ public class InventorySys : MonoBehaviour
                         {
                             for (int s = 0; s < EffectString.Length; s++)
                             {
-                                Debug.Log("s" + EffectString[s] + "d");
                                 Effects[s] = Convert.ToInt32(EffectString[s]);
                             }
                         }
@@ -117,63 +116,58 @@ public class InventorySys : MonoBehaviour
                             Effects[s] = Convert.ToInt32(EffectString[s]);
                         }
                     }
-                    Consumable itemc = new Consumable(Convert.ToInt32(jo["ItemID"].ToString())
+                    Consumable itemc = new Consumable((int)jo["ItemID"].n
                         , name, ItemType.Consumable
                         , quality, description
-                        , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                        , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1
-                        , Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                        , Convert.ToInt32(jo["Agility"].ToString())
-                        , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["HP"].ToString())
-                        , Convert.ToInt32(jo["MP"].ToString()), Convert.ToInt32(jo["Defense"].ToString())
-                        , Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                        , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString())
-                        , (float)Convert.ToDouble(jo["MagicDefense"].ToString()), (float)Convert.ToDouble(jo["ExpRate"].ToString())
-                        , Convert.ToInt32(jo["Exp"].ToString())
-                        , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["BuffTime"].ToString())
-                        , Convert.ToInt32(jo["ColdTime"].ToString())
-                        , Effects
+                        , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                        , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1
+                        , jo["Attack"].n, jo["Strength"].n, jo["Agility"].n
+                        , jo["Intellect"].n, jo["HP"].n
+                        , jo["MP"].n, jo["Defense"].n
+                        , jo["MinDamage"].n, jo["MaxDamage"].n, jo["Accuracy"].n
+                        , jo["Avoid"].n, jo["Critical"].n
+                        , jo["MagicDefense"].n, jo["ExpRate"].n, jo["Exp"].n
+                        , jo["DropRate"].n, jo["BuffTime"].n
+                        , jo["ColdTime"].n, Effects
                         );
-                    itemList.Add(itemc.ItemID, itemc);
+                    ItemList.Add(itemc.ItemID, itemc);
                     break;
                 case ItemType.Equipment:
-                    Equipment EquipItem = new Equipment(Convert.ToInt32(jo["ItemID"].ToString())
+                    Equipment EquipItem = new Equipment((int)jo["ItemID"].n
                         , name, ItemType.Equipment
                         , quality, description
-                        , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                        , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1, Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                        , Convert.ToInt32(jo["Agility"].ToString())
-                        , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["Job"].ToString()), Convert.ToInt32(jo["Level"].ToString()), Convert.ToInt32(jo["Gender"].ToString())
-                        , Convert.ToInt32(jo["Defense"].ToString()), Convert.ToInt32(jo["HP"].ToString())
-                        , Convert.ToInt32(jo["MP"].ToString()), jo["Title"].ToString(), Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                        , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString())
-                        , (float)Convert.ToDouble(jo["MagicDefense"].ToString()), (EquipmentType)Enum.Parse(typeof(EquipmentType), jo["EquipmentType"].str)
-                        , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
-                        , (float)Convert.ToDouble(jo["ExpRate"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()), Convert.ToInt32(jo["Stars"].ToString()));
-                    itemList.Add(EquipItem.ItemID, EquipItem);
+                        , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                        , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1, jo["Attack"].n, jo["Strength"].n
+                        , jo["Agility"].n, jo["Intellect"].n, (int)jo["Job"].n, (int)jo["Level"].n, (int)jo["Gender"].n
+                        , jo["Defense"].n, jo["HP"].n, jo["MP"].n, jo["Title"].str, jo["MinDamage"].n, jo["MaxDamage"].n, jo["Accuracy"].n
+                        , jo["Avoid"].n, jo["Critical"].n, jo["MagicDefense"].n, (EquipmentType)Enum.Parse(typeof(EquipmentType), jo["EquipmentType"].str)
+                        , jo["DropRate"].n, (int)jo["RestRNum"].n
+                        , jo["ExpRate"].n, (int)jo["ExpiredTime"].n, (int)jo["Stars"].n
+                        );
+                    ItemList.Add(EquipItem.ItemID, EquipItem);
                     break;
                 case ItemType.Weapon:
                     Weapon WeapItem = new Weapon(Convert.ToInt32(jo["ItemID"].ToString())
                         , name, ItemType.Weapon
                         , quality, description
-                        , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                        , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1, Convert.ToInt32(jo["Level"].ToString())
-                        , Convert.ToInt32(jo["MinDamage"].ToString()), Convert.ToInt32(jo["MaxDamage"].ToString()), Convert.ToInt32(jo["AttSpeed"].ToString()), Convert.ToInt32(jo["Range"].ToString())
-                        , jo["Property"].ToString(), Convert.ToInt32(jo["Attack"].ToString()), Convert.ToInt32(jo["Strength"].ToString())
-                        , Convert.ToInt32(jo["Agility"].ToString())
-                        , Convert.ToInt32(jo["Intellect"].ToString()), Convert.ToInt32(jo["Job"].ToString()), (float)Convert.ToDouble(jo["Accuracy"].ToString())
-                        , (float)Convert.ToDouble(jo["Avoid"].ToString()), (float)Convert.ToDouble(jo["Critical"].ToString()), (WeaponType)Enum.Parse(typeof(WeaponType), jo["WeapType"].str)
-                        , (float)Convert.ToDouble(jo["DropRate"].ToString()), Convert.ToInt32(jo["RestRNum"].ToString())
-                        , Convert.ToInt32(jo["Additional"].ToString()), Convert.ToInt32(jo["Stars"].ToString()), Convert.ToInt32(jo["AdditionalLevel"].ToString()), Convert.ToInt32(jo["ExpiredTime"].ToString()));
-                    itemList.Add(WeapItem.ItemID, WeapItem);
+                        , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                        , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1, (int)jo["Level"].n
+                        , (int)jo["MinDamage"].n, (int)jo["MaxDamage"].n, jo["AttSpeed"].n, jo["Range"].n
+                        , jo["Property"].ToString(), jo["Attack"].n, jo["Strength"].n
+                        , jo["Agility"].n
+                        , jo["Intellect"].n, (int)jo["Job"].n, jo["Accuracy"].n
+                        , jo["Avoid"].n, (float)Convert.ToDouble(jo["Critical"].ToString()), (WeaponType)Enum.Parse(typeof(WeaponType), jo["WeapType"].str)
+                        , jo["DropRate"].n, (int)jo["RestRNum"].n
+                        , (int)jo["Additional"].n, (int)jo["Stars"].n, (int)jo["AdditionalLevel"].n, (int)jo["ExpiredTime"].n);
+                    ItemList.Add(WeapItem.ItemID, WeapItem);
                     break;
                 case ItemType.EtcItem:
-                    EtcItem etcItem = new EtcItem(Convert.ToInt32(jo["ItemID"].ToString())
+                    EtcItem etcItem = new EtcItem((int)jo["ItemID"].n
                         , name, ItemType.EtcItem
                         , quality, description
-                        , Convert.ToInt32(jo["Capacity"].ToString()), Convert.ToInt32(jo["BuyPrice"].ToString())
-                        , Convert.ToInt32(jo["SellPrice"].ToString()), sprite, isCash, canTransaction, 1);
-                    itemList.Add(etcItem.ItemID, etcItem);
+                        , (int)jo["Capacity"].n, (int)jo["BuyPrice"].n
+                        , (int)jo["SellPrice"].n, sprite, isCash, canTransaction, 1);
+                    ItemList.Add(etcItem.ItemID, etcItem);
                     break;
             }
         }
@@ -181,7 +175,7 @@ public class InventorySys : MonoBehaviour
     }
     public Item GetItemById(int id)
     {
-        foreach (Item item in itemList.Values)
+        foreach (Item item in ItemList.Values)
         {
             if (item.ItemID == id)
             {
@@ -209,25 +203,25 @@ public class InventorySys : MonoBehaviour
 
     public Item GetNewItemByID(int ID)
     {
-        if (itemList.ContainsKey(ID))
+        if (ItemList.ContainsKey(ID))
         {
             if (ID > 1000 && ID < 3000)
             {
-                return TransReflection<Consumable, Consumable>((Consumable)itemList[ID]);
+                return TransReflection<Consumable, Consumable>((Consumable)ItemList[ID]);
             }
             else if (ID > 3000 && ID < 8000)
             {
-                return TransReflection<Equipment, Equipment>((Equipment)itemList[ID]);
+                return TransReflection<Equipment, Equipment>((Equipment)ItemList[ID]);
 
             }
             else if (ID > 8000 && ID < 10000)
             {
-                return TransReflection<Weapon, Weapon>((Weapon)itemList[ID]);
+                return TransReflection<Weapon, Weapon>((Weapon)ItemList[ID]);
 
             }
             else if (ID > 10000)
             {
-                return TransReflection<EtcItem, EtcItem>((EtcItem)itemList[ID]);
+                return TransReflection<EtcItem, EtcItem>((EtcItem)ItemList[ID]);
             }
 
         }
@@ -255,7 +249,7 @@ public class InventorySys : MonoBehaviour
         foreach (var ItemID in ItemDic.Keys)
         {
             int RestAmount = ItemDic[ItemID];
-            if (Instance.itemList[ItemID].IsCash)
+            if (Instance.ItemList[ItemID].IsCash)
             {
                 foreach (int pos in CashKnapsack.Keys)
                 {
@@ -328,7 +322,7 @@ public class InventorySys : MonoBehaviour
                 Dictionary<int, Item> CashKnapsack = GameRoot.Instance.ActivePlayer.CashKnapsack;
                 for (int i = 0; i < ItemIDs.Count; i++)
                 {
-                    bool IsCash = itemList[ItemIDs[i]].IsCash;
+                    bool IsCash = ItemList[ItemIDs[i]].IsCash;
                     if (IsCash && CashKnapsack.ContainsKey(Positions[i]))
                     {
                         if (CashKnapsack[Positions[i]].ItemID == ItemIDs[i])

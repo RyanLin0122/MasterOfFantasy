@@ -43,7 +43,7 @@ public class ItemUI : MonoBehaviour
         this.Amount = 1;
         // update ui 
         int itemid = item.ItemID;
-        ItemImage.sprite = Resources.Load<Sprite>(InventorySys.Instance.itemList[itemid].Sprite);
+        ItemImage.sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[itemid].Sprite);
         AmountText.text = "";
     }
     public void SetItem(Item item, int amount = 1)

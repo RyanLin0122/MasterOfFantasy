@@ -208,7 +208,7 @@ public class LearnSkillWnd : WindowRoot
                 GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[learn.Level - 1];
                 GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[learn.Level - 1];
                 GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[learn.Level - 1];
-                PlayerInputController.Instance.entityController.SkillDict[learn.SkillID].SkillLevel += 1;
+                PlayerInputController.Instance.entityController.SkillDict[learn.SkillID].Level += 1;
             }
             else
             {
@@ -222,13 +222,13 @@ public class LearnSkillWnd : WindowRoot
                 GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[0];
                 GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[0];
                 Skill skill = new Skill(info);
-                skill.SkillLevel = 1;
+                skill.Level = 1;
                 PlayerController Controller = PlayerInputController.Instance.entityController;
                 Controller.SkillDict[info.SkillID] = skill;
                 Controller.SkillDict[info.SkillID].CD = 0;
                 Controller.SkillDict[info.SkillID].EntityController = Controller;            
                 BattleSys.Instance.InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
-                BattleSys.Instance.InitBuffAttribute();
+                BattleSys.Instance.InitAllBuffAttribute();
                 BattleSys.Instance.InitFinalAttribute();
             }           
             Init();

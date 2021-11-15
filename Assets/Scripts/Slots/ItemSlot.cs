@@ -248,13 +248,13 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
             {
                 Result += string.Format("<color={0}>Â¾·~: {1}</color>\n", color, Constants.SetJobName(itemE.Job));
             }
-            if (itemE.HP != 0)
+            if (itemE.MaxHP != 0)
             {
-                Result += string.Format("<color={0}>HP+ {1}</color>\n", color, itemE.HP.ToString());
+                Result += string.Format("<color={0}>HP+ {1}</color>\n", color, itemE.MaxHP.ToString());
             }
-            if (itemE.MP != 0)
+            if (itemE.MaxMP != 0)
             {
-                Result += string.Format("<color={0}>MP+ {1}</color>\n", color, itemE.MP.ToString());
+                Result += string.Format("<color={0}>MP+ {1}</color>\n", color, itemE.MaxMP.ToString());
             }
 
             if (itemE.Attack != 0)

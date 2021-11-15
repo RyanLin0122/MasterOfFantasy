@@ -94,13 +94,13 @@ namespace PEProtocal
     public class Equipment : Item
     {
         [ProtoMember(1,IsRequired = false)]
-        public int Attack { get; set; }
+        public float Attack { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public int Strength { get; set; }
+        public float Strength { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public int Agility { get; set; }
+        public float Agility { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        public int Intellect { get; set; }
+        public float Intellect { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public int Job { get; set; }
         [ProtoMember(6, IsRequired = false)]
@@ -108,15 +108,15 @@ namespace PEProtocal
         [ProtoMember(7, IsRequired = false)]
         public int Gender { get; set; }
         [ProtoMember(8, IsRequired = false)]
-        public int Defense { get; set; }
+        public float Defense { get; set; }
         [ProtoMember(9, IsRequired = false)]
-        public int HP { get; set; }
+        public float MaxHP { get; set; }
         [ProtoMember(10, IsRequired = false)]
-        public int MP { get; set; }
+        public float MaxMP { get; set; }
         [ProtoMember(11, IsRequired = false)]
         public string Title { get; set; }
         [ProtoMember(12, IsRequired = false)]
-        public int MinDamage { get; set; }
+        public float MinDamage { get; set; }
         [ProtoMember(13, IsRequired = false)]
         public float Accuracy { get; set; }
         [ProtoMember(14, IsRequired = false)]
@@ -128,7 +128,7 @@ namespace PEProtocal
         [ProtoMember(17, IsRequired = false)]
         public EquipmentType EquipType { get; set; }
         [ProtoMember(18, IsRequired = false)]
-        public int MaxDamage { get; set; }
+        public float MaxDamage { get; set; }
         [ProtoMember(19, IsRequired = false)]
         public float DropRate { get; set; }
         [ProtoMember(20, IsRequired = false)]
@@ -145,19 +145,19 @@ namespace PEProtocal
 
         }
         public Equipment(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash,bool canTransaction,int count,
-            int attack, int strength, int agility, int intellext, int job, int level, int gender, int defense, int hp, int mp, string title,int Mindamage,int Maxdamage, float accuracy, float avoid, float critical, float magicDefense, EquipmentType equipType,float dropRate,int restRNum, float ExpRate, int ExpiredTime, int Stars)
+            float attack, float strength, float agility, float intellect, int job, int level, int gender, float defense, float hp, float mp, string title, float Mindamage, float Maxdamage, float accuracy, float avoid, float critical, float magicDefense, EquipmentType equipType,float dropRate,int restRNum, float ExpRate, int ExpiredTime, int Stars)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Attack = attack;
             this.Strength = strength;
             this.Agility = agility;
-            this.Intellect = intellext;
+            this.Intellect = intellect;
             this.Job = job;
             this.Level = level;
             this.Gender = gender;
             this.Defense = defense;
-            this.HP = hp;
-            this.MP = mp;
+            this.MaxHP = hp;
+            this.MaxMP = mp;
             this.Title = title;
             this.MinDamage = Mindamage;
             this.MaxDamage = Maxdamage;
@@ -222,21 +222,21 @@ namespace PEProtocal
     public class Consumable : Item
     {
         [ProtoMember(1, IsRequired = false)]
-        public int Attack { get; set; }
+        public float Attack { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public int Strength { get; set; }
+        public float Strength { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public int Agility { get; set; }
+        public float Agility { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        public int Intellect { get; set; }
+        public float Intellect { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int HP { get; set; }
+        public float HP { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public int MP { get; set; }
+        public float MP { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int Defense { get; set; }
+        public float Defense { get; set; }
         [ProtoMember(8, IsRequired = false)]
-        public int MinDamage { get; set; }
+        public float MinDamage { get; set; }
         [ProtoMember(9, IsRequired = false)]
         public float Accuracy { get; set; }
         [ProtoMember(10, IsRequired = false)]
@@ -248,24 +248,24 @@ namespace PEProtocal
         [ProtoMember(13, IsRequired = false)]
         public float ExpRate { get; set; }
         [ProtoMember(14, IsRequired = false)]
-        public int Exp { get; set; }
+        public float Exp { get; set; }
         [ProtoMember(15, IsRequired = false)]
         public float DropRate { get; set; }
         [ProtoMember(16, IsRequired = false)]
-        public int BuffTime { get; set; }
+        public float BuffTime { get; set; }
         [ProtoMember(17, IsRequired = false)]
-        public int ColdTime { get; set; }
+        public float ColdTime { get; set; }
         [ProtoMember(18, IsRequired = false)]
-        public int MaxDamage { get; set; }
+        public float MaxDamage { get; set; }
         [ProtoMember(19, IsRequired = false)]
-        public int[] Effect { get; set; }
+        public int[] Buff { get; set; }
 
         public Consumable()
         {
 
         }
         public Consumable(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash, bool canTransaction, int count,
-            int attack, int health, int dex, int intelligent, int hp, int mp, int defense, int Mindamage,int Maxdamage, float accuracy, float avoid, float critical, float magicDefense, float expRate, int exp, float dropRate, int buffTime, int coldTime,int[] effect)
+            float attack, float health, float dex, float intelligent, float hp, float mp, float defense, float Mindamage, float Maxdamage, float accuracy, float avoid, float critical, float magicDefense, float expRate, float exp, float dropRate, float buffTime, float coldTime,int[] buff)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Attack = attack;
@@ -286,7 +286,7 @@ namespace PEProtocal
             this.DropRate = dropRate;
             this.BuffTime = buffTime;
             this.ColdTime = coldTime;
-            this.Effect = effect;
+            this.Buff = buff;
         }
 
     }
@@ -307,21 +307,21 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public int Level { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public int MinDamage { get; set; }
+        public float MinDamage { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public int AttSpeed { get; set; }
+        public float AttSpeed { get; set; }
         [ProtoMember(4, IsRequired = false)]
-        public int Range { get; set; }
+        public float Range { get; set; }
         [ProtoMember(5, IsRequired = false)]
         public string Property { get; set; }
         [ProtoMember(6, IsRequired = false)]
-        public int Attack { get; set; }
+        public float Attack { get; set; }
         [ProtoMember(7, IsRequired = false)]
-        public int Strength { get; set; }
+        public float Strength { get; set; }
         [ProtoMember(8, IsRequired = false)]
-        public int Agility { get; set; }
+        public float Agility { get; set; }
         [ProtoMember(9, IsRequired = false)]
-        public int Intellect { get; set; }
+        public float Intellect { get; set; }
         [ProtoMember(10, IsRequired = false)]
         public int Job { get; set; }
         [ProtoMember(11, IsRequired = false)]
@@ -333,7 +333,7 @@ namespace PEProtocal
         [ProtoMember(14, IsRequired = false)]
         public WeaponType WeapType { get; set; }
         [ProtoMember(15, IsRequired = false)]
-        public int MaxDamage { get; set; }
+        public float MaxDamage { get; set; }
         [ProtoMember(16, IsRequired = false)]
         public float DropRate { get; set; }
         [ProtoMember(17, IsRequired = false)]
@@ -349,7 +349,7 @@ namespace PEProtocal
         public Weapon()
         { }
         public Weapon(int itemID, string name, ItemType type, ItemQuality quality, string des, int capacity, int buyPrice, int sellPrice, string sprite, bool isCash, bool canTransaction, int count,
-            int level, int Mindamage,int Maxdamage, int attSpeed, int range, string property, int attack, int strength, int agility, int intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum, int Additional, int Stars, int AdditionalLevel, int ExpiredTime)
+            int level, float Mindamage, float Maxdamage, float attSpeed, float range, string property, float attack, float strength, float agility, float intellect, int job, float accuracy, float avoid, float critical, WeaponType weaponType, float dropRate, int restRNum, int Additional, int Stars, int AdditionalLevel, int ExpiredTime)
             : base(itemID, name, type, quality, des, capacity, buyPrice, sellPrice, sprite, isCash,canTransaction,count)
         {
             this.Level = level;
