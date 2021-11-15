@@ -12,12 +12,16 @@ public class EntityController : MonoBehaviour
     public Entity entity;
     public bool IsAIControlling = false;
     public Dictionary<int, Skill> SkillDict;
+    public BuffManager buffManager;
+    public EffectManager effectManager;
     public Player playerdata;
     public TrimedPlayer trimedPlayerdata;
     public void Init()
     {
         rb = this.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
+        this.buffManager = new BuffManager(this);
+        this.effectManager = new EffectManager(this);
     }
     public virtual void SetFaceDirection(bool FaceDir)
     {
@@ -47,6 +51,12 @@ public class EntityController : MonoBehaviour
         }
         PlayHitAni(active);
     }
+    public virtual void DoBuffDamage(DamageInfo damage, BuffDefine buffDefine)
+    {
+        Debug.Log("Do Buff Damage");
+        //To do
+
+    }
     public virtual void PlayHitAni(ActiveSkillInfo active)
     {
         //子類實現
@@ -58,7 +68,45 @@ public class EntityController : MonoBehaviour
         SkillDict.TryGetValue(hit.SkillID, out skill);
         if (skill != null) skill.DoHit(hit);
     }
+    internal void DoBuffAction(BuffInfo buff)
+    {
+        switch (buff.Action)
+        {
+            case BUFF_Action.NONE:
+                break;
+            case BUFF_Action.ADD:
+                this.AddBuff(buff.BuffID, buff.BuffDefineID, buff.CastType, buff.CasterName, buff.CasterID);
+                break;
+            case BUFF_Action.REMOVE:
+                this.RemoveBuff(buff.BuffID);
+                break;
+            case BUFF_Action.HIT:
+                this.DoBuffDamage(buff.DamageInfo, ResSvc.Instance.BuffDic[buff.BuffDefineID]);
+                break;
+            default:
+                break;
+        }
+    }
+    private Buff AddBuff(int BuffID, int BuffDefinID, SkillCasterType CasterType, string CasterName = "", int CasterID = -1)
+    {
+        if (this.buffManager != null) return this.buffManager.AddBuff(BuffID, BuffDefinID, CasterType, CasterName, CasterID);
+        return null;
+    }
 
+    public Buff RemoveBuff(int BuffID)
+    {
+        if (this.buffManager != null) return this.buffManager.RemoveBuff(BuffID);
+        return null;
+    }
+    internal void AddBuffEffect(BUFF_Effect buffEffect)
+    {
+        this.effectManager.AddBuffEffect(buffEffect);
+    }
+
+    internal void RemoveBuffEffect(BUFF_Effect buffEffect)
+    {
+        this.effectManager.RemoveEffect(buffEffect);
+    }
     public void Update()
     {
         if (this.SkillDict != null && this.SkillDict.Count > 0)
@@ -67,6 +115,10 @@ public class EntityController : MonoBehaviour
             {
                 skill.Update(Time.deltaTime);
             }
+        }
+        if (this.buffManager != null)
+        {
+            this.buffManager.OnUpdate(Time.deltaTime);
         }
     }
 

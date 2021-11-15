@@ -21,6 +21,7 @@ public class ResSvc : MonoBehaviour
         InventorySys.Instance.ParseItemJson();
         ParseMonsterJson();
         ParseSkillJson();
+        ParseBuffJson();
         IllustrationPath.Instance.Init();
         LoadJobImgs();
         ParsePortalJson();

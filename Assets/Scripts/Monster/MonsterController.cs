@@ -16,6 +16,7 @@ public class MonsterController : EntityController
     public int MapMonsterID;
     public void Init(MonsterInfo info, int MapMonsterID)
     {
+        base.Init();
         if (MainCitySys.Instance.IsCalculator)
         {
             Blackboard blackboard = GetComponent<Blackboard>();

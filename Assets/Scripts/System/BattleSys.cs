@@ -938,8 +938,39 @@ public class BattleSys : SystemRoot
         if (br != null)
         {
             Debug.Log("收到Buff消息");
+            OnBuff(br);
         }
         
+    }
+
+    private void OnBuff(BuffResponse br)
+    {
+        if (br.Buffs == null || br.Buffs.Count < 1) return;
+        foreach (var buff in br.Buffs)
+        {
+            if(buff.OwnerType == SkillTargetType.Monster)
+            {
+                MonsterController owner = null;
+                Monsters.TryGetValue(buff.OwnerID, out owner);
+                if (owner != null) owner.DoBuffAction(buff);
+            }
+            else if(buff.OwnerType == SkillTargetType.Player)
+            {
+                if(buff.OwnerName == GameRoot.Instance.ActivePlayer.Name)
+                {
+                    if (PlayerInputController.Instance.entityController != null)
+                    {
+                        PlayerInputController.Instance.entityController.DoBuffAction(buff);
+                    }                
+                }
+                else
+                {
+                    PlayerController owner = null;
+                    Players.TryGetValue(buff.OwnerName, out owner);
+                    if (owner != null) owner.DoBuffAction(buff);
+                }
+            }
+        }
     }
     #endregion
 
@@ -1092,11 +1123,6 @@ public class BattleSys : SystemRoot
             }
         }
 
-    }
-
-    public void LockTarget(MonsterController monAi)
-    {
-        CurrentTarget = monAi;
     }
 
     public void ClearTarget()
