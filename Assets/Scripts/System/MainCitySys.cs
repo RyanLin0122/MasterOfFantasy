@@ -64,6 +64,7 @@ public class MainCitySys : SystemRoot
 
             //加載主角
             LoadPlayer(GameRoot.Instance.ActivePlayer.Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
+            BattleSys.Instance.InitMyBuff();
             UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             UISystem.Instance.Knapsack.ReadItems();
             //打開主UI

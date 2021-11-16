@@ -93,7 +93,7 @@ public class Skill
             
             if (EntityController is MonsterController)
             {
-                CastID = this.EntityController.entity.entityId;
+                CastID = this.EntityController.entity.entityData.Id;
                 CasterType = SkillCasterType.Monster;
                 if (active.IsMultiple)
                 {
@@ -130,11 +130,11 @@ public class Skill
                     {
                         if (active.TargetType == SkillTargetType.Monster)
                         {
-                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityData.Id };
                         }
                         else
                         {
-                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityName };
+                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityData.EntityName };
                         }
                     }
                     

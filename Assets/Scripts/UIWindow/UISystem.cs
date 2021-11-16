@@ -44,7 +44,8 @@ public class UISystem : SystemRoot
     public PetWnd petWnd;
     public MessageQueue messageQueue;
     public PlayerOption playerOption;
-    public OtherPlayerOption otherPlayerOption;
+    public Transform BuffIconsContainer;
+
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
 
@@ -361,22 +362,6 @@ public class UISystem : SystemRoot
         //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         playerOption.SetWndState(false);
         playerOption.IsOpen = false;
-    }
-    public void OpenOtherPlayerOption(Vector3 pos)
-    {
-        //AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
-        otherPlayerOption.GetComponent<Transform>().position = pos;
-        otherPlayerOption.SetWndState();
-        otherPlayerOption.IsOpen = true;
-        otherPlayerOption.SetName();
-
-    }
-    public void CloseOtherPlayOption()
-    {
-        //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
-        otherPlayerOption.SetWndState(false);
-        otherPlayerOption.IsOpen = false;
-
     }
     #endregion
 

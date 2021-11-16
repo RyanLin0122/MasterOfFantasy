@@ -453,6 +453,7 @@ public class Skill
     private void AddBuff(BUFF_TriggerType trigger, ActiveSkillInfo active)
     {
         if (!active.IsBuff) return;
+        if (active.Buff == -1) return;
         BuffDefine buffDefine = CacheSvc.Instance.BuffDic[active.Buff];
         if (buffDefine.TriggerType != trigger) return;
         if (buffDefine.TargetType == BUFF_TargetType.Self) this.Owner.AddBuff(this.context, buffDefine);

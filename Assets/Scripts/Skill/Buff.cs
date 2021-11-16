@@ -48,7 +48,7 @@ public class Buff
     {
         if(this.Owner is PlayerController)
         {
-            if(this.Owner.entity.entityName == GameRoot.Instance.ActivePlayer.Name)
+            if(this.Owner.entity.entityData.EntityName == GameRoot.Instance.ActivePlayer.Name)
             {
                 BattleSys.Instance.InitBuffAttribute(this.Define.AttributeGain, "add");
                 BattleSys.Instance.InitFinalAttribute();
@@ -68,7 +68,7 @@ public class Buff
     {
         if (this.Owner is PlayerController)
         {
-            if (this.Owner.entity.entityName == GameRoot.Instance.ActivePlayer.Name)
+            if (this.Owner.entity.entityData.EntityName == GameRoot.Instance.ActivePlayer.Name)
             {
                 BattleSys.Instance.InitBuffAttribute(this.Define.AttributeGain, "minus");
                 BattleSys.Instance.InitFinalAttribute();

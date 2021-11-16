@@ -404,9 +404,9 @@ public class BattleSys : SystemRoot
         InitBuffAttribute(null);
         //if (this.buffManager != null && this.buffManager.Buffs.Count > 0)
         {
-        //    foreach (var buff in this.buffManager.Buffs)
+            //    foreach (var buff in this.buffManager.Buffs)
             {
-        //        InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.BuffID].AttributeGain, "add");
+                //        InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.BuffID].AttributeGain, "add");
             }
         }
     }
@@ -623,6 +623,19 @@ public class BattleSys : SystemRoot
             UpdateTarget();
             OpenCurrentMonsterHPBar();
             CloseAllMonsterHPBar();
+        }
+        if (MyBuff != null && MyBuff.Count > 0)
+        {
+            List<BuffIcon> NeedRemove = new List<BuffIcon>();
+            foreach (var buff in MyBuff.Values)
+            {
+                buff.OnUpdate(Time.deltaTime);
+                if (buff.Stopped) NeedRemove.Add(buff);
+            }
+            foreach (var buff in NeedRemove)
+            {
+                buff.OnRemove();
+            }
         }
     }
     public void UpdateDeathPool()
@@ -880,7 +893,7 @@ public class BattleSys : SystemRoot
     {
         Debug.Log("收到技能Hit信息");
         SkillHitResponse shr = msg.skillHitResponse;
-        if(shr != null)
+        if (shr != null)
         {
             if (shr.Result != SkillResult.OK) return;
             if (shr.skillHits != null && shr.skillHits.Count > 0)
@@ -940,7 +953,7 @@ public class BattleSys : SystemRoot
             Debug.Log("收到Buff消息");
             OnBuff(br);
         }
-        
+
     }
 
     private void OnBuff(BuffResponse br)
@@ -948,20 +961,20 @@ public class BattleSys : SystemRoot
         if (br.Buffs == null || br.Buffs.Count < 1) return;
         foreach (var buff in br.Buffs)
         {
-            if(buff.OwnerType == SkillTargetType.Monster)
+            if (buff.OwnerType == SkillTargetType.Monster)
             {
                 MonsterController owner = null;
                 Monsters.TryGetValue(buff.OwnerID, out owner);
                 if (owner != null) owner.DoBuffAction(buff);
             }
-            else if(buff.OwnerType == SkillTargetType.Player)
+            else if (buff.OwnerType == SkillTargetType.Player)
             {
-                if(buff.OwnerName == GameRoot.Instance.ActivePlayer.Name)
+                if (buff.OwnerName == GameRoot.Instance.ActivePlayer.Name)
                 {
                     if (PlayerInputController.Instance.entityController != null)
                     {
                         PlayerInputController.Instance.entityController.DoBuffAction(buff);
-                    }                
+                    }
                 }
                 else
                 {
@@ -1146,7 +1159,7 @@ public class BattleSys : SystemRoot
                 {
                     Players[nEntity.EntityName].OnEntityEvent(entityEvent);
                     Players[nEntity.EntityName].entity.entityData = nEntity;
-                    Players[nEntity.EntityName].entity.entityName = nEntity.EntityName;
+                    Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
                     //Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
                     //print(nEntity.FaceDirection);
                 }
@@ -1202,8 +1215,31 @@ public class BattleSys : SystemRoot
         }
     }
 
-    #region Buff 和 冷卻時間
-
+    #region MyBuff UI
+    public Dictionary<int, BuffIcon> MyBuff;
+    public void InitMyBuff()
+    {
+        MyBuff = new Dictionary<int, BuffIcon>();
+    }
+    public void AddBuffIcon(int BuffID, Sprite IconSprite, float Duration)
+    {
+        Transform Container = UISystem.Instance.BuffIconsContainer;
+        if (Container != null)
+        {
+            BuffIcon buffIcon = GameObject.Instantiate(Resources.Load("Prefabs/BuffIcon") as GameObject).GetComponent<BuffIcon>();
+            buffIcon.SetBuffIcon(BuffID, IconSprite, Duration);
+            buffIcon.transform.SetParent(UISystem.Instance.BuffIconsContainer);
+            buffIcon.transform.localScale = Vector3.one;
+            BuffIcon LastBuff = null;
+            MyBuff.TryGetValue(BuffID, out LastBuff);
+            if (LastBuff != null)
+            {
+                LastBuff.Stopped = true;
+                LastBuff.OnRemove();
+            }
+            MyBuff[BuffID] = buffIcon;
+        }
+    }
 
     #endregion
 }

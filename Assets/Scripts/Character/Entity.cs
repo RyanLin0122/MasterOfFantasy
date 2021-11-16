@@ -8,8 +8,6 @@ using PEProtocal;
 public class Entity
 {
     public EntityType Type;
-    public int entityId; //怪物擁有
-    public string entityName; //人物擁有
     public float speed;
     public NEntity entityData;
 }

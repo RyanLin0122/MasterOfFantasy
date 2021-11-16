@@ -14,14 +14,7 @@ public class AbstractMonster : Entity
     public MonsterStatus laststatus = MonsterStatus.Death;
     public MonsterStatus status = MonsterStatus.Death;
     public bool IsDeath { get; set; }
-    public virtual void Update()
-    {
 
-    }
-    public virtual void InitSkill()
-    {
-
-    }
 }
 
 

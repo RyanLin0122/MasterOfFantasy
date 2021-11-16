@@ -20,6 +20,9 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             this.rb = this.entityController.transform.GetComponent<Rigidbody2D>();
             entityController.transform.GetComponent<CapsuleCollider2D>().enabled = true;
+            entityController.entity = new Entity();
+            entityController.entity.Type = EntityType.Player;
+            entityController.entity.entityData = entity;
             SkillSys.Instance.InitPlayerSkills(GameRoot.Instance.ActivePlayer, this.entityController);
             BattleSys.Instance.InitAllAtribute();
         }

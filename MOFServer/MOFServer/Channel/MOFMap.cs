@@ -566,6 +566,7 @@ public class MOFMap
                         };
                         MonsterPoints[i].monster.ID = MonsterSpawnUUID;
                         MonsterPoints[i].monster.InitSkill();
+                        MonsterPoints[i].monster.InitBuffs();
                         MonsterPoints[i].monster.mofMap = this;
                         MonsterPositions.Add(MonsterSpawnUUID, pos);
                         MonsterIds.Add(MonsterSpawnUUID, MonsterPoints[i].MonsterID);

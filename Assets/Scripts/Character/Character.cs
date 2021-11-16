@@ -24,7 +24,7 @@ public class Character : Entity
         get
         {
             if (!IsPlayer) return false;
-            return this.entityName == GameRoot.Instance.ActivePlayer.Name;
+            return this.entityData.EntityName == GameRoot.Instance.ActivePlayer.Name;
         }
     }
 

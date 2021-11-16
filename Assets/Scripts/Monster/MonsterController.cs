@@ -26,14 +26,13 @@ public class MonsterController : EntityController
         MonsterID = info.MonsterID;
         this.entity = new Entity
         {
-            entityId = MapMonsterID,
-            entityName = info.Name,
             Type = EntityType.Monster,
             speed = 200,
             entityData = new NEntity
             {
                 Speed = 200,
                 Id = MapMonsterID,
+                EntityName = info.Name,
                 FaceDirection = transform.localScale.x > 0,
                 Position = new NVector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z)
             }
