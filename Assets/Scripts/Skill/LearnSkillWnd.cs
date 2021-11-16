@@ -92,27 +92,29 @@ public class LearnSkillWnd : WindowRoot
     {
         foreach (var Skill in SkillList)
         {
-            if (GameRoot.Instance.ActivePlayer.Skills != null)
+            if (GameRoot.Instance.ActivePlayer.Skills == null)
             {
-                if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(Skill)) //已經有這技能了
-                {
-                    if (GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel < 5)
-                    {
-                        Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
-                        Skilltransform.SetParent(LearnSkillContainer);
-                        LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
-                        learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
-                    }
-                }
-                else //還沒學
+                GameRoot.Instance.ActivePlayer.Skills = new Dictionary<int, SkillData>();
+            }
+            if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(Skill)) //已經有這技能了
+            {
+                if (GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel < 5)
                 {
                     Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
                     Skilltransform.SetParent(LearnSkillContainer);
                     LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
-                    learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, 1);
+                    learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
                 }
             }
-            
+            else //還沒學
+            {
+                Transform Skilltransform = Instantiate(Resources.Load("Prefabs/LearnSkillSlot") as GameObject).transform;
+                Skilltransform.SetParent(LearnSkillContainer);
+                LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
+                learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, 1);
+            }
+
+
         }
     }
     public bool IsOpen;
@@ -136,7 +138,7 @@ public class LearnSkillWnd : WindowRoot
     }
 
     public void PressActivePage()
-    {        
+    {
         if (!IsPageActive)
         {
             AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
@@ -147,7 +149,7 @@ public class LearnSkillWnd : WindowRoot
         }
     }
     public void PressNegativePage()
-    {        
+    {
         if (IsPageActive)
         {
             AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
@@ -165,7 +167,7 @@ public class LearnSkillWnd : WindowRoot
             TxtNegativeBtn.color = Color.black;
             ImgActiveBtn.sprite = TabSprite1;
             ImgNegativeBtn.sprite = TabSprite2;
-}
+        }
         else
         {
             TxtActiveBtn.color = Color.black;
@@ -182,8 +184,8 @@ public class LearnSkillWnd : WindowRoot
             SkillInfo info = ChoosedLearnSkillSlot.info;
             int Level = ChoosedLearnSkillSlot.SkillLevel;
             Player player = GameRoot.Instance.ActivePlayer;
-            if(player.SwordPoint>= info.SwordPoint[Level-1]&&player.ArcheryPoint>=info.ArcheryPoint[Level-1]
-                && player.MagicPoint >= info.MagicPoint[Level-1] && player.TheologyPoint >= info.TheologyPoint[Level-1]
+            if (player.SwordPoint >= info.SwordPoint[Level - 1] && player.ArcheryPoint >= info.ArcheryPoint[Level - 1]
+                && player.MagicPoint >= info.MagicPoint[Level - 1] && player.TheologyPoint >= info.TheologyPoint[Level - 1]
                 && player.Level >= info.RequiredLevel[Level - 1])
             {
                 new LearnSkillSender(info.SkillID, Level);
@@ -226,11 +228,11 @@ public class LearnSkillWnd : WindowRoot
                 PlayerController Controller = PlayerInputController.Instance.entityController;
                 Controller.SkillDict[info.SkillID] = skill;
                 Controller.SkillDict[info.SkillID].CD = 0;
-                Controller.SkillDict[info.SkillID].EntityController = Controller;            
+                Controller.SkillDict[info.SkillID].EntityController = Controller;
                 BattleSys.Instance.InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
                 BattleSys.Instance.InitAllBuffAttribute();
                 BattleSys.Instance.InitFinalAttribute();
-            }           
+            }
             Init();
         }
         else

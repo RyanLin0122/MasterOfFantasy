@@ -296,7 +296,6 @@ public class NetSvc : MonoBehaviour
         {
             foreach (var key in mg.MonsterId.Keys)
             {
-                Tools.Log("GenMon");
                 BattleSys.Instance.AddMonster(key, mg.MonsterId[key], mg.MonsterPos[key]);
             }
         }

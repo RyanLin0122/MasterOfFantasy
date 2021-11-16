@@ -986,10 +986,33 @@ public class BattleSys : SystemRoot
         }
     }
     #endregion
-
+    public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
+    {
+        if (mons.Count > 0)
+        {
+            foreach (var id in mons.Keys)
+            {
+                print("EntityID: "+ id);
+                print("MonsterID: "+ mons[id].MonsterID);
+                print(mons[id].Position[0] +", "+ mons[id].Position[1]);
+                AddMonster(id, mons[id].MonsterID, mons[id].Position);
+                Monsters[id].hp = mons[id].HP;
+                Monsters[id].SetHpBar();
+                Monsters[id].TrySetTargetPlayer(mons[id].Targets);
+                mons[id].status = mons[id].status;
+            }
+        }
+    }
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
+        print("MapMonsterID: " + MapMonsterID);
+        print("MonsterID: " + MonsterID);
+        print("Pos: " + pos[0] + ", "+pos[1]);
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
+        if (MapCanvas == null)
+        {
+            MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+        }
         mon.transform.SetParent(MapCanvas.transform);
         mon.transform.localPosition = new Vector3(pos[0], pos[1], 0f);
         if (Monsters.ContainsKey(MapMonsterID))
@@ -1157,11 +1180,10 @@ public class BattleSys : SystemRoot
             {
                 if (Players.ContainsKey(nEntity.EntityName))
                 {
-                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);
                     Players[nEntity.EntityName].entity.entityData = nEntity;
                     Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
-                    //Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
-                    //print(nEntity.FaceDirection);
+                    Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
+                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);                  
                 }
             }
         }
@@ -1169,22 +1191,6 @@ public class BattleSys : SystemRoot
         {
 
         }
-    }
-
-    public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
-    {
-        if (mons.Count > 0)
-        {
-            foreach (var id in mons.Keys)
-            {
-                AddMonster(id, mons[id].MonsterID, mons[id].Position);
-                Monsters[id].hp = mons[id].HP;
-                Monsters[id].SetHpBar();
-                Monsters[id].TrySetTargetPlayer(mons[id].Targets);
-                mons[id].status = mons[id].status;
-            }
-        }
-
     }
 
     public void RefreshMonster()

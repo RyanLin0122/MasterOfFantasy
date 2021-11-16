@@ -64,5 +64,14 @@ public class BuffManager
         }
     }
 
+    public bool IsBuffValid(int BuffType)
+    {
+        if (Buffs.Count == 0) return false;
+        foreach (var buff in Buffs)
+        {
+            if (buff.Value.Define.ID == BuffType && (!buff.Value.Stopped)) return true;
+        }
+        return false;
+    }
     
 }

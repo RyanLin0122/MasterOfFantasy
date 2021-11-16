@@ -152,6 +152,10 @@
     "Des": "遭受到敵人損害時，可以吸收一部分傷害",
     "Icon": "Mage_Skill2",
     "Effect": [
+      {
+        "EffectID": 21,
+        "Value": [ 0.2, 0.23, 0.26, 0.28, 0.3 ]
+      }
     ],
     "Action": "MagicAttack",
     "AniPath": {
@@ -291,7 +295,7 @@
       "Target": [ 0, 0, 0 ]
     },
     "Sound": {
-      "Cast": "",
+      "Cast": "skill_winda",
       "Hit": ""
     },
     "CastTime": 0.1,

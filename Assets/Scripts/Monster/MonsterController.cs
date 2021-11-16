@@ -48,7 +48,7 @@ public class MonsterController : EntityController
         hp = info.MaxHp;
         MaxHp = info.MaxHp;
         SetHpBar();
-        GetComponent<Blackboard>().SetVariableValue("IsStop", false);
+        GetComponent<Blackboard>().SetVariableValue("IsStop", true);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = AudioSvc.Instance.MonsterVolume;
         this.MapMonsterID = MapMonsterID;

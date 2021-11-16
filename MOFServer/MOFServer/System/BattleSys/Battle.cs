@@ -193,7 +193,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
         else if (entity is AbstractMonster)
         {
-            AllMonsters[((AbstractMonster)entity).ID] = entity;
+            AllMonsters[((AbstractMonster)entity).nEntity.Id] = entity;
         }
     }
     public void LeaveBattle(IEntity entity)
@@ -206,7 +206,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         else if (entity is AbstractMonster)
         {
             AbstractMonster monster = (AbstractMonster)entity;
-            if (AllMonsters.ContainsKey(monster.ID)) AllMonsters.Remove(monster.ID);
+            if (AllMonsters.ContainsKey(monster.nEntity.Id)) AllMonsters.Remove(monster.nEntity.Id);
         }
     }
     internal void ProcessBattleRequest(ServerSession session, SkillCastRequest request)

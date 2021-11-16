@@ -182,6 +182,7 @@ public class PlayerController : EntityController
     }
 
     private Vector2 Destination;
+    public GameObject RaceEffect = null; //縮地法特效
     private void LateUpdate() //非本玩家，根據NEntity插值更新
     {
         if (this.rb != null)
@@ -190,16 +191,13 @@ public class PlayerController : EntityController
             {
                 if (IsMoving) //移動中
                 {
+                    if (RaceEffect == null && rb.velocity != Vector2.zero)
+                    {
+                        if (buffManager.IsBuffValid(1)) RaceEffect = InstantiateRaceEffect();
+                    }
                     Vector2 NextPos = new Vector2(entity.entityData.Position.X, entity.entityData.Position.Y);
-                    this.rb.velocity = 150 * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
-                    if (this.rb.velocity.x > 0)
-                    {
-                        SetFaceDirection(true);
-                    }
-                    else if (this.rb.velocity.x < 0)
-                    {
-                        SetFaceDirection(false);
-                    }
+                    this.rb.velocity = entity.entityData.Speed * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
+                    SetFaceDirection(this.entity.entityData.FaceDirection);
                 }
                 else //準備停止移動
                 {
@@ -218,6 +216,14 @@ public class PlayerController : EntityController
                 }
             }
         }
+    }
+
+    public GameObject InstantiateRaceEffect()
+    {
+        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/RaceS"))).GetComponent<Transform>();
+        go.SetParent(this.transform);
+        go.localPosition = new Vector3(0, -57.48f, -200);
+        return go.gameObject;
     }
 
     #region Player animation

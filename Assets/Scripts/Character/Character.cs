@@ -52,4 +52,9 @@ public class Character : Entity
     {
         this.entityData.Position = new NVector3(position.x, position.y, 200);
     }
+
+    public void SetSpeed(float Speed)
+    {
+        this.entityData.Speed = speed;
+    }
 }

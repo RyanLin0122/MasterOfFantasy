@@ -155,13 +155,10 @@ public class MapSvc : Singleton<MapSvc>
                                 } };
                             string[] t2 = t1[1].Split(new char[] { ',' });
                             p.InitialPos = new float[] { (float)Convert.ToDouble(t2[0]), (float)Convert.ToDouble(t2[1]) };
-                            p.Pos = p.InitialPos;
                             Points.TryAdd(j, p);
                         }
-
                         break;
                 }
-
             }
             MOFMap map = new MOFMap(ID, Channel, 1000, recoverytime, mapName, Location, SceneName, playerBornPos, Islimited, IsVillage, monsternum, Points);
             Result.Add(ID, map);
@@ -174,7 +171,6 @@ public class MonsterPoint
 {
     public int MonsterID { get; set; }
     public float[] InitialPos { get; set; }
-    public float[] Pos { get; set; }
     public AbstractMonster monster { get; set; }
     public int AccumulateDamage { get; set; }
     public Dictionary<string, int> DamageRecords { get; set; }
@@ -184,7 +180,6 @@ public class MonsterPoint
     {
         TargetPlayerName = "";
         AccumulateDamage = 0;
-        Pos = InitialPos;
         DamageRecords = new Dictionary<string, int>();
         if (monster != null)
         {

@@ -9,7 +9,6 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     public PlayerController entityController;
     public PlayerStatus state = PlayerStatus.Idle;
     public Character character;
-    public int speed;
 
     public void Init(NEntity entity, EntityController entityController)
     {
@@ -41,16 +40,12 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                 state = PlayerStatus.Move;
                 entityController.InstantiateDust();
                 this.character.Move();
-                this.SendEntityEvent(EntityEvent.Move);
                 this.rb.velocity = (BattleSys.Instance.FinalAttribute.RunSpeed) * GetRunDirection();
-                if (this.rb.velocity.x > 0)
+                if(this.rb.velocity.x != 0)
                 {
-                    entityController.SetFaceDirection(true);
-                }
-                else if (this.rb.velocity.x < 0)
-                {
-                    entityController.SetFaceDirection(false);
-                }
+                    entityController.SetFaceDirection(this.rb.velocity.x > 0);
+                }               
+                this.SendEntityEvent(EntityEvent.Move);
                 return;
             }
         }
@@ -81,13 +76,9 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                 return;
             }
             this.rb.velocity = (BattleSys.Instance.FinalAttribute.RunSpeed) * GetRunDirection();
-            if (this.rb.velocity.x > 0)
+            if (this.rb.velocity.x != 0)
             {
-                entityController.SetFaceDirection(true);
-            }
-            else if (this.rb.velocity.x < 0)
-            {
-                entityController.SetFaceDirection(false);
+                entityController.SetFaceDirection(this.rb.velocity.x > 0);
             }
         }
     }
@@ -106,6 +97,10 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     {
         if (this.character == null) return;
         if (this.rb == null) return;
+        if (entityController.RaceEffect == null && entityController.rb.velocity != Vector2.zero)
+        {
+            if (entityController.buffManager.IsBuffValid(1)) entityController.RaceEffect = entityController.InstantiateRaceEffect();
+        }
         Vector3 offset = this.rb.transform.position - lastPos;
         //this.speed = (int)(offset.magnitude * 100f / Time.deltaTime);
         //Vector3Int goLogicPos = GameObjectTool.WorldToLogic(this.rb.transform.position);
@@ -115,14 +110,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             this.lastPos = this.rb.transform.position;
             //this.character.SetPosition(this.rb.transform.localPosition);
             this.character.SetDirection(GetRunDirection());
-            if (this.rb.transform.localScale.x > 0)
-            {
-                this.character.SetFaceDirection(true);
-            }
-            else
-            {
-                this.character.SetFaceDirection(false);
-            }    
+            this.character.SetFaceDirection(this.rb.transform.localScale.x > 0);
             this.SendEntityEvent(EntityEvent.None);
         }
     }
@@ -134,8 +122,9 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             entityController.OnEntityEvent(entityEvent);
         }
+        this.character.SetFaceDirection(this.rb.transform.localScale.x > 0);
         this.character.SetPosition(this.rb.transform.localPosition);
-        //print(character.entityData.Position.X + ", "+ character.entityData.Position.Y);
+        this.character.SetSpeed(BattleSys.Instance.FinalAttribute.RunSpeed);
         new MoveSender(entityEvent, character.entityData);
     }
 
@@ -195,5 +184,6 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             }
         }
     }
+
 }
 

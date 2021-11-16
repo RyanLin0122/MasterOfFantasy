@@ -261,7 +261,10 @@ public class Skill
     public void DoHit(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
         Console.WriteLine("[249] Hit = " + Hit + "AddHitInfo");
-        context.Battle.AddHitInfo(hitInfo);
+        if (!active.IsShoot)
+        {
+            context.Battle.AddHitInfo(hitInfo);
+        }
         if (active.IsAOE)
         {
             this.HitRange(hitInfo, active);

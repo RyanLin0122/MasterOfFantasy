@@ -176,7 +176,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     GetMap(session).CalculationReady(msg.calculatorReady.CharacterName);
                     break;
                 case 28: //計算機回傳
-                    GetMap(session).ReceiveMapInfos(msg);
+
                     break;
                 case 30: //怪物傷害
                     GetMap(session).ProcessMonsterDamage(msg);

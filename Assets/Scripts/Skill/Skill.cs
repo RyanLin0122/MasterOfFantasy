@@ -296,7 +296,6 @@ public class Skill
             {
                 if (this.SkillTime > active.HitTimes[this.Hit])
                 {
-                    Debug.Log("[288] Hit = " + Hit);
                     this.UpdateDoHit(active);
                 }
             }
@@ -319,7 +318,7 @@ public class Skill
                     bullet.Update();
                     if (!bullet.Stopped) finish = false;
                 }
-                if (finish && this.Hit >= active.HitTimes.Count)
+                if (finish && this.Hit > active.HitTimes.Count)
                 {
                     this.status = SkillStatus.None;
                     Debug.Log("子彈技能刷新完畢");
@@ -329,6 +328,16 @@ public class Skill
         if (!active.IsShoot && !active.IsContinue && !active.IsDOT)
         {
             this.status = SkillStatus.None;
+        }
+        if (OutdatedHits.Count > 0)
+        {
+            Debug.Log("Do Outdated");
+            List<int> RestHit = new List<int>();
+            foreach (var hit in OutdatedHits)
+            {
+                if (!DoOutdatedHitDamage(hit)) RestHit.Add(hit);
+            }
+            OutdatedHits = RestHit;
         }
     }
     
@@ -347,11 +356,11 @@ public class Skill
     {       
         if (active.IsShoot)
         {
-            if (this.Hit <= active.HitTimes.Count)
+            if (this.Hit < active.HitTimes.Count)
             {
                 Debug.Log("[342] 發射子彈");
                 CastBullet(active);
-                this.Hit++;
+                Hit++;
             }
         }        
         else
@@ -370,7 +379,7 @@ public class Skill
             DoHitDamages(hit.Hit);
             return;
         }
-        if(hit.IsBullet || !(active.IsShoot))
+        if(hit.IsBullet)
         {
             this.DoHit(hit.Hit, hit.damageInfos);
         }
@@ -387,6 +396,7 @@ public class Skill
             DoHitDamages(hitID);
         }
     }
+    public List<int> OutdatedHits = new List<int>();
     public void DoHitDamages(int Hit)
     {
         List<DamageInfo> damages;
@@ -417,6 +427,43 @@ public class Skill
                 }
             }
         }
+        else
+        {
+            OutdatedHits.Add(Hit);
+        }
+    }
+    public bool DoOutdatedHitDamage(int Hit)
+    {
+        List<DamageInfo> damages;
+        if (this.HitMap.TryGetValue(Hit, out damages))
+        {
+            ActiveSkillInfo active = (ActiveSkillInfo)Info;
+            foreach (var dmg in damages)
+            {
+                if (active.TargetType == SkillTargetType.Monster)
+                {
+                    MonsterController target = null;
+                    BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID, out target);
+                    if (target == null) continue;
+                    target.DoDamage(dmg, active);
+                }
+                if (active.TargetType == SkillTargetType.Player)
+                {
+                    PlayerController target = null;
+                    if (dmg.EntityName == GameRoot.Instance.ActivePlayer.Name)
+                    {
+                        target = PlayerInputController.Instance.entityController;
+                    }
+                    else
+                    {
+                        BattleSys.Instance.Players.TryGetValue(dmg.EntityName, out target);
+                    }
+                    if (target != null) target.DoDamage(dmg, active);
+                }
+            }
+            return true;
+        }
+        return false;
     }
     #endregion
 

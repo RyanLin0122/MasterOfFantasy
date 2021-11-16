@@ -97,7 +97,7 @@ public class MOFMap
                 {
                     if (MonsterPoints[id].monster.status != MonsterStatus.Death)
                     {
-                        mons.Add(id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
+                        mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                     }
                 }
                 ProtoMsg outmsg = new ProtoMsg
@@ -122,7 +122,6 @@ public class MOFMap
     }
     public void DoToOtherMapReq(ProtoMsg msg, ServerSession session)
     {
-        Console.WriteLine("DoToOtherMapReq: " + msg.toOtherMapReq.CharacterName);
         lock (obj)
         {
             string CharacterName = msg.toOtherMapReq.CharacterName;
@@ -154,14 +153,11 @@ public class MOFMap
             }
             //回傳資料
             Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
-            foreach (var point in MonsterPoints.Values)
+            foreach (var id in MonsterPoints.Keys)
             {
-                if (point.monster.status != MonsterStatus.Death)
+                if (MonsterPoints[id].monster.status != MonsterStatus.Death)
                 {
-                    if (point.monster.nEntity != null)
-                    {
-                        mons.Add(point.monster.nEntity.Id, MonsterPointToSerielizedMonster(point));
-                    }
+                    mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                 }
             }
             ProtoMsg outmsg = new ProtoMsg
@@ -435,7 +431,7 @@ public class MOFMap
                 }
                 foreach (var key in MonsterPoints.Keys)
                 {
-                    MonstersPosition.Add(key, MonsterPoints[key].Pos);
+                    MonstersPosition.Add(key, new float[] { MonsterPoints[key].monster.nEntity.Position.X, MonsterPoints[key].monster.nEntity.Position.Y, MonsterPoints[key].monster.nEntity.Position.Z });
                 }
                 MapInformation result = new MapInformation
                 {
@@ -461,36 +457,6 @@ public class MOFMap
             throw;
         }
 
-    }
-    public void ReceiveMapInfos(ProtoMsg msg)
-    {
-        if (this.mapid < 1000)
-        {
-            return;
-        }
-        if (Calculator == null || Calculator.ActivePlayer == null)
-        {
-            return;
-        }
-        if (msg.calculatorReport.CharacterName == Calculator.ActivePlayer.Name)
-        {
-            CalculatorReport report = msg.calculatorReport;
-            if (report.MonsterPos != null)
-            {
-                if (report.MonsterPos.Count > 0)
-                {
-                    foreach (var key in report.MonsterPos.Keys)
-                    {
-                        if (MonsterPoints.ContainsKey(key))
-                        {
-                            MonsterPoints[key].Pos = report.MonsterPos[key];
-                        }
-                    }
-                }
-
-            }
-
-        }
     }
     public void BroadCastMassege(ProtoMsg msg)
     {
@@ -564,7 +530,6 @@ public class MOFMap
                             Type = EntityType.Monster,
                             Direction = new NVector3(0, 0, 0)
                         };
-                        MonsterPoints[i].monster.ID = MonsterSpawnUUID;
                         MonsterPoints[i].monster.InitSkill();
                         MonsterPoints[i].monster.InitBuffs();
                         MonsterPoints[i].monster.mofMap = this;
@@ -764,7 +729,7 @@ public class MOFMap
         SerializedMonster mon = new SerializedMonster
         {
             MonsterID = point.monster.MonsterID,
-            Position = point.Pos,
+            Position = new float[] { point.monster.nEntity.Position.X, point.monster.nEntity.Position.Y, 0 },
             status = point.monster.status,
             HP = point.monster.Hp,
             Targets = point.TargetPlayerName

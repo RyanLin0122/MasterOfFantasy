@@ -30,16 +30,7 @@ class SkillSys : MonoSingleton<SkillSys>
         //ToDo
 
     }
-    public void Update()
-    {
-        if (MainCharacterSkillDic != null && MainCharacterSkillDic.Count > 0)
-        {
-            foreach (var skill in MainCharacterSkillDic.Values)
-            {
-                skill.Update(Time.deltaTime);
-            }
-        }
-    }
+
     public void InstantiateCasterSkillEffect(int SkillID, Transform CasterTransform)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
