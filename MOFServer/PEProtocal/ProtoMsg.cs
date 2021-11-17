@@ -206,6 +206,10 @@ namespace PEProtocal
         public SkillHitResponse skillHitResponse { get; set; }
         [ProtoMember(69, IsRequired = false)]
         public BuffResponse buffResponse { get; set; }
+        [ProtoMember(70, IsRequired = false)]
+        public ManufactureRequest manufactureRequest { get; set; }
+        [ProtoMember(71, IsRequired = false)]
+        public ManufactureResponse manufactureResponse { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1544,5 +1548,27 @@ namespace PEProtocal
         public SkillResult SkillResult { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public List<BuffInfo> Buffs { get; set; }
-    } 
+    }
+
+    [ProtoContract]
+    public class ManufactureRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int FormulaId { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Amount { get; set; }
+    }
+
+    [ProtoContract]
+    public class ManufactureResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public Dictionary<int, int> RemoveAndConSume { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public Dictionary<int, Item> GetItem { get; set; }
+    }
 }

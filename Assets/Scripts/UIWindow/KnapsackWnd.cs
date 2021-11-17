@@ -653,18 +653,25 @@ public class KnapsackWnd : Inventory, IStackWnd
     //}
     public int GetAmountofGroup(int ItemID, int Amount)
     {
-        Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
-        int TotalAmount = 0;
-        foreach (var x in nk)
+        Dictionary<int, Item> nk = null;
+        if(GameRoot.Instance.ActivePlayer.NotCashKnapsack !=null && GameRoot.Instance.ActivePlayer.NotCashKnapsack.Count>0)
         {
-            if (x.Value.ItemID == ItemID)
+            nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+            int TotalAmount = 0;
+            foreach (var x in nk)
             {
-                TotalAmount += x.Value.Count;
+                if (x.Value.ItemID == ItemID)
+                {
+                    TotalAmount += x.Value.Count;
+                }
             }
+            return TotalAmount / Amount;
         }
-
-        return TotalAmount / Amount;
-
+        else
+        {
+            GameRoot.Instance.ActivePlayer.NotCashKnapsack = new Dictionary<int, Item>();
+        }
+        return 0;
     }
     public List<int> GetEmptySlotPosition_NotCash()
     {

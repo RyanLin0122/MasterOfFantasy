@@ -106,14 +106,6 @@ public class MainCitySys : SystemRoot
             }
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
-
-
-
-            //假製作技能
-            GameRoot.Instance.ActivePlayer.Skills.Add(1,new SkillData { SkillID = 1, SkillLevel = 1} );
-
-
-
         });
     }
 
