@@ -97,9 +97,18 @@ public class EquipmentHandler : GameHandler
                 }
                 break;
         }
+        
         eo.OtherPlayerEquipments = pe;
         eo.OtherGender = session.ActivePlayer.Gender;
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].mofMap.BroadCastMassege(msg);
+        MOFCharacter character = null;
+        if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out character))
+        {
+            character.InitEquipmentAttribute(pe);
+            character.InitNegativeAttribute(character.skillManager.NegativeSkills);
+            character.InitAllBuffAttribute();
+            character.InitFinalAttribute();
+            character.mofMap.BroadCastMassege(msg);
+        }
     }
 
     private void SetupEquipment(Equipment eq, PlayerEquipments pq, int EquipmentPos)

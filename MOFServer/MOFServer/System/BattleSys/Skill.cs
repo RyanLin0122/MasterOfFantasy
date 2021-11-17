@@ -232,12 +232,12 @@ public class Skill
         }
         else
         {
-            if(active.IsBuff && active.TargetType == SkillTargetType.BuffOnly) //如果不是攻擊技且純粹Buff
+            if (active.IsBuff && active.TargetType == SkillTargetType.BuffOnly) //如果不是攻擊技且純粹Buff
             {
                 this.status = SkillStatus.None;
             }
         }
-        
+
     }
 
     public void DoHit() //找到Entity
@@ -414,22 +414,22 @@ public class Skill
             if (IsPlayer)
             {
                 PlayerAttribute playerAttribute = ((MOFCharacter)Owner).FinalAttribute;
-                //int Mindamage = playerAttribute.MinDamage;
-                //int Maxdamage = playerAttribute.MaxDamage;
-                int Mindamage = 1; //假資料
-                int Maxdamage = 10; //假資料          
-                int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);
-                float d_AfterCritical = 0;
-                if (IsCritical) //計算是否爆擊
-                {
-                    d_AfterCritical = 1.5f * d_beforeCritical;
-                }
-                else
-                {
-                    d_AfterCritical = d_beforeCritical;
-                }
+                int Mindamage = (int)(playerAttribute.MinDamage);
+                int Maxdamage = (int)playerAttribute.MaxDamage;
+                //命中迴避
                 for (int i = 0; i < Damages.Length; i++)
                 {
+                    int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);                
+                    float d_AfterCritical = 0;
+                    if (IsCritical) //計算是否爆擊
+                    {
+                        d_AfterCritical = 1.5f * d_beforeCritical;
+                    }
+                    else
+                    {
+                        d_AfterCritical = d_beforeCritical;
+                    }
+
                     //根據玩家現在的數值計算傷害
                     Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
                 }

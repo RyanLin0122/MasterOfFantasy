@@ -402,11 +402,11 @@ public class BattleSys : SystemRoot
     public void InitAllBuffAttribute()
     {
         InitBuffAttribute(null);
-        //if (this.buffManager != null && this.buffManager.Buffs.Count > 0)
+        if (PlayerInputController.Instance.entityController.buffManager != null && PlayerInputController.Instance.entityController.buffManager.Buffs.Count > 0)
         {
-            //    foreach (var buff in this.buffManager.Buffs)
+            foreach (var buff in PlayerInputController.Instance.entityController.buffManager.Buffs)
             {
-                //        InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.BuffID].AttributeGain, "add");
+                InitBuffAttribute(ResSvc.Instance.BuffDic[buff.Value.Define.ID].AttributeGain, "add");
             }
         }
     }
@@ -992,9 +992,9 @@ public class BattleSys : SystemRoot
         {
             foreach (var id in mons.Keys)
             {
-                print("EntityID: "+ id);
-                print("MonsterID: "+ mons[id].MonsterID);
-                print(mons[id].Position[0] +", "+ mons[id].Position[1]);
+                print("EntityID: " + id);
+                print("MonsterID: " + mons[id].MonsterID);
+                print(mons[id].Position[0] + ", " + mons[id].Position[1]);
                 AddMonster(id, mons[id].MonsterID, mons[id].Position);
                 Monsters[id].hp = mons[id].HP;
                 Monsters[id].SetHpBar();
@@ -1007,7 +1007,7 @@ public class BattleSys : SystemRoot
     {
         print("MapMonsterID: " + MapMonsterID);
         print("MonsterID: " + MonsterID);
-        print("Pos: " + pos[0] + ", "+pos[1]);
+        print("Pos: " + pos[0] + ", " + pos[1]);
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
         if (MapCanvas == null)
         {
@@ -1183,7 +1183,7 @@ public class BattleSys : SystemRoot
                     Players[nEntity.EntityName].entity.entityData = nEntity;
                     Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
                     Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
-                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);                  
+                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);
                 }
             }
         }

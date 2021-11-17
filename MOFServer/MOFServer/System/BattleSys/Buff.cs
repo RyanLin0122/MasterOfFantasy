@@ -9,7 +9,7 @@ public class Buff
 {
     public int BuffID;
     private Entity Owner;
-    private BuffDefine define;
+    public BuffDefine define;
     private BattleContext context;
     public bool Stopped;
     private float time = 0;

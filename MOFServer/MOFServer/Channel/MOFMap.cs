@@ -584,10 +584,6 @@ public class MOFMap
         }
         //this.SpawnManager.Update();
         this.Battle.Update();
-        for (int i = 0; i < RandomSys.Instance.GetRandomInt(1, 1000000); i++)
-        {
-            int a = 3 + i;
-        }
     }
     public void ProcessMonsterDamage(ProtoMsg msg)
     {

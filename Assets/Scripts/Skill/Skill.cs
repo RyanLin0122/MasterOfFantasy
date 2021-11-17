@@ -47,6 +47,10 @@ public class Skill
                     return SkillResult.OutOfMP;
                 }
                 //判斷武器
+                if (GameRoot.Instance.ActivePlayer.playerEquipments.B_Weapon == null)
+                {
+                    return SkillResult.WeaponInvalid;
+                }
             }
         }
         if (active.TargetType != SkillTargetType.Position)
@@ -90,7 +94,7 @@ public class Skill
             int[] TargetID = null;
             string[] TargetName = null;
             SkillCasterType CasterType = SkillCasterType.Player;
-            
+
             if (EntityController is MonsterController)
             {
                 CastID = this.EntityController.entity.entityData.Id;
@@ -137,7 +141,7 @@ public class Skill
                             TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityData.EntityName };
                         }
                     }
-                    
+
                 }
             }
             SkillCastInfo castInfo = new SkillCastInfo
@@ -169,7 +173,7 @@ public class Skill
         this.Hit = 0;
         this.CD = active.ColdTime[this.Level - 1];
         Targets = new List<EntityController>();
-        if(active.TargetType != SkillTargetType.BuffOnly)
+        if (active.TargetType != SkillTargetType.BuffOnly)
         {
             if (castInfo.TargetType == SkillTargetType.Monster)
             {
@@ -189,10 +193,15 @@ public class Skill
                     if (player != null) Targets.Add(player);
                 }
             }
-        }      
+        }
 
         if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
-        {
+        {           
+            if (active.LockTime > 0)
+            {
+                PlayerInputController.Instance.LockMove();
+                TimerSvc.Instance.AddTimeTask((t) => { PlayerInputController.Instance.UnlockMove(); }, active.LockTime, PETimeUnit.Second, 1);
+            }           
             SetHotKeySlotCDUI();
         }
         //播放動畫
@@ -248,10 +257,10 @@ public class Skill
             }
             if (this.status == SkillStatus.Casting) this.UpdateCasting(active);
             else if (this.status == SkillStatus.Running) this.UpdateSkill(active);
-        }      
+        }
     }
     public void SetHotKeySlotCDUI()
-    {        
+    {
         foreach (var slot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
         {
             if (slot.State == HotKeyState.Skill && slot.data.ID == Info.SkillID)
@@ -263,7 +272,7 @@ public class Skill
 
     private void UpdateCasting(ActiveSkillInfo active)
     {
-        if(this.CastTime < active.CastTime)
+        if (this.CastTime < active.CastTime)
         {
             this.CastTime += Time.deltaTime;
         }
@@ -340,20 +349,20 @@ public class Skill
             OutdatedHits = RestHit;
         }
     }
-    
+
     private void CastBullet(ActiveSkillInfo active)
     {
-        if(Targets!=null && Targets.Count > 0)
+        if (Targets != null && Targets.Count > 0)
         {
             foreach (var target in Targets)
             {
                 Bullets.Add(new Bullet(this, target, active));
-            }         
-        }       
+            }
+        }
     }
     //Update調用
     private void UpdateDoHit(ActiveSkillInfo active)
-    {       
+    {
         if (active.IsShoot)
         {
             if (this.Hit < active.HitTimes.Count)
@@ -362,24 +371,24 @@ public class Skill
                 CastBullet(active);
                 Hit++;
             }
-        }        
+        }
         else
         {
             this.Hit++;
             this.DoHitDamages(this.Hit);
-        }        
+        }
     }
     //從Server收到
     internal void DoHit(SkillHitInfo hit)
     {
         ActiveSkillInfo active = (ActiveSkillInfo)Info;
-        if(!active.IsContinue && !active.IsDOT && !active.IsShoot)
+        if (!active.IsContinue && !active.IsDOT && !active.IsShoot)
         {
             this.HitMap[hit.Hit] = hit.damageInfos;
             DoHitDamages(hit.Hit);
             return;
         }
-        if(hit.IsBullet)
+        if (hit.IsBullet)
         {
             this.DoHit(hit.Hit, hit.damageInfos);
         }
@@ -400,7 +409,7 @@ public class Skill
     public void DoHitDamages(int Hit)
     {
         List<DamageInfo> damages;
-        if(this.HitMap.TryGetValue(Hit,out damages))
+        if (this.HitMap.TryGetValue(Hit, out damages))
         {
             ActiveSkillInfo active = (ActiveSkillInfo)Info;
             foreach (var dmg in damages)

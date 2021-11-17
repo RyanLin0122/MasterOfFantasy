@@ -9,7 +9,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     public PlayerController entityController;
     public PlayerStatus state = PlayerStatus.Idle;
     public Character character;
-
+    public bool IsLockMove = false;
     public void Init(NEntity entity, EntityController entityController)
     {
         state = PlayerStatus.Idle;
@@ -36,22 +36,25 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
-                entityController.IsMoving = true;
-                state = PlayerStatus.Move;
-                entityController.InstantiateDust();
-                this.character.Move();
-                this.rb.velocity = (BattleSys.Instance.FinalAttribute.RunSpeed) * GetRunDirection();
-                if(this.rb.velocity.x != 0)
+                if (!IsLockMove)
                 {
-                    entityController.SetFaceDirection(this.rb.velocity.x > 0);
+                    entityController.IsMoving = true;
+                    state = PlayerStatus.Move;
+                    entityController.InstantiateDust();
+                    this.character.Move();
+                    this.rb.velocity = (BattleSys.Instance.FinalAttribute.RunSpeed) * GetRunDirection();
+                    if (this.rb.velocity.x != 0)
+                    {
+                        entityController.SetFaceDirection(this.rb.velocity.x > 0);
+                    }
+                    this.SendEntityEvent(EntityEvent.Move);
                 }               
-                this.SendEntityEvent(EntityEvent.Move);
                 return;
             }
         }
         else
         {
-            if (!entityController.screenCtrl.canCtrl)
+            if (!entityController.screenCtrl.canCtrl || IsLockMove)
             {
                 entityController.IsMoving = false;
                 if (state != PlayerStatus.Idle)
@@ -63,7 +66,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                 }
                 return;
             }
-            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) || IsLockMove)
             {
                 entityController.IsMoving = false;
                 if (state != PlayerStatus.Idle)
@@ -179,11 +182,23 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             {
                 if (dict != null)
                 {
-                    dict[hotKeySlot.data.ID].Cast();
+                    if (!PlayerInputController.Instance.IsLockMove)
+                    {
+                        dict[hotKeySlot.data.ID].Cast();
+                    }
                 }
             }
         }
     }
 
+    public void LockMove()
+    {
+        this.IsLockMove = true;
+    }
+
+    public void UnlockMove()
+    {
+        this.IsLockMove = false;
+    }
 }
 

@@ -407,7 +407,7 @@ public class MOFCharacter : Entity
         {
             foreach (var buff in this.buffManager.Buffs)
             {
-                InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.BuffID].AttributeGain, "add");
+                InitBuffAttribute(CacheSvc.Instance.BuffDic[buff.define.ID].AttributeGain, "add");
             }
         }
     }
