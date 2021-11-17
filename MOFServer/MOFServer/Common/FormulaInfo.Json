@@ -1,0 +1,1298 @@
+﻿[
+  {
+    "FormulaID": 1,
+    "ItemName": "初級恢復藥水",
+    "ItemID": 1001,
+    "Amount": 1,
+    "RequireItem": [ 10201, 0, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 0, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 2,
+    "ItemName": "中級恢復藥水",
+    "ItemID": 1003,
+    "Amount": 1,
+    "RequireItem": [ 10201, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 3,
+    "ItemName": "高級恢復藥水",
+    "ItemID": 1005,
+    "Amount": 1,
+    "RequireItem": [ 10202, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 4,
+    "ItemName": "特級恢復藥水",
+    "ItemID": 1007,
+    "Amount": 1,
+    "RequireItem": [ 10202, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 49, 5, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 270
+  },
+  {
+    "FormulaID": 11,
+    "ItemName": "初級魔力藥水",
+    "ItemID": 1002,
+    "Amount": 1,
+    "RequireItem": [ 10203, 0, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 0, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 12,
+    "ItemName": "中級魔力藥水",
+    "ItemID": 1004,
+    "Amount": 1,
+    "RequireItem": [ 10203, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 13,
+    "ItemName": "高級魔力藥水",
+    "ItemID": 1006,
+    "Amount": 1,
+    "RequireItem": [ 10204, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 7
+  },
+  {
+    "FormulaID": 14,
+    "ItemName": "特級魔力藥水",
+    "ItemID": 1008,
+    "Amount": 1,
+    "RequireItem": [ 10204, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 47, 5, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 270
+  },
+  {
+    "FormulaID": 21,
+    "ItemName": "生命草(1)",
+    "ItemID": 10201,
+    "Amount": 1,
+    "RequireItem": [ 20001, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 22,
+    "ItemName": "生命草(1)",
+    "ItemID": 10201,
+    "Amount": 1,
+    "RequireItem": [ 20042, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 23,
+    "ItemName": "生命草(3)",
+    "ItemID": 10201,
+    "Amount": 3,
+    "RequireItem": [ 20041, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 24,
+    "ItemName": "生命草(4)",
+    "ItemID": 10201,
+    "Amount": 4,
+    "RequireItem": [ 20098, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 25,
+    "ItemName": "生命草(9)",
+    "ItemID": 10201,
+    "Amount": 9,
+    "RequireItem": [ 20123, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 7, 4, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 26,
+    "ItemName": "生命草(10)",
+    "ItemID": 10201,
+    "Amount": 10,
+    "RequireItem": [ 20096, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 27,
+    "ItemName": "生命草(18)",
+    "ItemID": 10201,
+    "Amount": 18,
+    "RequireItem": [ 20124, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 5, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 28,
+    "ItemName": "生命草(18)",
+    "ItemID": 10201,
+    "Amount": 18,
+    "RequireItem": [ 20189, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 6, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 29,
+    "ItemName": "生命草(19)",
+    "ItemID": 10201,
+    "Amount": 19,
+    "RequireItem": [ 20190, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 11, 7, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 30,
+    "ItemName": "生命草(24)",
+    "ItemID": 10201,
+    "Amount": 24,
+    "RequireItem": [ 20247, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 12, 9, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 7
+  },
+  {
+    "FormulaID": 31,
+    "ItemName": "生命草(24)",
+    "ItemID": 10201,
+    "Amount": 24,
+    "RequireItem": [ 20246, 10001, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 12, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 8
+  },
+  {
+    "FormulaID": 37,
+    "ItemName": "相剋生命草(1)",
+    "ItemID": 10202,
+    "Amount": 1,
+    "RequireItem": [ 10201, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 10, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 41,
+    "ItemName": "精神燭(1)",
+    "ItemID": 10203,
+    "Amount": 1,
+    "RequireItem": [ 20001, 0, 0, 0, 0, 0 ],
+    "RequireAmount": [ 6, 0, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 42,
+    "ItemName": "精神燭(3)",
+    "ItemID": 10203,
+    "Amount": 3,
+    "RequireItem": [ 20042, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 6, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 43,
+    "ItemName": "精神燭(5)",
+    "ItemID": 10203,
+    "Amount": 5,
+    "RequireItem": [ 20098, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 7, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 44,
+    "ItemName": "精神燭(9)",
+    "ItemID": 10203,
+    "Amount": 9,
+    "RequireItem": [ 20041, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 5, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 4
+  },
+  {
+    "FormulaID": 45,
+    "ItemName": "精神燭(6)",
+    "ItemID": 10203,
+    "Amount": 6,
+    "RequireItem": [ 20123, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 3, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 4
+  },
+  {
+    "FormulaID": 46,
+    "ItemName": "精神燭(8)",
+    "ItemID": 10203,
+    "Amount": 8,
+    "RequireItem": [ 20096, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 47,
+    "ItemName": "精神燭(12)",
+    "ItemID": 10203,
+    "Amount": 12,
+    "RequireItem": [ 20124, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 48,
+    "ItemName": "精神燭(10)",
+    "ItemID": 10203,
+    "Amount": 10,
+    "RequireItem": [ 20190, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 7, 3, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 49,
+    "ItemName": "精神燭(15)",
+    "ItemID": 10203,
+    "Amount": 15,
+    "RequireItem": [ 20247, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 10, 4, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 7
+  },
+  {
+    "FormulaID": 50,
+    "ItemName": "精神燭(16)",
+    "ItemID": 10203,
+    "Amount": 16,
+    "RequireItem": [ 20189, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 2, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 56,
+    "ItemName": "相剋精神燭(5)",
+    "ItemID": 10204,
+    "Amount": 5,
+    "RequireItem": [ 10203, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 30, 3, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 61,
+    "ItemName": "翼之糖(6)",
+    "ItemID": 10205,
+    "Amount": 6,
+    "RequireItem": [ 20024, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 13, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 62,
+    "ItemName": "翼之糖(7)",
+    "ItemID": 10205,
+    "Amount": 7,
+    "RequireItem": [ 20030, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 11, 4, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 7
+  },
+  {
+    "FormulaID": 63,
+    "ItemName": "翼之糖(8)",
+    "ItemID": 10205,
+    "Amount": 8,
+    "RequireItem": [ 20078, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 8, 6, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 9
+  },
+  {
+    "FormulaID": 64,
+    "ItemName": "翼之糖(10)",
+    "ItemID": 10205,
+    "Amount": 10,
+    "RequireItem": [ 20092, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 9, 5, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 12
+  },
+  {
+    "FormulaID": 65,
+    "ItemName": "翼之糖(7)",
+    "ItemID": 10205,
+    "Amount": 7,
+    "RequireItem": [ 20106, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 11, 10, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 14
+  },
+  {
+    "FormulaID": 66,
+    "ItemName": "翼之糖(8)",
+    "ItemID": 10205,
+    "Amount": 8,
+    "RequireItem": [ 20121, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 9, 5, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 14
+  },
+  {
+    "FormulaID": 67,
+    "ItemName": "翼之糖(7)",
+    "ItemID": 10205,
+    "Amount": 7,
+    "RequireItem": [ 20251, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 21, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 17
+  },
+  {
+    "FormulaID": 68,
+    "ItemName": "翼之糖(15)",
+    "ItemID": 10205,
+    "Amount": 15,
+    "RequireItem": [ 20254, 10003, 0, 0, 0, 0 ],
+    "RequireAmount": [ 3, 10, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 19
+  },
+
+
+  {
+    "FormulaID": 101,
+    "ItemName": "鐵光石(3)",
+    "ItemID": 10101,
+    "Amount": 3,
+    "RequireItem": [ 20021, 10008, 0, 0, 0, 0 ],
+    "RequireAmount": [ 2, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 102,
+    "ItemName": "鐵塊(1)",
+    "ItemID": 10104,
+    "Amount": 1,
+    "RequireItem": [ 10101, 10008, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 1
+  },
+  {
+    "FormulaID": 103,
+    "ItemName": "鐵塊(3)",
+    "ItemID": 10104,
+    "Amount": 3,
+    "RequireItem": [ 20081, 20086, 10008, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 2, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 104,
+    "ItemName": "鐵塊(8)",
+    "ItemID": 10104,
+    "Amount": 8,
+    "RequireItem": [ 20134, 20161, 20160, 10008, 0, 0 ],
+    "RequireAmount": [ 1, 2, 1, 3, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 105,
+    "ItemName": "鋼鐵塊(1)",
+    "ItemID": 10105,
+    "Amount": 1,
+    "RequireItem": [ 10104, 10102, 10008, 0, 0, 0 ],
+    "RequireAmount": [ 10, 1, 3, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 8
+  },
+  {
+    "FormulaID": 106,
+    "ItemName": "鐵塊(10)",
+    "ItemID": 10104,
+    "Amount": 10,
+    "RequireItem": [ 20145, 20162, 20170, 10008, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 3, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 107,
+    "ItemName": "鐵塊(11)",
+    "ItemID": 10104,
+    "Amount": 11,
+    "RequireItem": [ 20209, 20201, 10008, 0, 0, 0 ],
+    "RequireAmount": [ 1, 2, 3, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 6
+  },
+  {
+    "FormulaID": 108,
+    "ItemName": "他馬思克斯(1)",
+    "ItemID": 10106,
+    "Amount": 1,
+    "RequireItem": [ 10105, 10104, 10008, 0, 0, 0 ],
+    "RequireAmount": [ 3, 3, 5, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 27
+  },
+  {
+    "FormulaID": 109,
+    "ItemName": "鋼鐵塊(5)",
+    "ItemID": 10105,
+    "Amount": 5,
+    "RequireItem": [ 20215, 20214, 10009, 0, 0, 0 ],
+    "RequireAmount": [ 6, 9, 8, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 38
+  },
+  {
+    "FormulaID": 110,
+    "ItemName": "鋼鐵塊(7)",
+    "ItemID": 10105,
+    "Amount": 7,
+    "RequireItem": [ 20267, 20266, 10009, 0, 0, 0 ],
+    "RequireAmount": [ 11, 9, 9, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 53
+  },
+  {
+    "FormulaID": 111,
+    "ItemName": "米絲麗(1)",
+    "ItemID": 10107,
+    "Amount": 1,
+    "RequireItem": [ 10105, 10103, 10009, 0, 0, 0 ],
+    "RequireAmount": [ 5, 3, 1, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 101
+  },
+  {
+    "FormulaID": 112,
+    "ItemName": "鋼鐵塊(9)",
+    "ItemID": 10105,
+    "Amount": 9,
+    "RequireItem": [ 20264, 20292, 10009, 0, 0, 0 ],
+    "RequireAmount": [ 12, 10, 14, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 68
+  },
+  {
+    "FormulaID": 113,
+    "ItemName": "鋼鐵塊(11)",
+    "ItemID": 10105,
+    "Amount": 11,
+    "RequireItem": [ 20301, 20300, 20323, 10009, 0, 0 ],
+    "RequireAmount": [ 10, 13, 10, 11, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 83
+  },
+  {
+    "FormulaID": 114,
+    "ItemName": "鋼鐵塊(15)",
+    "ItemID": 10105,
+    "Amount": 15,
+    "RequireItem": [ 20210, 20243, 10009, 0, 0, 0 ],
+    "RequireAmount": [ 16, 18, 12, 0, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 94
+  },
+  {
+    "FormulaID": 116,
+    "ItemName": "伊托利溫",
+    "ItemID": 10111,
+    "Amount": 1,
+    "RequireItem": [ 10108, 10109, 10110, 10009, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 3, 0, 0 ],
+    "Probablity": 99,
+    "Experience": 159
+  },
+  {
+    "FormulaID": 201,
+    "ItemName": "黑檀劍",
+    "ItemID": 8002,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 3, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 202,
+    "ItemName": "半月短劍",
+    "ItemID": 8003,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 9, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 203,
+    "ItemName": "象牙短劍",
+    "ItemID": 8004,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 16, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 204,
+    "ItemName": "冰花短劍",
+    "ItemID": 8005,
+    "Amount": 1,
+    "RequireItem": [ 11008, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 0, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 205,
+    "ItemName": "格鬥短劍",
+    "ItemID": 8006,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 10, 6, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 206,
+    "ItemName": "銀製短劍",
+    "ItemID": 8007,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 70, 5, 3, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 207,
+    "ItemName": "風紋短劍",
+    "ItemID": 8008,
+    "Amount": 1,
+    "RequireItem": [ 11019, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 208,
+    "ItemName": "鑄鐵短劍",
+    "ItemID": 8009,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 152, 8, 6, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 209,
+    "ItemName": "鋼鐵短劍",
+    "ItemID": 8010,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 168, 10, 5, 3, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 210,
+    "ItemName": "怨恨銀短劍",
+    "ItemID": 8011,
+    "Amount": 1,
+    "RequireItem": [ 11025, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 211,
+    "ItemName": "逆月之劍",
+    "ItemID": 8012,
+    "Amount": 1,
+    "RequireItem": [ 11030, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 212,
+    "ItemName": "發光的短劍",
+    "ItemID": 8013,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 251,
+    "ItemName": "魔斬的長劍",
+    "ItemID": 8153,
+    "Amount": 1,
+    "RequireItem": [ 11006, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 252,
+    "ItemName": "象牙長劍",
+    "ItemID": 8155,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 4, 2, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 253,
+    "ItemName": "格鬥長劍",
+    "ItemID": 8156,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 36, 4, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 254,
+    "ItemName": "銀製長劍",
+    "ItemID": 8157,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 13, 6, 4, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 255,
+    "ItemName": "鑄鐵長劍",
+    "ItemID": 8158,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 7, 9, 9, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 256,
+    "ItemName": "逆月長劍",
+    "ItemID": 8159,
+    "Amount": 1,
+    "RequireItem": [ 11023, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 257,
+    "ItemName": "鋼鐵劍",
+    "ItemID": 8160,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 18, 10, 5, 4, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 258,
+    "ItemName": "斬龍的長劍",
+    "ItemID": 8161,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 259,
+    "ItemName": "發光長劍",
+    "ItemID": 8162,
+    "Amount": 1,
+    "RequireItem": [ 11032, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 7, 9, 10, 9, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 301,
+    "ItemName": "格鬥大劍",
+    "ItemID": 8301,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 10, 6, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 302,
+    "ItemName": "白狼牙大劍",
+    "ItemID": 8302,
+    "Amount": 1,
+    "RequireItem": [ 11014, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 0, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 303,
+    "ItemName": "銀製大劍",
+    "ItemID": 8303,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 13, 6, 4, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 304,
+    "ItemName": "鑄鐵大劍",
+    "ItemID": 8304,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 7, 9, 9, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 305,
+    "ItemName": "青龍偃月刀",
+    "ItemID": 8305,
+    "Amount": 1,
+    "RequireItem": [ 11022, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 306,
+    "ItemName": "鋼鐵大劍",
+    "ItemID": 8306,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 36, 27, 27, 3, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 307,
+    "ItemName": "發光大劍",
+    "ItemID": 8307,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 401,
+    "ItemName": "紅色新月長槍",
+    "ItemID": 8603,
+    "Amount": 1,
+    "RequireItem": [ 11004, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+  {
+    "FormulaID": 402,
+    "ItemName": "魂魄之槍",
+    "ItemID": 8609,
+    "Amount": 1,
+    "RequireItem": [ 11022, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 5
+  },
+
+  {
+    "FormulaID": 601,
+    "ItemName": "黑色短棍",
+    "ItemID": 9652,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 3, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 602,
+    "ItemName": "月影短棍",
+    "ItemID": 9654,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 9, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 604,
+    "ItemName": "象牙棍",
+    "ItemID": 9655,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 16, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 605,
+    "ItemName": "逆月枷鎖",
+    "ItemID": 9656,
+    "Amount": 1,
+    "RequireItem": [ 11009, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 606,
+    "ItemName": "戰鬥棍",
+    "ItemID": 9657,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 36, 4, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 607,
+    "ItemName": "銀製戰槌",
+    "ItemID": 9658,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 70, 5, 3, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 608,
+    "ItemName": "大地之榔頭",
+    "ItemID": 9659,
+    "Amount": 1,
+    "RequireItem": [ 11015, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 609,
+    "ItemName": "英雄之星",
+    "ItemID": 9660,
+    "Amount": 1,
+    "RequireItem": [ 11020, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 610,
+    "ItemName": "鑄鐵鐵鎚",
+    "ItemID": 9661,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 152, 8, 6, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 611,
+    "ItemName": "鋼鐵鐵鎚",
+    "ItemID": 9662,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 168, 10, 5, 3, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 612,
+    "ItemName": "聖騎士戰槌",
+    "ItemID": 9663,
+    "Amount": 1,
+    "RequireItem": [ 11027, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 614,
+    "ItemName": "發光之戰槌",
+    "ItemID": 9665,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 501,
+    "ItemName": "黑暗手杖",
+    "ItemID": 9352,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 3, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 502,
+    "ItemName": "魔導師手杖",
+    "ItemID": 9353,
+    "Amount": 1,
+    "RequireItem": [ 11005, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 2
+  },
+  {
+    "FormulaID": 503,
+    "ItemName": "半月手杖",
+    "ItemID": 9354,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 9, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 504,
+    "ItemName": "象牙手杖",
+    "ItemID": 9355,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 4, 2, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 505,
+    "ItemName": "精靈手杖",
+    "ItemID": 9356,
+    "Amount": 1,
+    "RequireItem": [ 11011, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 506,
+    "ItemName": "戰鬥手杖",
+    "ItemID": 9357,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 10, 6, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 507,
+    "ItemName": "銀質手杖",
+    "ItemID": 9358,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 13, 6, 4, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 508,
+    "ItemName": "寂光手杖",
+    "ItemID": 9359,
+    "Amount": 1,
+    "RequireItem": [ 11017, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 509,
+    "ItemName": "鑄鐵手杖",
+    "ItemID": 9360,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 7, 9, 9, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 510,
+    "ItemName": "鋼鐵手杖",
+    "ItemID": 9361,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 18, 10, 5, 4, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 511,
+    "ItemName": "宿魂手杖",
+    "ItemID": 9362,
+    "Amount": 1,
+    "RequireItem": [ 11029, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 512,
+    "ItemName": "發光之手杖",
+    "ItemID": 9363,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 7, 9, 10, 9, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 451,
+    "ItemName": "格鬥斧",
+    "ItemID": 8751,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 10, 6, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 452,
+    "ItemName": "巨人殺手",
+    "ItemID": 8752,
+    "Amount": 1,
+    "RequireItem": [ 11012, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 1, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 453,
+    "ItemName": "銀製斧頭",
+    "ItemID": 8753,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 13, 6, 4, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 454,
+    "ItemName": "鑄鐵斧頭",
+    "ItemID": 8754,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 7, 9, 9, 0, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 455,
+    "ItemName": "鋼鐵斧頭",
+    "ItemID": 8755,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 36, 27, 27, 3, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 456,
+    "ItemName": "發光之斧頭",
+    "ItemID": 8756,
+    "Amount": 1,
+    "RequireItem": [ 10005, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": null
+  },
+  {
+    "FormulaID": 701,
+    "ItemName": "闇黑弓",
+    "ItemID": 8902,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 3, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 703,
+    "ItemName": "半月弓",
+    "ItemID": 8904,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 0, 0, 0, 0 ],
+    "RequireAmount": [ 1, 9, 0, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 704,
+    "ItemName": "象牙弓",
+    "ItemID": 8905,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 16, 1, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 706,
+    "ItemName": "戰鬥弓",
+    "ItemID": 8907,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 36, 4, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 707,
+    "ItemName": "銀質長弓",
+    "ItemID": 8908,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 70, 5, 3, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 709,
+    "ItemName": "鑄鐵弓",
+    "ItemID": 8910,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 152, 8, 6, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 711,
+    "ItemName": "鋼鐵弓",
+    "ItemID": 8912,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 168, 10, 5, 3, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 712,
+    "ItemName": "發光之弓",
+    "ItemID": 8913,
+    "Amount": 1,
+    "RequireItem": [ 10004, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 801,
+    "ItemName": "戰鬥手槍",
+    "ItemID": 9201,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 0, 0, 0 ],
+    "RequireAmount": [ 1, 10, 6, 0, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 802,
+    "ItemName": "風尾",
+    "ItemID": 9202,
+    "Amount": 1,
+    "RequireItem": [ 11013, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 1, 11, 0, 0, 0 ],
+    "Probablity": 40,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 803,
+    "ItemName": "銀製獵槍",
+    "ItemID": 9203,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 13, 6, 4, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 804,
+    "ItemName": "鑄鐵手槍",
+    "ItemID": 9204,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 0, 0 ],
+    "RequireAmount": [ 1, 7, 9, 9, 0, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 805,
+    "ItemName": "鋼鐵手槍",
+    "ItemID": 9205,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 36, 27, 27, 3, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 806,
+    "ItemName": "地獄火之槍",
+    "ItemID": 9206,
+    "Amount": 1,
+    "RequireItem": [ 11026, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 1, 1, 1, 1, 0 ],
+    "Probablity": 40,
+    "Experience": 3
+  },
+  {
+    "FormulaID": 807,
+    "ItemName": "發光之手槍",
+    "ItemID": 9207,
+    "Amount": 1,
+    "RequireItem": [ 10006, 10104, 10105, 10106, 10107, 0 ],
+    "RequireAmount": [ 1, 268, 15, 10, 7, 0 ],
+    "Probablity": 80,
+    "Experience": 3
+  }
+
+
+
+]

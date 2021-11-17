@@ -146,18 +146,23 @@ public class NetSvc : MonoBehaviour
             case 53:
                 DoStrengthenResponse(msg);
                 break;
+            case 55:
+                DoSkillCastResponse(msg);
+                break;
             case 56:
                 DoLearnSkill(msg);
                 break;
             case 57:
                 DoHotKeyOperation(msg);
                 break;
-            case 55:
-                DoSkillCastResponse(msg);
+            case 59:
+                DoManufactureResponse(msg);
                 break;
             case 60:
                 DoSkillHitResponse(msg);
                 break;
+
+
         }
     }
 
@@ -583,6 +588,12 @@ public class NetSvc : MonoBehaviour
             BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
         }
     }
+
+    public void DoManufactureResponse(ProtoMsg msg)
+    {
+        MGFWnd.Instance.ProessManufactureResponse(msg.manufactureResponse);
+    }
+
     public void DoSkillCastResponse(ProtoMsg msg)
     {
         BattleSys.Instance.ProcessSkillCastResponse(msg);

@@ -157,8 +157,9 @@ public class DBMgr
                     { "Honor", 0},
                     { "Cart", new BsonArray()},
                     { "PetItems",new BsonArray()},
-                    { "Skills", new BsonArray()},
-                    { "HotKeys", new BsonArray()}
+                    { "Skills", Utility.GenerateBeginnerSkills(Info.job)},
+                    { "HotKeys", new BsonArray()},
+                    { "Manufactures",new BsonArray()}
                  };
             var filter = Builders<BsonDocument>.Filter.Eq("Account", Account);
             var update = Builders<BsonDocument>.Update.Push("Players", bd

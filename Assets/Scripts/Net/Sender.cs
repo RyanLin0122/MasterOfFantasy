@@ -776,7 +776,7 @@ public class HotKeySender : BaseSender
     }
 }
 
-public class SkillSender :BaseSender
+public class SkillSender : BaseSender
 {
     public SkillSender(SkillCastInfo castInfo)
     {
@@ -791,4 +791,20 @@ public class SkillSender :BaseSender
         base.SendMsg(msg);
     }
 }
-
+public class ManufactureSender : BaseSender
+{
+    public ManufactureSender(int OperationType, int FormulaID, int Amount)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 58,
+            manufactureRequest = new ManufactureRequest
+            {
+                OperationType = OperationType,
+                FormulaId = FormulaID,
+                Amount = Amount
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

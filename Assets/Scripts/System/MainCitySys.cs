@@ -67,6 +67,7 @@ public class MainCitySys : SystemRoot
             BattleSys.Instance.InitMyBuff();
             UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             UISystem.Instance.Knapsack.ReadItems();
+            UISystem.Instance.mGFWnd.CateForFormula();
             //打開主UI
             UISystem.Instance.baseUI.SetWndState();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
@@ -105,6 +106,14 @@ public class MainCitySys : SystemRoot
             }
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
+
+
+
+            //假製作技能
+            GameRoot.Instance.ActivePlayer.Skills.Add(1,new SkillData { SkillID = 1, SkillLevel = 1} );
+
+
+
         });
     }
 

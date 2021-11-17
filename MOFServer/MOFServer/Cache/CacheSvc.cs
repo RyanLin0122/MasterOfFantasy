@@ -31,6 +31,7 @@ public class CacheSvc
         ParseMonsterJson();
         ParseCashShopItems();
         ParseSkillJson();
+        ParseManuJson();
         ParseBuffJson();
         dbMgr = DBMgr.Instance;
         Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
@@ -452,6 +453,60 @@ public class CacheSvc
 
     #endregion
 
+
+    #region ManufactureInfo
+    public Dictionary<int, ManuInfo> FormulaDict { get; set; }
+
+    private void ParseManuJson()
+    {
+        using (StreamReader sr = new StreamReader("../../Common/FormulaInfo.Json"))
+        {
+            Dictionary<int, ManuInfo> formuladict = new Dictionary<int, ManuInfo>();
+            string FormulaJson = sr.ReadToEnd();
+            JSONObject j = new JSONObject(FormulaJson);
+            foreach (JSONObject Formula in j.list)
+            {
+                int FormulaID = (int)Formula["FormulaID"].n;
+                int itemID = (int)Formula["ItemID"].n;
+                string ItemName = Formula["ItemName"].str;
+                int Amount = (int)Formula["Amount"].n;
+
+                int[] RequireItem = new int[6];
+                var RequireItemList = Formula["RequireItem"].list;
+                for (int i = 0; i < 6; i++)
+                {
+                    RequireItem[i] = (int)RequireItemList[i].n;
+                }
+
+                int[] RequireAmount = new int[6];
+                var RequireAmountList = Formula["RequireAmount"].list;
+                for (int i = 0; i < 6; i++)
+                {
+                    RequireAmount[i] = (int)RequireAmountList[i].n;
+                }
+                int Probablity = (int)Formula["Probablity"].n;
+                int Experience = (int)Formula["Experience"].n;
+
+                ManuInfo manu = new ManuInfo
+                {
+                    FormulaID = FormulaID,
+                    ItemID = itemID,
+                    ItemName = ItemName,
+                    Amount = Amount,
+                    RequireItem = RequireItem,
+                    RequireItemAmount = RequireAmount,
+                    Probablity = Probablity,
+                    Experience = Experience
+
+                };
+                formuladict.Add(FormulaID, manu);
+            }
+            this.FormulaDict = formuladict;
+        }
+       
+    }
+
+    #endregion
     #region 技能區
     public Dictionary<int, SkillInfo> SkillDic = new Dictionary<int, SkillInfo>();
     //int: 職業代碼 
