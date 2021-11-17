@@ -24,6 +24,7 @@ public class ResSvc : MonoBehaviour
         IllustrationPath.Instance.Init();
         LoadJobImgs();
         ParsePortalJson();
+        ParseManuJson();
         ParseTitle();
         ParseCashShopInfo(PathDefine.CashShopInfoPath);
         NameBoxDic = ParseNameBoxJson();
@@ -657,6 +658,56 @@ public class ResSvc : MonoBehaviour
             cashShopDic.Add(cata, Catagories);
         }
         this.CashShopDic = cashShopDic;
+    }
+
+    #endregion
+    #region ManufactureInfo
+  
+    public Dictionary<int, ManuInfo> FormulaDict{ get; set; }
+    private void ParseManuJson()
+    {
+        Dictionary<int, ManuInfo> formuladict = new Dictionary<int, ManuInfo>();
+        TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/FormulaInfo");
+        string FormulaJson = itemText.text;
+        JSONObject j = new JSONObject(FormulaJson);
+        foreach (JSONObject Formula in j.list)
+        {
+            int FormulaID = (int)Formula["FormulaID"].n;
+            int itemID = (int)Formula["ItemID"].n;
+            string ItemName = Formula["ItemName"].str;
+            int Amount = (int)Formula["Amount"].n;
+
+            int[] RequireItem = new int[6];
+            var RequireItemList = Formula["RequireItem"].list;
+            for (int i = 0; i < 6; i++)
+            {
+                RequireItem[i] = (int)RequireItemList[i].n;
+            }
+
+            int[] RequireAmount = new int[6];
+            var RequireAmountList = Formula["RequireAmount"].list;
+            for (int i = 0; i < 6; i++)
+            {
+                RequireAmount[i] = (int)RequireAmountList[i].n;
+            }
+            int Probablity = (int)Formula["Probablity"].n;
+            int Experience = (int)Formula["Experience"].n;
+
+
+            ManuInfo manu = new ManuInfo
+            {
+                FormulaID = FormulaID,
+                ItemID = itemID,
+                ItemName = ItemName,
+                Amount = Amount,
+                RequireItem = RequireItem,
+                RequireItemAmount = RequireAmount,
+                Probablity = Probablity,
+                Experience = Experience
+            };
+            formuladict.Add(FormulaID, manu);
+        }
+        this.FormulaDict = formuladict;
     }
 
     #endregion

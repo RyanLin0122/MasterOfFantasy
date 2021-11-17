@@ -204,19 +204,22 @@ public class RewardSys :Singleton<RewardSys>
     public void TestSendMailBox(MOFCharacter chr)
     {
         List<Item> Items = new List<Item>();
-        Items.Add(Utility.GetConsumableByID(1001));
-        Items.Add(Utility.GetConsumableByID(1002));
-        Items.Add(Utility.GetConsumableByID(1001));
-        Items.Add(Utility.GetConsumableByID(1001));
-        Items.Add(Utility.GetConsumableByID(1002));
-        Items.Add(Utility.GetConsumableByID(1001));
-        Items.Add(Utility.GetEquipmentByID(3492));
-        Items.Add(Utility.GetEquipmentByID(3488));
-        Items.Add(Utility.GetEquipmentByID(3466));
-        Items.Add(Utility.GetEquipmentByID(6701));
-        Items.Add(Utility.GetEquipmentByID(6702));
-        Items.Add(Utility.GetEquipmentByID(6703));
-        Items.Add(Utility.GetEquipmentByID(6704));
+        //Items.Add(Utility.GetConsumableByID(1001));
+        //Items.Add(Utility.GetConsumableByID(1002));
+        //Items.Add(Utility.GetConsumableByID(1001));
+        //Items.Add(Utility.GetConsumableByID(1001));
+        //Items.Add(Utility.GetConsumableByID(1002));
+        //Items.Add(Utility.GetConsumableByID(1001));
+        //Items.Add(Utility.GetEquipmentByID(3492));
+        //Items.Add(Utility.GetEquipmentByID(3488));
+        //Items.Add(Utility.GetEquipmentByID(3466));
+        //Items.Add(Utility.GetEquipmentByID(6701));
+        //Items.Add(Utility.GetEquipmentByID(6702));
+        //Items.Add(Utility.GetEquipmentByID(6703));
+        //Items.Add(Utility.GetEquipmentByID(6704));
+        Item item = Utility.GetEtcItemByID(20021);
+        item.Count = 100;
+        Items.Add(item);
         SendRewardToMailBox(chr, 50000, Items);
     }
     #endregion

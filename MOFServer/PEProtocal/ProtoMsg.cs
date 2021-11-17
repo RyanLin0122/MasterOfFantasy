@@ -65,6 +65,8 @@ namespace PEProtocal
         ///55:SkillResponce 放技能回應
         ///56:LearnSkill 學技能
         ///57:HotKey 快捷鍵相關
+        ///58:Manufacture Request 製作請求
+        ///59:Manufacture Responce製作回應
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -200,7 +202,12 @@ namespace PEProtocal
         public SkillCastRequest skillCastRequest { get; set; }
         [ProtoMember(67, IsRequired = false)]
         public SkillCastResponse skillCastResponse { get; set; }
-        
+        [ProtoMember(68, IsRequired = false)]
+        public ManufactureRequest manufactureRequest { get; set; }
+        [ProtoMember(69, IsRequired = false)]
+        public ManufactureResponse manufactureResponse { get; set; }
+
+
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1516,4 +1523,33 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public DamageInfo Damage { get; set; }
     }
+
+    [ProtoContract]
+    public class ManufactureRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int FormulaId { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Amount { get; set; }
+
+
+
+
+    }
+
+    [ProtoContract]
+    public class ManufactureResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int OperationType { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public Dictionary<int,int> RemoveAndConSume { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public Dictionary<int,Item> GetItem { get; set; }
+
+
+    }
+
 }

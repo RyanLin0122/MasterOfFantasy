@@ -152,6 +152,12 @@ public class NetSvc : MonoBehaviour
             case 57:
                 DoHotKeyOperation(msg);
                 break;
+            case 59:
+                DoManufactureResponse(msg);
+                break;
+
+
+
         }
     }
 
@@ -581,5 +587,10 @@ public class NetSvc : MonoBehaviour
         {
             BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
         }
+    }
+
+    public void DoManufactureResponse(ProtoMsg msg)
+    {
+        MGFWnd.Instance.ProessManufactureResponse(msg.manufactureResponse);
     }
 }

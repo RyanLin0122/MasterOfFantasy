@@ -245,6 +245,7 @@
     <Compile Include="Handler\LockerHandler.cs" />
     <Compile Include="Handler\MailBoxHandler.cs" />
     <Compile Include="Handler\StrengthenHandler.cs" />
+    <Compile Include="Handler\ManufactureHandler.cs" />
     <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Server\GameHandler.cs" />
     <Compile Include="Service\LogService\LogSvc.cs" />
@@ -314,6 +315,7 @@
     <None Include="Common\log4net.config" />
     <None Include="Common\MonsterInfo.Json" />
     <None Include="Common\QuestInfo.json" />
+    <None Include="Common\FormulaInfo.Json" />
     <None Include="Common\SkillInfo.Json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

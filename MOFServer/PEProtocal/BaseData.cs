@@ -222,6 +222,9 @@ namespace PEProtocal
         public Dictionary<int, SkillData> Skills { get; set; }
         [ProtoMember(56, IsRequired = false)]
         public List<HotkeyData> Hotkeys { get; set; }
+        [ProtoMember(57, IsRequired = false)]
+        public List<int> Manufactures { get; set; }
+
         public Dictionary<int, Item> GetNewNotCashKnapsack()
         {
             NotCashKnapsack = new Dictionary<int, Item>();
@@ -443,7 +446,29 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public string EntityName { get; set; }
     }
+    
+    [ProtoContract]
+    public class ManuInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int FormulaID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int ItemID { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Amount { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int[] RequireItem { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int[] RequireItemAmount { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public string ItemName { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int Probablity { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int Experience { get; set; }
 
+
+    }
 
 }
 

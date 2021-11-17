@@ -247,6 +247,11 @@ class MOFServerHandler : ChannelHandlerAdapter
                     HotKeyHandler hotKeyHandler = new HotKeyHandler();
                     Task hotKeyTask = hotKeyHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 58://製作請求
+                    ManufactureHandler manufactureHandler = new ManufactureHandler();
+                    Task ManufactureTask = manufactureHandler.ProcessMsgAsync(msg, session);
+                    break;
+
             }
         }
         catch (Exception ex)

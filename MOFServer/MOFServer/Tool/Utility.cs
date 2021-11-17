@@ -144,7 +144,8 @@ public static class Utility
             Cart = BsonArr2CartList(data["Cart"].AsBsonArray),
             PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray),
             Skills = GetSkillsFromBson(data["Skills"].AsBsonArray),
-            Hotkeys = GetHotkeyDatasFromBson(data["HotKeys"].AsBsonArray)
+            Hotkeys = GetHotkeyDatasFromBson(data["HotKeys"].AsBsonArray),
+            Manufactures = BsonArr2IntList(data["Manufactures"].AsBsonArray)
         };
         return player;
     }
@@ -467,7 +468,8 @@ public static class Utility
                     { "Cart", CartList2BsonArr(player.Cart)},
                     { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)},
                     { "Skills", Skill2BsonArr(player.Skills) },
-                    { "HotKeys", HotKeyList2BsonArr(player.Hotkeys)}
+                    { "HotKeys", HotKeyList2BsonArr(player.Hotkeys)},
+                    { "Manufactures", IntList2BsonArray(player.Manufactures)}
         };
         return bson;
     }
@@ -911,11 +913,11 @@ public static class Utility
         {
             return GetEquipmentByID(ItemID);
         }
-        else if (ItemID > 8000 && ItemID <= 12000)
+        else if (ItemID > 8000 && ItemID <= 10000)
         {
             return GetWeaponByID(ItemID);
         }
-        else if (ItemID > 12000)
+        else if (ItemID > 10000)
         {
             return GetEtcItemByID(ItemID);
         }
