@@ -48,7 +48,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                         entityController.SetFaceDirection(this.rb.velocity.x > 0);
                     }
                     this.SendEntityEvent(EntityEvent.Move);
-                }               
+                }
                 return;
             }
         }
@@ -175,6 +175,10 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
         }
+        else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            CommonAttack();
+        }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             new RunSender();
@@ -194,7 +198,70 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             }
         }
     }
-
+    public void CommonAttack()
+    {
+        if (GameRoot.Instance.ActivePlayer.playerEquipments == null)
+        {
+            return;
+        }
+        if (entityController == null) return;
+        if (entityController.SkillDict == null) return;
+        if (GameRoot.Instance.ActivePlayer.playerEquipments.B_Weapon != null)
+        {
+            Weapon weapon = GameRoot.Instance.ActivePlayer.playerEquipments.B_Weapon;
+            Skill CommonAtackSkill = null;
+            switch (weapon.WeapType)
+            {
+                case WeaponType.None:
+                    break;
+                case WeaponType.Axe:
+                    entityController.SkillDict.TryGetValue(-1, out CommonAtackSkill);
+                    break;
+                case WeaponType.Bow:
+                    entityController.SkillDict.TryGetValue(-2, out CommonAtackSkill);
+                    break;
+                case WeaponType.Dagger:
+                    entityController.SkillDict.TryGetValue(-3, out CommonAtackSkill);
+                    break;
+                case WeaponType.Gun:
+                    entityController.SkillDict.TryGetValue(-4, out CommonAtackSkill);
+                    break;
+                case WeaponType.Hammer:
+                    entityController.SkillDict.TryGetValue(-5, out CommonAtackSkill);
+                    break;
+                case WeaponType.LongSword:
+                    entityController.SkillDict.TryGetValue(-6, out CommonAtackSkill);
+                    break;
+                case WeaponType.Spear:
+                    entityController.SkillDict.TryGetValue(-7, out CommonAtackSkill);
+                    break;
+                case WeaponType.Staff:
+                    entityController.SkillDict.TryGetValue(-8, out CommonAtackSkill);
+                    break;
+                case WeaponType.Sword:
+                    entityController.SkillDict.TryGetValue(-9, out CommonAtackSkill);
+                    break;
+                case WeaponType.Book:
+                    entityController.SkillDict.TryGetValue(-10, out CommonAtackSkill);
+                    break;
+                case WeaponType.Cross:
+                    entityController.SkillDict.TryGetValue(-11, out CommonAtackSkill);
+                    break;
+                case WeaponType.Crossbow:
+                    entityController.SkillDict.TryGetValue(-12, out CommonAtackSkill);
+                    break;
+                case WeaponType.DualSword:
+                    entityController.SkillDict.TryGetValue(-13, out CommonAtackSkill);
+                    break;
+                default:
+                    break;
+            }
+            if (CommonAtackSkill != null)
+            {
+                CommonAtackSkill.Cast();
+            }
+        }
+    }
     public void LockMove()
     {
         this.IsLockMove = true;

@@ -38,6 +38,10 @@ class SkillSys : MonoSingleton<SkillSys>
         {
             Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Self"]))).GetComponent<Transform>();
             go.SetParent(CasterTransform);
+            if (CasterTransform.localScale.x < 0)
+            {
+                go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
+            }
             go.localPosition = new Vector3(info.AniOffset["Self"][0], info.AniOffset["Self"][1], info.AniOffset["Self"][2]);
         }
         if (info.Sound["Cast"] != "")
@@ -53,6 +57,11 @@ class SkillSys : MonoSingleton<SkillSys>
             Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + info.AniPath["Other"]))).GetComponent<Transform>();
             go.SetParent(TargetTransform);
             go.localScale = Vector3.one;
+            go.localScale = new Vector3(info.AniScale["Target"][0], info.AniScale["Target"][1], info.AniScale["Target"][2]);
+            if (TargetTransform.localScale.x < 0)
+            {
+                go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
+            }
             go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
         }
 
@@ -96,6 +105,11 @@ class SkillSys : MonoSingleton<SkillSys>
 
         }
         MainCharacterSkillDic = controller.SkillDict;
+        //增加普攻
+        controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
+        controller.SkillDict[-8].EntityController = controller;
+        controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);
+        controller.SkillDict[-10].EntityController = controller;
     }
     public void InitPlayerSkills(TrimedPlayer player, EntityController controller)
     {
@@ -109,7 +123,13 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key].EntityController = controller;
                 controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
+
         }
+        //增加普攻
+        controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
+        controller.SkillDict[-8].EntityController = controller;
+        controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);
+        controller.SkillDict[-10].EntityController = controller;
     }
 
 }

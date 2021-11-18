@@ -18,8 +18,9 @@ public class Skill
     public Dictionary<int, List<DamageInfo>> HitMap;
     List<Bullet> Bullets;
     public SkillStatus status = SkillStatus.None;
-    public Skill(SkillInfo info)
+    public Skill(SkillInfo info, int Level = 1)
     {
+        this.Level = 1;
         this.Info = info;
         HitMap = new Dictionary<int, List<DamageInfo>>();
         Bullets = new List<Bullet>();

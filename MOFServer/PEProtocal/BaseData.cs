@@ -560,6 +560,8 @@ namespace PEProtocal
         public float BulletSpeed { get; set; }
         [ProtoMember(31, IsRequired = false)]
         public int Buff { get; set; }
+        [ProtoMember(32, IsRequired = false)]
+        public Dictionary<string, float[]> AniScale { get; set; }
     }
     [ProtoContract]
     public class SkillEffect

@@ -64,11 +64,11 @@ public class Constants
             case PlayerAniType.HorizontalAttack2:
                 return 8;
             case PlayerAniType.DownAttack1:
-                return 6;
-            case PlayerAniType.DownAttack2:
-                return 6;
-            case PlayerAniType.DaggerAttack:
                 return 8;
+            case PlayerAniType.DownAttack2:
+                return 8;
+            case PlayerAniType.DaggerAttack:
+                return 9;
             case PlayerAniType.BowAttack:
                 return 6;
             case PlayerAniType.ClericAttack:

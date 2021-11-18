@@ -923,6 +923,19 @@ public class ResSvc : MonoBehaviour
                     AniOffset["Shoot"][i] = AniOffset_Shoot[i].n;
                     AniOffset["Target"][i] = AniOffset_Target[i].n;
                 }
+                Dictionary<string, float[]> AniScale = new Dictionary<string, float[]>();
+                var AniScale_Self = Skill["AniScale"]["Self"].list;
+                var AniScale_Shoot = Skill["AniScale"]["Shoot"].list;
+                var AniScale_Target = Skill["AniScale"]["Target"].list;
+                AniScale.Add("Self", new float[3]);
+                AniScale.Add("Shoot", new float[3]);
+                AniScale.Add("Target", new float[3]);
+                for (int i = 0; i < 3; i++)
+                {
+                    AniScale["Self"][i] = AniScale_Self[i].n;
+                    AniScale["Shoot"][i] = AniScale_Shoot[i].n;
+                    AniScale["Target"][i] = AniScale_Target[i].n;
+                }
                 Dictionary<string, string> Sound = new Dictionary<string, string>();
                 Sound.Add("Cast", Skill["Sound"]["Cast"].str);
                 Sound.Add("Hit", Skill["Sound"]["Hit"].str);
@@ -975,7 +988,8 @@ public class ResSvc : MonoBehaviour
                     LockTime = LockTime,
                     Icon = Icon,
                     BulletSpeed = BulletSpeed,
-                    Buff = Buff
+                    Buff = Buff,
+                    AniScale = AniScale
                 };
                 SkillDic.Add(ID, activeSkillInfo);
             }
