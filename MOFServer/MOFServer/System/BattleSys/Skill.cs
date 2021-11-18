@@ -78,6 +78,13 @@ public class Skill
                 return SkillResult.OutOfMP;
             }
         }
+        if (this.Owner is MOFCharacter)
+        {
+            if (((MOFCharacter)this.Owner).player.HP < ActiveInfo.Hp[this.Level - 1])
+            {
+                return SkillResult.OutOfHP;
+            }
+        }
         //if (!CheckRange(ActiveInfo.Shape, ActiveInfo.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target).nEntity.Position))
         //{
         //    return SkillResult.OutOfRange;
@@ -91,6 +98,8 @@ public class Skill
         SkillResult result = CanCast(context);
         if (result == SkillResult.OK)
         {
+            this.Owner.MinusMP(active.MP[this.Level-1]);
+            this.Owner.MinusHP(active.Hp[this.Level - 1]);
             //回傳技能釋放結果
             ProtoMsg msg = new ProtoMsg
             {
@@ -99,13 +108,12 @@ public class Skill
                 {
                     CastInfo = castInfo,
                     Result = context.Result,
-                    ErrorMsg = context.Result.ToString()
+                    ErrorMsg = context.Result.ToString(),
+                    HP = this.Owner.nEntity.HP,
+                    MP = this.Owner.nEntity.MP
                 }
             };
-            if (castInfo.CasterType == SkillCasterType.Player)
-            {
 
-            }
             this.Owner.mofMap.BroadCastMassege(msg);
 
             //開始釋放           

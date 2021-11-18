@@ -808,3 +808,20 @@ public class ManufactureSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class RunSender : BaseSender
+{
+    public RunSender()
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 61,
+            runOperation = new RunOperation
+            {
+                CharacterName = GameRoot.Instance.ActivePlayer.Name,
+                IsRun = !PlayerInputController.Instance.entityController.IsRun
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

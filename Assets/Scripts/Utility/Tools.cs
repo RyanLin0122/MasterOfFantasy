@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Reflection;
-
+using PEProtocal;
 public static class MyExtension
 {
     public static T[] GetComponentsInRealChildren<T>(this GameObject go)
@@ -1032,5 +1032,36 @@ public class Tools
                 dic.Add(key, value);
             }
         }
+    }
+
+    public static string SkillResult2String(SkillResult skillResult)
+    {
+        string r = "";
+        switch (skillResult)
+        {
+            case SkillResult.OK:
+                return "可以釋放";
+            case SkillResult.CoolDown:
+                return "該技能冷卻中";
+            case SkillResult.WeaponInvalid:
+                return "裝備的武器無法使用該技能";
+            case SkillResult.TargetInvalid:
+                return "攻擊對象無效";
+            case SkillResult.Delay:
+                return "技能延遲中";
+            case SkillResult.OutOfMP:
+                return "MP不足，無法使用該技能";
+            case SkillResult.OutOfHP:
+                return "HP不足，無法使用該技能";
+            case SkillResult.Invalid:
+                return "無法使用該技能";
+            case SkillResult.Casting:
+                return "技能施放中";
+            case SkillResult.OutOfRange:
+                return "對象不在攻擊範圍內";
+            default:
+                break;
+        }
+        return r;
     }
 }

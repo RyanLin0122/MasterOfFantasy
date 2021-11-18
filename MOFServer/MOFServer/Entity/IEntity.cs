@@ -33,11 +33,19 @@ public class Entity : IEntity
         buffManager = new BuffManager(this);
         effectManager = new EffectManager(this);
     }
-    internal virtual void DoDamage(DamageInfo damage)
+    public virtual void DoDamage(DamageInfo damage)
+    {
+
+    }
+    public virtual void MinusMP(int MinusMP)
     {
 
     }
 
+    public virtual void MinusHP(int MinusHP)
+    {
+
+    }
     internal double Distance(NVector3 pos)
     {
         return Math.Sqrt(Math.Pow(this.nEntity.Position.X - pos.X, 2) + Math.Pow(this.nEntity.Position.Y - pos.Y, 2));

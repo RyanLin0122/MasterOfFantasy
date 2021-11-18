@@ -76,9 +76,11 @@ public class MOFMap
 
                 //蒐集所有人資料
                 List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
+                List<NEntity> PlayerEntities = new List<NEntity>();
                 foreach (var chr in characters.Values)
                 {
                     PlayerCollection.Add(chr.trimedPlayer);
+                    PlayerEntities.Add(chr.nEntity);
                 }
                 //指定物理計算機
                 if (characters.Count == 1) //代表地圖只有一個人
@@ -110,7 +112,8 @@ public class MOFMap
                         MapID = mapid,
                         Position = msg.enterGameReq.Position,
                         weather = this.weather,
-                        Monsters = mons
+                        Monsters = mons,
+                        MapPlayerEntities = PlayerEntities
                     }
                 };
                 session.WriteAndFlush(outmsg);
@@ -136,9 +139,11 @@ public class MOFMap
             characters[CharacterName].MoveState = 3;
             //蒐集所有人資料
             List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
+            List<NEntity> PlayerEntities = new List<NEntity>();
             foreach (var chr in characters.Values)
             {
                 PlayerCollection.Add(chr.trimedPlayer);
+                PlayerEntities.Add(chr.nEntity);
             }
             //指定物理計算機
             if (characters.Count == 1) //代表地圖只有一個人
@@ -171,7 +176,9 @@ public class MOFMap
                     Position = msg.toOtherMapReq.Position,
                     weather = this.weather,
                     Monsters = mons,
-                    CharacterName = msg.toOtherMapReq.CharacterName
+                    CharacterName = msg.toOtherMapReq.CharacterName,
+                    MapPlayerEntities = PlayerEntities
+                    
                 }
             };
             session.WriteAndFlush(outmsg);
@@ -191,7 +198,8 @@ public class MOFMap
                     addMapPlayer = new AddMapPlayer
                     {
                         MapID = mapid,
-                        NewPlayer = player
+                        NewPlayer = player,
+                        nEntity = characters[player.Name].nEntity
                     }
                 };
                 byte[] result;

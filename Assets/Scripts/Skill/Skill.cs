@@ -159,7 +159,7 @@ public class Skill
         }
         else
         {
-            UISystem.Instance.AddMessageQueue(result.ToString());
+            UISystem.Instance.AddMessageQueue(Tools.SkillResult2String(result));
         }
     }
 

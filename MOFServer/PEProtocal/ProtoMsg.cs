@@ -65,8 +65,10 @@ namespace PEProtocal
         ///55:SkillResponce 放技能回應
         ///56:LearnSkill 學技能
         ///57:HotKey 快捷鍵相關
-        ///
+        ///58:ManufactureReq製作請求
+        ///59:ManufactureRsp製作回應
         ///60:SkillHitResponse 技能命中回應
+        ///61:RunOperation 跑步
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -210,6 +212,11 @@ namespace PEProtocal
         public ManufactureRequest manufactureRequest { get; set; }
         [ProtoMember(71, IsRequired = false)]
         public ManufactureResponse manufactureResponse { get; set; }
+        [ProtoMember(72, IsRequired = false)]
+        public RunOperation runOperation { get; set; }
+
+
+
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -573,6 +580,8 @@ namespace PEProtocal
         public WeatherType weather { get; set; }
         [ProtoMember(6, IsRequired = false)]
         public Dictionary<int, SerializedMonster> Monsters { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public List<NEntity> MapPlayerEntities { get; set; }
     };
 
     //地圖增加一名玩家通知
@@ -583,6 +592,8 @@ namespace PEProtocal
         public TrimedPlayer NewPlayer { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public int MapID { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public NEntity nEntity { get; set; }
     }
 
     //移動同步
@@ -629,6 +640,8 @@ namespace PEProtocal
         public Dictionary<int, SerializedMonster> Monsters { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public string CharacterName { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public List<NEntity> MapPlayerEntities { get; set; }
     };
 
     //地圖移除一名玩家通知
@@ -1528,8 +1541,10 @@ namespace PEProtocal
         public string ErrorMsg { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public SkillCastInfo CastInfo { get; set; }
-        //[ProtoMember(4, IsRequired = false)]
-        //public DamageInfo[] Damage { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int MP { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int HP { get; set; }
     }
 
     [ProtoContract]
@@ -1571,4 +1586,14 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public Dictionary<int, Item> GetItem { get; set; }
     }
+
+    [ProtoContract]
+    public class RunOperation 
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool IsRun { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string CharacterName { get; set; }
+    }
+        
 }

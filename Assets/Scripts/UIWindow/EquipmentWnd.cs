@@ -420,7 +420,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void ProcessEquipmentOperation(EquipmentOperation eo)
     {
-        if (eo.PlayerName == GameRoot.Instance.ActivePlayer.Name)
+        if (eo.PlayerName == GameRoot.Instance.ActivePlayer.Name) //本人換裝
         {
             Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
             if (nk == null)
@@ -446,7 +446,7 @@ public class EquipmentWnd : Inventory, IStackWnd
 
             switch (eo.OperationType)
             {
-                case 1:
+                case 1: //穿裝進空格
                     if (!eo.PutOnEquipment.IsCash)
                     {
                         nk.Remove(eo.KnapsackPosition);
@@ -467,7 +467,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     }
                     PutOn(eo.PutOnEquipment);
                     PutOnRing(eo.EquipmentPosition, eo.PutOnEquipment);
-                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
+                    
                     if (eo.EquipmentPosition != 5)
                     {
                         UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
@@ -475,13 +475,9 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }
-                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                    UISystem.Instance.InfoWnd.SetIllustration();
+                    }                   
                     break;
-                case 2:
+                case 2: //穿裝+脫裝
                     if (!eo.PutOnEquipment.IsCash)
                     {
                         nk[eo.KnapsackPosition] = eo.PutOffEquipment;
@@ -505,7 +501,6 @@ public class EquipmentWnd : Inventory, IStackWnd
                     DestroyImmediate(FindEquipmentSlot(eo.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);
                     PutOn(eo.PutOnEquipment);
                     PutOnRing(eo.EquipmentPosition, eo.PutOnEquipment);
-                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
                     if (eo.EquipmentPosition != 5)
                     {
                         UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
@@ -513,13 +508,9 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }
-                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                    UISystem.Instance.InfoWnd.SetIllustration();
+                    }                    
                     break;
-                case 3:
+                case 3: //脫裝進空格
                     if (!eo.PutOffEquipment.IsCash)
                     {
                         nk.Add(eo.KnapsackPosition, eo.PutOffEquipment);
@@ -540,19 +531,20 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }
-                    SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-                    SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-                    PlayChanegeEquipmentAudio(eo.EquipmentPosition);
-                    illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-                    UISystem.Instance.InfoWnd.SetIllustration();
+                    }                   
                     break;
             }
+            PlayChanegeEquipmentAudio(eo.EquipmentPosition);
+            SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
+            SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+            illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
+            UISystem.Instance.InfoWnd.SetIllustration();
             BattleSys.Instance.InitAllAtribute();
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
             GameRoot.Instance.MainPlayerControl.SetNameBox();
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
-        } //本人換裝
+        } 
         else //其他人換裝
         {
             if (eo.OtherPlayerEquipments == null) return;

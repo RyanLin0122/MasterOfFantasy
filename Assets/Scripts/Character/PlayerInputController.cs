@@ -175,6 +175,10 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
         }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            new RunSender();
+        }
         if (hotKeySlot != null)
         {
             var dict = Instance.entityController.SkillDict;

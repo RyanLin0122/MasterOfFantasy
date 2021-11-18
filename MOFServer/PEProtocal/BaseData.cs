@@ -648,6 +648,8 @@ namespace PEProtocal
         [ProtoEnum]
         OutOfMP,
         [ProtoEnum]
+        OutOfHP,
+        [ProtoEnum]
         Invalid,
         [ProtoEnum]
         Casting,

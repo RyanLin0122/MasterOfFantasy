@@ -252,7 +252,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     ManufactureHandler manufactureHandler = new ManufactureHandler();
                     Task ManufactureTask = manufactureHandler.ProcessMsgAsync(msg, session);
                     break;
-
+                case 61: //跑步請求
+                    RunHandler runHandler = new RunHandler();
+                    Task RunTask = runHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

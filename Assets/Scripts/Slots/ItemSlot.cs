@@ -134,7 +134,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
                 QualityStr = "VI";
                 break;
         }
-        //Result += item.Position;
+        Result += item.Position;
         //Result += "\n";
         //Result += item.Count;
         //Result += "\n";

@@ -90,12 +90,6 @@ public class ScreenController : MonoBehaviour
                 }
 
             }
-
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                print(MessageBox.IsMessageBox);
-            }
-
             if (Input.GetKeyDown(KeyCode.L))
             {
                 UISystem.Instance.baseUI.AddExp(100000000);
@@ -120,7 +114,7 @@ public class ScreenController : MonoBehaviour
             {
                 EquipmentWnd.Instance.KeyBoardCommand();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 UISystem.Instance.OpenLearnSkillUI();
             }
@@ -135,12 +129,6 @@ public class ScreenController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S))
             {
                 SkillSys.Instance.skillWnd.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/LightingS"))).GetComponent<Transform>();
-                go.SetParent(PlayerInputController.Instance.entityController.transform);
-                go.localPosition = new Vector3(0,-34.11f,0);
             }
         }
         if (Input.GetKeyDown(KeyCode.Home)) //截圖

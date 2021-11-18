@@ -45,7 +45,21 @@ public class MOFCharacter : Entity
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        BasicAttribute.RunSpeed = 200;
+        if (this.nEntity != null)
+        {
+            if (nEntity.IsRun)
+            {
+                BasicAttribute.RunSpeed = 200;
+            }
+            else
+            {
+                BasicAttribute.RunSpeed = 120;
+            }
+        }
+        else
+        {
+            BasicAttribute.RunSpeed = 120;
+        }
         BasicAttribute.AttRange = 0;
         BasicAttribute.AttDelay = 0;
         BasicAttribute.ExpRate = 1;
@@ -603,7 +617,12 @@ public class MOFCharacter : Entity
             FaceDirection = true,
             Position = new NVector3(position[0], position[1], 200),
             Type = EntityType.Player,
-            Direction = new NVector3(1, 0, 0)
+            Direction = new NVector3(1, 0, 0),
+            HP = player.HP,
+            MP = player.MP,
+            MaxHP = (int)FinalAttribute.MAXHP,
+            MaxMP = (int)FinalAttribute.MAXMP,
+            IsRun = false
         };
         this.channel = channel;
         this.session = session;
@@ -627,6 +646,28 @@ public class MOFCharacter : Entity
         this.buffManager.Update();
     }
 
+    public override void MinusMP(int MinusMP)
+    {
+        int MP = this.player.MP - MinusMP;
+        if(MP <= 0)
+        {
+            MP = 0;
+        }
+        this.player.MP = MP;
+        this.trimedPlayer.MP = MP;
+        this.nEntity.MP = MP;
+    }
+    public override void MinusHP(int MinusHP)
+    {
+        int HP = this.player.HP - MinusHP;
+        if (HP <= 0)
+        {
+            HP = 0;
+        }
+        this.player.HP = HP;
+        this.trimedPlayer.HP = HP;
+        this.nEntity.HP = HP;
+    }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {
         player.Att += ap.Att;

@@ -52,6 +52,16 @@ namespace PEProtocal
         public float Speed { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public bool FaceDirection { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int HP{ get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int MP{ get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public int MaxHP { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public int MaxMP { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public bool IsRun { get; set; }
     }
 
     [ProtoContract(EnumPassthru = false)]

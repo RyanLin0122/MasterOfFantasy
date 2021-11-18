@@ -62,25 +62,20 @@ public class MainCitySys : SystemRoot
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
 
-            //加載主角
-            LoadPlayer(GameRoot.Instance.ActivePlayer.Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
-            BattleSys.Instance.InitMyBuff();
-            UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
-            UISystem.Instance.Knapsack.ReadItems();
-            UISystem.Instance.mGFWnd.CateForFormula();
-            //打開主UI
-            UISystem.Instance.baseUI.SetWndState();
-            UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            //加載其他人
+            //加載角色
             try
             {
                 if (rsp.MapPlayers.Count != 0)
                 {
-                    foreach (var player in rsp.MapPlayers)
+                    for (int i = 0; i < rsp.MapPlayers.Count; i++)
                     {
-                        if (player.Name != GameRoot.Instance.ActivePlayer.Name)
+                        if (rsp.MapPlayers[i].Name != GameRoot.Instance.ActivePlayer.Name)
                         {
-                            AddPlayerToMap(player);
+                            AddPlayerToMap(rsp.MapPlayers[i], rsp.MapPlayerEntities[i]);
+                        }
+                        else
+                        {
+                            LoadPlayer(rsp.MapPlayers[i].Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]), rsp.MapPlayerEntities[i]);
                         }
                     }
                 }
@@ -89,6 +84,13 @@ public class MainCitySys : SystemRoot
             {
                 Debug.Log(e.ToString());
             }
+            BattleSys.Instance.InitMyBuff();
+            UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
+            UISystem.Instance.Knapsack.ReadItems();
+            UISystem.Instance.mGFWnd.CateForFormula();
+            //打開主UI
+            UISystem.Instance.baseUI.SetWndState();
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();            
             UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
@@ -124,21 +126,20 @@ public class MainCitySys : SystemRoot
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
             NewLocation = ResSvc.Instance.GetMapCfgData(rsp.MapID).Location;
 
-            //加載主角
-            LoadPlayer(GameRoot.Instance.ActivePlayer.Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]));
-            UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            //打開主UI
-            UISystem.Instance.baseUI.SetWndState();
-            //加載其他人
+            //加載角色
             try
             {
                 if (rsp.MapPlayers.Count != 0)
                 {
-                    foreach (var player in rsp.MapPlayers)
+                    for (int i = 0; i < rsp.MapPlayers.Count; i++)
                     {
-                        if (player.Name != GameRoot.Instance.ActivePlayer.Name)
+                        if (rsp.MapPlayers[i].Name != GameRoot.Instance.ActivePlayer.Name)
                         {
-                            AddPlayerToMap(player);
+                            AddPlayerToMap(rsp.MapPlayers[i], rsp.MapPlayerEntities[i]);
+                        }
+                        else
+                        {
+                            LoadPlayer(rsp.MapPlayers[i].Name, mapData, new Vector2(rsp.Position[0], rsp.Position[1]), rsp.MapPlayerEntities[i]);
                         }
                     }
                 }
@@ -147,6 +148,9 @@ public class MainCitySys : SystemRoot
             {
                 Debug.Log(e.ToString());
             }
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
+            //打開主UI
+            UISystem.Instance.baseUI.SetWndState();
             UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
             LoadBGM(rsp.MapID);
@@ -250,7 +254,7 @@ public class MainCitySys : SystemRoot
         */
     }
     #region 加載角色
-    private void LoadPlayer(string PlayerName, MapCfg mapData, Vector2 position) //傳點傳送
+    private void LoadPlayer(string PlayerName, MapCfg mapData, Vector2 position, NEntity nEntity) //傳點傳送
     {
         Camera mainCam = Camera.main;
         MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
@@ -263,18 +267,10 @@ public class MainCitySys : SystemRoot
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
         mainPlayerCtrl.SetNameBox();
         PlayerInputController.Instance.Init(
-            new NEntity
-            {
-                FaceDirection = true,
-                Speed = 200,
-                Direction = new NVector3(1, 0, 0),
-                EntityName = GameRoot.Instance.ActivePlayer.Name,
-                Id = -0,
-                Position = new NVector3(position.x, position.y, 0),
-                Type = EntityType.Player
-            },
+            nEntity,
             mainPlayerCtrl
         );
+        mainPlayerCtrl.IsRun = nEntity.IsRun;
         BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
@@ -294,7 +290,7 @@ public class MainCitySys : SystemRoot
     }
 
 
-    public void AddPlayerToMap(TrimedPlayer add)
+    public void AddPlayerToMap(TrimedPlayer add, NEntity nEntity)
     {
         if (add.Name != GameRoot.Instance.ActivePlayer.Name)
         {
@@ -307,16 +303,8 @@ public class MainCitySys : SystemRoot
             BattleSys.Instance.InitAllAtribute();
             OtherPlayerCtrl.Init();
             OtherPlayerCtrl.entity = new Character
-            (new NEntity
-            {
-                FaceDirection = true,
-                Speed = BattleSys.Instance.FinalAttribute.RunSpeed,
-                Direction = new NVector3(1, 0, 0),
-                EntityName = add.Name,
-                Id = -0,
-                Position = new NVector3(add.Position[0], add.Position[1], 200f),
-                Type = EntityType.Player
-            });
+            (nEntity);
+            OtherPlayerCtrl.IsRun = nEntity.IsRun;
             SkillSys.Instance.InitPlayerSkills(add, OtherPlayerCtrl);
             BattleSys.Instance.Players.Add(OtherPlayerCtrl.Name, OtherPlayerCtrl);
             GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;

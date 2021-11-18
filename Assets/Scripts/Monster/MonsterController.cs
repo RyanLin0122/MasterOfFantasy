@@ -952,7 +952,6 @@ namespace NodeCanvas.Tasks.Actions
             {
                 Tools.Log("ai.MonsterDeath()");
                 ai.MonsterDeath();
-                BattleSys.Instance.ClearTarget();
             }
             EndAction();
         }

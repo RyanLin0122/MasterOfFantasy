@@ -44,7 +44,24 @@ public class BattleSys : SystemRoot
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        BasicAttribute.RunSpeed = 200;
+        if (PlayerInputController.Instance.entityController.entity.entityData != null)
+        {
+            if (PlayerInputController.Instance.entityController.entity.entityData.IsRun)
+            {
+                BasicAttribute.RunSpeed = 200;
+                PlayerInputController.Instance.entityController.IsRun = true;
+            }
+            else
+            {
+                BasicAttribute.RunSpeed = 120;
+                PlayerInputController.Instance.entityController.IsRun = false;
+            }
+        }
+        else
+        {
+            BasicAttribute.RunSpeed = 120;
+            PlayerInputController.Instance.entityController.IsRun = false;
+        }
         BasicAttribute.AttRange = 0;
         BasicAttribute.AttDelay = 0;
         BasicAttribute.ExpRate = 1;
@@ -829,18 +846,24 @@ public class BattleSys : SystemRoot
             SkillCastResponse scr = msg.skillCastResponse;
             if (scr.Result != SkillResult.OK)
             {
-                print("技能釋放失敗: " + scr.Result.ToString());
+                print("技能釋放失敗: " + Tools.SkillResult2String(scr.Result));
             }
             else
             {
                 if (scr.CastInfo.CasterType == SkillCasterType.Player)
                 {
-                    if (scr.CastInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
+                    if (scr.CastInfo.CasterName == GameRoot.Instance.ActivePlayer.Name) //主角
                     {
                         PlayerController mainPlayerController = PlayerInputController.Instance.entityController;
                         if (mainPlayerController != null)
                         {
                             Skill skill = null;
+                            mainPlayerController.entity.entityData.HP = scr.HP;
+                            mainPlayerController.entity.entityData.MP = scr.MP;                           
+                            GameRoot.Instance.ActivePlayer.HP = scr.HP;
+                            GameRoot.Instance.ActivePlayer.MP = scr.MP;
+                            mainPlayerController.SetHpBar((int)FinalAttribute.MAXHP);
+                            UISystem.Instance.InfoWnd.RefreshIInfoUI();
                             mainPlayerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
                             if (skill != null)
                             {
@@ -856,13 +879,16 @@ public class BattleSys : SystemRoot
                             print("找不到角色控制器");
                         }
                     }
-                    else
+                    else //其他人
                     {
                         PlayerController playerController = null;
                         Players.TryGetValue(scr.CastInfo.CasterName, out playerController);
                         if (playerController != null)
                         {
                             Skill skill = null;
+                            playerController.entity.entityData.HP = scr.HP;
+                            playerController.entity.entityData.MP = scr.MP;
+                            playerController.SetHpBar((int)FinalAttribute.MAXHP, scr.HP);
                             playerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
                             if (skill != null)
                             {
@@ -891,7 +917,7 @@ public class BattleSys : SystemRoot
     }
     public void ProcessSkillHitResponse(ProtoMsg msg)
     {
-        Debug.Log("收到技能Hit信息");
+        Debug.Log("收到技能Hit或Buff信息");
         SkillHitResponse shr = msg.skillHitResponse;
         if (shr != null)
         {
@@ -986,6 +1012,8 @@ public class BattleSys : SystemRoot
         }
     }
     #endregion
+
+    #region 生怪相關
     public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
     {
         if (mons.Count > 0)
@@ -1026,6 +1054,113 @@ public class BattleSys : SystemRoot
         Monsters[MapMonsterID].Init(ResSvc.Instance.MonsterInfoDic[MonsterID], MapMonsterID);
     }
 
+    public void ClearMonsters()
+    {
+        Monsters = new Dictionary<int, MonsterController>();
+    }
+    #endregion
+
+    //同步地圖中的Entity移動之類
+    internal void UpdateEntity(EntityEvent entityEvent, NEntity nEntity)
+    {
+        if (nEntity == null) return;
+        if (nEntity.Type == EntityType.Player)
+        {
+            if (nEntity.EntityName != GameRoot.Instance.ActivePlayer.Name)
+            {
+                if (Players.ContainsKey(nEntity.EntityName))
+                {
+                    Players[nEntity.EntityName].entity.entityData = nEntity;
+                    Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
+                    Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
+                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);
+                }
+            }
+        }
+        else if (nEntity.Type == EntityType.Monster)
+        {
+
+        }
+    }
+    public void ProcessRunResponse(ProtoMsg msg)
+    {
+        RunOperation ro = msg.runOperation;
+        if (ro != null)
+        {
+            if(ro.CharacterName== GameRoot.Instance.ActivePlayer.Name)
+            {
+                PlayerInputController.Instance.entityController.IsRun = ro.IsRun;
+                PlayerInputController.Instance.entityController.entity.entityData.IsRun = ro.IsRun;
+                InitAllAtribute();
+            }
+            else
+            {
+                PlayerController controller = null;
+                if(Players.TryGetValue(ro.CharacterName, out controller))
+                {
+                    controller.IsRun = ro.IsRun;
+                    controller.entity.entityData.IsRun = ro.IsRun;
+                }
+            }
+        }
+    }
+    public void RefreshMonster()
+    {
+        if (MapCanvas != null)
+        {
+            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
+            if (ais.Length > 0)
+            {
+                Monsters.Clear();
+                foreach (var ai in ais)
+                {
+                    Monsters.Add(ai.MapMonsterID, ai);
+                }
+            }
+        }
+    }
+
+    public void ClearBugMonster()
+    {
+        if (MapCanvas != null)
+        {
+            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
+            if (ais.Length > 0)
+            {
+                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath", true);
+            }
+        }
+    }
+
+    #region MyBuff UI
+    public Dictionary<int, BuffIcon> MyBuff;
+    public void InitMyBuff()
+    {
+        MyBuff = new Dictionary<int, BuffIcon>();
+    }
+    public void AddBuffIcon(int BuffID, Sprite IconSprite, float Duration)
+    {
+        Transform Container = UISystem.Instance.BuffIconsContainer;
+        if (Container != null)
+        {
+            BuffIcon buffIcon = GameObject.Instantiate(Resources.Load("Prefabs/BuffIcon") as GameObject).GetComponent<BuffIcon>();
+            buffIcon.SetBuffIcon(BuffID, IconSprite, Duration);
+            buffIcon.transform.SetParent(UISystem.Instance.BuffIconsContainer);
+            buffIcon.transform.localScale = Vector3.one;
+            BuffIcon LastBuff = null;
+            MyBuff.TryGetValue(BuffID, out LastBuff);
+            if (LastBuff != null)
+            {
+                LastBuff.Stopped = true;
+                LastBuff.OnRemove();
+            }
+            MyBuff[BuffID] = buffIcon;
+        }
+    }
+
+    #endregion
+
+    #region 舊時代東西
     public void CommonAttack(int MapMonsterID)
     {
         Random.InitState(Guid.NewGuid().GetHashCode());
@@ -1137,11 +1272,6 @@ public class BattleSys : SystemRoot
         }
     }
 
-    public void AddPlayerAction()
-    {
-
-    }
-
     public void MonsterDeath(MonsterDeath md)
     {
         if (md.MonsterID != null)
@@ -1160,93 +1290,6 @@ public class BattleSys : SystemRoot
         }
 
     }
-
-    public void ClearTarget()
-    {
-        CurrentTarget = null;
-    }
-
-    public void ClearMonsters()
-    {
-        Monsters = new Dictionary<int, MonsterController>();
-    }
-
-    internal void UpdateEntity(EntityEvent entityEvent, NEntity nEntity)
-    {
-        if (nEntity == null) return;
-        if (nEntity.Type == EntityType.Player)
-        {
-            if (nEntity.EntityName != GameRoot.Instance.ActivePlayer.Name)
-            {
-                if (Players.ContainsKey(nEntity.EntityName))
-                {
-                    Players[nEntity.EntityName].entity.entityData = nEntity;
-                    Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
-                    Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
-                    Players[nEntity.EntityName].OnEntityEvent(entityEvent);
-                }
-            }
-        }
-        else if (nEntity.Type == EntityType.Monster)
-        {
-
-        }
-    }
-
-    public void RefreshMonster()
-    {
-        if (MapCanvas != null)
-        {
-            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
-            if (ais.Length > 0)
-            {
-                Monsters.Clear();
-                foreach (var ai in ais)
-                {
-                    Monsters.Add(ai.MapMonsterID, ai);
-                }
-            }
-        }
-    }
-
-    public void ClearBugMonster()
-    {
-        if (MapCanvas != null)
-        {
-            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
-            if (ais.Length > 0)
-            {
-                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath", true);
-            }
-        }
-    }
-
-    #region MyBuff UI
-    public Dictionary<int, BuffIcon> MyBuff;
-    public void InitMyBuff()
-    {
-        MyBuff = new Dictionary<int, BuffIcon>();
-    }
-    public void AddBuffIcon(int BuffID, Sprite IconSprite, float Duration)
-    {
-        Transform Container = UISystem.Instance.BuffIconsContainer;
-        if (Container != null)
-        {
-            BuffIcon buffIcon = GameObject.Instantiate(Resources.Load("Prefabs/BuffIcon") as GameObject).GetComponent<BuffIcon>();
-            buffIcon.SetBuffIcon(BuffID, IconSprite, Duration);
-            buffIcon.transform.SetParent(UISystem.Instance.BuffIconsContainer);
-            buffIcon.transform.localScale = Vector3.one;
-            BuffIcon LastBuff = null;
-            MyBuff.TryGetValue(BuffID, out LastBuff);
-            if (LastBuff != null)
-            {
-                LastBuff.Stopped = true;
-                LastBuff.OnRemove();
-            }
-            MyBuff[BuffID] = buffIcon;
-        }
-    }
-
     #endregion
 }
 

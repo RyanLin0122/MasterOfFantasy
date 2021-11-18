@@ -133,9 +133,16 @@ public class PlayerController : EntityController
     }
     #endregion
 
-    public void SetHpBar(int FinalMaxHp)
+    public void SetHpBar(int FinalMaxHp, int HP = -1)
     {
-        HpBar.fillAmount = (float)(((double)GameRoot.Instance.ActivePlayer.HP) / FinalMaxHp);
+        if (HP != -1)
+        {
+            HpBar.fillAmount = (float)HP / FinalMaxHp;
+        }
+        else
+        {
+            HpBar.fillAmount = (float)GameRoot.Instance.ActivePlayer.HP / FinalMaxHp;
+        }
     }
     #region Dust
     public void ChangeDustSprite(int CapeID)

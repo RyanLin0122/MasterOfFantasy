@@ -38,11 +38,11 @@ public class EquipmentHandler : GameHandler
                     //刪背包
                 if (eo.PutOnEquipment.IsCash)
                 {
-                    nk.Remove(eo.KnapsackPosition);
+                    ck.Remove(eo.KnapsackPosition);
                 }
                 else
                 {
-                    ck.Remove(eo.KnapsackPosition);
+                    nk.Remove(eo.KnapsackPosition);
                 }
                 if (eo.EquipmentPosition != 5)
                 {

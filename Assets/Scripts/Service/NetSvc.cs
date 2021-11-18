@@ -161,7 +161,9 @@ public class NetSvc : MonoBehaviour
             case 60:
                 DoSkillHitResponse(msg);
                 break;
-
+            case 61:
+                DoRunResponse(msg);
+                break;
 
         }
     }
@@ -241,7 +243,7 @@ public class NetSvc : MonoBehaviour
     {
         if (msg.addMapPlayer.MapID == GameRoot.Instance.ActivePlayer.MapID)
         {
-            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer);
+            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer,msg.addMapPlayer.nEntity);
         }
 
     }
@@ -257,7 +259,7 @@ public class NetSvc : MonoBehaviour
     {
         if (msg.addMapPlayer.MapID == GameRoot.Instance.ActivePlayer.MapID)
         {
-            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer);
+            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer, msg.addMapPlayer.nEntity);
         }
     }
     public void DoAddProperty(ProtoMsg msg)
@@ -602,5 +604,10 @@ public class NetSvc : MonoBehaviour
     public void DoSkillHitResponse(ProtoMsg msg)
     {
         BattleSys.Instance.ProcessSkillHitResponse(msg);
+    }
+
+    public void DoRunResponse(ProtoMsg msg)
+    {
+        BattleSys.Instance.ProcessRunResponse(msg);
     }
 }
