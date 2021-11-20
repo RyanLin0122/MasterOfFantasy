@@ -1536,15 +1536,7 @@ namespace PEProtocal
     public class SkillCastResponse
     {
         [ProtoMember(1, IsRequired = false)]
-        public SkillResult Result { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public string ErrorMsg { get; set; }
-        [ProtoMember(3, IsRequired = false)]
-        public SkillCastInfo CastInfo { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public int MP { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public int HP { get; set; }
+        public List<SkillCastInfo> CastInfos { get; set; }
     }
 
     [ProtoContract]
@@ -1588,12 +1580,12 @@ namespace PEProtocal
     }
 
     [ProtoContract]
-    public class RunOperation 
+    public class RunOperation
     {
         [ProtoMember(1, IsRequired = false)]
         public bool IsRun { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public string CharacterName { get; set; }
     }
-        
+
 }

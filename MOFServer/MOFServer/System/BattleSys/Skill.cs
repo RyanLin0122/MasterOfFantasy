@@ -98,24 +98,14 @@ public class Skill
         SkillResult result = CanCast(context);
         if (result == SkillResult.OK)
         {
-            this.Owner.MinusMP(active.MP[this.Level-1]);
+            this.Owner.MinusMP(active.MP[this.Level - 1]);
             this.Owner.MinusHP(active.Hp[this.Level - 1]);
             //回傳技能釋放結果
-            ProtoMsg msg = new ProtoMsg
-            {
-                MessageType = 55,
-                skillCastResponse = new SkillCastResponse
-                {
-                    CastInfo = castInfo,
-                    Result = context.Result,
-                    ErrorMsg = context.Result.ToString(),
-                    HP = this.Owner.nEntity.HP,
-                    MP = this.Owner.nEntity.MP
-                }
-            };
-
-            this.Owner.mofMap.BroadCastMassege(msg);
-
+            castInfo.Result = context.Result;
+            castInfo.ErrorMsg = context.Result.ToString();
+            castInfo.HP = this.Owner.nEntity.HP;
+            castInfo.MP = this.Owner.nEntity.MP;
+            context.Battle.AddSkillCastInfo(castInfo);
             //開始釋放           
             this.CastingTime = 0;
             this.SkillTime = 0;
@@ -427,7 +417,7 @@ public class Skill
                 //命中迴避
                 for (int i = 0; i < Damages.Length; i++)
                 {
-                    int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);                
+                    int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);
                     float d_AfterCritical = 0;
                     if (IsCritical) //計算是否爆擊
                     {

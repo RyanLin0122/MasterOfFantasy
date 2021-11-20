@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using PEProtocal;
-
+using System.Collections.Concurrent;
 public class Battle //戰鬥類，一個地圖綁定一個
 {
     private MOFMap mofMap;
-    private Queue<SkillCastInfo> Actions;
+    private ConcurrentQueue<SkillCastInfo> Actions;
     private Dictionary<string, Entity> AllPlayers;
     private Dictionary<int, Entity> AllMonsters;
     private Dictionary<int, Entity> DeathPool;
     private List<SkillHitInfo> Hits;
     private List<BuffInfo> BuffActions;
+    private List<SkillCastInfo> SkillCasts;
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -17,12 +18,17 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     public void Init()
     {
-        this.Actions = new Queue<SkillCastInfo>();
+        this.Actions = new ConcurrentQueue<SkillCastInfo>();
         this.AllPlayers = new Dictionary<string, Entity>();
         this.AllMonsters = new Dictionary<int, Entity>();
         this.DeathPool = new Dictionary<int, Entity>();
         this.Hits = new List<SkillHitInfo>();
         this.BuffActions = new List<BuffInfo>();
+        this.SkillCasts = new List<SkillCastInfo>();
+    }
+    public void AddSkillCastInfo(SkillCastInfo cast)
+    {
+        this.SkillCasts.Add(cast);
     }
     public void AddHitInfo(SkillHitInfo hit)
     {
@@ -32,17 +38,35 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         this.BuffActions.Add(buffInfo);
     }
+    //private readonly object QueueLock = new object();
     internal void Update()
     {
+        this.SkillCasts.Clear();
         this.Hits.Clear();
         this.BuffActions.Clear();
-        if (this.Actions.Count > 0)
+        if (this.Actions.Count > 0) //1幀只處理10個技能請求
         {
-            SkillCastInfo skillCast = this.Actions.Dequeue();
-            this.ExecuteAction(skillCast);
+            List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
+            for (int i = 0; i < this.Actions.Count; i++)
+            {
+                if (i >= 10) break;
+                SkillCastInfo skillCast = null;
+                this.Actions.TryDequeue(out skillCast);
+                if (skillCast != null)
+                {
+                    WillExecute.Add(skillCast);
+                }
+            }
+            if(WillExecute.Count > 0)
+            {
+                foreach (var skillCast in WillExecute)
+                {
+                    this.ExecuteAction(skillCast);
+                }
+            }           
         }
         this.UpdateUnits();
-        this.BroadcastHitMessages();
+        this.BroadcastBattleMessages();
     }
     private void UpdateUnits()
     {
@@ -254,11 +278,19 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
         return result;
     }
-    private void BroadcastHitMessages() 
+    private void BroadcastBattleMessages() 
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0) return;
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0) return;
+        SkillCastResponse skillCast = null;
         SkillHitResponse skillHit = null;
         BuffResponse buffRsp = null;
+        if(this.SkillCasts !=null && this.SkillCasts.Count > 0)
+        {
+            skillCast = new SkillCastResponse
+            {
+                CastInfos = this.SkillCasts
+            };
+        }
         if (this.Hits != null && this.Hits.Count > 0)
         {
             skillHit = new SkillHitResponse
@@ -274,11 +306,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 Buffs = this.BuffActions,
                 SkillResult = SkillResult.OK
             };
-        }      
+        }
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 60,
-
+            skillCastResponse = skillCast,
             skillHitResponse = skillHit,
             buffResponse = buffRsp
         };

@@ -711,6 +711,14 @@ namespace PEProtocal
         public int[] TargetID { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public float[] Position { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public SkillResult Result { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public int MP { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public int HP { get; set; }
     }
 
     [ProtoContract]
@@ -810,7 +818,7 @@ namespace PEProtocal
         SkillStart,
         OnHit
     }
-    
+
     [ProtoContract]
     public class ManuInfo
     {

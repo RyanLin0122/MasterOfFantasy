@@ -147,7 +147,7 @@ public class NetSvc : MonoBehaviour
                 DoStrengthenResponse(msg);
                 break;
             case 55:
-                DoSkillCastResponse(msg);
+
                 break;
             case 56:
                 DoLearnSkill(msg);
@@ -159,7 +159,7 @@ public class NetSvc : MonoBehaviour
                 DoManufactureResponse(msg);
                 break;
             case 60:
-                DoSkillHitResponse(msg);
+                DoBattleResponse(msg);
                 break;
             case 61:
                 DoRunResponse(msg);
@@ -596,14 +596,9 @@ public class NetSvc : MonoBehaviour
         MGFWnd.Instance.ProessManufactureResponse(msg.manufactureResponse);
     }
 
-    public void DoSkillCastResponse(ProtoMsg msg)
+    public void DoBattleResponse(ProtoMsg msg)
     {
-        BattleSys.Instance.ProcessSkillCastResponse(msg);
-    }
-
-    public void DoSkillHitResponse(ProtoMsg msg)
-    {
-        BattleSys.Instance.ProcessSkillHitResponse(msg);
+        BattleSys.Instance.ProcessBattleResponse(msg);
     }
 
     public void DoRunResponse(ProtoMsg msg)

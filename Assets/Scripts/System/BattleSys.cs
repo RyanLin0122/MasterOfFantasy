@@ -837,141 +837,21 @@ public class BattleSys : SystemRoot
 
     #endregion
 
-    #region 處理技能釋放回應
-    public void ProcessSkillCastResponse(ProtoMsg msg)
+    #region 處裡戰鬥回應
+    public void ProcessBattleResponse(ProtoMsg msg)
     {
-        print("受到技能響應");
-        if (msg.skillCastResponse != null)
+        Debug.Log("收到戰鬥回應");
+        SkillCastResponse scr = msg.skillCastResponse;
+        if (scr != null)
         {
-            SkillCastResponse scr = msg.skillCastResponse;
-            if (scr.Result != SkillResult.OK)
-            {
-                print("技能釋放失敗: " + Tools.SkillResult2String(scr.Result));
-            }
-            else
-            {
-                if (scr.CastInfo.CasterType == SkillCasterType.Player)
-                {
-                    if (scr.CastInfo.CasterName == GameRoot.Instance.ActivePlayer.Name) //主角
-                    {
-                        PlayerController mainPlayerController = PlayerInputController.Instance.entityController;
-                        if (mainPlayerController != null)
-                        {
-                            Skill skill = null;
-                            mainPlayerController.entity.entityData.HP = scr.HP;
-                            mainPlayerController.entity.entityData.MP = scr.MP;                           
-                            GameRoot.Instance.ActivePlayer.HP = scr.HP;
-                            GameRoot.Instance.ActivePlayer.MP = scr.MP;
-                            mainPlayerController.SetHpBar((int)FinalAttribute.MAXHP);
-                            UISystem.Instance.InfoWnd.RefreshIInfoUI();
-                            mainPlayerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
-                            if (skill != null)
-                            {
-                                skill.BeginCast(scr.CastInfo);
-                            }
-                            else
-                            {
-                                print("無此技能");
-                            }
-                        }
-                        else
-                        {
-                            print("找不到角色控制器");
-                        }
-                    }
-                    else //其他人
-                    {
-                        PlayerController playerController = null;
-                        Players.TryGetValue(scr.CastInfo.CasterName, out playerController);
-                        if (playerController != null)
-                        {
-                            Skill skill = null;
-                            playerController.entity.entityData.HP = scr.HP;
-                            playerController.entity.entityData.MP = scr.MP;
-                            playerController.SetHpBar((int)FinalAttribute.MAXHP, scr.HP);
-                            playerController.SkillDict.TryGetValue(scr.CastInfo.SkillID, out skill);
-                            if (skill != null)
-                            {
-                                skill.BeginCast(scr.CastInfo);
-                            }
-                            else //沒有就新建技能
-                            {
-                                playerController.SkillDict[scr.CastInfo.SkillID] = new Skill(ResSvc.Instance.SkillDic[scr.CastInfo.SkillID]);
-                                playerController.SkillDict[scr.CastInfo.SkillID].CD = 0;
-                                playerController.SkillDict[scr.CastInfo.SkillID].EntityController = playerController;
-                                playerController.SkillDict[scr.CastInfo.SkillID].Level = 1;
-                            }
-                        }
-                        else
-                        {
-                            print("無此角色");
-                        }
-                    }
-                }
-                else if (scr.CastInfo.CasterType == SkillCasterType.Monster)
-                {
-
-                }
-            }
+            Debug.Log("收到技能釋放消息");
+            OnCast(scr);
         }
-    }
-    public void ProcessSkillHitResponse(ProtoMsg msg)
-    {
-        Debug.Log("收到技能Hit或Buff信息");
         SkillHitResponse shr = msg.skillHitResponse;
         if (shr != null)
         {
-            if (shr.Result != SkillResult.OK) return;
-            if (shr.skillHits != null && shr.skillHits.Count > 0)
-            {
-                foreach (var hit in shr.skillHits)
-                {
-                    if (hit.CasterType == SkillCasterType.Player)
-                    {
-                        if (hit.CastName == GameRoot.Instance.ActivePlayer.Name)
-                        {
-                            PlayerInputController.Instance.entityController.DoSkillHit(hit);
-                        }
-                        else
-                        {
-                            BattleSys.Instance.Players[hit.CastName].DoSkillHit(hit);
-                        }
-                    }
-                    else
-                    {
-                        BattleSys.Instance.Monsters[hit.CasterID].DoSkillHit(hit);
-                    }
-                    /*
-                    if (hit.damageInfos != null && hit.damageInfos.Count > 0) //處理傷害
-                    {
-                        List<DamageInfo> damages = hit.damageInfos;
-                        foreach (var damage in damages)
-                        {
-                            if (damage.IsMonster)
-                            {
-                                int MonsterID = damage.EntityID;
-                                MonsterController mon = null;
-                                Monsters.TryGetValue(MonsterID, out mon);
-                                if (mon != null && !DeathMonsterPool.Contains(mon))
-                                {
-                                    mon.DoDamage(damage, (ActiveSkillInfo)ResSvc.Instance.SkillDic[hit.SkillID]);
-                                }
-                            }
-                            else
-                            {
-                                string PlayerName = damage.EntityName;
-                                PlayerController pc = null;
-                                Players.TryGetValue(PlayerName, out pc);
-                                if (pc != null)
-                                {
-                                    pc.DoDamage(damage, (ActiveSkillInfo)ResSvc.Instance.SkillDic[hit.SkillID]);
-                                }
-                            }
-                        }
-                    }
-                    */
-                }
-            }
+            Debug.Log("收到Hit消息");
+            OnHits(shr);
         }
         BuffResponse br = msg.buffResponse;
         if (br != null)
@@ -979,9 +859,102 @@ public class BattleSys : SystemRoot
             Debug.Log("收到Buff消息");
             OnBuff(br);
         }
-
     }
+    private void OnCast(SkillCastResponse scr)
+    {
+        Debug.Log("收到釋放消息");
+        if (scr.CastInfos != null && scr.CastInfos.Count > 0)
+        {
+            foreach (var cast in scr.CastInfos)
+            {
+                if (cast.Result != SkillResult.OK)
+                {
+                    print("技能釋放失敗: " + Tools.SkillResult2String(cast.Result));
+                }
+                else
+                {
+                    if (cast.CasterType == SkillCasterType.Player)
+                    {
+                        if (cast.CasterName == GameRoot.Instance.ActivePlayer.Name) //主角
+                        {
+                            PlayerController mainPlayerController = PlayerInputController.Instance.entityController;
+                            if (mainPlayerController != null)
+                            {
+                                Skill skill = null;
+                                mainPlayerController.entity.entityData.HP = cast.HP;
+                                mainPlayerController.entity.entityData.MP = cast.MP;
+                                GameRoot.Instance.ActivePlayer.HP = cast.HP;
+                                GameRoot.Instance.ActivePlayer.MP = cast.MP;
+                                mainPlayerController.SetHpBar((int)FinalAttribute.MAXHP);
+                                UISystem.Instance.InfoWnd.RefreshIInfoUI();
+                                mainPlayerController.SkillDict.TryGetValue(cast.SkillID, out skill);
+                                
+                                //開始釋放技能
+                                if (skill != null) skill.BeginCast(cast);
+                                else print("無此技能");
+                            }
+                            else print("找不到角色控制器");
+                        }
+                        else //其他人
+                        {
+                            PlayerController playerController = null;
+                            Players.TryGetValue(cast.CasterName, out playerController);
+                            if (playerController != null)
+                            {
+                                Skill skill = null;
+                                playerController.entity.entityData.HP = cast.HP;
+                                playerController.entity.entityData.MP = cast.MP;
+                                playerController.SetHpBar((int)FinalAttribute.MAXHP, cast.HP);
+                                playerController.SkillDict.TryGetValue(cast.SkillID, out skill);
+                                if (skill != null)
+                                {
+                                    skill.BeginCast(cast);
+                                }
+                                else //沒有就新建技能
+                                {
+                                    playerController.SkillDict[cast.SkillID] = new Skill(ResSvc.Instance.SkillDic[cast.SkillID]);
+                                    playerController.SkillDict[cast.SkillID].CD = 0;
+                                    playerController.SkillDict[cast.SkillID].EntityController = playerController;
+                                    playerController.SkillDict[cast.SkillID].Level = 1;
+                                }
+                            }
+                            else print("無此角色");
+                        }
+                    }
+                    else if (cast.CasterType == SkillCasterType.Monster) //怪物釋放技能
+                    {
 
+                    }
+                }
+            }
+            
+        }
+    }
+    private void OnHits(SkillHitResponse shr)
+    {
+        if (shr.Result != SkillResult.OK) return;
+        if (shr.skillHits != null && shr.skillHits.Count > 0)
+        {
+            foreach (var hit in shr.skillHits)
+            {
+                if (hit.CasterType == SkillCasterType.Player)
+                {
+                    if (hit.CastName == GameRoot.Instance.ActivePlayer.Name)
+                    {
+                        PlayerInputController.Instance.entityController.DoSkillHit(hit);
+                    }
+                    else
+                    {
+                        BattleSys.Instance.Players[hit.CastName].DoSkillHit(hit);
+                    }
+                }
+                else
+                {
+                    BattleSys.Instance.Monsters[hit.CasterID].DoSkillHit(hit);
+                }
+            }
+        }
+    }
     private void OnBuff(BuffResponse br)
     {
         if (br.Buffs == null || br.Buffs.Count < 1) return;
@@ -1087,7 +1060,7 @@ public class BattleSys : SystemRoot
         RunOperation ro = msg.runOperation;
         if (ro != null)
         {
-            if(ro.CharacterName== GameRoot.Instance.ActivePlayer.Name)
+            if (ro.CharacterName == GameRoot.Instance.ActivePlayer.Name)
             {
                 PlayerInputController.Instance.entityController.IsRun = ro.IsRun;
                 PlayerInputController.Instance.entityController.entity.entityData.IsRun = ro.IsRun;
@@ -1096,7 +1069,7 @@ public class BattleSys : SystemRoot
             else
             {
                 PlayerController controller = null;
-                if(Players.TryGetValue(ro.CharacterName, out controller))
+                if (Players.TryGetValue(ro.CharacterName, out controller))
                 {
                     controller.IsRun = ro.IsRun;
                     controller.entity.entityData.IsRun = ro.IsRun;
