@@ -176,10 +176,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     GetMap(session).CalculationReady(msg.calculatorReady.CharacterName);
                     break;
                 case 28: //計算機回傳
-
-                    break;
-                case 30: //怪物傷害
-                    GetMap(session).ProcessMonsterDamage(msg);
+                    
                     break;
                 case 33: //升級
                     session.ActivePlayer.Level += 1;
@@ -191,7 +188,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     session.WriteAndFlush(msg);
                     break;
                 case 36: //玩家受傷
-                    GetMap(session).ProcessPlayerHurt(msg);
+                    //GetMap(session).ProcessPlayerHurt(msg);
                     break;
                 case 40: //玩家動作
                     GetMap(session).ProcessPlayerAction(msg);

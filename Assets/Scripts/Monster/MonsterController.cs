@@ -10,18 +10,19 @@ using UnityEngine.UI;
 using PEProtocal;
 
 
-[RequireComponent(typeof(PolyNavAgent))]
+//[RequireComponent(typeof(PolyNavAgent))]
 public class MonsterController : EntityController
 {
     public int MapMonsterID;
+    public bool HasInit = false;
     public void Init(MonsterInfo info, int MapMonsterID)
     {
         base.Init();
         if (MainCitySys.Instance.IsCalculator)
         {
-            Blackboard blackboard = GetComponent<Blackboard>();
-            NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
-            blackboard.SetVariableValue("IsCalculator", true);
+            //Blackboard blackboard = GetComponent<Blackboard>();
+            //NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
+            //blackboard.SetVariableValue("IsCalculator", true);
         }        
         MonsterID = info.MonsterID;
         this.entity = new Entity
@@ -48,14 +49,15 @@ public class MonsterController : EntityController
         hp = info.MaxHp;
         MaxHp = info.MaxHp;
         SetHpBar();
-        GetComponent<Blackboard>().SetVariableValue("IsStop", true);
+        //GetComponent<Blackboard>().SetVariableValue("IsStop", false);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = AudioSvc.Instance.MonsterVolume;
         this.MapMonsterID = MapMonsterID;
         NameText1.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         NameText2.text = " LV." + info.Level + " " + info.Name + " ID:" + MapMonsterID;
         HideProfile();
-        SetSpeed(info.Speed);
+        //SetSpeed(info.Speed);
+        HasInit = true;
     }
 
     #region Profile
@@ -99,7 +101,7 @@ public class MonsterController : EntityController
     #endregion
     public void SetSpeed(float Speed)
     {
-        GetComponent<PolyNavAgent>().maxSpeed = Speed;
+        //GetComponent<PolyNavAgent>().maxSpeed = Speed;
     }
     public override void PlayHitAni(ActiveSkillInfo active)
     {
@@ -404,9 +406,10 @@ public class MonsterController : EntityController
 
     public EntityController TargetPlayer = null;
 
-    private void Update()
+    public override void Update()
     {
-
+        if (!HasInit) return;
+        base.Update();
         if (!IsAniPause)
         {
             AnimTimer += Time.deltaTime;

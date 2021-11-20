@@ -97,7 +97,7 @@ public class MOFMap
                 Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
                 foreach (var id in MonsterPoints.Keys)
                 {
-                    if (MonsterPoints[id].monster.status != MonsterStatus.Death)
+                    if (MonsterPoints[id].monster != null && MonsterPoints[id].monster.status != MonsterStatus.Death)
                     {
                         mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                     }
@@ -160,7 +160,7 @@ public class MOFMap
             Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
             foreach (var id in MonsterPoints.Keys)
             {
-                if (MonsterPoints[id].monster.status != MonsterStatus.Death)
+                if (MonsterPoints[id].monster != null && MonsterPoints[id].monster.status != MonsterStatus.Death)
                 {
                     mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                 }
@@ -178,7 +178,7 @@ public class MOFMap
                     Monsters = mons,
                     CharacterName = msg.toOtherMapReq.CharacterName,
                     MapPlayerEntities = PlayerEntities
-                    
+
                 }
             };
             session.WriteAndFlush(outmsg);
@@ -364,9 +364,11 @@ public class MOFMap
     {
         foreach (var id in MonsterPoints.Keys)
         {
-            MonsterPoints[id].monster.status = MonsterPoints[id].monster.laststatus;
-            MonsterPoints[id].monster.laststatus = MonsterStatus.Stop;
-
+            if (MonsterPoints[id].monster != null)
+            {
+                MonsterPoints[id].monster.status = MonsterPoints[id].monster.laststatus;
+                MonsterPoints[id].monster.laststatus = MonsterStatus.Stop;
+            }
         }
     }
     public void MapStop()
@@ -374,8 +376,11 @@ public class MOFMap
         Console.WriteLine("地圖暫停");
         foreach (var id in MonsterPoints.Keys)
         {
-            MonsterPoints[id].monster.laststatus = MonsterPoints[id].monster.status;
-            MonsterPoints[id].monster.status = MonsterStatus.Stop;
+            if (MonsterPoints[id].monster != null)
+            {
+                MonsterPoints[id].monster.laststatus = MonsterPoints[id].monster.status;
+                MonsterPoints[id].monster.status = MonsterStatus.Stop;
+            }
         }
     }
     public bool CalculatorReady = false;
@@ -523,32 +528,39 @@ public class MOFMap
             {
                 if (Counter < 10)
                 {
-                    if (MonsterPoints[i].monster.status == MonsterStatus.Death)
+                    if (MonsterPoints[i].monster == null)
                     {
                         MonsterSpawnUUID++;
-                        MonsterPoints[i].monster.Hp = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].monster.MonsterID].MaxHp;
-                        MonsterPoints[i].monster.status = MonsterStatus.Idle;
+                        MonsterInfo info = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].MonsterID];
+                        CommonMonster monster = new CommonMonster();
+                        MonsterPoints[i].monster = monster;
+                        monster.status = MonsterStatus.Idle;
                         float[] pos = MonsterPoints[i].InitialPos;
-                        MonsterPoints[i].monster.nEntity = new NEntity
+                        monster.nEntity = new NEntity
                         {
                             Id = MonsterSpawnUUID,
                             Position = new NVector3(pos[0], pos[1], 0),
-                            Speed = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].monster.MonsterID].Speed,
+                            Speed = info.Speed,
                             FaceDirection = true,
                             Type = EntityType.Monster,
-                            Direction = new NVector3(0, 0, 0)
+                            Direction = new NVector3(0, 0, 0),
+                            MaxHP = info.MaxHp,
+                            HP = info.MaxHp,
+                            MaxMP = 0,
+                            MP = 0,
+                            IsRun = false,
+                            EntityName = info.Name
                         };
-                        MonsterPoints[i].monster.InitSkill();
-                        MonsterPoints[i].monster.InitBuffs();
-                        MonsterPoints[i].monster.mofMap = this;
+                        monster.InitSkill();
+                        monster.InitBuffs();
+                        monster.mofMap = this;
                         MonsterPositions.Add(MonsterSpawnUUID, pos);
                         MonsterIds.Add(MonsterSpawnUUID, MonsterPoints[i].MonsterID);
-                        Monsters.TryAdd(MonsterPoints[i].monster.nEntity.Id, MonsterPoints[i].monster);
+                        Monsters.TryAdd(monster.nEntity.Id, monster);
                         Counter++;
                     }
                 }
             }
-
             try
             {
                 ProtoMsg msg = new ProtoMsg
@@ -556,21 +568,7 @@ public class MOFMap
                     MessageType = 29,
                     monsterGenerate = new MonsterGenerate { MonsterId = MonsterIds, MonsterPos = MonsterPositions }
                 };
-                byte[] result;
-                using (var stream = new MemoryStream())
-                {
-                    Serializer.Serialize(stream, msg);
-                    result = stream.ToArray();
-                    result = AES.AESEncrypt(result, ServerConstants.PrivateKey);
-                    stream.Dispose();
-                }
-                foreach (var character in characters.Values)
-                {
-                    if (character.session != null)
-                    {
-                        character.session.WriteAndFlush_PreEncrypted(result);
-                    }
-                }
+                BroadCastMassege(msg);
             }
             catch (Exception ex)
             {
@@ -586,157 +584,24 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
-        if (mapid == 1001 && channel == 5)
-        {
-            //LogSvc.Info("Map: " + mapid + " " + " Tick: " +Time.frameCount + " ThreadID: " + System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
-        }
-        //this.SpawnManager.Update();
+
         this.Battle.Update();
     }
-    public void ProcessMonsterDamage(ProtoMsg msg)
-    {
-        MonsterGetHurt gh = msg.monsterGetHurt; //gh 收到的怪物傷害封包，包含玩家攻擊動畫，和延遲，和方向
-        List<int> DeathMonstersID = new List<int>();
-        Dictionary<int, bool> IsDeath = new Dictionary<int, bool>();
-        foreach (var ID in gh.MonsterMapID.Keys) //遍歷每一隻怪物
-        {
-            if (MonsterPoints.ContainsKey(ID))
-            {
-                int Hp = MonsterPoints[ID].monster.Hp;
-                int restHp = Hp;
-                int AccumulateDamage = 0;
-                foreach (var damage in gh.Damage[ID]) //計算傷害
-                {
-                    restHp -= damage;
-                    AccumulateDamage += damage;
-                }
 
-                AddMonsterAccumulateDamage(gh.CharacterName, AccumulateDamage, ID); //增加累積傷害
-                if (restHp > 0) //扣血沒死
-                {
-                    MonsterPoints[ID].monster.Hp = restHp;
-                    IsDeath.Add(ID, false);
-                }
-                else //怪物死亡
-                {
-                    DeathMonstersID.Add(ID);
-                    MonsterDeath(ID);
-                    IsDeath.Add(ID, true);
-                }
-            }
-        }
-        gh.IsDeath = IsDeath;
-        AssignExp(DeathMonstersID); //分配經驗值
-        BroadCastMassege(msg); //廣播
-    }
-    public void AssignExp(List<int> DeathMonstersID)
-    {
-        if (DeathMonstersID.Count != 0)
-        {
-            Dictionary<string, int> exps = new Dictionary<string, int>();
-            foreach (var ID in DeathMonstersID)
-            {
-                foreach (var Name in MonsterPoints[ID].DamageRecords.Keys)
-                {
-                    if (!exps.ContainsKey(Name))
-                    {
-                        exps.Add(Name, (int)((float)MonsterPoints[ID].DamageRecords[Name] / MonsterPoints[ID].AccumulateDamage) * CacheSvc.Instance.MonsterInfoDic[MonsterPoints[ID].MonsterID].Exp);
-                    }
-                    else
-                    {
-                        exps[Name] += (int)((float)MonsterPoints[ID].DamageRecords[Name] / MonsterPoints[ID].AccumulateDamage * CacheSvc.Instance.MonsterInfoDic[MonsterPoints[ID].MonsterID].Exp);
-                    }
-                }
-                MonsterPoints[ID].ClearAccumulateDamage();
-            }
-            try
-            {
-                foreach (var Name in exps.Keys)
-                {
-                    ExpPacket exp = new ExpPacket { CharacterName = Name, Exp = exps[Name] };
-                    ProtoMsg msg = new ProtoMsg
-                    {
-                        MessageType = 32,
-                        expPacket = exp
-                    };
-                    if (characters[Name].session != null)
-                    {
-                        characters[Name].session.WriteAndFlush(msg);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + ex.Source);
-            }
-        }
-
-    }
-    public void MonsterDeath(int MonsterMapID)
-    {
-        MonsterPoints[MonsterMapID].monster.status = MonsterStatus.Death;
-        MonsterPoints[MonsterMapID].monster.Hp = 0;
-
-    }
-    public void AddMonsterAccumulateDamage(string Name, int Damage, int MapMonsterID)
-    {
-        if (MonsterPoints[MapMonsterID].DamageRecords.ContainsKey(Name))
-        {
-            MonsterPoints[MapMonsterID].AccumulateDamage += Damage;
-            MonsterPoints[MapMonsterID].DamageRecords[Name] += Damage;
-        }
-        else
-        {
-            MonsterPoints[MapMonsterID].AccumulateDamage += Damage;
-            MonsterPoints[MapMonsterID].DamageRecords.Add(Name, Damage);
-        }
-    }
-    public void ProcessPlayerHurt(ProtoMsg msg)
-    {
-        PlayerGetHurt playerGetHurt = msg.playerGetHurt;
-        if (characters.ContainsKey(playerGetHurt.CharacterName))
-        {
-            if (characters[playerGetHurt.CharacterName].status != PlayerStatus.Death)
-            {
-                int hp = characters[playerGetHurt.CharacterName].player.HP;
-                if (playerGetHurt.hurtType == HurtType.Normal) //一般攻擊，無暈眩
-                {
-                    if (hp - playerGetHurt.damage > 0) //不會死
-                    {
-                        characters[playerGetHurt.CharacterName].player.HP -= playerGetHurt.damage;
-                        characters[playerGetHurt.CharacterName].trimedPlayer.HP -= playerGetHurt.damage;
-                        msg.playerGetHurt.IsDeath = false;
-                        msg.playerGetHurt.IsFaint = false;
-
-                    }
-                    else //會死
-                    {
-                        msg.playerGetHurt.IsDeath = true;
-                        msg.playerGetHurt.IsFaint = false;
-                        if (characters[playerGetHurt.CharacterName].status != PlayerStatus.Death)
-                        {
-                            characters[playerGetHurt.CharacterName].status = PlayerStatus.Death;
-                            characters[playerGetHurt.CharacterName].player.HP = 0;
-                            characters[playerGetHurt.CharacterName].trimedPlayer.HP = 0;
-                        }
-                    }
-                }
-                else //暈眩攻擊，BOSS用
-                {
-                }
-                BroadCastMassege(msg);
-            }
-        }
-    }
     public SerializedMonster MonsterPointToSerielizedMonster(MonsterPoint point)
     {
+        var TargetName = "";
+        if (point.monster.AttackTarget != null)
+        {
+            TargetName = point.monster.AttackTarget.CharacterName;
+        }
         SerializedMonster mon = new SerializedMonster
         {
             MonsterID = point.monster.MonsterID,
             Position = new float[] { point.monster.nEntity.Position.X, point.monster.nEntity.Position.Y, 0 },
             status = point.monster.status,
-            HP = point.monster.Hp,
-            Targets = point.TargetPlayerName
+            HP = point.monster.nEntity.HP,
+            Targets = TargetName
         };
         return mon;
     }

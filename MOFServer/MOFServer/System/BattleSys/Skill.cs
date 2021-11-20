@@ -316,7 +316,7 @@ public class Skill
         ActiveSkillInfo active = (ActiveSkillInfo)Info;
         if (!active.IsAttack) return;
         DamageInfo damage = GetDamageInfo(active, this.context.CastSkill, target);
-        target.DoDamage(damage);
+        target.DoDamage(damage, hit.CastName);
         hit.damageInfos.Add(damage);
         if (active.IsBuff)
         {

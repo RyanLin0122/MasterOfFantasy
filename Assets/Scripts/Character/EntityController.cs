@@ -107,7 +107,7 @@ public class EntityController : MonoBehaviour
     {
         this.effectManager.RemoveEffect(buffEffect);
     }
-    public void Update()
+    public virtual void Update()
     {
         if (this.SkillDict != null && this.SkillDict.Count > 0)
         {

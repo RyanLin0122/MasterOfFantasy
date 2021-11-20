@@ -146,13 +146,7 @@ public class MapSvc : Singleton<MapSvc>
                             int MonID = Convert.ToInt32(t1[0]);
                             MonsterPoint p = new MonsterPoint { 
                                 MonsterID = MonID, 
-                                monster = new AbstractMonster 
-                                {
-                                    MonsterID = MonID, 
-                                    Hp = CacheSvc.Instance.MonsterInfoDic[MonID].MaxHp,
-                                    laststatus = MonsterStatus.Death,
-                                    status = MonsterStatus.Death
-                                } };
+                                 };
                             string[] t2 = t1[1].Split(new char[] { ',' });
                             p.InitialPos = new float[] { (float)Convert.ToDouble(t2[0]), (float)Convert.ToDouble(t2[1]) };
                             Points.TryAdd(j, p);
@@ -172,23 +166,4 @@ public class MonsterPoint
     public int MonsterID { get; set; }
     public float[] InitialPos { get; set; }
     public AbstractMonster monster { get; set; }
-    public int AccumulateDamage { get; set; }
-    public Dictionary<string, int> DamageRecords { get; set; }
-    public string TargetPlayerName { get; set; }
-
-    public MonsterPoint()
-    {
-        TargetPlayerName = "";
-        AccumulateDamage = 0;
-        DamageRecords = new Dictionary<string, int>();
-        if (monster != null)
-        {
-            monster.status = PEProtocal.MonsterStatus.Death;
-        }
-    }
-    public void ClearAccumulateDamage()
-    {
-        AccumulateDamage = 0;
-        DamageRecords.Clear();
-    }
 }

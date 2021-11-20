@@ -894,7 +894,7 @@ public class BattleSys : SystemRoot
                             {
                                 skill.BeginCast(scr.CastInfo);
                             }
-                            else
+                            else //沒有就新建技能
                             {
                                 playerController.SkillDict[scr.CastInfo.SkillID] = new Skill(ResSvc.Instance.SkillDic[scr.CastInfo.SkillID]);
                                 playerController.SkillDict[scr.CastInfo.SkillID].CD = 0;

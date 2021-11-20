@@ -11,6 +11,7 @@ class ServerConstants
     public const short coinRate = 1;
     public const short dropRate = 1;
     public const short cashRate = 1;
+    public const MonsterAIMode MonsterMode = MonsterAIMode.ServerControll;
     public const string ServerName = "天空之城";
     public const string ServerMessage = "玩得愉快!";
     public const short DefaultPort = 8787;
@@ -46,5 +47,11 @@ class ServerConstants
         "oTL2jy9^zkH.84u(%b[d",
         "WCSJZj3tGX,[4hu;9s?g"
     };
+}
+
+public enum MonsterAIMode
+{
+    ServerControll,
+    ClientControll
 }
 

@@ -36,16 +36,33 @@ public class Entity : IEntity
         buffManager = new BuffManager(this);
         effectManager = new EffectManager(this);
     }
-    public virtual void DoDamage(DamageInfo damage)
+    public virtual void DoDamage(DamageInfo damage, string CasterName = "")
     {
-
+        foreach (var num in damage.Damage)
+        {
+            MinusHP(num);
+        }
+        if (nEntity.HP <= 0)
+        {
+            this.OnDeath();
+        }
     }
     public virtual void MinusMP(int MinusMP)
     {
-
+        int MP = this.nEntity.MP - MinusMP;
+        if (MP <= 0)
+        {
+            MP = 0;
+        }
+        this.nEntity.MP = MP;
     }
 
     public virtual void MinusHP(int MinusHP)
+    {
+
+    }
+
+    public virtual void OnDeath()
     {
 
     }

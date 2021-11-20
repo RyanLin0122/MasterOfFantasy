@@ -85,7 +85,10 @@ public class Buff
         this.hit++;
         DamageInfo damage = this.CalBuffDamage(context.Caster);
         LogSvc.Info("Buff do damage");
-        this.Owner.DoDamage(damage);
+        if(this.context.Caster is MOFCharacter)
+        {
+            this.Owner.DoDamage(damage, this.context.Caster.nEntity.EntityName);
+        }
         context.Battle.AddBuffAction(GenerateBuffInfo(BUFF_Action.HIT, damage));
     }
 
