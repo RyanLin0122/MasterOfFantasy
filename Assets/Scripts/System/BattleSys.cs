@@ -1052,7 +1052,19 @@ public class BattleSys : SystemRoot
         }
         else if (nEntity.Type == EntityType.Monster)
         {
-
+            MonsterController controller = null;
+            if(Monsters.TryGetValue(nEntity.Id, out controller))
+            {
+                if(controller.entity.entityData.Position == nEntity.Position)
+                {
+                    controller.entity.entityData = nEntity;
+                    controller.OnEntityEvent(EntityEvent.Idle);
+                    return;
+                }
+                Debug.LogFormat("ID {0}: Pos: {1}", nEntity.Id, nEntity.Position.ToString());
+                controller.entity.entityData = nEntity;
+                controller.OnEntityEvent(entityEvent);
+            }
         }
     }
     public void ProcessRunResponse(ProtoMsg msg)

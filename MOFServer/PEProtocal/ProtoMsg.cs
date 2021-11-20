@@ -963,11 +963,7 @@ namespace PEProtocal
     public enum MonsterStatus
     {
         [ProtoEnum]
-        Idle,
-        [ProtoEnum]
-        Follow,
-        [ProtoEnum]
-        Attack,
+        Normal,
         [ProtoEnum]
         Frozen,
         [ProtoEnum]
@@ -975,13 +971,16 @@ namespace PEProtocal
         [ProtoEnum]
         Faint,
         [ProtoEnum]
-        Hurt,
+        Moving
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum EntityStatus
+    {
         [ProtoEnum]
-        Shocked,
+        Idle,
         [ProtoEnum]
-        Burned,
-        [ProtoEnum]
-        Stop
+        InBattle
     }
 
     [ProtoContract]

@@ -585,9 +585,12 @@ public class NetSvc : MonoBehaviour
     public void DoSyncEntities(ProtoMsg msg)
     {
         EntitySyncRequest es = msg.entitySyncReq;
-        for (int i = 0; i < es.nEntity.Count; i++)
+        if(es.nEntity!=null && es.nEntity.Count > 0)
         {
-            BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
+            for (int i = 0; i < es.nEntity.Count; i++)
+            {
+                BattleSys.Instance.UpdateEntity(es.entityEvent[i], es.nEntity[i]);
+            }
         }
     }
 

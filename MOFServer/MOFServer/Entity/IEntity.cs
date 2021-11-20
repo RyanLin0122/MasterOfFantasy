@@ -19,17 +19,15 @@ public class Entity : IEntity
     public EffectManager effectManager;
     public MOFMap mofMap;
     public NEntity nEntity;
+    public EntityStatus entityStatus = EntityStatus.Idle;
     public virtual void Update()
     {
         this.skillManager.Update();
         this.buffManager.Update();
     }
-    public void InitSkill()
+    public virtual void InitSkill()
     {
-        skillManager = new SkillManager(this);
-        //增加普攻
-        skillManager.AddSkill(new Skill(-8,1,this));
-        skillManager.AddSkill(new Skill(-10, 1, this));
+        skillManager = new SkillManager(this);       
     }
     public void InitBuffs()
     {

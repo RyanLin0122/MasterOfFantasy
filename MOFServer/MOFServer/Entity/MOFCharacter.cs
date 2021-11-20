@@ -681,7 +681,13 @@ public class MOFCharacter : Entity
         trimedPlayer.Agility += ap.Agility;
         trimedPlayer.Intellect += ap.Intellect;
     }
-
+    public override void InitSkill()
+    {
+        base.InitSkill();
+        //增加普攻
+        skillManager.AddSkill(new Skill(-8, 1, this));
+        skillManager.AddSkill(new Skill(-10, 1, this));
+    }
     public bool SetMiniGame(MiniGameSetting setting)
     {
         if (setting.MiniGameRatio > 4)

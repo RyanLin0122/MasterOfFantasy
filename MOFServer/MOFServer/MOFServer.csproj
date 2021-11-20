@@ -268,6 +268,10 @@
     <Compile Include="Service\TimerService\Petimer.cs" />
     <Compile Include="Service\TimerService\TimerSvc.cs" />
     <Compile Include="Entity\AbstractMonster.cs" />
+    <Compile Include="System\AI\AIAgent.cs" />
+    <Compile Include="System\AI\AIBase.cs" />
+    <Compile Include="System\AI\BossAI.cs" />
+    <Compile Include="System\AI\PassiveAI.cs" />
     <Compile Include="System\BattleSys\Battle.cs" />
     <Compile Include="System\BattleSys\BattleContext.cs" />
     <Compile Include="System\BattleSys\BattleSys.cs" />

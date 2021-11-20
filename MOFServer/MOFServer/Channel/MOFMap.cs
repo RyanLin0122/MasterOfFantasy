@@ -338,27 +338,47 @@ public class MOFMap
             {
                 if (Es.nEntity[0].Type == EntityType.Player)
                 {
-                    foreach (var chr in characters.Values)
+                    MOFCharacter chr = null;
+                    characters.TryGetValue(Es.nEntity[0].EntityName, out chr);
+                    if (chr != null)
                     {
-                        if (chr.CharacterName == Es.nEntity[0].EntityName)
-                        {
-                            chr.nEntity.Position = new NVector3(Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y, 200);
-                            chr.nEntity = Es.nEntity[0];
-                            chr.trimedPlayer.Position = new float[] { Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y };
-                        }
+                        chr.nEntity.Position = new NVector3(Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y, 200);
+                        chr.nEntity = Es.nEntity[0];
+                        chr.trimedPlayer.Position = new float[] { Es.nEntity[0].Position.X, Es.nEntity[0].Position.Y };
                     }
                     SendEntityUpdate(msg);
                 }
             }
-            else if (Es.nEntity.Count > 1) //同步怪物
-            {
-
-            }
         }
     }
-    private void SendEntityUpdate(ProtoMsg rsp)
+    private void SendEntityUpdate(ProtoMsg msg)
     {
-        BroadCastMassege(rsp);
+        BroadCastMassege(msg);
+    }
+    private void SyncMapUpdate()
+    {
+        List<NEntity> Send = new List<NEntity>();
+        List<EntityEvent> Events = new List<EntityEvent>();
+        foreach (var mon in Monsters.Values)
+        {
+            if (!mon.IsDeath && mon.status == MonsterStatus.Moving)
+            {
+                Console.WriteLine("ID {0}: Pos: {1}", mon.nEntity.Id, mon.nEntity.Position.ToString());
+                Send.Add(mon.nEntity);
+                Events.Add(EntityEvent.Move);
+            }
+        }
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 14,
+            entitySyncReq = new EntitySyncRequest
+            {
+                MapID = this.mapid,
+                nEntity = Send,
+                entityEvent = Events
+            }
+        };
+        BroadCastMassege(msg);
     }
     public void MapStart()
     {
@@ -366,8 +386,7 @@ public class MOFMap
         {
             if (MonsterPoints[id].monster != null)
             {
-                MonsterPoints[id].monster.status = MonsterPoints[id].monster.laststatus;
-                MonsterPoints[id].monster.laststatus = MonsterStatus.Stop;
+                MonsterPoints[id].monster.status = MonsterStatus.Normal;
             }
         }
     }
@@ -378,8 +397,7 @@ public class MOFMap
         {
             if (MonsterPoints[id].monster != null)
             {
-                MonsterPoints[id].monster.laststatus = MonsterPoints[id].monster.status;
-                MonsterPoints[id].monster.status = MonsterStatus.Stop;
+                MonsterPoints[id].monster.status = MonsterStatus.Normal;
             }
         }
     }
@@ -534,7 +552,7 @@ public class MOFMap
                         MonsterInfo info = CacheSvc.Instance.MonsterInfoDic[MonsterPoints[i].MonsterID];
                         CommonMonster monster = new CommonMonster();
                         MonsterPoints[i].monster = monster;
-                        monster.status = MonsterStatus.Idle;
+                        monster.status = MonsterStatus.Normal;
                         float[] pos = MonsterPoints[i].InitialPos;
                         monster.nEntity = new NEntity
                         {
@@ -551,6 +569,7 @@ public class MOFMap
                             IsRun = false,
                             EntityName = info.Name
                         };
+                        monster.Info = info;
                         monster.InitSkill();
                         monster.InitBuffs();
                         monster.mofMap = this;
@@ -584,8 +603,8 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
-
         this.Battle.Update();
+        SyncMapUpdate();
     }
 
     public SerializedMonster MonsterPointToSerielizedMonster(MonsterPoint point)

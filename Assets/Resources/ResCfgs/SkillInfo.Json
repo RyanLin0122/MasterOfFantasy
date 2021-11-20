@@ -89,7 +89,69 @@
     "Icon": "Major_Skill_15",
     "Effect": []
   },
-
+  {
+    "ID": 0,
+    "Name": "(怪物)普通攻擊",
+    "IsActive": true,
+    "IsAttack": true,
+    "IsAOE": false,
+    "IsBuff": false,
+    "IsSetup": false,
+    "RequiredWeapon": [],
+    "RequiredLevel": [ 0, 0, 0, 0, 0 ],
+    "MP": [ 0, 0, 0, 0, 0 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 1, 1, 1, 1, 1 ],
+    "Damage": [ 1, 1, 1, 1, 1 ],
+    "Times": [ 1, 1, 1, 1, 1 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 0, 0, 0 ],
+    "MagicPoint": [ 0, 0, 0, 0, 0 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "Player",
+    "IsMultiple": false,
+    "Shape": "Sector",
+    "Range": [ 0, 200, 90 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": false,
+    "BulletSpeed": 0,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [],
+    "Des": "(怪物)普通攻擊",
+    "Icon": "",
+    "Effect": [
+    ],
+    "Action": "None",
+    "AniPath": {
+      "Self": "",
+      "Shoot": "",
+      "Other": ""
+    },
+    "AniOffset": {
+      "Self": [ 0, 0, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0, 0 ]
+    },
+    "Sound": {
+      "Cast": "",
+      "Hit": ""
+    },
+    "CastTime": 0,
+    "ChargeTime": 0,
+    "LockTime": 0.8,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1, 1, 1 ]
+    },
+    "Buff": -1
+  },
   {
     "ID": -8,
     "Name": "(法杖)普通攻擊",

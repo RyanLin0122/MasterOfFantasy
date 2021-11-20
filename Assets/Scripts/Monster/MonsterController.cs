@@ -23,7 +23,7 @@ public class MonsterController : EntityController
             //Blackboard blackboard = GetComponent<Blackboard>();
             //NodeCanvas.BehaviourTrees.BehaviourTreeOwner tree = GetComponent<NodeCanvas.BehaviourTrees.BehaviourTreeOwner>();
             //blackboard.SetVariableValue("IsCalculator", true);
-        }        
+        }
         MonsterID = info.MonsterID;
         this.entity = new Entity
         {
@@ -67,7 +67,7 @@ public class MonsterController : EntityController
     public int hp;
     public int MaxHp;
     public GameObject HPBarBG;
-    public MonsterStatus status = MonsterStatus.Idle;
+    public MonsterStatus status = MonsterStatus.Normal;
 
     public void HideProfile()
     {
@@ -120,6 +120,63 @@ public class MonsterController : EntityController
             case SkillProperty.Lighting:
                 PlayAni(MonsterAniType.Shocked, false);
                 break;
+        }
+    }
+
+    public override void OnEntityEvent(EntityEvent entityEvent)
+    {
+        switch (entityEvent)
+        {
+            case EntityEvent.None:
+                break;
+            case EntityEvent.Idle:
+                PlayAni(MonsterAniType.Idle, true);
+                IsMoving = false;
+                break;
+            case EntityEvent.Move:
+                PlayAni(MonsterAniType.Walk, true);
+                IsMoving = true;
+                break;
+            case EntityEvent.Run:
+                break;
+            default:
+                break;
+        }
+    }
+    private Vector2 Destination;
+    float Offset = 0.4f;
+    private void LateUpdate() //非本玩家，根據NEntity插值更新
+    {
+        if (this.rb != null)
+        {
+            if (IsMoving) //移動中
+            {
+                Destination = new Vector2(entity.entityData.Position.X, entity.entityData.Position.Y);
+                Vector2 CurrentPos = new Vector2(transform.localPosition.x, transform.localPosition.y);
+                print((Destination - CurrentPos).magnitude.ToString());
+                if ((Destination - CurrentPos).magnitude < Offset)
+                {
+                    this.rb.velocity = Vector2.zero;
+                    transform.localPosition = Destination;
+                    OnEntityEvent(EntityEvent.Idle);
+                }
+                else
+                {
+                    Vector2 dirUnit = (Destination - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized;
+                    if (this.rb.velocity != Vector2.zero && Vector2.Dot(this.rb.velocity, dirUnit) < 0)
+                    {
+                        this.rb.velocity = Vector2.zero;
+                        transform.localPosition = Destination;
+                        OnEntityEvent(EntityEvent.Idle);
+                    }
+                    else
+                    {
+                        this.rb.velocity = entity.entityData.Speed * dirUnit;
+                        SetFaceDirection(this.rb.velocity.x > 0);
+                    }
+
+                }
+            }
         }
     }
     #region Animation
@@ -438,27 +495,6 @@ public class MonsterController : EntityController
                     }
                 }
 
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                PlayAni(MonsterAniType.Attack, false);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                PlayAni(MonsterAniType.Hurt, false);
-
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                PlayAni(MonsterAniType.Frozen, false);
-            }
-            if (Input.GetKeyDown(KeyCode.F5))
-            {
-                FreezeMonster();
-            }
-            if (Input.GetKeyDown(KeyCode.F6))
-            {
-                FaintMonster();
             }
             if (Input.GetKeyDown(KeyCode.F9))
             {

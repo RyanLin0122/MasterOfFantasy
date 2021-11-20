@@ -489,6 +489,8 @@ namespace PEProtocal
         public string Icon { get; set; }
         [ProtoMember(13, IsRequired = false)]
         public List<SkillEffect> Effect { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public SkillType Type { get; set; }
     }
     [ProtoContract]
     public class NegativeSkillInfo : SkillInfo
@@ -795,28 +797,53 @@ namespace PEProtocal
     [ProtoContract(EnumPassthru = false)]
     public enum BUFF_Effect
     {
+        [ProtoEnum]
         NONE,
+        [ProtoEnum]
         STUN,
+        [ProtoEnum]
         INVINCIBLE,
+        [ProtoEnum]
         SLOWDOWN,
+        [ProtoEnum]
         SPEEDUP,
+        [ProtoEnum]
         POISONING
     }
 
     [ProtoContract(EnumPassthru = false)]
     public enum BUFF_Action
     {
+        [ProtoEnum]
         NONE,
+        [ProtoEnum]
         ADD,
+        [ProtoEnum]
         REMOVE,
+        [ProtoEnum]
         HIT
     }
 
     [ProtoContract(EnumPassthru = false)]
     public enum BUFF_TriggerType
     {
+        [ProtoEnum]
         SkillStart,
+        [ProtoEnum]
         OnHit
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum SkillType
+    {
+        [ProtoEnum]
+        All = -1,
+        [ProtoEnum]
+        Normal = 1,
+        [ProtoEnum]
+        Skill = 2,
+        [ProtoEnum]
+        Passive = 4
     }
 
     [ProtoContract]

@@ -135,7 +135,7 @@ public class Skill
             }
 
         }
-        Console.WriteLine("Skill[{0}].Cast Result: [{1}] Status {2} ", Info.SkillName, result.ToString(), this.status.ToString());
+        //Console.WriteLine("Skill[{0}].Cast Result: [{1}] Status {2} ", Info.SkillName, result.ToString(), this.status.ToString());
         return result;
     }
     public bool Instant
@@ -162,13 +162,13 @@ public class Skill
         {
             this.CastingTime = 0;
             this.status = SkillStatus.Running;
-            LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateCastingFinish, go to Running");
+            //LogSvc.Info("Skill[" + ActiveInfo.SkillName + "].UpdateCastingFinish, go to Running");
         }
     }
     private void UpdateSkill()
     {
         ActiveSkillInfo active = (ActiveSkillInfo)this.Info;
-        LogSvc.Info("Skill[" + active.SkillName + "] Update skill");
+        //LogSvc.Info("Skill[" + active.SkillName + "] Update skill");
         this.SkillTime += Time.deltaTime;
         Console.WriteLine(active.ContiDurations != null);
         if (active.IsAttack)
@@ -396,7 +396,16 @@ public class Skill
             } //玩家釋放技能
             else //怪物釋放技能
             {
-
+                DamageInfo damage = new DamageInfo
+                {
+                    EntityID = -1,
+                    EntityName = Target.nEntity.EntityName,
+                    Damage = CalculateDamage(false, false),
+                    will_Dead = false,
+                    IsMonster = false,
+                    IsCritical = false
+                };
+                result = damage;
             }
             context.Damage.Add(result);
         }
@@ -435,8 +444,12 @@ public class Skill
             }
             else //怪物的攻擊 Todo
             {
-
-                return null;
+                MonsterInfo monsterInfo = ((AbstractMonster)this.Owner).Info;
+                for (int i = 0; i < Damages.Length; i++)
+                {
+                    Damages[i] = RandomSys.Instance.GetRandomInt(monsterInfo.MinDamage, monsterInfo.MaxDamage);
+                }
+                return Damages;
             }
 
         }
