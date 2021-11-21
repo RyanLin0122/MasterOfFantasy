@@ -181,9 +181,6 @@ class MOFServerHandler : ChannelHandlerAdapter
                     session.ActivePlayer.Exp = msg.levelUp.RestExp;
                     session.WriteAndFlush(msg);
                     break;
-                case 36: //玩家受傷
-                    //GetMap(session).ProcessPlayerHurt(msg);
-                    break;
                 case 40: //玩家動作
                     GetMap(session).ProcessPlayerAction(msg);
                     break;

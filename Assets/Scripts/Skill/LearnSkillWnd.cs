@@ -228,7 +228,7 @@ public class LearnSkillWnd : WindowRoot
                 PlayerController Controller = PlayerInputController.Instance.entityController;
                 Controller.SkillDict[info.SkillID] = skill;
                 Controller.SkillDict[info.SkillID].CD = 0;
-                Controller.SkillDict[info.SkillID].EntityController = Controller;
+                Controller.SkillDict[info.SkillID].Owner = Controller;
                 BattleSys.Instance.InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
                 BattleSys.Instance.InitAllBuffAttribute();
                 BattleSys.Instance.InitFinalAttribute();

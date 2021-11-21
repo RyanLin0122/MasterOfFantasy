@@ -21,7 +21,7 @@ public class BuffManager
             Buff buff = new Buff(this.owner, buffID, buffDefine, CasterType, CasterName, CasterID);
             this.Buffs[buffID] = buff;
             Debug.Log("·s¼WBuff: " + buffDefine.BuffName);
-            if (this.owner is PlayerController && this.owner.entity.nentity.EntityName == GameRoot.Instance.ActivePlayer.Name)
+            if (this.owner is PlayerController && this.owner.entity.nEntity.EntityName == GameRoot.Instance.ActivePlayer.Name)
             {
                 BattleSys.Instance.AddBuffIcon(buffID, Resources.Load<Sprite>("Effect/SkillIcon/" + buffDefine.Icon), buffDefine.Duration);
             }

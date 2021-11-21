@@ -44,9 +44,9 @@ public class BattleSys : SystemRoot
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        if (PlayerInputController.Instance.entityController.entity.nentity != null)
+        if (PlayerInputController.Instance.entityController.entity.nEntity != null)
         {
-            if (PlayerInputController.Instance.entityController.entity.nentity.IsRun)
+            if (PlayerInputController.Instance.entityController.entity.nEntity.IsRun)
             {
                 BasicAttribute.RunSpeed = 200;
                 PlayerInputController.Instance.entityController.IsRun = true;
@@ -865,6 +865,11 @@ public class BattleSys : SystemRoot
             Debug.Log("收到怪物死亡消息");
             OnDeath(md);
         }
+        ExpPacket ep = msg.expPacket;
+        if (ep != null)
+        {
+            OnExp(ep);
+        }
     }
     private void OnCast(SkillCastResponse scr)
     {
@@ -886,8 +891,8 @@ public class BattleSys : SystemRoot
                             if (mainPlayerController != null)
                             {
                                 Skill skill = null;
-                                mainPlayerController.entity.nentity.HP = cast.HP;
-                                mainPlayerController.entity.nentity.MP = cast.MP;
+                                mainPlayerController.entity.nEntity.HP = cast.HP;
+                                mainPlayerController.entity.nEntity.MP = cast.MP;
                                 GameRoot.Instance.ActivePlayer.HP = cast.HP;
                                 GameRoot.Instance.ActivePlayer.MP = cast.MP;
                                 mainPlayerController.SetHpBar((int)FinalAttribute.MAXHP);
@@ -907,8 +912,8 @@ public class BattleSys : SystemRoot
                             if (playerController != null)
                             {
                                 Skill skill = null;
-                                playerController.entity.nentity.HP = cast.HP;
-                                playerController.entity.nentity.MP = cast.MP;
+                                playerController.entity.nEntity.HP = cast.HP;
+                                playerController.entity.nEntity.MP = cast.MP;
                                 playerController.SetHpBar((int)FinalAttribute.MAXHP, cast.HP);
                                 playerController.SkillDict.TryGetValue(cast.SkillID, out skill);
                                 if (skill != null)
@@ -919,7 +924,7 @@ public class BattleSys : SystemRoot
                                 {
                                     playerController.SkillDict[cast.SkillID] = new Skill(ResSvc.Instance.SkillDic[cast.SkillID]);
                                     playerController.SkillDict[cast.SkillID].CD = 0;
-                                    playerController.SkillDict[cast.SkillID].EntityController = playerController;
+                                    playerController.SkillDict[cast.SkillID].Owner = playerController;
                                     playerController.SkillDict[cast.SkillID].Level = 1;
                                 }
                             }
@@ -942,7 +947,7 @@ public class BattleSys : SystemRoot
                             {
                                 controller.SkillDict[cast.SkillID] = new Skill(ResSvc.Instance.SkillDic[cast.SkillID]);
                                 controller.SkillDict[cast.SkillID].CD = 0;
-                                controller.SkillDict[cast.SkillID].EntityController = controller;
+                                controller.SkillDict[cast.SkillID].Owner = controller;
                                 controller.SkillDict[cast.SkillID].Level = 1;
                             }
                         }
@@ -1022,11 +1027,24 @@ public class BattleSys : SystemRoot
             }
         }
     }
+    private void OnExp(ExpPacket ep)
+    {
+        if (ep.Exp == null || ep.Exp.Count == 0) return;
+        foreach (var kv in ep.Exp)
+        {
+            if (kv.Key == GameRoot.Instance.ActivePlayer.Name)
+            {
+                UISystem.Instance.AddMessageQueue("獲取經驗值: " + kv.Value);
+                UISystem.Instance.baseUI.AddExp(kv.Value);
+            }
+        }
+    }
     #endregion
 
     #region 生怪相關
     public void SetupMonsters(Dictionary<int, SerializedMonster> mons)
     {
+        Monsters.Clear();
         if (mons.Count > 0)
         {
             foreach (var id in mons.Keys)
@@ -1048,17 +1066,11 @@ public class BattleSys : SystemRoot
         if (MapCanvas == null)
         {
             MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+            MainCitySys.Instance.MapCanvas = MapCanvas;
         }
         mon.transform.SetParent(MapCanvas.transform);
         mon.transform.localPosition = new Vector3(pos[0], pos[1], 0f);
-        if (Monsters.ContainsKey(MapMonsterID))
-        {
-            Monsters[MapMonsterID] = mon.GetComponent<MonsterController>();
-        }
-        else
-        {
-            Monsters.Add(MapMonsterID, mon.GetComponent<MonsterController>());
-        }
+        Monsters[MapMonsterID] = mon.GetComponent<MonsterController>();
         Monsters[MapMonsterID].Init(ResSvc.Instance.MonsterInfoDic[MonsterID], MapMonsterID);
     }
 
@@ -1078,8 +1090,8 @@ public class BattleSys : SystemRoot
             {
                 if (Players.ContainsKey(nEntity.EntityName))
                 {
-                    Players[nEntity.EntityName].entity.nentity = nEntity;
-                    Players[nEntity.EntityName].entity.nentity.EntityName = nEntity.EntityName;
+                    Players[nEntity.EntityName].entity.nEntity = nEntity;
+                    Players[nEntity.EntityName].entity.nEntity.EntityName = nEntity.EntityName;
                     Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
                     Players[nEntity.EntityName].OnEntityEvent(entityEvent);
                 }
@@ -1090,14 +1102,14 @@ public class BattleSys : SystemRoot
             MonsterController controller = null;
             if (Monsters.TryGetValue(nEntity.Id, out controller))
             {
-                if (controller.entity.nentity.Position == nEntity.Position)
+                if (controller.entity.nEntity.Position == nEntity.Position)
                 {
-                    controller.entity.nentity = nEntity;
+                    controller.entity.nEntity = nEntity;
                     controller.OnEntityEvent(EntityEvent.Idle);
                     return;
                 }
                 Debug.LogFormat("ID {0}: Pos: {1}", nEntity.Id, nEntity.Position.ToString());
-                controller.entity.nentity = nEntity;
+                controller.entity.nEntity = nEntity;
                 controller.OnEntityEvent(entityEvent);
             }
         }
@@ -1110,7 +1122,7 @@ public class BattleSys : SystemRoot
             if (ro.CharacterName == GameRoot.Instance.ActivePlayer.Name)
             {
                 PlayerInputController.Instance.entityController.IsRun = ro.IsRun;
-                PlayerInputController.Instance.entityController.entity.nentity.IsRun = ro.IsRun;
+                PlayerInputController.Instance.entityController.entity.nEntity.IsRun = ro.IsRun;
                 InitAllAtribute();
             }
             else
@@ -1119,7 +1131,7 @@ public class BattleSys : SystemRoot
                 if (Players.TryGetValue(ro.CharacterName, out controller))
                 {
                     controller.IsRun = ro.IsRun;
-                    controller.entity.nentity.IsRun = ro.IsRun;
+                    controller.entity.nEntity.IsRun = ro.IsRun;
                 }
             }
         }

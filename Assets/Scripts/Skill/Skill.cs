@@ -13,7 +13,7 @@ public class Skill
     private float SkillTime = 0;
     public int Hit = 0;
     private bool IsCasting = false;
-    public EntityController EntityController;
+    public EntityController Owner;
     public List<EntityController> Targets;
     public Dictionary<int, List<DamageInfo>> HitMap;
     List<Bullet> Bullets;
@@ -39,9 +39,9 @@ public class Skill
             return SkillResult.Invalid;
         }
         if (active.TargetType == SkillTargetType.BuffOnly) return SkillResult.OK;
-        if (EntityController is PlayerController)
+        if (Owner is PlayerController)
         {
-            if (EntityController.Name == GameRoot.Instance.ActivePlayer.Name)
+            if (Owner.Name == GameRoot.Instance.ActivePlayer.Name)
             {
                 if (active.MP[Level - 1] > GameRoot.Instance.ActivePlayer.MP)
                 {
@@ -75,7 +75,19 @@ public class Skill
                 }
             }
         }
+        if (!active.IsMultiple && !active.IsAOE) //單一敵人，且不是AOE
+        {
+            var Target = BattleSys.Instance.CurrentTarget;
+            if (Target == null) return SkillResult.Invalid;
+            if (!CheckRange(active.Shape, active.Range, Owner.entity.nEntity.Position, Target.entity.nEntity.Position))
+            {
+                return SkillResult.OutOfRange;
+            }
+        }
+        if (active.IsAOE)
+        {
 
+        }
         //判斷範圍
         //BattleSys.Instance.CurrentTarget.entity.entityId
 
@@ -96,9 +108,9 @@ public class Skill
             string[] TargetName = null;
             SkillCasterType CasterType = SkillCasterType.Player;
 
-            if (EntityController is MonsterController)
+            if (Owner is MonsterController)
             {
-                CastID = this.EntityController.entity.nentity.Id;
+                CastID = this.Owner.entity.nEntity.Id;
                 CasterType = SkillCasterType.Monster;
                 if (active.IsMultiple)
                 {
@@ -120,9 +132,9 @@ public class Skill
                     }
                 }
             }
-            else if (EntityController is PlayerController)
+            else if (Owner is PlayerController)
             {
-                CasterName = this.EntityController.Name;
+                CasterName = this.Owner.Name;
                 CasterType = SkillCasterType.Player;
                 if (active.IsMultiple)
                 {
@@ -135,11 +147,11 @@ public class Skill
                     {
                         if (active.TargetType == SkillTargetType.Monster)
                         {
-                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.nentity.Id };
+                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.nEntity.Id };
                         }
                         else
                         {
-                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.nentity.EntityName };
+                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.nEntity.EntityName };
                         }
                     }
 
@@ -151,7 +163,7 @@ public class Skill
                 CasterID = CastID,
                 CasterName = CasterName,
                 CasterType = CasterType,
-                Position = new float[] { EntityController.transform.localPosition.x, EntityController.transform.localPosition.y, EntityController.transform.localPosition.z },
+                Position = new float[] { Owner.transform.localPosition.x, Owner.transform.localPosition.y, Owner.transform.localPosition.z },
                 TargetID = TargetID,
                 TargetName = TargetName,
                 TargetType = active.TargetType
@@ -483,6 +495,64 @@ public class Skill
         }
         return false;
     }
+
+    public bool CheckRange(SkillRangeShape Shape, float[] Range, NVector3 CasterPosition, NVector3 TargetPosition)
+    {
+        bool FaceDir = this.Owner.entity.nEntity.FaceDirection;
+        NVector3 EntityPos = new NVector3(this.Owner.entity.nEntity.Position.X, this.Owner.entity.nEntity.Position.Y, this.Owner.entity.nEntity.Position.Z);
+        switch (Shape)
+        {
+            case SkillRangeShape.None:
+                return true;
+            case SkillRangeShape.Circle:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                }
+                float radius = (TargetPosition - EntityPos).magnitude;
+                if (radius > Range[1]) return false;
+                return true;
+            case SkillRangeShape.Rect:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                    if (TargetPosition.X < EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                    if (TargetPosition.X > EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                return true;
+            case SkillRangeShape.Sector:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                    if (TargetPosition.X < EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                    if (TargetPosition.X > EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                return true;
+            default:
+                return true;
+        }
+    }
+
     #endregion
 
 }

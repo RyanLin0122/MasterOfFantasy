@@ -12,6 +12,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private List<BuffInfo> BuffActions;
     private List<SkillCastInfo> SkillCasts;
     public List<int> DeathMonsterUUIDs = new List<int>();
+    private Dictionary<string, int> ExpRecord;
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -26,6 +27,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.Hits = new List<SkillHitInfo>();
         this.BuffActions = new List<BuffInfo>();
         this.SkillCasts = new List<SkillCastInfo>();
+        this.ExpRecord = new Dictionary<string, int>();
     }
     public void AddSkillCastInfo(SkillCastInfo cast)
     {
@@ -49,6 +51,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.SkillCasts.Clear();
         this.Hits.Clear();
         this.BuffActions.Clear();
+        this.ExpRecord.Clear();
         if (this.Actions.Count > 0) //1幀只處理10個技能請求
         {
             List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
@@ -62,16 +65,17 @@ public class Battle //戰鬥類，一個地圖綁定一個
                     WillExecute.Add(skillCast);
                 }
             }
-            if(WillExecute.Count > 0)
+            if (WillExecute.Count > 0)
             {
                 foreach (var skillCast in WillExecute)
                 {
                     this.ExecuteAction(skillCast);
                 }
-            }           
+            }
         }
         this.UpdateUnits();
         this.BroadcastBattleMessages();
+        this.SendExp();
     }
     private void UpdateUnits()
     {
@@ -96,6 +100,17 @@ public class Battle //戰鬥類，一個地圖綁定一個
             foreach (var entity in DeathPool.Values)
             {
                 LeaveBattle(entity);
+            }
+        }
+    }
+    public void SendExp()
+    {
+        foreach (var kv in this.ExpRecord)
+        {
+            MOFCharacter character = null;
+            if (this.mofMap.characters.TryGetValue(kv.Key, out character))
+            {
+                character.AddExp(kv.Value);
             }
         }
     }
@@ -271,7 +286,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 }
             }
         }
-        else if(targetType == SkillTargetType.Player)
+        else if (targetType == SkillTargetType.Player)
         {
             foreach (var unit in this.AllPlayers)
             {
@@ -285,17 +300,39 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     public void AssignExp(Dictionary<string, int> DamageRecord, MonsterInfo monsterInfo)
     {
-
+        var exp = monsterInfo.Exp;
+        Dictionary<string, MOFCharacter> ExistCharacters = new Dictionary<string, MOFCharacter>();
+        long TotalDamage = 0;
+        foreach (var kv in DamageRecord)
+        {
+            MOFCharacter chr = null;
+            mofMap.characters.TryGetValue(kv.Key, out chr);
+            if (chr != null)
+            {
+                TotalDamage += kv.Value;
+                ExistCharacters.Add(kv.Key, chr);
+            }
+        }
+        if (ExistCharacters.Count == 0) return;
+        foreach (var kv in ExistCharacters)
+        {
+            int ExpUnit = (int)(exp * DamageRecord[kv.Key] / TotalDamage * kv.Value.FinalAttribute.ExpRate);
+            int ExpResult = 0;
+            ExpRecord.TryGetValue(kv.Key, out ExpResult);
+            if (ExpResult == 0) ExpRecord[kv.Key] = ExpUnit;
+            else ExpRecord[kv.Key] += ExpUnit;
+        }
     }
 
-    private void BroadcastBattleMessages() 
+    private void BroadcastBattleMessages()
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && this.DeathMonsterUUIDs.Count == 0) return;
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0) return;
         SkillCastResponse skillCast = null;
         SkillHitResponse skillHit = null;
         BuffResponse buffRsp = null;
         MonsterDeath death = null;
-        if(this.SkillCasts !=null && this.SkillCasts.Count > 0)
+        ExpPacket expPacket = null;
+        if (this.SkillCasts != null && this.SkillCasts.Count > 0)
         {
             skillCast = new SkillCastResponse
             {
@@ -310,7 +347,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 Result = SkillResult.OK
             };
         }
-        if(this.BuffActions !=null && this.BuffActions.Count > 0)
+        if (this.BuffActions != null && this.BuffActions.Count > 0)
         {
             buffRsp = new BuffResponse
             {
@@ -318,11 +355,18 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 SkillResult = SkillResult.OK
             };
         }
-        if(this.DeathMonsterUUIDs !=null && this.DeathMonsterUUIDs.Count > 0)
+        if (this.DeathMonsterUUIDs != null && this.DeathMonsterUUIDs.Count > 0)
         {
             death = new MonsterDeath
             {
                 MonsterID = this.DeathMonsterUUIDs
+            };
+        }
+        if(this.ExpRecord!=null && this.ExpRecord.Count > 0)
+        {
+            expPacket = new ExpPacket
+            {
+                Exp = this.ExpRecord
             };
         }
         ProtoMsg msg = new ProtoMsg
@@ -331,7 +375,8 @@ public class Battle //戰鬥類，一個地圖綁定一個
             skillCastResponse = skillCast,
             skillHitResponse = skillHit,
             buffResponse = buffRsp,
-            monsterDeath = death
+            monsterDeath = death,
+            expPacket = expPacket
         };
         this.mofMap.BroadCastMassege(msg);
     }

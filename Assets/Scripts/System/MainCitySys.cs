@@ -181,8 +181,8 @@ public class MainCitySys : SystemRoot
     private void LoadPlayer(string PlayerName, MapCfg mapData, Vector2 position, NEntity nEntity) //傳點傳送
     {
         Camera mainCam = Camera.main;
-        MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
-        MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        if(MapCanvas == null) MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+        if(MainCanvas == null) MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
         PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
@@ -218,13 +218,14 @@ public class MainCitySys : SystemRoot
     {
         if (add.Name != GameRoot.Instance.ActivePlayer.Name)
         {
+            if (MapCanvas == null) MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+            if (MainCanvas == null) MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(add.Position[0], add.Position[1], 200f));
             PlayerController OtherPlayerCtrl = player.GetComponent<PlayerController>();
             GameRoot.Instance.MainPlayerControl = OtherPlayerCtrl;
             OtherPlayerCtrl.Name = add.Name;
             OtherPlayerCtrl.SetTitle(add.Title);
             OtherPlayerCtrl.SetNameBox();
-            BattleSys.Instance.InitAllAtribute();
             OtherPlayerCtrl.Init();
             OtherPlayerCtrl.entity = new Character
             (nEntity);

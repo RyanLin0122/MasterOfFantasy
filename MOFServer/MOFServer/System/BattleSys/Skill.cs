@@ -54,7 +54,7 @@ public class Skill
     }
     public SkillResult CanCast(BattleContext context)
     {
-        ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
+        ActiveSkillInfo active = (ActiveSkillInfo)this.Info;
         if (this.status != SkillStatus.None)
         {
             return SkillResult.Casting;
@@ -73,23 +73,33 @@ public class Skill
         }
         if (this.Owner is MOFCharacter)
         {
-            if (((MOFCharacter)this.Owner).player.MP < ActiveInfo.MP[this.Level - 1])
+            if (((MOFCharacter)this.Owner).player.MP < active.MP[this.Level - 1])
             {
                 return SkillResult.OutOfMP;
             }
         }
         if (this.Owner is MOFCharacter)
         {
-            if (((MOFCharacter)this.Owner).player.HP < ActiveInfo.Hp[this.Level - 1])
+            if (((MOFCharacter)this.Owner).player.HP < active.Hp[this.Level - 1])
             {
                 return SkillResult.OutOfHP;
             }
         }
-        //if (!CheckRange(ActiveInfo.Shape, ActiveInfo.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target).nEntity.Position))
-        //{
-        //    return SkillResult.OutOfRange;
-        //}
+        if(active.TargetType == SkillTargetType.BuffOnly)
+        {
+            return SkillResult.OK;
+        }
+        if (!active.IsMultiple && !active.IsAOE) //單一敵人，且不是AOE
+        {
+            if (!CheckRange(active.Shape, active.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target[0]).nEntity.Position))
+            {
+                return SkillResult.OutOfRange;
+            }
+        }
+        if (active.IsAOE)
+        {
 
+        }
         return SkillResult.OK;
     }
     internal SkillResult Cast(BattleContext context, SkillCastInfo castInfo)
@@ -135,7 +145,6 @@ public class Skill
             }
 
         }
-        //Console.WriteLine("Skill[{0}].Cast Result: [{1}] Status {2} ", Info.SkillName, result.ToString(), this.status.ToString());
         return result;
     }
     public bool Instant
@@ -143,7 +152,6 @@ public class Skill
         get
         {
             ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
-            //if (ActiveInfo.CastTime > 0) return false; //施法吟唱時間
             if (!ActiveInfo.IsAttack) return false;
             if (ActiveInfo.IsShoot) return false; //是不是子彈技能
             if (ActiveInfo.IsContinue) return false; //如果是連續技的話，技能持續時間
@@ -343,15 +351,55 @@ public class Skill
     //判斷敵人是否在技能有效範圍內
     public bool CheckRange(SkillRangeShape Shape, float[] Range, NVector3 CasterPosition, NVector3 TargetPosition)
     {
+        bool FaceDir = this.Owner.nEntity.FaceDirection;
+        NVector3 EntityPos = new NVector3(this.Owner.nEntity.Position.X, this.Owner.nEntity.Position.Y, this.Owner.nEntity.Position.Z);
         switch (Shape)
         {
             case SkillRangeShape.None:
                 return true;
             case SkillRangeShape.Circle:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                }
+                float radius = (TargetPosition - EntityPos).magnitude;
+                if (radius > Range[1]) return false;
                 return true;
             case SkillRangeShape.Rect:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                    if (TargetPosition.X < EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                    if (TargetPosition.X > EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
                 return true;
             case SkillRangeShape.Sector:
+                if (FaceDir)
+                {
+                    EntityPos.X += Range[0];
+                    if (TargetPosition.X < EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
+                else
+                {
+                    EntityPos.X -= Range[0];
+                    if (TargetPosition.X > EntityPos.X) return false;
+                    NVector3 Distance = TargetPosition - EntityPos;
+                    if (Distance.magnitude > Range[1]) return false;
+                }
                 return true;
             default:
                 return true;

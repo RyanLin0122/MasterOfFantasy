@@ -139,7 +139,7 @@ public class PlayerController : EntityController
             }
             UISystem.Instance.InfoWnd.RefreshHPMP();
         }
-        SetHpBar(entity.nentity.MaxHP, entity.nentity.HP);
+        SetHpBar(entity.nEntity.MaxHP, entity.nEntity.HP);
     }
     public void SetHpBar(int FinalMaxHp, int HP = -1)
     {
@@ -210,15 +210,15 @@ public class PlayerController : EntityController
                     {
                         if (buffManager.IsBuffValid(1)) RaceEffect = InstantiateRaceEffect();
                     }
-                    Vector2 NextPos = new Vector2(entity.nentity.Position.X, entity.nentity.Position.Y);
-                    this.rb.velocity = entity.nentity.Speed * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
-                    SetFaceDirection(this.entity.nentity.FaceDirection);
+                    Vector2 NextPos = new Vector2(entity.nEntity.Position.X, entity.nEntity.Position.Y);
+                    this.rb.velocity = entity.nEntity.Speed * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
+                    SetFaceDirection(this.entity.nEntity.FaceDirection);
                 }
                 else //準備停止移動
                 {
                     float Offset = 0.4f;
                     this.rb.velocity = Vector2.zero;
-                    Destination = new Vector2(entity.nentity.Position.X, entity.nentity.Position.Y);
+                    Destination = new Vector2(entity.nEntity.Position.X, entity.nEntity.Position.Y);
                     Vector2 CurrentPos = new Vector2(transform.localPosition.x, transform.localPosition.y);
                     if ((Destination - CurrentPos).magnitude < Offset)
                     {

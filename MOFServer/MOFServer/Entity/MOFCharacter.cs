@@ -222,10 +222,10 @@ public class MOFCharacter : Entity
 
         if (Math.Abs(eq.Critical) >= 1) EquipmentAttribute.Critical += 0;
         else if (Math.Abs(eq.Critical) < 1) EquipmentAttribute.Critical += BasicAttribute.Critical * eq.Critical;
-        
+
         if (Math.Abs(eq.Avoid) >= 1) EquipmentAttribute.Avoid += 0;
         else if (Math.Abs(eq.Avoid) < 1) EquipmentAttribute.Avoid += BasicAttribute.Avoid * eq.Avoid;
-        
+
         if (Math.Abs(eq.MagicDefense) >= 1) EquipmentAttribute.MagicDefense += 0;
         else if (Math.Abs(eq.MagicDefense) < 1) EquipmentAttribute.MagicDefense += BasicAttribute.MagicDefense * eq.MagicDefense;
 
@@ -647,7 +647,7 @@ public class MOFCharacter : Entity
     public override void MinusMP(int MinusMP)
     {
         int MP = this.player.MP - MinusMP;
-        if(MP <= 0)
+        if (MP <= 0)
         {
             MP = 0;
         }
@@ -665,6 +665,41 @@ public class MOFCharacter : Entity
         this.player.HP = HP;
         this.trimedPlayer.HP = HP;
         this.nEntity.HP = HP;
+    }
+
+    public void AddExp(int Exp)
+    {
+        if (player.Level == 119) { player.Exp = 0; return; }
+        long LevelUpExp = ServerConstants.GetRequiredExp(player.Level);
+        if (player.Exp + Exp >= LevelUpExp)
+        {
+            player.Level += 1;
+            trimedPlayer.Level += 1;
+            player.MAXHP += 10;
+            player.MAXMP += 10;
+            player.RestPoint += 5;
+            InitAllAtribute();
+            long NextLevelUpExp = ServerConstants.GetRequiredExp(player.Level);
+            if ((Exp - LevelUpExp) >= NextLevelUpExp)
+            {
+                player.Exp = NextLevelUpExp - 1;
+            }
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 33,
+                levelUp = new LevelUp
+                {
+                    CharacterName = CharacterName,
+                    Level = player.Level,
+                    RestExp = player.Exp
+                }
+            };
+            this.mofMap.BroadCastMassege(msg);
+        }
+        else
+        {
+            player.Exp += Exp;
+        }
     }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {

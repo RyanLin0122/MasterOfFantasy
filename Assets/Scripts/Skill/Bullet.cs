@@ -22,7 +22,7 @@ public class Bullet
         this.Target = Target;
         this.hit = skill.Hit;
         this.active = active;
-        float distance = GetDistance(skill.EntityController.transform.position, Target.transform.position);
+        float distance = GetDistance(skill.Owner.transform.position, Target.transform.position);
         duration = distance / active.BulletSpeed;
         Debug.Log("duration: " + duration);
         Debug.Log("distance: " + distance);
@@ -64,8 +64,8 @@ public class Bullet
             if (active.AniPath["Shoot"] != "")
             {
                 Transform go = ((GameObject)GameObject.Instantiate(Resources.Load("Prefabs/SkillPrefabs/" + active.AniPath["Shoot"]))).GetComponent<Transform>();
-                go.SetParent(skill.EntityController.transform.parent);
-                go.position = skill.EntityController.transform.position;
+                go.SetParent(skill.Owner.transform.parent);
+                go.position = skill.Owner.transform.position;
                 if (go != null)
                 {
                     this.BulletGameObject = go;

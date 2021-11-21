@@ -20,7 +20,7 @@ public class MonsterController : EntityController
         {
             Type = EntityType.Monster,
             speed = 200,
-            nentity = new NEntity
+            nEntity = new NEntity
             {
                 Speed = 200,
                 Id = MapMonsterID,
@@ -223,7 +223,7 @@ public class MonsterController : EntityController
         {
             if (IsMoving) //移動中
             {
-                Destination = new Vector2(entity.nentity.Position.X, entity.nentity.Position.Y);
+                Destination = new Vector2(entity.nEntity.Position.X, entity.nEntity.Position.Y);
                 Vector2 CurrentPos = new Vector2(transform.localPosition.x, transform.localPosition.y);
                 print((Destination - CurrentPos).magnitude.ToString());
                 if ((Destination - CurrentPos).magnitude < Offset)
@@ -243,7 +243,7 @@ public class MonsterController : EntityController
                     }
                     else
                     {
-                        this.rb.velocity = entity.nentity.Speed * dirUnit;
+                        this.rb.velocity = entity.nEntity.Speed * dirUnit;
                         SetFaceDirection(this.rb.velocity.x > 0);
                     }
 

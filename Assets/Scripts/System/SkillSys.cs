@@ -79,7 +79,7 @@ class SkillSys : MonoSingleton<SkillSys>
             {
                 foreach (var skill in controller.SkillDict.Values)
                 {
-                    skill.EntityController = controller;
+                    skill.Owner = controller;
                 }
             }
 
@@ -99,7 +99,7 @@ class SkillSys : MonoSingleton<SkillSys>
             {
                 controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
                 controller.SkillDict[kv.Key].CD = 0;
-                controller.SkillDict[kv.Key].EntityController = controller;
+                controller.SkillDict[kv.Key].Owner = controller;
                 controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
 
@@ -107,9 +107,9 @@ class SkillSys : MonoSingleton<SkillSys>
         MainCharacterSkillDic = controller.SkillDict;
         //增加普攻
         controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
-        controller.SkillDict[-8].EntityController = controller;
+        controller.SkillDict[-8].Owner = controller;
         controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);
-        controller.SkillDict[-10].EntityController = controller;
+        controller.SkillDict[-10].Owner = controller;
     }
     public void InitPlayerSkills(TrimedPlayer player, EntityController controller)
     {
@@ -120,16 +120,16 @@ class SkillSys : MonoSingleton<SkillSys>
             {
                 controller.SkillDict[kv.Key] = new Skill(ResSvc.Instance.SkillDic[kv.Key]);
                 controller.SkillDict[kv.Key].CD = 0;
-                controller.SkillDict[kv.Key].EntityController = controller;
+                controller.SkillDict[kv.Key].Owner = controller;
                 controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
 
         }
         //增加普攻
         controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
-        controller.SkillDict[-8].EntityController = controller;
+        controller.SkillDict[-8].Owner = controller;
         controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);
-        controller.SkillDict[-10].EntityController = controller;
+        controller.SkillDict[-10].Owner = controller;
     }
 
 }

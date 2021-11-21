@@ -79,7 +79,7 @@ public class EntityController : MonoBehaviour
     }
     public void MinusNEntityHP(int num)
     {
-        entity.nentity.HP = (int)Mathf.Clamp(entity.nentity.HP - num, 0, entity.nentity.HP);
+        entity.nEntity.HP = (int)Mathf.Clamp(entity.nEntity.HP - num, 0, entity.nEntity.HP);
     }
     public virtual void DoBuffDamage(DamageInfo damage, BuffDefine buffDefine)
     {

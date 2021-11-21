@@ -296,11 +296,7 @@ public class NetSvc : MonoBehaviour
     }
     public void DoExpPacket(ProtoMsg msg)
     {
-        ExpPacket exp = msg.expPacket;
-        if (exp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
-        {
-            UISystem.Instance.baseUI.AddExp(exp.Exp);
-        }
+
     }
     public void DoLevelUpPacket(ProtoMsg msg)
     {
@@ -308,6 +304,15 @@ public class NetSvc : MonoBehaviour
         if (levelUp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
         {
             UISystem.Instance.baseUI.ProcessLevelUpMsg(levelUp.RestExp);
+        }
+        else
+        {
+            PlayerController playerController = null;
+            if(BattleSys.Instance.Players.TryGetValue(levelUp.CharacterName, out playerController))
+            {
+                AudioSvc.Instance.PlayCharacterAudio(Constants.LevelUpAudio);
+                //播放特效
+            }
         }
     }
     public void DoWeatherPacket(ProtoMsg msg)

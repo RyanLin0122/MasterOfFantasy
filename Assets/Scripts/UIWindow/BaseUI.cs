@@ -24,70 +24,46 @@ public class BaseUI : WindowRoot
 
     }
 
-    public void AddExp(long value)
+    public void AddExp(long Exp)
     {
-        Player pd = GameRoot.Instance.ActivePlayer;
-        long expMax = Tools.GetExpMax(pd.Level);
-        if (pd.Level < 120)
+        Player player = GameRoot.Instance.ActivePlayer;
+        if (player.Level == 119) { player.Exp = 0; return; }
+        long LevelUpExp = Tools.GetExpMax(player.Level);
+        if (player.Exp + Exp >= LevelUpExp)
         {
-            if (pd.Exp + value >= expMax)
+            player.Level += 1;
+            player.RestPoint += 5;
+            player.MAXHP += 10;
+            player.MAXMP += 10;
+            BattleSys.Instance.InitAllAtribute();
+            long NextLevelUpExp = Tools.GetExpMax(player.Level);
+            if ((Exp - LevelUpExp) >= NextLevelUpExp)
             {
-
-                long restExp = pd.Exp + value - expMax;
-                if (pd.Level != 119)
-                {
-                    if (restExp >= Tools.GetExpMax(pd.Level + 1))
-                    {
-                        Debug.Log("升等1");
-                        long restexp = Tools.GetExpMax(pd.Level) - 1;
-                        LevelUp(restexp);
-                    }
-                    else
-                    {
-                        Debug.Log("升等2");
-                        LevelUp(restExp);
-                    }
-                }
-                else
-                {
-                    Debug.Log("升等3");
-                    LevelUp(0);
-                }
+                player.Exp = NextLevelUpExp - 1;
             }
-            else
-            {
-                pd.Exp = pd.Exp + value;
-                RefreshExpUI(pd.Exp, pd.Level);
-                UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            }
+        }
+        else
+        {
+            player.Exp += Exp;
         }
         if (GameRoot.Instance.MainPlayerControl != null)
         {
-            GameRoot.Instance.MainPlayerControl.GenerateDamageNum((int)value, 4);
+            GameRoot.Instance.MainPlayerControl.GenerateDamageNum((int)-Exp, 4);
+            RefreshExpUI(player.Exp, player.Level);
+            UISystem.Instance.InfoWnd.RefreshIInfoUI();
         }
-    }
-    public void LevelUp(long RestExp)
-    {
-        new LevelUpSender(RestExp);
     }
 
     public void ProcessLevelUpMsg(long RestExp)
     {
         Player pd = GameRoot.Instance.ActivePlayer;
-        if (pd.Level < 120)
-        {
-            pd.Level += 1;
-            UISystem.Instance.InfoWnd.CancelBtn();
-            pd.RestPoint += 5;
-            UISystem.Instance.InfoWnd.txtPoint.text = pd.RestPoint.ToString();
-            pd.MAXHP += 10;
-            pd.MAXMP += 10;
-            pd.Exp = RestExp;
-            RefreshExpUI(RestExp, pd.Level);
-            UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            //播放升級動畫和音效
-            AudioSvc.Instance.PlayCharacterAudio(Constants.LevelUpAudio);
-        }
+        UISystem.Instance.InfoWnd.CancelBtn();
+        UISystem.Instance.InfoWnd.txtPoint.text = pd.RestPoint.ToString();
+        pd.Exp = RestExp;
+        RefreshExpUI(RestExp, pd.Level);
+        UISystem.Instance.InfoWnd.RefreshIInfoUI();
+        //播放升級動畫和音效
+        AudioSvc.Instance.PlayCharacterAudio(Constants.LevelUpAudio);
     }
     public void RefreshExpUI(long exp, int level)
     {

@@ -415,6 +415,7 @@ public class MOFMap
                             EntityName = info.Name
                         };
                         monster.MonsterPoint = MonsterPoints[i];
+                        monster.MonsterID = MonsterPoints[i].MonsterID;
                         monster.Info = info;
                         monster.InitSkill();
                         monster.InitBuffs();

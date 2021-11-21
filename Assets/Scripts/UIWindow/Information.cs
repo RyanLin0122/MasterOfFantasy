@@ -550,7 +550,7 @@ public class Information : WindowRoot
         if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
         {
             pd.HP = UpdateHP;
-            GameRoot.Instance.MainPlayerControl.entity.nentity.HP = UpdateHP;
+            GameRoot.Instance.MainPlayerControl.entity.nEntity.HP = UpdateHP;
         }
         txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
         HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);

@@ -861,9 +861,7 @@ namespace PEProtocal
     public class ExpPacket
     {
         [ProtoMember(1, IsRequired = false)]
-        public string CharacterName { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public long Exp { get; set; }
+        public Dictionary<string, int> Exp { get; set; }
     }
 
     [ProtoContract]
