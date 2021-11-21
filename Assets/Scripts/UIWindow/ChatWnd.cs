@@ -176,30 +176,6 @@ public class ChatWnd : WindowRoot
                 Debug.Log(e.Message);
             }
         }
-        if (s == "mon")
-        {
-            try
-            {
-                Commands.RefreshMonsters();
-
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
-            
-        }
-        if (s == "clr")
-        {
-            try
-            {
-                Commands.ClearBugMonster();
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
-        }
     }
 
 

@@ -105,6 +105,19 @@ public class Information : WindowRoot
         txtCriticalRate.text = attr.Critical * 100 + "%";
         txtMagicDefense.text = attr.MagicDefense * 100 + "%";
     }
+
+    public void RefreshHPMP()
+    {
+        Player player = GameRoot.Instance.ActivePlayer;
+        PlayerAttribute attr = BattleSys.Instance.FinalAttribute;
+        txtHP.text = player.HP + " / " + attr.MAXHP;
+        txtMP.text = player.MP + " / " + attr.MAXMP;
+        HpImg.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
+        MpImg.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
+        HpImg2.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
+        MpImg2.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
+        GameRoot.Instance.UpdatePlayerHp((int)attr.MAXHP); //角色頭上血條
+    }
     public void openCloseWnd()
     {
         if (IsOpen == true)
@@ -533,11 +546,11 @@ public class Information : WindowRoot
                 //補血
                 GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
-
         }
         if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
         {
             pd.HP = UpdateHP;
+            GameRoot.Instance.MainPlayerControl.entity.nentity.HP = UpdateHP;
         }
         txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
         HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);

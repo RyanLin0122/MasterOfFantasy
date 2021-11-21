@@ -56,9 +56,6 @@ public class NetSvc : MonoBehaviour
             case 8:
                 DoDeletePlayerRsp(msg);
                 break;
-            case 10:
-                DoMapInformation(msg);
-                break;
             case 12:
                 DoEnterGameRsp(msg);
                 break;
@@ -88,12 +85,6 @@ public class NetSvc : MonoBehaviour
                 break;
             case 29:
                 DoGenerateMonsters(msg);
-                break;
-            case 30:
-                DoHurtMonsters(msg);
-                break;
-            case 31:
-                DoMonsterDeath(msg);
                 break;
             case 32:
                 DoExpPacket(msg);
@@ -251,10 +242,6 @@ public class NetSvc : MonoBehaviour
     {
         MainCitySys.Instance.RemovePlayer(msg.removeMapPlayer);
     }
-    public void DoMapInformation(ProtoMsg msg)
-    {
-        MainCitySys.Instance.ProcessMapInformation(msg.mapInformation);
-    }
     public void DoAddMapPlayer(ProtoMsg msg)
     {
         if (msg.addMapPlayer.MapID == GameRoot.Instance.ActivePlayer.MapID)
@@ -306,18 +293,6 @@ public class NetSvc : MonoBehaviour
                 BattleSys.Instance.AddMonster(key, mg.MonsterId[key], mg.MonsterPos[key]);
             }
         }
-    }
-    public void DoHurtMonsters(ProtoMsg msg)
-    {
-        MonsterGetHurt hurt = msg.monsterGetHurt;
-        BattleSys.Instance.MonsterGetHurt(hurt);
-    }
-    public void DoMonsterDeath(ProtoMsg msg)
-    {
-        /*
-        MonsterDeath death = msg.monsterDeath;
-        BattleSys.Instance.MonsterDeath(death);
-        */
     }
     public void DoExpPacket(ProtoMsg msg)
     {

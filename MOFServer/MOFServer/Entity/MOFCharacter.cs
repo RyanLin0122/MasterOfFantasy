@@ -8,7 +8,6 @@ public class MOFCharacter : Entity
     public int ID;
     public string CharacterName;
     public int channel;
-    public int MoveState;
     public bool IsRun;
     public ServerSession session;
     public Player player;
@@ -628,7 +627,6 @@ public class MOFCharacter : Entity
         this.session = session;
         this.mofMap = map;
         this.trimedPlayer = tp;
-        this.MoveState = MoveState;
         this.IsRun = IsRun;
 
         if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))

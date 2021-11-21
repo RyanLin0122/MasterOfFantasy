@@ -7,15 +7,15 @@ public class Character : Entity
 {
     public Character(NEntity entity)
     {
-        this.entityData = entity;
+        this.nentity = entity;
     }
 
     public bool IsPlayer
     {
         get
         {
-            if (this.entityData == null) return false;
-            return this.entityData.Type == EntityType.Player;
+            if (this.nentity == null) return false;
+            return this.nentity.Type == EntityType.Player;
         }
     }
 
@@ -24,7 +24,7 @@ public class Character : Entity
         get
         {
             if (!IsPlayer) return false;
-            return this.entityData.EntityName == GameRoot.Instance.ActivePlayer.Name;
+            return this.nentity.EntityName == GameRoot.Instance.ActivePlayer.Name;
         }
     }
 
@@ -41,20 +41,20 @@ public class Character : Entity
     }
     public void SetFaceDirection(bool Dir)
     {
-        this.entityData.FaceDirection = Dir;
+        this.nentity.FaceDirection = Dir;
     }
     public void SetDirection(Vector3 direction)
     {
-        this.entityData.Direction = new NVector3(direction.x, direction.y, 0);
+        this.nentity.Direction = new NVector3(direction.x, direction.y, 0);
     }
 
     public void SetPosition(Vector3 position)
     {
-        this.entityData.Position = new NVector3(position.x, position.y, 200);
+        this.nentity.Position = new NVector3(position.x, position.y, 200);
     }
 
     public void SetSpeed(float Speed)
     {
-        this.entityData.Speed = speed;
+        this.nentity.Speed = speed;
     }
 }

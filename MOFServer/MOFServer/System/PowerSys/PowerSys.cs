@@ -10,8 +10,8 @@ public class PowerSys : Singleton<PowerSys>
     public int WeatherTask;
     public void Init()
     {
-        TimerSvc.Instance.AddTimeTask(CalHpAdd, 10, PETimeUnit.Second, 0);
-        TimerSvc.Instance.AddTimeTask(CalMpAdd, 5, PETimeUnit.Second, 0);
+        TimerSvc.Instance.AddTimeTask(CalHpAdd, 20, PETimeUnit.Second, 0);
+        TimerSvc.Instance.AddTimeTask(CalMpAdd, 15, PETimeUnit.Second, 0);
         WeatherTask = TimerSvc.Instance.AddTimeTask(AssignWeather, 600, PETimeUnit.Second, 0);
         LogSvc.Info("PowerSys Init Done.");
     }
@@ -29,11 +29,13 @@ public class PowerSys : Singleton<PowerSys>
                     {
                         chr.player.HP = (int)chr.FinalAttribute.MAXHP;
                         chr.trimedPlayer.HP = (int)chr.FinalAttribute.MAXHP;
+                        chr.nEntity.HP = (int)chr.FinalAttribute.MAXHP;
                     }
                     else
                     {
                         chr.player.HP += AddHp;
                         chr.trimedPlayer.HP += AddHp;
+                        chr.nEntity.HP += AddHp;
                     }
                     if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                     {
@@ -62,15 +64,17 @@ public class PowerSys : Singleton<PowerSys>
                     {
                         chr.player.MP = (int)chr.FinalAttribute.MAXMP;
                         chr.trimedPlayer.MP = (int)chr.FinalAttribute.MAXMP;
+                        chr.nEntity.HP = (int)chr.FinalAttribute.MAXMP;
                     }
                     else
                     {
                         chr.player.MP += AddMp;
                         chr.trimedPlayer.MP += AddMp;
+                        chr.nEntity.HP += AddMp;
                     }
                     if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
                     {
-                        ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
+                        ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.nEntity.HP, UpdateMp = chr.nEntity.MP } };
                         CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session.WriteAndFlush(msg);
                     }
                 }

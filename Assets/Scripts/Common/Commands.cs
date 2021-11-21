@@ -8,12 +8,4 @@ public class Commands
     {
         MainCitySys.Instance.Transfer(Mapid, null);
     }
-    public static void RefreshMonsters()
-    {
-        BattleSys.Instance.RefreshMonster();
-    }
-    public static void ClearBugMonster()
-    {
-        BattleSys.Instance.ClearBugMonster();
-    }
 }

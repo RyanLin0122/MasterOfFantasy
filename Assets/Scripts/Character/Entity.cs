@@ -9,7 +9,7 @@ public class Entity
 {
     public EntityType Type;
     public float speed;
-    public NEntity entityData;
+    public NEntity nentity;
 }
 public static class ExtendFunction
 {

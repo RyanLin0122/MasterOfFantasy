@@ -35,21 +35,51 @@ public class EntityController : MonoBehaviour
     {
         //子類實現
         int NumberCount = damage.Damage.Length;
-
+        
         if (NumberCount > 0)
         {
             int[] t = new int[NumberCount];
             for (int i = 0; i < NumberCount; i++)
             {
+                MinusNEntityHP(damage.Damage[i]);
                 if (i > 0)
                 {
                     int index = i;
-                    TimerSvc.Instance.AddTimeTask((a) => { GenerateDamageNum(damage.Damage[index], 2); }, 300f * index, PETimeUnit.Millisecond, 1);
+                    int num = damage.Damage[i];
+                    if (this is MonsterController)
+                    {
+                        TimerSvc.Instance.AddTimeTask((a) =>
+                        {
+                            GenerateDamageNum(num, 0);
+                        }, 300f * index, PETimeUnit.Millisecond, 1);
+                    }
+                    else
+                    {
+                        TimerSvc.Instance.AddTimeTask((a) =>
+                        {
+                            GenerateDamageNum(num, 2);
+                        }, 300f * index, PETimeUnit.Millisecond, 1);
+                    }
                 }
-                else GenerateDamageNum(damage.Damage[i], 2);
+                else
+                {
+                    if(this is MonsterController)
+                    {
+                        GenerateDamageNum(damage.Damage[i], 0);
+                    }
+                    else
+                    {
+                        GenerateDamageNum(damage.Damage[i], 2);
+                    }
+                } 
+                    
             }
         }
         PlayHitAni(active);
+    }
+    public void MinusNEntityHP(int num)
+    {
+        entity.nentity.HP = (int)Mathf.Clamp(entity.nentity.HP - num, 0, entity.nentity.HP);
     }
     public virtual void DoBuffDamage(DamageInfo damage, BuffDefine buffDefine)
     {

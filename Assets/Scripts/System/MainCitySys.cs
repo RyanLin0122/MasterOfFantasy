@@ -5,7 +5,6 @@ using System;
 using UnityEngine.UI;
 using PEProtocal;
 using UnityEngine.SceneManagement;
-using NodeCanvas;
 
 public class MainCitySys : SystemRoot
 {
@@ -104,7 +103,6 @@ public class MainCitySys : SystemRoot
             if (rsp.IsCalculater)
             {
                 IsCalculator = true;
-                TimerSvc.Instance.AddTimeTask((a) => { new CalculatorReadySender(); Debug.Log("Ready"); LaunchCalculatorReport(); }, 0.1, PETimeUnit.Second, 1);
             }
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
@@ -162,7 +160,6 @@ public class MainCitySys : SystemRoot
             if (rsp.IsCalculater)
             {
                 IsCalculator = true;
-                TimerSvc.Instance.AddTimeTask((a) => { new CalculatorReadySender(); Debug.Log("Ready"); LaunchCalculatorReport(); }, 0.1, PETimeUnit.Second, 1);
             }
             UpdateWeather(rsp.weather);
             UISystem.Instance.miniMap.Init();
@@ -179,79 +176,6 @@ public class MainCitySys : SystemRoot
             MapLogo.GetComponent<Animator>().enabled = true;
             MapLogo.SetActive(true);
         }
-    }
-
-    public void LaunchCalculatorReport()
-    {
-        ReportTaskID = TimerSvc.Instance.AddTimeTask((a) => { new CalculatorReportSender(ReportMonsterPos()); }, 0.1, PETimeUnit.Second, 0);
-    }
-    public void CancelCalculatorReport()
-    {
-        TimerSvc.Instance.DeleteTimeTask(ReportTaskID);
-    }
-    public Dictionary<int, float[]> ReportMonsterPos()
-    {
-        Dictionary<int, float[]> pos = new Dictionary<int, float[]>();
-        if (BattleSys.Instance.Monsters.Count > 0)
-        {
-            foreach (var id in BattleSys.Instance.Monsters.Keys)
-            {
-                if (BattleSys.Instance.Monsters[id] != null && !BattleSys.Instance.Monsters[id].IsReadyDeath)
-                {
-                    pos.Add(id, new float[] { BattleSys.Instance.Monsters[id].transform.localPosition.x, BattleSys.Instance.Monsters[id].transform.localPosition.y });
-                }
-
-            }
-        }
-        return pos;
-    }
-    public void ProcessMapInformation(MapInformation info)
-    {
-        /*
-        if (info.CalculaterName != GameRoot.Instance.ActivePlayer.Name) //別人的計算結果
-        {
-            //處理人物跟怪物移動
-            foreach (var key in info.CharactersPosition.Keys)
-            {
-                if (GameRoot.Instance.otherPlayers.ContainsKey(key))
-                {
-                    OtherPeopleCtrl other = GameRoot.Instance.otherPlayers[key];
-                    other.IsRun = info.CharactersIsRun[key];
-                    other.SetUpdatePos(info.CharactersPosition[key]);
-                }
-            }
-            if (info.MonstersPosition != null)
-            {
-                if (info.MonstersPosition.Count > 0)
-                {
-                    foreach (var key in info.MonstersPosition.Keys)
-                    {
-                        if (BattleSys.Instance.Monsters.ContainsKey(key))
-                        {
-                            if (BattleSys.Instance.Monsters[key] != null)
-                            {
-                                MonsterAI ai = BattleSys.Instance.Monsters[key];
-                                ai.UpdatePos = new Vector3(info.MonstersPosition[key][0], info.MonstersPosition[key][1], 0);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else //自己的計算結果
-        {
-            foreach (var key in info.CharactersPosition.Keys)
-            {
-                if (GameRoot.Instance.otherPlayers.ContainsKey(key))
-                {
-                    OtherPeopleCtrl other = GameRoot.Instance.otherPlayers[key];
-                    other.IsRun = info.CharactersIsRun[key];
-                    other.SetUpdatePos(info.CharactersPosition[key]);
-                }
-            }
-            return;
-        }
-        */
     }
     #region 加載角色
     private void LoadPlayer(string PlayerName, MapCfg mapData, Vector2 position, NEntity nEntity) //傳點傳送
@@ -354,7 +278,6 @@ public class MainCitySys : SystemRoot
     }
     public void TransferToAnyMap(int mapID, Vector2 position)
     {
-        CancelCalculatorReport();
         if (IsCalculator)
         {
             IsCalculator = false;

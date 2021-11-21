@@ -21,7 +21,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             entityController.transform.GetComponent<CapsuleCollider2D>().enabled = true;
             entityController.entity = new Entity();
             entityController.entity.Type = EntityType.Player;
-            entityController.entity.entityData = entity;
+            entityController.entity.nentity = entity;
             SkillSys.Instance.InitPlayerSkills(GameRoot.Instance.ActivePlayer, this.entityController);
             BattleSys.Instance.InitAllAtribute();
         }
@@ -128,7 +128,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         this.character.SetFaceDirection(this.rb.transform.localScale.x > 0);
         this.character.SetPosition(this.rb.transform.localPosition);
         this.character.SetSpeed(BattleSys.Instance.FinalAttribute.RunSpeed);
-        new MoveSender(entityEvent, character.entityData);
+        new MoveSender(entityEvent, character.nentity);
     }
 
     public void Update()

@@ -172,12 +172,6 @@ class MOFServerHandler : ChannelHandlerAdapter
                 case 24: //聊天請求
                     ProcessChatReq(session, msg);
                     break;
-                case 27: //計算機Ready
-                    GetMap(session).CalculationReady(msg.calculatorReady.CharacterName);
-                    break;
-                case 28: //計算機回傳
-                    
-                    break;
                 case 33: //升級
                     session.ActivePlayer.Level += 1;
                     session.ActivePlayer.RestPoint += 5;

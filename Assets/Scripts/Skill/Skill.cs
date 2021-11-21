@@ -98,7 +98,7 @@ public class Skill
 
             if (EntityController is MonsterController)
             {
-                CastID = this.EntityController.entity.entityData.Id;
+                CastID = this.EntityController.entity.nentity.Id;
                 CasterType = SkillCasterType.Monster;
                 if (active.IsMultiple)
                 {
@@ -135,11 +135,11 @@ public class Skill
                     {
                         if (active.TargetType == SkillTargetType.Monster)
                         {
-                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityData.Id };
+                            TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.nentity.Id };
                         }
                         else
                         {
-                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.entityData.EntityName };
+                            TargetName = new string[] { BattleSys.Instance.CurrentTarget.entity.nentity.EntityName };
                         }
                     }
 
@@ -197,12 +197,12 @@ public class Skill
         }
 
         if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
-        {           
+        {
             if (active.LockTime > 0)
             {
                 PlayerInputController.Instance.LockMove();
                 TimerSvc.Instance.AddTimeTask((t) => { PlayerInputController.Instance.UnlockMove(); }, active.LockTime, PETimeUnit.Second, 1);
-            }           
+            }
             SetHotKeySlotCDUI();
         }
         //播放動畫
@@ -222,7 +222,15 @@ public class Skill
         }
         else //怪物釋放技能
         {
-
+            MonsterController controller = null;
+            BattleSys.Instance.Monsters.TryGetValue(castInfo.CasterID, out controller);
+            if (controller != null)
+            {
+                controller.PlayAni(MonsterAniType.Attack, false);
+                AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[controller.MonsterID].AttackSound, true);
+                controller.GetComponent<AudioSource>().clip = audio;
+                controller.GetComponent<AudioSource>().Play();
+            }
         }
         this.Bullets.Clear();
         this.HitMap.Clear();

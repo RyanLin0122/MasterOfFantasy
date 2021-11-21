@@ -20,8 +20,7 @@ public class MOFMap
     public bool IsVillage, Islimited, clock, personalShop, dropsDisabled = false;
     public string mapName, Location, SceneName = "";
     private static readonly string obj = "lock";
-    public ServerSession Calculator; //負責計算碰撞事件、怪物移動的客戶端
-    public int MonstersBornTID;
+
     public ConcurrentDictionary<int, MonsterPoint> MonsterPoints;
     public ConcurrentDictionary<int, AbstractMonster> Monsters;
     public Battle Battle;
@@ -82,17 +81,7 @@ public class MOFMap
                     PlayerCollection.Add(chr.trimedPlayer);
                     PlayerEntities.Add(chr.nEntity);
                 }
-                //指定物理計算機
-                if (characters.Count == 1) //代表地圖只有一個人
-                {
-                    Calculator = characters[ActivePlayer.Name].session;
-                    //地圖邏輯TODO
-                }
-                bool IsCalculater = false;
-                if (Calculator.ActivePlayer.Name == session.ActivePlayer.Name)
-                {
-                    IsCalculater = true;
-                }
+                MapStart();
                 //回傳資料
                 Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
                 foreach (var id in MonsterPoints.Keys)
@@ -108,7 +97,7 @@ public class MOFMap
                     enterGameRsp = new EnterGameRsp
                     {
                         MapPlayers = PlayerCollection,
-                        IsCalculater = IsCalculater,
+                        IsCalculater = false,
                         MapID = mapid,
                         Position = msg.enterGameReq.Position,
                         weather = this.weather,
@@ -136,25 +125,14 @@ public class MOFMap
             characters[CharacterName].mofMap = this;
             characters[CharacterName].trimedPlayer.Position = msg.toOtherMapReq.Position;
             characters[CharacterName].nEntity.Position = new NVector3(msg.toOtherMapReq.Position[0], msg.toOtherMapReq.Position[1], 200);
-            characters[CharacterName].MoveState = 3;
             //蒐集所有人資料
+            MapStart();
             List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
             List<NEntity> PlayerEntities = new List<NEntity>();
             foreach (var chr in characters.Values)
             {
                 PlayerCollection.Add(chr.trimedPlayer);
                 PlayerEntities.Add(chr.nEntity);
-            }
-            //指定物理計算機
-            if (characters.Count == 1) //代表地圖只有一個人
-            {
-                Calculator = characters[CharacterName].session;
-                //地圖邏輯TODO
-            }
-            bool IsCalculater = false;
-            if (Calculator.ActivePlayer.Name == session.ActivePlayer.Name)
-            {
-                IsCalculater = true;
             }
             //回傳資料
             Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
@@ -171,7 +149,7 @@ public class MOFMap
                 toOtherMapRsp = new ToOtherMapRsp
                 {
                     MapPlayers = PlayerCollection,
-                    IsCalculater = IsCalculater,
+                    IsCalculater = false,
                     MapID = mapid,
                     Position = msg.toOtherMapReq.Position,
                     weather = this.weather,
@@ -240,36 +218,11 @@ public class MOFMap
                         characters[Name] = null;
                         characters.TryRemove(Name, out deleteCharacter);
                     }
-                    if (Calculator != null)
+                    if (characters.Count == 0)
                     {
-                        if (Calculator.ActivePlayer.Name == Name)
-                        {
-                            if (characters.Count == 0)
-                            {
-                                Calculator = null;
-                            }
-                            else
-                            {
-                                foreach (var chr in characters.Keys)
-                                {
-                                    Calculator = characters[chr].session;
-                                    break;
-                                }
-                                ProtoMsg r = new ProtoMsg
-                                {
-                                    MessageType = 26,
-                                    calculatorAssign = new CalculatorAssign
-                                    {
-                                        CharacterName = Calculator.ActivePlayer.Name
-                                    }
-                                };
-                                Calculator.WriteAndFlush(r);
-                            }
-                            //計算機離開，地圖暫停
-                            MapStop();
-                        }
+                        //地圖暫停
+                        MapStop();
                     }
-
                     ProtoMsg msg = new ProtoMsg
                     {
                         MessageType = 17,
@@ -380,115 +333,21 @@ public class MOFMap
         };
         BroadCastMassege(msg);
     }
+    public bool IsStop = true;
     public void MapStart()
     {
-        foreach (var id in MonsterPoints.Keys)
-        {
-            if (MonsterPoints[id].monster != null)
-            {
-                MonsterPoints[id].monster.status = MonsterStatus.Normal;
-            }
-        }
+        Console.WriteLine("地圖開始");
+        IsStop = false;
     }
     public void MapStop()
     {
         Console.WriteLine("地圖暫停");
-        foreach (var id in MonsterPoints.Keys)
-        {
-            if (MonsterPoints[id].monster != null)
-            {
-                MonsterPoints[id].monster.status = MonsterStatus.Normal;
-            }
-        }
-    }
-    public bool CalculatorReady = false;
-    public void CalculationReady(string CharacterName)
-    {
-        if (CharacterName == Calculator.ActivePlayer.Name)
-        {
-            CalculatorReady = true;
-            MapStart();
-            LaunchMonstersBorn();
-        }
+        this.IsStop = true;
     }
     #endregion
 
 
     #region 回傳地圖資訊(怪物、人物移動)
-    public void BroadCastMapState(long Time, long TimeStamp)
-    {
-        lock (obj)
-        {
-            if (characters.Count != 0 && Calculator != null)
-            {
-                MapInformation info = ToMapInformation(Time, TimeStamp);
-                if (info != null)
-                {
-
-
-                    try
-                    {
-                        ProtoMsg msg = new ProtoMsg
-                        {
-                            MessageType = 10,
-                            mapInformation = info
-                        };
-                        BroadCastMassege(msg);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message + ex.Source);
-                        throw;
-                    }
-                }
-            }
-        }
-    }
-    public MapInformation ToMapInformation(long Time, long TimeStamp)
-    {
-        try
-        {
-            if (Calculator != null)
-            {
-                Dictionary<string, float[]> CharactersPosition = new Dictionary<string, float[]>();
-                Dictionary<string, int> CharactersMoveState = new Dictionary<string, int>();
-                Dictionary<string, bool> CharactersIsRun = new Dictionary<string, bool>();
-                Dictionary<int, float[]> MonstersPosition = new Dictionary<int, float[]>();
-                foreach (var chr in characters.Values)
-                {
-                    CharactersPosition.Add(chr.CharacterName, new float[] { chr.nEntity.Position.X, chr.nEntity.Position.Y });
-                    CharactersMoveState.Add(chr.CharacterName, chr.MoveState);
-                    CharactersIsRun.Add(chr.CharacterName, chr.IsRun);
-                }
-                foreach (var key in MonsterPoints.Keys)
-                {
-                    MonstersPosition.Add(key, new float[] { MonsterPoints[key].monster.nEntity.Position.X, MonsterPoints[key].monster.nEntity.Position.Y, MonsterPoints[key].monster.nEntity.Position.Z });
-                }
-                MapInformation result = new MapInformation
-                {
-                    Time = Time,
-                    TimeStamp = TimeStamp,
-                    CalculaterName = Calculator.ActivePlayer.Name,
-                    CharactersPosition = CharactersPosition,
-                    MonstersPosition = MonstersPosition,
-                    MapID = mapid,
-                    CharactersMoveState = CharactersMoveState,
-                    CharactersIsRun = CharactersIsRun
-                };
-                return result;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message + ex.Source + ex.StackTrace + ex.InnerException);
-            throw;
-        }
-
-    }
     public void BroadCastMassege(ProtoMsg msg)
     {
         try
@@ -517,26 +376,12 @@ public class MOFMap
     }
     #endregion
     #region 生怪相關
-    public void LaunchMonstersBorn()
-    {
-        MonstersBornTID = TimerSvc.Instance.AddTimeTask((t) => { MonstersBorn(); }, recoveryTime, PETimeUnit.Second, 0);
-    }
-
-    public void CancelMonstersBorn()
-    {
-        try
-        {
-            TimerSvc.Instance.pt.DeleteTimeTask(MonstersBornTID);
-        }
-        catch (Exception e)
-        {
-            LogSvc.Debug(e.Message);
-        }
-
-    }
     int MonsterSpawnUUID = 0;
+    public float MonsterBornTime = 10f;
+    public float BornTimer = 0;
     public void MonstersBorn()
     {
+        BornTimer = 0;
         if (!IsVillage)
         {
             Dictionary<int, float[]> MonsterPositions = new Dictionary<int, float[]>();
@@ -569,6 +414,7 @@ public class MOFMap
                             IsRun = false,
                             EntityName = info.Name
                         };
+                        monster.MonsterPoint = MonsterPoints[i];
                         monster.Info = info;
                         monster.InitSkill();
                         monster.InitBuffs();
@@ -603,10 +449,18 @@ public class MOFMap
     #region 怪物人物相關
     internal void Update()
     {
-        this.Battle.Update();
-        SyncMapUpdate();
+        if (!IsStop)
+        {
+            BornTimer += Time.deltaTime;
+            if (BornTimer >= MonsterBornTime) MonstersBorn();
+            this.Battle.Update();
+            SyncMapUpdate();
+        }
     }
-
+    public void DropItems(MonsterInfo monsterInfo)
+    {
+        //ToDO
+    }
     public SerializedMonster MonsterPointToSerielizedMonster(MonsterPoint point)
     {
         var TargetName = "";

@@ -10,12 +10,19 @@ public class AbstractMonster : Entity
     public int MonsterID { get; set; }
     public MonsterStatus status = MonsterStatus.Death;
     public Dictionary<string, int> PlayerDamageRecord = new Dictionary<string, int>();
+    public MonsterPoint MonsterPoint;
     public MOFCharacter AttackTarget;
     public MonsterInfo Info;
     public AIAgent AI;
     public override void OnDeath()
     {
+        IsDeath = true;
         this.status = MonsterStatus.Death;
+        this.mofMap.Battle.LeaveBattle(this);
+        this.mofMap.Monsters.Remove(nEntity.Id);
+        MonsterPoint.monster = null;
+        mofMap.Battle.AddDeathMonsterUUID(nEntity.Id);
+        mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
         LogSvc.Info("怪物死了");
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")

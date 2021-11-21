@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 using System;
-using PolyNav;
-using NodeCanvas.Framework;
-using ParadoxNotion.Design;
-
 public class PlayerController : EntityController
 {
     public ScreenController screenCtrl;
@@ -132,7 +128,19 @@ public class PlayerController : EntityController
         }
     }
     #endregion
-
+    public override void DoDamage(DamageInfo damage, ActiveSkillInfo active)
+    {
+        base.DoDamage(damage, active);    
+        if(Name == GameRoot.Instance.ActivePlayer.Name)
+        {
+            for (int i = 0; i < damage.Damage.Length; i++)
+            {
+                GameRoot.Instance.ActivePlayer.HP = (int)Mathf.Clamp(GameRoot.Instance.ActivePlayer.HP - damage.Damage[i], 0, 99999);
+            }
+            UISystem.Instance.InfoWnd.RefreshHPMP();
+        }
+        SetHpBar(entity.nentity.MaxHP, entity.nentity.HP);
+    }
     public void SetHpBar(int FinalMaxHp, int HP = -1)
     {
         if (HP != -1)
@@ -202,15 +210,15 @@ public class PlayerController : EntityController
                     {
                         if (buffManager.IsBuffValid(1)) RaceEffect = InstantiateRaceEffect();
                     }
-                    Vector2 NextPos = new Vector2(entity.entityData.Position.X, entity.entityData.Position.Y);
-                    this.rb.velocity = entity.entityData.Speed * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
-                    SetFaceDirection(this.entity.entityData.FaceDirection);
+                    Vector2 NextPos = new Vector2(entity.nentity.Position.X, entity.nentity.Position.Y);
+                    this.rb.velocity = entity.nentity.Speed * ((NextPos - new Vector2(transform.localPosition.x, transform.localPosition.y)).normalized);
+                    SetFaceDirection(this.entity.nentity.FaceDirection);
                 }
                 else //準備停止移動
                 {
                     float Offset = 0.4f;
                     this.rb.velocity = Vector2.zero;
-                    Destination = new Vector2(entity.entityData.Position.X, entity.entityData.Position.Y);
+                    Destination = new Vector2(entity.nentity.Position.X, entity.nentity.Position.Y);
                     Vector2 CurrentPos = new Vector2(transform.localPosition.x, transform.localPosition.y);
                     if ((Destination - CurrentPos).magnitude < Offset)
                     {
@@ -796,114 +804,3 @@ public class PlayerController : EntityController
 
     #endregion
 }
-
-#region 舊時代東西
-[Category("Character/")]
-public class PlayCommonAttackAni : ActionTask<Transform>
-{
-
-    [BlackboardOnly]
-    public BBParameter<float> DelayTime;
-    public bool repeat;
-    IEnumerator timer()
-    {
-        yield return new WaitForSeconds(DelayTime.value);
-        EndAction();
-    }
-    protected override void OnExecute()
-    {
-        switch (GameRoot.Instance.ActivePlayer.Job)
-        {
-            case 2:
-                agent.GetComponent<PlayerController>().PlayBow();
-                break;
-        }
-        base.OnExecute();
-        StartCoroutine(timer());
-    }
-}
-
-[Category("Character/")]
-public class AttackTarget : ActionTask<Transform>
-{
-    protected override void OnExecute()
-    {
-        MonsterController monAi = (MonsterController)BattleSys.Instance.CurrentTarget;
-        if (monAi != null && !monAi.IsReadyDeath)
-        {
-            bool CanSeeEnemy = false;
-            Vector3 right = new Vector3(1, 0, 0);
-            Vector3 left = new Vector3(-1, 0, 0);
-            Vector3 d = monAi.transform.position - agent.transform.position;
-            float scalex = agent.transform.localScale.x;
-            if (scalex >= 0 && d.x >= 0)
-            {
-                if (Math.Abs(Vector3.Angle(d, right)) < 60)
-                {
-                    CanSeeEnemy = true;
-                }
-            }
-            else if (scalex <= 0 && d.x < 0)
-            {
-                if (Math.Abs(Vector3.Angle(d, left)) < 60)
-                {
-                    CanSeeEnemy = true;
-                }
-            }
-            if (CanSeeEnemy)
-                BattleSys.Instance.CommonAttack(monAi.MapMonsterID);
-            base.OnExecute();
-
-        }
-        EndAction();
-    }
-}
-
-[Category("Character/")]
-public class PlayAttackSound : ActionTask<Transform>
-{
-    protected override void OnExecute()
-    {
-        PlayerController ai = agent.transform.GetComponent<PlayerController>();
-        AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_weapon_bow", true);
-        agent.GetComponent<AudioSource>().clip = audio;
-        agent.GetComponent<AudioSource>().Play();
-        base.OnExecute();
-        EndAction();
-    }
-}
-
-[Category("Character/")]
-public class PlayHitSound : ActionTask<Transform>
-{
-    protected override void OnExecute()
-    {
-
-        base.OnExecute();
-        EndAction();
-    }
-}
-
-[Category("Character/")]
-public class PlayDeathAni : ActionTask<Transform>
-{
-    public float DelayTime = 2f;
-    IEnumerator timer()
-    {
-        yield return new WaitForSeconds(DelayTime);
-        PlayerController ai = agent.GetComponent<PlayerController>();
-        EndAction();
-    }
-    protected override void OnExecute()
-    {
-        PlayerController ai = agent.GetComponent<PlayerController>();
-        if (!ai.IsDeath)
-        {
-            ai.IsDeath = true;
-            ai.PlayDeath();
-        }
-        base.OnExecute();
-        StartCoroutine(timer());
-    }
-}
-#endregion

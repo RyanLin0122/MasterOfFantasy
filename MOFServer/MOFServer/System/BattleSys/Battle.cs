@@ -11,6 +11,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private List<SkillHitInfo> Hits;
     private List<BuffInfo> BuffActions;
     private List<SkillCastInfo> SkillCasts;
+    public List<int> DeathMonsterUUIDs = new List<int>();
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -38,9 +39,13 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         this.BuffActions.Add(buffInfo);
     }
-    //private readonly object QueueLock = new object();
+    public void AddDeathMonsterUUID(int ID)
+    {
+        this.DeathMonsterUUIDs.Add(ID);
+    }
     internal void Update()
     {
+        this.DeathMonsterUUIDs.Clear();
         this.SkillCasts.Clear();
         this.Hits.Clear();
         this.BuffActions.Clear();
@@ -278,12 +283,18 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
         return result;
     }
+    public void AssignExp(Dictionary<string, int> DamageRecord, MonsterInfo monsterInfo)
+    {
+
+    }
+
     private void BroadcastBattleMessages() 
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0) return;
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && this.DeathMonsterUUIDs.Count == 0) return;
         SkillCastResponse skillCast = null;
         SkillHitResponse skillHit = null;
         BuffResponse buffRsp = null;
+        MonsterDeath death = null;
         if(this.SkillCasts !=null && this.SkillCasts.Count > 0)
         {
             skillCast = new SkillCastResponse
@@ -307,12 +318,20 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 SkillResult = SkillResult.OK
             };
         }
+        if(this.DeathMonsterUUIDs !=null && this.DeathMonsterUUIDs.Count > 0)
+        {
+            death = new MonsterDeath
+            {
+                MonsterID = this.DeathMonsterUUIDs
+            };
+        }
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 60,
             skillCastResponse = skillCast,
             skillHitResponse = skillHit,
-            buffResponse = buffRsp
+            buffResponse = buffRsp,
+            monsterDeath = death
         };
         this.mofMap.BroadCastMassege(msg);
     }

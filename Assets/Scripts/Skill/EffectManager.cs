@@ -15,14 +15,14 @@ public class EffectManager
     
     internal void AddBuffEffect(BUFF_Effect effect)
     {
-        Debug.Log("[" + this.Owner.entity.entityData.EntityName + "] adds effect" + effect.ToString());
+        Debug.Log("[" + this.Owner.entity.nentity.EntityName + "] adds effect" + effect.ToString());
         if (!this.Effects.ContainsKey(effect)) this.Effects[effect] = 1;
         else this.Effects[effect]++;
     }
 
     internal void RemoveEffect(BUFF_Effect effect)
     {
-        Debug.Log("[" + this.Owner.entity.entityData.EntityName + "] removes effect" + effect.ToString());
+        Debug.Log("[" + this.Owner.entity.nentity.EntityName + "] removes effect" + effect.ToString());
         if (this.Effects[effect] > 0)
         {
             this.Effects[effect]--;

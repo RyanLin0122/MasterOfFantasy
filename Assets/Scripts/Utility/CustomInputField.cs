@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using NodeCanvas.Framework;
+
 public class CustomInputField : InputField
 {
     public ChatWnd chatWnd;

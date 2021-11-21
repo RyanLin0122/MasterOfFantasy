@@ -44,9 +44,9 @@ public class BattleSys : SystemRoot
         BasicAttribute.Critical = 0.1f;
         BasicAttribute.Avoid = 0.1f;
         BasicAttribute.MagicDefense = 0;
-        if (PlayerInputController.Instance.entityController.entity.entityData != null)
+        if (PlayerInputController.Instance.entityController.entity.nentity != null)
         {
-            if (PlayerInputController.Instance.entityController.entity.entityData.IsRun)
+            if (PlayerInputController.Instance.entityController.entity.nentity.IsRun)
             {
                 BasicAttribute.RunSpeed = 200;
                 PlayerInputController.Instance.entityController.IsRun = true;
@@ -859,10 +859,15 @@ public class BattleSys : SystemRoot
             Debug.Log("收到Buff消息");
             OnBuff(br);
         }
+        MonsterDeath md = msg.monsterDeath;
+        if (md != null)
+        {
+            Debug.Log("收到怪物死亡消息");
+            OnDeath(md);
+        }
     }
     private void OnCast(SkillCastResponse scr)
     {
-        Debug.Log("收到釋放消息");
         if (scr.CastInfos != null && scr.CastInfos.Count > 0)
         {
             foreach (var cast in scr.CastInfos)
@@ -881,14 +886,14 @@ public class BattleSys : SystemRoot
                             if (mainPlayerController != null)
                             {
                                 Skill skill = null;
-                                mainPlayerController.entity.entityData.HP = cast.HP;
-                                mainPlayerController.entity.entityData.MP = cast.MP;
+                                mainPlayerController.entity.nentity.HP = cast.HP;
+                                mainPlayerController.entity.nentity.MP = cast.MP;
                                 GameRoot.Instance.ActivePlayer.HP = cast.HP;
                                 GameRoot.Instance.ActivePlayer.MP = cast.MP;
                                 mainPlayerController.SetHpBar((int)FinalAttribute.MAXHP);
                                 UISystem.Instance.InfoWnd.RefreshIInfoUI();
                                 mainPlayerController.SkillDict.TryGetValue(cast.SkillID, out skill);
-                                
+
                                 //開始釋放技能
                                 if (skill != null) skill.BeginCast(cast);
                                 else print("無此技能");
@@ -902,8 +907,8 @@ public class BattleSys : SystemRoot
                             if (playerController != null)
                             {
                                 Skill skill = null;
-                                playerController.entity.entityData.HP = cast.HP;
-                                playerController.entity.entityData.MP = cast.MP;
+                                playerController.entity.nentity.HP = cast.HP;
+                                playerController.entity.nentity.MP = cast.MP;
                                 playerController.SetHpBar((int)FinalAttribute.MAXHP, cast.HP);
                                 playerController.SkillDict.TryGetValue(cast.SkillID, out skill);
                                 if (skill != null)
@@ -923,11 +928,28 @@ public class BattleSys : SystemRoot
                     }
                     else if (cast.CasterType == SkillCasterType.Monster) //怪物釋放技能
                     {
-
+                        MonsterController controller = null;
+                        Monsters.TryGetValue(cast.CasterID, out controller);
+                        if (controller != null)
+                        {
+                            Skill skill = null;
+                            controller.SkillDict.TryGetValue(cast.SkillID, out skill);
+                            if (skill != null)
+                            {
+                                skill.BeginCast(cast);
+                            }
+                            else //沒有就新建技能
+                            {
+                                controller.SkillDict[cast.SkillID] = new Skill(ResSvc.Instance.SkillDic[cast.SkillID]);
+                                controller.SkillDict[cast.SkillID].CD = 0;
+                                controller.SkillDict[cast.SkillID].EntityController = controller;
+                                controller.SkillDict[cast.SkillID].Level = 1;
+                            }
+                        }
                     }
                 }
             }
-            
+
         }
     }
     private void OnHits(SkillHitResponse shr)
@@ -984,6 +1006,22 @@ public class BattleSys : SystemRoot
             }
         }
     }
+    private void OnDeath(MonsterDeath md)
+    {
+        if (md.MonsterID == null || md.MonsterID.Count < 1) return;
+        foreach (var id in md.MonsterID)
+        {
+            MonsterController controller = null;
+            Monsters.TryGetValue(id, out controller);
+            if (controller != null)
+            {
+                if (CurrentTarget == controller) CurrentTarget = null;
+                if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
+                Monsters.Remove(id);
+                controller.OnDeath();
+            }
+        }
+    }
     #endregion
 
     #region 生怪相關
@@ -999,7 +1037,6 @@ public class BattleSys : SystemRoot
                 AddMonster(id, mons[id].MonsterID, mons[id].Position);
                 Monsters[id].hp = mons[id].HP;
                 Monsters[id].SetHpBar();
-                Monsters[id].TrySetTargetPlayer(mons[id].Targets);
                 mons[id].status = mons[id].status;
             }
         }
@@ -1007,8 +1044,6 @@ public class BattleSys : SystemRoot
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
         print("MapMonsterID: " + MapMonsterID);
-        print("MonsterID: " + MonsterID);
-        print("Pos: " + pos[0] + ", " + pos[1]);
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
         if (MapCanvas == null)
         {
@@ -1043,8 +1078,8 @@ public class BattleSys : SystemRoot
             {
                 if (Players.ContainsKey(nEntity.EntityName))
                 {
-                    Players[nEntity.EntityName].entity.entityData = nEntity;
-                    Players[nEntity.EntityName].entity.entityData.EntityName = nEntity.EntityName;
+                    Players[nEntity.EntityName].entity.nentity = nEntity;
+                    Players[nEntity.EntityName].entity.nentity.EntityName = nEntity.EntityName;
                     Players[nEntity.EntityName].SetFaceDirection(nEntity.FaceDirection);
                     Players[nEntity.EntityName].OnEntityEvent(entityEvent);
                 }
@@ -1053,16 +1088,16 @@ public class BattleSys : SystemRoot
         else if (nEntity.Type == EntityType.Monster)
         {
             MonsterController controller = null;
-            if(Monsters.TryGetValue(nEntity.Id, out controller))
+            if (Monsters.TryGetValue(nEntity.Id, out controller))
             {
-                if(controller.entity.entityData.Position == nEntity.Position)
+                if (controller.entity.nentity.Position == nEntity.Position)
                 {
-                    controller.entity.entityData = nEntity;
+                    controller.entity.nentity = nEntity;
                     controller.OnEntityEvent(EntityEvent.Idle);
                     return;
                 }
                 Debug.LogFormat("ID {0}: Pos: {1}", nEntity.Id, nEntity.Position.ToString());
-                controller.entity.entityData = nEntity;
+                controller.entity.nentity = nEntity;
                 controller.OnEntityEvent(entityEvent);
             }
         }
@@ -1075,7 +1110,7 @@ public class BattleSys : SystemRoot
             if (ro.CharacterName == GameRoot.Instance.ActivePlayer.Name)
             {
                 PlayerInputController.Instance.entityController.IsRun = ro.IsRun;
-                PlayerInputController.Instance.entityController.entity.entityData.IsRun = ro.IsRun;
+                PlayerInputController.Instance.entityController.entity.nentity.IsRun = ro.IsRun;
                 InitAllAtribute();
             }
             else
@@ -1084,7 +1119,7 @@ public class BattleSys : SystemRoot
                 if (Players.TryGetValue(ro.CharacterName, out controller))
                 {
                     controller.IsRun = ro.IsRun;
-                    controller.entity.entityData.IsRun = ro.IsRun;
+                    controller.entity.nentity.IsRun = ro.IsRun;
                 }
             }
         }
@@ -1101,18 +1136,6 @@ public class BattleSys : SystemRoot
                 {
                     Monsters.Add(ai.MapMonsterID, ai);
                 }
-            }
-        }
-    }
-
-    public void ClearBugMonster()
-    {
-        if (MapCanvas != null)
-        {
-            MonsterController[] ais = MapCanvas.GetComponentsInChildren<MonsterController>();
-            if (ais.Length > 0)
-            {
-                ais[0].GetComponent<NodeCanvas.Framework.Blackboard>().SetVariableValue("IsDeath", true);
             }
         }
     }
@@ -1145,136 +1168,5 @@ public class BattleSys : SystemRoot
 
     #endregion
 
-    #region 舊時代東西
-    public void CommonAttack(int MapMonsterID)
-    {
-        Random.InitState(Guid.NewGuid().GetHashCode());
-        int damage = Random.Range(5, 15);
-        bool isCritical = false;
-        float probibility = Random.Range(0f, 1f);
-        if (probibility >= 0.8)
-        {
-            isCritical = true;
-            damage *= 2;
-        }
-        bool FaceDir = false;
-        if (GameRoot.Instance.MainPlayerControl.transform.localScale.x >= 0)
-        {
-            FaceDir = true;
-        }
-        float Delay = 0.5f;
-        int AnimType = Constants.GetCommonAttackAnimID(WeaponType.Bow);
-        AttackType type = AttackType.Common;
-        AttackMonster(MapMonsterID, damage, isCritical, type, Delay, AnimType, FaceDir);
-    }
-    public void AttackMonster(int MapMonsterID, int damage, bool IsCritical, AttackType attackType, float Delay, int AnimType, bool FaceDir)
-    {
-        Dictionary<int, int> monsterMapID = new Dictionary<int, int>();
-        monsterMapID.Add(MapMonsterID, MapMonsterID);
-        Dictionary<int, int[]> damages = new Dictionary<int, int[]>();
-        damages.Add(MapMonsterID, new int[] { damage });
-        Dictionary<int, bool> isCritical = new Dictionary<int, bool>();
-        isCritical.Add(MapMonsterID, IsCritical);
-        Dictionary<int, AttackType> attackTypes = new Dictionary<int, AttackType>();
-        attackTypes.Add(MapMonsterID, attackType);
-        new DamageSender(monsterMapID, damages, isCritical, attackTypes, AnimType, FaceDir, Delay);
-    }
-
-
-    public void AttackMonsters(int[] MapMonsterID, List<int[]> Damage, bool[] IsCritical, AttackType[] attackType)
-    {
-        //To-Do
-    }
-
-    public void MonsterGetHurt(MonsterGetHurt gh)
-    {
-        foreach (var ID in gh.MonsterMapID.Keys) //遍歷怪物
-        {
-            if (Monsters.ContainsKey(ID) && Monsters[ID] != null)
-            {
-                if (!Monsters[ID].IsReadyDeath)
-                {
-                    if (gh.IsDeath[ID])
-                    {
-                        Monsters[ID].ReadyToDeath();
-                    }
-                    int totalDamage = 0;
-                    foreach (var damage in gh.Damage[ID])
-                    {
-                        totalDamage += damage;
-                    }
-                    Monsters[ID].MinusHP(totalDamage);
-                    if (gh.IsCritical[ID] == false) //不是爆擊
-                    {
-                        TimerSvc.Instance.AddTimeTask((a) =>
-                        {
-                            //Monsters[ID].GenerateAttackEffect();
-                            Monsters[ID].GenerateDamageNum(totalDamage, 0);
-                            Monsters[ID].PlayHitSound();
-                            Monsters[ID].HurtMonster();
-                        }, gh.Delay, PETimeUnit.Second, 1);
-                        if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
-                        {
-                            //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
-                        }
-                        else
-                        {
-                            //其他人打的 只處理播動畫
-                            if (BattleSys.Instance.Players.ContainsKey(gh.CharacterName))
-                            {
-                                if (BattleSys.Instance.Players[gh.CharacterName] != null)
-                                {
-                                    PlayerController ctrl = BattleSys.Instance.Players[gh.CharacterName];
-                                }
-                            }
-                        }
-                    }
-                    else //爆擊
-                    {
-                        TimerSvc.Instance.AddTimeTask((a) =>
-                        {
-                            //Monsters[ID].GenerateAttackEffect();
-                            Monsters[ID].GenerateDamageNum(totalDamage, 1);
-                            Monsters[ID].PlayHitSound();
-                            Monsters[ID].HurtMonster();
-                        }, gh.Delay, PETimeUnit.Second, 1);
-                        if (gh.CharacterName == GameRoot.Instance.ActivePlayer.Name)
-                        {
-                            //自己打
-                            Monsters[ID].SetTargetPlayer(GameRoot.Instance.MainPlayerControl);
-                        }
-                        else
-                        {
-                            //其他人打的
-
-                        }
-                    }
-
-                }
-            }
-
-        }
-    }
-
-    public void MonsterDeath(MonsterDeath md)
-    {
-        if (md.MonsterID != null)
-        {
-            foreach (var ID in md.MonsterID)
-            {
-                if (Monsters.ContainsKey(ID))
-                {
-                    Monsters[ID].MonsterDeath();
-                    if (CurrentTarget == Monsters[ID])
-                    {
-                        CurrentTarget = null;
-                    }
-                }
-            }
-        }
-
-    }
-    #endregion
 }
 
