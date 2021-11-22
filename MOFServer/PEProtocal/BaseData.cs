@@ -778,6 +778,17 @@ namespace PEProtocal
         public NVector3 From { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public float[] FlyTo { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public float Timer { get; set; }
+
+        public void Update(float delta)
+        {
+            this.Timer += delta;
+            if (this.Timer > 60)
+            {
+                this.State = DropItemState.Common;
+            }
+        }
     }
 
     [ProtoContract(EnumPassthru = false)]
