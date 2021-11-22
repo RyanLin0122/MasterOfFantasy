@@ -249,7 +249,7 @@ public class Skill
 
     public void DoHit() //找到Entity
     {
-        Console.WriteLine("[231] Hit = " + Hit);
+        //Console.WriteLine("[231] Hit = " + Hit);
         ActiveSkillInfo ActiveInfo = (ActiveSkillInfo)this.Info;
         var hitInfo = InitHitInfo(ActiveInfo);
         this.Hit++;
@@ -257,7 +257,6 @@ public class Skill
         {
             if (this.Hit <= ActiveInfo.HitTimes.Count)
             {
-                Console.WriteLine("[239] Hit = " + Hit + "Cast Bullet");
                 DoHit(hitInfo, ActiveInfo);
                 CastBullet(hitInfo, ActiveInfo);
             }
@@ -267,7 +266,7 @@ public class Skill
     }
     public void DoHit(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
-        Console.WriteLine("[249] Hit = " + Hit + "AddHitInfo");
+        //Console.WriteLine("[249] Hit = " + Hit + "AddHitInfo");
         if (!active.IsShoot)
         {
             context.Battle.AddHitInfo(hitInfo);
@@ -324,7 +323,6 @@ public class Skill
     }
     private void CastBullet(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
-        LogSvc.Info("發射子彈");
         if (this.context.Target != null && this.context.Target.Count > 0)
         {
             foreach (var target in this.context.Target)

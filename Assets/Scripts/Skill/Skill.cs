@@ -441,6 +441,7 @@ public class Skill
                     BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID, out target);
                     if (target == null) continue;
                     target.DoDamage(dmg, active);
+                    target.PlayHitAni(active, Owner.transform.position.x < target.transform.position.x);
                 }
                 if (active.TargetType == SkillTargetType.Player)
                 {

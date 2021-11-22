@@ -781,13 +781,18 @@ namespace PEProtocal
         [ProtoMember(9, IsRequired = false)]
         public float Timer { get; set; }
 
-        public void Update(float delta)
+        public bool Update(float delta)
         {
             this.Timer += delta;
             if (this.Timer > 60)
             {
                 this.State = DropItemState.Common;
             }
+            if(this.Timer > 300)
+            {
+                return false;
+            }
+            return true;
         }
     }
 

@@ -46,11 +46,10 @@ public class Bullet
             BulletGameObject.position = new Vector3(BulletGameObject.position.x, BulletGameObject.position.y, OriginalZ);
         }
         flyTime += Time.deltaTime;
-        Debug.Log("Update Bullet");
         if (this.flyTime > duration)
         {
             Debug.Log("子彈命中");
-            Debug.Log("Dodamage 子彈Hit = " + this.hit);
+            //Debug.Log("Dodamage 子彈Hit = " + this.hit);
             this.skill.DoHitDamages(this.hit);
             this.Stopped = true;
             GameObject.Destroy(BulletGameObject.gameObject);

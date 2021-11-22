@@ -27,7 +27,6 @@ public class AbstractMonster : Entity
         {
             mofMap.DropItems(Info, CasterName, nEntity.Position);
         }
-        LogSvc.Info("怪物死了");
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")
     {

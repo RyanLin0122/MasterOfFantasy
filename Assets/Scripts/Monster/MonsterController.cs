@@ -175,9 +175,9 @@ public class MonsterController : EntityController
     {
         Destroy(this.gameObject);
     }
-    public override void PlayHitAni(ActiveSkillInfo active)
+    public override void PlayHitAni(ActiveSkillInfo active, bool Dir)
     {
-        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform);
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir);
         switch (active.Property)
         {
             case SkillProperty.None:
@@ -225,7 +225,6 @@ public class MonsterController : EntityController
             {
                 Destination = new Vector2(entity.nEntity.Position.X, entity.nEntity.Position.Y);
                 Vector2 CurrentPos = new Vector2(transform.localPosition.x, transform.localPosition.y);
-                print((Destination - CurrentPos).magnitude.ToString());
                 if ((Destination - CurrentPos).magnitude < Offset)
                 {
                     this.rb.velocity = Vector2.zero;

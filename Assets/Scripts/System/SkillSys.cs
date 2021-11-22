@@ -49,7 +49,7 @@ class SkillSys : MonoSingleton<SkillSys>
             AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Cast"]);
         }
     }
-    public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform)
+    public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform, bool Dir)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
         if (info.AniPath["Other"] != "")
@@ -58,9 +58,16 @@ class SkillSys : MonoSingleton<SkillSys>
             go.SetParent(TargetTransform);
             go.localScale = Vector3.one;
             go.localScale = new Vector3(info.AniScale["Target"][0], info.AniScale["Target"][1], info.AniScale["Target"][2]);
-            if (TargetTransform.localScale.x < 0)
+            Debug.Log("-------DIR-------- : " + Dir + " TargetTransform " + (TargetTransform.localScale.x > 0));
+            if (!Dir)
             {
-                go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
+                if (TargetTransform.localScale.x > 0) go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
+                else go.localScale = new Vector3(go.localScale.x, go.localScale.y, go.localScale.z);
+            }
+            else
+            {
+                if (TargetTransform.localScale.x > 0) go.localScale = new Vector3(go.localScale.x, go.localScale.y, go.localScale.z);
+                else go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
             }
             go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
         }

@@ -21,10 +21,21 @@ public class PlayerController : EntityController
         DustSprites = Resources.LoadAll<Sprite>("Effect/Dust/Effect Walking Car Dust");
         base.Init();
     }
-    public override void PlayHitAni(ActiveSkillInfo active)
+    public override void PlayHitAni(ActiveSkillInfo active, bool Dir)
     {
-        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform);
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir);
+        var HurtAniTime = Constants.GetAnimTime(PlayerAniType.Hurt);
         PlayHurt();
+        Invoke("ReturnToIdleOrWalk", HurtAniTime);
+    }
+    private void ReturnToIdleOrWalk()
+    {
+        if (IsMoving)
+        {
+            if (IsRun) PlayRun();
+            else PlayWalk();
+        }
+        else PlayIdle();
     }
     public override void SetFaceDirection(bool FaceDir)
     {
@@ -130,9 +141,11 @@ public class PlayerController : EntityController
     #endregion
     public override void DoDamage(DamageInfo damage, ActiveSkillInfo active)
     {
-        base.DoDamage(damage, active);    
-        if(Name == GameRoot.Instance.ActivePlayer.Name)
+        base.DoDamage(damage, active);
+        if (Name == GameRoot.Instance.ActivePlayer.Name)
         {
+            PlayerInputController.Instance.LockMove();
+            TimerSvc.Instance.AddTimeTask((t)=> { PlayerInputController.Instance.UnlockMove(); },Constants.GetAnimTime(PlayerAniType.Hurt), PETimeUnit.Second);
             for (int i = 0; i < damage.Damage.Length; i++)
             {
                 GameRoot.Instance.ActivePlayer.HP = (int)Mathf.Clamp(GameRoot.Instance.ActivePlayer.HP - damage.Damage[i], 0, 99999);

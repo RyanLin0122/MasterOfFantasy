@@ -654,6 +654,25 @@ public class BattleSys : SystemRoot
                 buff.OnRemove();
             }
         }
+        if(DropItems !=null && DropItems.Count > 0)
+        {
+            List<int> NeedRemove = new List<int>();
+            foreach (var kv in DropItems)
+            {
+                if (!(kv.Value.OnUpdate(Time.deltaTime)))
+                {
+                    NeedRemove.Add(kv.Key);
+                }
+            }
+            if (NeedRemove.Count > 0)
+            {
+                foreach (var UUID in NeedRemove)
+                {
+                    Destroy(DropItems[UUID].gameObject);
+                    DropItems.Remove(UUID);
+                }               
+            }
+        }
     }
     public void UpdateDeathPool()
     {
@@ -1044,13 +1063,16 @@ public class BattleSys : SystemRoot
             }
         }
     }
+    private Dictionary<int, DropItemEntity> DropItems = new Dictionary<int, DropItemEntity>();
     private void OnDrop(DropItemsInfo di)
     {
         if (di.DropItems == null || di.DropItems.Count == 0) return;
         foreach (var kv in di.DropItems)
         {
-            //TODO
-            GameRoot.AddTips("掉東西: " + kv.Value.Type.ToString());
+            DropItemEntity entity = Instantiate(Resources.Load("Prefabs/DropItem") as GameObject, MapCanvas.transform).GetComponent<DropItemEntity>();
+            entity.transform.localPosition = new Vector2(kv.Value.From.X, kv.Value.From.Y);
+            entity.Init(kv.Value);
+            DropItems.Add(kv.Key, entity);
         }
     }
     #endregion

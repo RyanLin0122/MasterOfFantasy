@@ -75,7 +75,6 @@ public class EntityController : MonoBehaviour
                     
             }
         }
-        PlayHitAni(active);
     }
     public void MinusNEntityHP(int num)
     {
@@ -87,7 +86,7 @@ public class EntityController : MonoBehaviour
         //To do
 
     }
-    public virtual void PlayHitAni(ActiveSkillInfo active)
+    public virtual void PlayHitAni(ActiveSkillInfo active, bool dir)
     {
         //子類實現
     }           

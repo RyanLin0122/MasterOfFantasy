@@ -498,7 +498,7 @@ public class MOFMap
                     Item = CacheSvc.ItemList[kv.Key], //默認乾淨
                     OwnerName = killer,
                     From = DropPositionFrom,
-                    FlyTo = new float[] { RandomSys.Instance.GetRandomInt(0, 360), RandomSys.Instance.GetRandomInt(0, 50) }
+                    FlyTo = new float[] { RandomSys.Instance.GetRandomInt(0, 360), RandomSys.Instance.GetRandomInt(30, 70) }
                 };
                 if (AllDropItems.TryAdd(DropItemUUID, item))
                 {
@@ -511,11 +511,19 @@ public class MOFMap
     {
         if(this.AllDropItems!=null && this.AllDropItems.Count > 0)
         {
+            List<int> NeedRemove = new List<int>();
             foreach (var kv in AllDropItems)
             {
-                if (kv.Value != null)
+                if (!(kv.Value.Update(Time.deltaTime)))
                 {
-                    kv.Value.Update(Time.deltaTime);
+                    NeedRemove.Add(kv.Key);
+                }
+            }
+            if (NeedRemove.Count > 0)
+            {
+                foreach (var UUID in NeedRemove)
+                {
+                    AllDropItems.Remove(UUID);
                 }
             }
         }

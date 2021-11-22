@@ -32,7 +32,7 @@ public class Bullet
         {
             duration = (float)distance / active.BulletSpeed;
         }
-        Console.WriteLine("發射子彈 Target: {0} Distance: {1}, Duration: {2}", target.nEntity.Id, distance, duration);
+        //Console.WriteLine("發射子彈 Target: {0} Distance: {1}, Duration: {2}", target.nEntity.Id, distance, duration);
     }
 
     public void Update()
@@ -48,7 +48,6 @@ public class Bullet
         if (this.flyTime > duration)
         {
             this.hitInfo.IsBullet = true;
-            Console.WriteLine("子彈擊中");
             this.skill.DoHit();
             this.Stopped = true;
         }
@@ -66,7 +65,6 @@ public class Bullet
         else
         {
             this.hitInfo.IsBullet = true;
-            Console.WriteLine("子彈擊中");
             this.skill.DoHit(this.hitInfo, active);
             this.Stopped = true;
         }
