@@ -455,8 +455,9 @@ public class MOFMap
             BornTimer += Time.deltaTime;
             if (BornTimer >= MonsterBornTime) MonstersBorn();
             this.Battle.Update();
-            SyncMapUpdate();
+            SyncMapUpdate();            
         }
+        UpdateDropItems();
     }
     public ConcurrentDictionary<int, DropItem> AllDropItems = new ConcurrentDictionary<int, DropItem>();
     public int DropItemUUID = 0;
@@ -502,6 +503,19 @@ public class MOFMap
                 if (AllDropItems.TryAdd(DropItemUUID, item))
                 {
                     Battle.AddReadyToDropItem(DropItemUUID, item);
+                }
+            }
+        }
+    }
+    public void UpdateDropItems()
+    {
+        if(this.AllDropItems!=null && this.AllDropItems.Count > 0)
+        {
+            foreach (var kv in AllDropItems)
+            {
+                if (kv.Value != null)
+                {
+                    kv.Value.Update(Time.deltaTime);
                 }
             }
         }

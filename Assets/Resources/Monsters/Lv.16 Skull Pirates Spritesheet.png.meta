@@ -173,6 +173,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -204,9 +205,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -253,9 +257,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 869
+        y: 871
         width: 54
-        height: 81
+        height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,7 +280,7 @@ TextureImporter:
         x: 56
         y: 869
         width: 54
-        height: 81
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,9 +299,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 110
-        y: 869
+        y: 871
         width: 54
-        height: 81
+        height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,9 +320,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 167
-        y: 869
+        y: 872
         width: 54
-        height: 81
+        height: 78
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,9 +341,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 222
-        y: 869
+        y: 871
         width: 54
-        height: 81
+        height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,7 +364,7 @@ TextureImporter:
         x: 276
         y: 869
         width: 54
-        height: 81
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,7 +385,7 @@ TextureImporter:
         x: 330
         y: 869
         width: 52
-        height: 81
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -443,7 +447,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 788
-        width: 49
+        width: 50
         height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -778,11 +782,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 360
-        y: 240
+        y: 248
         width: 88
-        height: 105
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 96
+      alignment: 9
+      pivot: {x: 0.50457555, y: 0.53774613}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -801,9 +805,9 @@ TextureImporter:
         x: 2
         y: 180
         width: 86
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 57
+      alignment: 9
+      pivot: {x: 0.505843, y: 0.9099362}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -822,9 +826,9 @@ TextureImporter:
         x: 94
         y: 175
         width: 86
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5087644, y: 0.8485097}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -843,9 +847,9 @@ TextureImporter:
         x: 184
         y: 181
         width: 86
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 54
+      alignment: 9
+      pivot: {x: 0.50292134, y: 0.95597416}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -864,9 +868,9 @@ TextureImporter:
         x: 272
         y: 176
         width: 88
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4914346, y: 0.8852519}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -945,7 +949,7 @@ TextureImporter:
       name: Lv.16 Skull Pirates Spritesheet_33
       rect:
         serializedVersion: 2
-        x: 81
+        x: 83
         y: 345
         width: 86
         height: 105
@@ -1156,9 +1160,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 581
+        y: 613
         width: 59
-        height: 118
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1179,7 +1183,7 @@ TextureImporter:
         x: 1
         y: 703
         width: 57
-        height: 80
+        height: 84
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1201,8 +1205,8 @@ TextureImporter:
         y: 691
         width: 81
         height: 95
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5135836, y: 0.3610146}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1219,11 +1223,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 700
+        y: 697
         width: 78
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 67
+      alignment: 9
+      pivot: {x: 0.4999994, y: 0.5738972}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1240,11 +1244,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 228
-        y: 701
+        y: 695
         width: 77
-        height: 75
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 81
+      alignment: 9
+      pivot: {x: 0.4071172, y: 0.5543326}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1261,11 +1265,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 314
-        y: 691
+        y: 690
         width: 78
-        height: 92
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 93
+      alignment: 9
+      pivot: {x: 0.41536066, y: 0.42309505}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1281,12 +1285,12 @@ TextureImporter:
       name: Lv.16 Skull Pirates Spritesheet_49
       rect:
         serializedVersion: 2
-        x: 419
-        y: 705
+        x: 420
+        y: 703
         width: 78
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 66
+      alignment: 9
+      pivot: {x: 0.45062685, y: 0.5833546}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

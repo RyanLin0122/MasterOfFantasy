@@ -152,6 +152,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -183,9 +184,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -232,11 +236,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 347
-        width: 53
-        height: 37
+        y: 351
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -253,11 +257,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 53
-        y: 347
-        width: 53
-        height: 37
+        y: 351
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +277,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_2
       rect:
         serializedVersion: 2
-        x: 105
-        y: 347
-        width: 53
-        height: 37
+        x: 106
+        y: 351
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,11 +299,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 347
-        width: 53
-        height: 37
+        y: 350
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -316,11 +320,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 214
-        y: 347
-        width: 53
-        height: 37
+        y: 353
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -337,11 +341,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 269
-        y: 347
-        width: 53
-        height: 37
+        y: 352
+        width: 52
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,12 +361,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_6
       rect:
         serializedVersion: 2
-        x: 321
+        x: 325
         y: 347
-        width: 53
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 49
+        height: 35
+      alignment: 9
+      pivot: {x: 0.52, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,12 +382,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_7
       rect:
         serializedVersion: 2
-        x: 373
-        y: 347
-        width: 53
-        height: 37
+        x: 374
+        y: 346
+        width: 51
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,12 +403,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_8
       rect:
         serializedVersion: 2
-        x: 429
+        x: 430
         y: 347
-        width: 53
-        height: 37
+        width: 51
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,12 +424,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_9
       rect:
         serializedVersion: 2
-        x: 2
+        x: 4
         y: 309
-        width: 53
-        height: 38
+        width: 51
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +445,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_10
       rect:
         serializedVersion: 2
-        x: 56
-        y: 309
-        width: 53
-        height: 38
+        x: 58
+        y: 312
+        width: 51
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -463,11 +467,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
-        y: 309
-        width: 50
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 301
+        width: 47
+        height: 50
+      alignment: 9
+      pivot: {x: 0.39546853, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -487,8 +491,8 @@ TextureImporter:
         y: 286
         width: 60
         height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -505,11 +509,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 220
-        y: 286
+        y: 285
         width: 60
         height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -526,11 +530,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 280
-        y: 286
+        y: 288
         width: 52
         height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.4386139, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -550,8 +554,8 @@ TextureImporter:
         y: 289
         width: 57
         height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -571,8 +575,8 @@ TextureImporter:
         y: 289
         width: 57
         height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -592,8 +596,8 @@ TextureImporter:
         y: 291
         width: 57
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -613,8 +617,8 @@ TextureImporter:
         y: 224
         width: 72
         height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -634,8 +638,8 @@ TextureImporter:
         y: 224
         width: 72
         height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -655,8 +659,8 @@ TextureImporter:
         y: 223
         width: 72
         height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -675,9 +679,9 @@ TextureImporter:
         x: 244
         y: 223
         width: 70
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -693,12 +697,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_22
       rect:
         serializedVersion: 2
-        x: 321
-        y: 240
-        width: 56
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 317
+        y: 242
+        width: 58
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -714,12 +718,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_23
       rect:
         serializedVersion: 2
-        x: 378
-        y: 240
+        x: 376
+        y: 243
         width: 56
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -737,10 +741,10 @@ TextureImporter:
         serializedVersion: 2
         x: 438
         y: 237
-        width: 56
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -760,8 +764,8 @@ TextureImporter:
         y: 166
         width: 44
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -778,11 +782,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 55
-        y: 166
+        y: 170
         width: 44
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -799,11 +803,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 112
-        y: 166
+        y: 171
         width: 44
         height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -819,12 +823,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_28
       rect:
         serializedVersion: 2
-        x: 158
-        y: 166
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 159
+        y: 169
+        width: 54
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,12 +844,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_29
       rect:
         serializedVersion: 2
-        x: 225
-        y: 166
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 226
+        y: 171
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -861,12 +865,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_30
       rect:
         serializedVersion: 2
-        x: 285
+        x: 286
         y: 166
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -882,12 +886,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_31
       rect:
         serializedVersion: 2
-        x: 355
+        x: 357
         y: 166
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 53
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -903,12 +907,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_32
       rect:
         serializedVersion: 2
-        x: 428
+        x: 429
         y: 166
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -924,12 +928,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_33
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 106
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -946,11 +950,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 58
-        y: 106
-        width: 56
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 107
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -967,11 +971,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 116
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 113
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -987,12 +991,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_36
       rect:
         serializedVersion: 2
-        x: 178
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 180
+        y: 115
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1008,12 +1012,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_37
       rect:
         serializedVersion: 2
-        x: 240
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 242
+        y: 117
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1029,12 +1033,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_38
       rect:
         serializedVersion: 2
-        x: 302
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 114
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1050,12 +1054,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_39
       rect:
         serializedVersion: 2
-        x: 370
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 373
+        y: 116
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1071,12 +1075,12 @@ TextureImporter:
       name: Lv.2 Ant Spritesheet_40
       rect:
         serializedVersion: 2
-        x: 436
-        y: 111
-        width: 61
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 438
+        y: 112
+        width: 57
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1084,48 +1088,6 @@ TextureImporter:
       bones: []
       spriteID: 7cfdd98d061301220800000000000000
       internalID: 2454516088937766855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lv.2 Ant Spritesheet_41
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 32
-        width: 51
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdbad98c038579a20800000000000000
-      internalID: 3069018637623733215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lv.2 Ant Spritesheet_42
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 32
-        width: 51
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be1865ba50359b6f0800000000000000
-      internalID: -668411785873292821
       vertices: []
       indices: 
       edges: []
