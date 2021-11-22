@@ -13,6 +13,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private List<SkillCastInfo> SkillCasts;
     public List<int> DeathMonsterUUIDs = new List<int>();
     private Dictionary<string, int> ExpRecord;
+    private Dictionary<int, DropItem> ReadyToDrop;
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -28,6 +29,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.BuffActions = new List<BuffInfo>();
         this.SkillCasts = new List<SkillCastInfo>();
         this.ExpRecord = new Dictionary<string, int>();
+        this.ReadyToDrop = new Dictionary<int, DropItem>();
     }
     public void AddSkillCastInfo(SkillCastInfo cast)
     {
@@ -45,6 +47,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         this.DeathMonsterUUIDs.Add(ID);
     }
+    public void AddReadyToDropItem(int UUID, DropItem dropItem)
+    {
+        this.ReadyToDrop.Add(UUID, dropItem);
+        LogSvc.Info("增加掉落物 " + UUID);
+    }
     internal void Update()
     {
         this.DeathMonsterUUIDs.Clear();
@@ -52,6 +59,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.Hits.Clear();
         this.BuffActions.Clear();
         this.ExpRecord.Clear();
+        this.ReadyToDrop.Clear();
         if (this.Actions.Count > 0) //1幀只處理10個技能請求
         {
             List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
@@ -79,6 +87,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     private void UpdateUnits()
     {
+        //System.Console.WriteLine("UpdateUnits ThreadID: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
         this.DeathPool.Clear();
         if (AllPlayers.Count > 0)
         {
@@ -326,12 +335,14 @@ public class Battle //戰鬥類，一個地圖綁定一個
 
     private void BroadcastBattleMessages()
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0) return;
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && 
+            this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0) return;
         SkillCastResponse skillCast = null;
         SkillHitResponse skillHit = null;
         BuffResponse buffRsp = null;
         MonsterDeath death = null;
         ExpPacket expPacket = null;
+        DropItemsInfo dropItems = null;
         if (this.SkillCasts != null && this.SkillCasts.Count > 0)
         {
             skillCast = new SkillCastResponse
@@ -369,6 +380,13 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 Exp = this.ExpRecord
             };
         }
+        if(this.ReadyToDrop!=null && this.ReadyToDrop.Count > 0)
+        {
+            dropItems = new DropItemsInfo
+            {
+                DropItems = this.ReadyToDrop
+            };
+        }
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 60,
@@ -376,7 +394,8 @@ public class Battle //戰鬥類，一個地圖綁定一個
             skillHitResponse = skillHit,
             buffResponse = buffRsp,
             monsterDeath = death,
-            expPacket = expPacket
+            expPacket = expPacket,
+            dropItemsInfo = dropItems
         };
         this.mofMap.BroadCastMassege(msg);
     }

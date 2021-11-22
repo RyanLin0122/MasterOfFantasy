@@ -870,6 +870,11 @@ public class BattleSys : SystemRoot
         {
             OnExp(ep);
         }
+        DropItemsInfo di = msg.dropItemsInfo;
+        if (di != null)
+        {
+            OnDrop(di);
+        }
     }
     private void OnCast(SkillCastResponse scr)
     {
@@ -1037,6 +1042,15 @@ public class BattleSys : SystemRoot
                 UISystem.Instance.AddMessageQueue("獲取經驗值: " + kv.Value);
                 UISystem.Instance.baseUI.AddExp(kv.Value);
             }
+        }
+    }
+    private void OnDrop(DropItemsInfo di)
+    {
+        if (di.DropItems == null || di.DropItems.Count == 0) return;
+        foreach (var kv in di.DropItems)
+        {
+            //TODO
+            GameRoot.AddTips("掉東西: " + kv.Value.Type.ToString());
         }
     }
     #endregion

@@ -69,6 +69,8 @@ namespace PEProtocal
         ///59:ManufactureRsp製作回應
         ///60:SkillHitResponse 技能命中回應
         ///61:RunOperation 跑步
+        ///62:DropItemInfo 掉落物品通知
+        ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -214,8 +216,8 @@ namespace PEProtocal
         public ManufactureResponse manufactureResponse { get; set; }
         [ProtoMember(72, IsRequired = false)]
         public RunOperation runOperation { get; set; }
-
-
+        [ProtoMember(73, IsRequired = false)]
+        public DropItemsInfo dropItemsInfo { get; set; }
 
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
@@ -1584,5 +1586,10 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public string CharacterName { get; set; }
     }
-
+    [ProtoContract]
+    public class DropItemsInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public Dictionary<int, DropItem> DropItems { get; set; }
+    }
 }

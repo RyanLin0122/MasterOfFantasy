@@ -91,6 +91,7 @@ public class Skill
         }
         if (!active.IsMultiple && !active.IsAOE) //單一敵人，且不是AOE
         {
+            if (context.Target == null || context.Target.Count == 0) return SkillResult.TargetInvalid;
             if (!CheckRange(active.Shape, active.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target[0]).nEntity.Position))
             {
                 return SkillResult.OutOfRange;

@@ -684,6 +684,10 @@ public class MOFCharacter : Entity
             {
                 player.Exp = NextLevelUpExp - 1;
             }
+            else
+            {
+                player.Exp = player.Exp + Exp - LevelUpExp;
+            }
             ProtoMsg msg = new ProtoMsg
             {
                 MessageType = 33,

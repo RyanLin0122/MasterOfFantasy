@@ -767,13 +767,17 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public DropItemState State { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public string OwnerID { get; set; }
+        public string OwnerName { get; set; }
         [ProtoMember(4, IsRequired = false)]
         public Item Item { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public DropItemType Type { get; set; }
         [ProtoMember(5, IsRequired = false)]
+        public DropItemType Type { get; set; }
+        [ProtoMember(6, IsRequired = false)]
         public long Money { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public NVector3 From { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public float[] FlyTo { get; set; }
     }
 
     [ProtoContract(EnumPassthru = false)]
