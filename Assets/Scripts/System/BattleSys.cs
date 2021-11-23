@@ -1099,7 +1099,7 @@ public class BattleSys : SystemRoot
                     //自己撿取成功
                     AudioSvc.Instance.PlayCharacterAudio(Constants.GetItem);
                     //放進背包
-                    if(DropItems[pr.ItemUUIDs[i]].DropItem.Type == DropItemType.Money)
+                    if (DropItems[pr.ItemUUIDs[i]].DropItem.Type == DropItemType.Money)
                     {
                         GameRoot.Instance.ActivePlayer.Ribi += DropItems[pr.ItemUUIDs[i]].DropItem.Money;
                         KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
@@ -1195,10 +1195,34 @@ public class BattleSys : SystemRoot
     }
     private void InstantiatePickUpEffect(Vector3 From, EntityController controller)
     {
-
+        for (int i = 0; i < 9; i++)
+        {
+            if (i == 0) InstantiateTrail(From, controller, 0);
+            else
+            {
+                int t = i;
+                TimerSvc.Instance.AddTimeTask((effect) => { InstantiateTrail(From, controller, t); }, t * 0.05f, PETimeUnit.Second);
+            }
+        }
+    }
+    private void InstantiateTrail(Vector3 From, EntityController controller, int Num)
+    {
+        Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/PickUpTrail"), MapCanvas.transform)).GetComponent<Transform>();
+        go.localPosition = From;
+        go.localScale = new Vector3(100 - Num * 10, 100 - Num * 10, 1);
+        PickUpTrail trail = go.GetComponent<PickUpTrail>();
+        if (Num == 0)
+        {
+            trail.Init(controller, true);
+        }
+        else
+        {
+            trail.Init(controller, false);
+        }
     }
     public void PickUpRequest()
     {
+        int PickNum = 0;
         foreach (var kv in DropItems)
         {
             if (kv.Value.HasInit && CanPickUp(kv.Value))
@@ -1206,7 +1230,8 @@ public class BattleSys : SystemRoot
                 if (kv.Value.DropItem.Type == DropItemType.Money)
                 {
                     new PickUpSender(kv.Key, 1, -1);
-                    return;
+                    PickNum++;
+                    if (PickNum > 3) return;
                 }
                 if (kv.Value.DropItem.Item != null)
                 {
@@ -1214,7 +1239,8 @@ public class BattleSys : SystemRoot
                     if (EmptyResult.Item1)
                     {
                         new PickUpSender(kv.Key, EmptyResult.Item2.Item1, EmptyResult.Item2.Item2);
-                        return;
+                        PickNum++;
+                        if (PickNum > 3) return;
                     }
                 }
             }
