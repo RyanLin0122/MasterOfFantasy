@@ -756,7 +756,7 @@ public class CashShopWnd : Inventory
             foreach (var pos in FashionPanel.Keys)
             {
                 CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[0][pos]);
-                slot.StoreItem(FashionPanel[pos], FashionPanel[pos].Count);
+                slot.StoreItem(FashionPanel[pos]);
                 slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
                 GetComponent<Image>().raycastTarget = true;
             }
@@ -766,7 +766,7 @@ public class CashShopWnd : Inventory
             foreach (var pos in OtherPanel.Keys)
             {
                 CashShopBuyPanelSlot slot = ((CashShopBuyPanelSlot)slotLists[1][pos]);
-                slot.StoreItem(OtherPanel[pos], OtherPanel[pos].Count);
+                slot.StoreItem(OtherPanel[pos]);
                 slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.AddListener(() => slot.DoubleClickItem());
                 print(slot.GetComponentInChildren<DoubleClickObject>().DoubleClickEvents.ToString());
                 GetComponent<Image>().raycastTarget = true;
@@ -924,7 +924,7 @@ public class CashShopWnd : Inventory
                     {
                         foreach (var pos in rsp.FashionItems.Keys)
                         {
-                            ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos], rsp.FashionItems[pos].Count);
+                            ((CashShopBuyPanelSlot)slotLists[0][pos]).StoreItem(rsp.FashionItems[pos]);
                         }
                     }
                 }
@@ -938,7 +938,7 @@ public class CashShopWnd : Inventory
                     {
                         foreach (var pos in rsp.OtherItems.Keys)
                         {
-                            ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos], rsp.OtherItems[pos].Count);
+                            ((CashShopBuyPanelSlot)slotLists[1][pos]).StoreItem(rsp.OtherItems[pos]);
                         }
                     }
                 }
@@ -970,7 +970,7 @@ public class CashShopWnd : Inventory
                                 {
                                     nk[pos] = outputNonCashKnapsack[pos];
                                 }
-                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(nk[pos], nk[pos].Count);
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(nk[pos]);
                             }
                         }
                     }
@@ -991,7 +991,7 @@ public class CashShopWnd : Inventory
                                 {
                                     ck[pos] = outputCashKnapsack[pos];
                                 }
-                                KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(ck[pos], ck[pos].Count);
+                                KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(ck[pos]);
                             }
                         }
                     }
@@ -1012,7 +1012,7 @@ public class CashShopWnd : Inventory
                                 {
                                     mailBox[pos] = outputMailBox[pos];
                                 }
-                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(mailBox[pos], mailBox[pos].Count);
+                                KnapsackWnd.Instance.FindSlot(pos).StoreItem(mailBox[pos]);
                             }
                         }
                     }

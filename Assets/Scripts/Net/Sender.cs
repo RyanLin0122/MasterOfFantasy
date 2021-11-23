@@ -31,7 +31,6 @@ public abstract class BaseSender
         {
             Debug.Log(e.Message);
         }
-
     }
 }
 
@@ -822,6 +821,26 @@ public class RunSender : BaseSender
                 IsRun = !PlayerInputController.Instance.entityController.IsRun
             }
         };
+        base.SendMsg(msg);
+    }
+}
+
+public class PickUpSender : BaseSender
+{
+    public PickUpSender(int UUID, int InventoryID, int InventoryPosition)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 63,
+            pickUpRequest = new PickUpRequest
+            {
+                CharacterName = GameRoot.Instance.ActivePlayer.Name,
+                ItemUUID = UUID,
+                InventoryID = InventoryID,
+                InventoryPosition = InventoryPosition
+            }
+        };
+        Debug.LogFormat("發送撿取ID: {0}", UUID);
         base.SendMsg(msg);
     }
 }

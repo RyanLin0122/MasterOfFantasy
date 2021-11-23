@@ -424,7 +424,7 @@ public class NetSvc : MonoBehaviour
                                 {
                                     nk[ko.NewPosition[i]] = ko.items[i];
                                 }
-                                KnapsackWnd.Instance.FindSlot(ko.NewPosition[i]).StoreItem(ko.items[i], ko.items[i].Count);
+                                KnapsackWnd.Instance.FindSlot(ko.NewPosition[i]).StoreItem(ko.items[i]);
                             }
                             else
                             {
@@ -436,7 +436,7 @@ public class NetSvc : MonoBehaviour
                                 {
                                     ck[ko.NewPosition[i]] = ko.items[i];
                                 }
-                                KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[i]).StoreItem(ko.items[i], ko.items[i].Count);
+                                KnapsackWnd.Instance.FindCashSlot(ko.NewPosition[i]).StoreItem(ko.items[i]);
                             }
                         }
                         break;
@@ -475,12 +475,12 @@ public class NetSvc : MonoBehaviour
                                 if (!item.IsCash)
                                 {
                                     nk[item.Position] = item;
-                                    KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                                    KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item);
                                 }
                                 else
                                 {
                                     ck[item.Position] = item;
-                                    KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                                    KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item);
                                 }
                             }
                             GameRoot.Instance.ActivePlayer.Ribi -= ko.Ribi;

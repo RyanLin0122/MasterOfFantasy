@@ -171,7 +171,7 @@ public class LockerSlot : ItemSlot
             {
                 if (SlotPosition == PickedUpItem.Position)
                 {
-                    StoreItem(PickedUpItem, PickedUpItem.Count);
+                    StoreItem(PickedUpItem);
                 }
             }
             DragSystem.Instance.RemoveDragObject();

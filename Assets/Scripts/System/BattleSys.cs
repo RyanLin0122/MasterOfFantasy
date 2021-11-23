@@ -654,7 +654,7 @@ public class BattleSys : SystemRoot
                 buff.OnRemove();
             }
         }
-        if(DropItems !=null && DropItems.Count > 0)
+        if (DropItems != null && DropItems.Count > 0)
         {
             List<int> NeedRemove = new List<int>();
             foreach (var kv in DropItems)
@@ -670,7 +670,7 @@ public class BattleSys : SystemRoot
                 {
                     Destroy(DropItems[UUID].gameObject);
                     DropItems.Remove(UUID);
-                }               
+                }
             }
         }
     }
@@ -894,6 +894,11 @@ public class BattleSys : SystemRoot
         {
             OnDrop(di);
         }
+        PickUpResponse pr = msg.pickUpResponse;
+        if (pr != null)
+        {
+            OnPickUp(pr);
+        }
     }
     private void OnCast(SkillCastResponse scr)
     {
@@ -1064,6 +1069,9 @@ public class BattleSys : SystemRoot
         }
     }
     private Dictionary<int, DropItemEntity> DropItems = new Dictionary<int, DropItemEntity>();
+    #endregion
+
+    #region 掉落撿取
     private void OnDrop(DropItemsInfo di)
     {
         if (di.DropItems == null || di.DropItems.Count == 0) return;
@@ -1075,6 +1083,246 @@ public class BattleSys : SystemRoot
             DropItems.Add(kv.Key, entity);
         }
     }
+    private void OnPickUp(PickUpResponse pr)
+    {
+        if (pr.CharacterNames == null || pr.CharacterNames.Count == 0) return;
+        for (int i = 0; i < pr.CharacterNames.Count; i++)
+        {
+            if (pr.CharacterNames[i] == GameRoot.Instance.ActivePlayer.Name)
+            {
+                if (!pr.Results[i])
+                {
+                    UISystem.Instance.AddMessageQueue("無法撿取物品");
+                }
+                else
+                {
+                    //自己撿取成功
+                    AudioSvc.Instance.PlayCharacterAudio(Constants.GetItem);
+                    //放進背包
+                    if(DropItems[pr.ItemUUIDs[i]].DropItem.Type == DropItemType.Money)
+                    {
+                        GameRoot.Instance.ActivePlayer.Ribi += DropItems[pr.ItemUUIDs[i]].DropItem.Money;
+                        KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
+                    }
+                    else
+                    {
+                        Item item = DropItems[pr.ItemUUIDs[i]].DropItem.Item;
+                        switch (pr.InventoryID[i])
+                        {
+                            case 1: //背包
+                                if (item.IsCash)
+                                {
+                                    Item existItem = null;
+                                    GameRoot.Instance.ActivePlayer.CashKnapsack.TryGetValue(pr.InventoryPosition[i], out existItem);
+                                    if (existItem != null)
+                                    {
+                                        existItem.Count += 1;
+                                        GameRoot.Instance.ActivePlayer.CashKnapsack[pr.InventoryPosition[i]] = existItem;
+                                        KnapsackWnd.Instance.FindSlot(pr.InventoryPosition[i]).StoreItem(existItem);
+
+                                    }
+                                    else
+                                    {
+                                        item.Position = pr.InventoryPosition[i];
+                                        item.Count = 1;
+                                        GameRoot.Instance.ActivePlayer.CashKnapsack[pr.InventoryPosition[i]] = item;
+                                        KnapsackWnd.Instance.FindSlot(pr.InventoryPosition[i]).StoreItem(item);
+                                    }
+                                }
+                                else
+                                {
+                                    Item existItem = null;
+                                    GameRoot.Instance.ActivePlayer.NotCashKnapsack.TryGetValue(pr.InventoryPosition[i], out existItem);
+                                    if (existItem != null)
+                                    {
+                                        existItem.Count += 1;
+                                        GameRoot.Instance.ActivePlayer.NotCashKnapsack[pr.InventoryPosition[i]] = existItem;
+                                        KnapsackWnd.Instance.FindSlot(pr.InventoryPosition[i]).StoreItem(existItem);
+
+                                    }
+                                    else
+                                    {
+                                        item.Position = pr.InventoryPosition[i];
+                                        item.Count = 1;
+                                        GameRoot.Instance.ActivePlayer.NotCashKnapsack[pr.InventoryPosition[i]] = item;
+                                        KnapsackWnd.Instance.FindSlot(pr.InventoryPosition[i]).StoreItem(item);
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    //地圖刪除物品
+                    //動畫和表現
+                    PickUpItem(pr.ItemUUIDs[i], pr.CharacterNames[i]);
+                }
+            }
+            else
+            {
+                if (pr.Results[i])
+                {
+                    //別人撿取成功
+                    //地圖刪除物品
+                    //動畫和表現
+                    PickUpItem(pr.ItemUUIDs[i], pr.CharacterNames[i]);
+                }
+            }
+        }
+    }
+    private void PickUpItem(int UUID, string CharacterName)
+    {
+        DropItemEntity ItemEntity = null;
+        if (DropItems.TryGetValue(UUID, out ItemEntity))
+        {
+            Vector3 Position = ItemEntity.transform.localPosition;
+            DropItems.Remove(UUID);
+            Destroy(ItemEntity.gameObject);
+            if (CharacterName == GameRoot.Instance.ActivePlayer.Name)
+            {
+                PlayerController controller = PlayerInputController.Instance.entityController;
+                if (controller != null)
+                {
+                    InstantiatePickUpEffect(Position, controller);
+                }
+            }
+            else
+            {
+                PlayerController controller = null;
+                if (Players.TryGetValue(CharacterName, out controller)) InstantiatePickUpEffect(Position, controller);
+            }
+        }
+    }
+    private void InstantiatePickUpEffect(Vector3 From, EntityController controller)
+    {
+
+    }
+    public void PickUpRequest()
+    {
+        foreach (var kv in DropItems)
+        {
+            if (kv.Value.HasInit && CanPickUp(kv.Value))
+            {
+                if (kv.Value.DropItem.Type == DropItemType.Money)
+                {
+                    new PickUpSender(kv.Key, 1, -1);
+                    return;
+                }
+                if (kv.Value.DropItem.Item != null)
+                {
+                    var EmptyResult = TryGetEmptyPosition(kv.Value.DropItem.Item.ItemID, kv.Value.DropItem.Item.IsCash);
+                    if (EmptyResult.Item1)
+                    {
+                        new PickUpSender(kv.Key, EmptyResult.Item2.Item1, EmptyResult.Item2.Item2);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    private bool CanPickUp(DropItemEntity drop)
+    {
+        bool result = false;
+        //先判斷距離
+        PlayerController controller = PlayerInputController.Instance.entityController;
+        if (controller != null && (TwoDimensionDistance(controller.transform.localPosition, drop.transform.localPosition) < 300))
+        {
+            if (drop.DropItem.Type == DropItemType.Money) return true;
+            else
+            {
+                List<string> Owners = drop.DropItem.OwnerNames;
+                if (Owners != null && Owners.Count > 0)
+                {
+                    foreach (var Name in Owners)
+                    {
+                        if (Name == GameRoot.Instance.ActivePlayer.Name) result = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    private (bool, (int, int)) TryGetEmptyPosition(int ItemID, bool IsCash)
+    {
+        bool result = false;
+        int InventoryID = -1;
+        int InventoryPosition = -1;
+        //先檢查背包
+        if (IsCash)
+        {
+            foreach (var slot in KnapsackWnd.Instance.slotLists[3]) //先嚕一次有東西的，相同ID且<Capacity，就放那
+            {
+                if (slot.transform.childCount > 0)
+                {
+                    ItemUI itemUI = slot.GetComponentInChildren<ItemUI>();
+                    if (itemUI.Item != null && itemUI.Item.ItemID == ItemID)
+                    {
+                        if (itemUI.Item.Count < itemUI.Item.Capacity)
+                        {
+                            result = true;
+                            InventoryID = 1;
+                            InventoryPosition = slot.SlotPosition;
+                            return (result, (InventoryID, InventoryPosition));
+                        }
+                    }
+                }
+            }
+            foreach (var slot in KnapsackWnd.Instance.slotLists[3]) //撸空格
+            {
+                if (slot.transform.childCount == 0)
+                {
+                    result = true;
+                    InventoryID = 1;
+                    InventoryPosition = slot.SlotPosition;
+                    return (result, (InventoryID, InventoryPosition));
+                }
+            }
+        }
+        else //不是現金
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (var slot in KnapsackWnd.Instance.slotLists[i]) //先嚕一次有東西的，相同ID且<Capacity，就放那
+                {
+                    if (slot.transform.childCount > 0)
+                    {
+                        ItemUI itemUI = slot.GetComponentInChildren<ItemUI>();
+                        if (itemUI.Item != null && itemUI.Item.ItemID == ItemID)
+                        {
+                            print(itemUI.Item.ItemID + ", <aaa>" + ItemID);
+                            if (itemUI.Item.Count < itemUI.Item.Capacity)
+                            {
+                                result = true;
+                                InventoryID = 1;
+                                InventoryPosition = slot.SlotPosition;
+                                return (result, (InventoryID, InventoryPosition));
+                            }
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (var slot in KnapsackWnd.Instance.slotLists[i]) //撸空格
+                {
+                    if (slot.transform.childCount == 0)
+                    {
+                        print("<bbb>" + ItemID);
+                        result = true;
+                        InventoryID = 1;
+                        InventoryPosition = slot.SlotPosition;
+                        return (result, (InventoryID, InventoryPosition));
+                    }
+                }
+            }
+        }
+        if (!result) UISystem.Instance.AddMessageQueue("背包已滿");
+        return (result, (InventoryID, InventoryPosition));
+    }
+    private float TwoDimensionDistance(Vector3 a, Vector3 b)
+    {
+        return Mathf.Sqrt(Mathf.Pow(b.x - a.x, 2) + Mathf.Pow(b.y - a.y, 2));
+    }
     #endregion
 
     #region 生怪相關
@@ -1085,9 +1333,6 @@ public class BattleSys : SystemRoot
         {
             foreach (var id in mons.Keys)
             {
-                print("EntityID: " + id);
-                print("MonsterID: " + mons[id].MonsterID);
-                print(mons[id].Position[0] + ", " + mons[id].Position[1]);
                 AddMonster(id, mons[id].MonsterID, mons[id].Position);
                 Monsters[id].hp = mons[id].HP;
                 Monsters[id].SetHpBar();
@@ -1097,7 +1342,6 @@ public class BattleSys : SystemRoot
     }
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
-        print("MapMonsterID: " + MapMonsterID);
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
         if (MapCanvas == null)
         {
@@ -1144,7 +1388,6 @@ public class BattleSys : SystemRoot
                     controller.OnEntityEvent(EntityEvent.Idle);
                     return;
                 }
-                Debug.LogFormat("ID {0}: Pos: {1}", nEntity.Id, nEntity.Position.ToString());
                 controller.entity.nEntity = nEntity;
                 controller.OnEntityEvent(entityEvent);
             }

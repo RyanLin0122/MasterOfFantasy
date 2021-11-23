@@ -14,7 +14,7 @@ public class AbstractMonster : Entity
     public MOFCharacter AttackTarget;
     public MonsterInfo Info;
     public AIAgent AI;
-    public override void OnDeath(string CasterName = "")
+    public override void OnDeath()
     {
         IsDeath = true;
         this.status = MonsterStatus.Death;
@@ -23,10 +23,19 @@ public class AbstractMonster : Entity
         MonsterPoint.monster = null;
         mofMap.Battle.AddDeathMonsterUUID(nEntity.Id);
         mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
-        if (!string.IsNullOrEmpty(CasterName))
+        if (PlayerDamageRecord.Count > 0)
         {
-            mofMap.DropItems(Info, CasterName, nEntity.Position);
+            List<string> KillerNames = new List<string>();
+            foreach (var name in PlayerDamageRecord.Keys)
+            {
+                if (!string.IsNullOrEmpty(name))
+                {
+                    KillerNames.Add(name);
+                }
+            }
+            if(KillerNames.Count>0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
         }
+        
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")
     {
@@ -40,7 +49,7 @@ public class AbstractMonster : Entity
                 HP = 0;
                 this.nEntity.HP = HP;
                 if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
-                OnDeath(CasterName);
+                OnDeath();
                 return;
             }
             else

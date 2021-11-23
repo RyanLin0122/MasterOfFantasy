@@ -183,6 +183,10 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             new RunSender();
         }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            BattleSys.Instance.PickUpRequest();
+        }
         if (hotKeySlot != null)
         {
             var dict = Instance.entityController.SkillDict;

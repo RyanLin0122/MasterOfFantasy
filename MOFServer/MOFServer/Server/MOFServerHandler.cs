@@ -244,6 +244,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     RunHandler runHandler = new RunHandler();
                     Task RunTask = runHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 63: //撿取道具
+                    PickUpItemHandler pickUpItemHandler = new PickUpItemHandler();
+                    Task PickUpTask = pickUpItemHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

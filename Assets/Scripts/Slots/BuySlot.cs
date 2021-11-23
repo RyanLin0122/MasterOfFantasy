@@ -7,30 +7,19 @@ using System.Globalization;
 using UnityEngine.UI;
 public class BuySlot : ItemSlot
 {
-    public override void StoreItem(Item item, int amount = 1)
+    public override void StoreItem(Item item)
     {
-        Debug.Log("StoreItem Amount= " + amount);
         if (transform.childCount == 0)
         {
-            GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
-            itemGameObject.transform.SetParent(this.transform);
+            GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);
             itemGameObject.transform.localScale = Vector3.one;
             itemGameObject.transform.localPosition = Vector3.zero;
-            itemGameObject.GetComponent<ItemUI>().SetItem(item, amount);
-            itemGameObject.transform.GetComponent<Image>().SetNativeSize();
-            itemGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-            Transform[] t = itemGameObject.GetComponentsInRealChildren<RectTransform>();
-            foreach (var transform in t)
-            {
-                if (transform.name != "Count")
-                {
-                    transform.localScale = new Vector3(2f, 2f, 1f);
-                }
-            }       
+            itemGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().rect.width > 0 ? GetComponent<RectTransform>().rect.width : 36, GetComponent<RectTransform>().rect.height > 0 ? GetComponent<RectTransform>().rect.height : 36);
+            itemGameObject.GetComponent<ItemUI>().SetItem(item); 
         }
         else
         {
-            transform.GetChild(0).GetComponent<ItemUI>().SetAmount(amount);
+            transform.GetChild(0).GetComponent<ItemUI>().SetAmount(item.Count);
         }
     }
     
@@ -42,7 +31,7 @@ public class BuySlot : ItemSlot
             {
                 Item currentItem = transform.GetChild(0).GetComponent<ItemUI>().Item;
                 string tempPrice = int.Parse(ShopWnd.Instance.txtTotalPrice.text, NumberStyles.AllowThousands).ToString();
-                ShopWnd.Instance.txtTotalPrice.text =(System.Convert.ToInt32(tempPrice)-(transform.GetComponentInChildren<ItemUI>().Item.BuyPrice * transform.GetComponentInChildren<ItemUI>().Amount)).ToString("N0");
+                ShopWnd.Instance.txtTotalPrice.text =(System.Convert.ToInt32(tempPrice)-(transform.GetComponentInChildren<ItemUI>().Item.BuyPrice * transform.GetComponentInChildren<ItemUI>().Count)).ToString("N0");
                 Destroy(transform.GetComponentInChildren<ItemUI>().gameObject);
             }
         }

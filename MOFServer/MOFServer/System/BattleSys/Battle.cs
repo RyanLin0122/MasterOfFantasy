@@ -14,6 +14,14 @@ public class Battle //戰鬥類，一個地圖綁定一個
     public List<int> DeathMonsterUUIDs = new List<int>();
     private Dictionary<string, int> ExpRecord;
     private Dictionary<int, DropItem> ReadyToDrop;
+
+    private ConcurrentQueue<PickUpRequest> PickUpRequests;
+    private List<int> PickUpUUIDs;
+    private List<string> PickUpCharacterNames;
+    private List<bool> PickUPResults;
+    private List<int> InventoryIDs;
+    private List<int> InventoryPositions;
+
     public Battle(MOFMap map)
     {
         this.mofMap = map;
@@ -22,6 +30,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     public void Init()
     {
         this.Actions = new ConcurrentQueue<SkillCastInfo>();
+        this.PickUpRequests = new ConcurrentQueue<PickUpRequest>();
         this.AllPlayers = new Dictionary<string, Entity>();
         this.AllMonsters = new Dictionary<int, Entity>();
         this.DeathPool = new Dictionary<int, Entity>();
@@ -30,6 +39,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.SkillCasts = new List<SkillCastInfo>();
         this.ExpRecord = new Dictionary<string, int>();
         this.ReadyToDrop = new Dictionary<int, DropItem>();
+        this.PickUpUUIDs = new List<int>();
+        this.PickUpCharacterNames = new List<string>();
+        this.PickUPResults = new List<bool>();
+        this.InventoryIDs = new List<int>();
+        this.InventoryPositions = new List<int>();
     }
     public void AddSkillCastInfo(SkillCastInfo cast)
     {
@@ -60,6 +74,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.BuffActions.Clear();
         this.ExpRecord.Clear();
         this.ReadyToDrop.Clear();
+        this.PickUpUUIDs.Clear();
+        this.PickUpCharacterNames.Clear();
+        this.PickUPResults.Clear();
+        this.InventoryIDs.Clear();
+        this.InventoryPositions.Clear();
         if (this.Actions.Count > 0) //1幀只處理10個技能請求
         {
             List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
@@ -78,6 +97,27 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 foreach (var skillCast in WillExecute)
                 {
                     this.ExecuteAction(skillCast);
+                }
+            }
+        }
+        if (this.PickUpRequests.Count > 0)
+        {
+            List<PickUpRequest> WillExecute = new List<PickUpRequest>();
+            for (int i = 0; i < this.PickUpRequests.Count; i++)
+            {
+                if (i >= 30) break;
+                PickUpRequest pickup = null;
+                this.PickUpRequests.TryDequeue(out pickup);
+                if (pickup != null)
+                {
+                    WillExecute.Add(pickup);
+                }
+            }
+            if (WillExecute.Count > 0)
+            {
+                foreach (var pickup in WillExecute)
+                {
+                    this.ExecutePickUpAction(pickup);
                 }
             }
         }
@@ -238,6 +278,83 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
 
     }
+    private void ExecutePickUpAction(PickUpRequest request)
+    {
+        this.PickUpUUIDs.Add(request.ItemUUID);
+        this.PickUpCharacterNames.Add(request.CharacterName);
+        this.InventoryIDs.Add(request.InventoryID);
+        this.InventoryPositions.Add(request.InventoryPosition);
+
+        bool Result = false;
+        //判斷行不行撿取
+        DropItem drop = null;
+        if (mofMap.AllDropItems.TryGetValue(request.ItemUUID, out drop))
+        {
+            if (drop != null)
+            {
+                MOFCharacter character = null;
+                if (mofMap.characters.TryGetValue(request.CharacterName, out character))
+                {
+                    if (drop.Type == DropItemType.Money)
+                    {
+                        character.player.Ribi += drop.Money;
+                        character.trimedPlayer.Ribi += drop.Money;
+                        Result = true;
+                        LogSvc.Info("UUID: " + request.ItemUUID + "成功撿錢 + " + drop.Money);
+                    }
+                    else //撿取道具
+                    {
+                        Item item = drop.Item;
+                        if (item != null)
+                        {
+                            switch (request.InventoryID)
+                            {
+                                case 1:
+                                    if (item.IsCash)
+                                    {
+                                        Dictionary<int, Item> ck = character.player.CashKnapsack;
+                                        if (ck == null) character.player.CashKnapsack = new Dictionary<int, Item>();
+                                        Item existItem = null;
+                                        if (ck.TryGetValue(request.InventoryPosition, out existItem))
+                                        {
+                                            existItem.Count += 1;
+                                        }
+                                        else
+                                        {
+                                            item.Count = 1;
+                                            item.Position = request.InventoryPosition;
+                                            ck[request.InventoryPosition] = item;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Dictionary<int, Item> nk = character.player.NotCashKnapsack;
+                                        if (nk == null) character.player.NotCashKnapsack = new Dictionary<int, Item>();
+                                        Item existItem = null;
+                                        if (nk.TryGetValue(request.InventoryPosition, out existItem))
+                                        {
+                                            existItem.Count += 1;
+                                        }
+                                        else
+                                        {
+                                            item.Count = 1;
+                                            item.Position = request.InventoryPosition;
+                                            nk[request.InventoryPosition] = item;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                            Result = true;
+                            LogSvc.Info("UUID: " + request.ItemUUID + "成功撿取");
+                        }
+                    }
+                }
+            }
+        }
+        this.PickUPResults.Add(Result);
+    }
     public void JoinBattle(Entity entity)
     {
         if (entity is MOFCharacter)
@@ -266,9 +383,9 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         try
         {
-            if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(session.ActivePlayer.Name))
+            MOFCharacter character = null;
+            if (mofMap.characters.TryGetValue(session.ActivePlayer.Name, out character))
             {
-                MOFCharacter character = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name];
                 if (character != null && request.CastInfo != null)
                 {
                     if (character.CharacterName != request.CastInfo.CasterName) return;
@@ -281,7 +398,25 @@ public class Battle //戰鬥類，一個地圖綁定一個
             LogSvc.Error(e.Message);
         }
     }
-
+    internal void ProcessPickUpRequest(ServerSession session, PickUpRequest request)
+    {
+        try
+        {
+            MOFCharacter character = null;
+            if (mofMap.characters.TryGetValue(session.ActivePlayer.Name, out character))
+            {
+                if (character != null)
+                {
+                    if (character.CharacterName != request.CharacterName) return;
+                    this.PickUpRequests.Enqueue(request);
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            LogSvc.Error(e.Message);
+        }
+    }
     internal List<Entity> FindUnitsInRange(NVector3 pos, SkillRangeShape shape, float[] range, SkillTargetType targetType)
     {
         List<Entity> result = new List<Entity>();
@@ -335,14 +470,15 @@ public class Battle //戰鬥類，一個地圖綁定一個
 
     private void BroadcastBattleMessages()
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 && 
-            this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0) return;
+        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 &&
+            this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0 && PickUpUUIDs.Count == 0) return;
         SkillCastResponse skillCast = null;
         SkillHitResponse skillHit = null;
         BuffResponse buffRsp = null;
         MonsterDeath death = null;
         ExpPacket expPacket = null;
         DropItemsInfo dropItems = null;
+        PickUpResponse pickUpResponse = null;
         if (this.SkillCasts != null && this.SkillCasts.Count > 0)
         {
             skillCast = new SkillCastResponse
@@ -373,18 +509,29 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 MonsterID = this.DeathMonsterUUIDs
             };
         }
-        if(this.ExpRecord!=null && this.ExpRecord.Count > 0)
+        if (this.ExpRecord != null && this.ExpRecord.Count > 0)
         {
             expPacket = new ExpPacket
             {
                 Exp = this.ExpRecord
             };
         }
-        if(this.ReadyToDrop!=null && this.ReadyToDrop.Count > 0)
+        if (this.ReadyToDrop != null && this.ReadyToDrop.Count > 0)
         {
             dropItems = new DropItemsInfo
             {
                 DropItems = this.ReadyToDrop
+            };
+        }
+        if (this.PickUpUUIDs.Count > 0 && this.PickUpCharacterNames.Count > 0 && this.InventoryIDs.Count > 0 && this.InventoryPositions.Count > 0 && this.PickUPResults.Count > 0)
+        {
+            pickUpResponse = new PickUpResponse
+            {
+                Results = this.PickUPResults,
+                CharacterNames = this.PickUpCharacterNames,
+                InventoryID = this.InventoryIDs,
+                InventoryPosition = this.InventoryPositions,
+                ItemUUIDs = this.PickUpUUIDs
             };
         }
         ProtoMsg msg = new ProtoMsg
@@ -395,7 +542,8 @@ public class Battle //戰鬥類，一個地圖綁定一個
             buffResponse = buffRsp,
             monsterDeath = death,
             expPacket = expPacket,
-            dropItemsInfo = dropItems
+            dropItemsInfo = dropItems,
+            pickUpResponse = pickUpResponse
         };
         this.mofMap.BroadCastMassege(msg);
     }

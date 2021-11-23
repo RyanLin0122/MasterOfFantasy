@@ -59,20 +59,20 @@ public class StrengthenStoneSlot : ItemSlot
                     else//放錯誤素質的強化石顯示提醒並放回背包
                     {
                         UISystem.Instance.AddMessageQueue("請放對應武器素質的強化石");
-                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     }
                 }
                 else
                 {
                     UISystem.Instance.AddMessageQueue("這不是強化石~");
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
 
             }
             else//沒有先放武器顯示提醒並把強化石放回背包
             {
                 UISystem.Instance.AddMessageQueue("請先放要強化的武器或裝備");
-                KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
             }
 
 
@@ -105,13 +105,13 @@ public class StrengthenStoneSlot : ItemSlot
                 else//放錯誤素質的強化石顯示提醒並放回背包
                 {
                     print("請放對應武器素質的強化石");
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
             }
             else
             {
                 print("一樣的東西");
-                KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
             }
 
 

@@ -70,7 +70,7 @@ namespace PEProtocal
         ///60:SkillHitResponse 技能命中回應
         ///61:RunOperation 跑步
         ///62:DropItemInfo 掉落物品通知
-        ///
+        ///63:PickUpReq撿取請求
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -218,7 +218,10 @@ namespace PEProtocal
         public RunOperation runOperation { get; set; }
         [ProtoMember(73, IsRequired = false)]
         public DropItemsInfo dropItemsInfo { get; set; }
-
+        [ProtoMember(74, IsRequired = false)]
+        public PickUpRequest pickUpRequest { get; set; }
+        [ProtoMember(75, IsRequired = false)]
+        public PickUpResponse pickUpResponse { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1592,4 +1595,32 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public Dictionary<int, DropItem> DropItems { get; set; }
     }
+    [ProtoContract]
+    public class PickUpRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int ItemUUID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string CharacterName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int InventoryID { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int InventoryPosition { get; set; }
+
+    }
+    [ProtoContract]
+    public class PickUpResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public List<int> ItemUUIDs { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public List<string> CharacterNames { get; set; }     
+        [ProtoMember(3, IsRequired = false)]
+        public List<bool> Results { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public List<int> InventoryID { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public List<int> InventoryPosition { get; set; }
+    }
+
 }

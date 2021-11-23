@@ -461,21 +461,22 @@ public class MOFMap
     }
     public ConcurrentDictionary<int, DropItem> AllDropItems = new ConcurrentDictionary<int, DropItem>();
     public int DropItemUUID = 0;
-    public void DropItems(MonsterInfo monsterInfo, string killer, NVector3 DropPositionFrom)
+    public void DropItems(MonsterInfo monsterInfo, List<string> killers, NVector3 DropPositionFrom)
     {
         //超過400，自動清理
 
         if (RandomSys.Instance.NextDouble() < 0.8) //會不會掉錢
         {
             DropItemUUID++;
+            long Ribi = (long)(((RandomSys.Instance.GetRandomInt(0, 4) / 10f) + 0.8) * monsterInfo.Ribi);
             DropItem ribi = new DropItem
             {
                 Type = DropItemType.Money,
                 State = DropItemState.OwnerPrior,
-                Money = (long)((RandomSys.Instance.GetRandomInt(0, 4) / 10f) * 0.8 * monsterInfo.Ribi),
+                Money = Ribi,
                 DropItemID = DropItemUUID,
                 Item = null,
-                OwnerName = killer,
+                OwnerNames = killers,
                 From = DropPositionFrom,
                 FlyTo = new float[] { RandomSys.Instance.GetRandomInt(0, 360), RandomSys.Instance.GetRandomInt(0, 50) }
             };
@@ -496,7 +497,7 @@ public class MOFMap
                     Money = 0,
                     DropItemID = DropItemUUID,
                     Item = CacheSvc.ItemList[kv.Key], //默認乾淨
-                    OwnerName = killer,
+                    OwnerNames = killers,
                     From = DropPositionFrom,
                     FlyTo = new float[] { RandomSys.Instance.GetRandomInt(0, 360), RandomSys.Instance.GetRandomInt(30, 70) }
                 };

@@ -330,7 +330,7 @@ public class InventorySys : MonoBehaviour
                             if (CashKnapsack[Positions[i]].Count - Amounts[i] > 0)
                             {
                                 CashKnapsack[Positions[i]].Count -= Amounts[i];
-                                KnapsackWnd.Instance.FindCashSlot(Positions[i]).StoreItem(CashKnapsack[Positions[i]], CashKnapsack[Positions[i]].Count);
+                                KnapsackWnd.Instance.FindCashSlot(Positions[i]).StoreItem(CashKnapsack[Positions[i]]);
                             }
                             else
                             {
@@ -347,7 +347,7 @@ public class InventorySys : MonoBehaviour
                             if (NotCashKnapsack[Positions[i]].Count - Amounts[i] > 0)
                             {
                                 NotCashKnapsack[Positions[i]].Count -= Amounts[i];
-                                KnapsackWnd.Instance.FindSlot(Positions[i]).StoreItem(NotCashKnapsack[Positions[i]], NotCashKnapsack[Positions[i]].Count);
+                                KnapsackWnd.Instance.FindSlot(Positions[i]).StoreItem(NotCashKnapsack[Positions[i]]);
                             }
                             else
                             {
@@ -405,7 +405,7 @@ public class InventorySys : MonoBehaviour
                     {
                         player.CashKnapsack.Add(pos, rewards.KnapsackItems_Cash[pos]);
                     }
-                    KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(rewards.KnapsackItems_Cash[pos], rewards.KnapsackItems_Cash[pos].Count);
+                    KnapsackWnd.Instance.FindCashSlot(pos).StoreItem(rewards.KnapsackItems_Cash[pos]);
                 }
             }
             if (rewards.KnapsackItems_NotCash != null && rewards.KnapsackItems_NotCash.Count > 0)
@@ -424,7 +424,7 @@ public class InventorySys : MonoBehaviour
                     {
                         player.NotCashKnapsack.Add(pos, rewards.KnapsackItems_NotCash[pos]);
                     }
-                    KnapsackWnd.Instance.FindSlot(pos).StoreItem(rewards.KnapsackItems_NotCash[pos], rewards.KnapsackItems_NotCash[pos].Count);
+                    KnapsackWnd.Instance.FindSlot(pos).StoreItem(rewards.KnapsackItems_NotCash[pos]);
                 }
             }
             if (rewards.MailBoxItems != null && rewards.MailBoxItems.Count > 0)
@@ -443,7 +443,7 @@ public class InventorySys : MonoBehaviour
                     {
                         player.MailBoxItems.Add(pos, rewards.MailBoxItems[pos]);
                     }
-                    MailBoxWnd.Instance.FindSlot(pos).StoreItem(rewards.MailBoxItems[pos], rewards.MailBoxItems[pos].Count);
+                    MailBoxWnd.Instance.FindSlot(pos).StoreItem(rewards.MailBoxItems[pos]);
                 }
             }
         }

@@ -71,33 +71,45 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     /// </summary>
     /// <param name="item"></param>
     /// <param name="amount"></param>
-    public virtual void StoreItem(Item item, int amount = 1)
+    public virtual void StoreItem(Item item)
     {
-        
+        Debug.Log("StorItem");
         if (transform.childCount == 0)
         {
-            GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
-            itemGameObject.transform.SetParent(this.transform);
+            GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);
             itemGameObject.transform.localScale = Vector3.one;
             itemGameObject.transform.localPosition = Vector3.zero;
-            itemGameObject.GetComponent<ItemUI>().SetItem(item, amount);
-            itemGameObject.transform.GetComponent<Image>().SetNativeSize();
-            itemGameObject.transform.GetComponent<Image>().raycastTarget = false;
-            itemGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            //Debug.Log("[82] "+ GetComponent<RectTransform>().rect.width +" , "+ GetComponent<RectTransform>().rect.height);
+            itemGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().rect.width > 0 ? GetComponent<RectTransform>().rect.width : 36, GetComponent<RectTransform>().rect.height > 0 ? GetComponent<RectTransform>().rect.height : 36);
+            itemGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(36, 36);
+            itemGameObject.GetComponent<ItemUI>().SetItem(item);
             Transform[] t = itemGameObject.GetComponentsInRealChildren<RectTransform>();
-            foreach (var transform in t)
-            {
-                if (transform.name != "Count")
-                {
-                    transform.localScale = new Vector3(2f, 2f, 1f);
-                }
-            }
         }
         else
         {
-            transform.GetChild(0).GetComponent<ItemUI>().SetAmount(amount);
+            transform.GetChild(0).GetComponent<ItemUI>().SetAmount(item.Count);
         }
     }
+
+    public virtual void StoreItem(Item item, int Count)
+    {
+        Debug.Log("StorFuckingItem");
+        if (transform.childCount == 0)
+        {
+            GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);
+            itemGameObject.transform.localScale = Vector3.one;
+            itemGameObject.transform.localPosition = Vector3.zero;
+            itemGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().rect.width > 0 ? GetComponent<RectTransform>().rect.width : 36, GetComponent<RectTransform>().rect.height > 0 ? GetComponent<RectTransform>().rect.height : 36);
+            itemGameObject.GetComponent<ItemUI>().SetItem(item);
+            itemGameObject.GetComponent<ItemUI>().SetAmount(Count);
+            Transform[] t = itemGameObject.GetComponentsInRealChildren<RectTransform>();
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<ItemUI>().SetAmount(Count);
+        }
+    }
+
     public static string GetToolTipText(Item item)
     {
         string Result = "";
@@ -413,7 +425,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     public virtual bool IsItemFull()
     {
         ItemUI itemUI = transform.GetChild(0).GetComponent<ItemUI>();
-        return itemUI.Amount >= itemUI.Item.Capacity;//檢查格子是否已滿
+        return itemUI.Count >= itemUI.Item.Capacity;//檢查格子是否已滿
     }
     /// <summary>
     /// 判斷Slot裡面是否有Item

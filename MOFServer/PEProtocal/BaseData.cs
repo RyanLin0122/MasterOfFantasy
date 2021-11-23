@@ -767,7 +767,7 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public DropItemState State { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public string OwnerName { get; set; }
+        public List<string> OwnerNames { get; set; }
         [ProtoMember(4, IsRequired = false)]
         public Item Item { get; set; }
         [ProtoMember(5, IsRequired = false)]

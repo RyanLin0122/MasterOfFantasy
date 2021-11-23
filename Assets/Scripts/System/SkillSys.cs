@@ -58,7 +58,7 @@ class SkillSys : MonoSingleton<SkillSys>
             go.SetParent(TargetTransform);
             go.localScale = Vector3.one;
             go.localScale = new Vector3(info.AniScale["Target"][0], info.AniScale["Target"][1], info.AniScale["Target"][2]);
-            Debug.Log("-------DIR-------- : " + Dir + " TargetTransform " + (TargetTransform.localScale.x > 0));
+            //Debug.Log("-------DIR-------- : " + Dir + " TargetTransform " + (TargetTransform.localScale.x > 0));
             if (!Dir)
             {
                 if (TargetTransform.localScale.x > 0) go.localScale = new Vector3(-go.localScale.x, go.localScale.y, go.localScale.z);
@@ -109,7 +109,6 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key].Owner = controller;
                 controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
-
         }
         MainCharacterSkillDic = controller.SkillDict;
         //增加普攻
@@ -130,7 +129,6 @@ class SkillSys : MonoSingleton<SkillSys>
                 controller.SkillDict[kv.Key].Owner = controller;
                 controller.SkillDict[kv.Key].Level = kv.Value.SkillLevel;
             }
-
         }
         //增加普攻
         controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);

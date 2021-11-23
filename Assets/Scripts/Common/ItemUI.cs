@@ -8,120 +8,85 @@ public class ItemUI : MonoBehaviour
 {
     #region Data
     public Item Item { get; private set; }
-    public int Amount = 0;
+    public int Count = 0;
     #endregion
 
     #region UI Component
-    private Image itemImage;
-    private Text amountText;
+    public Image ItemImage;
+    public Text AmountText;
+    public Image BG;
     #endregion
-    private Image ItemImage
-    {
-        get
-        {
-            if (itemImage == null)
-            {
-                itemImage = GetComponent<Image>();
-            }
-            return itemImage;
-        }
-    }
-    private Text AmountText
-    {
-        get
-        {
-            if (amountText == null)
-            {
-                amountText = GetComponentInChildren<Text>();
-            }
-            return amountText;
-        }
-    }
+
     public void SetSellItem(Item item)
     {
         this.Item = item;
-        this.Amount = 1;
+        this.Count = 1;
         // update ui 
         int itemid = item.ItemID;
         ItemImage.sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[itemid].Sprite);
         AmountText.text = "";
+        SetTxtBGOff();
     }
-    public void SetItem(Item item, int amount = 1)
+    public void SetItem(Item item)
     {
         this.Item = item;
-        this.Amount = amount;
-        // update ui 
-        int itemid = item.ItemID;
+        this.Count = item.Count;
         ItemImage.sprite = Resources.Load<Sprite>(item.Sprite);
-        if (Item.Capacity > 1)
+        ItemImage.SetNativeSize();
+        ItemImage.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        if (Item.Capacity > 1 && Item.Count > 1)
         {
-            AmountText.text = Amount.ToString();
+            AmountText.text = Count.ToString();
+            SetTxtBGOn(AmountText);
         }
         else
         {
-            AmountText.text = "";
-        }
-    }
-    public void AddAmount(int amount = 1)
-    {
-        this.Amount += amount;
-        //update ui 
-        if (Item.Capacity > 1)
-        {
-            AmountText.text = Amount.ToString();
-        }
-        else
-        {
-            AmountText.text = "";
-        }
-    }
-    public void ReduceAmount(int amount = 1)
-    {
-        this.Amount -= amount;
-        //update ui 
-        if (Item.Capacity > 1)
-        {
-            AmountText.text = Amount.ToString();
-        }
-        else
-        {
+            SetTxtBGOff();
             AmountText.text = "";
         }
     }
     public void SetAmount(int amount)
     {
         this.Item.Count = amount;
-        this.Amount = amount;
+        this.Count = amount;
         //update ui 
-        if (Item.Capacity > 1)
+        if (Item.Capacity > 1 && Item.Count > 1)
         {
-            AmountText.text = Amount.ToString();
+            AmountText.text = Count.ToString();
+            SetTxtBGOn(AmountText);
         }
         else
         {
             AmountText.text = "";
+            SetTxtBGOff();
         }
     }
-    //当前物品 跟 另一个物品 交换显示
-    public void Exchange(ItemUI itemUI)
-    {
-        Item itemTemp = itemUI.Item;
-        int amountTemp = itemUI.Amount;
-        itemUI.SetItem(this.Item, this.Amount);
-        this.SetItem(itemTemp, amountTemp);
-    }
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
 
-    public void Hide()
+    private void SetTxtBGOn(Text text)
     {
-        gameObject.SetActive(false);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(text.GetComponent<RectTransform>());
+        print("TextHeight = " + text.rectTransform.rect.height);
+        print("TextWidth = " + text.rectTransform.rect.width);
+        float TextHeight = text.rectTransform.rect.height;
+        float TextWidth = text.rectTransform.rect.width;
+        if (TextHeight == 0)
+        {
+            TextHeight = 14;
+        }
+        if (TextWidth == 0)
+        {
+            if(this.Item.Count <10) TextWidth = 8;
+            else if(this.Item.Count<100 && this.Item.Count >=10) TextWidth = 15;
+            else if (this.Item.Count < 1000 && this.Item.Count >= 100) TextWidth = 22;
+        }
+        BG.rectTransform.sizeDelta = new Vector2(TextWidth, TextHeight);
+        Transform CountObj = BG.rectTransform.parent;
+        Transform SlotTransform = transform.parent;
+        CountObj.GetComponent<RectTransform>().sizeDelta = new Vector2(SlotTransform.GetComponent<RectTransform>().rect.width > 0 ? SlotTransform.GetComponent<RectTransform>().rect.width : 36, SlotTransform.GetComponent<RectTransform>().rect.height > 0 ? SlotTransform.GetComponent<RectTransform>().rect.height : 36);
+        BG.gameObject.SetActive(true);
     }
-
-    public void SetLocalPosition(Vector3 position)
+    private void SetTxtBGOff()
     {
-        transform.localPosition = position;
+        BG.gameObject.SetActive(false);
     }
 }

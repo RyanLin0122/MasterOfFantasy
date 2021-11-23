@@ -100,11 +100,11 @@ public class DragSystem : SystemRoot
                     //取消拖曳，放回背包
                     if (item.IsCash)
                     {
-                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item);
                     }
                     else
                     {
-                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                        KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item);
                     }
                     RemoveDragObject();
                 }
@@ -143,18 +143,18 @@ public class DragSystem : SystemRoot
                     case 1:
                         if (item.IsCash)
                         {
-                            KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item, item.Count);
+                            KnapsackWnd.Instance.FindCashSlot(item.Position).StoreItem(item);
                         }
                         else
                         {
-                            KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                            KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item);
                         }
                         break;
                     case 2:
-                        LockerWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                        LockerWnd.Instance.FindSlot(item.Position).StoreItem(item);
                         break;
                     case 3:
-                        MailBoxWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+                        MailBoxWnd.Instance.FindSlot(item.Position).StoreItem(item);
                         break;
                 }
             }

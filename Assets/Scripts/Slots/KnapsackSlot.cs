@@ -76,7 +76,6 @@ public class KnapsackSlot : ItemSlot
                         return;
                     }
                 }
-                currentItemUI.ReduceAmount(1);
                 Item currentItem = currentItemUI.Item;
                 InventorySys.Instance.HideToolTip();
 
@@ -137,11 +136,11 @@ public class KnapsackSlot : ItemSlot
                 UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
                 if (PickedUpItem.IsCash)
                 {
-                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
                 else
                 {
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
                 DragSystem.Instance.RemoveDragObject();
             }
@@ -258,11 +257,11 @@ public class KnapsackSlot : ItemSlot
                 UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
                 if (PickedUpItem.IsCash)
                 {
-                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
                 else
                 {
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
                 DragSystem.Instance.RemoveDragObject();
             }
@@ -289,7 +288,7 @@ public class KnapsackSlot : ItemSlot
                 {
                     if (SlotPosition == PickedUpItem.Position)
                     {
-                        StoreItem(PickedUpItem, PickedUpItem.Count);
+                        StoreItem(PickedUpItem);
                     }
                 }
                 DragSystem.Instance.RemoveDragObject();
@@ -322,7 +321,7 @@ public class KnapsackSlot : ItemSlot
                 else
                 {
                     UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
-                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     DragSystem.Instance.RemoveDragObject();
                 }
             }
@@ -338,7 +337,7 @@ public class KnapsackSlot : ItemSlot
                 else
                 {
                     UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
-                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    LockerWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     DragSystem.Instance.RemoveDragObject();
                 }
             }
@@ -358,7 +357,7 @@ public class KnapsackSlot : ItemSlot
                 else
                 {
                     UISystem.Instance.AddMessageQueue("現金道具需要放到現金背包");
-                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     DragSystem.Instance.RemoveDragObject();
                 }
             }
@@ -374,7 +373,7 @@ public class KnapsackSlot : ItemSlot
                 else
                 {
                     UISystem.Instance.AddMessageQueue("一般道具不能放入現金背包");
-                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    MailBoxWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     DragSystem.Instance.RemoveDragObject();
                 }
             }

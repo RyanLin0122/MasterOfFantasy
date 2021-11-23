@@ -38,7 +38,7 @@ public class HotKeySlot : MonoBehaviour
             (t) =>
             {
                 float num = ColdTimeImg.fillAmount;
-                float cd = num - ( Period / maxTime);
+                float cd = num - (Period / maxTime);
                 this.MinusTimes++;
                 if (this.MinusTimes < TotalMinusTimes)
                 {
@@ -183,6 +183,7 @@ public class HotKeySlot : MonoBehaviour
                 State = HotKeyState.Consumable;
                 ColdTimeImg.fillAmount = 0;
                 ContentImg.sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[data.ID].Sprite);
+                ContentImg.SetNativeSize();
                 ContentImg.gameObject.SetActive(true);
                 int Count = 0;
                 if (InventorySys.Instance.ItemList[data.ID].IsCash)
@@ -217,13 +218,16 @@ public class HotKeySlot : MonoBehaviour
                 this.data = data;
                 State = HotKeyState.Skill;
                 ColdTimeImg.fillAmount = 0;
+                ContentImg.transform.localScale = Vector3.one;
                 ContentImg.sprite = Resources.Load<Sprite>(ResSvc.Instance.SkillDic[data.ID].Icon);
+                ContentImg.SetNativeSize();
+                ContentImg.rectTransform.sizeDelta = new Vector2(50, 50);
                 ContentImg.gameObject.SetActive(true);
                 TxtItemCount.gameObject.SetActive(false);
                 ItemCountBG.gameObject.SetActive(false);
                 if (SkillSys.Instance.MainCharacterSkillDic != null)
                 {
-                    SetColdTime( SkillSys.Instance.MainCharacterSkillDic[data.ID]);
+                    SetColdTime(SkillSys.Instance.MainCharacterSkillDic[data.ID]);
                 }
             }
         }

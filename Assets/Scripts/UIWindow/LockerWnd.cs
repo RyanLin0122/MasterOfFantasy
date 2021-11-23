@@ -99,7 +99,7 @@ public class LockerWnd : Inventory
         {
             foreach (var item in locker.Values)
             {
-                FindSlot(item.Position).StoreItem(item, item.Count);
+                FindSlot(item.Position).StoreItem(item);
             }
         }
     }
@@ -385,7 +385,7 @@ public class LockerWnd : Inventory
                         locker.Add(lo.NewPosition[0], lo.items[0]);
                     }
                     locker.Remove(lo.OldPosition[0]);
-                    FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                    FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
                 }
                 else if (lo.items.Count == 2)
                 {
@@ -399,8 +399,8 @@ public class LockerWnd : Inventory
                         locker[lo.NewPosition[0]].Position = lo.NewPosition[0];
                         locker[lo.OldPosition[0]].Position = lo.OldPosition[0];
                         DestroyImmediate(FindSlot(lo.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
-                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]]);
+                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
 
                     }
                     //兩格數量改變
@@ -409,8 +409,8 @@ public class LockerWnd : Inventory
                         Debug.Log("兩格數量改變");
                         locker[lo.OldPosition[0]].Count = lo.items[0].Count;
                         locker[lo.NewPosition[0]].Count = lo.items[1].Count;
-                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
-                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]]);
+                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
                     }
                 }
                 break;
@@ -427,7 +427,7 @@ public class LockerWnd : Inventory
                     GameRoot.Instance.ActivePlayer.NotCashKnapsack.Remove(lo.OldPosition[0]);
                     KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).RemoveItemUI();
                 }
-                FindSlot(lo.items[0].Position).StoreItem(lo.items[0], lo.items[0].Count);
+                FindSlot(lo.items[0].Position).StoreItem(lo.items[0]);
                 break;
             case 3: //從背包拿物品過來有東西格
                 var knapsack = lo.items[0].IsCash ? (GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>()) :
@@ -453,7 +453,7 @@ public class LockerWnd : Inventory
                     {
                         KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).RemoveItemUI();
                     }
-                    FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                    FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
                 }
                 else if (lo.items.Count == 2)
                 {
@@ -469,15 +469,15 @@ public class LockerWnd : Inventory
                         if (!knapsack[lo.OldPosition[0]].IsCash)
                         {
                             KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]]);
                         }
                         else
                         {
                             KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]]);
                         }
                         
-                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
                     }
                     //兩格數量改變
                     else
@@ -487,13 +487,13 @@ public class LockerWnd : Inventory
                         locker[lo.NewPosition[0]].Count = lo.items[1].Count;
                         if (!knapsack[lo.OldPosition[0]].IsCash)
                         {
-                            KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]]);
                         }
                         else
                         {
-                            KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]], knapsack[lo.OldPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(lo.OldPosition[0]).StoreItem(knapsack[lo.OldPosition[0]]);
                         }
-                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]], locker[lo.NewPosition[0]].Count);
+                        FindSlot(lo.NewPosition[0]).StoreItem(locker[lo.NewPosition[0]]);
                     }
                 }
                 break;
@@ -504,14 +504,14 @@ public class LockerWnd : Inventory
                     var dic = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
                     GameRoot.Instance.ActivePlayer.CashKnapsack = dic;
                     TryAddItemtoDic(dic, lo.items[0]);
-                    KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(lo.items[0],lo.items[0].Count);
+                    KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(lo.items[0]);
                 }
                 else
                 {
                     var dic = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
                     GameRoot.Instance.ActivePlayer.NotCashKnapsack = dic;
                     TryAddItemtoDic(dic, lo.items[0]);
-                    KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(lo.items[0], lo.items[0].Count);
+                    KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(lo.items[0]);
                 }
                 locker.Remove(lo.OldPosition[0]);
                 FindSlot(lo.OldPosition[0]).RemoveItemUI();
@@ -535,11 +535,11 @@ public class LockerWnd : Inventory
                     FindSlot(lo.OldPosition[0]).RemoveItemUI();
                     if (lo.items[0].IsCash)
                     {
-                        KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                     }
                     else
                     {
-                        KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                        KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                     }
                     
                 }
@@ -556,15 +556,15 @@ public class LockerWnd : Inventory
                         if (!locker[lo.OldPosition[0]].IsCash)
                         {
                             KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                         }
                         else
                         {
                             KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                         }
                         FindSlot(lo.OldPosition[0]).RemoveItemUI();
-                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]]);
                     }
                     //兩格數量改變
                     else
@@ -574,13 +574,13 @@ public class LockerWnd : Inventory
                         knap[lo.NewPosition[0]].Count = lo.items[1].Count;
                         if (!locker[lo.OldPosition[0]].IsCash)
                         {
-                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                         }
                         else
                         {
-                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]], knap[lo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(lo.NewPosition[0]).StoreItem(knap[lo.NewPosition[0]]);
                         }
-                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]], locker[lo.OldPosition[0]].Count);
+                        FindSlot(lo.OldPosition[0]).StoreItem(locker[lo.OldPosition[0]]);
                     }
                 }
                 break;

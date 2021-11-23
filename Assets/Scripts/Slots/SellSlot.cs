@@ -9,27 +9,17 @@ public class SellSlot : ItemSlot
 {
     public Text ItemName;
     public Text ItemPrice;
-    public override void StoreItem(Item item, int amount = 1)
+    public override void StoreItem(Item item)
     {
         if (transform.childCount < 4)
         {
-            GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
-            itemGameObject.transform.SetParent(this.transform);
+            GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);
             itemGameObject.transform.localScale = Vector3.one;
             itemGameObject.transform.localPosition = Vector3.zero;
-            itemGameObject.GetComponent<ItemUI>().SetSellItem(item);
+            itemGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().rect.width > 0 ? GetComponent<RectTransform>().rect.width : 36, GetComponent<RectTransform>().rect.height > 0 ? GetComponent<RectTransform>().rect.height : 36);
+            itemGameObject.GetComponent<ItemUI>().SetItem(item);
             ItemName.text = item.Name;
-            ItemPrice.text = item.BuyPrice.ToString();
-            itemGameObject.transform.GetComponent<Image>().SetNativeSize();
-            itemGameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-            Transform[] t = itemGameObject.GetComponentsInRealChildren<RectTransform>();
-            foreach (var transform in t)
-            {
-                if (transform.name != "Count")
-                {
-                    transform.localScale = new Vector3(2f, 2f, 1f);
-                }
-            }          
+            ItemPrice.text = item.BuyPrice.ToString();         
         }
     }
     public override void OnPointerEnter(PointerEventData eventData)

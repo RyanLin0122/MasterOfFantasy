@@ -976,6 +976,7 @@ public class Constants
     public const string WindowClose = "ui_se_window_close";
     public const string MoneyAudio = "ui_se_trade";
     public const string PickUpItem = "ui_se_tab_chage";
+    public const string GetItem = "charater_se_item_get";
     //小遊戲UI音效
     public const string Time321 = "minigame_se_minig_time1";
     public const string Time0 = "minigame_se_minig_time2";

@@ -42,7 +42,7 @@ public class Entity : IEntity
         }
         if (nEntity.HP <= 0)
         {
-            this.OnDeath(CasterName);
+            this.OnDeath();
         }
     }
     public virtual void MinusMP(int MinusMP)
@@ -60,7 +60,7 @@ public class Entity : IEntity
 
     }
 
-    public virtual void OnDeath(string CasterName = "")
+    public virtual void OnDeath()
     {
 
     }

@@ -64,11 +64,11 @@ public class TransactionPlayerSlot : ItemSlot
             {
                 if (!PickedUpItem.IsCash)
                 {
-                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
                 else
                 {
-                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                    KnapsackWnd.Instance.FindCashSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                 }
             }
 

@@ -256,7 +256,7 @@ public class ShopWnd : Inventory
                         Item Newitem = InventorySys.Instance.GetNewItemByID(item.gameObject.GetComponentInChildren<ItemUI>().Item.ItemID);
 
                         Newitem.Position = EmptyCashSlot[CashPointer];
-                        Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
+                        Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Count;
                         items.Add(Newitem);//把物品丟進items
                         CashPointer++;
                     }
@@ -272,7 +272,7 @@ public class ShopWnd : Inventory
                     {
                         Item Newitem = InventorySys.Instance.GetNewItemByID(item.gameObject.GetComponentInChildren<ItemUI>().Item.ItemID);
                         Newitem.Position = EmptyNotCashSlot[NotCashPointer];
-                        Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Amount;
+                        Newitem.Count = item.gameObject.GetComponentInChildren<ItemUI>().Count;
                         items.Add(Newitem);
                         NotCashPointer++;
                     }
@@ -543,7 +543,8 @@ public class ShopWnd : Inventory
         BuySlot slot = FindEmptyBuySlot();
         if (slot != null)
         {
-            FindEmptyBuySlot().StoreItem(CurrentItem, BuyAmount);
+            CurrentItem.Count = BuyAmount;
+            FindEmptyBuySlot().StoreItem(CurrentItem);
             AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
             return true;
         }

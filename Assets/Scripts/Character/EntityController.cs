@@ -35,7 +35,7 @@ public class EntityController : MonoBehaviour
     {
         //子類實現
         int NumberCount = damage.Damage.Length;
-        
+
         if (NumberCount > 0)
         {
             int[] t = new int[NumberCount];
@@ -63,7 +63,7 @@ public class EntityController : MonoBehaviour
                 }
                 else
                 {
-                    if(this is MonsterController)
+                    if (this is MonsterController)
                     {
                         GenerateDamageNum(damage.Damage[i], 0);
                     }
@@ -71,8 +71,7 @@ public class EntityController : MonoBehaviour
                     {
                         GenerateDamageNum(damage.Damage[i], 2);
                     }
-                } 
-                    
+                }
             }
         }
     }
@@ -89,7 +88,7 @@ public class EntityController : MonoBehaviour
     public virtual void PlayHitAni(ActiveSkillInfo active, bool dir)
     {
         //子類實現
-    }           
+    }
     public void DoSkillHit(SkillHitInfo hit)
     {
         if (SkillDict == null) return;
@@ -140,9 +139,10 @@ public class EntityController : MonoBehaviour
     {
         if (this.SkillDict != null && this.SkillDict.Count > 0)
         {
-            foreach (var skill in this.SkillDict.Values)
+            foreach (var kv in this.SkillDict)
             {
-                skill.Update(Time.deltaTime);
+                if (kv.Value != null)
+                    kv.Value.Update(Time.deltaTime);
             }
         }
         if (this.buffManager != null)
@@ -157,8 +157,7 @@ public class EntityController : MonoBehaviour
     public void GenerateDamageNum(int damage, int mode)
     {
         //DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
-        GameObject container = Instantiate(Resources.Load("Prefabs/NumberContainer") as GameObject);
-        container.transform.SetParent(BattleSys.Instance.MapCanvas.transform);
+        GameObject container = Instantiate(Resources.Load("Prefabs/NumberContainer") as GameObject, BattleSys.Instance.MapCanvas.transform);
         container.transform.localScale = new Vector3(100, 100, 1f);
         container.transform.localPosition = transform.localPosition;
 

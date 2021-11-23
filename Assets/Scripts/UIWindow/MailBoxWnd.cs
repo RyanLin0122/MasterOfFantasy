@@ -60,7 +60,7 @@ public class MailBoxWnd : Inventory
         {
             foreach (var item in mailbox.Values)
             {
-                FindSlot(item.Position).StoreItem(item, item.Count);
+                FindSlot(item.Position).StoreItem(item);
             }
         }
     }
@@ -214,7 +214,7 @@ public class MailBoxWnd : Inventory
                         mailbox.Add(mo.NewPosition[0], mo.items[0]);
                     }
                     mailbox.Remove(mo.OldPosition[0]);
-                    FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
+                    FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]]);
                 }
                 else if (mo.items.Count == 2)
                 {
@@ -228,8 +228,8 @@ public class MailBoxWnd : Inventory
                         mailbox[mo.NewPosition[0]].Position = mo.NewPosition[0];
                         mailbox[mo.OldPosition[0]].Position = mo.OldPosition[0];
                         DestroyImmediate(FindSlot(mo.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
-                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]]);
+                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]]);
 
                     }
                     //兩格數量改變
@@ -238,8 +238,8 @@ public class MailBoxWnd : Inventory
                         Debug.Log("兩格數量改變");
                         mailbox[mo.OldPosition[0]].Count = mo.items[0].Count;
                         mailbox[mo.NewPosition[0]].Count = mo.items[1].Count;
-                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
-                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]], mailbox[mo.NewPosition[0]].Count);
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]]);
+                        FindSlot(mo.NewPosition[0]).StoreItem(mailbox[mo.NewPosition[0]]);
                     }
                 }
                 break;
@@ -250,14 +250,14 @@ public class MailBoxWnd : Inventory
                     var dic = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
                     GameRoot.Instance.ActivePlayer.CashKnapsack = dic;
                     TryAddItemtoDic(dic, mo.items[0]);
-                    KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(mo.items[0], mo.items[0].Count);
+                    KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(mo.items[0]);
                 }
                 else
                 {
                     var dic = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
                     GameRoot.Instance.ActivePlayer.NotCashKnapsack = dic;
                     TryAddItemtoDic(dic, mo.items[0]);
-                    KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(mo.items[0], mo.items[0].Count);
+                    KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(mo.items[0]);
                 }
                 mailbox.Remove(mo.OldPosition[0]);
                 FindSlot(mo.OldPosition[0]).RemoveItemUI();
@@ -281,11 +281,11 @@ public class MailBoxWnd : Inventory
                     FindSlot(mo.OldPosition[0]).RemoveItemUI();
                     if (mo.items[0].IsCash)
                     {
-                        KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                     }
                     else
                     {
-                        KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                        KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                     }
 
                 }
@@ -302,15 +302,15 @@ public class MailBoxWnd : Inventory
                         if (!mailbox[mo.OldPosition[0]].IsCash)
                         {
                             KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                         }
                         else
                         {
                             KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).RemoveItemUI();
-                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                         }
                         FindSlot(mo.OldPosition[0]).RemoveItemUI();
-                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]]);
                     }
                     //兩格數量改變
                     else
@@ -320,13 +320,13 @@ public class MailBoxWnd : Inventory
                         knap[mo.NewPosition[0]].Count = mo.items[1].Count;
                         if (!mailbox[mo.OldPosition[0]].IsCash)
                         {
-                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                         }
                         else
                         {
-                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]], knap[mo.NewPosition[0]].Count);
+                            KnapsackWnd.Instance.FindCashSlot(mo.NewPosition[0]).StoreItem(knap[mo.NewPosition[0]]);
                         }
-                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]], mailbox[mo.OldPosition[0]].Count);
+                        FindSlot(mo.OldPosition[0]).StoreItem(mailbox[mo.OldPosition[0]]);
                     }
                 }
                 break;

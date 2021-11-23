@@ -133,7 +133,7 @@ public class StrengthenWnd : Inventory
         else
         {
             knapsack[item.Position] = item;
-            KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item, item.Count);
+            KnapsackWnd.Instance.FindSlot(item.Position).StoreItem(item);
         }
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
     }
@@ -207,13 +207,13 @@ public class StrengthenWnd : Inventory
         switch(rsp.OperationType)
         {
             case 1://強化石放上來要顯示效果和物品
-                slotLists[2][0].StoreItem(rsp.strengthenItem, rsp.strengthenItem.Count);
+                slotLists[2][0].StoreItem(rsp.strengthenItem);
                 EffectText.text = rsp.Effect;
                 StrengthenBtn.interactable = true;
                 AudioSvc.Instance.PlayUIAudio(Constants.Setup);
                 break;
             case 2://把原強化石放回背包再顯示效果和物品
-                slotLists[2][0].StoreItem(rsp.strengthenItem, rsp.strengthenItem.Count);
+                slotLists[2][0].StoreItem(rsp.strengthenItem);
                 EffectText.text = rsp.Effect;
                 AddItemInKnap(rsp.Stone);
                 StrengthenBtn.interactable = true;

@@ -163,7 +163,7 @@ public class TransationWnd : Inventory
                         
 
                     }
-                    KnapsackWnd.Instance.FindSlot(Items[pos].Position).StoreItem(Items[pos], Items[pos].Count);
+                    KnapsackWnd.Instance.FindSlot(Items[pos].Position).StoreItem(Items[pos]);
                     nk[item.Position] = item;
                 }
 
@@ -174,7 +174,7 @@ public class TransationWnd : Inventory
                         KnapsackWnd.Instance.FindCashSlot(Items[pos].Position).RemoveItemUI();
                         item.Count += nk[item.Position].Count;
                     }
-                    KnapsackWnd.Instance.FindCashSlot(Items[pos].Position).StoreItem(Items[pos], Items[pos].Count);
+                    KnapsackWnd.Instance.FindCashSlot(Items[pos].Position).StoreItem(Items[pos]);
                     ck[item.Position] = item;
                 }
 
@@ -245,11 +245,11 @@ public class TransationWnd : Inventory
     {
         if (!RegisterItem.IsCash)
         {
-            KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+            KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem);
         }
         else
         {
-            KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+            KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem);
         }
         ClosRegisterNumPanel();
     }
@@ -306,13 +306,13 @@ public class TransationWnd : Inventory
                     {
                         nk[RegisterItem.Position].Count = RegisterItem.Count;
                         KnapsackWnd.Instance.FindSlot(RegisterItem.Position).RemoveItemUI();
-                        KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                        KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem);
                     }
                     else
                     {
                         ck[RegisterItem.Position].Count = RegisterItem.Count;
                         KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).RemoveItemUI();
-                        KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                        KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem);
                     }
                 }
                 slotLists[0][slotPosition].GetComponent<ItemDragTarget>().enabled = false;
@@ -329,11 +329,11 @@ public class TransationWnd : Inventory
                 ClosRegisterNumPanel();
                 if (!RegisterItem.IsCash)
                 {
-                    KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                    KnapsackWnd.Instance.FindSlot(RegisterItem.Position).StoreItem(RegisterItem);
                 }
                 else
                 {
-                    KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem, RegisterItem.Count);
+                    KnapsackWnd.Instance.FindCashSlot(RegisterItem.Position).StoreItem(RegisterItem);
                 }
             }
         }
@@ -372,13 +372,13 @@ public class TransationWnd : Inventory
 
             case 5://自己欄位顯示物品
                 Panel1.Add(rsp.TransactionPos, rsp.item);
-                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item, rsp.item.Count);
+                slotLists[0][rsp.TransactionPos].StoreItem(rsp.item);
                 break;
 
             case 6://對方欄位顯示物品
 
                 Panel2.Add(rsp.TransactionPos, rsp.item);
-                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item, rsp.item.Count);
+                slotLists[1][rsp.TransactionPos].StoreItem(rsp.item);
 
                 break;
 

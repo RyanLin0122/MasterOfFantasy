@@ -265,7 +265,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                             {
                                 ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                                 exitItem = currentItemUI.Item;
-                                currentItemUI.SetItem(item, 1);
+                                currentItemUI.SetItem(item);
                                 //換下裝備                       
                             }
                             else
@@ -296,7 +296,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                         {
                             ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                             exitItem = currentItemUI.Item;
-                            currentItemUI.SetItem(item, 1);
+                            currentItemUI.SetItem(item);
                             //換下裝備
                         }
                         else
@@ -329,7 +329,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                         {
                             ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                             exitItem = currentItemUI.Item;
-                            currentItemUI.SetItem(item, 1);
+                            currentItemUI.SetItem(item);
                             //換下裝備                       
                         }
                         else
@@ -345,7 +345,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                             {
                                 ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                                 exitItem = currentItemUI.Item;
-                                currentItemUI.SetItem(item, 1);
+                                currentItemUI.SetItem(item);
                                 //換下裝備                       
                             }
                             else
@@ -369,7 +369,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     {
                         ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                         exitItem = currentItemUI.Item;
-                        currentItemUI.SetItem(item, 1);
+                        currentItemUI.SetItem(item);
                         //換下裝備
                     }
                     else
@@ -400,7 +400,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     {
                         ItemUI currentItemUI = equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>();
                         exitItem = currentItemUI.Item;
-                        currentItemUI.SetItem(item, 1);
+                        currentItemUI.SetItem(item);
                         //換下裝備                       
                     }
                     else
@@ -482,13 +482,13 @@ public class EquipmentWnd : Inventory, IStackWnd
                     {
                         nk[eo.KnapsackPosition] = eo.PutOffEquipment;
                         DestroyImmediate(KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment);
                     }
                     else
                     {
                         ck[eo.KnapsackPosition] = eo.PutOffEquipment;
                         DestroyImmediate(KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).GetComponentInChildren<ItemUI>().gameObject);
-                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment);
                     }
                     if (InventorySys.Instance.Equipments.ContainsKey(eo.EquipmentPosition))
                     {
@@ -514,12 +514,12 @@ public class EquipmentWnd : Inventory, IStackWnd
                     if (!eo.PutOffEquipment.IsCash)
                     {
                         nk.Add(eo.KnapsackPosition, eo.PutOffEquipment);
-                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                        KnapsackWnd.Instance.FindSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment);
                     }
                     else
                     {
                         ck.Add(eo.KnapsackPosition, eo.PutOffEquipment);
-                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment, eo.PutOffEquipment.Count);
+                        KnapsackWnd.Instance.FindCashSlot(eo.KnapsackPosition).StoreItem(eo.PutOffEquipment);
                     }
                     InventorySys.Instance.Equipments.Remove(eo.EquipmentPosition);
                     DestroyImmediate(FindEquipmentSlot(eo.EquipmentPosition).GetComponentInChildren<ItemUI>().gameObject);

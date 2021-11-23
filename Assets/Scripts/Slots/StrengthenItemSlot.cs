@@ -61,7 +61,7 @@ public class StrengthenItemSlot : ItemSlot
                     else
                     {
                         UISystem.Instance.AddMessageQueue("請放要強化的武器或裝備喔");
-                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem, PickedUpItem.Count);
+                        KnapsackWnd.Instance.FindSlot(PickedUpItem.Position).StoreItem(PickedUpItem);
                     }
                 }
 
