@@ -21,6 +21,7 @@ public class PickUpTrail : MonoBehaviour
         if (!HasInit) return;
         if (!Stopped)
         {
+            this.Speed += 1;
             float Distance = GetDistance(transform.localPosition, Target.transform.localPosition);
             if (Distance > 30)
             {
@@ -34,7 +35,7 @@ public class PickUpTrail : MonoBehaviour
                 this.Stopped = true;
                 if (IsFirst)
                 {
-                    Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/GetItem_Effect_F"),transform.parent)).GetComponent<Transform>();
+                    Transform go = ((GameObject)Instantiate(Resources.Load("Prefabs/SkillPrefabs/GetItem_Effect_F"), transform.parent)).GetComponent<Transform>();
                     go.localPosition = Target.transform.localPosition;
                     //go.localScale = Vector3.one;
                 }

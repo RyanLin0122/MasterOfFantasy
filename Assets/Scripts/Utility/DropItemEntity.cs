@@ -25,6 +25,18 @@ public class DropItemEntity : MonoBehaviour
         GetComponent<Image>().SetNativeSize();
         GetComponent<Image>().enabled = true;
     }
+    public void Setup(DropItem dropItem)
+    {
+        this.DropItem = dropItem;
+        HasInit = true;
+        if (dropItem.Type == DropItemType.Item) GetComponent<Image>().sprite = Resources.Load<Sprite>(dropItem.Item.Sprite);
+        else GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/Other/Money");
+        GetComponent<Image>().SetNativeSize();
+        GetComponent<Image>().enabled = true;
+        TargetPos = new Vector2(dropItem.From.X + dropItem.FlyTo[1] * Mathf.Cos(dropItem.FlyTo[0]), dropItem.From.Y + dropItem.FlyTo[1] * Mathf.Sin(dropItem.FlyTo[0]));
+        Vector2 Distance = TargetPos - (Vector2)transform.localPosition;
+        transform.localPosition = TargetPos;
+    }
     public bool OnUpdate(float delta)
     {
         if (!HasInit) return true;

@@ -91,6 +91,7 @@ public class MOFMap
                         mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                     }
                 }
+                
                 ProtoMsg outmsg = new ProtoMsg
                 {
                     MessageType = 12,
@@ -102,7 +103,8 @@ public class MOFMap
                         Position = msg.enterGameReq.Position,
                         weather = this.weather,
                         Monsters = mons,
-                        MapPlayerEntities = PlayerEntities
+                        MapPlayerEntities = PlayerEntities,
+                        DropItems = AllDropItems
                     }
                 };
                 session.WriteAndFlush(outmsg);
@@ -155,8 +157,8 @@ public class MOFMap
                     weather = this.weather,
                     Monsters = mons,
                     CharacterName = msg.toOtherMapReq.CharacterName,
-                    MapPlayerEntities = PlayerEntities
-
+                    MapPlayerEntities = PlayerEntities,
+                    DropItems = AllDropItems
                 }
             };
             session.WriteAndFlush(outmsg);

@@ -95,7 +95,10 @@ public class MainCitySys : SystemRoot
             LoadBGM(rsp.MapID);
 
             BattleSys.Instance.MapCanvas = MapCanvas;
-
+            if (rsp.DropItems != null && rsp.DropItems.Count > 0)
+            {
+                BattleSys.Instance.ReadDropItems(rsp.DropItems);
+            }
             if (rsp.Monsters != null)
             {
                 BattleSys.Instance.SetupMonsters(rsp.Monsters);
@@ -156,6 +159,10 @@ public class MainCitySys : SystemRoot
             if (rsp.Monsters != null)
             {
                 BattleSys.Instance.SetupMonsters(rsp.Monsters);
+            }
+            if (rsp.DropItems != null && rsp.DropItems.Count > 0)
+            {
+                BattleSys.Instance.ReadDropItems(rsp.DropItems);
             }
             if (rsp.IsCalculater)
             {

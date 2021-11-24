@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.Concurrent;
 namespace PEProtocal
 {
     [ProtoContract]
@@ -71,6 +72,7 @@ namespace PEProtocal
         ///61:RunOperation 跑步
         ///62:DropItemInfo 掉落物品通知
         ///63:PickUpReq撿取請求
+        ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -587,6 +589,8 @@ namespace PEProtocal
         public Dictionary<int, SerializedMonster> Monsters { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public List<NEntity> MapPlayerEntities { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public ConcurrentDictionary<int, DropItem> DropItems{ get; set; }
     };
 
     //地圖增加一名玩家通知
@@ -647,6 +651,8 @@ namespace PEProtocal
         public string CharacterName { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public List<NEntity> MapPlayerEntities { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public ConcurrentDictionary<int, DropItem> DropItems { get; set; }
     };
 
     //地圖移除一名玩家通知

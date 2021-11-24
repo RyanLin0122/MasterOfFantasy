@@ -4,6 +4,7 @@ using UnityEngine;
 using PEProtocal;
 using Random = UnityEngine.Random;
 using System;
+using System.Collections.Concurrent;
 
 public class BattleSys : SystemRoot
 {
@@ -1072,6 +1073,21 @@ public class BattleSys : SystemRoot
     #endregion
 
     #region 掉落撿取
+    public void ReadDropItems(ConcurrentDictionary<int, DropItem> DropItems)
+    {
+        this.DropItems.Clear();
+        foreach (var kv in DropItems)
+        {
+            if (kv.Value != null)
+            {
+                GameObject prefab = Resources.Load("Prefabs/DropItem") as GameObject;
+                DropItemEntity entity = Instantiate(prefab, MapCanvas.transform).GetComponent<DropItemEntity>();
+                entity.transform.localPosition = new Vector2(kv.Value.From.X, kv.Value.From.Y);
+                entity.Setup(kv.Value);
+                this.DropItems.Add(kv.Key, entity);
+            }
+        }
+    }
     private void OnDrop(DropItemsInfo di)
     {
         if (di.DropItems == null || di.DropItems.Count == 0) return;
@@ -1086,6 +1102,7 @@ public class BattleSys : SystemRoot
     private void OnPickUp(PickUpResponse pr)
     {
         if (pr.CharacterNames == null || pr.CharacterNames.Count == 0) return;
+        int SoundPointer = 0;
         for (int i = 0; i < pr.CharacterNames.Count; i++)
         {
             if (pr.CharacterNames[i] == GameRoot.Instance.ActivePlayer.Name)
@@ -1097,7 +1114,11 @@ public class BattleSys : SystemRoot
                 else
                 {
                     //自己撿取成功
-                    AudioSvc.Instance.PlayCharacterAudio(Constants.GetItem);
+                    if (SoundPointer == 0)
+                    {
+                        AudioSvc.Instance.PlayCharacterAudio(Constants.GetItem);
+                        SoundPointer++;
+                    }
                     //放進背包
                     if (DropItems[pr.ItemUUIDs[i]].DropItem.Type == DropItemType.Money)
                     {
@@ -1315,7 +1336,6 @@ public class BattleSys : SystemRoot
                         ItemUI itemUI = slot.GetComponentInChildren<ItemUI>();
                         if (itemUI.Item != null && itemUI.Item.ItemID == ItemID)
                         {
-                            print(itemUI.Item.ItemID + ", <aaa>" + ItemID);
                             if (itemUI.Item.Count < itemUI.Item.Capacity)
                             {
                                 result = true;
@@ -1333,7 +1353,6 @@ public class BattleSys : SystemRoot
                 {
                     if (slot.transform.childCount == 0)
                     {
-                        print("<bbb>" + ItemID);
                         result = true;
                         InventoryID = 1;
                         InventoryPosition = slot.SlotPosition;

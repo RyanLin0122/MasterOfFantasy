@@ -17,11 +17,10 @@ public class PlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterHandle
             return _instance;
         }
     }
-    protected override void InitWnd()
+
+    public void SetName(EntityController Controller)
     {
-        base.InitWnd();
-        GetComponent<Transform>().position = GameRoot.Instance.MainPlayerControl.transform.localPosition + new Vector3(80, -80, 0);
-        Debug.Log(GetComponent<Transform>().position);
+
     }
 
     public bool IsOpen = false;
@@ -37,7 +36,7 @@ public class PlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterHandle
         InRegion = true;
     }
 
-    void Update()
+    public void FixedUpdate()
     {
         if (!InRegion)
         {
