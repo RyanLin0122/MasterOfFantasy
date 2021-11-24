@@ -112,10 +112,16 @@ class SkillSys : MonoSingleton<SkillSys>
         }
         MainCharacterSkillDic = controller.SkillDict;
         //增加普攻
+        controller.SkillDict[-2] = new Skill(ResSvc.Instance.SkillDic[-2]);
+        controller.SkillDict[-2].Owner = controller;
+        controller.SkillDict[-4] = new Skill(ResSvc.Instance.SkillDic[-4]);
+        controller.SkillDict[-4].Owner = controller;
         controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
         controller.SkillDict[-8].Owner = controller;
         controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);
         controller.SkillDict[-10].Owner = controller;
+        controller.SkillDict[-12] = new Skill(ResSvc.Instance.SkillDic[-12]);
+        controller.SkillDict[-12].Owner = controller;
     }
     public void InitPlayerSkills(TrimedPlayer player, EntityController controller)
     {

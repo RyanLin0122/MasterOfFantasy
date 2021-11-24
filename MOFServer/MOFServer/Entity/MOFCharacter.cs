@@ -722,8 +722,11 @@ public class MOFCharacter : Entity
     {
         base.InitSkill();
         //增加普攻
+        skillManager.AddSkill(new Skill(-2, 1, this));
+        skillManager.AddSkill(new Skill(-4, 1, this));
         skillManager.AddSkill(new Skill(-8, 1, this));
         skillManager.AddSkill(new Skill(-10, 1, this));
+        skillManager.AddSkill(new Skill(-12, 1, this));
     }
     public bool SetMiniGame(MiniGameSetting setting)
     {

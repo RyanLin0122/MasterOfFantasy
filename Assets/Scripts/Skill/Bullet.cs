@@ -42,14 +42,17 @@ public class Bullet
             float OriginalZ = BulletGameObject.position.z;
             float RestTime = duration - flyTime;
             Vector3 Distance = Target.transform.position - BulletGameObject.position;
+            float cosine = Vector2.Dot(Vector2.right, Distance / ((Vector2)Distance).magnitude);
+            float theta = Mathf.Acos(cosine) * 180 / Mathf.PI;
+            if (Distance.y < 0) theta *= -1;
             BulletGameObject.position = BulletGameObject.position + Distance * (Time.deltaTime / RestTime);
             BulletGameObject.position = new Vector3(BulletGameObject.position.x, BulletGameObject.position.y, OriginalZ);
+            BulletGameObject.localRotation = Quaternion.Euler(0, 0, theta);
         }
         flyTime += Time.deltaTime;
         if (this.flyTime > duration)
         {
             Debug.Log("子彈命中");
-            //Debug.Log("Dodamage 子彈Hit = " + this.hit);
             this.skill.DoHitDamages(this.hit);
             this.Stopped = true;
             GameObject.Destroy(BulletGameObject.gameObject);

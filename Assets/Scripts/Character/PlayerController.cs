@@ -540,7 +540,6 @@ public class PlayerController : EntityController
     }
     public void PlayBow()
     {
-        screenCtrl.canCtrl = false;
         ShoesCtrl.PlayAni(PlayerAniType.BowAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.BowAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.BowAttack, false);

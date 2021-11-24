@@ -153,6 +153,132 @@
     "Buff": -1
   },
   {
+    "ID": -2,
+    "Name": "(弓)普通攻擊",
+    "IsActive": true,
+    "IsAttack": true,
+    "IsAOE": false,
+    "IsBuff": false,
+    "IsSetup": false,
+    "RequiredWeapon": [ "Bow" ],
+    "RequiredLevel": [ 0, 0, 0, 0, 0 ],
+    "MP": [ 0, 0, 0, 0, 0 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 0.8, 0.8, 0.8, 0.8, 0.8 ],
+    "Damage": [ 1, 1, 1, 1, 1 ],
+    "Times": [ 1, 1, 1, 1, 1 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 0, 0, 0 ],
+    "MagicPoint": [ 0, 0, 0, 0, 0 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "Monster",
+    "IsMultiple": false,
+    "Shape": "Sector",
+    "Range": [ 0, 300, 90 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": true,
+    "BulletSpeed": 750,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [ 0.05 ],
+    "Des": "(弓)普通攻擊",
+    "Icon": "",
+    "Effect": [
+    ],
+    "Action": "BowAttack",
+    "AniPath": {
+      "Self": "",
+      "Shoot": "Arrow",
+      "Other": "HitT"
+    },
+    "AniOffset": {
+      "Self": [ 46.47, 0, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0.1, 0 ]
+    },
+    "Sound": {
+      "Cast": "weapon_se_weapon_bow",
+      "Hit": ""
+    },
+    "CastTime": 0.1,
+    "ChargeTime": 0,
+    "LockTime": 0.6,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1.5, 1.5, 1.5 ]
+    },
+    "Buff": -1
+  },
+  {
+    "ID": -4,
+    "Name": "(槍)普通攻擊",
+    "IsActive": true,
+    "IsAttack": true,
+    "IsAOE": false,
+    "IsBuff": false,
+    "IsSetup": false,
+    "RequiredWeapon": [ "Gun" ],
+    "RequiredLevel": [ 0, 0, 0, 0, 0 ],
+    "MP": [ 0, 0, 0, 0, 0 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 0.6, 0.6, 0.6, 0.6, 0.6 ],
+    "Damage": [ 1, 1, 1, 1, 1 ],
+    "Times": [ 1, 1, 1, 1, 1 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 0, 0, 0 ],
+    "MagicPoint": [ 0, 0, 0, 0, 0 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "Monster",
+    "IsMultiple": false,
+    "Shape": "Sector",
+    "Range": [ 0, 300, 90 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": true,
+    "BulletSpeed": 800,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [ 0.05 ],
+    "Des": "(槍)普通攻擊",
+    "Icon": "",
+    "Effect": [
+    ],
+    "Action": "CrossbowAttack",
+    "AniPath": {
+      "Self": "GunShotS",
+      "Shoot": "Bullet0",
+      "Other": "HitT"
+    },
+    "AniOffset": {
+      "Self": [ 46.47, 0, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0.1, 0 ]
+    },
+    "Sound": {
+      "Cast": "weapon_se_weapon_gun",
+      "Hit": ""
+    },
+    "CastTime": 0.1,
+    "ChargeTime": 0,
+    "LockTime": 0.6,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1.5, 1.5, 1.5 ]
+    },
+    "Buff": -1
+  },
+  {
     "ID": -8,
     "Name": "(法杖)普通攻擊",
     "IsActive": true,
@@ -199,7 +325,7 @@
     "AniOffset": {
       "Self": [ 64.4, -16.1, 0 ],
       "Shoot": [ 0, 0, 0 ],
-      "Target": [ 0, 0, 0 ]
+      "Target": [ 0, -10, 0 ]
     },
     "Sound": {
       "Cast": "",
@@ -267,6 +393,69 @@
     "Sound": {
       "Cast": "skill_fire",
       "Hit": "Weapon/weapon_se_hit_strike"
+    },
+    "CastTime": 0.1,
+    "ChargeTime": 0,
+    "LockTime": 0.6,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1.5, 1.5, 1.5 ]
+    },
+    "Buff": -1
+  },
+  {
+    "ID": -12,
+    "Name": "(十字弓)普通攻擊",
+    "IsActive": true,
+    "IsAttack": true,
+    "IsAOE": false,
+    "IsBuff": false,
+    "IsSetup": false,
+    "RequiredWeapon": [ "Crossbow" ],
+    "RequiredLevel": [ 0, 0, 0, 0, 0 ],
+    "MP": [ 0, 0, 0, 0, 0 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 0.8, 0.8, 0.8, 0.8, 0.8 ],
+    "Damage": [ 1, 1, 1, 1, 1 ],
+    "Times": [ 1, 1, 1, 1, 1 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 0, 0, 0 ],
+    "MagicPoint": [ 0, 0, 0, 0, 0 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "Monster",
+    "IsMultiple": false,
+    "Shape": "Sector",
+    "Range": [ 0, 300, 90 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": true,
+    "BulletSpeed": 750,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [ 0.05 ],
+    "Des": "(十字弓)普通攻擊",
+    "Icon": "",
+    "Effect": [
+    ],
+    "Action": "CrossbowAttack",
+    "AniPath": {
+      "Self": "",
+      "Shoot": "Arrow",
+      "Other": "HitT"
+    },
+    "AniOffset": {
+      "Self": [ 46.47, 0, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0.1, 0 ]
+    },
+    "Sound": {
+      "Cast": "weapon_se_weapon_bow",
+      "Hit": ""
     },
     "CastTime": 0.1,
     "ChargeTime": 0,
