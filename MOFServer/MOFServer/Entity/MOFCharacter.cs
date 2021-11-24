@@ -37,8 +37,8 @@ public class MOFCharacter : Entity
         BasicAttribute.Strength = player.Strength;
         BasicAttribute.Agility = player.Agility;
         BasicAttribute.Intellect = player.Intellect;
-        BasicAttribute.MaxDamage = 0;
-        BasicAttribute.MinDamage = 0;
+        BasicAttribute.MaxDamage = player.Level * 0.2f + BasicAttribute.Att * 1.25f;
+        BasicAttribute.MinDamage = BasicAttribute.MaxDamage * 0.7f;
         BasicAttribute.Defense = 0;
         BasicAttribute.Accuracy = 0.5f;
         BasicAttribute.Critical = 0.1f;
@@ -581,8 +581,8 @@ public class MOFCharacter : Entity
         FinalAttribute.Strength = BasicAttribute.Strength + EquipmentAttribute.Strength + NegativeAttribute.Strength + BuffAttribute.Strength;
         FinalAttribute.Agility = BasicAttribute.Agility + EquipmentAttribute.Agility + NegativeAttribute.Agility + BuffAttribute.Agility;
         FinalAttribute.Intellect = BasicAttribute.Intellect + EquipmentAttribute.Intellect + NegativeAttribute.Intellect + BuffAttribute.Intellect;
-        FinalAttribute.MaxDamage = BasicAttribute.MaxDamage + EquipmentAttribute.MaxDamage + NegativeAttribute.MaxDamage + BuffAttribute.MaxDamage;
-        FinalAttribute.MinDamage = BasicAttribute.MinDamage + EquipmentAttribute.MinDamage + NegativeAttribute.MinDamage + BuffAttribute.MinDamage;
+        FinalAttribute.MaxDamage = BasicAttribute.MaxDamage + (EquipmentAttribute.MaxDamage + NegativeAttribute.MaxDamage + BuffAttribute.MaxDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
+        FinalAttribute.MinDamage = BasicAttribute.MinDamage + (EquipmentAttribute.MinDamage + NegativeAttribute.MinDamage + BuffAttribute.MinDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
         FinalAttribute.Defense = BasicAttribute.Defense + EquipmentAttribute.Defense + NegativeAttribute.Defense + BuffAttribute.Defense;
         FinalAttribute.Accuracy = BasicAttribute.Accuracy + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy + BuffAttribute.Accuracy;
         FinalAttribute.Critical = BasicAttribute.Critical + EquipmentAttribute.Critical + NegativeAttribute.Critical + BuffAttribute.Critical;

@@ -130,7 +130,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         this.character.SetSpeed(BattleSys.Instance.FinalAttribute.RunSpeed);
         new MoveSender(entityEvent, character.nEntity);
     }
-
+    private bool PickUpLock = false;
     public void Update()
     {
         HotKeySlot hotKeySlot = null;
@@ -185,7 +185,12 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
-            BattleSys.Instance.PickUpRequest();
+            if (!PickUpLock)
+            {
+                BattleSys.Instance.PickUpRequest();
+                PickUpLock = true;
+                TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.5, PETimeUnit.Second, 1);
+            }
         }
         if (hotKeySlot != null)
         {
