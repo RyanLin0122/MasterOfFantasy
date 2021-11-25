@@ -21,9 +21,9 @@ public class PlayerController : EntityController
         DustSprites = Resources.LoadAll<Sprite>("Effect/Dust/Effect Walking Car Dust");
         base.Init();
     }
-    public override void PlayHitAni(ActiveSkillInfo active, bool Dir)
+    public override void PlayHitAni(ActiveSkillInfo active, bool Dir, bool IsCrit)
     {
-        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir);
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir, IsCrit);
         var HurtAniTime = Constants.GetAnimTime(PlayerAniType.Hurt);
         PlayHurt();
         Invoke("ReturnToIdleOrWalk", HurtAniTime);

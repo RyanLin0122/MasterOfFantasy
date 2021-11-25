@@ -201,9 +201,9 @@ public class MonsterController : EntityController
     {
         Destroy(this.gameObject);
     }
-    public override void PlayHitAni(ActiveSkillInfo active, bool Dir)
+    public override void PlayHitAni(ActiveSkillInfo active, bool Dir, bool IsCrit)
     {
-        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir);
+        SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir, IsCrit);
         switch (active.Property)
         {
             case SkillProperty.None:

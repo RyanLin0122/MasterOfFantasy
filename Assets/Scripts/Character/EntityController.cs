@@ -88,7 +88,7 @@ public class EntityController : MonoBehaviour
         //To do
 
     }
-    public virtual void PlayHitAni(ActiveSkillInfo active, bool dir)
+    public virtual void PlayHitAni(ActiveSkillInfo active, bool dir, bool IsCrit)
     {
         //子類實現
     }

@@ -49,7 +49,7 @@ class SkillSys : MonoSingleton<SkillSys>
             AudioSvc.Instance.PlaySkillAudio("Sound/Skill/" + info.Sound["Cast"]);
         }
     }
-    public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform, bool Dir)
+    public void InstantiateTargetSkillEffect(int SkillID, Transform TargetTransform, bool Dir, bool IsCrit)
     {
         ActiveSkillInfo info = (ActiveSkillInfo)ResSvc.Instance.SkillDic[SkillID];
         if (info.AniPath["Other"] != "")
@@ -72,12 +72,22 @@ class SkillSys : MonoSingleton<SkillSys>
             go.localPosition = new Vector3(info.AniOffset["Target"][0], info.AniOffset["Target"][1], info.AniOffset["Target"][2]);
         }
 
-        if (info.Sound["Hit"] != "")
+        if (!string.IsNullOrEmpty(info.Sound["Hit"]))
         {
-            AudioClip audio = ResSvc.Instance.LoadAudio("Sound/" + info.Sound["Hit"], true);
-            //AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_hit_critical", true);
+            AudioClip audio;
+            if (!IsCrit) audio = ResSvc.Instance.LoadAudio("Sound/" + info.Sound["Hit"], true);
+            else audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_hit_critical", true);
             TargetTransform.GetComponent<AudioSource>().clip = audio;
             TargetTransform.GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            if (IsCrit)
+            {
+                AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_hit_critical", true);
+                TargetTransform.GetComponent<AudioSource>().clip = audio;
+                TargetTransform.GetComponent<AudioSource>().Play();
+            }
         }
     }
     public void InitPlayerSkills(Player player, EntityController controller)
