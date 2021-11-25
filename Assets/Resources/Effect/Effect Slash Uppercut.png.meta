@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: 9792af39cddd6f147b69fa5b4de8510a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7140384887213621183
+    second: Effect Slash Uppercut_0
+  - first:
+      213: 371176468626529461
+    second: Effect Slash Uppercut_1
+  - first:
+      213: 872839597587075988
+    second: Effect Slash Uppercut_2
+  - first:
+      213: -7069039714568344513
+    second: Effect Slash Uppercut_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +35,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +53,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +67,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +86,106 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Effect Slash Uppercut_0
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 136
+        width: 106
+        height: 104
+      alignment: 9
+      pivot: {x: 0.9454068, y: 0.95677465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1408016c6c148ec90800000000000000
+      internalID: -7140384887213621183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect Slash Uppercut_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 2
+        width: 86
+        height: 90
+      alignment: 9
+      pivot: {x: 0.9202143, y: 0.9306821}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bcd779180fa62500800000000000000
+      internalID: 371176468626529461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect Slash Uppercut_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 112
+        width: 69
+        height: 76
+      alignment: 9
+      pivot: {x: 0.90548044, y: 0.94099325}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49392105df2fc1c00800000000000000
+      internalID: 872839597587075988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect Slash Uppercut_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 198
+        width: 48
+        height: 38
+      alignment: 9
+      pivot: {x: 0.85822695, y: 0.8527948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c660e35d9b5ed90800000000000000
+      internalID: -7069039714568344513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

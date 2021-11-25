@@ -145,7 +145,7 @@ public class PlayerController : EntityController
         if (Name == GameRoot.Instance.ActivePlayer.Name)
         {
             PlayerInputController.Instance.LockMove();
-            TimerSvc.Instance.AddTimeTask((t)=> { PlayerInputController.Instance.UnlockMove(); },Constants.GetAnimTime(PlayerAniType.Hurt), PETimeUnit.Second);
+            TimerSvc.Instance.AddTimeTask((t) => { PlayerInputController.Instance.UnlockMove(); }, Constants.GetAnimTime(PlayerAniType.Hurt), PETimeUnit.Second);
             for (int i = 0; i < damage.Damage.Length; i++)
             {
                 GameRoot.Instance.ActivePlayer.HP = (int)Mathf.Clamp(GameRoot.Instance.ActivePlayer.HP - damage.Damage[i], 0, 99999);
@@ -414,15 +414,18 @@ public class PlayerController : EntityController
     public void PlayIdle()
     {
         screenCtrl.canCtrl = true;
-        ShoesCtrl.PlayAni(PlayerAniType.Idle, true);
-        FaceCtrl.PlayAni(PlayerAniType.Idle, true);
-        UpwearCtrl.PlayAni(PlayerAniType.Idle, true);
-        DownwearCtrl.PlayAni(PlayerAniType.Idle, true);
-        HairBackCtrl.PlayAni(PlayerAniType.Idle, true);
-        HairFrontCtrl.PlayAni(PlayerAniType.Idle, true);
-        HandBackCtrl.PlayAni(PlayerAniType.Idle, true);
-        HandFrontCtrl.PlayAni(PlayerAniType.Idle, true);
-        SuitCtrl.PlayAni(PlayerAniType.Idle, true);
+        if (!AttackAniLock)
+        {
+            ShoesCtrl.PlayAni(PlayerAniType.Idle, true);
+            FaceCtrl.PlayAni(PlayerAniType.Idle, true);
+            UpwearCtrl.PlayAni(PlayerAniType.Idle, true);
+            DownwearCtrl.PlayAni(PlayerAniType.Idle, true);
+            HairBackCtrl.PlayAni(PlayerAniType.Idle, true);
+            HairFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+            HandBackCtrl.PlayAni(PlayerAniType.Idle, true);
+            HandFrontCtrl.PlayAni(PlayerAniType.Idle, true);
+            SuitCtrl.PlayAni(PlayerAniType.Idle, true);
+        }
     }
     public void PlayWalk()
     {
@@ -450,6 +453,9 @@ public class PlayerController : EntityController
     }
     public void PlayDagger()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.DaggerAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
@@ -462,6 +468,9 @@ public class PlayerController : EntityController
     }
     public void PlaySlash()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.SlashAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.SlashAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.SlashAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.SlashAttack, false);
@@ -474,6 +483,9 @@ public class PlayerController : EntityController
     }
     public void PlayUpper()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.UpperAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.UpperAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.UpperAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.UpperAttack, false);
@@ -516,6 +528,9 @@ public class PlayerController : EntityController
     }
     public void PlayMagic()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.MagicAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.MagicAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.MagicAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.MagicAttack, false);
@@ -528,6 +543,9 @@ public class PlayerController : EntityController
     }
     public void PlayCleric()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.ClericAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.ClericAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.ClericAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.ClericAttack, false);
@@ -540,6 +558,9 @@ public class PlayerController : EntityController
     }
     public void PlayBow()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.BowAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.BowAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.BowAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.BowAttack, false);
@@ -552,6 +573,9 @@ public class PlayerController : EntityController
     }
     public void PlayCrossbow()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.CrossbowAttack);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
         FaceCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
         UpwearCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
@@ -564,6 +588,9 @@ public class PlayerController : EntityController
     }
     public void PlayDown1()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.DownAttack1);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.DownAttack1, false);
         FaceCtrl.PlayAni(PlayerAniType.DownAttack1, false);
         UpwearCtrl.PlayAni(PlayerAniType.DownAttack1, false);
@@ -576,6 +603,9 @@ public class PlayerController : EntityController
     }
     public void PlayDown2()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.DownAttack2);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.DownAttack2, false);
         FaceCtrl.PlayAni(PlayerAniType.DownAttack2, false);
         UpwearCtrl.PlayAni(PlayerAniType.DownAttack2, false);
@@ -588,6 +618,9 @@ public class PlayerController : EntityController
     }
     public void PlayHorizon1()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.HorizontalAttack1);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
         FaceCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
         UpwearCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
@@ -600,6 +633,9 @@ public class PlayerController : EntityController
     }
     public void PlayHorizon2()
     {
+        AttackAniLock = true;
+        float AniTime = Constants.GetAnimTime(PlayerAniType.HorizontalAttack2);
+        TimerSvc.Instance.AddTimeTask((t) => { AttackAniLock = false; }, AniTime, PETimeUnit.Second, 1);
         ShoesCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
         FaceCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
         UpwearCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);

@@ -117,8 +117,14 @@ class SkillSys : MonoSingleton<SkillSys>
         //增加普攻
         controller.SkillDict[-2] = new Skill(ResSvc.Instance.SkillDic[-2]);
         controller.SkillDict[-2].Owner = controller;
+        controller.SkillDict[-3] = new Skill(ResSvc.Instance.SkillDic[-3]);
+        controller.SkillDict[-3].Owner = controller;
         controller.SkillDict[-4] = new Skill(ResSvc.Instance.SkillDic[-4]);
         controller.SkillDict[-4].Owner = controller;
+        controller.SkillDict[-5] = new Skill(ResSvc.Instance.SkillDic[-5]);
+        controller.SkillDict[-5].Owner = controller;
+        controller.SkillDict[-7] = new Skill(ResSvc.Instance.SkillDic[-7]);
+        controller.SkillDict[-7].Owner = controller;
         controller.SkillDict[-8] = new Skill(ResSvc.Instance.SkillDic[-8]);
         controller.SkillDict[-8].Owner = controller;
         controller.SkillDict[-10] = new Skill(ResSvc.Instance.SkillDic[-10]);

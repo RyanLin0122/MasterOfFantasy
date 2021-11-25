@@ -16,7 +16,7 @@ public class ScreenController : MonoBehaviour
 
     private void Awake()
     {
-        GameObject background = GameObject.Find("BG");
+        GameObject background = GameObject.FindGameObjectWithTag("MapBackground");
 
         float bound_x = background.GetComponent<Renderer>().bounds.size.x;
         float bound_y = background.GetComponent<Renderer>().bounds.size.y;

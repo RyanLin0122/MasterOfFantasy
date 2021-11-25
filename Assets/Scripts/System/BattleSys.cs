@@ -1118,6 +1118,7 @@ public class BattleSys : SystemRoot
     {
         if (pr.CharacterNames == null || pr.CharacterNames.Count == 0) return;
         int SoundPointer = 0;
+        if (DropItems.Count == 0) return;
         for (int i = 0; i < pr.CharacterNames.Count; i++)
         {
             if (pr.CharacterNames[i] == GameRoot.Instance.ActivePlayer.Name)

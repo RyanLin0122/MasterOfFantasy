@@ -16,6 +16,7 @@ public class EntityController : MonoBehaviour
     public EffectManager effectManager;
     public Player playerdata;
     public TrimedPlayer trimedPlayerdata;
+    public bool AttackAniLock = false;
     public void Init()
     {
         rb = this.GetComponent<Rigidbody2D>();

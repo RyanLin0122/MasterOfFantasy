@@ -1403,7 +1403,7 @@ GameObject:
   - component: {fileID: 1794734531}
   m_Layer: 9
   m_Name: BG
-  m_TagString: Untagged
+  m_TagString: MapBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4229,6 +4229,7 @@ MonoBehaviour:
   Shadow: {fileID: 849250896881189477}
   IsMoving: 0
   IsAIControlling: 0
+  AttackAniLock: 0
   DamageContainer: {fileID: 3722555787875695499}
   screenCtrl: {fileID: 1810025172375398117}
   NameBox: {fileID: 5869129048171938564}

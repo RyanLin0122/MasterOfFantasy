@@ -161,7 +161,7 @@ public class MonsterController : EntityController
         {
             TimerSvc.Instance.AddTimeTask((a) =>
             {
-                OnDeath();
+                OnDeath(true);
                 BattleSys bs = BattleSys.Instance;
                 if (bs.CurrentTarget == this) bs.CurrentTarget = null;
                 if (bs.CurrentBattleTarget == this) bs.CurrentBattleTarget = null;
@@ -170,17 +170,31 @@ public class MonsterController : EntityController
         }
     }
     public bool OnDeathDelay = false;
-    public void OnDeath()
+    public void OnDeath(bool Immediately = false)
     {
         Debug.Log("怪物死掉");
         hp = 0;
-        SetHpBar();
-        AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[MonsterID].DeathSound, true);
-        GetComponent<AudioSource>().clip = audio;
-        GetComponent<AudioSource>().Play();
+        SetHpBar();      
         var DeathAniInfo = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[MonsterAniType.Death];
         var HurtAnuInfo = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[MonsterAniType.Hurt];
-        TimerSvc.Instance.AddTimeTask((a) => { PlayAni(MonsterAniType.Death, false); }, 0.4f, PETimeUnit.Second, 1);
+        if (!Immediately)
+        {
+            TimerSvc.Instance.AddTimeTask((a) => {
+                PlayAni(MonsterAniType.Death, false);
+                AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[MonsterID].DeathSound, true);
+                GetComponent<AudioSource>().clip = audio;
+                GetComponent<AudioSource>().Play();
+            }, 0.4f, PETimeUnit.Second, 1);
+        }
+        else
+        {
+            AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[MonsterID].DeathSound, true);
+            GetComponent<AudioSource>().clip = audio;
+            GetComponent<AudioSource>().Play();
+            TimerSvc.Instance.AddTimeTask((a) => {
+                PlayAni(MonsterAniType.Death, false);
+            }, 0.4f, PETimeUnit.Second, 1);
+        }
         Invoke("DestroyGameObject", (DeathAniInfo.AnimSprite.Count / DeathAniInfo.AnimSpeed) + 0.4f);
     }
     private void DestroyGameObject()
