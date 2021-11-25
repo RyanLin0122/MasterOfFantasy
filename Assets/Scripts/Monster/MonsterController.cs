@@ -174,12 +174,13 @@ public class MonsterController : EntityController
     {
         Debug.Log("怪物死掉");
         hp = 0;
-        SetHpBar();      
+        SetHpBar();
         var DeathAniInfo = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[MonsterAniType.Death];
         var HurtAnuInfo = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[MonsterAniType.Hurt];
         if (!Immediately)
         {
-            TimerSvc.Instance.AddTimeTask((a) => {
+            TimerSvc.Instance.AddTimeTask((a) =>
+            {
                 PlayAni(MonsterAniType.Death, false);
                 AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[MonsterID].DeathSound, true);
                 GetComponent<AudioSource>().clip = audio;
@@ -191,7 +192,8 @@ public class MonsterController : EntityController
             AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Monster/" + ResSvc.Instance.MonsterInfoDic[MonsterID].DeathSound, true);
             GetComponent<AudioSource>().clip = audio;
             GetComponent<AudioSource>().Play();
-            TimerSvc.Instance.AddTimeTask((a) => {
+            TimerSvc.Instance.AddTimeTask((a) =>
+            {
                 PlayAni(MonsterAniType.Death, false);
             }, 0.4f, PETimeUnit.Second, 1);
         }
@@ -343,6 +345,10 @@ public class MonsterController : EntityController
     }
     public void PlayAni(MonsterAniType type, bool isloop)
     {
+        if((type== MonsterAniType.Walk || type == MonsterAniType.Idle)&& AttackAniLock)
+        {
+            return;
+        }
         IsLoop = isloop;
         IsAniPause = false;
         Type = type;
@@ -353,6 +359,17 @@ public class MonsterController : EntityController
         AnimTimer = 0;
         FrameIndex = 0;
         AnimRenderer.sprite = SpriteArray[FrameIndex];
+        if (type == MonsterAniType.Attack)
+        {
+            AttackAniLock = true;
+            float AniTime = SpriteArray.Length * AnimSpeed;
+            TimerSvc.Instance.AddTimeTask((t) =>
+            {
+                AttackAniLock = false;
+                if (IsMoving) PlayAni(MonsterAniType.Walk, true);
+                else PlayAni(MonsterAniType.Idle, true);
+            }, AniTime - 0.05f, PETimeUnit.Second, 1);
+        }
     }
     public void ResetAni()
     {

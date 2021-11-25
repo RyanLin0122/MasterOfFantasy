@@ -662,6 +662,7 @@ public class BattleSys : SystemRoot
             {
                 if (!(kv.Value.OnUpdate(Time.deltaTime)))
                 {
+                    Debug.Log(kv.Key + "is ready to destroy");
                     NeedRemove.Add(kv.Key);
                 }
             }
@@ -1290,6 +1291,7 @@ public class BattleSys : SystemRoot
         PlayerController controller = PlayerInputController.Instance.entityController;
         if (controller != null && (TwoDimensionDistance(controller.transform.localPosition, drop.transform.localPosition) < 250))
         {
+            if (drop.DropItem.State == DropItemState.Common) return true;
             List<string> Owners = drop.DropItem.OwnerNames;
             if (Owners != null && Owners.Count > 0)
             {
@@ -1397,8 +1399,10 @@ public class BattleSys : SystemRoot
             }
         }
     }
+    GameObject MonsterGenS_Prefab = null;
     public void AddMonster(int MapMonsterID, int MonsterID, float[] pos)
     {
+
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
         if (MapCanvas == null)
         {
@@ -1408,7 +1412,15 @@ public class BattleSys : SystemRoot
         mon.transform.SetParent(MapCanvas.transform);
         mon.transform.localPosition = new Vector3(pos[0], pos[1], 0f);
         Monsters[MapMonsterID] = mon.GetComponent<MonsterController>();
+        if (MonsterGenS_Prefab == null)
+        {
+            MonsterGenS_Prefab = Resources.Load("Prefabs/SkillPrefabs/MonsterGenS") as GameObject;
+        }
+        GameObject MonsterGenS = Instantiate(MonsterGenS_Prefab, mon.transform);
+        MonsterGenS.transform.localPosition = Vector3.zero;
+        MonsterGenS.transform.localScale = new Vector3(0.01f, 0.01f, 1);
         Monsters[MapMonsterID].Init(ResSvc.Instance.MonsterInfoDic[MonsterID], MapMonsterID);
+        TimerSvc.Instance.AddTimeTask((t) => { mon.GetComponent<SpriteRenderer>().enabled = true; }, 1.2f, PETimeUnit.Second, 1);
     }
 
     public void ClearMonsters()

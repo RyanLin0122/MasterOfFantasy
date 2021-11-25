@@ -792,7 +792,7 @@ namespace PEProtocal
             }
             if(this.Timer > 300)
             {
-                return false;
+                return false;               
             }
             return true;
         }

@@ -342,11 +342,13 @@ public class CacheSvc
                 int minDamage = (int)(jo["MinDamage"].n);
                 int maxDamage = (int)(jo["MaxDamage"].n);
                 int attackRange = (int)(jo["AttackRange"].n);
-                float accuracy = (jo["Accuracy"].n);
-                float avoid = (jo["Avoid"].n);
-                float critical = (jo["Critical"].n);
-                float magicdefense = (jo["MagicDefense"].n);
-                float speed = (jo["Speed"].n);
+                float accuracy = (float)(jo["Accuracy"].n);
+                float avoid = (float)(jo["Avoid"].n);
+                float critical = (float)(jo["Critical"].n);
+                float magicdefense = (float)(jo["MagicDefense"].n);
+                string AttackSound = jo["AttackSound"].str;
+                string DeathSound = jo["DeathSound"].str;
+                float speed = jo["Speed"].n;
                 Dictionary<int, float> DropItems = new Dictionary<int, float>();
                 string drop = jo["Drop"].str;
                 string[] drops = drop.Split(new char[] { '_' });
@@ -354,6 +356,26 @@ public class CacheSvc
                 {
                     string[] r = s.Split(new char[] { '#' });
                     DropItems.Add(Convert.ToInt32(r[0]), (float)Convert.ToDouble(r[1]));
+                }
+                Dictionary<MonsterAniType, MonsterAnimation> AnimationDic = new Dictionary<MonsterAniType, MonsterAnimation>();
+                JSONObject ani = jo["Animation"];
+
+                foreach (var key in ani.keys)
+                {
+                    string AnimString = ani[key].str;
+                    string[] Anim = AnimString.Split(new char[] { ':' });
+                    int AnimSpeed = Convert.ToInt32(Anim[0]);
+                    List<int> AnimSprite = new List<int>();
+                    List<int> AnimPosition = new List<int>();
+                    string[] AnimPos = Anim[1].Split(new char[] { '_' });
+                    foreach (var s in AnimPos)
+                    {
+                        string[] r = s.Split(new char[] { '#' });
+                        AnimSprite.Add(Convert.ToInt32(r[0]));
+                        AnimPosition.Add(Convert.ToInt32(r[1]));
+                    }
+                    MonsterAnimation animation = new MonsterAnimation { AnimSpeed = AnimSpeed, AnimSprite = AnimSprite, AnimPosition = AnimPosition };
+                    AnimationDic.Add((MonsterAniType)System.Enum.Parse(typeof(MonsterAniType), key), animation);
                 }
 
 
@@ -363,9 +385,11 @@ public class CacheSvc
                     Name = name,
                     MaxHp = maxHp,
                     monsterAttribute = attribute,
+                    Description = description,
                     IsActive = isActive,
                     Ribi = ribi,
                     BossLevel = bossLevel,
+                    Sprites = sprites,
                     Level = level,
                     Exp = exp,
                     Defense = defense,
@@ -377,6 +401,9 @@ public class CacheSvc
                     Critical = critical,
                     MagicDefense = magicdefense,
                     DropItems = DropItems,
+                    MonsterAniDic = AnimationDic,
+                    AttackSound = AttackSound,
+                    DeathSound = DeathSound,
                     Speed = speed
                 };
                 MonsterInfoDic.Add(monsterID, info);

@@ -10,6 +10,7 @@ public class AIBase
     private AbstractMonster Owner;
     private MOFCharacter Target;
     Skill normalSkill;
+    private bool IsAttackAni = false;
     public AIBase(AbstractMonster owner)
     {
         this.Owner = owner;
@@ -36,12 +37,21 @@ public class AIBase
             this.Owner.entityStatus = EntityStatus.Idle;
             return;
         }
+        if (IsAttackAni) return;
         if (!TryCastSkill())
         {
             if (!TryCastNormal())
             {
                 FollowTarget();
             }
+            else
+            {
+                StartAttackAni();
+            }
+        }
+        else
+        {
+            StartAttackAni();
         }
     }
 
@@ -61,13 +71,14 @@ public class AIBase
             BattleContext context = new BattleContext(this.Owner.mofMap.Battle, CastSkill)
             {
                 Target = new List<Entity> { this.Target },
-                Caster = this.Owner, 
+                Caster = this.Owner,
             };
             Skill skill = this.Owner.FindSkill(context, SkillType.Skill);
             if (skill != null)
             {
                 context.CastSkill.SkillID = skill.Info.SkillID;
                 skill.Cast(context, CastSkill);
+                this.Owner.StopMove();
                 return true;
             }
         }
@@ -95,12 +106,13 @@ public class AIBase
             if (normalSkill != null)
             {
                 context.CastSkill.SkillID = 0;
-                SkillResult result = normalSkill.CanCast(context);               
-                if(result == SkillResult.OK)
+                SkillResult result = normalSkill.CanCast(context);
+                if (result == SkillResult.OK)
                 {
                     normalSkill.Cast(context, CastSkill);
+                    this.Owner.StopMove();
                     return true;
-                }                       
+                }
             }
         }
         return false;
@@ -108,7 +120,7 @@ public class AIBase
     private void FollowTarget()
     {
         var distance = this.Owner.Distance(this.Target.nEntity.Position);
-        if(distance > ((ActiveSkillInfo)normalSkill.Info).Range[1] - 30)
+        if (distance > ((ActiveSkillInfo)normalSkill.Info).Range[1] - 30)
         {
             this.Owner.MoveTo(this.Target.nEntity.Position);
         }
@@ -116,6 +128,13 @@ public class AIBase
         {
             this.Owner.StopMove();
         }
+    }
+
+    protected void StartAttackAni()
+    {
+        IsAttackAni = true;
+        var Ani = this.Owner.Info.MonsterAniDic[MonsterAniType.Attack];
+        TimerSvc.Instance.AddTimeTask((t) => { IsAttackAni = false; }, Ani.AnimSprite.Count / Ani.AnimSpeed, PETimeUnit.Second);
     }
 }
 
