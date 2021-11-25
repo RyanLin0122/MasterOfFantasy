@@ -690,7 +690,7 @@ public class BattleSys : SystemRoot
         if (targetType == SkillTargetType.Monster)
         {
             //先判斷目前有沒有正在戰鬥中的目標
-            if (CurrentBattleTarget != null && CurrentTarget is MonsterController && !DeathMonsterPool.Contains((MonsterController)CurrentTarget))
+            if (CurrentBattleTarget != null && CurrentTarget is MonsterController && !DeathMonsterPool.Contains((MonsterController)CurrentTarget) && !((MonsterController)CurrentTarget).OnDeathDelay)
             {
                 //有活著的戰鬥目標
                 //if (CurrentTarget != null && !DeathMonsterPool.Contains((MonsterController)CurrentTarget))
@@ -711,6 +711,7 @@ public class BattleSys : SystemRoot
             List<MonsterController> MonstersInRange = new List<MonsterController>();
             foreach (var kv in Monsters)
             {
+                if (kv.Value.OnDeathDelay) continue;
                 if (DeathMonsterPool.Contains(kv.Value))
                 {
                     continue;
@@ -1044,16 +1045,27 @@ public class BattleSys : SystemRoot
     private void OnDeath(MonsterDeath md)
     {
         if (md.MonsterID == null || md.MonsterID.Count < 1) return;
-        foreach (var id in md.MonsterID)
+        for (int i = 0; i < md.MonsterID.Count; i++)
         {
             MonsterController controller = null;
-            Monsters.TryGetValue(id, out controller);
+            Monsters.TryGetValue(md.MonsterID[i], out controller);
             if (controller != null)
             {
-                if (CurrentTarget == controller) CurrentTarget = null;
-                if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
-                Monsters.Remove(id);
-                controller.OnDeath();
+                if (!md.IsDelayDeath[i])
+                {
+                    if (CurrentTarget == controller) CurrentTarget = null;
+                    if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
+                    Monsters.Remove(md.MonsterID[i]);
+                    controller.OnDeath();
+                }
+                else
+                {
+                    if (CurrentTarget == controller) CurrentTarget = null;
+                    if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
+                    controller.OnDeathDelay = true;
+                    //Monsters.Remove(md.MonsterID[i]);
+                    //controller.OnDeath();
+                }
             }
         }
     }
@@ -1091,13 +1103,16 @@ public class BattleSys : SystemRoot
     private void OnDrop(DropItemsInfo di)
     {
         if (di.DropItems == null || di.DropItems.Count == 0) return;
-        foreach (var kv in di.DropItems)
+        TimerSvc.Instance.AddTimeTask((d) =>
         {
-            DropItemEntity entity = Instantiate(Resources.Load("Prefabs/DropItem") as GameObject, MapCanvas.transform).GetComponent<DropItemEntity>();
-            entity.transform.localPosition = new Vector2(kv.Value.From.X, kv.Value.From.Y);
-            entity.Init(kv.Value);
-            DropItems.Add(kv.Key, entity);
-        }
+            foreach (var kv in di.DropItems)
+            {
+                DropItemEntity entity = Instantiate(Resources.Load("Prefabs/DropItem") as GameObject, MapCanvas.transform).GetComponent<DropItemEntity>();
+                entity.transform.localPosition = new Vector2(kv.Value.From.X, kv.Value.From.Y);
+                entity.Init(kv.Value);
+                DropItems.Add(kv.Key, entity);
+            }
+        }, 0.9f, PETimeUnit.Second, 1);
     }
     private void OnPickUp(PickUpResponse pr)
     {
@@ -1272,18 +1287,14 @@ public class BattleSys : SystemRoot
         bool result = false;
         //先判斷距離
         PlayerController controller = PlayerInputController.Instance.entityController;
-        if (controller != null && (TwoDimensionDistance(controller.transform.localPosition, drop.transform.localPosition) < 300))
+        if (controller != null && (TwoDimensionDistance(controller.transform.localPosition, drop.transform.localPosition) < 250))
         {
-            if (drop.DropItem.Type == DropItemType.Money) return true;
-            else
+            List<string> Owners = drop.DropItem.OwnerNames;
+            if (Owners != null && Owners.Count > 0)
             {
-                List<string> Owners = drop.DropItem.OwnerNames;
-                if (Owners != null && Owners.Count > 0)
+                foreach (var Name in Owners)
                 {
-                    foreach (var Name in Owners)
-                    {
-                        if (Name == GameRoot.Instance.ActivePlayer.Name) result = true;
-                    }
+                    if (Name == GameRoot.Instance.ActivePlayer.Name) result = true;
                 }
             }
         }

@@ -8,7 +8,7 @@ using System;
 public class Information : WindowRoot
 {
     public GameObject additionInfo;
-    public bool IsAdditionOpen = false;
+    public bool IsAdditionOpen = true;
     public bool IsOpen = false;
     public Text txtName;
     public Text txtCouple;
@@ -59,7 +59,7 @@ public class Information : WindowRoot
     {
         Debug.Log("初始化InfoWnd");
         base.InitWnd();
-        SetActive(additionInfo, false);
+        //SetActive(additionInfo, false);
         illustration.InitIllustration();
         RefreshIInfoUI();
     }
@@ -98,7 +98,7 @@ public class Information : WindowRoot
         txtStrength.text = attr.Strength.ToString();
         txtAgility.text = attr.Agility.ToString();
         txtIntellect.text = attr.Intellect.ToString();
-        txtDamage.text = attr.MinDamage + "~" + attr.MaxDamage;
+        txtDamage.text = (int)attr.MinDamage + "~" + (int)attr.MaxDamage;
         txtDefense.text = attr.Defense.ToString();
         txtAccuracy.text = attr.Accuracy * 100 + "%";
         txtAvoidRate.text = attr.Avoid * 100 + "%";

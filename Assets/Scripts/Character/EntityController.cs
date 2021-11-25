@@ -50,7 +50,8 @@ public class EntityController : MonoBehaviour
                     {
                         TimerSvc.Instance.AddTimeTask((a) =>
                         {
-                            GenerateDamageNum(num, 0);
+                            if(damage.IsCritical) GenerateDamageNum(num, 1);
+                            else GenerateDamageNum(num, 0);
                         }, 300f * index, PETimeUnit.Millisecond, 1);
                     }
                     else
@@ -65,7 +66,8 @@ public class EntityController : MonoBehaviour
                 {
                     if (this is MonsterController)
                     {
-                        GenerateDamageNum(damage.Damage[i], 0);
+                        if (damage.IsCritical) GenerateDamageNum(damage.Damage[i], 1);
+                        else GenerateDamageNum(damage.Damage[i], 0);
                     }
                     else
                     {
@@ -166,5 +168,6 @@ public class EntityController : MonoBehaviour
         rectTransform.transform.SetParent(container.transform);
         obj.GetComponent<DamageController>().SetNumber(damage, mode);
     }
+    
     #endregion
 }

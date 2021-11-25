@@ -74,7 +74,10 @@ class SkillSys : MonoSingleton<SkillSys>
 
         if (info.Sound["Hit"] != "")
         {
-            AudioSvc.Instance.PlaySkillAudio("Sound/" + info.Sound["Hit"]);
+            AudioClip audio = ResSvc.Instance.LoadAudio("Sound/" + info.Sound["Hit"], true);
+            //AudioClip audio = ResSvc.Instance.LoadAudio("Sound/Weapon/weapon_se_hit_critical", true);
+            TargetTransform.GetComponent<AudioSource>().clip = audio;
+            TargetTransform.GetComponent<AudioSource>().Play();
         }
     }
     public void InitPlayerSkills(Player player, EntityController controller)

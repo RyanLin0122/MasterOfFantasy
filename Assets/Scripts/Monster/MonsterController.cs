@@ -157,7 +157,19 @@ public class MonsterController : EntityController
                 MinusHP(num);
             }
         }
+        if (OnDeathDelay)
+        {
+            TimerSvc.Instance.AddTimeTask((a) =>
+            {
+                OnDeath();
+                BattleSys bs = BattleSys.Instance;
+                if (bs.CurrentTarget == this) bs.CurrentTarget = null;
+                if (bs.CurrentBattleTarget == this) bs.CurrentBattleTarget = null;
+                bs.Monsters.Remove(entity.nEntity.Id);
+            }, 300f * damage.Damage.Length, PETimeUnit.Millisecond, 1);
+        }
     }
+    public bool OnDeathDelay = false;
     public void OnDeath()
     {
         Debug.Log("怪物死掉");

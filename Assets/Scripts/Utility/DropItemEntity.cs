@@ -20,10 +20,9 @@ public class DropItemEntity : MonoBehaviour
         float distance = GetDistance(new Vector2(dropItem.From.X, dropItem.From.Y), TargetPos);
         duration = distance / 120;
         HasInit = true;
-        if (dropItem.Type == DropItemType.Item) GetComponent<Image>().sprite = Resources.Load<Sprite>(dropItem.Item.Sprite);
-        else GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/Other/Money");
-        GetComponent<Image>().SetNativeSize();
-        GetComponent<Image>().enabled = true;
+        if (dropItem.Type == DropItemType.Item) GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(dropItem.Item.Sprite);
+        else GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Other/Money");
+        GetComponent<SpriteRenderer>().enabled = true;
     }
     public void Setup(DropItem dropItem)
     {

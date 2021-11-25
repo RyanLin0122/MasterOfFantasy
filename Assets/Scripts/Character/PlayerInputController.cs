@@ -189,7 +189,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             {
                 BattleSys.Instance.PickUpRequest();
                 PickUpLock = true;
-                TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.5, PETimeUnit.Second, 1);
+                TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.15, PETimeUnit.Second, 1);
             }
         }
         if (hotKeySlot != null)

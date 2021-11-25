@@ -14,14 +14,14 @@ public class AbstractMonster : Entity
     public MOFCharacter AttackTarget;
     public MonsterInfo Info;
     public AIAgent AI;
-    public override void OnDeath()
+    public override void OnDeath(bool IsDelay = false)
     {
         IsDeath = true;
         this.status = MonsterStatus.Death;
         this.mofMap.Battle.LeaveBattle(this);
         this.mofMap.Monsters.Remove(nEntity.Id);
         MonsterPoint.monster = null;
-        mofMap.Battle.AddDeathMonsterUUID(nEntity.Id);
+        mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay);
         mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
         if (PlayerDamageRecord.Count > 0)
         {
@@ -49,7 +49,7 @@ public class AbstractMonster : Entity
                 HP = 0;
                 this.nEntity.HP = HP;
                 if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
-                OnDeath();
+                OnDeath(damage.IsDelay);
                 return;
             }
             else

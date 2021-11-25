@@ -738,6 +738,8 @@ namespace PEProtocal
         public string EntityName { get; set; }
         [ProtoMember(6, IsRequired = false)]
         public bool IsCritical { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public bool IsDelay { get; set; }
     }
 
     [ProtoContract]

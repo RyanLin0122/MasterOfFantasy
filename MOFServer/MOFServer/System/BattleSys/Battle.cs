@@ -12,6 +12,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private List<BuffInfo> BuffActions;
     private List<SkillCastInfo> SkillCasts;
     public List<int> DeathMonsterUUIDs = new List<int>();
+    public List<bool> DeathMonsterIsDelay = new List<bool>();
     private Dictionary<string, int> ExpRecord;
     private Dictionary<int, DropItem> ReadyToDrop;
 
@@ -57,18 +58,19 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         this.BuffActions.Add(buffInfo);
     }
-    public void AddDeathMonsterUUID(int ID)
+    public void AddDeathMonsterUUID(int ID, bool IsDelay)
     {
         this.DeathMonsterUUIDs.Add(ID);
+        this.DeathMonsterIsDelay.Add(IsDelay);
     }
     public void AddReadyToDropItem(int UUID, DropItem dropItem)
     {
         this.ReadyToDrop.Add(UUID, dropItem);
-        LogSvc.Info("增加掉落物 " + UUID);
     }
     internal void Update()
     {
         this.DeathMonsterUUIDs.Clear();
+        this.DeathMonsterIsDelay.Clear();
         this.SkillCasts.Clear();
         this.Hits.Clear();
         this.BuffActions.Clear();
@@ -470,81 +472,90 @@ public class Battle //戰鬥類，一個地圖綁定一個
 
     private void BroadcastBattleMessages()
     {
-        if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 &&
+        try
+        {
+            if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 &&
             this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0 && PickUpUUIDs.Count == 0) return;
-        SkillCastResponse skillCast = null;
-        SkillHitResponse skillHit = null;
-        BuffResponse buffRsp = null;
-        MonsterDeath death = null;
-        ExpPacket expPacket = null;
-        DropItemsInfo dropItems = null;
-        PickUpResponse pickUpResponse = null;
-        if (this.SkillCasts != null && this.SkillCasts.Count > 0)
-        {
-            skillCast = new SkillCastResponse
+            SkillCastResponse skillCast = null;
+            SkillHitResponse skillHit = null;
+            BuffResponse buffRsp = null;
+            MonsterDeath death = null;
+            ExpPacket expPacket = null;
+            DropItemsInfo dropItems = null;
+            PickUpResponse pickUpResponse = null;
+            if (this.SkillCasts != null && this.SkillCasts.Count > 0)
             {
-                CastInfos = this.SkillCasts
-            };
-        }
-        if (this.Hits != null && this.Hits.Count > 0)
-        {
-            skillHit = new SkillHitResponse
+                skillCast = new SkillCastResponse
+                {
+                    CastInfos = this.SkillCasts
+                };
+            }
+            if (this.Hits != null && this.Hits.Count > 0)
             {
-                skillHits = this.Hits,
-                Result = SkillResult.OK
-            };
-        }
-        if (this.BuffActions != null && this.BuffActions.Count > 0)
-        {
-            buffRsp = new BuffResponse
+                skillHit = new SkillHitResponse
+                {
+                    skillHits = this.Hits,
+                    Result = SkillResult.OK
+                };
+            }
+            if (this.BuffActions != null && this.BuffActions.Count > 0)
             {
-                Buffs = this.BuffActions,
-                SkillResult = SkillResult.OK
-            };
-        }
-        if (this.DeathMonsterUUIDs != null && this.DeathMonsterUUIDs.Count > 0)
-        {
-            death = new MonsterDeath
+                buffRsp = new BuffResponse
+                {
+                    Buffs = this.BuffActions,
+                    SkillResult = SkillResult.OK
+                };
+            }
+            if (this.DeathMonsterUUIDs != null && this.DeathMonsterUUIDs.Count > 0)
             {
-                MonsterID = this.DeathMonsterUUIDs
-            };
-        }
-        if (this.ExpRecord != null && this.ExpRecord.Count > 0)
-        {
-            expPacket = new ExpPacket
+                death = new MonsterDeath
+                {
+                    MonsterID = this.DeathMonsterUUIDs,
+                    IsDelayDeath = this.DeathMonsterIsDelay
+                };
+            }
+            if (this.ExpRecord != null && this.ExpRecord.Count > 0)
             {
-                Exp = this.ExpRecord
-            };
-        }
-        if (this.ReadyToDrop != null && this.ReadyToDrop.Count > 0)
-        {
-            dropItems = new DropItemsInfo
+                expPacket = new ExpPacket
+                {
+                    Exp = this.ExpRecord
+                };
+            }
+            if (this.ReadyToDrop != null && this.ReadyToDrop.Count > 0)
             {
-                DropItems = this.ReadyToDrop
-            };
-        }
-        if (this.PickUpUUIDs.Count > 0 && this.PickUpCharacterNames.Count > 0 && this.InventoryIDs.Count > 0 && this.InventoryPositions.Count > 0 && this.PickUPResults.Count > 0)
-        {
-            pickUpResponse = new PickUpResponse
+                dropItems = new DropItemsInfo
+                {
+                    DropItems = this.ReadyToDrop
+                };
+            }
+            if (this.PickUpUUIDs.Count > 0 && this.PickUpCharacterNames.Count > 0 && this.InventoryIDs.Count > 0 && this.InventoryPositions.Count > 0 && this.PickUPResults.Count > 0)
             {
-                Results = this.PickUPResults,
-                CharacterNames = this.PickUpCharacterNames,
-                InventoryID = this.InventoryIDs,
-                InventoryPosition = this.InventoryPositions,
-                ItemUUIDs = this.PickUpUUIDs
+                pickUpResponse = new PickUpResponse
+                {
+                    Results = this.PickUPResults,
+                    CharacterNames = this.PickUpCharacterNames,
+                    InventoryID = this.InventoryIDs,
+                    InventoryPosition = this.InventoryPositions,
+                    ItemUUIDs = this.PickUpUUIDs
+                };
+            }
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 60,
+                skillCastResponse = skillCast,
+                skillHitResponse = skillHit,
+                buffResponse = buffRsp,
+                monsterDeath = death,
+                expPacket = expPacket,
+                dropItemsInfo = dropItems,
+                pickUpResponse = pickUpResponse
             };
+            this.mofMap.BroadCastMassege(msg);
         }
-        ProtoMsg msg = new ProtoMsg
+        catch (System.Exception e)
         {
-            MessageType = 60,
-            skillCastResponse = skillCast,
-            skillHitResponse = skillHit,
-            buffResponse = buffRsp,
-            monsterDeath = death,
-            expPacket = expPacket,
-            dropItemsInfo = dropItems,
-            pickUpResponse = pickUpResponse
-        };
-        this.mofMap.BroadCastMassege(msg);
+            LogSvc.Info(e.Message);
+        }
+        
     }
 }

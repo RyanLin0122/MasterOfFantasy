@@ -42,7 +42,7 @@ public class Entity : IEntity
         }
         if (nEntity.HP <= 0)
         {
-            this.OnDeath();
+            this.OnDeath(damage.IsDelay);
         }
     }
     public virtual void MinusMP(int MinusMP)
@@ -60,7 +60,7 @@ public class Entity : IEntity
 
     }
 
-    public virtual void OnDeath()
+    public virtual void OnDeath(bool IsDelay = false)
     {
 
     }

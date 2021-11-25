@@ -6,7 +6,7 @@ public class PickUpTrail : MonoBehaviour
 {
     public bool HasInit = false;
     public bool IsFirst = false;
-    public float Speed = 600 ;
+    public float Speed = 350 ;
     public EntityController Target;
     public bool Stopped = false;
     public void Init(EntityController Target, bool IsFirst)
@@ -21,7 +21,7 @@ public class PickUpTrail : MonoBehaviour
         if (!HasInit) return;
         if (!Stopped)
         {
-            this.Speed += 0.2f;
+            this.Speed += 0.02f;
             float Distance = GetDistance(transform.localPosition, Target.transform.localPosition);
             if (Distance > 30)
             {

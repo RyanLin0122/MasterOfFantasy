@@ -85,7 +85,7 @@ public class Skill
                 return SkillResult.OutOfHP;
             }
         }
-        if(active.TargetType == SkillTargetType.BuffOnly)
+        if (active.TargetType == SkillTargetType.BuffOnly)
         {
             return SkillResult.OK;
         }
@@ -413,8 +413,7 @@ public class Skill
         {
             if (skillCast.CasterType == SkillCasterType.Player)
             {
-                float Crit = 0.3f; //假資料
-                bool IsCtrt = IsCrit(Crit);
+                bool IsCtrt = IsCrit((this.Owner as MOFCharacter).FinalAttribute.Critical);
                 if (Target is MOFCharacter)
                 {
                     DamageInfo damage = new DamageInfo
@@ -424,7 +423,8 @@ public class Skill
                         will_Dead = false,
                         IsMonster = false,
                         EntityID = -1,
-                        IsCritical = IsCtrt
+                        IsCritical = IsCtrt,
+                        IsDelay = active.IsShoot
                     };
                     result = damage;
                 }
@@ -436,7 +436,8 @@ public class Skill
                         Damage = CalculateDamage(true, IsCtrt),
                         will_Dead = false,
                         IsMonster = true,
-                        IsCritical = IsCtrt
+                        IsCritical = IsCtrt,
+                        IsDelay = active.IsShoot
                     };
                     result = damage;
                 }
@@ -450,7 +451,8 @@ public class Skill
                     Damage = CalculateDamage(false, false),
                     will_Dead = false,
                     IsMonster = false,
-                    IsCritical = false
+                    IsCritical = false,
+                    IsDelay = false
                 };
                 result = damage;
             }

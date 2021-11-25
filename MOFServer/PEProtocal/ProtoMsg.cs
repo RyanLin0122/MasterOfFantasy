@@ -837,6 +837,8 @@ namespace PEProtocal
     {
         [ProtoMember(1, IsRequired = false)]
         public List<int> MonsterID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public List<bool> IsDelayDeath { get; set; }
     }
 
     [ProtoContract(EnumPassthru = false)]
