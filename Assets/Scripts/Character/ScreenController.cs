@@ -4,7 +4,7 @@ using System;
 
 public class ScreenController : MonoBehaviour
 {
-    [Header("camera")] public new Camera camera;
+    [Header("camera")] public Camera MapCamera;
     [Header("offset")] public Vector3 Offset;
 
     [Header("相機上界")] public float UpBound;
@@ -16,17 +16,20 @@ public class ScreenController : MonoBehaviour
 
     private void Awake()
     {
+        MapCamera = Camera.main;
+        Offset = MapCamera.transform.position;
         GameObject background = GameObject.FindGameObjectWithTag("MapBackground");
-
         float bound_x = background.GetComponent<Renderer>().bounds.size.x;
         float bound_y = background.GetComponent<Renderer>().bounds.size.y;
 
-        float cam_x = 535.0f;
-        float cam_y = 300.0f;
+        //float cam_x = 535.0f;
+        //float cam_y = 300.0f;
+        Vector3 vector = MapCamera.ScreenToWorldPoint(new Vector2(MapCamera.pixelWidth, MapCamera.pixelHeight)) - MapCamera.ScreenToWorldPoint(Vector2.zero);
+        float cam_x = vector.x;
+        float cam_y = vector.y;
+        Debug.Log(cam_x + ", " + cam_y);
 
-
-
-        UpBound = bound_y / 2.0f - cam_y;
+        UpBound = (bound_y - cam_y) / 2.0f;
         DownBound = -UpBound;
         if (UpBound < DownBound)
         {
@@ -34,7 +37,7 @@ public class ScreenController : MonoBehaviour
             DownBound = 0;
         }
 
-        RightBound = bound_x / 2.0f - cam_x;
+        RightBound = (bound_x - cam_x) / 2.0f;
         LeftBound = -RightBound;
         if (RightBound < LeftBound)
         {
@@ -44,21 +47,12 @@ public class ScreenController : MonoBehaviour
         }
 
     }
-    // Use this for initialization
-    void Start()
-    {
-        camera = Camera.main;
-        Offset = camera.transform.position;
-        //Offset = camera.transform.position - transform.position;
-        //相對位移 = 攝影機座標-玩家座標
-    }
-
     private void Update()
     {
         float tempx = transform.position.x;
         float tempy = transform.position.y;
-        Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), camera.transform.position.z);
-        camera.transform.position = tempPosition; //攝影機座標 = 玩家座標
+        Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), MapCamera.transform.position.z);
+        MapCamera.transform.position = tempPosition; //攝影機座標 = 玩家座標
         if (canCtrl)
         {
             if (Input.GetKeyDown(KeyCode.M))
