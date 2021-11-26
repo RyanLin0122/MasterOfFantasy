@@ -588,9 +588,9 @@ public class BattleSys : SystemRoot
         FinalAttribute.MaxDamage = BasicAttribute.MaxDamage + (EquipmentAttribute.MaxDamage + NegativeAttribute.MaxDamage + BuffAttribute.MaxDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
         FinalAttribute.MinDamage = BasicAttribute.MinDamage + (EquipmentAttribute.MinDamage + NegativeAttribute.MinDamage + BuffAttribute.MinDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
         FinalAttribute.Defense = BasicAttribute.Defense + EquipmentAttribute.Defense + NegativeAttribute.Defense + BuffAttribute.Defense;
-        FinalAttribute.Accuracy = BasicAttribute.Accuracy + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy + BuffAttribute.Accuracy;
+        FinalAttribute.Accuracy = BasicAttribute.Accuracy + FinalAttribute.Agility * 0.008f + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy + BuffAttribute.Accuracy;
         FinalAttribute.Critical = BasicAttribute.Critical + EquipmentAttribute.Critical + NegativeAttribute.Critical + BuffAttribute.Critical;
-        FinalAttribute.Avoid = BasicAttribute.Avoid + EquipmentAttribute.Avoid + NegativeAttribute.Avoid + BuffAttribute.Avoid;
+        FinalAttribute.Avoid = BasicAttribute.Avoid + ((FinalAttribute.Agility + FinalAttribute.Intellect) * 0.005f) + EquipmentAttribute.Avoid + NegativeAttribute.Avoid + BuffAttribute.Avoid;
         FinalAttribute.MagicDefense = BasicAttribute.MagicDefense + EquipmentAttribute.MagicDefense + NegativeAttribute.MagicDefense + BuffAttribute.MagicDefense;
         FinalAttribute.RunSpeed = BasicAttribute.RunSpeed + EquipmentAttribute.RunSpeed + NegativeAttribute.RunSpeed + BuffAttribute.RunSpeed;
         FinalAttribute.AttRange = BasicAttribute.AttRange + EquipmentAttribute.AttRange + NegativeAttribute.AttRange + BuffAttribute.AttRange;

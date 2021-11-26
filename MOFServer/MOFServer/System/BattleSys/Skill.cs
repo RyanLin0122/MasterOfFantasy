@@ -424,10 +424,11 @@ public class Skill
                 bool IsCtrt = IsCrit((this.Owner as MOFCharacter).FinalAttribute.Critical);
                 if (Target is MOFCharacter)
                 {
+                    MOFCharacter target = Target as MOFCharacter;
                     DamageInfo damage = new DamageInfo
                     {
                         EntityName = Target.nEntity.EntityName,
-                        Damage = CalculateDamage(true, IsCtrt),
+                        Damage = CalculateDamage(true, IsCtrt, target.player.Level, target.FinalAttribute.Avoid, target.FinalAttribute),
                         will_Dead = false,
                         IsMonster = false,
                         EntityID = -1,
@@ -438,10 +439,11 @@ public class Skill
                 }
                 else
                 {
+                    AbstractMonster Monster = Target as AbstractMonster;
                     DamageInfo damage = new DamageInfo
                     {
                         EntityID = Target.nEntity.Id,
-                        Damage = CalculateDamage(true, IsCtrt),
+                        Damage = CalculateDamage(true, IsCtrt, Monster.Info.Level, Monster.Info.Avoid, null),
                         will_Dead = false,
                         IsMonster = true,
                         IsCritical = IsCtrt,
@@ -452,11 +454,12 @@ public class Skill
             } //玩家釋放技能
             else //怪物釋放技能
             {
+                MOFCharacter targetPlayer = (Target as MOFCharacter);
                 DamageInfo damage = new DamageInfo
                 {
                     EntityID = -1,
                     EntityName = Target.nEntity.EntityName,
-                    Damage = CalculateDamage(false, false),
+                    Damage = CalculateDamage(false, false, targetPlayer.player.Level, targetPlayer.FinalAttribute.Avoid, targetPlayer.FinalAttribute),
                     will_Dead = false,
                     IsMonster = false,
                     IsCritical = false,
@@ -468,43 +471,70 @@ public class Skill
         }
         return result;
     }
-    public int[] CalculateDamage(bool IsPlayer, bool IsCritical)
+    public int[] CalculateDamage(bool IsPlayer, bool IsCritical, int TargetLevel, float TargetAvoid, PlayerAttribute Final)
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        ActiveSkillInfo active = Info as ActiveSkillInfo;
         int Times = active.Times[this.Level - 1];
         if (Times > 0)
         {
             int[] Damages = new int[Times];
             if (IsPlayer)
             {
-                PlayerAttribute playerAttribute = ((MOFCharacter)Owner).FinalAttribute;
+                PlayerAttribute playerAttribute = (Owner as MOFCharacter).FinalAttribute;
                 int Mindamage = (int)(playerAttribute.MinDamage);
                 int Maxdamage = (int)playerAttribute.MaxDamage;
                 //命中迴避
-                for (int i = 0; i < Damages.Length; i++)
+                MOFCharacter player = (this.Owner as MOFCharacter);
+                if (IsHit(player.player.Level, TargetLevel, player.FinalAttribute.Accuracy, TargetAvoid))
                 {
-                    int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);
-                    float d_AfterCritical = 0;
-                    if (IsCritical) //計算是否爆擊
+                    for (int i = 0; i < Damages.Length; i++)
                     {
-                        d_AfterCritical = 1.5f * d_beforeCritical;
-                    }
-                    else
-                    {
-                        d_AfterCritical = d_beforeCritical;
-                    }
+                        int d_beforeCritical = RandomSys.Instance.GetRandomInt(Mindamage, Maxdamage);
+                        float d_AfterCritical = 0;
+                        if (IsCritical) //計算是否爆擊
+                        {
+                            d_AfterCritical = 1.5f * d_beforeCritical;
+                        }
+                        else
+                        {
+                            d_AfterCritical = d_beforeCritical;
+                        }
 
-                    //根據玩家現在的數值計算傷害
-                    Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
+                        //根據玩家現在的數值計算傷害
+                        Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
+                    }
+                    return Damages;
                 }
-                return Damages;
-            }
-            else //怪物的攻擊 Todo
-            {
-                MonsterInfo monsterInfo = ((AbstractMonster)this.Owner).Info;
-                for (int i = 0; i < Damages.Length; i++)
+                else
                 {
-                    Damages[i] = RandomSys.Instance.GetRandomInt(monsterInfo.MinDamage, monsterInfo.MaxDamage);
+                    for (int i = 0; i < Damages.Length; i++)
+                    {
+                        Damages[i] = 0;
+                    }
+                    return Damages;
+                }
+
+            }
+            else //怪物的攻擊
+            {
+                MonsterInfo monsterInfo = (this.Owner as AbstractMonster).Info;
+                if (IsMonsterHit(monsterInfo.Accuracy, TargetAvoid))
+                {
+                    for (int i = 0; i < Damages.Length; i++)
+                    {
+                        int RandomDamage = RandomSys.Instance.GetRandomInt(monsterInfo.MinDamage, monsterInfo.MaxDamage);
+                        RandomDamage = (int)(RandomDamage * (1 - Final.MinusHurt));
+                        RandomDamage -= (int)Final.Defense;
+                        if (RandomDamage >= 0) Damages[i] = RandomDamage;
+                        else Damages[i] = 0;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Damages.Length; i++)
+                    {
+                        Damages[i] = 0;
+                    }
                 }
                 return Damages;
             }
@@ -519,7 +549,37 @@ public class Skill
     {
         return RandomSys.Instance.NextDouble() < Crit;
     }
-
+    public bool IsHit(int PlayerLevel, int MonsterLevel, float PlayerAccuracy, float MonsterAvoid)
+    {
+        float Constant = 0.01f;
+        float HitNumber = (PlayerLevel - MonsterLevel);
+        if (HitNumber >= 0)
+        {
+            HitNumber *= Constant * 2.5f;
+        }
+        else
+        {
+            HitNumber *= -(Constant + (MonsterAvoid * Constant));
+        }
+        HitNumber += PlayerAccuracy;
+        //Console.WriteLine("HitNumber = " + HitNumber);
+        if (RandomSys.Instance.NextDouble() < HitNumber)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool IsMonsterHit(float MonsterAccuracy, float PlayerAvoid)
+    {
+        if (RandomSys.Instance.NextDouble() < MonsterAccuracy - PlayerAvoid)
+        {
+            return true;
+        }
+        return false;
+    }
     #region Buff
     private void AddBuff(BUFF_TriggerType trigger, ActiveSkillInfo active)
     {
