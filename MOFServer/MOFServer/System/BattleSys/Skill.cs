@@ -267,13 +267,21 @@ public class Skill
     public void DoHit(SkillHitInfo hitInfo, ActiveSkillInfo active)
     {
         //Console.WriteLine("[249] Hit = " + Hit + "AddHitInfo");
-        if (!active.IsShoot)
+        if (!active.IsShoot && !active.IsMultiple)
         {
             context.Battle.AddHitInfo(hitInfo);
         }
-        if (active.IsAOE)
+        if (active.IsMultiple)
         {
-            this.HitRange(hitInfo, active);
+            if (context.Target.Count > 0)
+            {
+                foreach (var target in context.Target)
+                {
+                    SkillHitInfo mulHitInfo = InitHitInfo(active);
+                    context.Battle.AddHitInfo(mulHitInfo);
+                    HitTarget(target, mulHitInfo);
+                }
+            }
             return;
         }
         //瞬發技能，判斷目標類型

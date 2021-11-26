@@ -225,7 +225,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
             }
             skillCast.TargetID = FinalTarget;
         }
-        else if (skillCast.TargetType == SkillTargetType.Monster) //攻擊目標為怪物
+        else if (skillCast.TargetType == SkillTargetType.Monster || skillCast.TargetType == SkillTargetType.Position) //攻擊目標為怪物
         {
             int[] TargetID = skillCast.TargetID;
             if (mofMap.Monsters.Count > 0 && TargetID.Length > 0)
@@ -261,11 +261,6 @@ public class Battle //戰鬥類，一個地圖綁定一個
                 FinalTarget[i] = FinalTargets[i].nEntity.Id;
             }
             skillCast.TargetID = FinalTarget;
-        }
-        else if (skillCast.TargetType == SkillTargetType.Position)
-        {
-            //目標為特定位置，非怪物
-
         }
         context.CastSkill = skillCast;
 

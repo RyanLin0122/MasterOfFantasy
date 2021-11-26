@@ -624,6 +624,7 @@ public class BattleSys : SystemRoot
         Monsters = new Dictionary<int, MonsterController>();
         Players = new Dictionary<string, PlayerController>();
         DeathMonsterPool = new HashSet<MonsterController>();
+        DropItems.Clear();
     }
 
     #region 尋找目標
@@ -1425,7 +1426,7 @@ public class BattleSys : SystemRoot
 
     public void ClearMonsters()
     {
-        Monsters = new Dictionary<int, MonsterController>();
+        Monsters.Clear();
     }
     #endregion
 

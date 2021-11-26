@@ -22,8 +22,6 @@ public class ScreenController : MonoBehaviour
         float bound_x = background.GetComponent<Renderer>().bounds.size.x;
         float bound_y = background.GetComponent<Renderer>().bounds.size.y;
 
-        //float cam_x = 535.0f;
-        //float cam_y = 300.0f;
         Vector3 vector = MapCamera.ScreenToWorldPoint(new Vector2(MapCamera.pixelWidth, MapCamera.pixelHeight)) - MapCamera.ScreenToWorldPoint(Vector2.zero);
         float cam_x = vector.x;
         float cam_y = vector.y;
@@ -125,7 +123,7 @@ public class ScreenController : MonoBehaviour
                 SkillSys.Instance.skillWnd.KeyBoardCommand();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Home)) //截圖
+        if (Input.GetKeyDown(KeyCode.ScrollLock)) //截圖
         {
             Debug.Log("ScreenShot");
             string name = DateTime.Now.ToString("yyyy'_'MM'_'dd'_'HH'_'mm'_'ss");

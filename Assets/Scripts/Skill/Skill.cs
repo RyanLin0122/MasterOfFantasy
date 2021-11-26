@@ -75,6 +75,13 @@ public class Skill
                 }
             }
         }
+        else
+        {
+            if (active.IsAOE)
+            {
+                return SkillResult.OK;
+            }
+        }
         if (!active.IsMultiple && !active.IsAOE) //單一敵人，且不是AOE
         {
             var Target = BattleSys.Instance.CurrentTarget;
@@ -84,10 +91,7 @@ public class Skill
                 return SkillResult.OutOfRange;
             }
         }
-        if (active.IsAOE)
-        {
 
-        }
         //判斷範圍
         //BattleSys.Instance.CurrentTarget.entity.entityId
 
@@ -100,7 +104,12 @@ public class Skill
         if (result == SkillResult.OK)
         {
             PlayerController playerController = PlayerInputController.Instance.entityController;
-            ActiveSkillInfo active = (ActiveSkillInfo)Info;
+            ActiveSkillInfo active = Info as ActiveSkillInfo;
+            if (active.TargetType == SkillTargetType.Position) //AOE技能獨立處理
+            {
+                CastAOE_Position();
+                return;
+            }
             if (BattleSys.Instance.CurrentTarget == null && active.TargetType != SkillTargetType.BuffOnly) return;
             int CastID = -1;
             string CasterName = "";
@@ -175,6 +184,102 @@ public class Skill
             UISystem.Instance.AddMessageQueue(Tools.SkillResult2String(result));
         }
     }
+    public void CastAOE_Position()
+    {
+        PlayerController playerController = PlayerInputController.Instance.entityController;
+        ActiveSkillInfo active = Info as ActiveSkillInfo;
+
+        int CastID = -1;
+        string CasterName = "";
+        int[] TargetID = null;
+        string[] TargetName = null;
+        SkillCasterType CasterType = SkillCasterType.Player;
+
+        if (Owner is MonsterController)
+        {
+            CastID = this.Owner.entity.nEntity.Id;
+            CasterType = SkillCasterType.Monster;
+            if (active.IsMultiple)
+            {
+                Debug.Log("範圍技能Todo");
+                return;
+            }
+            else
+            {
+                if (active.TargetType != SkillTargetType.BuffOnly)
+                {
+                    if (active.TargetType == SkillTargetType.Monster)
+                    {
+                        //TargetID = new int[] { BattleSys.Instance.CurrentTarget.entity.entityId };
+                    }
+                    else
+                    {
+                        //TargetName = new string[] { };
+                    }
+                }
+            }
+        }
+        else if (Owner is PlayerController)
+        {
+            CasterName = this.Owner.Name;
+            CasterType = SkillCasterType.Player;
+            List<MonsterController> MonstersInRange = new List<MonsterController>();
+            if (BattleSys.Instance.Monsters.Count > 0)
+            {
+                Vector2 Origin = new Vector2(playerController.transform.localPosition.x + Mathf.Sign(playerController.transform.localScale.x) * active.Range[0], playerController.transform.localPosition.y);
+                foreach (var mon in BattleSys.Instance.Monsters)
+                {
+                    if (mon.Value != null)
+                    {
+                        float radius = 0;
+                        //float radius = ResSvc.Instance.MonsterInfoDic[mon.Value.MonsterID].Radius;
+                        if (active.Range[2] == 360 || active.Range[2] == 0)
+                        {
+                            if ((((Vector2)mon.Value.transform.localPosition) - Origin).magnitude - radius <= active.Range[1])
+                            {
+                                MonstersInRange.Add(mon.Value);
+                            }
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                UISystem.Instance.AddMessageQueue("地圖中沒有怪物");
+                return;
+            }
+
+            if (active.IsMultiple)
+            {
+                if (MonstersInRange.Count == 0) return;
+                TargetID = new int[MonstersInRange.Count];
+                for (int i = 0; i < MonstersInRange.Count; i++)
+                {
+                    TargetID[i] = MonstersInRange[i].entity.nEntity.Id;
+                }
+            }
+            else
+            {
+                if (MonstersInRange.Count == 0) return;
+                TargetID = new int[] { MonstersInRange[0].entity.nEntity.Id };
+            }
+
+        }
+        SkillCastInfo castInfo = new SkillCastInfo
+        {
+            SkillID = Info.SkillID,
+            CasterID = CastID,
+            CasterName = CasterName,
+            CasterType = CasterType,
+            Position = new float[] { Owner.transform.localPosition.x + Mathf.Sign(playerController.transform.localScale.x) * active.Range[0], Owner.transform.localPosition.y, Owner.transform.localPosition.z },
+            TargetID = TargetID,
+            TargetName = TargetName,
+            TargetType = active.TargetType
+        };
+        new SkillSender(castInfo);
+        Debug.Log("AOE+Ismultiple+Position放出來");
+    }
 
     //<-------- 技能執行階段 Execute Phase ---------->
     public void BeginCast(SkillCastInfo castInfo) //收到釋放技能回應之後，開始釋放流程
@@ -188,7 +293,7 @@ public class Skill
         Targets = new List<EntityController>();
         if (active.TargetType != SkillTargetType.BuffOnly)
         {
-            if (castInfo.TargetType == SkillTargetType.Monster)
+            if (castInfo.TargetType == SkillTargetType.Monster || castInfo.TargetType == SkillTargetType.Position)
             {
                 foreach (var monsterID in castInfo.TargetID)
                 {
@@ -402,7 +507,7 @@ public class Skill
     //從Server收到
     internal void DoHit(SkillHitInfo hit)
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        ActiveSkillInfo active = Info as ActiveSkillInfo;
         if (!active.IsContinue && !active.IsDOT && !active.IsShoot)
         {
             this.HitMap[hit.Hit] = hit.damageInfos;
@@ -432,10 +537,10 @@ public class Skill
         List<DamageInfo> damages;
         if (this.HitMap.TryGetValue(Hit, out damages))
         {
-            ActiveSkillInfo active = (ActiveSkillInfo)Info;
+            ActiveSkillInfo active = Info as ActiveSkillInfo;
             foreach (var dmg in damages)
             {
-                if (active.TargetType == SkillTargetType.Monster)
+                if (active.TargetType == SkillTargetType.Monster || active.TargetType == SkillTargetType.Position)
                 {
                     MonsterController target = null;
                     BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID, out target);

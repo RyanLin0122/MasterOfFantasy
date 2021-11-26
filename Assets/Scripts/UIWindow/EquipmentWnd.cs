@@ -246,6 +246,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         }
         GameRoot.Instance.MainPlayerControl.SetNameBox();
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
+        if(equips!=null && equips.B_Weapon!=null) UpdateAttackRange(equips.B_Weapon);
     }
     public void PutOn(Item item)
     {
@@ -323,7 +324,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 EquipSlot equipmentSlot = (EquipSlot)slot;
                 if (equipmentSlot.IsEquipPositionCorrect(item))
                 {
-                    if(item is Weapon)
+                    if (item is Weapon)
                     {
                         if (equipmentSlot.transform.childCount > 0)
                         {
@@ -353,7 +354,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                                 equipmentSlot.StoreItem(item);
                             }
                         }
-                    }                   
+                    }
                     break;
                 }
             }
@@ -467,7 +468,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     }
                     PutOn(eo.PutOnEquipment);
                     PutOnRing(eo.EquipmentPosition, eo.PutOnEquipment);
-                    
+
                     if (eo.EquipmentPosition != 5)
                     {
                         UpdatePlayerEquipments((Equipment)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments, eo.EquipmentPosition);
@@ -475,7 +476,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }                   
+                    }
                     break;
                 case 2: //穿裝+脫裝
                     if (!eo.PutOnEquipment.IsCash)
@@ -508,7 +509,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }                    
+                    }
                     break;
                 case 3: //脫裝進空格
                     if (!eo.PutOffEquipment.IsCash)
@@ -531,7 +532,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     else
                     {
                         UpdatePlayerWeapon((Weapon)eo.PutOnEquipment, GameRoot.Instance.ActivePlayer.playerEquipments);
-                    }                   
+                    }
                     break;
             }
             PlayChanegeEquipmentAudio(eo.EquipmentPosition);
@@ -544,7 +545,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             GameRoot.Instance.MainPlayerControl.SetNameBox();
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
-        } 
+        }
         else //其他人換裝
         {
             if (eo.OtherPlayerEquipments == null) return;
@@ -627,7 +628,58 @@ public class EquipmentWnd : Inventory, IStackWnd
     } //Excluding 5
     private void UpdatePlayerWeapon(Item wp, PlayerEquipments pq)
     {
-        pq.B_Weapon = (Weapon)wp;
+        pq.B_Weapon = wp as Weapon;
+        if (wp != null) UpdateAttackRange(wp);
+    }
+    public void UpdateAttackRange(Item wp)
+    {
+        if (BattleSys.Instance.SearchRange != null && BattleSys.Instance.SearchRange.Length >= 3)
+            switch ((wp as Weapon).WeapType)
+            {
+                case WeaponType.None:
+                    break;
+                case WeaponType.Axe:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                case WeaponType.Bow:
+                    BattleSys.Instance.SearchRange[1] = 250;
+                    break;
+                case WeaponType.Dagger:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                case WeaponType.Gun:
+                    BattleSys.Instance.SearchRange[1] = 250;
+                    break;
+                case WeaponType.Hammer:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                case WeaponType.LongSword:
+                    BattleSys.Instance.SearchRange[1] = 130;
+                    break;
+                case WeaponType.Spear:
+                    BattleSys.Instance.SearchRange[1] = 130;
+                    break;
+                case WeaponType.Staff:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                case WeaponType.Sword:
+                    BattleSys.Instance.SearchRange[1] = 125;
+                    break;
+                case WeaponType.Book:
+                    BattleSys.Instance.SearchRange[1] = 250;
+                    break;
+                case WeaponType.Cross:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                case WeaponType.Crossbow:
+                    BattleSys.Instance.SearchRange[1] = 250;
+                    break;
+                case WeaponType.DualSword:
+                    BattleSys.Instance.SearchRange[1] = 120;
+                    break;
+                default:
+                    break;
+            }
     }
     private void PutOffEquipment(int pos, PlayerEquipments pq)
     {
