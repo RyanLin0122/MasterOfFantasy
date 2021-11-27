@@ -105,7 +105,7 @@ public class AbstractMonster : Entity
             AniPath = null,
             Hp = new int[] { 0 },
             MP = new int[] { 0 },
-            ColdTime = new float[] { 1 },
+            ColdTime = new float[] { 1.5f },
             IsAttack = true,
             SkillName = null,
             ChargeTime = 0,
@@ -194,6 +194,7 @@ public class AbstractMonster : Entity
         status = MonsterStatus.Normal;
         this.moveTarget = NVector3.zero;
         this.nEntity.Speed = 0;
+        this.mofMap.StopMonsters.Add(this.nEntity);
     }
 }
 

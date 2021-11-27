@@ -310,6 +310,7 @@ public class MOFMap
     {
         BroadCastMassege(msg);
     }
+    public List<NEntity> StopMonsters = new List<NEntity>();
     private void SyncMapUpdate()
     {
         List<NEntity> Send = new List<NEntity>();
@@ -323,6 +324,14 @@ public class MOFMap
                 Events.Add(EntityEvent.Move);
             }
         }
+        if (StopMonsters.Count > 0)
+        {
+            for (int i = 0; i < StopMonsters.Count; i++)
+            {
+                Send.Add(StopMonsters[i]);
+                Events.Add(EntityEvent.Idle);
+            }
+        }
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 14,
@@ -334,6 +343,7 @@ public class MOFMap
             }
         };
         BroadCastMassege(msg);
+        StopMonsters.Clear();
     }
     public bool IsStop = true;
     public void MapStart()

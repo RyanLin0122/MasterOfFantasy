@@ -546,7 +546,12 @@ public class Skill
                     BattleSys.Instance.Monsters.TryGetValue(dmg.EntityID, out target);
                     if (target == null) continue;
                     target.DoDamage(dmg, active);
-                    target.PlayHitAni(active, Owner.transform.position.x < target.transform.position.x, dmg.IsCritical);
+                    bool IsValidDamage = false;
+                    foreach (var num in dmg.Damage)
+                    {
+                        if (num > 0) IsValidDamage = true;
+                    }
+                    if (IsValidDamage) target.PlayHitAni(active, Owner.transform.position.x < target.transform.position.x, dmg.IsCritical);
                 }
                 if (active.TargetType == SkillTargetType.Player)
                 {

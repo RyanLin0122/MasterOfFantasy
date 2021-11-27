@@ -230,12 +230,13 @@ public class MonsterController : EntityController
             case EntityEvent.None:
                 break;
             case EntityEvent.Idle:
-                PlayAni(MonsterAniType.Idle, true);
                 IsMoving = false;
+                this.rb.velocity = Vector2.zero;
+                PlayAni(MonsterAniType.Idle, true);
                 break;
             case EntityEvent.Move:
-                PlayAni(MonsterAniType.Walk, true);
                 IsMoving = true;
+                PlayAni(MonsterAniType.Walk, true);
                 break;
             case EntityEvent.Run:
                 break;
@@ -345,10 +346,19 @@ public class MonsterController : EntityController
     }
     public void PlayAni(MonsterAniType type, bool isloop)
     {
-        if((type== MonsterAniType.Walk || type == MonsterAniType.Idle)&& AttackAniLock)
+        if ((type == MonsterAniType.Walk || type == MonsterAniType.Idle) && AttackAniLock)
         {
             return;
         }
+        if (type == MonsterAniType.Walk && Type == MonsterAniType.Walk)
+        {
+            return;
+        }
+        if (type == MonsterAniType.Idle && Type == MonsterAniType.Idle)
+        {
+            return;
+        }
+        Debug.Log("ID: "+entity.nEntity.Id + " , Play: "+ type.ToString());
         IsLoop = isloop;
         IsAniPause = false;
         Type = type;
@@ -362,13 +372,13 @@ public class MonsterController : EntityController
         if (type == MonsterAniType.Attack)
         {
             AttackAniLock = true;
-            float AniTime = SpriteArray.Length * AnimSpeed;
+            float AniTime = AnimLength / AnimSpeed;
             TimerSvc.Instance.AddTimeTask((t) =>
             {
                 AttackAniLock = false;
                 if (IsMoving) PlayAni(MonsterAniType.Walk, true);
                 else PlayAni(MonsterAniType.Idle, true);
-            }, AniTime - 0.05f, PETimeUnit.Second, 1);
+            }, AniTime, PETimeUnit.Second, 1);
         }
     }
     public void ResetAni()

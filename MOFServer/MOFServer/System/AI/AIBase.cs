@@ -11,6 +11,7 @@ public class AIBase
     private MOFCharacter Target;
     Skill normalSkill;
     private bool IsAttackAni = false;
+    private bool IsHurtAni = false;
     public AIBase(AbstractMonster owner)
     {
         this.Owner = owner;
@@ -21,6 +22,21 @@ public class AIBase
     {
         this.Target = source;
         this.Owner.entityStatus = EntityStatus.InBattle;
+        bool IsHurtValid = false;
+        if (damage.Damage != null && damage.Damage.Length > 0)
+        {
+            foreach (var num in damage.Damage)
+            {
+                if (num > 0) IsHurtValid = true;
+            }
+        }
+        if (IsHurtValid)
+        {
+            this.Owner.StopMove();
+            IsHurtAni = true;
+            var Ani = this.Owner.Info.MonsterAniDic[MonsterAniType.Hurt];
+            TimerSvc.Instance.AddTimeTask((t) => { IsHurtAni = false; }, Ani.AnimSprite.Count / Ani.AnimSpeed, PETimeUnit.Second);
+        }
     }
 
     internal void Update()
@@ -37,7 +53,7 @@ public class AIBase
             this.Owner.entityStatus = EntityStatus.Idle;
             return;
         }
-        if (IsAttackAni) return;
+        if (IsAttackAni || IsHurtAni) return;
         if (!TryCastSkill())
         {
             if (!TryCastNormal())
