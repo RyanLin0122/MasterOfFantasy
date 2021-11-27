@@ -660,6 +660,7 @@ MonoBehaviour:
   WeaponSprite: {fileID: 4183884976608666859}
   CapeSprite: {fileID: 2261820095223002771}
   ShadowSprite: {fileID: 3389522975883851574}
+  SortingOrderOffset: 30
   IsHurt: 0
   IsDeath: 0
 --- !u!114 &7631277156881598801
@@ -801,7 +802,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695945203733632855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

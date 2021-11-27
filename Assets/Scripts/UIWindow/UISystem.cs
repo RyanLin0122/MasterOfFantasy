@@ -44,6 +44,7 @@ public class UISystem : SystemRoot
     public PetWnd petWnd;
     public MessageQueue messageQueue;
     public PlayerOption playerOption;
+    public OtherPlayerOption otherPlayerOption;
     public Transform BuffIconsContainer;
 
     private readonly object stackLock = new object();
@@ -357,11 +358,21 @@ public class UISystem : SystemRoot
         playerOption.SetWndState();
         playerOption.IsOpen = true;
     }
-    public void ClosePlayOption()
+    public void ClosePlayerOption()
     {
         //AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         playerOption.SetWndState(false);
         playerOption.IsOpen = false;
+    }
+    public void OpenOtherPlayerOption()
+    {
+        otherPlayerOption.SetWndState(true);
+        otherPlayerOption.IsOpen = true;
+    }
+    public void CloseOtherPlayOption()
+    {
+        otherPlayerOption.SetWndState(false);
+        otherPlayerOption.IsOpen = false;
     }
     #endregion
 

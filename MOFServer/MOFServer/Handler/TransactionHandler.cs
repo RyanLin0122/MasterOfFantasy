@@ -52,22 +52,33 @@ public class TransactionHandler : GameHandler
     }
     public void ProcessInvitationResponse(TransactionRequest req, ServerSession session)
     {
-        ProtoMsg msg = new ProtoMsg
+        if (!string.IsNullOrEmpty(req.OtherPlayerName))
         {
-            MessageType = 49,
-            transactionResponse = new TransactionResponse
+            ProtoMsg msg = new ProtoMsg
             {
-                PlayerName = session.ActivePlayer.Name,
-                OtherPlayerName = req.OtherPlayerName,
-                OperationType = req.OperationType
-            }
-        };
-        CacheSvc.Instance.MOFCharacterDict[req.OtherPlayerName].session.WriteAndFlush(msg);
+                MessageType = 49,
+                transactionResponse = new TransactionResponse
+                {
+                    PlayerName = session.ActivePlayer.Name,
+                    OtherPlayerName = req.OtherPlayerName,
+                    OperationType = req.OperationType
+                }
+            };
+            MOFCharacter Character = null;
+            if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(req.OtherPlayerName, out Character))
+            {
+                Character.session.WriteAndFlush(msg);
+            }               
+        }       
     }
 
     public void StartTransaction(TransactionRequest req, ServerSession session)
     {
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].transactor = new Transactor();
+        MOFCharacter Character = null;
+        if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out Character))
+        {
+            Character.transactor = new Transactor();
+        }           
     }
 
     public void AddItem(TransactionRequest req, ServerSession session)
