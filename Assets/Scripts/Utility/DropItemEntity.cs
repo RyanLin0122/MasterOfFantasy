@@ -28,7 +28,7 @@ public class DropItemEntity : MonoBehaviour
     {
         this.DropItem = dropItem;
         HasInit = true;
-        if(dropItem == null)
+        if (dropItem == null)
         {
             Debug.Log("DropItemIsNull");
         }

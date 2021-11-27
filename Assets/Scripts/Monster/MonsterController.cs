@@ -429,7 +429,13 @@ public class MonsterController : EntityController
     #endregion
 
     public EntityController TargetPlayer = null;
-
+    public SpriteRenderer Sprite;
+    private void SetSortingOrders()
+    {
+        int LayerNum = -100 * (int)transform.localPosition.y;
+        Sprite.sortingOrder = LayerNum;
+    }
+    int SortingSorderNum = 0;
     public override void Update()
     {
         if (!HasInit) return;
@@ -463,6 +469,12 @@ public class MonsterController : EntityController
                 }
 
             }
+        }
+        SortingSorderNum++;
+        if (SortingSorderNum >= 5)
+        {
+            SortingSorderNum = 0;
+            SetSortingOrders();
         }
     }
 }

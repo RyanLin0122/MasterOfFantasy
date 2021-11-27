@@ -836,7 +836,48 @@ public class PlayerController : EntityController
 
     }
     #endregion
-
+    public SpriteRenderer FaceSprite;
+    public SpriteRenderer HairBackSprite;
+    public SpriteRenderer HairFrontSprite;
+    public SpriteRenderer UpwearSprite;
+    public SpriteRenderer FaceAccSprite;
+    public SpriteRenderer SuitSprite;
+    public SpriteRenderer PantsSprite;
+    public SpriteRenderer ShoesSprite;
+    public SpriteRenderer HandFrontSprite;
+    public SpriteRenderer HandBackSprite;
+    public SpriteRenderer WeaponSprite;
+    public SpriteRenderer CapeSprite;
+    public SpriteRenderer ShadowSprite;
+    public float SortingOrderOffset = 24;
+    private void SetSortingOrders()
+    {
+        int LayerNum = -100 * (int)(transform.localPosition.y - SortingOrderOffset);
+        FaceSprite.sortingOrder = LayerNum + 2;
+        HairBackSprite.sortingOrder = LayerNum + 1;
+        HairFrontSprite.sortingOrder = LayerNum + 3;
+        UpwearSprite.sortingOrder = LayerNum + 3;
+        FaceAccSprite.sortingOrder = LayerNum + 3;
+        SuitSprite.sortingOrder = LayerNum + 3;
+        PantsSprite.sortingOrder = LayerNum + 2;
+        ShoesSprite.sortingOrder = LayerNum + 1;
+        HandFrontSprite.sortingOrder = LayerNum + 4;
+        HandBackSprite.sortingOrder = LayerNum + 0;
+        WeaponSprite.sortingOrder = LayerNum + 5;
+        CapeSprite.sortingOrder = LayerNum + 0;
+        ShadowSprite.sortingOrder = LayerNum + 1;
+    }
+    int SortingSorderNum = 0;
+    public override void Update()
+    {
+        base.Update();
+        SortingSorderNum++;
+        if (SortingSorderNum >= 5)
+        {
+            SortingSorderNum = 0;
+            SetSortingOrders();
+        }
+    }
     #region GetHurt or Death
     public bool IsHurt = false;
     public bool IsDeath = false;
