@@ -18,7 +18,7 @@ public class TransactionHandler : GameHandler
         //3. 開啟交易
         //4. 發出不想交易
         //5. 上傳物品
-        //6. 上船金錢
+        //6. 上傳金錢
         //7. 中斷交易
         //8. 確定交易
         switch (req.OperationType)
@@ -396,7 +396,11 @@ public class TransactionHandler : GameHandler
                 OperationType = 5
             }
         };
-        CacheSvc.Instance.MOFCharacterDict[PlayerName].session.WriteAndFlush(msg1);
+        MOFCharacter character1 = null;
+        if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(PlayerName, out character1))
+        {
+            character1.session.WriteAndFlush(msg1);
+        }
 
 
         //在對方的對方欄位顯示
@@ -410,7 +414,11 @@ public class TransactionHandler : GameHandler
                 OperationType = 6
             }
         };
-        CacheSvc.Instance.MOFCharacterDict[OtherPlayerName].session.WriteAndFlush(msg2);
+        MOFCharacter character2 = null;
+        if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(OtherPlayerName, out character2))
+        {
+            character2.session.WriteAndFlush(msg2);
+        }
     }
 
     public (bool, List<int>) IsEmptySlotEnough(Dictionary<int, Item> Inventory, int Num, int Capacity = 100, int firstIndex = 0)

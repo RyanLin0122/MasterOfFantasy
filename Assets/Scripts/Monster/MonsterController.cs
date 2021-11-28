@@ -203,21 +203,31 @@ public class MonsterController : EntityController
     {
         Destroy(this.gameObject);
     }
+    public bool IsFrozen = false;
     public override void PlayHitAni(ActiveSkillInfo active, bool Dir, bool IsCrit)
     {
         SkillSys.Instance.InstantiateTargetSkillEffect(active.SkillID, transform, Dir, IsCrit);
         switch (active.Property)
         {
             case SkillProperty.None:
+                IsFrozen = false;
                 PlayAni(MonsterAniType.Hurt, false);
                 break;
             case SkillProperty.Fire:
+                IsFrozen = false;
                 PlayAni(MonsterAniType.Burned, false);
                 break;
             case SkillProperty.Ice:
+                IsFrozen = true;
                 PlayAni(MonsterAniType.Frozen, false);
+                TimerSvc.Instance.AddTimeTask((t) => { 
+                    IsFrozen = false;
+                    if (IsMoving) PlayAni(MonsterAniType.Walk, true);
+                    else PlayAni(MonsterAniType.Idle, true);
+                }, 3, PETimeUnit.Second);
                 break;
             case SkillProperty.Lighting:
+                IsFrozen = false;
                 PlayAni(MonsterAniType.Shocked, false);
                 break;
         }
@@ -232,7 +242,7 @@ public class MonsterController : EntityController
             case EntityEvent.Idle:
                 IsMoving = false;
                 this.rb.velocity = Vector2.zero;
-                PlayAni(MonsterAniType.Idle, true);
+                if(!IsFrozen) PlayAni(MonsterAniType.Idle, true);
                 break;
             case EntityEvent.Move:
                 IsMoving = true;
@@ -360,7 +370,10 @@ public class MonsterController : EntityController
         }
         Debug.Log("ID: "+entity.nEntity.Id + " , Play: "+ type.ToString());
         IsLoop = isloop;
-        IsAniPause = false;
+        if (!IsFrozen)
+        {
+            IsAniPause = false;
+        }
         Type = type;
         SpriteArray = AllSpriteArray[type];
         AnimLength = ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[type].AnimSprite.Count;

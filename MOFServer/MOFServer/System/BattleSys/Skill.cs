@@ -319,10 +319,22 @@ public class Skill
     }
     private void HitTarget(Entity target, SkillHitInfo hit)
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        ActiveSkillInfo active = Info as ActiveSkillInfo;
         if (!active.IsAttack) return;
         DamageInfo damage = GetDamageInfo(active, this.context.CastSkill, target);
         target.DoDamage(damage, hit.CastName);
+        foreach (var num in damage.Damage)
+        {
+            if (num > 0)
+            {
+                if (active.Property == SkillProperty.Ice && target is AbstractMonster && !target.IsDeath)
+                {
+                    (target as AbstractMonster).FreezeMonster();
+                }
+                break;
+            }
+        }
+
         hit.damageInfos.Add(damage);
         if (active.IsBuff)
         {

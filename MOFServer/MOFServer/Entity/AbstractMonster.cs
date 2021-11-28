@@ -33,9 +33,9 @@ public class AbstractMonster : Entity
                     KillerNames.Add(name);
                 }
             }
-            if(KillerNames.Count>0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
+            if (KillerNames.Count > 0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
         }
-        
+
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")
     {
@@ -195,6 +195,14 @@ public class AbstractMonster : Entity
         this.moveTarget = NVector3.zero;
         this.nEntity.Speed = 0;
         this.mofMap.StopMonsters.Add(this.nEntity);
+    }
+
+    public void FreezeMonster()
+    {
+        LogSvc.Info("冰怪物");
+        StopMove();
+        this.status = MonsterStatus.Frozen;
+        TimerSvc.Instance.AddTimeTask((t) => { this.status = MonsterStatus.Normal; }, 3, PETimeUnit.Second, 1);
     }
 }
 
