@@ -205,6 +205,36 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                     }
                 }
             }
+            if(hotKeySlot.State == HotKeyState.Consumable)
+            {
+                bool IsCash = InventorySys.Instance.ItemList[hotKeySlot.data.ID].IsCash;
+                if (IsCash)
+                {
+                    var ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+                    if (ck == null || ck.Count < 1) return;
+                    foreach (var kv in ck)
+                    {
+                        if(kv.Value.ItemID == hotKeySlot.data.ID)
+                        {
+                            KnapsackWnd.Instance.FindCashSlot(kv.Key).UseItem();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    var nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+                    if (nk == null || nk.Count < 1) return;
+                    foreach (var kv in nk)
+                    {
+                        if (kv.Value.ItemID == hotKeySlot.data.ID)
+                        {
+                            KnapsackWnd.Instance.FindSlot(kv.Key).UseItem();
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
     public void CommonAttack()

@@ -47,9 +47,8 @@ public class KnapsackSlot : ItemSlot
             if (currentItemUI.Item is Consumable)
             {
                 AudioSvc.Instance.PlayUIAudio(Constants.PotionAudio);
-
                 //如果是製作書 添加配方
-
+                new ConsumableSender(currentItemUI.Item, 1, SlotPosition);
             }
             else if (currentItemUI.Item is Equipment || currentItemUI.Item is Weapon)
             {

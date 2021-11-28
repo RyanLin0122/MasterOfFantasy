@@ -651,6 +651,10 @@ public class MOFCharacter : Entity
         {
             MP = 0;
         }
+        if (MP >= FinalAttribute.MAXMP)
+        {
+            MP = (int)FinalAttribute.MAXMP;
+        }
         this.player.MP = MP;
         this.trimedPlayer.MP = MP;
         this.nEntity.MP = MP;
@@ -661,6 +665,10 @@ public class MOFCharacter : Entity
         if (HP <= 0)
         {
             HP = 0;
+        }
+        if (HP >= FinalAttribute.MAXHP)
+        {
+            HP = (int)FinalAttribute.MAXHP;
         }
         this.player.HP = HP;
         this.trimedPlayer.HP = HP;
@@ -675,8 +683,8 @@ public class MOFCharacter : Entity
         {
             player.Level += 1;
             trimedPlayer.Level += 1;
-            player.MAXHP += 10;
-            player.MAXMP += 10;
+            player.MAXHP += 15;
+            player.MAXMP += 12;
             player.RestPoint += 5;
             InitAllAtribute();
             long NextLevelUpExp = ServerConstants.GetRequiredExp(player.Level);

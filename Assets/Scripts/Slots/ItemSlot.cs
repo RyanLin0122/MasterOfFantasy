@@ -73,7 +73,6 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     /// <param name="amount"></param>
     public virtual void StoreItem(Item item)
     {
-        Debug.Log("StorItem");
         if (transform.childCount == 0)
         {
             GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);
@@ -93,7 +92,6 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 
     public virtual void StoreItem(Item item, int Count)
     {
-        Debug.Log("StorFuckingItem");
         if (transform.childCount == 0)
         {
             GameObject itemGameObject = Instantiate(itemPrefab as GameObject, transform);

@@ -72,7 +72,7 @@ namespace PEProtocal
         ///61:RunOperation 跑步
         ///62:DropItemInfo 掉落物品通知
         ///63:PickUpReq撿取請求
-        ///
+        ///64:ConsumableOperation使用消耗類
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -224,6 +224,8 @@ namespace PEProtocal
         public PickUpRequest pickUpRequest { get; set; }
         [ProtoMember(75, IsRequired = false)]
         public PickUpResponse pickUpResponse { get; set; }
+        [ProtoMember(76, IsRequired = false)]
+        public ConsumableOperation consumableOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -590,7 +592,7 @@ namespace PEProtocal
         [ProtoMember(7, IsRequired = false)]
         public List<NEntity> MapPlayerEntities { get; set; }
         [ProtoMember(8, IsRequired = false)]
-        public ConcurrentDictionary<int, DropItem> DropItems{ get; set; }
+        public ConcurrentDictionary<int, DropItem> DropItems { get; set; }
     };
 
     //地圖增加一名玩家通知
@@ -1622,7 +1624,7 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public List<int> ItemUUIDs { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public List<string> CharacterNames { get; set; }     
+        public List<string> CharacterNames { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public List<bool> Results { get; set; }
         [ProtoMember(4, IsRequired = false)]
@@ -1631,4 +1633,24 @@ namespace PEProtocal
         public List<int> InventoryPosition { get; set; }
     }
 
+    [ProtoContract]
+    public class ConsumableOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string CharacterName { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int InventoryID { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int InventoryPosition { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public bool IsSuccess { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int RestNum { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int HP { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int MP { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public Item item { get; set; }
+    }
 }

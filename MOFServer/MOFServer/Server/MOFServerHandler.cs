@@ -248,6 +248,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     PickUpItemHandler pickUpItemHandler = new PickUpItemHandler();
                     Task PickUpTask = pickUpItemHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 64: //使用消耗類
+                    ConsumableHandler consumableHandler = new ConsumableHandler();
+                    Task ConsumableTask = consumableHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

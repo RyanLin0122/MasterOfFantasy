@@ -91,7 +91,10 @@ public abstract class  DragSourceBase : MonoBehaviour, IPointerEnterHandler, IPo
         {
             return;
         }
-        StartDragObject();
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            StartDragObject();
+        }
     }
     private void StartDragObject()
     {

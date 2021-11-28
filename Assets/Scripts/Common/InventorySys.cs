@@ -460,4 +460,89 @@ public class InventorySys : MonoBehaviour
         new KnapsackSender(5, items, null, null);
     }
     #endregion
+
+    #region 使用消耗類
+    public void UseConsumable(ProtoMsg msg)
+    {
+        ConsumableOperation co = msg.consumableOperation;
+        if (co == null) return;
+        if (!co.IsSuccess)
+        {
+            if (co.CharacterName == GameRoot.Instance.ActivePlayer.Name) UISystem.Instance.AddMessageQueue("物品使用失敗");
+            return;
+        }
+
+        //<------邏輯開始------>
+        Consumable cs = co.item as Consumable;
+        if (co.CharacterName == GameRoot.Instance.ActivePlayer.Name)
+        {
+            if (cs.HP >= 1)
+            {
+                GameRoot.Instance.ActivePlayer.HP = co.HP;
+            }
+            if (cs.MP >= 1)
+            {
+                GameRoot.Instance.ActivePlayer.MP = co.MP;
+            }
+            UISystem.Instance.InfoWnd.RefreshHPMP();
+        }
+        else 
+        {
+            PlayerController OtherPlayer = null;
+            if(BattleSys.Instance.Players.TryGetValue(co.CharacterName, out OtherPlayer))
+            {
+                if (cs.HP >= 1)
+                {
+                    OtherPlayer.SetHpBar(co.HP);
+                }
+            }
+        }
+        //<------扣東西------>
+        if (co.CharacterName == GameRoot.Instance.ActivePlayer.Name)
+        {           
+            var nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+            if (nk == null) GameRoot.Instance.ActivePlayer.NotCashKnapsack = new Dictionary<int, Item>();
+            var ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+            if (ck == null) GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
+            if (!cs.IsCash)
+            {
+                if (nk[cs.Position].Count - 1 <= 0)
+                {
+                    nk.Remove(cs.Position);
+                    Destroy(KnapsackWnd.Instance.FindSlot(cs.Position).GetComponentInChildren<ItemUI>().gameObject);
+                }
+                else
+                {
+                    nk[cs.Position].Count -= 1;
+                    KnapsackWnd.Instance.FindSlot(cs.Position).StoreItem(nk[cs.Position]);
+                }
+            }
+            else
+            {
+                if (ck[cs.Position].Count - 1 <= 0)
+                {
+                    ck.Remove(cs.Position);
+                    Destroy(KnapsackWnd.Instance.FindCashSlot(cs.Position).GetComponentInChildren<ItemUI>().gameObject);
+                }
+                else
+                {
+                    ck[cs.Position].Count -= 1;
+                    KnapsackWnd.Instance.FindCashSlot(cs.Position).StoreItem(ck[cs.Position]);
+                }
+            }
+            //UpdateHotKey
+            foreach (var HotKeySlot in BattleSys.Instance.HotKeyManager.HotKeySlots.Values)
+            {
+                if(HotKeySlot.State == HotKeyState.Consumable)
+                {
+                    if(HotKeySlot.data.ID == cs.ItemID)
+                    {
+                        HotKeySlot.SetHotKeyUI(HotKeySlot.data);
+                    }
+                }
+            }
+        }
+
+    }
+    #endregion
 }

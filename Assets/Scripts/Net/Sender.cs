@@ -840,7 +840,29 @@ public class PickUpSender : BaseSender
                 InventoryPosition = InventoryPosition
             }
         };
-        Debug.LogFormat("發送撿取ID: {0}", UUID);
+        base.SendMsg(msg);
+    } 
+}
+
+public class ConsumableSender : BaseSender
+{
+    public ConsumableSender(Item item, int InventoryID, int InventoryPosition)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 64,
+            consumableOperation = new ConsumableOperation
+            {
+                item = item,
+                CharacterName = GameRoot.Instance.ActivePlayer.Name,
+                HP = -1,
+                MP = -1,
+                IsSuccess = false,
+                RestNum = item.Count-1,
+                InventoryID = InventoryID,
+                InventoryPosition = InventoryPosition
+            }
+        };
         base.SendMsg(msg);
     }
 }

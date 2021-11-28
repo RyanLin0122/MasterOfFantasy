@@ -33,8 +33,8 @@ public class BaseUI : WindowRoot
         {
             player.Level += 1;
             player.RestPoint += 5;
-            player.MAXHP += 10;
-            player.MAXMP += 10;
+            player.MAXHP += 15;
+            player.MAXMP += 12;
             BattleSys.Instance.InitAllAtribute();
             long NextLevelUpExp = Tools.GetExpMax(player.Level);
             if ((Exp - LevelUpExp) >= NextLevelUpExp)

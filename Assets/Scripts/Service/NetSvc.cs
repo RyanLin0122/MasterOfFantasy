@@ -155,7 +155,9 @@ public class NetSvc : MonoBehaviour
             case 61:
                 DoRunResponse(msg);
                 break;
-
+            case 64:
+                DoConsumable(msg);
+                break;
         }
     }
 
@@ -587,5 +589,10 @@ public class NetSvc : MonoBehaviour
     public void DoRunResponse(ProtoMsg msg)
     {
         BattleSys.Instance.ProcessRunResponse(msg);
+    }
+
+    public void DoConsumable(ProtoMsg msg)
+    {
+        InventorySys.Instance.UseConsumable(msg);
     }
 }
