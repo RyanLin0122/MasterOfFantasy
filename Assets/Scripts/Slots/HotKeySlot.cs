@@ -183,7 +183,9 @@ public class HotKeySlot : MonoBehaviour
                 State = HotKeyState.Consumable;
                 ColdTimeImg.fillAmount = 0;
                 ContentImg.sprite = Resources.Load<Sprite>(InventorySys.Instance.ItemList[data.ID].Sprite);
+                ContentImg.transform.localScale = Vector3.one;
                 ContentImg.SetNativeSize();
+                ContentImg.transform.localScale = new Vector3(0.8f * ContentImg.transform.localScale.x, 0.8f * ContentImg.transform.localScale.y, ContentImg.transform.localScale.z);
                 ContentImg.gameObject.SetActive(true);
                 int Count = 0;
                 if (InventorySys.Instance.ItemList[data.ID].IsCash)

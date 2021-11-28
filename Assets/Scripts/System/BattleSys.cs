@@ -579,19 +579,22 @@ public class BattleSys : SystemRoot
         {
             FinalAttribute = new PlayerAttribute();
         }
-        FinalAttribute.MAXHP = BasicAttribute.MAXHP + EquipmentAttribute.MAXHP + NegativeAttribute.MAXHP + BuffAttribute.MAXHP;
-        FinalAttribute.MAXMP = BasicAttribute.MAXMP + EquipmentAttribute.MAXMP + NegativeAttribute.MAXMP + BuffAttribute.MAXMP;
+
         FinalAttribute.Att = BasicAttribute.Att + EquipmentAttribute.Att + NegativeAttribute.Att + BuffAttribute.Att;
         FinalAttribute.Strength = BasicAttribute.Strength + EquipmentAttribute.Strength + NegativeAttribute.Strength + BuffAttribute.Strength;
         FinalAttribute.Agility = BasicAttribute.Agility + EquipmentAttribute.Agility + NegativeAttribute.Agility + BuffAttribute.Agility;
         FinalAttribute.Intellect = BasicAttribute.Intellect + EquipmentAttribute.Intellect + NegativeAttribute.Intellect + BuffAttribute.Intellect;
+
+        FinalAttribute.MAXHP = FinalAttribute.Strength * 15 + BasicAttribute.MAXHP + EquipmentAttribute.MAXHP + NegativeAttribute.MAXHP + BuffAttribute.MAXHP;
+        FinalAttribute.MAXMP = FinalAttribute.Strength * 12 + BasicAttribute.MAXMP + EquipmentAttribute.MAXMP + NegativeAttribute.MAXMP + BuffAttribute.MAXMP;
+
         FinalAttribute.MaxDamage = BasicAttribute.MaxDamage + (EquipmentAttribute.MaxDamage + NegativeAttribute.MaxDamage + BuffAttribute.MaxDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
         FinalAttribute.MinDamage = BasicAttribute.MinDamage + (EquipmentAttribute.MinDamage + NegativeAttribute.MinDamage + BuffAttribute.MinDamage) * (FinalAttribute.Att - BasicAttribute.Att) * 0.6f;
-        FinalAttribute.Defense = BasicAttribute.Defense + EquipmentAttribute.Defense + NegativeAttribute.Defense + BuffAttribute.Defense;
+        FinalAttribute.Defense = FinalAttribute.Strength + BasicAttribute.Defense + EquipmentAttribute.Defense + NegativeAttribute.Defense + BuffAttribute.Defense;
         FinalAttribute.Accuracy = BasicAttribute.Accuracy + FinalAttribute.Agility * 0.008f + EquipmentAttribute.Accuracy + NegativeAttribute.Accuracy + BuffAttribute.Accuracy;
         FinalAttribute.Critical = BasicAttribute.Critical + EquipmentAttribute.Critical + NegativeAttribute.Critical + BuffAttribute.Critical;
         FinalAttribute.Avoid = BasicAttribute.Avoid + ((FinalAttribute.Agility + FinalAttribute.Intellect) * 0.005f) + EquipmentAttribute.Avoid + NegativeAttribute.Avoid + BuffAttribute.Avoid;
-        FinalAttribute.MagicDefense = BasicAttribute.MagicDefense + EquipmentAttribute.MagicDefense + NegativeAttribute.MagicDefense + BuffAttribute.MagicDefense;
+        FinalAttribute.MagicDefense = FinalAttribute.Intellect * 0.005f + BasicAttribute.MagicDefense + EquipmentAttribute.MagicDefense + NegativeAttribute.MagicDefense + BuffAttribute.MagicDefense;
         FinalAttribute.RunSpeed = BasicAttribute.RunSpeed + EquipmentAttribute.RunSpeed + NegativeAttribute.RunSpeed + BuffAttribute.RunSpeed;
         FinalAttribute.AttRange = BasicAttribute.AttRange + EquipmentAttribute.AttRange + NegativeAttribute.AttRange + BuffAttribute.AttRange;
         FinalAttribute.AttDelay = BasicAttribute.AttDelay + EquipmentAttribute.AttDelay + NegativeAttribute.AttDelay + BuffAttribute.AttDelay;
