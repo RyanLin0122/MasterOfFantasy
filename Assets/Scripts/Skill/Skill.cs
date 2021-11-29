@@ -312,6 +312,21 @@ public class Skill
                 }
             }
         }
+        else
+        {
+            if(this.Info.SkillID == 308 && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name) //¯«¤O¤§«ì´_
+            {
+                if((GameRoot.Instance.ActivePlayer.MP + 90 + this.Level * 50) >= BattleSys.Instance.FinalAttribute.MAXMP)
+                {
+                    GameRoot.Instance.ActivePlayer.MP = (int)BattleSys.Instance.FinalAttribute.MAXMP;
+                }
+                else
+                {
+                    GameRoot.Instance.ActivePlayer.MP += 90 + this.Level * 50;
+                }
+                UISystem.Instance.InfoWnd.RefreshHPMP();
+            }               
+        }
 
         if (castInfo.CasterType == SkillCasterType.Player && castInfo.CasterName == GameRoot.Instance.ActivePlayer.Name)
         {

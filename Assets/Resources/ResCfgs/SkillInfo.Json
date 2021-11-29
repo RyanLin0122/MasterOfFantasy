@@ -1027,5 +1027,68 @@
       "Target": [ 1.5, 1.5, 1 ]
     },
     "Buff": -1
+  },
+  {
+    "ID": 308,
+    "Name": "神力之恢復",
+    "IsActive": true,
+    "IsAttack": false,
+    "IsAOE": false,
+    "IsBuff": false,
+    "IsSetup": false,
+    "RequiredWeapon": [],
+    "RequiredLevel": [ 4, 8, 12, 16, 19 ],
+    "MP": [ 0, 0, 0, 0, 0 ],
+    "HP": [ 0, 0, 0, 0, 0 ],
+    "ColdTime": [ 10, 10, 10, 10, 10 ],
+    "Damage": [ 0, 0, 0, 0, 0 ],
+    "Times": [ 0, 0, 0, 0, 0 ],
+    "SwordPoint": [ 0, 0, 0, 0, 0 ],
+    "ArcheryPoint": [ 0, 0, 50, 110, 160 ],
+    "MagicPoint": [ 140, 280, 420, 560, 700 ],
+    "TheologyPoint": [ 0, 0, 0, 0, 0 ],
+    "Duration": [ 0, 0, 0, 0, 0 ],
+    "TargetType": "BuffOnly",
+    "IsMultiple": false,
+    "Shape": "Circle",
+    "Range": [ 0, 0, 0 ],
+    "Property": "None",
+    "IsStun": false,
+    "IsStop": false,
+    "IsShoot": false,
+    "BulletSpeed": 0,
+    "IsContinue": false,
+    "ContiDurations": [ 0, 0, 0, 0, 0 ],
+    "ContiInterval": 0,
+    "IsDOT": false,
+    "HitTimes": [],
+    "Des": "恢復一定量的MP",
+    "Icon": "Wizard_Skill3",
+    "Effect": [
+    ],
+    "Action": "None",
+    "AniPath": {
+      "Self": "ManaRestorationS",
+      "Shoot": "",
+      "Other": ""
+    },
+    "AniOffset": {
+      "Self": [ 0, 0, 0 ],
+      "Shoot": [ 0, 0, 0 ],
+      "Target": [ 0, 0, 0 ]
+    },
+    "Sound": {
+      "Cast": "skill_spiritscharge.wave",
+      "Hit": ""
+    },
+    "CastTime": 0.1,
+    "ChargeTime": 0,
+    "LockTime": 0,
+    "AniScale": {
+      "Self": [ 1, 1, 1 ],
+      "Shoot": [ 1, 1, 1 ],
+      "Target": [ 1, 1, 1 ]
+    },
+    "Buff": -1
   }
 ]

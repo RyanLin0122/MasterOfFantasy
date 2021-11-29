@@ -111,6 +111,7 @@ public class Skill
         {
             this.Owner.MinusMP(active.MP[this.Level - 1]);
             this.Owner.MinusHP(active.Hp[this.Level - 1]);
+            if (this.Info.SkillID == 308) this.Owner.MinusMP(-(90 + this.Level * 50)); //神力之恢復
             //回傳技能釋放結果
             castInfo.Result = context.Result;
             castInfo.ErrorMsg = context.Result.ToString();
@@ -239,7 +240,7 @@ public class Skill
         }
         else
         {
-            if (active.IsBuff && active.TargetType == SkillTargetType.BuffOnly) //如果不是攻擊技且純粹Buff
+            if (active.TargetType == SkillTargetType.BuffOnly) //如果不是攻擊技且純粹Buff
             {
                 this.status = SkillStatus.None;
             }

@@ -54,7 +54,7 @@ public class AIBase
             return;
         }
         if (IsAttackAni || IsHurtAni) return;
-        if (this.Owner.status == MonsterStatus.Frozen) return;
+        if (this.Owner.status == MonsterStatus.Frozen || this.Owner.status == MonsterStatus.Faint) return;
         if (!TryCastSkill())
         {
             if (!TryCastNormal())
