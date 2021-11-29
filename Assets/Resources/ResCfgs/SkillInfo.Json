@@ -1154,5 +1154,57 @@
       "Target": [ 1, 1, 1 ]
     },
     "Buff": -1
+  },
+  {
+    "ID": 310,
+    "Name": "吸收魔力",
+    "IsActive": false,
+    "RequiredWeapon": [ "Staff", "Book" ],
+    "RequiredLevel": [ 26, 29, 32, 35, 38 ],
+    "Damage": [ 0.1, 0.12, 0.14, 0.16, 0.18 ],
+    "SwordPoint": [ 20, 50, 80, 120, 160 ],
+    "ArcheryPoint": [ 110, 200, 320, 430, 560 ],
+    "MagicPoint": [ 840, 1040, 1280, 1590, 1960 ],
+    "TheologyPoint": [ 150, 210, 270, 330, 390 ],
+    "Des": "使MP恢復速度提升",
+    "Icon": "Wizard_Skill5",
+    "Effect": [
+      {
+        "EffectID": 7,
+        "Value": [ 0.1, 0.12, 0.14, 0.16, 0.18 ]
+      },
+      {
+        "EffectID": 8,
+        "Value": [ 0.1, 0.12, 0.14, 0.16, 0.18 ]
+      },
+      {
+        "EffectID": 20,
+        "Value": [ 0.1, 0.2, 0.3, 0.4, 0.5 ]
+      }
+    ]
+  },
+  {
+    "ID": 311,
+    "Name": "爆發魔力",
+    "IsActive": false,
+    "RequiredWeapon": [ "Staff", "Book" ],
+    "RequiredLevel": [ 27, 30, 33, 36, 39 ],
+    "Damage": [ 0.1, 0.12, 0.14, 0.16, 0.18 ],
+    "SwordPoint": [ 160, 230, 300, 370, 440 ],
+    "ArcheryPoint": [ 0, 0, 0, 0, 0 ],
+    "MagicPoint": [ 640, 1040, 1440, 1840, 2240 ],
+    "TheologyPoint": [ 0, 40, 80, 120, 160 ],
+    "Des": "使魔法攻擊力提升",
+    "Icon": "Wizard_Skill7",
+    "Effect": [
+      {
+        "EffectID": 7,
+        "Value": [ 0.1, 0.12, 0.14, 0.16, 0.18 ]
+      },
+      {
+        "EffectID": 8,
+        "Value": [ 0.1, 0.12, 0.14, 0.16, 0.18 ]
+      }
+    ]
   }
 ]
