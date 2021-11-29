@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: ea5a07bc81a32c4458b97ce25476bcf5
+guid: 3c2088f3c2da64742a349837f0ec21a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -971303593395217613
-    second: Effect Enchant 2_0
+      213: 8645708527395214089
+    second: DeathRefuseCircle_0
   - first:
-      213: -3026236009689075328
-    second: Effect Enchant 2_1
+      213: -3666523569622562340
+    second: DeathRefuseCircle_1
   - first:
-      213: 8020903735177883411
-    second: Effect Enchant 2_2
+      213: 5596985997004803801
+    second: DeathRefuseCircle_2
   - first:
-      213: -2390839299511352125
-    second: Effect Enchant 2_3
+      213: 9207919751066337337
+    second: DeathRefuseCircle_3
   - first:
-      213: 5471737162816012708
-    second: Effect Enchant 2_4
+      213: 916787599101232395
+    second: DeathRefuseCircle_4
   - first:
-      213: -6152789976351062180
-    second: Effect Enchant 2_5
-  - first:
-      213: 7417026583459657269
-    second: Effect Enchant 2_6
+      213: -8383990029163060474
+    second: DeathRefuseCircle_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -82,7 +79,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -107,18 +104,18 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Effect Enchant 2_0
+      name: DeathRefuseCircle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 45
-        width: 19
-        height: 19
+        y: 174
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,20 +123,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33b1e9a278c3582f0800000000000000
-      internalID: -971303593395217613
+      spriteID: 90315f6491abbf770800000000000000
+      internalID: 8645708527395214089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Enchant 2_1
+      name: DeathRefuseCircle_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 45
-        width: 19
-        height: 19
+        x: 110
+        y: 174
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,41 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 081bcf30266a006d0800000000000000
-      internalID: -3026236009689075328
+      spriteID: cd9cc005d34ed1dc0800000000000000
+      internalID: -3666523569622562340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Enchant 2_2
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 45
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 31fa1e85379ff4f60800000000000000
-      internalID: 8020903735177883411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Enchant 2_3
+      name: DeathRefuseCircle_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 26
-        width: 19
-        height: 19
+        y: 92
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c40595035802ded0800000000000000
-      internalID: -2390839299511352125
+      spriteID: 9de8e443c1d7cad40800000000000000
+      internalID: 5596985997004803801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Enchant 2_4
+      name: DeathRefuseCircle_3
       rect:
         serializedVersion: 2
-        x: 19
-        y: 26
-        width: 19
-        height: 19
+        x: 110
+        y: 92
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a1c3f585f38feb40800000000000000
-      internalID: 5471737162816012708
+      spriteID: 930cc9a5a3a19cf70800000000000000
+      internalID: 9207919751066337337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Enchant 2_5
+      name: DeathRefuseCircle_4
       rect:
         serializedVersion: 2
-        x: 38
-        y: 26
-        width: 19
-        height: 19
+        x: 0
+        y: 10
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c57c20a8d16ec9aa0800000000000000
-      internalID: -6152789976351062180
+      spriteID: b0589eac67519bc00800000000000000
+      internalID: 916787599101232395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Enchant 2_6
+      name: DeathRefuseCircle_5
       rect:
         serializedVersion: 2
-        x: 39
-        y: 1
-        width: 19
-        height: 19
+        x: 110
+        y: 10
+        width: 110
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 536fdbc61629ee660800000000000000
-      internalID: 7417026583459657269
+      spriteID: 603a15f1d7516ab80800000000000000
+      internalID: -8383990029163060474
       vertices: []
       indices: 
       edges: []
