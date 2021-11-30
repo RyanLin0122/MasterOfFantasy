@@ -1097,6 +1097,10 @@ public class ResSvc : MonoBehaviour
     }
     #endregion
 
+    #region 任務區
+    public Dictionary<int, QuestDefine> QuestDic = new Dictionary<int, QuestDefine>();
+
+    #endregion
 
     #region 怪物區
     public Dictionary<int, MonsterInfo> MonsterInfoDic = new Dictionary<int, MonsterInfo>();

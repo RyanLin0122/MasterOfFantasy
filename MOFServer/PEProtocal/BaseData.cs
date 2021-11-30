@@ -257,11 +257,11 @@ namespace PEProtocal
         [ProtoMember(48, IsRequired = false)]
         public DiaryInformation diaryInformation { get; set; }
         [ProtoMember(49, IsRequired = false)]
-        public List<Quest> ProcessingQuests { get; set; }
+        public List<NQuest> ProcessingQuests { get; set; }
         [ProtoMember(50, IsRequired = false)]
-        public List<Quest> FinishedQuests { get; set; }
+        public List<NQuest> FinishedQuests { get; set; }
         [ProtoMember(51, IsRequired = false)]
-        public List<Quest> AcceptableQuests { get; set; }
+        public List<NQuest> AcceptableQuests { get; set; }
         [ProtoMember(52, IsRequired = false)]
         public List<int> TitleCollection { get; set; }
         [ProtoMember(53, IsRequired = false)]

@@ -824,7 +824,7 @@ public static class Utility
         return r;
     }
 
-    public static BsonArray QuestList2BsonArr(List<Quest> list)
+    public static BsonArray QuestList2BsonArr(List<NQuest> list)
     {
         BsonArray r = new BsonArray();
         foreach (var item in list)
@@ -833,18 +833,10 @@ public static class Utility
         }
         return r;
     }
-    public static BsonDocument Quest2Bson(Quest quest)
+    public static BsonDocument Quest2Bson(NQuest quest)
     {
         BsonDocument r = new BsonDocument {
-            { "QuestType", quest.questType.ToString()},
-            { "ID", quest.QuestID },
-            { "StartDate" , quest.StartDate},
-            //{ "RestTime", quest.RestTime},
-            { "FinishDate", quest.FinishedDate},
-            { "QuestState", quest.questState},
-            //{ "RestAcceptableTime", quest.RestAcceptableTime},
-            { "HasCollectItems", Dic_Int_Int2BsonArr(quest.HasCollectItems)},
-            { "HasKilledMonsters", Dic_Int_Int2BsonArr(quest.HasKilledMonsters)}
+
         };
         return r;
     }
@@ -953,32 +945,19 @@ public static class Utility
     }
     #endregion
     #region Quest
-    public static List<Quest> BsonArr2QuestList(BsonArray bson)
+    public static List<NQuest> BsonArr2QuestList(BsonArray bson)
     {
-        List<Quest> quests = new List<Quest>();
+        List<NQuest> quests = new List<NQuest>();
         foreach (var value in bson.Values)
         {
             quests.Add(BsonDoc2Quest(value.AsBsonDocument));
         }
         return quests;
     }
-    public static Quest BsonDoc2Quest(BsonDocument doc)
+    public static NQuest BsonDoc2Quest(BsonDocument doc)
     {
-        Quest quest = new Quest();
-        quest.questType = (QuestType)Enum.Parse(typeof(QuestType), doc["QuestType"].AsString);
-        BsonArray startDate = doc["StartDate"].AsBsonArray;
-        quest.StartDate = TimerSvc.GetDateTime(startDate[0].AsInt32, startDate[1].AsInt32, startDate[2].AsInt32, startDate[3].AsInt32, startDate[4].AsInt32, startDate[5].AsInt32);
-        quest.HasCollectItems = BsonArr2Dic_int_int(doc["HasCollectItems"].AsBsonArray);
-        quest.QuestID = doc["ID"].AsInt32;
-        quest.questState = (QuestState)Enum.Parse(typeof(QuestState), doc["QuestState"].AsString);
-        quest.HasKilledMonsters = BsonArr2Dic_int_int(doc["HasKilledMonsters"].AsBsonArray);
-        BsonArray restAcceptableTimes = doc["RestAcceptableTime"].AsBsonArray;
-
-        // quest.RestAcceptableTime = doc["RestAcceptableTime"].AsInt32;
-        BsonArray restTime = doc["RestTime"].AsBsonArray;
-        quest.RestTime = TimerSvc.GetTimeSpan(restTime[0].AsInt32, restTime[1].AsInt32, restTime[2].AsInt32, restTime[3].AsInt32);
-        BsonArray finishDate = doc["FinishDate"].AsBsonArray;
-        quest.FinishedDate = TimerSvc.GetDateTime(finishDate[0].AsInt32, finishDate[1].AsInt32, finishDate[2].AsInt32, finishDate[3].AsInt32, finishDate[4].AsInt32, finishDate[5].AsInt32);
+        NQuest quest = new NQuest();
+        
         return quest;
     }
 

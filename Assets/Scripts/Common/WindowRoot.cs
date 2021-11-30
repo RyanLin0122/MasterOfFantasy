@@ -42,6 +42,7 @@ public class WindowRoot : MonoBehaviour
         timerSvc = null;
     }
 
+
     #region Tool Functions
 
     protected void SetActive(GameObject go, bool isActive = true)

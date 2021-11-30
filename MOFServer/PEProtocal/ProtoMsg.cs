@@ -1161,6 +1161,17 @@ namespace PEProtocal
     }
 
     [ProtoContract(EnumPassthru = false)]
+    public enum Quest_List_Type
+    {
+        [ProtoEnum]
+        All = 0,
+        [ProtoEnum]
+        In_Progress = 1,
+        [ProtoEnum]
+        Finished = 2
+    }
+
+        [ProtoContract(EnumPassthru = false)]
     public enum QuestType
     {
         [ProtoEnum]
@@ -1176,107 +1187,145 @@ namespace PEProtocal
     }
 
     [ProtoContract(EnumPassthru = false)]
-    public enum QuestState
+    public enum NPCQuestStatus
     {
         [ProtoEnum]
-        Unacceptable,
+        None,      //無任務
         [ProtoEnum]
-        Acceptable,
+        Complete,  //擁有已完成任務
         [ProtoEnum]
-        Processing,
+        Available, //擁有可接受任務
         [ProtoEnum]
-        Complete,
+        InComplete,//擁有未完成任務
+    }
+    [ProtoContract(EnumPassthru = false)]
+    public enum QuestStatus
+    {
         [ProtoEnum]
-        Finished
+        InProgress,
+        [ProtoEnum]
+        Completed,
+        [ProtoEnum]
+        Finished,
+        [ProtoEnum]
+        Failed
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum QuestTarget
+    {
+        [ProtoEnum]
+        None,
+        [ProtoEnum]
+        Kill,
+        [ProtoEnum]
+        Item,
     }
     [ProtoContract]
-    public class Quest
+    public class NQuest
     {
-        #region MyRegion
         [ProtoMember(1, IsRequired = false)]
-        public QuestType questType { get; set; }
+        public int quest_id { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public DateTime StartDate { get; set; }
+        public QuestStatus status { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public QuestState questState { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public int QuestID { get; set; }
-        [ProtoMember(6, IsRequired = false)]
-        public Dictionary<int, int> HasKilledMonsters { get; set; }
-        [ProtoMember(7, IsRequired = false)]
-        public Dictionary<int, int> HasCollectItems { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public DateTime FinishedDate { get; set; }
-
-        #endregion
-
-        [ProtoMember(5, IsRequired = false)]
-        public TimeSpan RestTime { get; set; }
-
-        [ProtoMember(9, IsRequired = false)]
-        public TimeSpan RestAcceptableTime { get; set; }
-        [ProtoMember(10, IsRequired = false)]
-        public int RestTimes { get; set; }
+        public List<int> Targets { get; set; }
     }
     [ProtoContract]
-    public class QuestInfo
+    public class QuestDefine
     {
-        #region MyRegion
-        [ProtoMember(1, IsRequired = false)]
-        public Quest questTemplate { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public int StartNPCID { get; set; }
-        [ProtoMember(3, IsRequired = false)]
-        public int EndNPCID { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public Dictionary<int, int> RequiredMonsters { get; set; }
+        public int ID { get; set; }
+        public string QuestName { get; set; }
+        public int LimitLevel { get; set; }
+        public int LimitJob { get; set; }
+        public int PreQuest { get; set; }
+        public int PostQuest { get; set; }
+        public QuestType Type { get; set; }
+        public int AcceptNPC { get; set; }
+        public int SubmitNPC { get; set; }
+        public string Overview { get; set; }
+        public string Dialog { get; set; }
+        public string DialogAccept { get; set; }
+        public string DialogDeny { get; set; }
+        public string DialogInComplete { get; set; }
+        public string DialogFinish { get; set; }
 
-        [ProtoMember(6, IsRequired = false)]
-        public Dictionary<int, int> RequiredItems { get; set; }
-
-        [ProtoMember(7, IsRequired = false)]
-        public int RequiredLevel { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public List<int> RequiredQuests { get; set; }
-        [ProtoMember(9, IsRequired = false)]
-        public int RequiredJob { get; set; }
-        [ProtoMember(10, IsRequired = false)]
-        public List<int> OtherAcceptCondition { get; set; }
-        [ProtoMember(11, IsRequired = false)]
+        public List<QuestTarget> Targets { get; set; }
+        public List<int> TargetIDs { get; set; }
+        public List<int> TargetNum { get; set; }
+        public int RewardRibi { get; set; }
         public long RewardExp { get; set; }
-        [ProtoMember(12, IsRequired = false)]
-        public List<Item> RewardItem { get; set; }
-        [ProtoMember(13, IsRequired = false)]
-        public int RewardHonor { get; set; }
-        [ProtoMember(14, IsRequired = false)]
+        public List<int> RewardItemIDs { get; set; }
+        public List<int> RewardItemsCount { get; set; }
+        public int RewardHonerPoint { get; set; }
         public int RewardBadge { get; set; }
-        [ProtoMember(15, IsRequired = false)]
-        public long RewardRibi { get; set; }
-        [ProtoMember(16, IsRequired = false)]
         public int RewardTitle { get; set; }
-        [ProtoMember(17, IsRequired = false)]
-        public List<int> OtherRewardsTypes { get; set; }
-        [ProtoMember(18, IsRequired = false)]
-        public List<int> OtherRewardsValues { get; set; }
-        [ProtoMember(19, IsRequired = false)]
-        public List<int> OtherCompleteConditions { get; set; }
-        [ProtoMember(21, IsRequired = false)]
-        public List<string> SNPC_R { get; set; }
-        [ProtoMember(22, IsRequired = false)]
-        public List<string> SNPC_O { get; set; }
-        [ProtoMember(23, IsRequired = false)]
-        public List<string> ENPC_O { get; set; }
-        [ProtoMember(24, IsRequired = false)]
-        public List<string> ENPC_F { get; set; }
-        #endregion
+        public float LimitTime { get; set; }
 
-        [ProtoMember(4, IsRequired = false)]
-        public TimeSpan MaxRestTime { get; set; }
-
-        [ProtoMember(20, IsRequired = false)]
-        public int MaxAcceptableTimes { get; set; }
+    }
+    [ProtoContract]
+    public class QuestListRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public Quest_List_Type listType { get; set; }
     }
 
+    [ProtoContract]
+    public class QuestListResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public List<NQuest> quests { get; set; }
+    }
+
+    [ProtoContract]
+    public class QuestAcceptRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int quest_id { get; set; }
+    }
+
+    [ProtoContract]
+    public class QuestAcceptResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+    }
+
+    public class QuestSubmitRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int quest_id { get; set; }
+    }
+
+    [ProtoContract]
+    public class QuestSubmitResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+    }
+
+    public class QuestAbandonRequest
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int quest_id { get; set; }
+    }
+
+    [ProtoContract]
+    public class QuestAbandonResponse
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+    }
 
     [ProtoContract]
     public class Rewards

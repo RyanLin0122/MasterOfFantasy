@@ -12,7 +12,7 @@ public class QuestSys : Singleton<QuestSys>
         LogSvc.Info("QuestSys Init Done.");
     }
 
-    public Dictionary<int, QuestInfo> QuestDic = new System.Collections.Generic.Dictionary<int, QuestInfo>();
+    public Dictionary<int, QuestDefine> QuestDic = new System.Collections.Generic.Dictionary<int, QuestDefine>();
     public void ParseQuestInfo()
     {
         //QuestDic = ;

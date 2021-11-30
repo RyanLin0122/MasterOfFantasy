@@ -413,66 +413,19 @@ public class CacheSvc
     #endregion
 
     #region Quest
-    public Dictionary<int, QuestInfo> ParseQuestInfo()
+    public Dictionary<int, QuestDefine> ParseQuestInfo()
     {
         Console.WriteLine("解析任務資訊");
-        Dictionary<int, QuestInfo> QuestDic = new Dictionary<int, QuestInfo>();
+        Dictionary<int, QuestDefine> QuestDic = new Dictionary<int, QuestDefine>();
         string jsonStr = "";
-        using (StreamReader r = new StreamReader("../../Common/QuestInfo.Json"))
+        using (StreamReader r = new StreamReader("../../Common/QuestDefine.Json"))
         {
             jsonStr = r.ReadToEnd();
             var obj = new JSONObject(jsonStr);
             for (var i = 0; i < obj.Count; i++)
             {
-                var jo = obj[i];
-                var questId = Utility.ToInt(jo, "QuestID");
-                var startDate = Utility.JsonToList<int>(jo["StartDate"]);
-                var restTime = Utility.JsonToList<int>(jo["RestTime"]);
-                var finishedDate = Utility.JsonToList<int>(jo["FinishedDate"]);
-                var restAcceptableTime = Utility.JsonToList<int>(jo["RestAcceptableTime"]);
-                var quest = new Quest
-                {
-                    QuestID = questId,
-                    StartDate = TimerSvc.GetDateTime(startDate[0], startDate[1], startDate[2], startDate[3], startDate[4], startDate[5]),
-                    RestTime = TimerSvc.GetTimeSpan(restTime[2], restTime[3], restTime[4], restTime[5]),
-                    FinishedDate = TimerSvc.GetDateTime(finishedDate[0], finishedDate[1], finishedDate[2], finishedDate[3], finishedDate[4], finishedDate[5]),
-                    RestAcceptableTime = TimerSvc.GetTimeSpan(restAcceptableTime[2], restAcceptableTime[3], restAcceptableTime[4], restAcceptableTime[5]),
-                    questState = (QuestState)Enum.Parse(typeof(QuestState), jo[""].ToString()),
-                    questType = (QuestType)Enum.Parse(typeof(QuestType), jo[""].ToString()),
-                    HasCollectItems = Utility.JsonToDic_Int_Int(jo["HasCollectItems"], "ItemID", "Count"),
-                    HasKilledMonsters = Utility.JsonToDic_Int_Int(jo["HasKilledMonsters"], "MonsterID", "Count"),
-                };
-                var MaxRestTime = Utility.JsonToList<int>(jo["MaxRestTime"]);
-                var info = new QuestInfo
-                {
-                    questTemplate = quest,
-                    StartNPCID = Utility.ToInt(jo, "StartNPCID"),
-                    EndNPCID = Utility.ToInt(jo, "EndNPCID"),
-                    MaxRestTime = TimerSvc.GetTimeSpan(restTime[2], restTime[3], restTime[4], restTime[5]),
-                    RequiredMonsters = Utility.JsonToDic_Int_Int(jo["RequiredMonsters"], "MonsterID", "Count"),
-                    RequiredItems = Utility.JsonToDic_Int_Int(jo["RequiredMonsters"], "ItemID", "Count"),
-                    RequiredLevel = Utility.ToInt(jo, "RequiredLevel"),
-                    RequiredQuests = Utility.JsonToList<int>(jo["RequiredQuests"]),
-                    RequiredJob = Utility.ToInt(jo, "RequiredJob"),
-                    OtherAcceptCondition = Utility.JsonToList<int>(jo["OtherAcceptCondition"]),
-                    RewardExp = Utility.ToLong(jo, "RewardExp"),
-                    RewardItem = Utility.JsonToItemList(jo["RewardItem"]),
-                    RewardHonor = Utility.ToInt(jo, "RewardHonor"),
-                    RewardBadge = Utility.ToInt(jo, "RewardBadge"),
-                    RewardRibi = Utility.ToLong(jo, "RewardRibi"),
-                    RewardTitle = Utility.ToInt(jo, "RewardTitle"),
-                    OtherRewardsTypes = Utility.JsonToList<int>(jo["OtherRewardsTypes"]),
-                    OtherRewardsValues = Utility.JsonToList<int>(jo["OtherRewardsValues"]),
-                    OtherCompleteConditions = Utility.JsonToList<int>(jo["OtherCompleteConditions"])
-                };
-                if (QuestDic.ContainsKey(questId))
-                {
-                    LogSvc.Debug("Quest ID: " + questId + "重複");
-                }
-                else
-                {
-                    QuestDic.Add(questId, info);
-                }
+                
+               
             }
             return QuestDic;
         }
