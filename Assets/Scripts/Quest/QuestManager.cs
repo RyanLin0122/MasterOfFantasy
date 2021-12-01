@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using PEProtocal;
-
+using UnityEngine.Events;
 public class QuestManager : MonoSingleton<QuestManager>
 {
     //所有有效任務
@@ -12,26 +12,34 @@ public class QuestManager : MonoSingleton<QuestManager>
     //Key 是 NpcID
     public Dictionary<int, Dictionary<NPCQuestStatus, List<Quest>>> npcQuests = new Dictionary<int, Dictionary<NPCQuestStatus, List<Quest>>>();
 
+    public UnityAction<Quest> onQuestStatusChanged;
     public void Init(List<NQuest> quests)
     {
         this.questInfos = quests;
         allQuests.Clear();
         this.npcQuests.Clear();
-        InitQuest();
+        InitQuests();
     }
-
-    void InitQuest()
+    void InitQuests()
     {
-        //初始化所有任務
+        //初始化已接任務
         foreach (var info in this.questInfos)
         {
             Quest quest = new Quest(info);
-            this.AddNPCQuest(quest.Define.AcceptNPC, quest);
-            this.AddNPCQuest(quest.Define.SubmitNPC, quest);
             this.allQuests[quest.Info.quest_id] = quest;
         }
+        this.CheckAvailableQuests();
 
-        //初始化可用任務
+        foreach (var kv in this.allQuests)
+        {
+            this.AddNPCQuest(kv.Value.Define.AcceptNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.SubmitNPC, kv.Value);
+        }
+    }
+
+    //初始化可接任務
+    void CheckAvailableQuests()
+    {
         foreach (var kv in ResSvc.Instance.QuestDic)
         {
             if (kv.Value.LimitJob != 0 && kv.Value.LimitJob != GameRoot.Instance.ActivePlayer.Job)
@@ -157,6 +165,7 @@ public class QuestManager : MonoSingleton<QuestManager>
             dlg.SetQuest(quest);
             return true;
             */
+            //打開DLG 有可能是新接任務或是解任務，DLG要發請求給server
         }
         if(questInfos !=null || quest.Info.status == QuestStatus.Completed)
         {
@@ -170,4 +179,20 @@ public class QuestManager : MonoSingleton<QuestManager>
     {
 
     }
+
+
+    #region Server響應
+    public void DoQuestAcceptResponse(ProtoMsg msg)
+    {
+
+    }
+    public void DoQuestSubmitResponse(ProtoMsg msg)
+    {
+
+    }
+    public void DoQuestAbandonResponse(ProtoMsg msg)
+    {
+
+    }
+    #endregion
 }

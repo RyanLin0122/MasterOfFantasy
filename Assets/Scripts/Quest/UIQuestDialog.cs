@@ -23,8 +23,8 @@ public class UIQuestDialog : WindowRoot
         {
             if(this.quest.Info.status == PEProtocal.QuestStatus.Completed)
             {
-                OpenBtns.SetActive(true);
-                SubmitBtns.SetActive(false);
+                OpenBtns.SetActive(false);
+                SubmitBtns.SetActive(true);
             }
             else
             {

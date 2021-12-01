@@ -158,6 +158,15 @@ public class NetSvc : MonoBehaviour
             case 64:
                 DoConsumable(msg);
                 break;
+            case 66:
+                DoAcceptQuestResponse(msg);
+                break;
+            case 68:
+                DoSubmitQuestResponse(msg);
+                break;
+            case 70:
+                DoAbandonQuestResponse(msg);
+                break;
         }
     }
 
@@ -594,5 +603,41 @@ public class NetSvc : MonoBehaviour
     public void DoConsumable(ProtoMsg msg)
     {
         InventorySys.Instance.UseConsumable(msg);
+    }
+
+    public void DoAcceptQuestResponse(ProtoMsg msg)
+    {
+        if(msg.questAcceptResponse != null)
+        {
+            QuestManager.Instance.DoQuestAcceptResponse(msg);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue("接取任務封包為空");
+        }
+    }
+
+    public void DoSubmitQuestResponse(ProtoMsg msg)
+    {
+        if (msg.questSubmitResponse != null)
+        {
+            QuestManager.Instance.DoQuestSubmitResponse(msg);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue("完成任務封包為空");
+        }
+    }
+
+    public void DoAbandonQuestResponse(ProtoMsg msg)
+    {
+        if (msg.questAbandonResponse != null)
+        {
+            QuestManager.Instance.DoQuestAbandonResponse(msg);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue("放棄任務封包為空");
+        }
     }
 }

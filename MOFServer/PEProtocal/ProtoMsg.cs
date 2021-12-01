@@ -73,6 +73,13 @@ namespace PEProtocal
         ///62:DropItemInfo 掉落物品通知
         ///63:PickUpReq撿取請求
         ///64:ConsumableOperation使用消耗類
+        ///65:接取任務請求
+        ///66:接取任務回應
+        ///67:完成任務請求
+        ///68:完成任務回應
+        ///69:放棄任務請求
+        ///70:放棄任務回應
+        ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -226,6 +233,19 @@ namespace PEProtocal
         public PickUpResponse pickUpResponse { get; set; }
         [ProtoMember(76, IsRequired = false)]
         public ConsumableOperation consumableOperation { get; set; }
+        [ProtoMember(77, IsRequired = false)]
+        public QuestAcceptRequest questAcceptRequest { get; set; }
+        [ProtoMember(78, IsRequired = false)]
+        public QuestAcceptResponse questAcceptResponse { get; set; }
+        [ProtoMember(79, IsRequired = false)]
+        public QuestSubmitRequest questSubmitRequest { get; set; }
+        [ProtoMember(80, IsRequired = false)]
+        public QuestSubmitResponse questSubmitResponse { get; set; }
+        [ProtoMember(81, IsRequired = false)]
+        public QuestAbandonRequest questAbandonRequest { get; set; }
+        [ProtoMember(82, IsRequired = false)]
+        public QuestAbandonResponse questAbandonResponse { get; set; }
+
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1220,6 +1240,8 @@ namespace PEProtocal
         Kill,
         [ProtoEnum]
         Item,
+        [ProtoEnum]
+        Delivery
     }
     [ProtoContract]
     public class NQuest
@@ -1250,7 +1272,7 @@ namespace PEProtocal
         public string DialogInComplete { get; set; }
         public string DialogFinish { get; set; }
 
-        public List<QuestTarget> Targets { get; set; }
+        public QuestTarget Target { get; set; }
         public List<int> TargetIDs { get; set; }
         public List<int> TargetNum { get; set; }
         public int RewardRibi { get; set; }
@@ -1295,8 +1317,11 @@ namespace PEProtocal
         public bool Result { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public string ErrorMsg { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public NQuest quest { get; set; }
     }
 
+    [ProtoContract]
     public class QuestSubmitRequest
     {
         [ProtoMember(1, IsRequired = false)]
@@ -1310,8 +1335,11 @@ namespace PEProtocal
         public bool Result { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public string ErrorMsg { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public NQuest quest { get; set; }
     }
 
+    [ProtoContract]
     public class QuestAbandonRequest
     {
         [ProtoMember(1, IsRequired = false)]
@@ -1325,6 +1353,8 @@ namespace PEProtocal
         public bool Result { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public string ErrorMsg { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public NQuest quest { get; set; }
     }
 
     [ProtoContract]

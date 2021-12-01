@@ -246,6 +246,7 @@
     <Compile Include="Handler\LockerHandler.cs" />
     <Compile Include="Handler\MailBoxHandler.cs" />
     <Compile Include="Handler\PickUpItemHandler.cs" />
+    <Compile Include="Handler\QuestAcceptHandler.cs" />
     <Compile Include="Handler\RunHandler.cs" />
     <Compile Include="Handler\StrengthenHandler.cs" />
     <Compile Include="Handler\ManufactureHandler.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="System\BattleSys\SkillManager.cs" />
     <Compile Include="System\LoginSys\LoginRequestHandler.cs" />
     <Compile Include="System\PowerSys\PowerSys.cs" />
+    <Compile Include="System\QuestSys\QuestManager.cs" />
     <Compile Include="System\QuestSys\QuestSys.cs" />
     <Compile Include="System\RandomSys\RandomSys.cs" />
     <Compile Include="System\RewardSys\RewardSys.cs" />

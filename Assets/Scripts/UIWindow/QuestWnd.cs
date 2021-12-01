@@ -9,9 +9,8 @@ public class QuestWnd : MonoBehaviour
     public Text title;
     public GameObject itemPrefab;
 
-    //public TabView Tabs;
-    public ListView listNormal;
-    public ListView listTimeLimit;
+    public TabView Tabs;
+    public ListView QuestList;
 
     public UIQuestInfo questInfo;
 
@@ -19,20 +18,19 @@ public class QuestWnd : MonoBehaviour
 
     private void Start()
     {
-        this.listNormal.onItemSelected += this.OnQuestSelected;
-        this.listTimeLimit.onItemSelected += this.OnQuestSelected;
-        //this.Tabs.OnTabSelect += OnSelectTab;
+        this.QuestList.onItemSelected += this.OnQuestSelected;
+        this.Tabs.OnTabSelect += OnSelectTab;
         RefreshUI();
         //QuestManager.Instance.OnQuestChanged += RefreshUI;
     }
 
-    void OnSelectedTab(int idx)
+    void OnSelectTab(int idx)
     {
         showAvailableList = idx == 1;
         RefreshUI();
     }
 
-    private void OnDestrot()
+    private void OnDestroy()
     {
         //QuestManager.Instance.OnQuestChanged -= RefreshUI;
     }
@@ -43,7 +41,7 @@ public class QuestWnd : MonoBehaviour
         InitAllQuestItems();
     }
 
-    
+
     void InitAllQuestItems()
     {
         foreach (var kv in QuestManager.Instance.allQuests)
@@ -59,20 +57,16 @@ public class QuestWnd : MonoBehaviour
                     continue;
             }
 
-            GameObject go = Instantiate(itemPrefab, kv.Value.Define.Type == QuestType.OneTime ? this.listNormal.transform : this.listTimeLimit.transform);
+            GameObject go = Instantiate(itemPrefab, this.QuestList.transform);
             UIQuestItem ui = go.GetComponent<UIQuestItem>();
             ui.SetQuestInfo(kv.Value);
-            if (kv.Value.Define.Type == QuestType.OneTime)
-                this.listNormal.AddItem(ui as ListView.ListViewItem);
-            else
-                this.listTimeLimit.AddItem(ui as ListView.ListViewItem);
+            this.QuestList.AddItem(ui);
         }
     }
-    
+
     void ClearAllQuestList()
     {
-        this.listNormal.RemoveAll();
-        this.listTimeLimit.RemoveAll();
+        this.QuestList.RemoveAll();
     }
 
     public void OnQuestSelected(ListView.ListViewItem item)

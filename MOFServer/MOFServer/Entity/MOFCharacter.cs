@@ -14,6 +14,7 @@ public class MOFCharacter : Entity
     public TrimedPlayer trimedPlayer;
     public Transactor transactor;
     public Strengthen strengthen;
+    public QuestManager questManager;
     public PlayerStatus status = PlayerStatus.Normal;
     #region Attribute
     public PlayerAttribute BasicAttribute;
@@ -631,6 +632,7 @@ public class MOFCharacter : Entity
         this.mofMap = map;
         this.trimedPlayer = tp;
         this.IsRun = IsRun;
+        this.questManager = new QuestManager(this);
 
         if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
         {

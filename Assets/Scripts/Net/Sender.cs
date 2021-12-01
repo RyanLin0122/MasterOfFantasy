@@ -866,3 +866,51 @@ public class ConsumableSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class AcceptQuestSender : BaseSender
+{
+    public AcceptQuestSender(int QuestID)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 65,
+            questAcceptRequest = new QuestAcceptRequest
+            {
+                quest_id = QuestID
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+
+public class SubmitQuestSender : BaseSender
+{
+    public SubmitQuestSender(int QuestID)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 67,
+            questSubmitRequest = new QuestSubmitRequest 
+            {
+                quest_id = QuestID
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+
+public class AbandonQuestSender : BaseSender
+{
+    public AbandonQuestSender(int QuestID)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 69,
+            questAbandonRequest = new QuestAbandonRequest
+            {
+                quest_id = QuestID
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

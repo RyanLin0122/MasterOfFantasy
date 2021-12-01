@@ -576,9 +576,10 @@ public static class Utility
     public static BsonArray Dic_Int_Item2BsonArr(Dictionary<int, Item> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input.Values)
+        foreach (var kv in input)
         {
-            r.Add(ItemToBson(item));
+            kv.Value.Position = kv.Key;
+            r.Add(ItemToBson(kv.Value));
         }
         return r;
     }
