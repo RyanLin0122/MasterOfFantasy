@@ -1252,6 +1252,8 @@ namespace PEProtocal
         public QuestStatus status { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public List<int> Targets { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public bool HasDeliveried { get; set; }
     }
     [ProtoContract]
     public class QuestDefine
@@ -1265,17 +1267,17 @@ namespace PEProtocal
         public QuestType Type { get; set; }
         public int AcceptNPC { get; set; }
         public int SubmitNPC { get; set; }
+        public int DeliveryNPC { get; set; }
+        public QuestTarget Target { get; set; }
+        public List<int> TargetIDs { get; set; }
+        public List<int> TargetNum { get; set; }
         public string Overview { get; set; }
         public string Dialog { get; set; }
         public string DialogAccept { get; set; }
         public string DialogDeny { get; set; }
         public string DialogInComplete { get; set; }
         public string DialogFinish { get; set; }
-
-        public QuestTarget Target { get; set; }
-        public List<int> TargetIDs { get; set; }
-        public List<int> TargetNum { get; set; }
-        public int RewardRibi { get; set; }
+        public long RewardRibi { get; set; }
         public long RewardExp { get; set; }
         public List<int> RewardItemIDs { get; set; }
         public List<int> RewardItemsCount { get; set; }
@@ -1283,7 +1285,7 @@ namespace PEProtocal
         public int RewardBadge { get; set; }
         public int RewardTitle { get; set; }
         public float LimitTime { get; set; }
-
+        
     }
     [ProtoContract]
     public class QuestListRequest

@@ -6,13 +6,12 @@ using PEProtocal;
 
 public class QuestWnd : MonoBehaviour
 {
-    public Text title;
     public GameObject itemPrefab;
 
     public TabView Tabs;
     public ListView QuestList;
 
-    public UIQuestInfo questInfo;
+    public QuestWndInfo questInfo;
 
     private bool showAvailableList = false;
 
@@ -22,6 +21,11 @@ public class QuestWnd : MonoBehaviour
         this.Tabs.OnTabSelect += OnSelectTab;
         RefreshUI();
         //QuestManager.Instance.OnQuestChanged += RefreshUI;
+    }
+
+    private void OnEnable()
+    {
+        this.questInfo.CloseInfo();
     }
 
     void OnSelectTab(int idx)
@@ -72,6 +76,6 @@ public class QuestWnd : MonoBehaviour
     public void OnQuestSelected(ListView.ListViewItem item)
     {
         UIQuestItem questItem = item as UIQuestItem;
-        this.questInfo.SetQuestInfo(questInfo.quest);
+        this.questInfo.SetQuestInfo(questItem.quest);
     }
 }

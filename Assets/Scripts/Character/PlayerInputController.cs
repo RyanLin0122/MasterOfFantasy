@@ -192,6 +192,10 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                 TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.15, PETimeUnit.Second, 1);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            UISystem.Instance.OpenCloseQuestWnd();
+        }
         if (hotKeySlot != null)
         {
             var dict = Instance.entityController.SkillDict;

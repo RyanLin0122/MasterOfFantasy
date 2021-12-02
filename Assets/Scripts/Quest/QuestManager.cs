@@ -23,11 +23,23 @@ public class QuestManager : MonoSingleton<QuestManager>
     void InitQuests()
     {
         //初始化已接任務
-        foreach (var info in this.questInfos)
+        Debug.Log("初始化已接任務");
+        if(this.questInfos!=null&& this.questInfos.Count > 0)
         {
-            Quest quest = new Quest(info);
-            this.allQuests[quest.Info.quest_id] = quest;
+            Debug.Log("初始化已接任務AAA");
+            foreach (var info in this.questInfos)
+            {
+                Debug.Log("初始化已接任務BBB");
+                Quest quest = new Quest(info);
+                this.allQuests[quest.Info.quest_id] = quest;
+            }
         }
+        else
+        {
+            this.questInfos = new List<NQuest>();
+            GameRoot.Instance.ActivePlayer.ProcessingQuests = this.questInfos;
+        }
+        //初始化可接取任務
         this.CheckAvailableQuests();
 
         foreach (var kv in this.allQuests)

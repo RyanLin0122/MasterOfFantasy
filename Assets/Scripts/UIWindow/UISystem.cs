@@ -46,6 +46,7 @@ public class UISystem : SystemRoot
     public PlayerOption playerOption;
     public OtherPlayerOption otherPlayerOption;
     public Transform BuffIconsContainer;
+    public QuestWnd QuestWnd;
 
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
@@ -373,6 +374,28 @@ public class UISystem : SystemRoot
     {
         otherPlayerOption.SetWndState(false);
         otherPlayerOption.IsOpen = false;
+    }
+
+    public void OpenCloseQuestWnd()
+    {
+        if (QuestWnd.gameObject.activeSelf)
+        {
+            CloseQuestWnd();
+        }
+        else
+        {
+            OpenQuestWnd();
+        }
+    }
+    public void OpenQuestWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        QuestWnd.gameObject.SetActive(true);
+    }
+    public void CloseQuestWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        QuestWnd.gameObject.SetActive(false);
     }
     #endregion
 

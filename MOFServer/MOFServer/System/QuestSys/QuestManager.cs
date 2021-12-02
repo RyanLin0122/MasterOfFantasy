@@ -27,7 +27,7 @@ public class QuestManager
     public void AcceptQuest(QuestAcceptRequest qa)
     {
         QuestDefine define;
-        if (QuestSys.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
+        if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
         {
             NQuest quest = GetNewNQuest(qa.quest_id);
             this.Owner.player.ProcessingQuests.Add(quest);
@@ -61,7 +61,7 @@ public class QuestManager
     public void SubmitQuest(QuestSubmitRequest qs)
     {
         QuestDefine define;
-        if (QuestSys.Instance.QuestDic.TryGetValue(qs.quest_id, out define))
+        if (CacheSvc.Instance.QuestDic.TryGetValue(qs.quest_id, out define))
         {
             var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qs.quest_id).FirstOrDefault();
             if(nQuest != null)

@@ -5,6 +5,7 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using PEProtocal;
+using System.Text;
 
 public class ResSvc : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ResSvc : MonoBehaviour
         ParseMonsterJson();
         ParseSkillJson();
         ParseBuffJson();
+        ParseQuestJson();
         IllustrationPath.Instance.Init();
         LoadJobImgs();
         ParsePortalJson();
@@ -663,8 +665,8 @@ public class ResSvc : MonoBehaviour
 
     #endregion
     #region ManufactureInfo
-  
-    public Dictionary<int, ManuInfo> FormulaDict{ get; set; }
+
+    public Dictionary<int, ManuInfo> FormulaDict { get; set; }
     private void ParseManuJson()
     {
         Dictionary<int, ManuInfo> formuladict = new Dictionary<int, ManuInfo>();
@@ -1002,75 +1004,75 @@ public class ResSvc : MonoBehaviour
     public Dictionary<int, BuffDefine> BuffDic = new Dictionary<int, BuffDefine>();
     public void ParseBuffJson()
     {
-            TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/BuffDefine");
-            string SkillJson = itemText.text;//物品信息的格式
-            JSONObject j = new JSONObject(SkillJson);
-            foreach (JSONObject Buff in j.list)
+        TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/BuffDefine");
+        string SkillJson = itemText.text;//物品信息的格式
+        JSONObject j = new JSONObject(SkillJson);
+        foreach (JSONObject Buff in j.list)
+        {
+            int BuffID = (int)Buff["ID"].n;
+            string Icon = Buff["Icon"].str;
+            string BuffName = Buff["BuffName"].str;
+            string Description = Buff["Description"].str;
+            float Duration = Buff["Duration"].n;
+            float Inteval = Buff["Inteval"].n;
+            BUFF_TriggerType TriggerType = (BUFF_TriggerType)System.Enum.Parse(typeof(BUFF_TriggerType), Buff["TriggerType"].str);
+            float DamageFactor = Buff["DamageFactor"].n;
+            BUFF_TargetType TargetType = (BUFF_TargetType)System.Enum.Parse(typeof(BUFF_TargetType), Buff["TargetType"].str);
+            float CD = Buff["CD"].n;
+            BUFF_Effect buFF_Effect = (BUFF_Effect)System.Enum.Parse(typeof(BUFF_Effect), Buff["BuffState"].str);
+            List<int> ConflictBuffIDs = new List<int>();
+            var conlist = Buff["ConflictBuffs"].list;
+            if (conlist.Count > 0)
             {
-                int BuffID = (int)Buff["ID"].n;
-                string Icon = Buff["Icon"].str;
-                string BuffName = Buff["BuffName"].str;
-                string Description = Buff["Description"].str;
-                float Duration = Buff["Duration"].n;
-                float Inteval = Buff["Inteval"].n;
-                BUFF_TriggerType TriggerType = (BUFF_TriggerType)System.Enum.Parse(typeof(BUFF_TriggerType), Buff["TriggerType"].str);
-                float DamageFactor = Buff["DamageFactor"].n;
-                BUFF_TargetType TargetType = (BUFF_TargetType)System.Enum.Parse(typeof(BUFF_TargetType), Buff["TargetType"].str);
-                float CD = Buff["CD"].n;
-                BUFF_Effect buFF_Effect = (BUFF_Effect)System.Enum.Parse(typeof(BUFF_Effect), Buff["BuffState"].str);
-                List<int> ConflictBuffIDs = new List<int>();
-                var conlist = Buff["ConflictBuffs"].list;
-                if (conlist.Count > 0)
+                foreach (var id in conlist)
                 {
-                    foreach (var id in conlist)
-                    {
-                        ConflictBuffIDs.Add((int)id.n);
-                    }
+                    ConflictBuffIDs.Add((int)id.n);
                 }
-                JSONObject Attr = Buff["Attribute"];
-                PlayerAttribute attribute = new PlayerAttribute
-                {
-                    MAXHP = (int)(Attr["MAXHP"].n),
-                    MAXMP = (int)(Attr["MAXMP"].n),
-                    Att = (int)(Attr["Att"].n),
-                    Strength = (int)(Attr["Strength"].n),
-                    Agility = (int)(Attr["Agility"].n),
-                    Intellect = (int)(Attr["Intellect"].n),
-                    MaxDamage = (int)(Attr["MaxDamage"].n),
-                    MinDamage = (int)(Attr["MinDamage"].n),
-                    Defense = (int)(Attr["Defense"].n),
-                    Accuracy = Attr["Accuracy"].n,
-                    Critical = Attr["Critical"].n,
-                    Avoid = Attr["Avoid"].n,
-                    MagicDefense = Attr["MagicDefense"].n,
-                    RunSpeed = Attr["RunSpeed"].n,
-                    AttRange = Attr["AttRange"].n,
-                    AttDelay = Attr["AttDelay"].n,
-                    ExpRate = Attr["ExpRate"].n,
-                    DropRate = Attr["DropRate"].n,
-                    HPRate = Attr["HPRate"].n,
-                    MPRate = Attr["MPRate"].n,
-                    MinusHurt = Attr["MinusHurt"].n
-                };
-                BuffDefine buffDefine = new BuffDefine
-                {
-                    ID = BuffID,
-                    Icon = Icon,
-                    BuffName = BuffName,
-                    Description = Description,
-                    Duration = Duration,
-                    Interval = Inteval,
-                    TriggerType = TriggerType,
-                    DamageFactor = DamageFactor,
-                    TargetType = TargetType,
-                    CD = CD,
-                    BuffState = buFF_Effect,
-                    ConflictBuff = ConflictBuffIDs,
-                    AttributeGain = attribute
-                };
-                BuffDic.Add(BuffID, buffDefine);
             }
+            JSONObject Attr = Buff["Attribute"];
+            PlayerAttribute attribute = new PlayerAttribute
+            {
+                MAXHP = (int)(Attr["MAXHP"].n),
+                MAXMP = (int)(Attr["MAXMP"].n),
+                Att = (int)(Attr["Att"].n),
+                Strength = (int)(Attr["Strength"].n),
+                Agility = (int)(Attr["Agility"].n),
+                Intellect = (int)(Attr["Intellect"].n),
+                MaxDamage = (int)(Attr["MaxDamage"].n),
+                MinDamage = (int)(Attr["MinDamage"].n),
+                Defense = (int)(Attr["Defense"].n),
+                Accuracy = Attr["Accuracy"].n,
+                Critical = Attr["Critical"].n,
+                Avoid = Attr["Avoid"].n,
+                MagicDefense = Attr["MagicDefense"].n,
+                RunSpeed = Attr["RunSpeed"].n,
+                AttRange = Attr["AttRange"].n,
+                AttDelay = Attr["AttDelay"].n,
+                ExpRate = Attr["ExpRate"].n,
+                DropRate = Attr["DropRate"].n,
+                HPRate = Attr["HPRate"].n,
+                MPRate = Attr["MPRate"].n,
+                MinusHurt = Attr["MinusHurt"].n
+            };
+            BuffDefine buffDefine = new BuffDefine
+            {
+                ID = BuffID,
+                Icon = Icon,
+                BuffName = BuffName,
+                Description = Description,
+                Duration = Duration,
+                Interval = Inteval,
+                TriggerType = TriggerType,
+                DamageFactor = DamageFactor,
+                TargetType = TargetType,
+                CD = CD,
+                BuffState = buFF_Effect,
+                ConflictBuff = ConflictBuffIDs,
+                AttributeGain = attribute
+            };
+            BuffDic.Add(BuffID, buffDefine);
         }
+    }
     #endregion
 
     #region NameBox & ChatBox
@@ -1099,7 +1101,109 @@ public class ResSvc : MonoBehaviour
 
     #region 任務區
     public Dictionary<int, QuestDefine> QuestDic = new Dictionary<int, QuestDefine>();
+    public void ParseQuestJson()
+    {
+        TextAsset itemText = Resources.Load<TextAsset>("ResCfgs/QuestDefine");//, Encoding.GetEncoding("utf-8"));
+        string QuestJson = itemText.text;//物品信息的格式
+        JSONObject j = new JSONObject(QuestJson);
+        foreach (JSONObject Quest in j.list)
+        {
+            int QuestID = (int)Quest["QuestID"].n;
+            string QuestName = Quest["QuestName"].str;
+            int LimitLevel = (int)Quest["LimitLevel"].n;
+            int LimitJob = (int)Quest["LimitJob"].n;
+            int PreQuest = (int)Quest["PreQuest"].n;
+            int PostQuest = (int)Quest["PostQuest"].n;
+            QuestType Type = (QuestType)Enum.Parse(typeof(QuestType), Quest["QuestType"].str);
+            int AcceptNPC = (int)Quest["AcceptNPC"].n;
+            int SubmitNPC = (int)Quest["SubmitNPC"].n;
+            int DeliveryNPC = (int)Quest["DeliveryNPC"].n;
 
+            QuestTarget questTarget = (QuestTarget)Enum.Parse(typeof(QuestTarget), Quest["Target"].str);
+            List<int> TargetIDs = new List<int>();
+            var TargetIDslist = Quest["TargetIDs"].list;
+            if (TargetIDslist.Count > 0)
+            {
+                foreach (var item in TargetIDslist)
+                {
+                    TargetIDs.Add((int)item.n);
+                }
+            }
+            List<int> TargetNum = new List<int>();
+            var TargetNumlist = Quest["TargetNum"].list;
+            if (TargetNumlist.Count > 0)
+            {
+                foreach (var item in TargetNumlist)
+                {
+                    TargetNum.Add((int)item.n);
+                }
+            }
+            string Overview = Quest["Overview"].str;
+            string Dialog = Quest["Dialog"].str;
+            string DialogAccept = Quest["DialogAccept"].str;
+            string DialogDeny = Quest["DialogDeny"].str;
+            string DialogInComplete = Quest["DialogInComplete"].str;
+            string DialogFinish = Quest["DialogFinish"].str;
+
+            long RewardRibi = Quest["RewardRibi"].i;
+            int RewardExp = (int)Quest["RewardExp"].n;
+            List<int> RewardItemIDs = new List<int>();
+            var RewardItemIDslist = Quest["RewardItemIDs"].list;
+            if (RewardItemIDslist.Count > 0)
+            {
+                foreach (var item in RewardItemIDslist)
+                {
+                    RewardItemIDs.Add((int)item.n);
+                }
+            }
+            List<int> RewardItemsCount = new List<int>();
+            var RewardItemsCountlist = Quest["RewardItemsCount"].list;
+            if (RewardItemsCountlist.Count > 0)
+            {
+                foreach (var item in RewardItemsCountlist)
+                {
+                    RewardItemsCount.Add((int)item.n);
+                }
+            }
+            int RewardHonerPoint = (int)Quest["RewardHonerPoint"].n;
+            int RewardBadge = (int)Quest["RewardBadge"].n;
+            int RewardTitle = (int)Quest["RewardTitle"].n;
+            float LimitTime = Quest["LimitTime"].n;
+            QuestDefine questDefine = new QuestDefine
+            {
+                ID = QuestID,
+                QuestName = QuestName,
+                LimitLevel = LimitLevel,
+                LimitJob = LimitJob,
+                PreQuest = PreQuest,
+                PostQuest = PostQuest,
+                Type = Type,
+                AcceptNPC = AcceptNPC,
+                SubmitNPC = SubmitNPC,
+                DeliveryNPC = DeliveryNPC,
+                Target = questTarget,
+                TargetIDs = TargetIDs,
+                TargetNum = TargetNum,
+                Overview = Overview,
+                Dialog = Dialog,
+                DialogAccept = DialogAccept,
+                DialogDeny = DialogDeny,
+                DialogInComplete = DialogInComplete,
+                DialogFinish = DialogFinish,
+
+                RewardRibi = RewardRibi,
+                RewardExp = RewardExp,
+                RewardItemIDs = RewardItemIDs,
+                RewardItemsCount = RewardItemsCount,
+                RewardBadge = RewardBadge,
+                RewardTitle = RewardTitle,
+                RewardHonerPoint = RewardHonerPoint,
+                LimitTime = LimitTime
+            };
+            QuestDic[QuestID] = questDefine;
+        }
+
+    }
     #endregion
 
     #region 怪物區

@@ -20,7 +20,6 @@ public class ServerRoot : Singleton<ServerRoot>
         PowerSys.Instance.Init();
         BattleSys.Instance.Init();
         RewardSys.Instance.Init();
-        QuestSys.Instance.Init();
         Tick_thread = new Thread(new ThreadStart(this.Tick));
         Tick_thread.Start();
     }

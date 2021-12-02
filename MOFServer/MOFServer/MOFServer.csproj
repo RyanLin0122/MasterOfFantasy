@@ -291,7 +291,6 @@
     <Compile Include="System\LoginSys\LoginRequestHandler.cs" />
     <Compile Include="System\PowerSys\PowerSys.cs" />
     <Compile Include="System\QuestSys\QuestManager.cs" />
-    <Compile Include="System\QuestSys\QuestSys.cs" />
     <Compile Include="System\RandomSys\RandomSys.cs" />
     <Compile Include="System\RewardSys\RewardSys.cs" />
     <Compile Include="System\SystemBase.cs" />
@@ -327,7 +326,7 @@
     <None Include="Common\ItemInfo.Json" />
     <None Include="Common\log4net.config" />
     <None Include="Common\MonsterInfo.Json" />
-    <None Include="Common\QuestInfo.json" />
+    <None Include="Common\QuestDefine.json" />
     <None Include="Common\FormulaInfo.Json" />
     <None Include="Common\SkillInfo.Json" />
     <None Include="packages.config">

@@ -33,6 +33,7 @@ public class CacheSvc
         ParseSkillJson();
         ParseManuJson();
         ParseBuffJson();
+        ParseQuestJson();
         dbMgr = DBMgr.Instance;
         Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
         await task;
@@ -860,5 +861,113 @@ public class CacheSvc
         }
 
     }
-    #endregion    
+    #endregion
+
+    #region 任務
+    public Dictionary<int, QuestDefine> QuestDic = new Dictionary<int, QuestDefine>();
+    public void ParseQuestJson()
+    {
+        using (StreamReader sr = new StreamReader("../../Common/QuestDefine.Json"))
+        {
+            string QuestJson = sr.ReadToEnd();
+            JSONObject j = new JSONObject(QuestJson);
+            foreach (JSONObject Quest in j.list)
+            {
+                int QuestID = (int)Quest["QuestID"].n;
+                string QuestName = Quest["QuestName"].str;
+                int LimitLevel = (int)Quest["LimitLevel"].n;
+                int LimitJob = (int)Quest["LimitJob"].n;
+                int PreQuest = (int)Quest["PreQuest"].n;
+                int PostQuest = (int)Quest["PostQuest"].n;
+                QuestType Type = (QuestType)Enum.Parse(typeof(QuestType), Quest["QuestType"].str);
+                int AcceptNPC = (int)Quest["AcceptNPC"].n;
+                int SubmitNPC = (int)Quest["SubmitNPC"].n;
+                int DeliveryNPC = (int)Quest["DeliveryNPC"].n;
+
+                QuestTarget questTarget = (QuestTarget)Enum.Parse(typeof(QuestTarget), Quest["Target"].str);
+                List<int> TargetIDs = new List<int>();
+                var TargetIDslist = Quest["TargetIDs"].list;
+                if (TargetIDslist.Count > 0)
+                {
+                    foreach (var item in TargetIDslist)
+                    {
+                        TargetIDs.Add((int)item.n);
+                    }
+                }
+                List<int> TargetNum = new List<int>();
+                var TargetNumlist = Quest["TargetNum"].list;
+                if (TargetNumlist.Count > 0)
+                {
+                    foreach (var item in TargetNumlist)
+                    {
+                        TargetNum.Add((int)item.n);
+                    }
+                }
+                string Overview = Quest["Overview"].str;
+                string Dialog = Quest["Dialog"].str;
+                string DialogAccept = Quest["DialogAccept"].str;
+                string DialogDeny = Quest["DialogDeny"].str;
+                string DialogInComplete = Quest["DialogInComplete"].str;
+                string DialogFinish = Quest["DialogFinish"].str;
+                
+                long RewardRibi = Quest["RewardRibi"].i;
+                int RewardExp = (int)Quest["RewardExp"].n;
+                List<int> RewardItemIDs = new List<int>();
+                var RewardItemIDslist = Quest["RewardItemIDs"].list;
+                if (RewardItemIDslist.Count > 0)
+                {
+                    foreach (var item in RewardItemIDslist)
+                    {
+                        RewardItemIDs.Add((int)item.n);
+                    }
+                }
+                List<int> RewardItemsCount = new List<int>();
+                var RewardItemsCountlist = Quest["RewardItemsCount"].list;
+                if (RewardItemsCountlist.Count > 0)
+                {
+                    foreach (var item in RewardItemsCountlist)
+                    {
+                        RewardItemsCount.Add((int)item.n);
+                    }
+                }
+                int RewardHonerPoint = (int)Quest["RewardHonerPoint"].n;
+                int RewardBadge = (int)Quest["RewardBadge"].n;
+                int RewardTitle = (int)Quest["RewardTitle"].n;
+                float LimitTime = Quest["LimitTime"].n;
+                QuestDefine questDefine = new QuestDefine
+                {
+                    ID = QuestID,
+                    QuestName = QuestName,
+                    LimitLevel = LimitLevel,
+                    LimitJob = LimitJob,
+                    PreQuest = PreQuest,
+                    PostQuest = PostQuest,
+                    Type = Type,
+                    AcceptNPC = AcceptNPC,
+                    SubmitNPC = SubmitNPC,
+                    DeliveryNPC = DeliveryNPC,
+                    Target = questTarget,
+                    TargetIDs = TargetIDs,
+                    TargetNum = TargetNum,
+                    Overview = Overview,
+                    Dialog = Dialog,
+                    DialogAccept = DialogAccept,
+                    DialogDeny = DialogDeny,
+                    DialogInComplete = DialogInComplete,
+                    DialogFinish = DialogFinish,
+                    
+                    RewardRibi = RewardRibi,
+                    RewardExp = RewardExp,
+                    RewardItemIDs = RewardItemIDs,
+                    RewardItemsCount = RewardItemsCount,
+                    RewardBadge = RewardBadge,
+                    RewardTitle = RewardTitle,
+                    RewardHonerPoint = RewardHonerPoint,
+                    LimitTime = LimitTime
+                };
+                QuestDic[QuestID] = questDefine;
+            }   
+        }
+    }
+    #endregion
 }

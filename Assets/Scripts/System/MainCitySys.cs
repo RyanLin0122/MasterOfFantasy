@@ -56,7 +56,7 @@ public class MainCitySys : SystemRoot
     {
         UISystem.Instance.equipmentWnd.InitEquipWndWhenLogin();
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
-
+        QuestManager.Instance.Init(GameRoot.Instance.ActivePlayer.ProcessingQuests);
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
