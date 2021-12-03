@@ -20,12 +20,12 @@ public class QuestWnd : MonoBehaviour
         this.QuestList.onItemSelected += this.OnQuestSelected;
         this.Tabs.OnTabSelect += OnSelectTab;
         RefreshUI();
-        //QuestManager.Instance.OnQuestChanged += RefreshUI;
     }
 
     private void OnEnable()
     {
         this.questInfo.CloseInfo();
+        RefreshUI();
     }
 
     void OnSelectTab(int idx)
@@ -57,7 +57,7 @@ public class QuestWnd : MonoBehaviour
             }
             else
             {
-                if (kv.Value.Info == null)
+                if (kv.Value.Info == null || kv.Value.Info.status == QuestStatus.Finished)
                     continue;
             }
 

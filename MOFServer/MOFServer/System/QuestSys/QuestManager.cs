@@ -29,6 +29,7 @@ public class QuestManager
         QuestDefine define;
         if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
         {
+            LogSvc.Info("接取任務");
             NQuest quest = GetNewNQuest(qa.quest_id);
             this.Owner.player.ProcessingQuests.Add(quest);
             ProtoMsg rsp = new ProtoMsg
@@ -41,6 +42,7 @@ public class QuestManager
                     ErrorMsg = ""
                 }
             };
+            this.Owner.session.WriteAndFlush(rsp);
             this.Owner.AsyncSaveCharacter();
         }
         else
@@ -55,6 +57,7 @@ public class QuestManager
                     ErrorMsg = "[54]接取失敗"
                 }
             };
+            this.Owner.session.WriteAndFlush(rsp);
         }
     }
 
@@ -66,11 +69,36 @@ public class QuestManager
             var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qs.quest_id).FirstOrDefault();
             if(nQuest != null)
             {
-                //解任務邏輯
-                //判斷條件
+                if(nQuest.status == QuestStatus.InProgress)
+                {
+                    //解任務邏輯
+                    switch (define.Target)
+                    {
+                        case QuestTarget.None:
+                            break;
+                        case QuestTarget.Kill:
+                            break;
+                        case QuestTarget.Item:
+                            break;
+                        case QuestTarget.Delivery:
+                            if (!nQuest.HasDeliveried)
+                            {
+                                nQuest.HasDeliveried = true;
+                                nQuest.status = QuestStatus.Completed;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if(nQuest.status == QuestStatus.Completed)
+                {
+                    //判斷獎勵
+                    nQuest.status = QuestStatus.Finished;
+                }
+                
 
                 //發獎勵
-                
                 ProtoMsg rsp = new ProtoMsg
                 {
                     MessageType = 68,
@@ -81,6 +109,7 @@ public class QuestManager
                         ErrorMsg = ""
                     }
                 };
+                this.Owner.session.WriteAndFlush(rsp);
                 this.Owner.AsyncSaveCharacter();
             }
             else
@@ -95,6 +124,7 @@ public class QuestManager
                         ErrorMsg = "[80]解任務失敗"
                     }
                 };
+                this.Owner.session.WriteAndFlush(rsp);
             }            
         }
     }

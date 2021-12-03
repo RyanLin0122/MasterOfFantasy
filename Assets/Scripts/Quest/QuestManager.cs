@@ -26,10 +26,8 @@ public class QuestManager : MonoSingleton<QuestManager>
         Debug.Log("初始化已接任務");
         if(this.questInfos!=null&& this.questInfos.Count > 0)
         {
-            Debug.Log("初始化已接任務AAA");
             foreach (var info in this.questInfos)
             {
-                Debug.Log("初始化已接任務BBB");
                 Quest quest = new Quest(info);
                 this.allQuests[quest.Info.quest_id] = quest;
             }
@@ -45,6 +43,7 @@ public class QuestManager : MonoSingleton<QuestManager>
         foreach (var kv in this.allQuests)
         {
             this.AddNPCQuest(kv.Value.Define.AcceptNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.DeliveryNPC, kv.Value);
             this.AddNPCQuest(kv.Value.Define.SubmitNPC, kv.Value);
         }
     }
@@ -77,6 +76,7 @@ public class QuestManager : MonoSingleton<QuestManager>
             }
             Quest quest = new Quest(kv.Value);
             this.AddNPCQuest(quest.Define.AcceptNPC, quest);
+            this.AddNPCQuest(quest.Define.DeliveryNPC, quest);
             this.AddNPCQuest(quest.Define.SubmitNPC, quest);
             this.allQuests[quest.Define.ID] = quest;
         }
@@ -86,12 +86,16 @@ public class QuestManager : MonoSingleton<QuestManager>
     {
         if (!this.npcQuests.ContainsKey(npcId))
             this.npcQuests[npcId] = new Dictionary<NPCQuestStatus, List<Quest>>();
-
+        List<Quest> deliveries;
         List<Quest> availables;
         List<Quest> completes;
         List<Quest> incompletes;
-
-        if(!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.Available, out availables))
+        if (!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.DeliveryTarget, out deliveries))
+        {
+            deliveries = new List<Quest>();
+            this.npcQuests[npcId][NPCQuestStatus.DeliveryTarget] = deliveries;
+        }
+        if (!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.Available, out availables))
         {
             availables = new List<Quest>();
             this.npcQuests[npcId][NPCQuestStatus.Available] = availables;
@@ -130,6 +134,13 @@ public class QuestManager : MonoSingleton<QuestManager>
                     this.npcQuests[npcId][NPCQuestStatus.InComplete].Add(quest);
                 }
             }
+            if(quest.Define.DeliveryNPC > 0 && quest.Define.Target == QuestTarget.Delivery && quest.Info.status == QuestStatus.InProgress)
+            {
+                if (!this.npcQuests[npcId][NPCQuestStatus.InComplete].Contains(quest))
+                {
+                    this.npcQuests[npcId][NPCQuestStatus.InComplete].Add(quest);
+                }
+            }
         }
     }
 
@@ -143,6 +154,8 @@ public class QuestManager : MonoSingleton<QuestManager>
         Dictionary<NPCQuestStatus, List<Quest>> status = new Dictionary<NPCQuestStatus, List<Quest>>();
         if(this.npcQuests.TryGetValue(npcId, out status)) //獲取NPC任務
         {
+            if (status[NPCQuestStatus.DeliveryTarget].Count > 0)
+                return NPCQuestStatus.DeliveryTarget;
             if (status[NPCQuestStatus.Complete].Count > 0)
                 return NPCQuestStatus.Complete;
             if (status[NPCQuestStatus.Available].Count > 0)
@@ -153,39 +166,24 @@ public class QuestManager : MonoSingleton<QuestManager>
         return NPCQuestStatus.None;
     }
 
-    public bool OpenNPCQuest(int npcId)
+    public Quest OpenNPCQuest(int npcId)
     {
         Dictionary<NPCQuestStatus, List<Quest>> status = new Dictionary<NPCQuestStatus, List<Quest>>();
         if(this.npcQuests.TryGetValue(npcId, out status))
         {
+            if (status[NPCQuestStatus.DeliveryTarget].Count > 0)
+                return status[NPCQuestStatus.DeliveryTarget][0];
             if (status[NPCQuestStatus.Complete].Count > 0)
-                return ShowQuestDialog(status[NPCQuestStatus.Complete][0]);
+                return status[NPCQuestStatus.Complete][0];
             if (status[NPCQuestStatus.Available].Count > 0)
-                return ShowQuestDialog(status[NPCQuestStatus.Available][0]);
+                return status[NPCQuestStatus.Available][0];
             if (status[NPCQuestStatus.InComplete].Count > 0)
-                return ShowQuestDialog(status[NPCQuestStatus.InComplete][0]);
+                return status[NPCQuestStatus.InComplete][0];
         }
-        return false;
+        return null;
     }
 
-    bool ShowQuestDialog(Quest quest)
-    {
-        if(quest.Info == null || quest.Info.status == QuestStatus.Completed)
-        {
-            /*
-            UIQuestDialog dlg = UISystem.Instance.ShowUIQuestDialog();
-            dlg.SetQuest(quest);
-            return true;
-            */
-            //打開DLG 有可能是新接任務或是解任務，DLG要發請求給server
-        }
-        if(questInfos !=null || quest.Info.status == QuestStatus.Completed)
-        {
-            if (!string.IsNullOrEmpty(quest.Define.DialogInComplete))
-                MessageBox.Show(quest.Define.DialogInComplete);
-        }
-        return true;
-    }
+    
 
     public void OnQuestAccepted(Quest quest)
     {
@@ -196,15 +194,66 @@ public class QuestManager : MonoSingleton<QuestManager>
     #region Server響應
     public void DoQuestAcceptResponse(ProtoMsg msg)
     {
+        QuestAcceptResponse qr = msg.questAcceptResponse;
+        if (qr == null) return;
+        if (qr.Result)
+        {
+            Quest quest = RefreshQuestStatus(msg.questAcceptResponse.quest);
+        }
+        else
+        {
+            MessageBox.Show(qr.ErrorMsg);
+        }
 
     }
     public void DoQuestSubmitResponse(ProtoMsg msg)
     {
-
+        QuestSubmitResponse qs = msg.questSubmitResponse;
+        if (qs == null) return;
+        if (qs.Result)
+        {
+            Quest quest = RefreshQuestStatus(msg.questSubmitResponse.quest);
+        }
+        else
+        {
+            MessageBox.Show(qs.ErrorMsg);
+        }
     }
     public void DoQuestAbandonResponse(ProtoMsg msg)
     {
 
+    }
+
+    private Quest RefreshQuestStatus(NQuest nQuest)
+    {
+        this.npcQuests.Clear();
+        Quest result;
+        if (this.allQuests.ContainsKey(nQuest.quest_id))
+        {
+            //更新狀態
+            this.allQuests[nQuest.quest_id].Info = nQuest;
+            result = this.allQuests[nQuest.quest_id];
+        }
+        else
+        {
+            result = new Quest(nQuest);
+            this.allQuests[nQuest.quest_id] = result;
+        }
+
+        CheckAvailableQuests();
+
+        foreach (var kv in this.allQuests)
+        {
+            this.AddNPCQuest(kv.Value.Define.AcceptNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.DeliveryNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.SubmitNPC, kv.Value);
+        }
+
+        if(onQuestStatusChanged != null)
+        {
+            onQuestStatusChanged(result);
+        }
+        return result;
     }
     #endregion
 }

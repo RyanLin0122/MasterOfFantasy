@@ -15,7 +15,11 @@ public class QuestAcceptHandler : GameHandler
             SendErrorBack(session, "封包為空");
             return;
         }
-
+        MOFCharacter character = null;
+        if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out character))
+        {
+            character.questManager.AcceptQuest(qa);
+        }
     }
 
     public void SendErrorBack(ServerSession session, string ErrorMsg)

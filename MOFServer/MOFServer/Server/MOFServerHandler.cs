@@ -252,6 +252,14 @@ class MOFServerHandler : ChannelHandlerAdapter
                     ConsumableHandler consumableHandler = new ConsumableHandler();
                     Task ConsumableTask = consumableHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 65: //接取任務
+                    QuestAcceptHandler questAcceptHandler = new QuestAcceptHandler();
+                    Task AcceptTask = questAcceptHandler.ProcessMsgAsync(msg, session);
+                    break;
+                case 67: //解任務
+                    QuestSubmitHandler questSubmitHandler = new QuestSubmitHandler();
+                    Task SubmitTask = questSubmitHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

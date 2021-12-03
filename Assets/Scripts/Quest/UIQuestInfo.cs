@@ -19,14 +19,14 @@ public class UIQuestInfo : MonoBehaviour
         this.title.text = string.Format("[{0}]{1}", quest.Define.Type, quest.Define.QuestName);
         if(quest.Info == null)
         {
-            this.description.text = quest.Define.Dialog;
+            this.description.text = quest.Define.Overview;
         }
         else
         {
             this.quest = quest;
             if(quest.Info.status == QuestStatus.Completed)
             {
-                this.description.text = quest.Define.DialogFinish;
+                this.description.text = quest.Define.Overview;
             }
         }
 

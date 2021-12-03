@@ -26,14 +26,14 @@ public class QuestWndInfo : MonoBehaviour
         this.NPCImg.transform.localScale = new Vector2(0.3f, 0.3f);
         if (quest.Info == null)
         {
-            this.SummaryText.text = quest.Define.Dialog;
+            this.SummaryText.text = quest.Define.Overview;
         }
         else
         {
             this.quest = quest;
             if (quest.Info.status == QuestStatus.Completed)
             {
-                this.SummaryText.text = quest.Define.DialogFinish;
+                this.SummaryText.text = quest.Define.Overview;
             }
         }
 

@@ -1212,6 +1212,8 @@ namespace PEProtocal
         [ProtoEnum]
         None,      //無任務
         [ProtoEnum]
+        DeliveryTarget, //可配送目標
+        [ProtoEnum]
         Complete,  //擁有已完成任務
         [ProtoEnum]
         Available, //擁有可接受任務
@@ -1272,11 +1274,11 @@ namespace PEProtocal
         public List<int> TargetIDs { get; set; }
         public List<int> TargetNum { get; set; }
         public string Overview { get; set; }
-        public string Dialog { get; set; }
-        public string DialogAccept { get; set; }
-        public string DialogDeny { get; set; }
-        public string DialogInComplete { get; set; }
-        public string DialogFinish { get; set; }
+        public List<string> DialogDelivery { get; set; }
+        public List<string> DialogAccept { get; set; }
+        public List<string> DialogDeny { get; set; }
+        public List<string> DialogInComplete { get; set; }
+        public List<string> DialogFinish { get; set; }
         public long RewardRibi { get; set; }
         public long RewardExp { get; set; }
         public List<int> RewardItemIDs { get; set; }

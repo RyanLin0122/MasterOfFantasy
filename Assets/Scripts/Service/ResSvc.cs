@@ -1139,11 +1139,55 @@ public class ResSvc : MonoBehaviour
                 }
             }
             string Overview = Quest["Overview"].str;
-            string Dialog = Quest["Dialog"].str;
-            string DialogAccept = Quest["DialogAccept"].str;
-            string DialogDeny = Quest["DialogDeny"].str;
-            string DialogInComplete = Quest["DialogInComplete"].str;
-            string DialogFinish = Quest["DialogFinish"].str;
+            List<string> DialogDelivery = new List<string>();
+            var DialogDeliveryList = Quest["DialogDelivery"].list;
+            if (DialogDeliveryList != null && DialogDeliveryList.Count > 0)
+            {
+                foreach (var dialog in DialogDeliveryList)
+                {
+                    DialogDelivery.Add(dialog.str);
+                }
+            }
+
+            List<string> DialogAccept = new List<string>();
+            var DialogAcceptList = Quest["DialogAccept"].list;
+            if (DialogAcceptList != null && DialogAcceptList.Count > 0)
+            {
+                foreach (var dialog in DialogAcceptList)
+                {
+                    DialogAccept.Add(dialog.str);
+                }
+            }
+
+            List<string> DialogDeny = new List<string>();
+            var DialogDenyList = Quest["DialogDeny"].list;
+            if (DialogDenyList != null && DialogDenyList.Count > 0)
+            {
+                foreach (var dialog in DialogDenyList)
+                {
+                    DialogDeny.Add(dialog.str);
+                }
+            }
+
+            List<string> DialogInComplete = new List<string>();
+            var DialogInCompleteList = Quest["DialogInComplete"].list;
+            if (DialogInCompleteList != null && DialogInCompleteList.Count > 0)
+            {
+                foreach (var dialog in DialogInCompleteList)
+                {
+                    DialogInComplete.Add(dialog.str);
+                }
+            }
+
+            List<string> DialogFinish = new List<string>();
+            var DialogFinishList = Quest["DialogFinish"].list;
+            if (DialogFinishList != null && DialogFinishList.Count > 0)
+            {
+                foreach (var dialog in DialogFinishList)
+                {
+                    DialogFinish.Add(dialog.str);
+                }
+            }
 
             long RewardRibi = Quest["RewardRibi"].i;
             int RewardExp = (int)Quest["RewardExp"].n;
@@ -1185,7 +1229,7 @@ public class ResSvc : MonoBehaviour
                 TargetIDs = TargetIDs,
                 TargetNum = TargetNum,
                 Overview = Overview,
-                Dialog = Dialog,
+                DialogDelivery = DialogDelivery,
                 DialogAccept = DialogAccept,
                 DialogDeny = DialogDeny,
                 DialogInComplete = DialogInComplete,

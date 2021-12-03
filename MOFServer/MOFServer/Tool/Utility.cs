@@ -837,7 +837,10 @@ public static class Utility
     public static BsonDocument Quest2Bson(NQuest quest)
     {
         BsonDocument r = new BsonDocument {
-
+            { "ID", quest.quest_id }, 
+            { "Status", quest.status.ToString() },
+            { "HasDeliveried", quest.HasDeliveried },
+            { "Targets", IntList2BsonArray(quest.Targets) }
         };
         return r;
     }
@@ -957,8 +960,13 @@ public static class Utility
     }
     public static NQuest BsonDoc2Quest(BsonDocument doc)
     {
-        NQuest quest = new NQuest();
-        
+        NQuest quest = new NQuest
+        {
+            quest_id = doc["ID"].AsInt32,
+            status = (QuestStatus)Enum.Parse(typeof(QuestStatus), doc["Status"].AsString),
+            HasDeliveried = doc["HasDeliveried"].AsBoolean,
+            Targets = BsonArr2IntList(doc["Targets"].AsBsonArray)
+        };
         return quest;
     }
 

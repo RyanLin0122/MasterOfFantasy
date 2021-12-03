@@ -16,7 +16,7 @@ public class Quest
     public Quest(NQuest info)
     {
         this.Info = info;
-        //this.Define = ResSvc.Instance.QuestDic[info.quest_id];
+        this.Define = ResSvc.Instance.QuestDic[info.quest_id];
     }
 
     public Quest(QuestDefine define)
