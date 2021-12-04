@@ -16,6 +16,8 @@ public class BattleSys : SystemRoot
     public EntityController CurrentTarget = null;
     public EntityController CurrentBattleTarget = null;
     public Dictionary<string, PlayerController> Players;
+    public List<GeneralNPC> MapNPCs = new List<GeneralNPC>();
+
     #region Attribute
     public PlayerAttribute BasicAttribute;
     public void InitAllAtribute() //不包含Buff
@@ -1410,7 +1412,7 @@ public class BattleSys : SystemRoot
         GameObject mon = Instantiate(Resources.Load("Prefabs/Enemy") as GameObject);
         if (MapCanvas == null)
         {
-            MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+            this.MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
             MainCitySys.Instance.MapCanvas = MapCanvas;
         }
         mon.transform.SetParent(MapCanvas.transform);
@@ -1532,5 +1534,34 @@ public class BattleSys : SystemRoot
 
     #endregion
 
+    public void LoadNPC(int MapID)
+    {
+        this.MapNPCs.Clear();
+        MapCfg mc = ResSvc.Instance.GetMapCfgData(MapID);
+        if (mc.NPC_Positions != null && mc.NPC_Positions.Count > 0)
+        {
+            foreach (var kv in mc.NPC_Positions)
+            {
+                NpcConfig config = ResSvc.Instance.GetNpcCfgData(kv.Key);
+                if (this.MapCanvas == null)
+                {
+                    this.MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
+                    MainCitySys.Instance.MapCanvas = MapCanvas;
+                }
+                GeneralNPC npc = Instantiate(Resources.Load("Prefabs/NPC") as GameObject, MapCanvas.transform).GetComponent<GeneralNPC>();
+                npc.transform.localPosition = new Vector3(kv.Value[0], kv.Value[1], 0);
+                npc.SetNPC(kv.Key, Resources.Load<Sprite>("NPC/NPC Dot/" + config.DotSprite));
+                if (npc.transform.localPosition.x > 0) npc.transform.localScale = new Vector2(npc.transform.localScale.x, npc.transform.localScale.y);
+                else
+                {
+                    if(npc.NPCID != 1018)
+                    {
+                        npc.transform.localScale = new Vector2(-npc.transform.localScale.x, npc.transform.localScale.y);
+                    }
+                }
+                this.MapNPCs.Add(npc);
+            }
+        }
+    }
 }
 

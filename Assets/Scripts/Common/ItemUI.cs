@@ -65,8 +65,6 @@ public class ItemUI : MonoBehaviour
     private void SetTxtBGOn(Text text)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(text.GetComponent<RectTransform>());
-        print("TextHeight = " + text.rectTransform.rect.height);
-        print("TextWidth = " + text.rectTransform.rect.width);
         float TextHeight = text.rectTransform.rect.height;
         float TextWidth = text.rectTransform.rect.width;
         if (TextHeight == 0)

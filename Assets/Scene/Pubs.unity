@@ -193,7 +193,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 550549935
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ff3f13bec6ec90041b71f60cbe03cffd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 613526344}
   m_Layer: 0
   m_Name: BG
-  m_TagString: Untagged
+  m_TagString: MapBackground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,9 +299,6 @@ GameObject:
   - component: {fileID: 819998854}
   - component: {fileID: 819998853}
   - component: {fileID: 819998852}
-  - component: {fileID: 819998851}
-  - component: {fileID: 819998850}
-  - component: {fileID: 819998849}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -309,73 +306,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &819998849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819998848}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d336ac1fdf92448e8338fac542d77b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 819998854}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 180d06103598041839ed7c27ab719cdc, type: 3}
---- !u!114 &819998850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819998848}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdceed1528e6041839e5603d1718c0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 819998854}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Tail: 0.03
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 47821d93933cb47218a8afb75a8fc863, type: 3}
---- !u!114 &819998851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819998848}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 819998854}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  HorizontalSpeed: 0.2
-  VerticalSpeed: 0
-  Density: 2
-  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!124 &819998852
 Behaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +801,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744455343}
-  - component: {fileID: 1744455342}
   - component: {fileID: 1744455341}
   - component: {fileID: 1744455340}
   m_Layer: 9
@@ -906,62 +835,66 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 500.79178, y: -272.19128}
-      - {x: 507.25418, y: -241.39401}
-      - {x: 510.03735, y: 30.408981}
-      - {x: 302.66034, y: 125.849106}
-      - {x: 244.09346, y: 102.457085}
-      - {x: 231.88626, y: 122.75593}
-      - {x: 204.30708, y: 113.361145}
-      - {x: 152.0412, y: 94.0633}
-      - {x: 101.25814, y: 80.10353}
-      - {x: 25.642365, y: 81.68741}
-      - {x: -22.714703, y: 88.11264}
-      - {x: -64.02966, y: 105.0616}
-      - {x: -143.77675, y: 63.64916}
-      - {x: -164.90477, y: 79.09578}
-      - {x: -123.391, y: 126.356514}
-      - {x: -97.8772, y: 146.35728}
-      - {x: -33.2968, y: 115.12911}
-      - {x: 67.94337, y: 96.34802}
-      - {x: 128.89766, y: 111.49028}
-      - {x: 215.76312, y: 141.65076}
-      - {x: 221.76772, y: 189.34602}
-      - {x: 196.88362, y: 235.68506}
-      - {x: 22.401943, y: 310.45587}
-      - {x: -89.37871, y: 267.1262}
-      - {x: -119.50489, y: 239.39304}
-      - {x: -132.42209, y: 191.22688}
-      - {x: -153.43074, y: 181.29274}
-      - {x: -224.0852, y: 109.048256}
-      - {x: -270.84045, y: 93.51085}
-      - {x: -280.13907, y: 77.23109}
-      - {x: -277.11716, y: 58.53949}
-      - {x: -286.7657, y: 48.196007}
-      - {x: -323.22797, y: 33.13491}
-      - {x: -339.0818, y: 32.905518}
-      - {x: -365.0183, y: 48.14323}
-      - {x: -510.96765, y: -5.757782}
-      - {x: -509.09155, y: -144.587}
-      - {x: -357.86035, y: -235.20668}
-      - {x: -364.90836, y: -238.51271}
-      - {x: -512.9404, y: -154.47708}
-      - {x: -510.61926, y: -185.75948}
-      - {x: -512.4208, y: -228.50159}
-      - {x: -513.70807, y: -339.224}
-      - {x: -438.6058, y: -384.09048}
-      - {x: -351.1134, y: -383.43607}
-      - {x: -237.62451, y: -383.0423}
-      - {x: -106.16837, y: -384.3341}
-      - {x: -252.3126, y: -298.68857}
-      - {x: -250.56183, y: -291.91364}
-      - {x: -94.7263, y: -382.50623}
-      - {x: 68.655556, y: -383.47498}
-      - {x: 163.77856, y: -382.1012}
-      - {x: 222.75455, y: -384.46747}
-      - {x: 291.0157, y: -373.83044}
-      - {x: 360.8101, y: -335.28723}
-      - {x: 461.75488, y: -289.5195}
+    - - {x: 253.99693, y: 105.482506}
+      - {x: 304.75085, y: 130.54114}
+      - {x: 512.0399, y: 32.30313}
+      - {x: 509.9156, y: -273.44592}
+      - {x: 341.73965, y: -331.2915}
+      - {x: 177.02612, y: -385.5679}
+      - {x: -95.51755, y: -384.82535}
+      - {x: -239.83408, y: -298.51837}
+      - {x: -250.75162, y: -303.4731}
+      - {x: -112.483765, y: -387.5924}
+      - {x: -443.6044, y: -385.68234}
+      - {x: -511.9137, y: -343.142}
+      - {x: -510.49097, y: -162.9756}
+      - {x: -363.6266, y: -240.81557}
+      - {x: -359.13565, y: -229.47433}
+      - {x: -511.03287, y: -145.57}
+      - {x: -512.8126, y: -0.8875809}
+      - {x: -364.31186, y: 43.00337}
+      - {x: -333.58554, y: 33.215286}
+      - {x: -276.8377, y: 61.11796}
+      - {x: -275.14243, y: 97.30229}
+      - {x: -242.05609, y: 114.66786}
+      - {x: -215.99078, y: 96.355}
+      - {x: -176.49896, y: 131.8756}
+      - {x: -150.69267, y: 171.80457}
+      - {x: -130.72289, y: 195.71684}
+      - {x: -115.499176, y: 255.8368}
+      - {x: -18.444191, y: 292.1116}
+      - {x: 24.462715, y: 307.1358}
+      - {x: 204.60428, y: 231.69073}
+      - {x: -3.867981, y: 459.40945}
+      - {x: -639.0961, y: 188.92152}
+      - {x: -814.5171, y: -67.696075}
+      - {x: -705.92737, y: -476.8322}
+      - {x: -478.36984, y: -522.77905}
+      - {x: 11.4461975, y: -474.55594}
+      - {x: 250.8913, y: -493.7341}
+      - {x: 728.3697, y: -414.46866}
+      - {x: 762.90027, y: -146.73248}
+      - {x: 750.3832, y: 172.27327}
+      - {x: 449.24057, y: 207.9748}
+      - {x: 320.8921, y: 229.8735}
+      - {x: 207.32484, y: 231.29999}
+      - {x: 216.13394, y: 157.26552}
+      - {x: 172.50507, y: 120.67383}
+      - {x: 118.3577, y: 107.35817}
+      - {x: 28.412071, y: 99.07875}
+      - {x: -96.13457, y: 142.21454}
+      - {x: -119.14534, y: 125.12839}
+      - {x: -148.01381, y: 88.79786}
+      - {x: -166.0015, y: 75.91362}
+      - {x: -163.36508, y: 61.751904}
+      - {x: -149.09839, y: 54.038506}
+      - {x: -70.43982, y: 95.761505}
+      - {x: 12.789978, y: 71.595726}
+      - {x: 46.902493, y: 67.68563}
+      - {x: 61.685158, y: 67.76916}
+      - {x: 83.19903, y: 71.02045}
+      - {x: 154.75853, y: 85.39365}
+      - {x: 228.8191, y: 109.45422}
 --- !u!114 &1744455341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,24 +908,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapBG: {fileID: 613526344}
---- !u!114 &1744455342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744455339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f01b895e078212419b3a7c52085d19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  autoRegenerateInterval: 60
-  radiusOffset: 0.1
-  invertMasterPolygon: 0
 --- !u!4 &1744455343
 Transform:
   m_ObjectHideFlags: 0

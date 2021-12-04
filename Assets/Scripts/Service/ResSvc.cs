@@ -302,7 +302,8 @@ public class ResSvc : MonoBehaviour
                 int ID = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
                 MapCfg mc = new MapCfg
                 {
-                    ID = ID
+                    ID = ID,
+                    NPC_Positions = new Dictionary<int, float[]>()
                 };
 
                 foreach (XmlElement e in nodLst[i].ChildNodes)
@@ -364,7 +365,20 @@ public class ResSvc : MonoBehaviour
 
                             }
                             break;
-
+                        case "NPC":
+                            {
+                                if (string.IsNullOrEmpty(e.InnerText)) break;
+                                string[] total = e.InnerText.Split(new char[] { ':' });
+                                for (int j = 0; j < total.Length; j++)
+                                {
+                                    string[] t1 = total[j].Split(new char[] { '#' });
+                                    int NPCID = Convert.ToInt32(t1[0]);                                  
+                                    string[] t2 = t1[1].Split(new char[] { ',' });
+                                    float[] pos = new float[] { (float)Convert.ToDouble(t2[0]), (float)Convert.ToDouble(t2[1]) };
+                                    mc.NPC_Positions[NPCID] = pos;
+                                }
+                            }
+                            break;
                     }
                 }
                 mapCfgDataDic.Add(ID, mc);
@@ -461,6 +475,9 @@ public class ResSvc : MonoBehaviour
                             break;
                         case "FixedText":
                             NC.FixedText = e.InnerText.Split(',');
+                            break;
+                        case "Dot":
+                            NC.DotSprite = e.InnerText;
                             break;
                     }
                 }

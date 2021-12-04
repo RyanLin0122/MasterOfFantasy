@@ -326,7 +326,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036021911}
-  - component: {fileID: 1036021910}
   - component: {fileID: 1036021909}
   - component: {fileID: 1036021908}
   m_Layer: 9
@@ -361,51 +360,56 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 40.635582, y: 137.26892}
-      - {x: 8.821201, y: 160.21416}
-      - {x: 10.772148, y: 189.33513}
-      - {x: -14.326035, y: 215.20853}
-      - {x: -32.287273, y: 203.95988}
-      - {x: -31.362423, y: 183.5714}
-      - {x: -61.041008, y: 168.657}
-      - {x: -104.62829, y: 188.6035}
-      - {x: -134.69586, y: 173.13469}
-      - {x: -165.57764, y: 178.94382}
-      - {x: -172.2738, y: 190.74338}
-      - {x: -191.34787, y: 198.23787}
-      - {x: -200.25352, y: 207.79414}
-      - {x: -221.97841, y: 198.83685}
-      - {x: -222.24017, y: 186.536}
-      - {x: -300.72528, y: 155.40456}
-      - {x: -375.3895, y: 127.44342}
-      - {x: -500.14847, y: 70.27348}
-      - {x: -511.7058, y: 77.6897}
-      - {x: -514.1478, y: -378.89783}
-      - {x: 146.6899, y: -382.1408}
-      - {x: 251.75047, y: -325.11682}
-      - {x: 299.61896, y: -353.66315}
-      - {x: 482.2687, y: -266.69788}
-      - {x: 430.96265, y: -240.1434}
-      - {x: 508.85712, y: -209.67773}
-      - {x: 508.66397, y: -62.735626}
-      - {x: 483.90677, y: -64.70336}
-      - {x: 430.77515, y: -53.570164}
-      - {x: 418.02234, y: -40.40982}
-      - {x: 414.18054, y: -24.738943}
-      - {x: 415.69788, y: -12.210433}
-      - {x: 402.23587, y: -7.2764997}
-      - {x: 398.10452, y: 4.791606}
-      - {x: 400.23837, y: 20.210781}
-      - {x: 379.83026, y: 39.109085}
-      - {x: 376.79227, y: 57.056274}
-      - {x: 331.59708, y: 81.29744}
-      - {x: 282.6393, y: 64.97252}
-      - {x: 241.82721, y: 51.584606}
-      - {x: 222.75735, y: 49.498978}
-      - {x: 204.81183, y: 64.21884}
-      - {x: 192.92998, y: 92.17367}
-      - {x: 109.78756, y: 135.31305}
-      - {x: 73.97601, y: 128.8192}
+    - - {x: 118.64117, y: 372.1219}
+      - {x: -284.30173, y: 301.08252}
+      - {x: -692.42145, y: 276.887}
+      - {x: -646.4766, y: 39.78591}
+      - {x: -513.5906, y: 69.75125}
+      - {x: -309.52863, y: 149.33444}
+      - {x: -192.95027, y: 195.36383}
+      - {x: -155.22678, y: 174.32169}
+      - {x: -98.9157, y: 179.56598}
+      - {x: -58.84029, y: 168.54547}
+      - {x: -9.011082, y: 184.28023}
+      - {x: 11.324396, y: 172.43382}
+      - {x: 17.093594, y: 146.28395}
+      - {x: 51.917545, y: 126.025475}
+      - {x: 117.77311, y: 144.11493}
+      - {x: 148.61185, y: 145.41687}
+      - {x: 204.27243, y: 116.38706}
+      - {x: 211.89868, y: 91.479126}
+      - {x: 210.89401, y: 62.136845}
+      - {x: 221.94563, y: 55.740772}
+      - {x: 320.68646, y: 87.11362}
+      - {x: 377.9129, y: 59.783234}
+      - {x: 382.12643, y: 38.902954}
+      - {x: 400.63953, y: 27.809917}
+      - {x: 400.15662, y: -4.3863792}
+      - {x: 417.32037, y: -18.945808}
+      - {x: 421.69537, y: -47.199852}
+      - {x: 458.6362, y: -64.082016}
+      - {x: 510.69128, y: -65.99928}
+      - {x: 511.55072, y: -215.29472}
+      - {x: 444.81006, y: -244.3031}
+      - {x: 512.625, y: -277.2774}
+      - {x: 304.35077, y: -376.0352}
+      - {x: 249.27019, y: -341.22504}
+      - {x: 147.15977, y: -384.515}
+      - {x: -245.35278, y: -384.68948}
+      - {x: -512.00256, y: -384.96957}
+      - {x: -512.3988, y: -128.2923}
+      - {x: -511.7218, y: 69.86176}
+      - {x: -626.80457, y: -3.530899}
+      - {x: -673.0237, y: -309.61075}
+      - {x: -595.74646, y: -462.19278}
+      - {x: -289.85657, y: -501.31723}
+      - {x: 98.650986, y: -502.78018}
+      - {x: 312.7205, y: -424.2037}
+      - {x: 573.09186, y: -295.22812}
+      - {x: 645.41064, y: -223.28082}
+      - {x: 600.66016, y: -47.23423}
+      - {x: 551.893, y: 97.651115}
+      - {x: 336.86737, y: 282.08417}
 --- !u!114 &1036021909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,24 +423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapBG: {fileID: 1663960415}
---- !u!114 &1036021910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036021907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f01b895e078212419b3a7c52085d19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  autoRegenerateInterval: 60
-  radiusOffset: 0.1
-  invertMasterPolygon: 0
 --- !u!4 &1036021911
 Transform:
   m_ObjectHideFlags: 0
@@ -645,9 +631,6 @@ GameObject:
   - component: {fileID: 1873023963}
   - component: {fileID: 1873023962}
   - component: {fileID: 1873023961}
-  - component: {fileID: 1873023960}
-  - component: {fileID: 1873023959}
-  - component: {fileID: 1873023958}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -655,73 +638,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1873023958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873023957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d336ac1fdf92448e8338fac542d77b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1873023963}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 180d06103598041839ed7c27ab719cdc, type: 3}
---- !u!114 &1873023959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873023957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdceed1528e6041839e5603d1718c0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1873023963}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Tail: 0.03
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 47821d93933cb47218a8afb75a8fc863, type: 3}
---- !u!114 &1873023960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873023957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1873023963}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  HorizontalSpeed: 0.2
-  VerticalSpeed: 0
-  Density: 2
-  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!124 &1873023961
 Behaviour:
   m_ObjectHideFlags: 0

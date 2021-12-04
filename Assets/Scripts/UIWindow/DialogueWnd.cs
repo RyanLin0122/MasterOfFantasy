@@ -22,6 +22,7 @@ public class DialogueWnd : WindowRoot
         SellBtn.gameObject.SetActive(false);
         LockerBtn.gameObject.SetActive(false);
         MailBoxBtn.gameObject.SetActive(false);
+        MiniGameBtn.gameObject.SetActive(false);
         StrenthenBtn.gameObject.SetActive(false);
         QuestBtns.SetActive(false);
         NPCFunctionBtns.SetActive(true);
@@ -113,7 +114,6 @@ public class DialogueWnd : WindowRoot
                     break;
                 case 6:
                     SellBtn.gameObject.SetActive(true);
-
                     break;
                 case 7:
                     LockerBtn.gameObject.SetActive(true);
@@ -220,7 +220,7 @@ public class DialogueWnd : WindowRoot
         }
         else //沒任務
         {
-            NpcDialogue.text = "現在可以進行的任務喔，請努力提高等級後再來";
+            NpcDialogue.text = "現在沒有可以進行的任務喔，請努力提高等級後再來";
         }
     }
     public void PressLastPage()

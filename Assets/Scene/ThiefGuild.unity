@@ -217,9 +217,6 @@ GameObject:
   - component: {fileID: 267195511}
   - component: {fileID: 267195510}
   - component: {fileID: 267195509}
-  - component: {fileID: 267195508}
-  - component: {fileID: 267195507}
-  - component: {fileID: 267195506}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -227,73 +224,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &267195506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267195505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d336ac1fdf92448e8338fac542d77b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 267195511}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 180d06103598041839ed7c27ab719cdc, type: 3}
---- !u!114 &267195507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267195505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdceed1528e6041839e5603d1718c0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 267195511}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Tail: 0.03
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 47821d93933cb47218a8afb75a8fc863, type: 3}
---- !u!114 &267195508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267195505}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 267195511}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  HorizontalSpeed: 0.2
-  VerticalSpeed: 0
-  Density: 2
-  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!124 &267195509
 Behaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +673,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031977374}
-  - component: {fileID: 2031977373}
   - component: {fileID: 2031977372}
   - component: {fileID: 2031977371}
   m_Layer: 9
@@ -778,57 +707,39 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 61.430943, y: 93.53063}
-      - {x: 56.251625, y: 84.73315}
-      - {x: -14.987474, y: 48.561}
-      - {x: -24.822968, y: 42.57655}
-      - {x: -41.356552, y: 45.752895}
-      - {x: -55.744324, y: 54.89187}
-      - {x: -78.843185, y: 52.08401}
-      - {x: -99.20445, y: 66.61756}
-      - {x: -112.90512, y: 69.45656}
-      - {x: -140.04758, y: 71.367}
-      - {x: -167.46973, y: 58.832718}
-      - {x: -185.48242, y: 65.93199}
-      - {x: -249.04417, y: 31.062881}
-      - {x: -252.94688, y: 13.270458}
-      - {x: -276.38132, y: -1.3042946}
-      - {x: -288.39978, y: 9.107468}
-      - {x: -309.63507, y: 39.3854}
-      - {x: -339.79822, y: 28.969748}
-      - {x: -390.01715, y: -21.162018}
-      - {x: -388.86505, y: -71.827545}
-      - {x: -396.1465, y: -85.83716}
-      - {x: -422.17258, y: -105.14299}
-      - {x: -438.40228, y: -109.2094}
-      - {x: -437.96585, y: -127.07368}
-      - {x: -442.32547, y: -165.76886}
-      - {x: -467.51212, y: -170.94795}
-      - {x: -500.07935, y: -159.22403}
-      - {x: -510.31573, y: -168.30717}
-      - {x: -513.6569, y: -382.10477}
-      - {x: -108.428116, y: -382.67416}
-      - {x: 233.56204, y: -383.3148}
-      - {x: 240.65613, y: -366.9594}
-      - {x: 271.21286, y: -357.40045}
-      - {x: 309.38763, y: -370.26492}
-      - {x: 356.79166, y: -354.37985}
-      - {x: 386.63068, y: -363.06992}
-      - {x: 401.65213, y: -367.74646}
-      - {x: 497.7655, y: -303.94644}
-      - {x: 504.0934, y: -286.69946}
-      - {x: 511.597, y: -258.48605}
-      - {x: 511.40274, y: -129.18195}
-      - {x: 511.39136, y: -43.09943}
-      - {x: 510.86133, y: 25.121387}
-      - {x: 470.73038, y: 35.696068}
-      - {x: 358.307, y: 78.77523}
-      - {x: 335.03903, y: 80.476974}
-      - {x: 273.89444, y: 107.518166}
-      - {x: 268.36298, y: 124.51414}
-      - {x: 201.2222, y: 155.3201}
-      - {x: 163.72029, y: 163.31406}
-      - {x: 139.24901, y: 135.89581}
+    - - {x: -3.7825675, y: 165.53072}
+      - {x: -149.01822, y: 161.00754}
+      - {x: -142.09262, y: 86.379654}
+      - {x: -57.741024, y: 45.66631}
+      - {x: -20.273746, y: 45.454826}
+      - {x: 126.778305, y: 133.24681}
+      - {x: 161.66855, y: 158.69728}
+      - {x: 275.08252, y: 111.97472}
+      - {x: 510.92227, y: 16.74318}
+      - {x: 514.2707, y: -179.68019}
+      - {x: 512.5229, y: -383.42313}
+      - {x: 3.5159912, y: -385.42392}
+      - {x: -512.32104, y: -381.52112}
+      - {x: -511.9934, y: -168.38634}
+      - {x: -444.53275, y: -167.89027}
+      - {x: -431.55606, y: -130.1488}
+      - {x: -429.7068, y: -110.68946}
+      - {x: -382.19006, y: -78.30746}
+      - {x: -382.13004, y: -6.698353}
+      - {x: -336.07837, y: 31.249922}
+      - {x: -283.30884, y: 2.4613419}
+      - {x: -143.43594, y: 84.899315}
+      - {x: -214.53717, y: 108.66231}
+      - {x: -348.69778, y: 107.71312}
+      - {x: -424.39697, y: 65.89746}
+      - {x: -696.9221, y: -16.7471}
+      - {x: -719.5315, y: -419.41116}
+      - {x: -509.25702, y: -631.34937}
+      - {x: 465.34982, y: -550.93774}
+      - {x: 760.819, y: -375.23352}
+      - {x: 772.2088, y: 7.6427536}
+      - {x: 564.44666, y: 195.49698}
+      - {x: 140.30681, y: 279.05798}
 --- !u!114 &2031977372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,24 +753,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapBG: {fileID: 865713200}
---- !u!114 &2031977373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031977370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f01b895e078212419b3a7c52085d19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  autoRegenerateInterval: 60
-  radiusOffset: 0.1
-  invertMasterPolygon: 0
 --- !u!4 &2031977374
 Transform:
   m_ObjectHideFlags: 0

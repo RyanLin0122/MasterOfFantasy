@@ -26,6 +26,8 @@ namespace PEProtocal
         public int MonsterMax;
         [ProtoMember(9, IsRequired = false)]
         public int BornTime;
+        [ProtoMember(10, IsRequired = false)]
+        public Dictionary<int, float[]> NPC_Positions;
     }
     [ProtoContract]
     public class NpcConfig
@@ -40,6 +42,8 @@ namespace PEProtocal
         public string Sprite;
         [ProtoMember(5, IsRequired = false)]
         public string[] FixedText;
+        [ProtoMember(6, IsRequired = false)]
+        public string DotSprite;
     }
 
     [ProtoContract]

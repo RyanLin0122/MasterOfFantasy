@@ -545,7 +545,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776301776}
-  - component: {fileID: 776301775}
   - component: {fileID: 776301774}
   - component: {fileID: 776301773}
   m_Layer: 9
@@ -580,44 +579,56 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 767.2671, y: 159.72287}
-      - {x: 724.50165, y: 149.96535}
-      - {x: 715.59796, y: 140.1248}
-      - {x: 694.3866, y: 134.85445}
-      - {x: 639.79486, y: 132.39978}
-      - {x: 611.8099, y: 138.50278}
-      - {x: 590.6677, y: 155.34229}
-      - {x: 353.7655, y: 138.32196}
-      - {x: 348.16705, y: 117.13666}
-      - {x: 329.84, y: 102.84049}
-      - {x: 274.63498, y: 90.47562}
-      - {x: 184.96262, y: 92.1148}
-      - {x: 82.38019, y: 104.088005}
-      - {x: -27.27707, y: 119.74026}
-      - {x: -61.962376, y: 118.923164}
-      - {x: -75.35513, y: 85.880005}
-      - {x: -76.30859, y: 51.41953}
-      - {x: -101.52831, y: 43.389652}
-      - {x: -160.23598, y: 57.368626}
-      - {x: -173.76384, y: 42.427235}
-      - {x: -209.52185, y: 41.367275}
-      - {x: -250.01892, y: 46.666855}
-      - {x: -280.13382, y: 68.03607}
-      - {x: -302.3153, y: 62.9805}
-      - {x: -290.77274, y: 41.69289}
-      - {x: -435.25287, y: 36.642147}
-      - {x: -484.9488, y: 81.33383}
-      - {x: -526.9235, y: 149.8274}
-      - {x: -575.6512, y: 154.26213}
-      - {x: -622.5118, y: 136.63132}
-      - {x: -711.2084, y: 107.95942}
-      - {x: -600.46045, y: -86.44614}
-      - {x: -590.73883, y: -134.08362}
-      - {x: -589.4195, y: -153.1782}
-      - {x: -607.1021, y: -169.75812}
-      - {x: -768.0376, y: -253.31308}
-      - {x: -767.7359, y: -381.99063}
-      - {x: 766.85443, y: -381.9289}
+    - - {x: -180.75558, y: 271.6891}
+      - {x: -395.76678, y: 251.14142}
+      - {x: -289.77066, y: 62.46411}
+      - {x: -228.38594, y: 53.345936}
+      - {x: -191.28383, y: 43.116413}
+      - {x: -128.72386, y: 50.495613}
+      - {x: -77.299065, y: 52.674965}
+      - {x: -74.35865, y: 121.02466}
+      - {x: -13.221386, y: 132.65967}
+      - {x: 100.07763, y: 88.099075}
+      - {x: 206.2768, y: 71.852135}
+      - {x: 287.93195, y: 89.16719}
+      - {x: 356.16183, y: 117.55982}
+      - {x: 390.69388, y: 143.0864}
+      - {x: 566.3198, y: 155.94376}
+      - {x: 616.8274, y: 126.241714}
+      - {x: 766.4642, y: 133.23085}
+      - {x: 768.1658, y: -287.45242}
+      - {x: 766.57385, y: -385.41666}
+      - {x: 206.91519, y: -382.92157}
+      - {x: -608.00037, y: -384.755}
+      - {x: -767.15076, y: -381.92572}
+      - {x: -764.4874, y: -281.1319}
+      - {x: -576.69934, y: -173.8635}
+      - {x: -576.5831, y: -101.5276}
+      - {x: -596.5801, y: -41.991325}
+      - {x: -767.32074, y: 34.062935}
+      - {x: -767.1184, y: 122.601204}
+      - {x: -689.29333, y: 147.11684}
+      - {x: -601.2114, y: 115.54348}
+      - {x: -525.48724, y: 127.095116}
+      - {x: -474.50815, y: 74.31717}
+      - {x: -426.62762, y: 38.166237}
+      - {x: -313.90433, y: 41.075615}
+      - {x: -291.25858, y: 60.52926}
+      - {x: -421.89642, y: 221.26945}
+      - {x: -634.5987, y: 262.79306}
+      - {x: -829.1926, y: 187.08154}
+      - {x: -1007.442, y: 248.2502}
+      - {x: -842.63617, y: -86.33414}
+      - {x: -978.2937, y: -199.62903}
+      - {x: -910.0349, y: -489.0013}
+      - {x: -440.3932, y: -559.06946}
+      - {x: 470.67468, y: -584.0902}
+      - {x: 931.8222, y: -542.7866}
+      - {x: 1072.1567, y: -16.639252}
+      - {x: 860.74005, y: 253.89134}
+      - {x: 567.27576, y: 279.04297}
+      - {x: 332.8844, y: 242.91856}
+      - {x: 64.262276, y: 309.01917}
 --- !u!114 &776301774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,24 +642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapBG: {fileID: 173733976}
---- !u!114 &776301775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776301772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f01b895e078212419b3a7c52085d19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  autoRegenerateInterval: 60
-  radiusOffset: 0.1
-  invertMasterPolygon: 0
 --- !u!4 &776301776
 Transform:
   m_ObjectHideFlags: 0
@@ -677,9 +670,6 @@ GameObject:
   - component: {fileID: 1427999058}
   - component: {fileID: 1427999057}
   - component: {fileID: 1427999056}
-  - component: {fileID: 1427999055}
-  - component: {fileID: 1427999054}
-  - component: {fileID: 1427999053}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -687,73 +677,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1427999053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427999052}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d336ac1fdf92448e8338fac542d77b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1427999058}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 180d06103598041839ed7c27ab719cdc, type: 3}
---- !u!114 &1427999054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427999052}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdceed1528e6041839e5603d1718c0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1427999058}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  ParticleMultiplier: 10
-  Tail: 0.03
-  Speed: 4
-  Direction: 0.2
-  Luminance: 1
-  Zoom: 1.2
-  DarkMode: 0
-  LuminanceAdder: 0.002
-  Shader: {fileID: 4800000, guid: 47821d93933cb47218a8afb75a8fc863, type: 3}
---- !u!114 &1427999055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427999052}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 1427999058}
-  CameraSpeedMultiplier: 1
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Size: 1
-  HorizontalSpeed: 0.2
-  VerticalSpeed: 0
-  Density: 2
-  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!124 &1427999056
 Behaviour:
   m_ObjectHideFlags: 0

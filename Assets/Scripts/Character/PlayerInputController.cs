@@ -177,6 +177,24 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         }
         else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
+            if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
+            {
+                GeneralNPC npc = null;
+                foreach (var item in BattleSys.Instance.MapNPCs)
+                {
+                    if ((item.transform.localPosition - entityController.transform.localPosition).magnitude < 200)
+                    {
+                        npc = item;
+                    }
+                }
+                if (npc != null)
+                {
+                    npc.LoadDialogue();
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
             CommonAttack();
         }
         else if (Input.GetKeyDown(KeyCode.R))
@@ -209,7 +227,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                     }
                 }
             }
-            if(hotKeySlot.State == HotKeyState.Consumable)
+            if (hotKeySlot.State == HotKeyState.Consumable)
             {
                 bool IsCash = InventorySys.Instance.ItemList[hotKeySlot.data.ID].IsCash;
                 if (IsCash)
@@ -218,7 +236,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
                     if (ck == null || ck.Count < 1) return;
                     foreach (var kv in ck)
                     {
-                        if(kv.Value.ItemID == hotKeySlot.data.ID)
+                        if (kv.Value.ItemID == hotKeySlot.data.ID)
                         {
                             KnapsackWnd.Instance.FindCashSlot(kv.Key).UseItem();
                             return;

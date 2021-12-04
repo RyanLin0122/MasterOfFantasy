@@ -87,6 +87,7 @@ public class MainCitySys : SystemRoot
             UISystem.Instance.equipmentWnd.PutOnAllPlayerEquipments(GameRoot.Instance.ActivePlayer.playerEquipments);
             UISystem.Instance.Knapsack.ReadItems();
             UISystem.Instance.mGFWnd.CateForFormula();
+            BattleSys.Instance.LoadNPC(rsp.MapID);
             //打開主UI
             UISystem.Instance.baseUI.SetWndState();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();            
@@ -151,6 +152,7 @@ public class MainCitySys : SystemRoot
             }
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
             //打開主UI
+            BattleSys.Instance.LoadNPC(rsp.MapID);
             UISystem.Instance.baseUI.SetWndState();
             UISystem.Instance.baseUI.GetComponent<UISelfAdjust>().BaseUISelfAdjust();
             //播放背景音樂
