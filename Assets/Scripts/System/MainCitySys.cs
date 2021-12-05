@@ -54,6 +54,10 @@ public class MainCitySys : SystemRoot
     }
     public void LoginMap(EnterGameRsp rsp) //加載某地圖，特定位置
     {
+        if (GameRoot.Instance.ActivePlayer.NotCashKnapsack == null) GameRoot.Instance.ActivePlayer.NotCashKnapsack = new Dictionary<int, Item>();
+        if (GameRoot.Instance.ActivePlayer.CashKnapsack == null) GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
+        if (GameRoot.Instance.ActivePlayer.BadgeCollection == null) GameRoot.Instance.ActivePlayer.BadgeCollection = new List<int>();
+        if (GameRoot.Instance.ActivePlayer.TitleCollection == null) GameRoot.Instance.ActivePlayer.TitleCollection = new List<int>();
         UISystem.Instance.equipmentWnd.InitEquipWndWhenLogin();
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
         QuestManager.Instance.Init(GameRoot.Instance.ActivePlayer.ProcessingQuests);
@@ -110,6 +114,7 @@ public class MainCitySys : SystemRoot
             }
             UISystem.Instance.miniMap.Init();
             UpdateWeather(rsp.weather);
+            TimerSvc.Instance.AddTimeTask((t) => { new RunSender(); }, 2, PETimeUnit.Second);
         });
     }
 

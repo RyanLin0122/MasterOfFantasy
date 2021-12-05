@@ -199,6 +199,7 @@ public class QuestManager : MonoSingleton<QuestManager>
         if (qr.Result)
         {
             Quest quest = RefreshQuestStatus(msg.questAcceptResponse.quest);
+            StoreItem(qr.DeliveryItem);
         }
         else
         {
@@ -210,9 +211,39 @@ public class QuestManager : MonoSingleton<QuestManager>
     {
         QuestSubmitResponse qs = msg.questSubmitResponse;
         if (qs == null) return;
+        if (qs.RecycleItems != null && qs.RecycleItems.Count > 0)
+        {
+            foreach (var item in qs.RecycleItems)
+            {
+                StoreItem(item);
+            }
+        }
+        if (qs.DeleteIsCashs != null && qs.DeleteIsCashs.Count > 0)
+        {
+            for (int i = 0; i < qs.DeleteIsCashs.Count; i++)
+            {
+                DeleteItem(qs.DeleteIsCashs[i], qs.DeletePositions[i]);
+            }
+        }
         if (qs.Result)
         {
             Quest quest = RefreshQuestStatus(msg.questSubmitResponse.quest);
+            if(quest.Info.status == QuestStatus.Finished)
+            {
+                GameRoot.Instance.ActivePlayer.Ribi = qs.RewardRibi; //直接覆蓋
+                GameRoot.Instance.ActivePlayer.Honor = qs.RewardHonerPoint; //直接覆蓋
+                UISystem.Instance.AddMessageQueue("獲得經驗值: " + qs.RewardExp);
+                UISystem.Instance.baseUI.AddExp(qs.RewardExp);
+                if (!GameRoot.Instance.ActivePlayer.BadgeCollection.Contains(qs.RewardBadge)) GameRoot.Instance.ActivePlayer.BadgeCollection.Add(qs.RewardBadge);
+                if (!GameRoot.Instance.ActivePlayer.TitleCollection.Contains(qs.RewardTitle)) GameRoot.Instance.ActivePlayer.TitleCollection.Add(qs.RewardTitle);
+                if (qs.RewardItems != null && qs.RecycleItems.Count > 0)
+                {
+                    foreach (var item in qs.RewardItems)
+                    {
+                        StoreItem(item);
+                    }
+                }
+            }
         }
         else
         {
@@ -253,7 +284,63 @@ public class QuestManager : MonoSingleton<QuestManager>
         {
             onQuestStatusChanged(result);
         }
+
+        if(BattleSys.Instance.MapNPCs!=null && BattleSys.Instance.MapNPCs.Count > 0)
+        {
+            foreach (var npc in BattleSys.Instance.MapNPCs)
+            {
+                npc.SetQuestStatus();
+            }
+        }
         return result;
+    }
+
+    private void DeleteItem(bool IsCash, int Position)
+    {
+        if (IsCash)
+        {
+            GameRoot.Instance.ActivePlayer.CashKnapsack.Remove(Position);
+            ItemSlot slot = KnapsackWnd.Instance.FindCashSlot(Position);
+            if (slot.transform.childCount > 0)
+            {
+                Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+            }
+        }
+        else
+        {
+            GameRoot.Instance.ActivePlayer.NotCashKnapsack.Remove(Position);
+            ItemSlot slot = KnapsackWnd.Instance.FindCashSlot(Position);
+            if (slot.transform.childCount > 0)
+            {
+                Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+            }
+        }
+    }
+    private void StoreItem(Item item)
+    {
+        if (item != null)
+        {
+            if (item.IsCash)
+            {
+                GameRoot.Instance.ActivePlayer.CashKnapsack[item.Position] = item;
+                ItemSlot slot = KnapsackWnd.Instance.FindCashSlot(item.Position);
+                if (slot.transform.childCount > 0)
+                {
+                    Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+                }
+                slot.StoreItem(item);
+            }
+            else
+            {
+                GameRoot.Instance.ActivePlayer.NotCashKnapsack[item.Position] = item;
+                ItemSlot slot = KnapsackWnd.Instance.FindSlot(item.Position);
+                if (slot.transform.childCount > 0)
+                {
+                    Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+                }
+                slot.StoreItem(item);
+            }
+        }
     }
     #endregion
 }

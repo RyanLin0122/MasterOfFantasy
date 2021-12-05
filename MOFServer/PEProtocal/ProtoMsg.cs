@@ -1323,6 +1323,8 @@ namespace PEProtocal
         public string ErrorMsg { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public NQuest quest { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public Item DeliveryItem { get; set; }
     }
 
     [ProtoContract]
@@ -1341,6 +1343,24 @@ namespace PEProtocal
         public string ErrorMsg { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public NQuest quest { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public long RewardRibi { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public List<Item> RewardItems { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public long RewardExp { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public int RewardHonerPoint { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int RewardBadge { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int RewardTitle { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public List<Item> RecycleItems { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public List<int> DeletePositions { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public List<bool> DeleteIsCashs { get; set; }
     }
 
     [ProtoContract]

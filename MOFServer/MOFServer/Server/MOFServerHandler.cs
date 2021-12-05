@@ -352,6 +352,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                         GetMap(session).characters[session.ActivePlayer.Name].player.Level = 50;
                         GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 50;
                         break;
+                    case "!Cbag":
+                        GetMap(session).characters[session.ActivePlayer.Name].player.NotCashKnapsack.Clear();
+                        GetMap(session).characters[session.ActivePlayer.Name].player.CashKnapsack.Clear();
+                        break;
                     default:
                         break;
                 }

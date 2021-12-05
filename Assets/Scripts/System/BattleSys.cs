@@ -1083,7 +1083,7 @@ public class BattleSys : SystemRoot
         {
             if (kv.Key == GameRoot.Instance.ActivePlayer.Name)
             {
-                UISystem.Instance.AddMessageQueue("獲取經驗值: " + kv.Value);
+                UISystem.Instance.AddMessageQueue("獲得經驗值: " + kv.Value);
                 UISystem.Instance.baseUI.AddExp(kv.Value);
             }
         }
@@ -1554,9 +1554,16 @@ public class BattleSys : SystemRoot
                 if (npc.transform.localPosition.x > 0) npc.transform.localScale = new Vector2(npc.transform.localScale.x, npc.transform.localScale.y);
                 else
                 {
-                    if(npc.NPCID != 1018)
+                    if (npc.NPCID != 1018)
                     {
                         npc.transform.localScale = new Vector2(-npc.transform.localScale.x, npc.transform.localScale.y);
+                        foreach (var transform in npc.GetComponentsInChildren<RectTransform>())
+                        {
+                            if (transform != npc.transform)
+                            {
+                                transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                            }
+                        }
                     }
                 }
                 this.MapNPCs.Add(npc);

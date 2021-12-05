@@ -609,6 +609,10 @@ public class MOFCharacter : Entity
     public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
     {
         this.player = player;
+        if (this.player.CashKnapsack == null) this.player.CashKnapsack = new Dictionary<int, Item>();
+        if (this.player.NotCashKnapsack == null) this.player.NotCashKnapsack = new Dictionary<int, Item>();
+        if (this.player.BadgeCollection == null) this.player.BadgeCollection = new List<int>();
+        if (this.player.TitleCollection == null) this.player.TitleCollection = new List<int>();
         InitSkill();
         InitBuffs();
         InitAllAtribute();
@@ -831,7 +835,148 @@ public class MOFCharacter : Entity
         await CacheSvc.Instance.AsyncSaveAccount(session.Account, session.AccountData);
     }
 
+    public int GetNotCashKnapsackEmptyPosition(int ItemID = -1, int Count = 1)
+    {
+        int result = -1; //滿了
+        if (this.player.NotCashKnapsack == null)
+        {
+            this.player.NotCashKnapsack = new Dictionary<int, Item>();
+            return 1;
+        }
+        else
+        {
+            for (int i = 1; i < 73; i++)
+            {
+                Item item = null;
+                if (this.player.NotCashKnapsack.TryGetValue(i, out item))
+                {
+                    if (item == null) return i;
+                    else
+                    {
+                        if (item.Count + Count <= item.Capacity) return i;
+                        else continue;
+                    }
+                }
+                else
+                {
+                    return i;
+                }
+            }
+        }
+        return result;
+    }
+    public int GetCashKnapsackEmptyPosition(int ItemID = -1, int Count = 1)
+    {
+        int result = -1; //滿了
+        if (this.player.CashKnapsack == null)
+        {
+            this.player.CashKnapsack = new Dictionary<int, Item>();
+            return 1;
+        }
+        else
+        {
+            for (int i = 1; i < 25; i++)
+            {
+                Item item = null;
+                if (this.player.CashKnapsack.TryGetValue(i, out item))
+                {
+                    if (item.Count + Count <= item.Capacity) return i;
+                    else continue;
+                }
+                else
+                {
+                    return i;
+                }
+            }
+        }
+        return result;
+    }
 
+    public bool HasItem(int ID, int Count)
+    {
+        bool result = false;
+        int RestNum = Count;
+        bool IsCash = CacheSvc.ItemList[ID].IsCash;
+        if (IsCash)
+        {
+            foreach (var kv in this.player.CashKnapsack)
+            {
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
+            }
+        }
+        else
+        {
+            foreach (var kv in this.player.NotCashKnapsack)
+            {
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
+            }
+        }
+        if (RestNum < 0) result = true;
+        return result;
+    }
+
+    public (List<Item>, List<int>, List<bool>) RecycleItem(int ID, int Count)
+    {
+        (List<Item>, List<int>, List<bool>) result;
+        result.Item1 = new List<Item>();
+        result.Item2 = new List<int>();
+        result.Item3 = new List<bool>();
+        int Required = Count;
+        bool IsCash = CacheSvc.ItemList[ID].IsCash;
+        if (IsCash)
+        {
+            foreach (var kv in this.player.CashKnapsack)
+            {
+                if (Required == 0) break;
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID)
+                {
+                    if (kv.Value.Count > Required)
+                    {
+                        kv.Value.Count -= Required;
+                        Required -= Required;
+                        result.Item1.Add(kv.Value);
+                        break;
+                    }
+                    else
+                    {
+                        Required -= kv.Value.Count;
+                        result.Item2.Add(kv.Key);
+                        result.Item3.Add(kv.Value.IsCash);
+                        player.CashKnapsack.Remove(kv.Key);
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (var kv in this.player.NotCashKnapsack)
+            {
+                if (Required == 0) break;
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID)
+                {
+                    if (kv.Value.Count > Required)
+                    {
+                        kv.Value.Count -= Required;
+                        Required -= Required;
+                        result.Item1.Add(kv.Value);
+                        break;
+                    }
+                    else
+                    {
+                        Required -= kv.Value.Count;
+                        result.Item2.Add(kv.Key);
+                        result.Item3.Add(kv.Value.IsCash);
+                        player.NotCashKnapsack.Remove(kv.Key);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
 
 public class Transactor

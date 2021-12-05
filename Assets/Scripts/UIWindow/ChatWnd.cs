@@ -17,7 +17,7 @@ public class ChatWnd : WindowRoot
     public Sprite Choosed;
     public Sprite Unchoosed;
     public Text ContentText;
-    private int chatType=1;
+    private int chatType = 1;
     private List<string> chatLst_All = new List<string>();
     private List<string> chatLst_Party = new List<string>();
     private List<string> chatLst_Guild = new List<string>();
@@ -64,8 +64,8 @@ public class ChatWnd : WindowRoot
                             BattleSys.Instance.Players[msg.chatResponse.CharacterName].ShowChatBox(msg.chatResponse.Contents);
                         }
                     }
-                    
-                }           
+
+                }
                 break;
         }
     }
@@ -87,6 +87,7 @@ public class ChatWnd : WindowRoot
             }
             else
             {
+
                 switch (chatType)
                 {
                     case 1:
@@ -95,7 +96,7 @@ public class ChatWnd : WindowRoot
                         new ChatSender(1, iptChat.text);
                         break;
                 }
-                TimerSvc.Instance.AddTimeTask((int tid) => { canSend = true; },1,PETimeUnit.Second);
+                TimerSvc.Instance.AddTimeTask((int tid) => { canSend = true; }, 1, PETimeUnit.Second);
                 canSend = false;
             }
         }
@@ -164,16 +165,29 @@ public class ChatWnd : WindowRoot
 
     public void CommandFilter(string s)
     {
-        if(s.StartsWith("m "))
+        if (s.StartsWith("m "))
         {
-            string[] mapstring = s.Split(new char[] {' '});
+            string[] mapstring = s.Split(new char[] { ' ' });
             try
             {
                 Commands.GoToMapByPortalID(Convert.ToInt32(mapstring[1]));
             }
-            catch (System.Exception e )
+            catch (System.Exception e)
             {
                 Debug.Log(e.Message);
+            }
+        }
+        if (s == "!Cbag")
+        {
+            if (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null) GameRoot.Instance.ActivePlayer.NotCashKnapsack.Clear();
+            if (GameRoot.Instance.ActivePlayer.CashKnapsack != null) GameRoot.Instance.ActivePlayer.CashKnapsack.Clear();
+            foreach (var slots in KnapsackWnd.Instance.slotLists)
+            {
+                foreach (var slot in slots)
+                {
+                    if (slot.transform.childCount > 0)
+                        Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+                }
             }
         }
     }
