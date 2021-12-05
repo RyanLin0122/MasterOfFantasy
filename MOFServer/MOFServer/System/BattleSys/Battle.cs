@@ -297,6 +297,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
                         character.player.Ribi += drop.Money;
                         character.trimedPlayer.Ribi += drop.Money;
                         Result = true;
+                        this.mofMap.AllDropItems.Remove(request.ItemUUID);
                         LogSvc.Info("UUID: " + request.ItemUUID + "成功撿錢 + " + drop.Money);
                     }
                     else //撿取道具
@@ -344,6 +345,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
                                     break;
                             }
                             Result = true;
+                            this.mofMap.AllDropItems.Remove(request.ItemUUID);
                             LogSvc.Info("UUID: " + request.ItemUUID + "成功撿取");
                         }
                     }

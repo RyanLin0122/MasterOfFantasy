@@ -348,12 +348,12 @@ public class MOFMap
     public bool IsStop = true;
     public void MapStart()
     {
-        Console.WriteLine("地圖開始");
+        Console.WriteLine("Map " + this.mapName + " Start");
         IsStop = false;
     }
     public void MapStop()
     {
-        Console.WriteLine("地圖暫停");
+        Console.WriteLine("Map " + this.mapName + " Pause");
         this.IsStop = true;
     }
     #endregion

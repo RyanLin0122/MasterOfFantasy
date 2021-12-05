@@ -200,7 +200,6 @@ public class QuestManager
                             break;
                         case QuestTarget.Item:
                             //確認東西有沒有在背包
-                            List<Item> existItems = null;
                             List<bool> IsItemsExist = new List<bool>();
                             List<int> ItemIDs = define.TargetIDs;
 
@@ -515,19 +514,26 @@ public class QuestManager
                         }
                         else
                         {
-                            if (this.Owner.player.NotCashKnapsack[j].Count + RestNum > ItemTemplates[i].Capacity)
+                            if(item.ItemID == ItemTemplates[i].ItemID)
                             {
-                                RestNum -= ItemTemplates[i].Capacity - this.Owner.player.NotCashKnapsack[j].Count;
-                                this.Owner.player.NotCashKnapsack[j].Count = ItemTemplates[i].Capacity;
-                                this.Owner.player.NotCashKnapsack[j].Position = j;
-                                RewardItems.Add(this.Owner.player.NotCashKnapsack[j]);
+                                if (this.Owner.player.NotCashKnapsack[j].Count + RestNum > ItemTemplates[i].Capacity)
+                                {
+                                    RestNum -= ItemTemplates[i].Capacity - this.Owner.player.NotCashKnapsack[j].Count;
+                                    this.Owner.player.NotCashKnapsack[j].Count = ItemTemplates[i].Capacity;
+                                    this.Owner.player.NotCashKnapsack[j].Position = j;
+                                    RewardItems.Add(this.Owner.player.NotCashKnapsack[j]);
+                                }
+                                else
+                                {
+                                    this.Owner.player.NotCashKnapsack[j].Count = this.Owner.player.NotCashKnapsack[j].Count + RestNum;
+                                    this.Owner.player.NotCashKnapsack[j].Position = j;
+                                    RewardItems.Add(this.Owner.player.NotCashKnapsack[j]);
+                                    break;
+                                }
                             }
                             else
                             {
-                                this.Owner.player.NotCashKnapsack[j].Count = this.Owner.player.NotCashKnapsack[j].Count + RestNum;
-                                this.Owner.player.NotCashKnapsack[j].Position = j;
-                                RewardItems.Add(this.Owner.player.NotCashKnapsack[j]);
-                                break;
+                                continue;
                             }
                         }
                     }

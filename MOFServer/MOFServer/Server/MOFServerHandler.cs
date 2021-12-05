@@ -42,7 +42,6 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
 
                 case 5:
-                    Console.WriteLine("收到創角消息");
                     if (msg.CreateRequest != null && msg.Account != null)
                     {
                         Player player = CacheSvc.Instance.CreatePlayerData(msg.CreateRequest);
@@ -60,7 +59,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
 
                 case 7:
-                    Console.WriteLine("收到刪角消息");
+                    LogSvc.Info("收到刪角消息");
                     if (CacheSvc.Instance.DeletePlayer(msg.Account, msg.deleteRequest.CharacterName) != null)
                     {
                         if (CacheSvc.Instance.CharacterNames.Contains(msg.deleteRequest.CharacterName))
@@ -172,15 +171,6 @@ class MOFServerHandler : ChannelHandlerAdapter
                 case 24: //聊天請求
                     ProcessChatReq(session, msg);
                     break;
-                case 33: //升級
-                    session.ActivePlayer.Level += 1;
-                    session.ActivePlayer.RestPoint += 5;
-                    session.ActivePlayer.MAXHP += 10;
-                    session.ActivePlayer.MAXMP += 10;
-                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].InitAllAtribute();
-                    session.ActivePlayer.Exp = msg.levelUp.RestExp;
-                    session.WriteAndFlush(msg);
-                    break;
                 case 40: //玩家動作
                     GetMap(session).ProcessPlayerAction(msg);
                     break;
@@ -264,7 +254,7 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message + ex.Source + ex.StackTrace + ex.InnerException);
+            LogSvc.Error(ex.Message + ex.Source + ex.StackTrace + ex.InnerException);
         }
 
     }
@@ -278,7 +268,7 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message + "\n" + e.StackTrace);
+            LogSvc.Error(e.Message + "\n" + e.StackTrace);
             return null;
         }
 
@@ -372,7 +362,7 @@ class MOFServerHandler : ChannelHandlerAdapter
         }
         catch (Exception e)
         {
-            LogSvc.Debug(e.Message);
+            LogSvc.Error(e.Message);
         }
 
     }

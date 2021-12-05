@@ -326,7 +326,7 @@ public class QuestManager : MonoSingleton<QuestManager>
                 ItemSlot slot = KnapsackWnd.Instance.FindCashSlot(item.Position);
                 if (slot.transform.childCount > 0)
                 {
-                    Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+                    DestroyImmediate(slot.GetComponentInChildren<ItemUI>().gameObject);
                 }
                 slot.StoreItem(item);
             }
@@ -336,7 +336,7 @@ public class QuestManager : MonoSingleton<QuestManager>
                 ItemSlot slot = KnapsackWnd.Instance.FindSlot(item.Position);
                 if (slot.transform.childCount > 0)
                 {
-                    Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
+                    DestroyImmediate(slot.GetComponentInChildren<ItemUI>().gameObject);
                 }
                 slot.StoreItem(item);
             }
