@@ -11,8 +11,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     private List<SkillHitInfo> Hits;
     private List<BuffInfo> BuffActions;
     private List<SkillCastInfo> SkillCasts;
-    public List<int> DeathMonsterUUIDs = new List<int>();
-    public List<bool> DeathMonsterIsDelay = new List<bool>();
+    public List<MonsterDeathInfo> MonsterDeaths;
     private Dictionary<string, int> ExpRecord;
     private Dictionary<int, DropItem> ReadyToDrop;
 
@@ -35,6 +34,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.AllPlayers = new Dictionary<string, Entity>();
         this.AllMonsters = new Dictionary<int, Entity>();
         this.DeathPool = new Dictionary<int, Entity>();
+        this.MonsterDeaths = new List<MonsterDeathInfo>();
         this.Hits = new List<SkillHitInfo>();
         this.BuffActions = new List<BuffInfo>();
         this.SkillCasts = new List<SkillCastInfo>();
@@ -58,10 +58,15 @@ public class Battle //戰鬥類，一個地圖綁定一個
     {
         this.BuffActions.Add(buffInfo);
     }
-    public void AddDeathMonsterUUID(int ID, bool IsDelay)
+    public void AddDeathMonsterUUID(int ID, bool IsDelay, List<string> KillerNames)
     {
-        this.DeathMonsterUUIDs.Add(ID);
-        this.DeathMonsterIsDelay.Add(IsDelay);
+        this.MonsterDeaths.Add(new MonsterDeathInfo
+        {
+            UUID = ID,
+            IsDelay = IsDelay,
+            Killers = KillerNames
+        }
+        );
     }
     public void AddReadyToDropItem(int UUID, DropItem dropItem)
     {
@@ -69,8 +74,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
     }
     internal void Update()
     {
-        this.DeathMonsterUUIDs.Clear();
-        this.DeathMonsterIsDelay.Clear();
+        this.MonsterDeaths.Clear();
         this.SkillCasts.Clear();
         this.Hits.Clear();
         this.BuffActions.Clear();
@@ -472,7 +476,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         try
         {
             if (this.Hits.Count == 0 && this.BuffActions.Count == 0 && this.SkillCasts.Count == 0 &&
-            this.DeathMonsterUUIDs.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0 && PickUpUUIDs.Count == 0) return;
+            this.MonsterDeaths.Count == 0 && this.ExpRecord.Count == 0 && ReadyToDrop.Count == 0 && PickUpUUIDs.Count == 0) return;
             SkillCastResponse skillCast = null;
             SkillHitResponse skillHit = null;
             BuffResponse buffRsp = null;
@@ -503,12 +507,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
                     SkillResult = SkillResult.OK
                 };
             }
-            if (this.DeathMonsterUUIDs != null && this.DeathMonsterUUIDs.Count > 0)
+            if (this.MonsterDeaths != null && this.MonsterDeaths.Count > 0)
             {
                 death = new MonsterDeath
                 {
-                    MonsterID = this.DeathMonsterUUIDs,
-                    IsDelayDeath = this.DeathMonsterIsDelay
+                    DeathInfos = this.MonsterDeaths
                 };
             }
             if (this.ExpRecord != null && this.ExpRecord.Count > 0)

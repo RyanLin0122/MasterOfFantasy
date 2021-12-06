@@ -613,6 +613,7 @@ public class MOFCharacter : Entity
         if (this.player.NotCashKnapsack == null) this.player.NotCashKnapsack = new Dictionary<int, Item>();
         if (this.player.BadgeCollection == null) this.player.BadgeCollection = new List<int>();
         if (this.player.TitleCollection == null) this.player.TitleCollection = new List<int>();
+        if (this.player.MonsterKillHistory == null) this.player.MonsterKillHistory = new Dictionary<int, int>();
         InitSkill();
         InitBuffs();
         InitAllAtribute();
@@ -767,7 +768,19 @@ public class MOFCharacter : Entity
         player.MiniGameArr = setting.MiniGameArray;
         return true;
     }
-
+    public void AddMonsterKillNum(int MonID)
+    {
+        int num = -1;
+        if (this.player.MonsterKillHistory.TryGetValue(MonID, out num))
+        {
+            this.player.MonsterKillHistory[MonID] += 1;
+        }
+        else
+        {
+            this.player.MonsterKillHistory[MonID] = 1;
+        }
+        this.questManager.TryAddQuestKillMonster(MonID);
+    }
     public bool RecycleItem(ServerSession session, RecycleItems rc)
     {
         var ItemIDs = rc.ItemID;
@@ -913,7 +926,7 @@ public class MOFCharacter : Entity
                 if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
             }
         }
-        if (RestNum < 0) result = true;
+        if (RestNum <= 0) result = true;
         return result;
     }
 

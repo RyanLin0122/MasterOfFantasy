@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using PEProtocal;
 using UnityEngine.Events;
+using System.Linq;
+
 public class QuestManager : MonoSingleton<QuestManager>
 {
     //所有有效任務
@@ -24,12 +26,30 @@ public class QuestManager : MonoSingleton<QuestManager>
     {
         //初始化已接任務
         Debug.Log("初始化已接任務");
-        if(this.questInfos!=null&& this.questInfos.Count > 0)
+        if (this.questInfos != null && this.questInfos.Count > 0)
         {
             foreach (var info in this.questInfos)
             {
                 Quest quest = new Quest(info);
                 this.allQuests[quest.Info.quest_id] = quest;
+                if (quest.Define.Target == QuestTarget.Kill && quest.Info.status == QuestStatus.InProgress)
+                {
+                    for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                    {
+                        List<NQuest> killquests = null;
+                        if (this.KillQuestProgress.TryGetValue(quest.Define.TargetIDs[i], out killquests))
+                        {
+                            if (killquests == null)
+                                this.KillQuestProgress[quest.Define.TargetIDs[i]] = new List<NQuest>();
+                            this.KillQuestProgress[quest.Define.TargetIDs[i]].Add(quest.Info);
+                        }
+                        else
+                        {
+                            this.KillQuestProgress[quest.Define.TargetIDs[i]] = new List<NQuest>();
+                            this.KillQuestProgress[quest.Define.TargetIDs[i]].Add(quest.Info);
+                        }
+                    }
+                }
             }
         }
         else
@@ -59,10 +79,10 @@ public class QuestManager : MonoSingleton<QuestManager>
                 continue; //等級不符
             if (this.allQuests.ContainsKey(kv.Key))
                 continue; //任務已經存在
-            if(kv.Value.PreQuest > 0) //有沒有前置
+            if (kv.Value.PreQuest > 0) //有沒有前置
             {
                 Quest preQuest;
-                if(this.allQuests.TryGetValue(kv.Value.PreQuest, out preQuest)) //獲取前置任務
+                if (this.allQuests.TryGetValue(kv.Value.PreQuest, out preQuest)) //獲取前置任務
                 {
                     if (preQuest.Info == null)
                         continue; //前置任務未接取
@@ -100,41 +120,41 @@ public class QuestManager : MonoSingleton<QuestManager>
             availables = new List<Quest>();
             this.npcQuests[npcId][NPCQuestStatus.Available] = availables;
         }
-        if(!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.Complete, out completes))
+        if (!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.Complete, out completes))
         {
             completes = new List<Quest>();
             this.npcQuests[npcId][NPCQuestStatus.Complete] = completes;
         }
-        if(!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.InComplete, out incompletes))
+        if (!this.npcQuests[npcId].TryGetValue(NPCQuestStatus.InComplete, out incompletes))
         {
             incompletes = new List<Quest>();
             this.npcQuests[npcId][NPCQuestStatus.InComplete] = incompletes;
         }
 
-        if(quest.Info == null)
+        if (quest.Info == null)
         {
-            if(npcId == quest.Define.AcceptNPC && !this.npcQuests[npcId][NPCQuestStatus.Available].Contains(quest))
+            if (npcId == quest.Define.AcceptNPC && !this.npcQuests[npcId][NPCQuestStatus.Available].Contains(quest))
             {
                 this.npcQuests[npcId][NPCQuestStatus.Available].Add(quest);
             }
         }
         else
         {
-            if(quest.Define.SubmitNPC == npcId && quest.Info.status == QuestStatus.Completed)
+            if (quest.Define.SubmitNPC == npcId && quest.Info.status == QuestStatus.Completed)
             {
                 if (!this.npcQuests[npcId][NPCQuestStatus.Complete].Contains(quest))
                 {
                     this.npcQuests[npcId][NPCQuestStatus.Complete].Add(quest);
                 }
             }
-            if(quest.Define.SubmitNPC == npcId && quest.Info.status == QuestStatus.InProgress)
+            if (quest.Define.SubmitNPC == npcId && quest.Info.status == QuestStatus.InProgress)
             {
                 if (!this.npcQuests[npcId][NPCQuestStatus.InComplete].Contains(quest))
                 {
                     this.npcQuests[npcId][NPCQuestStatus.InComplete].Add(quest);
                 }
             }
-            if(quest.Define.DeliveryNPC > 0 && quest.Define.Target == QuestTarget.Delivery && quest.Info.status == QuestStatus.InProgress)
+            if (quest.Define.DeliveryNPC > 0 && quest.Define.Target == QuestTarget.Delivery && quest.Info.status == QuestStatus.InProgress)
             {
                 if (!this.npcQuests[npcId][NPCQuestStatus.InComplete].Contains(quest))
                 {
@@ -152,7 +172,7 @@ public class QuestManager : MonoSingleton<QuestManager>
     public NPCQuestStatus GetQuestStatusByNpc(int npcId)
     {
         Dictionary<NPCQuestStatus, List<Quest>> status = new Dictionary<NPCQuestStatus, List<Quest>>();
-        if(this.npcQuests.TryGetValue(npcId, out status)) //獲取NPC任務
+        if (this.npcQuests.TryGetValue(npcId, out status)) //獲取NPC任務
         {
             if (status[NPCQuestStatus.DeliveryTarget].Count > 0)
                 return NPCQuestStatus.DeliveryTarget;
@@ -169,7 +189,7 @@ public class QuestManager : MonoSingleton<QuestManager>
     public Quest OpenNPCQuest(int npcId)
     {
         Dictionary<NPCQuestStatus, List<Quest>> status = new Dictionary<NPCQuestStatus, List<Quest>>();
-        if(this.npcQuests.TryGetValue(npcId, out status))
+        if (this.npcQuests.TryGetValue(npcId, out status))
         {
             if (status[NPCQuestStatus.DeliveryTarget].Count > 0)
                 return status[NPCQuestStatus.DeliveryTarget][0];
@@ -183,7 +203,7 @@ public class QuestManager : MonoSingleton<QuestManager>
         return null;
     }
 
-    
+
 
     public void OnQuestAccepted(Quest quest)
     {
@@ -200,6 +220,21 @@ public class QuestManager : MonoSingleton<QuestManager>
         {
             Quest quest = RefreshQuestStatus(msg.questAcceptResponse.quest);
             StoreItem(qr.DeliveryItem);
+            if (quest.Define.Target == QuestTarget.Kill && quest.Define.TargetIDs != null && quest.Define.TargetIDs.Count > 0)
+            {
+                for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                {
+                    quest.Info.Targets[quest.Define.TargetIDs[i]] = 0;
+                }
+                for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                {
+                    if (!KillQuestProgress.ContainsKey(quest.Define.TargetIDs[i]))
+                    {
+                        KillQuestProgress[quest.Define.TargetIDs[i]] = new List<NQuest>();
+                        KillQuestProgress[quest.Define.TargetIDs[i]].Add(quest.Info);
+                    }
+                }
+            }
         }
         else
         {
@@ -228,7 +263,7 @@ public class QuestManager : MonoSingleton<QuestManager>
         if (qs.Result)
         {
             Quest quest = RefreshQuestStatus(msg.questSubmitResponse.quest);
-            if(quest.Info.status == QuestStatus.Finished)
+            if (quest.Info.status == QuestStatus.Finished)
             {
                 GameRoot.Instance.ActivePlayer.Ribi = qs.RewardRibi; //直接覆蓋
                 GameRoot.Instance.ActivePlayer.Honor = qs.RewardHonerPoint; //直接覆蓋
@@ -236,7 +271,7 @@ public class QuestManager : MonoSingleton<QuestManager>
                 UISystem.Instance.baseUI.AddExp(qs.RewardExp);
                 if (!GameRoot.Instance.ActivePlayer.BadgeCollection.Contains(qs.RewardBadge)) GameRoot.Instance.ActivePlayer.BadgeCollection.Add(qs.RewardBadge);
                 if (!GameRoot.Instance.ActivePlayer.TitleCollection.Contains(qs.RewardTitle)) GameRoot.Instance.ActivePlayer.TitleCollection.Add(qs.RewardTitle);
-                if (qs.RewardItems != null && qs.RecycleItems.Count > 0)
+                if (qs.RewardItems != null && qs.RewardItems.Count > 0)
                 {
                     foreach (var item in qs.RewardItems)
                     {
@@ -280,12 +315,12 @@ public class QuestManager : MonoSingleton<QuestManager>
             this.AddNPCQuest(kv.Value.Define.SubmitNPC, kv.Value);
         }
 
-        if(onQuestStatusChanged != null)
+        if (onQuestStatusChanged != null)
         {
             onQuestStatusChanged(result);
         }
 
-        if(BattleSys.Instance.MapNPCs!=null && BattleSys.Instance.MapNPCs.Count > 0)
+        if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
         {
             foreach (var npc in BattleSys.Instance.MapNPCs)
             {
@@ -339,6 +374,104 @@ public class QuestManager : MonoSingleton<QuestManager>
                     DestroyImmediate(slot.GetComponentInChildren<ItemUI>().gameObject);
                 }
                 slot.StoreItem(item);
+            }
+        }
+    }
+    #endregion
+
+    #region 殺怪計數器
+    private Dictionary<int, List<NQuest>> KillQuestProgress = new Dictionary<int, List<NQuest>>();
+    public void TryAddQuestKillMonster(int MonID)
+    {
+        List<NQuest> quests = null;
+        if (KillQuestProgress.TryGetValue(MonID, out quests))
+        {
+            if (quests != null && quests.Count > 0)
+            {
+                foreach (var quest in quests)
+                {
+                    if (quest.status == QuestStatus.InProgress)
+                    {
+                        if (quest.Targets.ContainsKey(MonID))
+                        {
+                            quest.Targets[MonID]++;
+                        }
+                        else
+                        {
+                            quest.Targets[MonID] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public void TryToRemoveKillCounter(QuestDefine define)
+    {
+        if (define.Target == QuestTarget.Kill)
+        {
+            List<NQuest> quests = GameRoot.Instance.ActivePlayer.ProcessingQuests.Where(q => q.status == QuestStatus.InProgress).ToList();
+            for (int i = 0; i < define.TargetIDs.Count; i++)
+            {
+                bool NeedToRemove = true;
+                for (int j = 0; j < quests.Count; j++)
+                {
+                    QuestDefine _define;
+                    if (ResSvc.Instance.QuestDic.TryGetValue(quests[j].quest_id, out _define))
+                    {
+                        if (_define.Target == QuestTarget.Kill)
+                        {
+                            for (int k = 0; k < _define.TargetIDs.Count; k++)
+                            {
+                                if (define.TargetIDs[i] == _define.TargetIDs[k])
+                                    NeedToRemove = false;
+                            }
+                        }
+                    }
+                }
+                if (NeedToRemove)
+                    this.KillQuestProgress.Remove(define.TargetIDs[i]);
+            }
+        }
+    }
+
+    int Count = 0;
+    private void FixedUpdate()
+    {
+        Count++;
+        if (Count > 200)
+        {
+            Count = 0;
+            CheckComplete();
+        }
+    }
+    private void CheckComplete()
+    {
+        var Quests = this.allQuests.Values.Where(q => q.Info != null && (q.Info.status == QuestStatus.InProgress || q.Info.status == QuestStatus.Completed)).ToList();
+        if (Quests != null && Quests.Count > 0)
+        {
+            foreach (var quest in Quests)
+            {
+                if (quest.Define.Target == QuestTarget.Kill)
+                {
+                    bool result = true;
+                    for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                    {
+                        if (quest.Info.Targets[quest.Define.TargetIDs[i]] < quest.Define.TargetNum[i]) result = false;
+                    }
+                    if (result) quest.Info.status = QuestStatus.Completed;
+                    else quest.Info.status = QuestStatus.InProgress;
+                }
+                else if (quest.Define.Target == QuestTarget.Item)
+                {
+                    bool result = true;
+                    for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                    {
+                        if (!InventorySys.Instance.HasItem(quest.Define.TargetIDs[i], quest.Define.TargetNum[i])) result = false;
+                    }
+                    if (result) quest.Info.status = QuestStatus.Completed;
+                    else quest.Info.status = QuestStatus.InProgress;
+                }
+                RefreshQuestStatus(quest.Info);
             }
         }
     }

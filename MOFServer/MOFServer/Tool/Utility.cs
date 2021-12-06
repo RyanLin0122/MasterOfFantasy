@@ -146,7 +146,9 @@ public static class Utility
             PetItems = GetInventoryFromBson(data["PetItems"].AsBsonArray),
             Skills = GetSkillsFromBson(data["Skills"].AsBsonArray),
             Hotkeys = GetHotkeyDatasFromBson(data["HotKeys"].AsBsonArray),
-            Manufactures = BsonArr2IntList(data["Manufactures"].AsBsonArray)
+            Manufactures = BsonArr2IntList(data["Manufactures"].AsBsonArray),
+            MonsterKillHistory = BsonArr2Dic_int_int(data["MonsterKillHistory"].AsBsonArray),
+            TeamID = data["TeamID"].AsInt32,
         };
         return player;
     }
@@ -470,7 +472,9 @@ public static class Utility
                     { "PetItems",Dic_Int_Item2BsonArr(player.PetItems)},
                     { "Skills", Skill2BsonArr(player.Skills) },
                     { "HotKeys", HotKeyList2BsonArr(player.Hotkeys)},
-                    { "Manufactures", IntList2BsonArray(player.Manufactures)}
+                    { "Manufactures", IntList2BsonArray(player.Manufactures)},
+                    { "MonsterKillHistory", Dic_Int_Int2BsonArr(player.MonsterKillHistory) },
+                    { "TeamID", player.TeamID}
         };
         return bson;
     }
@@ -572,7 +576,6 @@ public static class Utility
         }
         return r;
     }
-
     public static BsonArray Dic_Int_Item2BsonArr(Dictionary<int, Item> input)
     {
         BsonArray r = new BsonArray();
@@ -840,7 +843,7 @@ public static class Utility
             { "ID", quest.quest_id }, 
             { "Status", quest.status.ToString() },
             { "HasDeliveried", quest.HasDeliveried },
-            { "Targets", IntList2BsonArray(quest.Targets) }
+            { "Targets", Dic_Int_Int2BsonArr(quest.Targets) }
         };
         return r;
     }
@@ -965,7 +968,7 @@ public static class Utility
             quest_id = doc["ID"].AsInt32,
             status = (QuestStatus)Enum.Parse(typeof(QuestStatus), doc["Status"].AsString),
             HasDeliveried = doc["HasDeliveried"].AsBoolean,
-            Targets = BsonArr2IntList(doc["Targets"].AsBsonArray)
+            Targets = BsonArr2Dic_int_int(doc["Targets"].AsBsonArray)
         };
         return quest;
     }

@@ -110,6 +110,14 @@ namespace PEProtocal
         Boss,
         Common
     }
+    [ProtoContract]
+    public class MonsterKillCounter
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int CurrentNum { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int RequiredNum { get; set; }
+    }
 
     [ProtoContract]
     public class HotkeyData
@@ -278,6 +286,10 @@ namespace PEProtocal
         public List<HotkeyData> Hotkeys { get; set; }
         [ProtoMember(57, IsRequired = false)]
         public List<int> Manufactures { get; set; }
+        [ProtoMember(58, IsRequired = false)]
+        public Dictionary<int, int> MonsterKillHistory { get; set; }
+        [ProtoMember(59, IsRequired = false)]
+        public int TeamID { get; set; }
 
         public Dictionary<int, Item> GetNewNotCashKnapsack()
         {
@@ -957,6 +969,16 @@ namespace PEProtocal
         public List<int> ConflictBuff { get; set; }
     }
 
+    [ProtoContract]
+    public class MonsterDeathInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int UUID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public bool IsDelay { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public List<string> Killers { get; set; }
+    }
 }
 
 

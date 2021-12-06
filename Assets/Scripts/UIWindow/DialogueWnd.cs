@@ -207,7 +207,7 @@ public class DialogueWnd : WindowRoot
             }
             if (quest.Info != null && quest.Info.status == QuestStatus.InProgress) //未完成
             {
-                if(quest.Define.Target == QuestTarget.Delivery)
+                if (quest.Define.Target == QuestTarget.Delivery)
                 {
                     if (quest.Define.Target == QuestTarget.Delivery && quest.Define.DeliveryNPC == CurrentNPCID)
                     {
@@ -215,7 +215,7 @@ public class DialogueWnd : WindowRoot
                         List<int> ItemIDs = quest.Define.TargetIDs;
                         for (int i = 0; i < ItemIDs.Count; i++)
                         {
-                            if (HasItem(ItemIDs[i], quest.Define.TargetNum[i]))
+                            if (InventorySys.Instance.HasItem(ItemIDs[i], quest.Define.TargetNum[i]))
                             {
                                 continue;
                             }
@@ -224,7 +224,7 @@ public class DialogueWnd : WindowRoot
                                 CanSubmit = false;
                             }
                         }
-                        if(CanSubmit) DeliveryItem(quest);
+                        if (CanSubmit) DeliveryItem(quest);
                         else MessageBox.Show("[215]道具不足，無法完成");
                     }
                     else if (quest.Define.AcceptNPC == CurrentNPCID)
@@ -238,7 +238,7 @@ public class DialogueWnd : WindowRoot
                     List<int> ItemIDs = quest.Define.TargetIDs;
                     for (int i = 0; i < ItemIDs.Count; i++)
                     {
-                        if (HasItem(ItemIDs[i], quest.Define.TargetNum[i]))
+                        if (InventorySys.Instance.HasItem(ItemIDs[i], quest.Define.TargetNum[i]))
                         {
                             continue;
                         }
@@ -250,9 +250,22 @@ public class DialogueWnd : WindowRoot
                     if (CanSubmit) SetQuestComplete(quest);
                     else SetUnfinish(quest);
                 }
-                else if(quest.Define.Target == QuestTarget.Kill)
+                else if (quest.Define.Target == QuestTarget.Kill)
                 {
-
+                    bool IsKillEnough = true;
+                    for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
+                    {
+                        if (quest.Info.Targets[quest.Define.TargetIDs[i]] < quest.Define.TargetNum[i])
+                        {
+                            IsKillEnough = false;
+                        }
+                    }
+                    if (IsKillEnough)
+                    {
+                        SetQuestComplete(quest);
+                    }
+                    else
+                        SetUnfinish(quest);
                 }
                 return;
             }
@@ -487,28 +500,5 @@ public class DialogueWnd : WindowRoot
     }
     #endregion
 
-    public bool HasItem(int ID, int Count)
-    {
-        bool result = false;
-        int RestNum = Count;
-        bool IsCash = InventorySys.Instance.ItemList[ID].IsCash;
-        if (IsCash)
-        {
-            foreach (var kv in GameRoot.Instance.ActivePlayer.CashKnapsack)
-            {
-                kv.Value.Position = kv.Key;
-                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
-            }
-        }
-        else
-        {
-            foreach (var kv in GameRoot.Instance.ActivePlayer.NotCashKnapsack)
-            {
-                kv.Value.Position = kv.Key;
-                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
-            }
-        }
-        if (RestNum < 0) result = true;
-        return result;
-    }
+
 }

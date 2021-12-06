@@ -21,21 +21,29 @@ public class AbstractMonster : Entity
         this.mofMap.Battle.LeaveBattle(this);
         this.mofMap.Monsters.Remove(nEntity.Id);
         MonsterPoint.monster = null;
-        mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay);
         mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
         if (PlayerDamageRecord.Count > 0)
         {
             List<string> KillerNames = new List<string>();
             foreach (var name in PlayerDamageRecord.Keys)
             {
+                MOFCharacter character = null;
+                if(this.mofMap.characters.TryGetValue(name, out character))
+                {
+                    character.AddMonsterKillNum(this.MonsterID);
+                }
                 if (!string.IsNullOrEmpty(name))
                 {
                     KillerNames.Add(name);
                 }
             }
+            mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, KillerNames);
             if (KillerNames.Count > 0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
         }
-
+        else
+        {
+            mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, null);
+        }
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")
     {

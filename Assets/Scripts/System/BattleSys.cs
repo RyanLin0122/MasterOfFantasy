@@ -1051,18 +1051,28 @@ public class BattleSys : SystemRoot
     }
     private void OnDeath(MonsterDeath md)
     {
-        if (md.MonsterID == null || md.MonsterID.Count < 1) return;
-        for (int i = 0; i < md.MonsterID.Count; i++)
+        if (md.DeathInfos == null || md.DeathInfos.Count < 1) return;
+        for (int i = 0; i < md.DeathInfos.Count; i++)
         {
             MonsterController controller = null;
-            Monsters.TryGetValue(md.MonsterID[i], out controller);
+            Monsters.TryGetValue(md.DeathInfos[i].UUID, out controller);
             if (controller != null)
             {
-                if (!md.IsDelayDeath[i])
+                if (md.DeathInfos[i].Killers != null && md.DeathInfos[i].Killers.Count > 0)
+                {
+                    foreach (var killer in md.DeathInfos[i].Killers)
+                    {
+                        if (killer == GameRoot.Instance.ActivePlayer.Name)
+                        {
+                            QuestManager.Instance.TryAddQuestKillMonster(controller.MonsterID);
+                        }
+                    }
+                }
+                if (!md.DeathInfos[i].IsDelay)
                 {
                     if (CurrentTarget == controller) CurrentTarget = null;
                     if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
-                    Monsters.Remove(md.MonsterID[i]);
+                    Monsters.Remove(md.DeathInfos[i].UUID);
                     controller.OnDeath();
                 }
                 else
@@ -1070,10 +1080,8 @@ public class BattleSys : SystemRoot
                     if (CurrentTarget == controller) CurrentTarget = null;
                     if (CurrentBattleTarget == controller) CurrentBattleTarget = null;
                     controller.OnDeathDelay = true;
-                    //Monsters.Remove(md.MonsterID[i]);
-                    //controller.OnDeath();
                 }
-            }
+            }            
         }
     }
     private void OnExp(ExpPacket ep)

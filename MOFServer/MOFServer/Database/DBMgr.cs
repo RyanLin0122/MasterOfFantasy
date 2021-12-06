@@ -159,7 +159,9 @@ public class DBMgr
                     { "PetItems",new BsonArray()},
                     { "Skills", new BsonArray() },
                     { "HotKeys", new BsonArray()},
-                    { "Manufactures",new BsonArray()}
+                    { "Manufactures",new BsonArray()},
+                    { "MonsterKillHistory",new BsonArray()},
+                    { "TeamID",-1}
                  };
             var filter = Builders<BsonDocument>.Filter.Eq("Account", Account);
             var update = Builders<BsonDocument>.Update.Push("Players", bd

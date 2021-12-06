@@ -20,7 +20,7 @@ public class QuestManager
         {
             quest_id = questId,
             status = QuestStatus.InProgress,
-            Targets = new List<int>()
+            Targets = new Dictionary<int, int>()
         };
     }
 
@@ -157,7 +157,23 @@ public class QuestManager
                         DeliveryItem = deliveryItem
                     }
                 };
+                if (define.Target == QuestTarget.Kill && define.TargetIDs != null && define.TargetIDs.Count > 0)
+                {
+                    for (int i = 0; i < define.TargetIDs.Count; i++)
+                    {
+                        quest.Targets[define.TargetIDs[i]] = 0;
+                    }
+                    for (int i = 0; i < define.TargetIDs.Count; i++)
+                    {
+                        if (!KillQuestProgress.ContainsKey(define.TargetIDs[i]))
+                        {
+                            KillQuestProgress[define.TargetIDs[i]] = new List<NQuest>();
+                            KillQuestProgress[define.TargetIDs[i]].Add(quest);
+                        }
+                    }
+                }
                 this.Owner.session.WriteAndFlush(rsp);
+
                 //this.Owner.AsyncSaveCharacter();
             }
         }
@@ -197,11 +213,25 @@ public class QuestManager
                         case QuestTarget.None:
                             break;
                         case QuestTarget.Kill:
+                            bool IsKillEnough = true;
+                            for (int i = 0; i < define.TargetIDs.Count; i++)
+                            {
+                                if (nQuest.Targets[define.TargetIDs[i]] < define.TargetNum[i])
+                                {
+                                    IsKillEnough = false;
+                                }
+                            }
+                            if (IsKillEnough)
+                            {
+                                nQuest.status = QuestStatus.Completed;
+                                result = true;
+                            }
                             break;
                         case QuestTarget.Item:
                             //確認東西有沒有在背包
                             List<bool> IsItemsExist = new List<bool>();
                             List<int> ItemIDs = define.TargetIDs;
+
 
                             for (int i = 0; i < ItemIDs.Count; i++)
                             {
@@ -300,14 +330,14 @@ public class QuestManager
                 }
                 if (nQuest.status == QuestStatus.Completed)
                 {
-                    if (define.Target == QuestTarget.Delivery && nQuest.HasDeliveried) 
+                    if (define.Target == QuestTarget.Delivery && nQuest.HasDeliveried)
                     {
                         if (!IsRewardKnapsackEnough(nQuest))
                         {
                             SubmitFail("[308]背包空間不足，無法領取獎勵");
                             return;
                         }
-                        result = true; 
+                        result = true;
                     }
                     if (result)
                     {
@@ -315,7 +345,7 @@ public class QuestManager
                         this.Owner.player.Ribi += define.RewardRibi; //直接覆蓋
                         this.Owner.player.Honor += define.RewardHonerPoint; //直接覆蓋
                         if (!this.Owner.player.BadgeCollection.Contains(define.RewardBadge)) this.Owner.player.BadgeCollection.Add(define.RewardBadge);
-                        this.Owner.AddExp((int)define.RewardExp); 
+                        this.Owner.AddExp((int)define.RewardExp);
                         if (!this.Owner.player.TitleCollection.Contains(define.RewardTitle)) this.Owner.player.TitleCollection.Add(define.RewardTitle);
                         nQuest.status = QuestStatus.Finished;
                         ProtoMsg rsp = new ProtoMsg
@@ -334,10 +364,12 @@ public class QuestManager
                                 RewardHonerPoint = this.Owner.player.Honor,
                                 RewardTitle = define.RewardTitle,
                                 RewardBadge = define.RewardBadge,
-                                RewardItems = RewardItem(nQuest)  
+                                RewardItems = RewardItem(nQuest)
                             }
                         };
                         this.Owner.session.WriteAndFlush(rsp);
+                        //判斷是否清除殺怪計數器
+                        TryToRemoveKillCounter(define);
                         //this.Owner.AsyncSaveCharacter();
                     }
                     else
@@ -369,6 +401,112 @@ public class QuestManager
         this.Owner.session.WriteAndFlush(rsp);
     }
 
+    public void AbandonQuest(QuestAbandonRequest qa)
+    {
+        QuestDefine define;
+        if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
+        {
+            var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qa.quest_id).FirstOrDefault();
+            if (nQuest != null)
+            {
+                if (nQuest.status != QuestStatus.Finished)
+                {
+                    if (define.Target == QuestTarget.Kill)
+                    {
+                        TryToRemoveKillCounter(define);
+                    }
+                    this.Owner.player.ProcessingQuests.Remove(nQuest);
+                    ProtoMsg rsp = new ProtoMsg
+                    {
+                        MessageType = 70,
+                        questAbandonResponse = new QuestAbandonResponse
+                        {
+                            Result = true,
+                            quest = nQuest,
+                            ErrorMsg = ""
+                        }
+                    };
+                    this.Owner.session.WriteAndFlush(rsp);
+                }
+                else
+                {
+                    AbandonFail("任務已完成，無法放棄");
+                }
+            }
+        }
+    }
+
+    private void AbandonFail(string error)
+    {
+        LogSvc.Error(error);
+        ProtoMsg rsp = new ProtoMsg
+        {
+            MessageType = 70,
+            questAbandonResponse = new QuestAbandonResponse
+            {
+                Result = false,
+                quest = null,
+                ErrorMsg = error
+            }
+        };
+        this.Owner.session.WriteAndFlush(rsp);
+    }
+
+    #region 殺怪計數器
+    private Dictionary<int, List<NQuest>> KillQuestProgress = new Dictionary<int, List<NQuest>>();
+    public void TryAddQuestKillMonster(int MonID)
+    {
+        List<NQuest> quests = null;
+        if (KillQuestProgress.TryGetValue(MonID, out quests))
+        {
+            if (quests != null && quests.Count > 0)
+            {
+                foreach (var quest in quests)
+                {
+                    if (quest.status == QuestStatus.InProgress)
+                    {
+                        if (quest.Targets.ContainsKey(MonID))
+                        {
+                            quest.Targets[MonID]++;
+                        }
+                        else
+                        {
+                            quest.Targets[MonID] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public void TryToRemoveKillCounter(QuestDefine define)
+    {
+        if (define.Target == QuestTarget.Kill)
+        {
+            List<NQuest> quests = this.Owner.player.ProcessingQuests.Where(q => q.status == QuestStatus.InProgress).ToList();
+            for (int i = 0; i < define.TargetIDs.Count; i++)
+            {
+                bool NeedToRemove = true;
+                for (int j = 0; j < quests.Count; j++)
+                {
+                    QuestDefine _define;
+                    if (CacheSvc.Instance.QuestDic.TryGetValue(quests[j].quest_id, out _define))
+                    {
+                        if (_define.Target == QuestTarget.Kill)
+                        {
+                            for (int k = 0; k < _define.TargetIDs.Count; k++)
+                            {
+                                if (define.TargetIDs[i] == _define.TargetIDs[k])
+                                    NeedToRemove = false;
+                            }
+                        }
+                    }
+                }
+                if (NeedToRemove)
+                    this.KillQuestProgress.Remove(define.TargetIDs[i]);
+            }
+        }
+    }
+    #endregion
     private bool IsRewardKnapsackEnough(NQuest quest)
     {
         QuestDefine define = CacheSvc.Instance.QuestDic[quest.quest_id];
@@ -514,7 +652,7 @@ public class QuestManager
                         }
                         else
                         {
-                            if(item.ItemID == ItemTemplates[i].ItemID)
+                            if (item.ItemID == ItemTemplates[i].ItemID)
                             {
                                 if (this.Owner.player.NotCashKnapsack[j].Count + RestNum > ItemTemplates[i].Capacity)
                                 {

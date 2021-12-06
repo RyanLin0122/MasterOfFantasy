@@ -250,6 +250,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     QuestSubmitHandler questSubmitHandler = new QuestSubmitHandler();
                     Task SubmitTask = questSubmitHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 69: //放棄任務
+                    QuestAbandonHandler questAbandonHandler = new QuestAbandonHandler();
+                    Task AbandonTask = questAbandonHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

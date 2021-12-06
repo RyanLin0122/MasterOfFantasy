@@ -858,9 +858,7 @@ namespace PEProtocal
     public class MonsterDeath
     {
         [ProtoMember(1, IsRequired = false)]
-        public List<int> MonsterID { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public List<bool> IsDelayDeath { get; set; }
+        public List<MonsterDeathInfo> DeathInfos { get; set; }
     }
 
     [ProtoContract(EnumPassthru = false)]
@@ -1191,7 +1189,7 @@ namespace PEProtocal
         Finished = 2
     }
 
-        [ProtoContract(EnumPassthru = false)]
+    [ProtoContract(EnumPassthru = false)]
     public enum QuestType
     {
         [ProtoEnum]
@@ -1253,7 +1251,7 @@ namespace PEProtocal
         [ProtoMember(2, IsRequired = false)]
         public QuestStatus status { get; set; }
         [ProtoMember(3, IsRequired = false)]
-        public List<int> Targets { get; set; }
+        public Dictionary<int, int> Targets { get; set; }
         [ProtoMember(4, IsRequired = false)]
         public bool HasDeliveried { get; set; }
     }
@@ -1287,7 +1285,7 @@ namespace PEProtocal
         public int RewardBadge { get; set; }
         public int RewardTitle { get; set; }
         public float LimitTime { get; set; }
-        
+
     }
     [ProtoContract]
     public class QuestListRequest

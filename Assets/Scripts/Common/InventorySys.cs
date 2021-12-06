@@ -363,6 +363,30 @@ public class InventorySys : MonoBehaviour
                 break;
         }
     }
+    public bool HasItem(int ID, int Count)
+    {
+        bool result = false;
+        int RestNum = Count;
+        bool IsCash = InventorySys.Instance.ItemList[ID].IsCash;
+        if (IsCash)
+        {
+            foreach (var kv in GameRoot.Instance.ActivePlayer.CashKnapsack)
+            {
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
+            }
+        }
+        else
+        {
+            foreach (var kv in GameRoot.Instance.ActivePlayer.NotCashKnapsack)
+            {
+                kv.Value.Position = kv.Key;
+                if (kv.Value != null && kv.Value.ItemID == ID) RestNum -= kv.Value.Count;
+            }
+        }
+        if (RestNum <= 0) result = true;
+        return result;
+    }
     #endregion
 
     #region 領獎勵
