@@ -315,6 +315,7 @@ public class NetSvc : MonoBehaviour
         if (levelUp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
         {
             UISystem.Instance.baseUI.ProcessLevelUpMsg(levelUp.RestExp);
+            QuestManager.Instance.UpdateAllQuestStatus();
         }
         else
         {

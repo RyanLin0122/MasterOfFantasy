@@ -308,7 +308,8 @@ public class QuestManager
                                             Result = true,
                                             quest = nQuest,
                                             ErrorMsg = "",
-                                            RecycleItems = new List<Item>() { existItem }
+                                            DeleteIsCashs = new List<bool>() { existItem.IsCash },
+                                            DeletePositions = new List<int>() { existItem.Position }
                                         }
                                     };
                                     if (IsCash) this.Owner.player.CashKnapsack.Remove(existItem.Position);

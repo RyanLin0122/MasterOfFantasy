@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PEProtocal;
 
 public class UIDeliveryIntro : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class UIDeliveryIntro : MonoBehaviour
         }
         else
         {
-           LimitJob.text = Constants.SetJobName(quest.Define.LimitJob);
+            LimitJob.text = Constants.SetJobName(quest.Define.LimitJob);
         }
-        if(quest.Define.Type == PEProtocal.QuestType.LimitTime)
+        if (quest.Define.Type == PEProtocal.QuestType.LimitTime)
         {
             RestTime.text = quest.Define.LimitTime + " 分";
         }
@@ -38,7 +39,45 @@ public class UIDeliveryIntro : MonoBehaviour
         {
             RestTime.text = "無限制時間";
         }
+        SetRewards();
         if (!IsSuccess) SuccessImg.SetActive(false);
         else SuccessImg.SetActive(true);
+    }
+
+    public Transform RewardContainer;
+    public Sprite ExpSprite;
+    public Sprite RibiSprite;
+    public void SetRewards()
+    {
+        if (this.RewardContainer.childCount > 0)
+        {
+            foreach (var reward in RewardContainer.GetComponentsInChildren<UIQuestReward>())
+            {
+                Destroy(reward.gameObject);
+            }
+        }
+        if (CurrentQuest.Define.RewardExp > 0)
+        {
+            var rewardExp = InstantiateRewardItem();
+            rewardExp.SetReward(this.ExpSprite, "獎勵經驗值: " + CurrentQuest.Define.RewardExp);
+        }
+        if (CurrentQuest.Define.RewardRibi > 0)
+        {
+            var rewardRibi = InstantiateRewardItem();
+            rewardRibi.SetReward(this.RibiSprite, "獎勵利比: " + CurrentQuest.Define.RewardRibi);
+        }
+        if (CurrentQuest.Define.RewardItemIDs != null && CurrentQuest.Define.RewardItemIDs.Count > 0)
+        {
+            for (int i = 0; i < CurrentQuest.Define.RewardItemIDs.Count; i++)
+            {
+                var rewardItem = InstantiateRewardItem();
+                Item item = InventorySys.Instance.ItemList[CurrentQuest.Define.RewardItemIDs[i]];
+                rewardItem.SetReward(Resources.Load<Sprite>(item.Sprite), item.Name + " " + CurrentQuest.Define.RewardItemsCount[i] + " 個");
+            }
+        }
+    }
+    public UIQuestReward InstantiateRewardItem()
+    {
+        return Instantiate(Resources.Load("Prefabs/UIQuestReward") as GameObject, this.RewardContainer).GetComponent<UIQuestReward>();
     }
 }

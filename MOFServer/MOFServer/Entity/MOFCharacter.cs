@@ -866,7 +866,7 @@ public class MOFCharacter : Entity
                     if (item == null) return i;
                     else
                     {
-                        if (item.Count + Count <= item.Capacity) return i;
+                        if (ItemID == item.ItemID && item.Count + Count <= item.Capacity) return i;
                         else continue;
                     }
                 }
@@ -893,7 +893,7 @@ public class MOFCharacter : Entity
                 Item item = null;
                 if (this.player.CashKnapsack.TryGetValue(i, out item))
                 {
-                    if (item.Count + Count <= item.Capacity) return i;
+                    if (ItemID == item.ItemID && item.Count + Count <= item.Capacity) return i;
                     else continue;
                 }
                 else
@@ -940,6 +940,7 @@ public class MOFCharacter : Entity
         bool IsCash = CacheSvc.ItemList[ID].IsCash;
         if (IsCash)
         {
+            List<int> NeedRemove = new List<int>();
             foreach (var kv in this.player.CashKnapsack)
             {
                 if (Required == 0) break;
@@ -958,13 +959,21 @@ public class MOFCharacter : Entity
                         Required -= kv.Value.Count;
                         result.Item2.Add(kv.Key);
                         result.Item3.Add(kv.Value.IsCash);
-                        player.CashKnapsack.Remove(kv.Key);
+                        NeedRemove.Add(kv.Key);
                     }
+                }
+            }
+            if (NeedRemove.Count > 0)
+            {
+                foreach (var pos in NeedRemove)
+                {
+                    this.player.NotCashKnapsack.Remove(pos);
                 }
             }
         }
         else
         {
+            List<int> NeedRemove = new List<int>();
             foreach (var kv in this.player.NotCashKnapsack)
             {
                 if (Required == 0) break;
@@ -983,8 +992,15 @@ public class MOFCharacter : Entity
                         Required -= kv.Value.Count;
                         result.Item2.Add(kv.Key);
                         result.Item3.Add(kv.Value.IsCash);
-                        player.NotCashKnapsack.Remove(kv.Key);
+                        NeedRemove.Add(kv.Key);
                     }
+                }
+            }
+            if (NeedRemove.Count > 0)
+            {
+                foreach (var pos in NeedRemove)
+                {
+                    this.player.NotCashKnapsack.Remove(pos);
                 }
             }
         }

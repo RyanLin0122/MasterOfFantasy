@@ -287,7 +287,30 @@ public class QuestManager : MonoSingleton<QuestManager>
     }
     public void DoQuestAbandonResponse(ProtoMsg msg)
     {
-
+        QuestAbandonResponse qa = msg.questAbandonResponse;
+        if (qa == null) return;
+        QuestDefine define;
+        if (ResSvc.Instance.QuestDic.TryGetValue(qa.quest.quest_id, out define))
+        {
+            Quest quest = null;
+            this.allQuests.TryGetValue(qa.quest.quest_id, out quest);
+            if (quest.Info != null)
+            {
+                if (quest.Info.status != QuestStatus.Finished)
+                {
+                    if (define.Target == QuestTarget.Kill)
+                    {
+                        TryToRemoveKillCounter(define);
+                    }
+                    GameRoot.Instance.ActivePlayer.ProcessingQuests.Remove(quest.Info);
+                    quest.Info = null;
+                }
+                else
+                {
+                    MessageBox.Show("任務已完成，無法放棄");
+                }
+            }
+        }
     }
 
     private Quest RefreshQuestStatus(NQuest nQuest)
@@ -329,7 +352,32 @@ public class QuestManager : MonoSingleton<QuestManager>
         }
         return result;
     }
+    public void UpdateAllQuestStatus()
+    {
+        this.npcQuests.Clear();
 
+        CheckAvailableQuests();
+
+        foreach (var kv in this.allQuests)
+        {
+            this.AddNPCQuest(kv.Value.Define.AcceptNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.DeliveryNPC, kv.Value);
+            this.AddNPCQuest(kv.Value.Define.SubmitNPC, kv.Value);
+        }
+
+        if (onQuestStatusChanged != null)
+        {
+            onQuestStatusChanged(null);
+        }
+
+        if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
+        {
+            foreach (var npc in BattleSys.Instance.MapNPCs)
+            {
+                npc.SetQuestStatus();
+            }
+        }
+    }
     private void DeleteItem(bool IsCash, int Position)
     {
         if (IsCash)
@@ -344,7 +392,7 @@ public class QuestManager : MonoSingleton<QuestManager>
         else
         {
             GameRoot.Instance.ActivePlayer.NotCashKnapsack.Remove(Position);
-            ItemSlot slot = KnapsackWnd.Instance.FindCashSlot(Position);
+            ItemSlot slot = KnapsackWnd.Instance.FindSlot(Position);
             if (slot.transform.childCount > 0)
             {
                 Destroy(slot.GetComponentInChildren<ItemUI>().gameObject);
@@ -471,8 +519,8 @@ public class QuestManager : MonoSingleton<QuestManager>
                     if (result) quest.Info.status = QuestStatus.Completed;
                     else quest.Info.status = QuestStatus.InProgress;
                 }
-                RefreshQuestStatus(quest.Info);
             }
+            UpdateAllQuestStatus();          
         }
     }
     #endregion
