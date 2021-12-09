@@ -1,9 +1,69 @@
 fileFormatVersion: 2
 guid: 27e3e97e63b3759488acf53bbd5d2f23
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1283168921219994313
+    second: 20000128_event_summer.gi_0
+  - first:
+      213: 7044541704203294089
+    second: 20000128_event_summer.gi_1
+  - first:
+      213: -351286844034961360
+    second: 20000128_event_summer.gi_2
+  - first:
+      213: -5168963389184198965
+    second: 20000128_event_summer.gi_3
+  - first:
+      213: -7945166953370611395
+    second: 20000128_event_summer.gi_4
+  - first:
+      213: 8330965597096409445
+    second: 20000128_event_summer.gi_5
+  - first:
+      213: -8084073455384200378
+    second: 20000128_event_summer.gi_6
+  - first:
+      213: 2836538418363006582
+    second: 20000128_event_summer.gi_7
+  - first:
+      213: -7818597762437325873
+    second: 20000128_event_summer.gi_8
+  - first:
+      213: -8128327353998805016
+    second: 20000128_event_summer.gi_9
+  - first:
+      213: 4363570800781408966
+    second: 20000128_event_summer.gi_10
+  - first:
+      213: -2710750809766671926
+    second: 20000128_event_summer.gi_11
+  - first:
+      213: -7142406162532327424
+    second: 20000128_event_summer.gi_12
+  - first:
+      213: -2572354649322603113
+    second: 20000128_event_summer.gi_13
+  - first:
+      213: -9198620011739588247
+    second: 20000128_event_summer.gi_14
+  - first:
+      213: 1349161963432986318
+    second: 20000128_event_summer.gi_15
+  - first:
+      213: -2681797238682870476
+    second: 20000128_event_summer.gi_16
+  - first:
+      213: 6627196634971703075
+    second: 20000128_event_summer.gi_17
+  - first:
+      213: -2982277049271269583
+    second: 20000128_event_summer.gi_18
+  - first:
+      213: -5705850537445293147
+    second: 20000128_event_summer.gi_19
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +83,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +101,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,9 +115,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -69,10 +134,442 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 183
+        height: 191
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c29328d55bbec110800000000000000
+      internalID: 1283168921219994313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 220
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985567c3b5d33c160800000000000000
+      internalID: 7044541704203294089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 220
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030370ff97aff1bf0800000000000000
+      internalID: -351286844034961360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 137
+        width: 93
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc63da21f272448b0800000000000000
+      internalID: -5168963389184198965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_4
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 137
+        width: 93
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d311c2f40c81db190800000000000000
+      internalID: -7945166953370611395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 93
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5697eea32198d9370800000000000000
+      internalID: 8330965597096409445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_6
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 496
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64bf8a9060a9fcf80800000000000000
+      internalID: -8084073455384200378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_7
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 480
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e7642b9a86d5720800000000000000
+      internalID: 2836538418363006582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_8
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 464
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb524082c2ce7390800000000000000
+      internalID: -7818597762437325873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_9
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 448
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e77fc65651623f80800000000000000
+      internalID: -8128327353998805016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_10
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 496
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cab7dc26848e8c30800000000000000
+      internalID: 4363570800781408966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_11
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 480
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9414d208a716ad0800000000000000
+      internalID: -2710750809766671926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_12
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 464
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00023b0ff6311ec90800000000000000
+      internalID: -7142406162532327424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 448
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79d3dca43192d4cd0800000000000000
+      internalID: -2572354649322603113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_14
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 431
+        width: 51
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9695670f5dfe75080800000000000000
+      internalID: -9198620011739588247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_15
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 414
+        width: 51
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec644e658af29b210800000000000000
+      internalID: 1349161963432986318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_16
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 397
+        width: 51
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d1fa4ce9758cad0800000000000000
+      internalID: -2681797238682870476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_17
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 380
+        width: 51
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32707242a3888fb50800000000000000
+      internalID: 6627196634971703075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_18
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 362
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 137c26013d2dc96d0800000000000000
+      internalID: -2982277049271269583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 20000128_event_summer.gi_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 488
+        width: 183
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a30a16ca2fb0d0b0800000000000000
+      internalID: -5705850537445293147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

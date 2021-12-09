@@ -43,7 +43,7 @@ public class DragObject : EventTrigger
             return;
         }
     }
-    public void SetDragData(DragBaseData data, DragMode mode)
+    public virtual void SetDragData(DragBaseData data, DragMode mode)
     {
         this.data = data;
         this.mode = mode;

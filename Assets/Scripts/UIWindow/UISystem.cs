@@ -13,6 +13,7 @@ public class UISystem : SystemRoot
         Knapsack.InitKnapsack();
         lockerWnd.InitLocker();
         MailBoxWnd.InitMailBox();
+        UICalender.Init();
         base.InitSys();
     }
 
@@ -47,6 +48,7 @@ public class UISystem : SystemRoot
     public OtherPlayerOption otherPlayerOption;
     public Transform BuffIconsContainer;
     public QuestWnd QuestWnd;
+    public UICalender UICalender;
 
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();

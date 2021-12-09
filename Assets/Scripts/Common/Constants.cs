@@ -1479,4 +1479,29 @@ public class Constants
         }
         return Resources.Load<Sprite>(ImgPath);
     }
+
+    public static string GetRegionName(int ID)
+    {
+        int TrimID = ID - (ID % 1000);
+        Debug.Log("TrimID=" + TrimID);
+        switch (TrimID)
+        {
+            case 1000:
+                return "利比村";
+            case 2000:
+                return "綠色平原";
+            case 3000:
+                return "黃金高原";
+            case 4000:
+                return "彩虹森林";
+            case 5000:
+                return "黑暗樂園";
+            case 6000:
+                return "燃燒大地";
+            case 7000:
+                return "幽靈船";
+            default:
+                return "N/A";
+        }
+    }
 }

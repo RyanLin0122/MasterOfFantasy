@@ -44,6 +44,25 @@ namespace PEProtocal
         public string[] FixedText;
         [ProtoMember(6, IsRequired = false)]
         public string DotSprite;
+        [ProtoMember(7, IsRequired = false)]
+        public string Age;
+        [ProtoMember(8, IsRequired = false)]
+        public string BloodType;
+        [ProtoMember(9, IsRequired = false)]
+        public string Height;
+        [ProtoMember(10, IsRequired = false)]
+        public string Weight;
+        [ProtoMember(11, IsRequired = false)]
+        public string Job;
+        [ProtoMember(12, IsRequired = false)]
+        public string Hobby;
+        [ProtoMember(13, IsRequired = false)]
+        public string Trick;
+        [ProtoMember(14, IsRequired = false)]
+        public string Personality;
+        [ProtoMember(15, IsRequired = false)]
+        public string Motto;
+
     }
 
     [ProtoContract]
@@ -806,9 +825,9 @@ namespace PEProtocal
             {
                 this.State = DropItemState.Common;
             }
-            if(this.Timer > 300)
+            if (this.Timer > 300)
             {
-                return false;               
+                return false;
             }
             return true;
         }

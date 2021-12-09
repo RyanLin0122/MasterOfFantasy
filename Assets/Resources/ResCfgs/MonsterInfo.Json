@@ -1,6 +1,6 @@
 ﻿[
   {
-    "MonsterID": 1,
+    "MonsterID": 2001,
     "Name": "娃娃草",
     "MaxHP": 35,
     "Des": "娃娃草主要吃村子附近的雜草或露水過活，一生下來就在村子附近被丟棄，所以總是在夜裡想尋找著媽媽。非能力強的怪物，阿卡戴米初級學生們去對抗她們也不會有負擔。",
@@ -39,7 +39,7 @@
     "DeathSound": "mon_death_cho-s"
   },
   {
-    "MonsterID": 2,
+    "MonsterID": 2002,
     "Name": "工蟻",
     "MaxHP": 40,
     "Des": "具有與一般螞蟻的習性，軀體非常的大，平常雖是和平的怪物，但不管是誰若惹到他們的話會利用強力的下顎啃噬侵入者。",
@@ -78,7 +78,7 @@
     "DeathSound": "mon_death_ant"
   },
   {
-    "MonsterID": 3,
+    "MonsterID": 2003,
     "Name": "粉紅果凍",
     "MaxHP": 55,
     "Des": "粉紅果凍是一種長得像果凍的怪物，此生物總是在力比村附近騷擾人類。",
@@ -117,7 +117,7 @@
     "DeathSound": "mon_death_aqua"
   },
   {
-    "MonsterID": 4,
+    "MonsterID": 2004,
     "Name": "咕咕雞",
     "MaxHP": 64,
     "Des": "在野生生活的鴿子與雞的混種，同時具有鴿子的生活力及雞的生命力，厚偶爾會欺負人們,若聚集起來會略奪食物。",
@@ -156,7 +156,7 @@
     "DeathSound": "mon_death_wilddove"
   },
   {
-    "MonsterID": 5,
+    "MonsterID": 2005,
     "Name": "毛毛",
     "MaxHP": 86,
     "Des": "外貌可愛但有尖銳的牙齒，看到什麼東西都想吃。雖然是危險的怪物，但因為怪物毛可以拿來做衣服材質，所以是很多人的獵物。",
@@ -195,7 +195,7 @@
     "DeathSound": "mon_death_moong"
   },
   {
-    "MonsterID": 6,
+    "MonsterID": 2006,
     "Name": "噗噗鼠",
     "MaxHP": 116,
     "Des": "沉迷於角力的本性，具有松鼠智慧及越來越強的攻擊力。對經過的人們誇耀自己鍛鍊的成果，是個不好的習慣。",
@@ -234,7 +234,7 @@
     "DeathSound": "mon_death_satba"
   },
   {
-    "MonsterID": 7,
+    "MonsterID": 2007,
     "Name": "螢火瓢蟲",
     "MaxHP": 156,
     "Des": "螢火蟲和瓢蟲的合體的可愛怪物，毒角刺到人的話會中毒。為了給村子裡的麗歐娜做漂亮的髮飾，甚至願意花錢買螢火瓢蟲的毒角。",
@@ -273,7 +273,7 @@
     "DeathSound": "mon_death_musong"
   },
   {
-    "MonsterID": 8,
+    "MonsterID": 2008,
     "Name": "黃夢",
     "MaxHP": 211,
     "Des": "精靈的一種，平常很溫馴，只要一感到危機意識就會召集同伴，合成力量，傳說以吃小孩的惡夢為生。",
@@ -312,7 +312,7 @@
     "DeathSound": "mon_death_mong"
   },
   {
-    "MonsterID": 9,
+    "MonsterID": 2009,
     "Name": "女王蟻",
     "MaxHP": 245,
     "Des": "巨大的工蟻女王全身都是紅色.雖然女王是很強大的，但是因為傲慢心的關係，所以故意走的很慢，一付驕傲的樣子。",
@@ -351,7 +351,7 @@
     "DeathSound": "mon_death_ant"
   },
   {
-    "MonsterID": 10,
+    "MonsterID": 2010,
     "Name": "青夢",
     "MaxHP": 285,
     "Des": "森林裡的精靈，但是因為身體裡面有寶石，所以成為人們的獵物，像黃童夢一樣,但青童夢是吃小孩的美夢為生。",
@@ -390,46 +390,7 @@
     "DeathSound": "mon_death_mong"
   },
   {
-    "MonsterID": 11,
-    "Name": "幽靈水手",
-    "MaxHP": 285,
-    "Des": "幽冥飛船號上冤死的漂流亡靈,是平凡船員的冤魂，若不去攻擊他並不會主動不攻擊人。死得時後正在拖地，所以經常會徘徊在甲板上。",
-    "IsActive": false,
-    "Attribute": "Common",
-    "Property": "Dead",
-    "Ribi": 40,
-    "BossLevel": 0,
-    "Sprite": "Monsters/Lv.15 Phantom Sailor Spritesheet",
-    "Level": 15,
-    "EXP": 81,
-    "Defense": 0,
-    "MinDamage": 113,
-    "MaxDamage": 143,
-    "AttackRange": 50,
-    "Accuracy": 0.8,
-    "Avoid": 0,
-    "Critical": 0,
-    "MagicDefense": 0,
-    "Speed": 150,
-    "IsFly": false,
-    "FloatRadius": 1,
-    "Drop": "20031#0.5_20032#0.5_20033#0.5_2018#0.5_2020#0.5_2019#0.5",
-    "Animation": {
-      "Idle": "4:0#0_0#1_0#2_0#3_0#4_0#5",
-      "Walk": "4:0#0_0#1_0#2_0#3_0#4_0#5",
-      "Hurt": "3:0#6_0#7_0#8",
-      "Shocked": "6:0#17_0#18_0#19_0#20",
-      "Burned": "6:0#15_0#16_0#14_0#13",
-      "Frozen": "6:0#12_0#11_0#10_0#9",
-      "Death": "6:0#21_0#22_0#23_0#24",
-      "Attack": "6:0#25_0#26_0#27_0#28_0#29_0#30",
-      "Faint": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6"
-    },
-    "AttackSound": "mon_atk_seaghost",
-    "DeathSound": "mon_death_seaghost"
-  },
-  {
-    "MonsterID": 12,
+    "MonsterID": 2011,
     "Name": "暴躁咕咕雞",
     "MaxHP": 331,
     "Des": "暴躁的咕咕雞，接受魔人們地獄訓練並通過考驗得到象徵的戴比骸骨，原本暴躁的脾氣變得更加地粗暴。",
@@ -468,46 +429,7 @@
     "DeathSound": "mon_death_wilddove"
   },
   {
-    "MonsterID": 13,
-    "Name": "幽靈海賊",
-    "MaxHP": 331,
-    "Des": "幽冥飛船號的基樓海賊，從事著掠奪及暴行，負責監視幽靈水手並攻擊侵略者。",
-    "IsActive": true,
-    "Attribute": "Common",
-    "Property": "Dead",
-    "Ribi": 42,
-    "BossLevel": 0,
-    "Sprite": "Monsters/Lv.16 Skull Pirates Spritesheet",
-    "Level": 16,
-    "EXP": 89,
-    "Defense": 0,
-    "MinDamage": 121,
-    "MaxDamage": 153,
-    "AttackRange": 50,
-    "Accuracy": 0.8,
-    "Avoid": 0,
-    "Critical": 0,
-    "MagicDefense": 0,
-    "Speed": 150,
-    "IsFly": false,
-    "FloatRadius": 1,
-    "Drop": "20037#0.5_20038#0.5_20039#0.5_2018#0.5_2020#0.5_2019#0.5_8008#0.5",
-    "Animation": {
-      "Idle": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6",
-      "Walk": "4:0#7_0#8_0#9_0#10_0#11",
-      "Hurt": "3:0#12_0#13_0#14_0#15",
-      "Shocked": "6:0#36_0#37_0#34_0#38",
-      "Burned": "6:0#42_0#41_0#40_0#39",
-      "Frozen": "6:0#20_0#19_0#18_0#17",
-      "Death": "6:0#21_0#22_0#23_0#24_0#25_0#26_0#27_0#28_0#29",
-      "Attack": "6:0#43_0#44_0#47_0#48_0#45_0#46_0#49",
-      "Faint": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6"
-    },
-    "AttackSound": "mon_atk_skel",
-    "DeathSound": "mon_death_skel"
-  },
-  {
-    "MonsterID": 14,
+    "MonsterID": 2012,
     "Name": "呆呆草",
     "MaxHP": 384,
     "Des": "小山岡一帶的草怪物，因為很健忘，不小心把自己的小孩娃娃草留在平原，就自己跑回家了。頭上用花草做偽裝，所以很難發現她，吃腐爛的草根或樹根。",
@@ -546,7 +468,85 @@
     "DeathSound": "mon_death_cho-s"
   },
   {
-    "MonsterID": 15,
+    "MonsterID": 7001,
+    "Name": "幽靈水手",
+    "MaxHP": 285,
+    "Des": "幽冥飛船號上冤死的漂流亡靈,是平凡船員的冤魂，若不去攻擊他並不會主動不攻擊人。死得時後正在拖地，所以經常會徘徊在甲板上。",
+    "IsActive": false,
+    "Attribute": "Common",
+    "Property": "Dead",
+    "Ribi": 40,
+    "BossLevel": 0,
+    "Sprite": "Monsters/Lv.15 Phantom Sailor Spritesheet",
+    "Level": 15,
+    "EXP": 81,
+    "Defense": 0,
+    "MinDamage": 113,
+    "MaxDamage": 143,
+    "AttackRange": 50,
+    "Accuracy": 0.8,
+    "Avoid": 0,
+    "Critical": 0,
+    "MagicDefense": 0,
+    "Speed": 150,
+    "IsFly": false,
+    "FloatRadius": 1,
+    "Drop": "20031#0.5_20032#0.5_20033#0.5_2018#0.5_2020#0.5_2019#0.5",
+    "Animation": {
+      "Idle": "4:0#0_0#1_0#2_0#3_0#4_0#5",
+      "Walk": "4:0#0_0#1_0#2_0#3_0#4_0#5",
+      "Hurt": "3:0#6_0#7_0#8",
+      "Shocked": "6:0#17_0#18_0#19_0#20",
+      "Burned": "6:0#15_0#16_0#14_0#13",
+      "Frozen": "6:0#12_0#11_0#10_0#9",
+      "Death": "6:0#21_0#22_0#23_0#24",
+      "Attack": "6:0#25_0#26_0#27_0#28_0#29_0#30",
+      "Faint": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6"
+    },
+    "AttackSound": "mon_atk_seaghost",
+    "DeathSound": "mon_death_seaghost"
+  },
+  {
+    "MonsterID": 7002,
+    "Name": "幽靈海賊",
+    "MaxHP": 331,
+    "Des": "幽冥飛船號的基樓海賊，從事著掠奪及暴行，負責監視幽靈水手並攻擊侵略者。",
+    "IsActive": true,
+    "Attribute": "Common",
+    "Property": "Dead",
+    "Ribi": 42,
+    "BossLevel": 0,
+    "Sprite": "Monsters/Lv.16 Skull Pirates Spritesheet",
+    "Level": 16,
+    "EXP": 89,
+    "Defense": 0,
+    "MinDamage": 121,
+    "MaxDamage": 153,
+    "AttackRange": 50,
+    "Accuracy": 0.8,
+    "Avoid": 0,
+    "Critical": 0,
+    "MagicDefense": 0,
+    "Speed": 150,
+    "IsFly": false,
+    "FloatRadius": 1,
+    "Drop": "20037#0.5_20038#0.5_20039#0.5_2018#0.5_2020#0.5_2019#0.5_8008#0.5",
+    "Animation": {
+      "Idle": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6",
+      "Walk": "4:0#7_0#8_0#9_0#10_0#11",
+      "Hurt": "3:0#12_0#13_0#14_0#15",
+      "Shocked": "6:0#36_0#37_0#34_0#38",
+      "Burned": "6:0#42_0#41_0#40_0#39",
+      "Frozen": "6:0#20_0#19_0#18_0#17",
+      "Death": "6:0#21_0#22_0#23_0#24_0#25_0#26_0#27_0#28_0#29",
+      "Attack": "6:0#43_0#44_0#47_0#48_0#45_0#46_0#49",
+      "Faint": "4:0#0_0#1_0#2_0#3_0#4_0#5_0#6"
+    },
+    "AttackSound": "mon_atk_skel",
+    "DeathSound": "mon_death_skel"
+  },
+  {
+    "MonsterID": 7003,
     "Name": "頑皮鬼",
     "MaxHP": 446,
     "Des": "小貴族的冤魂透過強力的念力移動物體攻擊人類，抓到人質時會產生精神力，相當的頑皮喧鬧，專長是裝無辜！",
@@ -585,7 +585,7 @@
     "DeathSound": "mon_death_polter"
   },
   {
-    "MonsterID": 16,
+    "MonsterID": 7004,
     "Name": "幽靈貴公主",
     "MaxHP": 519,
     "Des": "傲慢的女子貴族的亡靈，掉入海內死去之後，也依然如活著時的樣子，維持著貴族的生活模式.討厭活著的人們。",
@@ -624,7 +624,7 @@
     "DeathSound": "mon_death_countess"
   },
   {
-    "MonsterID": 17,
+    "MonsterID": 7005,
     "Name": "幽靈軍官",
     "MaxHP": 700,
     "Des": "輔佐船長的正規海軍軍官，在死後也是徘徊尋找著船長。因被海賊所害，懷著很深的怨念，無論遇到誰都當成是海賊進而攻擊。",
@@ -663,7 +663,7 @@
     "DeathSound": "mon_death_seaghost"
   },
   {
-    "MonsterID": 18,
+    "MonsterID": 7006,
     "Name": "加勒比海盜",
     "MaxHP": 945,
     "Des": "幽冥飛船上最暴惡的海盜，他們是幽靈船掠奪及強行時的先鋒，是最具攻擊力的海盜兵。",
@@ -702,7 +702,7 @@
     "DeathSound": "mon_death_skel"
   },
   {
-    "MonsterID": 19,
+    "MonsterID": 7007,
     "Name": "深海閻王",
     "MaxHP": 2001,
     "Des": "惡名昭彰的幽冥飛船船長，是海賊的大頭目。在戰鬥中失去了手,換成用巨大的鉤當武器，是相當難纏且恐怖的危險人物。",
@@ -740,10 +740,8 @@
     "AttackSound": "mon_atk_capjbubble",
     "DeathSound": "mon_death_capjbubble"
   },
-
-
   {
-    "MonsterID": 20,
+    "MonsterID": -1,
     "Name": "烏龜",
     "MaxHP": 100,
     "Des": "帶著微小的身材之烏龜現在在陸地上慢慢地走找到非正常遊戲的使用者就給予處罰。",

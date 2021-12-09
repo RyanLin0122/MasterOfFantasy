@@ -396,7 +396,7 @@ public class ResSvc : MonoBehaviour
     }
     #endregion
 
-    private Dictionary<int, NpcConfig> NpcCfgDataDic = new Dictionary<int, NpcConfig>();
+    public Dictionary<int, NpcConfig> NpcCfgDataDic = new Dictionary<int, NpcConfig>();
     private void InitNpcCfg()
     {
         TextAsset xml = null;
@@ -478,6 +478,33 @@ public class ResSvc : MonoBehaviour
                             break;
                         case "Dot":
                             NC.DotSprite = e.InnerText;
+                            break;
+                        case "Age":
+                            NC.Age = e.InnerText;
+                            break;
+                        case "BloodType":
+                            NC.BloodType = e.InnerText;
+                            break;
+                        case "Height":
+                            NC.Height = e.InnerText;
+                            break;
+                        case "Weight":
+                            NC.Weight = e.InnerText;
+                            break;
+                        case "Job":
+                            NC.Job = e.InnerText;
+                            break;
+                        case "Hobby":
+                            NC.Hobby = e.InnerText;
+                            break;
+                        case "Trick":
+                            NC.Trick = e.InnerText;
+                            break;
+                        case "Personality":
+                            NC.Personality = e.InnerText;
+                            break;
+                        case "Motto":
+                            NC.Motto = e.InnerText;
                             break;
                     }
                 }

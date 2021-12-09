@@ -101,6 +101,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         MonsterPVPBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         BadgeBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         OtherBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
+        InformationWnd.GetComponent<DiaryInformationWnd>().InitInfos();
     }
     public void PressGuild()
     {

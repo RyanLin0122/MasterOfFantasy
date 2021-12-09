@@ -183,7 +183,7 @@ public enum DragObjectType
 {
     Consumable,
     Skill,
-    DiaryItem
+    DiaryInfo
 }
 
 public enum DragMode
@@ -231,6 +231,17 @@ public class DragHotKeyData : DragBaseData
     public DragHotKeyData(System.Object item)
     {
         if (item.GetType() == typeof(HotkeyData))
+        {
+            base.SetData(item);
+        }
+    }
+}
+
+public class DragInfoData : DragBaseData
+{
+    public DragInfoData(System.Object item)
+    {
+        if (item.GetType() == typeof(string[]))
         {
             base.SetData(item);
         }
