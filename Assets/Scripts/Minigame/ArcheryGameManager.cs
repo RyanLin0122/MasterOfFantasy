@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 using System;
 
-public class ArcheryGameManager : MonoBehaviour
+public class ArcheryGameManager : MiniGameManager
 {
-    public int[] Scores;
+    public int[] GameScores;
     public int ScoreIndex = 0;
     public int TotalScore;
     public Image ArrowImg;
@@ -42,7 +42,7 @@ public class ArcheryGameManager : MonoBehaviour
     }
     private void Init()
     {
-        Scores = new int[10];
+        GameScores = new int[10];
         TargetInitialposition = TargetImg.transform.localPosition;
         ArrowInitialPos = ArrowImg.transform.localPosition;
         Velocity = Random_Velocity(Difficalty);
@@ -275,7 +275,7 @@ public class ArcheryGameManager : MonoBehaviour
                 AudioSvc.Instance.PlayMiniGameUIAudio("minigame_se_arrow_hit");
             }
             ScoresTxt[ScoreIndex].gameObject.SetActive(true);
-            Scores[ScoreIndex] = score;
+            GameScores[ScoreIndex] = score;
             ScoresTxt[ScoreIndex].text = score.ToString();
             if (IsMiss)
             {
@@ -304,7 +304,7 @@ public class ArcheryGameManager : MonoBehaviour
             //遊戲結算
             AudioSvc.Instance.PlayMiniGameUIAudio("minigame_se_minig_timeup1");
             int ts = 0;
-            foreach (var item in Scores)
+            foreach (var item in GameScores)
             {
                 ts += item;
             }
@@ -320,99 +320,6 @@ public class ArcheryGameManager : MonoBehaviour
             ShowResult();
         }
     }
-    #region Ranking
-    public Text Name0;
-    public Text Name1;
-    public Text Name2;
-    public Text Name3;
-    public Text Name4;
-    public Text Name5;
-    public Text Name6;
-    public Text Name7;
-    public Text Name8;
-    public Text Name9;
-
-    public Text Score0;
-    public Text Score1;
-    public Text Score2;
-    public Text Score3;
-    public Text Score4;
-    public Text Score5;
-    public Text Score6;
-    public Text Score7;
-    public Text Score8;
-    public Text Score9;
-
-    public Dictionary<string, int> ranking;
-    public void InitRanking()
-    {
-        ranking = GameRoot.Instance.gameObject.GetComponent<GotoMiniGame>().ranking;
-        int[] ScoreArray = new int[10];
-        int index = 0;
-        foreach (var value in ranking.Values)
-        {
-            ScoreArray[index] = value;
-            index++;
-        }
-
-        int i, j, temp;
-        for (i = ScoreArray.Length - 1; i >= 0; i--)
-        {
-            for (j = 0; j < i; j++)
-            {
-                if (ScoreArray[j] <= ScoreArray[i])
-                {
-                    temp = ScoreArray[i];
-                    ScoreArray[i] = ScoreArray[j];
-                    ScoreArray[j] = temp;
-                }
-            }
-        }
-        string[] NameArray = new string[] { "", "", "", "", "", "", "", "", "", "" };
-        foreach (var name in ranking.Keys)
-        {
-            for (int k = 0; k < 10; k++)
-            {
-
-                if (ranking[name] == ScoreArray[k])
-                {
-                    if (NameArray[k] == "")
-                    {
-                        NameArray[k] = name;
-                    }
-
-                }
-            }
-        }
-
-        for (int r = 0; r < 10; r++)
-        {
-            print(NameArray[r]);
-            print(ScoreArray[r]);
-
-        }
-        Name0.text = NameArray[0];
-        Name1.text = NameArray[1];
-        Name2.text = NameArray[2];
-        Name3.text = NameArray[3];
-        Name4.text = NameArray[4];
-        Name5.text = NameArray[5];
-        Name6.text = NameArray[6];
-        Name7.text = NameArray[7];
-        Name8.text = NameArray[8];
-        Name9.text = NameArray[9];
-        Score0.text = ScoreArray[0].ToString() + "分";
-        Score1.text = ScoreArray[1].ToString() + "分";
-        Score2.text = ScoreArray[2].ToString() + "分";
-        Score3.text = ScoreArray[3].ToString() + "分";
-        Score4.text = ScoreArray[4].ToString() + "分";
-        Score5.text = ScoreArray[5].ToString() + "分";
-        Score6.text = ScoreArray[6].ToString() + "分";
-        Score7.text = ScoreArray[7].ToString() + "分";
-        Score8.text = ScoreArray[8].ToString() + "分";
-        Score9.text = ScoreArray[9].ToString() + "分";
-    }
-    #endregion
     #region UI Open&Close
     #region UI
     public GameObject MenuWnd;
@@ -442,6 +349,7 @@ public class ArcheryGameManager : MonoBehaviour
     public void ShowRanking()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
+        InitRanking();
         MenuWnd.SetActive(false);
         RankingWnd.SetActive(true);
     }
@@ -461,14 +369,16 @@ public class ArcheryGameManager : MonoBehaviour
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         MenuWnd.SetActive(true);
-        InitRanking();
         RankingWnd.SetActive(false);
     }
     public void ShowDifficulty()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
-        MenuWnd.SetActive(false);
-        DifficultyWnd.SetActive(true);
+        if (GotoMiniGame.Instance.CanPlay(2))
+        {
+            MenuWnd.SetActive(false);
+            DifficultyWnd.SetActive(true);
+        }
     }
     public Sprite bg_Easy;
     public Sprite bg_Normal;
@@ -514,14 +424,14 @@ public class ArcheryGameManager : MonoBehaviour
                 SuccessWnd.gameObject.SetActive(true);
                 Win_Score.text = TotalScore.ToString();
                 Win_Point.text = 30.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 30, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 30, 0, 0, true, Difficalty);
             }
             else //Lose
             {
                 FailedWnd.gameObject.SetActive(true);
                 Lose_Score.text = TotalScore.ToString();
                 Lose_Point.text = 10.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0, false, Difficalty);
             }
         }
         else if (Difficalty == 1) //Normal
@@ -531,14 +441,14 @@ public class ArcheryGameManager : MonoBehaviour
                 SuccessWnd.gameObject.SetActive(true);
                 Win_Score.text = TotalScore.ToString();
                 Win_Point.text = 40.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 40, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 40, 0, 0, true, Difficalty);
             }
             else //Lose
             {
                 FailedWnd.gameObject.SetActive(true);
                 Lose_Score.text = TotalScore.ToString();
                 Lose_Point.text = 10.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0, false, Difficalty);
             }
         }
         else  //Hard
@@ -548,14 +458,14 @@ public class ArcheryGameManager : MonoBehaviour
                 SuccessWnd.gameObject.SetActive(true);
                 Win_Score.text = TotalScore.ToString();
                 Win_Point.text = 50.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 50, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 50, 0, 0, true, Difficalty);
             }
             else //Lose
             {
                 FailedWnd.gameObject.SetActive(true);
                 Lose_Score.text = TotalScore.ToString();
                 Lose_Point.text = 10.ToString();
-                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0);
+                GotoMiniGame.Instance.ReportScore(2, TotalScore, 0, 10, 0, 0, false, Difficalty);
             }
             
         }

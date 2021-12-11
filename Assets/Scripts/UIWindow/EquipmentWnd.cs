@@ -244,7 +244,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 }
             }
         }
-        GameRoot.Instance.MainPlayerControl.SetNameBox();
+        PlayerInputController.Instance.entityController.SetNameBox();
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
         if(equips!=null && equips.B_Weapon!=null) UpdateAttackRange(equips.B_Weapon);
     }
@@ -542,7 +542,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             UISystem.Instance.InfoWnd.SetIllustration();
             BattleSys.Instance.InitAllAtribute();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            GameRoot.Instance.MainPlayerControl.SetNameBox();
+            PlayerInputController.Instance.entityController.SetNameBox();
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
         }
@@ -764,7 +764,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupEquipmentAnimation(Player pd, EquipmentType Type)
     {
-        PlayerController Ctrl = GameRoot.Instance.MainPlayerControl;
+        PlayerController Ctrl = PlayerInputController.Instance.entityController;
         switch (Type)
         {
             case EquipmentType.Shoes:
@@ -1007,7 +1007,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void SetupFaceAnimation(Player pd)
     {
-        PlayerController Ctrl = GameRoot.Instance.MainPlayerControl;
+        PlayerController Ctrl = PlayerInputController.Instance.entityController;
         if (pd.Gender == 0)
         {
             if (pd.playerEquipments.F_FaceType == null)

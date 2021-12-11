@@ -53,7 +53,7 @@ public class ChatWnd : WindowRoot
                 }
                 if (msg.chatResponse.CharacterName == GameRoot.Instance.ActivePlayer.Name)
                 {
-                    GameRoot.Instance.MainPlayerControl.ShowChatBox(msg.chatResponse.Contents);
+                    PlayerInputController.Instance.entityController.ShowChatBox(msg.chatResponse.Contents);
                 }
                 else
                 {

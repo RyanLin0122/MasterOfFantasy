@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PuzzleGameManager : MonoBehaviour
+public class PuzzleGameManager : MiniGameManager
 {
 
     public int Difficalty = 0;
@@ -69,8 +69,11 @@ public class PuzzleGameManager : MonoBehaviour
     public void ShowDifficulty()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
-        MenuWnd.SetActive(false);
-        DifficultyWnd.SetActive(true);
+        if (GotoMiniGame.Instance.CanPlay(4))
+        {
+            MenuWnd.SetActive(false);
+            DifficultyWnd.SetActive(true);
+        }
     }
     public Sprite bg_Easy;
     public Sprite bg_Normal;
@@ -341,7 +344,7 @@ public class PuzzleGameManager : MonoBehaviour
     }
     public void GameOver() //遊戲結算
     {
-        Debug.Log("GameOver total: "+CompletedPuzzle+" Difficulty: "+Difficalty);
+        Debug.Log("GameOver total: " + CompletedPuzzle + " Difficulty: " + Difficalty);
         IsStart = false;
         switch (Difficalty)
         {
@@ -352,7 +355,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Win_Point.text = 20.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Win_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 20, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 20, 0, true, Difficalty);
                 }
                 else //Failed
                 {
@@ -360,7 +363,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Lose_Point.text = 10.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Lose_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 1: //Normal
@@ -370,7 +373,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Win_Point.text = 30.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Win_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 30, 0, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 30, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
@@ -378,7 +381,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Lose_Point.text = 10.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Lose_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 2: //Hard
@@ -388,7 +391,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Win_Point.text = 50.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Win_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 50, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 50, 0, true, Difficalty);
                 }
                 else //Failed
                 {
@@ -396,7 +399,7 @@ public class PuzzleGameManager : MonoBehaviour
                     Lose_Point.text = 10.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Lose_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
         }
@@ -585,7 +588,7 @@ public class PuzzleGameManager : MonoBehaviour
                     GameOver();
                 }
                 break;
-        }                
+        }
     }
 
     private void SetTimeBar()
@@ -597,16 +600,16 @@ public class PuzzleGameManager : MonoBehaviour
                 if (RestTime1 >= 0)
                 {
                     TimeBar.fillAmount = RestTime1 / EasyTime;
-                }                
+                }
             }
-            else if(Difficalty == 1)
+            else if (Difficalty == 1)
             {
                 if (RestTime1 >= 0)
                 {
                     TimeBar.fillAmount = RestTime1 / NormalTime;
                 }
             }
-            else if(Difficalty == 2)
+            else if (Difficalty == 2)
             {
                 if (RestTime1 >= 0)
                 {
@@ -1117,7 +1120,7 @@ public class PuzzleGameManager : MonoBehaviour
             Destroy(item.gameObject);
         }
     }
-    
+
     private string ProcessFloatStr(float num)
     {
         string Timestr = (num - (num % 0.01f)).ToString();
@@ -1232,90 +1235,4 @@ public class PuzzleGameManager : MonoBehaviour
     }
     #endregion
 
-    #region Ranking
-    public Text Name0;
-    public Text Name1;
-    public Text Name2;
-    public Text Name3;
-    public Text Name4;
-    public Text Name5;
-    public Text Name6;
-    public Text Name7;
-    public Text Name8;
-    public Text Name9;
-
-    public Text Score0;
-    public Text Score1;
-    public Text Score2;
-    public Text Score3;
-    public Text Score4;
-    public Text Score5;
-    public Text Score6;
-    public Text Score7;
-    public Text Score8;
-    public Text Score9;
-
-    public Dictionary<string, int> ranking;
-    public void InitRanking()
-    {
-        ranking = GameRoot.Instance.gameObject.GetComponent<GotoMiniGame>().ranking;
-        int[] ScoreArray = new int[10];
-        int index = 0;
-        foreach (var value in ranking.Values)
-        {
-            ScoreArray[index] = value;
-            index++;
-        }
-
-        int i, j, temp;
-        for (i = ScoreArray.Length - 1; i >= 0; i--)
-        {
-            for (j = 0; j < i; j++)
-            {
-                if (ScoreArray[j] <= ScoreArray[i])
-                {
-                    temp = ScoreArray[i];
-                    ScoreArray[i] = ScoreArray[j];
-                    ScoreArray[j] = temp;
-                }
-            }
-        }
-        string[] NameArray = new string[] { "", "", "", "", "", "", "", "", "", "" };
-        foreach (var name in ranking.Keys)
-        {
-            for (int k = 0; k < 10; k++)
-            {
-
-                if (ranking[name] == ScoreArray[k])
-                {
-                    if (NameArray[k] == "")
-                    {
-                        NameArray[k] = name;
-                    }
-
-                }
-            }
-        }
-        Name0.text = NameArray[0];
-        Name1.text = NameArray[1];
-        Name2.text = NameArray[2];
-        Name3.text = NameArray[3];
-        Name4.text = NameArray[4];
-        Name5.text = NameArray[5];
-        Name6.text = NameArray[6];
-        Name7.text = NameArray[7];
-        Name8.text = NameArray[8];
-        Name9.text = NameArray[9];
-        Score0.text = ScoreArray[0].ToString() + "分";
-        Score1.text = ScoreArray[1].ToString() + "分";
-        Score2.text = ScoreArray[2].ToString() + "分";
-        Score3.text = ScoreArray[3].ToString() + "分";
-        Score4.text = ScoreArray[4].ToString() + "分";
-        Score5.text = ScoreArray[5].ToString() + "分";
-        Score6.text = ScoreArray[6].ToString() + "分";
-        Score7.text = ScoreArray[7].ToString() + "分";
-        Score8.text = ScoreArray[8].ToString() + "分";
-        Score9.text = ScoreArray[9].ToString() + "分";
-    }
-    #endregion
 }

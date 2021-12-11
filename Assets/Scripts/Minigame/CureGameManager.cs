@@ -73,8 +73,11 @@ public class CureGameManager : MiniGameManager
     public void ShowDifficulty()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
-        MenuWnd.SetActive(false);
-        DifficultyWnd.SetActive(true);
+        if (GotoMiniGame.Instance.CanPlay(8))
+        {
+            MenuWnd.SetActive(false);
+            DifficultyWnd.SetActive(true);
+        }
     }
     public void SetEasy()
     {
@@ -182,14 +185,14 @@ public class CureGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 30.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 20, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 0, 20, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 1: //Normal
@@ -198,14 +201,14 @@ public class CureGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 40.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 30, 0, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 30, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 2: //Hard
@@ -214,14 +217,14 @@ public class CureGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 50.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 50, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 0, 50, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(4, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(8, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
         }
@@ -238,7 +241,7 @@ public class CureGameManager : MiniGameManager
     public Text RestTimeText;
     public GameObject Effects;
     public MiniGamePatient[] OneDimPatients = new MiniGamePatient[9];
-    public MiniGamePatient[,] Patients = new MiniGamePatient[3,3];
+    public MiniGamePatient[,] Patients = new MiniGamePatient[3, 3];
     public MiniGamePatient CurrentChoosedPatient = null;
     public int CurrentRowIndex = 1;
     public int CurrentColumnIndex = 1;
@@ -246,7 +249,7 @@ public class CureGameManager : MiniGameManager
     public float EasyReloadPeriod = 3;
     public float NormalReloadPeriod = 2;
     public float HardReloadPeriod = 1.5f;
-    
+
     #endregion
 
     #region Game Functions
@@ -282,15 +285,15 @@ public class CureGameManager : MiniGameManager
         {
             OneDimPatients[3].StartPatient();
         }
-        KeyBoardLogic();        
+        KeyBoardLogic();
     }
     public void KeyBoardLogic()
     {
-        if(CurrentChoosedPatient == null)
+        if (CurrentChoosedPatient == null)
         {
             return;
         }
-        if (CurrentChoosedPatient.ChooseLevel == 1 || CurrentChoosedPatient.ChooseLevel == 0 ||CurrentChoosedPatient.ChooseLevel == 3)
+        if (CurrentChoosedPatient.ChooseLevel == 1 || CurrentChoosedPatient.ChooseLevel == 0 || CurrentChoosedPatient.ChooseLevel == 3)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -342,7 +345,7 @@ public class CureGameManager : MiniGameManager
                 CurrentChoosedPatient.ChoosePatient();
             }
         }
-        if(CurrentChoosedPatient.ChooseLevel == 2)
+        if (CurrentChoosedPatient.ChooseLevel == 2)
         {
             ChooseOperation();
         }
@@ -367,7 +370,7 @@ public class CureGameManager : MiniGameManager
             {
                 CurrentChoosedPatient.ChooseCross();
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && CurrentChoosedPatient.patientOperation!= PatientOperation.none)
+            else if (Input.GetKeyDown(KeyCode.Space) && CurrentChoosedPatient.patientOperation != PatientOperation.none)
             {
                 CurrentChoosedPatient.Cure();
             }
@@ -389,7 +392,7 @@ public class CureGameManager : MiniGameManager
 
     public void StartaPatient()
     {
-        if(CurrentGameState == GameState.running)
+        if (CurrentGameState == GameState.running)
         {
             List<MiniGamePatient> list = new List<MiniGamePatient>();
             foreach (var pt in OneDimPatients)
@@ -407,10 +410,10 @@ public class CureGameManager : MiniGameManager
             Random.InitState(Guid.NewGuid().GetHashCode());
             int RandomNum = Random.Range(0, TotalVacancyNum);
             list[RandomNum].StartPatient();
-        }        
+        }
     }
     #endregion
-    
+
     #region Timer Functions
     IEnumerator timer3()
     {
@@ -468,7 +471,7 @@ public class CureGameManager : MiniGameManager
             StartaPatient();
         }
         yield return new WaitForSeconds(ReloadPeriod);
-        if(CurrentGameState == GameState.running)
+        if (CurrentGameState == GameState.running)
         {
             StartCoroutine(ReloadTimer());
         }

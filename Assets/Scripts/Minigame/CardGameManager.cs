@@ -72,8 +72,11 @@ public class CardGameManager : MiniGameManager
     public void ShowDifficulty()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
-        MenuWnd.SetActive(false);
-        DifficultyWnd.SetActive(true);
+        if (GotoMiniGame.Instance.CanPlay(1))
+        {
+            MenuWnd.SetActive(false);
+            DifficultyWnd.SetActive(true);
+        }
     }
     public void SetEasy()
     {
@@ -151,14 +154,14 @@ public class CardGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 30.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 20, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 0, 20, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 1: //Normal
@@ -167,14 +170,14 @@ public class CardGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 40.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 30, 0, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 30, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 2: //Hard
@@ -183,14 +186,14 @@ public class CardGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 50.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 50, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 0, 50, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(4, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(1, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
         }
@@ -216,7 +219,7 @@ public class CardGameManager : MiniGameManager
     public Sprite[] KeyboardMiddleSprites = new Sprite[2];
     public Sprite[] KeyboardRightSprites = new Sprite[2];
     public bool[] MyAnswer = new bool[] { false, false, false };
-    public enum CardProcess { Show, Response, Accessment}
+    public enum CardProcess { Show, Response, Accessment }
     public CardProcess cardProcess = CardProcess.Show;
     public float KeyboardDelayTime = 0.2f;
     public int GameIndex = 0;
@@ -243,8 +246,8 @@ public class CardGameManager : MiniGameManager
             UpdateLookTime();
             MyAnswer[0] = false; MyAnswer[1] = false; MyAnswer[2] = false;
             ResetAndCheckCards();
-            ShowCard();            
-        }       
+            ShowCard();
+        }
     }
     public void ResetAndCheckCards()
     {
@@ -253,7 +256,7 @@ public class CardGameManager : MiniGameManager
             card.ResetCard();
         }
         int dragonNum = 0;
-        for (int i = 0; i < Cards.Length; i++) 
+        for (int i = 0; i < Cards.Length; i++)
         {
             if (Cards[i].CurrentPattern == MiniGameCardPattern.Dragon)
             {
@@ -299,7 +302,7 @@ public class CardGameManager : MiniGameManager
                 MyAnswer[0] = true;
             }
         }
-        
+
     }
     public void PressUp()
     {
@@ -387,7 +390,7 @@ public class CardGameManager : MiniGameManager
                 PressRight();
             }
         }
-    
+
     }
 
     public void PlusScore(int score)
@@ -404,7 +407,7 @@ public class CardGameManager : MiniGameManager
         {
             if (TotalScore - score >= 0)
             {
-                TotalScore -= score;               
+                TotalScore -= score;
             }
             else
             {
@@ -498,7 +501,7 @@ public class CardGameManager : MiniGameManager
     {
         int CurrentIndex = GameIndex;
         yield return new WaitForSeconds(0.8f);
-        if(CurrentIndex == GameIndex)
+        if (CurrentIndex == GameIndex)
         {
             ResetKeyboard();
         }
@@ -520,7 +523,7 @@ public class CardGameManager : MiniGameManager
     {
         int currentGameIndex = GameIndex;
         yield return new WaitForSeconds(CurrentResponseTime);
-        if(cardProcess == CardProcess.Response && GameIndex == currentGameIndex)
+        if (cardProcess == CardProcess.Response && GameIndex == currentGameIndex)
         {
             Accessment();
         }
@@ -529,7 +532,7 @@ public class CardGameManager : MiniGameManager
     {
         StartCoroutine(ResetKeyBoardTimer());
         yield return new WaitForSeconds(0.32f);
-        if(CurrentGameState != GameState.gameover)
+        if (CurrentGameState != GameState.gameover)
         {
             StartNewRound();
         }

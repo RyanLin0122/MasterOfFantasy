@@ -148,25 +148,8 @@ class MOFServerHandler : ChannelHandlerAdapter
 
                     break;
                 case 22: //小遊戲分數回報
-                    CacheSvc.Instance.ReportScore(session.ActivePlayer.Name, msg.miniGameScoreReq.Score, msg.miniGameScoreReq.MiniGameID);
-                    session.ActivePlayer.SwordPoint += msg.miniGameScoreReq.SwordPoint;
-                    session.ActivePlayer.ArcheryPoint += msg.miniGameScoreReq.ArcheryPoint;
-                    session.ActivePlayer.MagicPoint += msg.miniGameScoreReq.MagicPoint;
-                    session.ActivePlayer.TheologyPoint += msg.miniGameScoreReq.TheologyPoint;
-                    ProtoMsg back = new ProtoMsg
-                    {
-                        MessageType = 23,
-                        miniGameScoreRsp = new MiniGameScoreRsp
-                        {
-                            MiniGameID = msg.miniGameScoreReq.MiniGameID,
-                            MiniGameRanking = CacheSvc.Instance.MiniGame_Records[msg.miniGameScoreReq.MiniGameID - 1],
-                            SwordPoint = session.ActivePlayer.SwordPoint,
-                            ArcheryPoint = session.ActivePlayer.ArcheryPoint,
-                            MagicPoint = session.ActivePlayer.MagicPoint,
-                            TheologyPoint = session.ActivePlayer.TheologyPoint
-                        }
-                    };
-                    session.WriteAndFlush(back);
+                    MiniGameHandler miniGameHandler = new MiniGameHandler();
+                    Task MiniGameTask = miniGameHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 24: //聊天請求
                     ProcessChatReq(session, msg);

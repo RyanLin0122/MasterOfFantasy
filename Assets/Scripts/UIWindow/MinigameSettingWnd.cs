@@ -157,7 +157,7 @@ public class MinigameSettingWnd : WindowRoot
             MiniGameArr[VacancyIndex] = Index2MiniGameID(num);
             if (IsCommon())
             {
-                ScheduleImgs[VacancyIndex].sprite = CommonMiniGameSprites[num];                
+                ScheduleImgs[VacancyIndex].sprite = CommonMiniGameSprites[num];
                 ScheduleImgs[VacancyIndex].gameObject.SetActive(true);
             }
             else if (IsSuper())
@@ -173,6 +173,13 @@ public class MinigameSettingWnd : WindowRoot
             AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
         }
     }
+    public void CancelAllSchedule()
+    {
+        for (int i = 3; i >= 0; i--)
+        {
+            CancelImg(i);
+        }
+    }
     public void CancelImg(int num)
     {
 
@@ -183,7 +190,7 @@ public class MinigameSettingWnd : WindowRoot
                 ScheduleImgs[3].gameObject.SetActive(false);
                 break;
             case 2:
-                if(MiniGameArr[3] == 0)
+                if (MiniGameArr[3] == 0)
                 {
                     ScheduleImgs[3].gameObject.SetActive(false);
                     MiniGameArr[2] = 0;
@@ -198,7 +205,7 @@ public class MinigameSettingWnd : WindowRoot
                 }
                 break;
             case 1:
-                if(MiniGameArr[2] == 0)
+                if (MiniGameArr[2] == 0)
                 {
                     ScheduleImgs[2].gameObject.SetActive(false);
                     MiniGameArr[1] = 0;
@@ -206,7 +213,7 @@ public class MinigameSettingWnd : WindowRoot
                 }
                 else
                 {
-                    if(MiniGameArr[3] == 0)
+                    if (MiniGameArr[3] == 0)
                     {
                         MiniGameArr[1] = MiniGameArr[2];
                         ScheduleImgs[1].sprite = ScheduleImgs[2].sprite;
@@ -233,7 +240,7 @@ public class MinigameSettingWnd : WindowRoot
                 }
                 else
                 {
-                    if(MiniGameArr[2] == 0)
+                    if (MiniGameArr[2] == 0)
                     {
                         MiniGameArr[0] = MiniGameArr[1];
                         ScheduleImgs[0].sprite = ScheduleImgs[1].sprite;
@@ -244,7 +251,7 @@ public class MinigameSettingWnd : WindowRoot
                     }
                     else
                     {
-                        if(MiniGameArr[3] == 0) //有有有無
+                        if (MiniGameArr[3] == 0) //有有有無
                         {
                             MiniGameArr[0] = MiniGameArr[1];
                             ScheduleImgs[0].sprite = ScheduleImgs[1].sprite;

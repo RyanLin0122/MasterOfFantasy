@@ -139,59 +139,43 @@ public class CacheSvc
     public Dictionary<string, int>[] MiniGame_Records;
 
     //完成小遊戲回報
-    public void ReportScore(string Name, int Score, int GameID)
+    public async void ReportScore(string Name, int Score, int GameID)
     {
-
         lock (MiniGame_Records)
         {
-            var keys = MiniGame_Records[GameID].Keys;
+            var keys = MiniGame_Records[GameID-1].Keys;
+            bool IsAdd = false;
             foreach (var key in keys)
             {
-                if (Score >= MiniGame_Records[GameID][key])
+                if (Score >= MiniGame_Records[GameID - 1][key])
                 {
                     //先插入
-                    if (MiniGame_Records[GameID].ContainsKey(Name))
-                    {
-                        (MiniGame_Records[GameID])[key] = Score;
-                        break;
-                    }
-                    else
-                    {
-                        MiniGame_Records[GameID].Add(Name, Score);
-                        break;
-                    }
+                    IsAdd = true;
                 }
             }
+            if(IsAdd) MiniGame_Records[GameID - 1][Name] = Score;
             //刪去最小值
-            if (MiniGame_Records[GameID].Count > 10)
+            if (MiniGame_Records[GameID - 1].Count > 10)
             {
                 int MinScore = 99999;
                 string MinKey = "";
-                foreach (var key in keys)
+                foreach (var kv in MiniGame_Records[GameID - 1])
                 {
-                    if (MiniGame_Records[GameID][key] <= MinScore)
+                    if (MiniGame_Records[GameID - 1][kv.Key] <= MinScore)
                     {
-                        MinScore = MiniGame_Records[GameID][key];
-                        MinKey = key;
+                        MinScore = kv.Value;
+                        MinKey = kv.Key;
                     }
                     else
                     {
                         continue;
                     }
                 }
-                MiniGame_Records[GameID].Remove(MinKey);
+                MiniGame_Records[GameID - 1].Remove(MinKey);
             }
-
         }
-        //刪除1個道具
-
-        //回傳刪除道具
-
         //Update DataBase
-        dbMgr.UpdateMiniGameRanking(MiniGame_Records[GameID], GameID);
-
-        //資料庫刪除道具
-
+        await dbMgr.UpdateMiniGameRanking(MiniGame_Records[GameID - 1], GameID);
     }
     #endregion
 

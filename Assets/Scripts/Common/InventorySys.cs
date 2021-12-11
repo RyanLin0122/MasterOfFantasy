@@ -367,7 +367,12 @@ public class InventorySys : MonoBehaviour
     {
         bool result = false;
         int RestNum = Count;
-        bool IsCash = InventorySys.Instance.ItemList[ID].IsCash;
+        if (!ItemList.ContainsKey(ID))
+        {
+            Debug.Log("無此道具");
+            return false;
+        }
+        bool IsCash = ItemList[ID].IsCash;
         if (IsCash)
         {
             foreach (var kv in GameRoot.Instance.ActivePlayer.CashKnapsack)

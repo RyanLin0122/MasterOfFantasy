@@ -59,12 +59,13 @@ public class MainCitySys : SystemRoot
         if (GameRoot.Instance.ActivePlayer.BadgeCollection == null) GameRoot.Instance.ActivePlayer.BadgeCollection = new List<int>();
         if (GameRoot.Instance.ActivePlayer.TitleCollection == null) GameRoot.Instance.ActivePlayer.TitleCollection = new List<int>();
         UISystem.Instance.equipmentWnd.InitEquipWndWhenLogin();
+        GameRoot.Instance.ActivePlayer.MiniGameArr = null;
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);
         QuestManager.Instance.Init(GameRoot.Instance.ActivePlayer.ProcessingQuests);
         resSvc.AsyncLoadScene(mapData.SceneName, () =>
         {
             GameRoot.Instance.ActivePlayer.MapID = rsp.MapID;
-
+            UISystem.Instance.baseUI.SetCharacterName();
             //加載角色
             try
             {
@@ -200,7 +201,6 @@ public class MainCitySys : SystemRoot
         MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
         PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
-        GameRoot.Instance.MainPlayerControl = mainPlayerCtrl;
         mainPlayerCtrl.Name = PlayerName;
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
         mainPlayerCtrl.SetNameBox();
@@ -236,7 +236,6 @@ public class MainCitySys : SystemRoot
             if (MainCanvas == null) MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(add.Position[0], add.Position[1], 200f));
             PlayerController OtherPlayerCtrl = player.GetComponent<PlayerController>();
-            GameRoot.Instance.MainPlayerControl = OtherPlayerCtrl;
             OtherPlayerCtrl.Name = add.Name;
             OtherPlayerCtrl.SetTitle(add.Title);
             OtherPlayerCtrl.SetNameBox();
@@ -343,6 +342,10 @@ public class MainCitySys : SystemRoot
     {
         GameRoot.Instance.ActivePlayer.MiniGameArr = setting.MiniGameArray;
         GameRoot.Instance.ActivePlayer.MiniGameRatio = setting.MiniGameRatio;
+        if(GameRoot.Instance.ActivePlayer.MiniGameArr!=null&& GameRoot.Instance.ActivePlayer.MiniGameArr[0] > 0)
+        {
+            UISystem.Instance.baseUI.CloseClassCoverImg();
+        }
         UISystem.Instance.baseUI.SetClassImg();
     }
 

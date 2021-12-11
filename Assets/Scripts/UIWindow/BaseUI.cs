@@ -12,6 +12,8 @@ public class BaseUI : WindowRoot
     public GameObject expdisplaytext;
     public GameObject expbar;
     public CustomInputField Input;
+    public Text CharacterNameText;
+    public GameObject ClassCoverImg;
 
     public Image[] ClassImgs = new Image[4];
 
@@ -24,6 +26,19 @@ public class BaseUI : WindowRoot
 
     }
 
+    public void SetCharacterName()
+    {
+        CharacterNameText.text = GameRoot.Instance.ActivePlayer.Name;
+    }
+    public void CloseClassCoverImg()
+    {
+        ClassCoverImg.gameObject.SetActive(false);
+    }
+
+    public void OpenClassCoverImg()
+    {
+        ClassCoverImg.gameObject.SetActive(true);
+    }
     public void AddExp(long Exp)
     {
         Player player = GameRoot.Instance.ActivePlayer;
@@ -46,9 +61,9 @@ public class BaseUI : WindowRoot
         {
             player.Exp += Exp;
         }
-        if (GameRoot.Instance.MainPlayerControl != null)
+        if (PlayerInputController.Instance.entityController != null)
         {
-            GameRoot.Instance.MainPlayerControl.GenerateDamageNum((int)-Exp, 4);
+            PlayerInputController.Instance.entityController.GenerateDamageNum((int)-Exp, 4);
             RefreshExpUI(player.Exp, player.Level);
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
         }
@@ -270,17 +285,35 @@ public class BaseUI : WindowRoot
     {
         int[] Arr = GameRoot.Instance.ActivePlayer.MiniGameArr;
         int Ratio = GameRoot.Instance.ActivePlayer.MiniGameRatio;
-        for (int i = 0; i < Arr.Length; i++)
+        if(Arr != null && Arr.Length > 0)
         {
-            if (Arr[i] == 0)
+            for (int i = 0; i < 4; i++)
+            {
+                if (i < Arr.Length)
+                {
+                    if (Arr[i] == 0)
+                    {
+                        ClassImgs[i].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        ClassImgs[i].gameObject.SetActive(true);
+                        ClassImgs[i].sprite = GetSpriteByClassID(Arr[i], Ratio);
+                    }
+                }
+                else
+                {
+                    ClassImgs[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 4; i++)
             {
                 ClassImgs[i].gameObject.SetActive(false);
             }
-            else
-            {
-                ClassImgs[i].gameObject.SetActive(true);
-                ClassImgs[i].sprite = GetSpriteByClassID(Arr[i], Ratio);
-            }
+            OpenClassCoverImg();
         }
     }
     public Sprite[] ClassSprites;

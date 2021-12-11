@@ -388,22 +388,37 @@ public class DBMgr
     }
 
     //更新排名
-    public void UpdateMiniGameRanking(Dictionary<string, int> data, int GameId)
+    public async Task UpdateMiniGameRanking(Dictionary<string, int> data, int GameId)
     {
         try
         {
-            BsonArray bd = new BsonArray { };
-            foreach (var key in data.Keys)
+            var factory = ServerRoot.Instance.taskFactory;
+            Task task = factory.StartNew(() =>
             {
-                BsonElement element = new BsonElement(key, data[key]);
-                BsonValue value = new BsonDocument().Add(element);
-                bd.Add(value);
-            }
-            var filter = Builders<BsonDocument>.Filter.Eq("Query", "q");
-
-            var update = Builders<BsonDocument>.Update.Set("Games." + GameId, bd);
-            MinigameRanking.UpdateOne(filter, update);
-
+                BsonArray bd = new BsonArray { };
+                foreach (var key in data.Keys)
+                {
+                    BsonElement element = new BsonElement(key, data[key]);
+                    BsonValue value = new BsonDocument().Add(element);
+                    bd.Add(value);
+                }
+                var cursor = MinigameRanking.Find(new BsonDocument { { "Query", "q" } }).ToCursor();
+                var Result = cursor.ToList();
+                BsonDocument MiniGameRankData;
+                if (Result.Count == 0)
+                {
+                    Console.WriteLine("沒有此帳號");
+                };
+                MiniGameRankData = Result[0];
+                var Games = MiniGameRankData["Games"].AsBsonArray;
+                Games[GameId - 1] = bd;
+                MiniGameRankData["Games"] = Games;
+                var filter = Builders<BsonDocument>.Filter.Eq("Query", "q");
+                var update = Builders<BsonDocument>.Update.Set("Games", Games);
+                MinigameRanking.UpdateOneAsync(filter, update);
+            });
+            await task;
+            LogSvc.Info("Update minigame ranking complete!");
         }
         catch (MongoException exception)
         {

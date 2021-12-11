@@ -378,7 +378,7 @@ public class QuestManager : MonoSingleton<QuestManager>
             }
         }
     }
-    private void DeleteItem(bool IsCash, int Position)
+    public void DeleteItem(bool IsCash, int Position)
     {
         if (IsCash)
         {
@@ -399,7 +399,7 @@ public class QuestManager : MonoSingleton<QuestManager>
             }
         }
     }
-    private void StoreItem(Item item)
+    public void StoreItem(Item item)
     {
         if (item != null)
         {

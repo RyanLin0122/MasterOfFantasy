@@ -245,7 +245,7 @@ public class NetSvc : MonoBehaviour
     {
         if (msg.addMapPlayer.MapID == GameRoot.Instance.ActivePlayer.MapID)
         {
-            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer,msg.addMapPlayer.nEntity);
+            MainCitySys.Instance.AddPlayerToMap(msg.addMapPlayer.NewPlayer, msg.addMapPlayer.nEntity);
         }
 
     }
@@ -280,15 +280,30 @@ public class NetSvc : MonoBehaviour
     public void DoMiniGameScoreRsp(ProtoMsg msg)
     {
         MiniGameScoreRsp rsp = msg.miniGameScoreRsp;
-        GameRoot.Instance.ActivePlayer.SwordPoint = rsp.SwordPoint;
-        GameRoot.Instance.ActivePlayer.ArcheryPoint = rsp.ArcheryPoint;
-        GameRoot.Instance.ActivePlayer.MagicPoint = rsp.MagicPoint;
-        GameRoot.Instance.ActivePlayer.TheologyPoint = rsp.TheologyPoint;
-        GotoMiniGame.Instance.ranking = rsp.MiniGameRanking;
-        print(GameRoot.Instance.ActivePlayer.SwordPoint);
-        print(GameRoot.Instance.ActivePlayer.ArcheryPoint);
-        print(GameRoot.Instance.ActivePlayer.MagicPoint);
-        print(GameRoot.Instance.ActivePlayer.TheologyPoint);
+        if (rsp.Result)
+        {
+            GameRoot.Instance.ActivePlayer.SwordPoint = rsp.SwordPoint;
+            GameRoot.Instance.ActivePlayer.ArcheryPoint = rsp.ArcheryPoint;
+            GameRoot.Instance.ActivePlayer.MagicPoint = rsp.MagicPoint;
+            GameRoot.Instance.ActivePlayer.TheologyPoint = rsp.TheologyPoint;
+            GotoMiniGame.Instance.ranking = rsp.MiniGameRanking;
+            UISystem.Instance.AddMessageQueue("消耗劍術點數: " + GameRoot.Instance.ActivePlayer.SwordPoint);
+            UISystem.Instance.AddMessageQueue("消耗弓術點數: " + GameRoot.Instance.ActivePlayer.ArcheryPoint);
+            UISystem.Instance.AddMessageQueue("消耗魔法點數: " + GameRoot.Instance.ActivePlayer.MagicPoint);
+            UISystem.Instance.AddMessageQueue("消耗神學點數: " + GameRoot.Instance.ActivePlayer.TheologyPoint);
+            if (rsp.RecycleItem != null)
+            {
+                QuestManager.Instance.StoreItem(rsp.RecycleItem);
+            }
+            if (rsp.DeleteItemPos > 0)
+            {
+                QuestManager.Instance.DeleteItem(rsp.DeleteItemIsCash, rsp.DeleteItemPos);
+            }
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue(rsp.ErrorMsg);
+        }
     }
     public void DoChatRsp(ProtoMsg msg)
     {
@@ -320,7 +335,7 @@ public class NetSvc : MonoBehaviour
         else
         {
             PlayerController playerController = null;
-            if(BattleSys.Instance.Players.TryGetValue(levelUp.CharacterName, out playerController))
+            if (BattleSys.Instance.Players.TryGetValue(levelUp.CharacterName, out playerController))
             {
                 AudioSvc.Instance.PlayCharacterAudio(Constants.LevelUpAudio);
                 //播放特效
@@ -577,7 +592,7 @@ public class NetSvc : MonoBehaviour
     public void DoSyncEntities(ProtoMsg msg)
     {
         EntitySyncRequest es = msg.entitySyncReq;
-        if(es.nEntity!=null && es.nEntity.Count > 0)
+        if (es.nEntity != null && es.nEntity.Count > 0)
         {
             for (int i = 0; i < es.nEntity.Count; i++)
             {
@@ -608,7 +623,7 @@ public class NetSvc : MonoBehaviour
 
     public void DoAcceptQuestResponse(ProtoMsg msg)
     {
-        if(msg.questAcceptResponse != null)
+        if (msg.questAcceptResponse != null)
         {
             QuestManager.Instance.DoQuestAcceptResponse(msg);
         }

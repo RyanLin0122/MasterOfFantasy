@@ -743,7 +743,14 @@ namespace PEProtocal
         public int MagicPoint { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public int TheologyPoint { get; set; }
-
+        [ProtoMember(8, IsRequired = false)]
+        public bool IsRecycle { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int ItemID { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public bool IsSuccess { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public int Difficulty { get; set; }
     }
 
     //小遊戲分數回應
@@ -766,6 +773,16 @@ namespace PEProtocal
         public int TheologyPoint { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public Dictionary<string, int> MiniGameRanking { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public int DeleteItemPos { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public Item RecycleItem { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public bool DeleteItemIsCash { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public string ErrorMsg { get; set; }
     }
 
     //聊天請求

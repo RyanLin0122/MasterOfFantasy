@@ -226,6 +226,11 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         OtherBtn.GetComponent<Image>().sprite = ButtonSpriteWhite;
     }
     #endregion
+
+    public void SetTranscriptScore()
+    {
+        this.Transcipt.SetScores();
+    }
     public void CloseAndPop()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);

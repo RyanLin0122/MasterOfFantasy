@@ -609,6 +609,7 @@ public class MOFCharacter : Entity
     public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
     {
         this.player = player;
+        this.player.MiniGameArr = null;
         if (this.player.CashKnapsack == null) this.player.CashKnapsack = new Dictionary<int, Item>();
         if (this.player.NotCashKnapsack == null) this.player.NotCashKnapsack = new Dictionary<int, Item>();
         if (this.player.BadgeCollection == null) this.player.BadgeCollection = new List<int>();
@@ -930,6 +931,12 @@ public class MOFCharacter : Entity
         return result;
     }
 
+    /// <summary>
+    /// 回收物品，要刪除物品的Pos，最後一個是要刪除物品的Iscash
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="Count"></param>
+    /// <returns></returns>
     public (List<Item>, List<int>, List<bool>) RecycleItem(int ID, int Count)
     {
         (List<Item>, List<int>, List<bool>) result;

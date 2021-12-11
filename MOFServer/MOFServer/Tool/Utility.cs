@@ -242,7 +242,7 @@ public static class Utility
     public static List<HotkeyData> GetHotkeyDatasFromBson(BsonArray array)
     {
         List<HotkeyData> result = new List<HotkeyData>();
-        if(array!=null && array.Count > 0)
+        if (array != null && array.Count > 0)
         {
             foreach (var data in array)
             {
@@ -623,7 +623,7 @@ public static class Utility
         };
         return b;
     }
-   
+
     public static BsonArray CartList2BsonArr(List<CartItem> cartItems)
     {
         BsonArray r = new BsonArray();
@@ -749,81 +749,109 @@ public static class Utility
     public static BsonArray Arr2StringBsonArr<T>(T[] input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item.ToString());
+            foreach (var item in input)
+            {
+                r.Add(item.ToString());
+            }
         }
         return r;
     }
     public static BsonArray IntArr2BsonArray(int[] input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray floatArr2BsonArray(float[] input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray longArr2BsonArray(long[] input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray IntList2BsonArray(List<int> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray FloatList2BsonArray(List<float> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray LongList2BsonArray(List<long> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var item in input)
+        if (input != null)
         {
-            r.Add(item);
+            foreach (var item in input)
+            {
+                r.Add(item);
+            }
         }
         return r;
     }
     public static BsonArray Dic_Int_Int2BsonArr(Dictionary<int, int> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var key in input.Keys)
+        if (input != null && input.Count > 0)
         {
-            r.Add(new BsonDocument { { "ID", key }, { "Amount", input[key] } });
+            foreach (var key in input.Keys)
+            {
+                r.Add(new BsonDocument { { "ID", key }, { "Amount", input[key] } });
+            }
         }
+
         return r;
     }
     public static BsonArray DiaryInfo2BsonArr(Dictionary<int, int> input)
     {
         BsonArray r = new BsonArray();
-        foreach (var key in input.Keys)
+        if (input != null && input.Count > 0)
         {
-            r.Add(new BsonDocument { { "ID", key }, { "Level", input[key] } });
+            foreach (var key in input.Keys)
+            {
+                r.Add(new BsonDocument { { "ID", key }, { "Level", input[key] } });
+            }
         }
         return r;
     }
@@ -840,7 +868,7 @@ public static class Utility
     public static BsonDocument Quest2Bson(NQuest quest)
     {
         BsonDocument r = new BsonDocument {
-            { "ID", quest.quest_id }, 
+            { "ID", quest.quest_id },
             { "Status", quest.status.ToString() },
             { "HasDeliveried", quest.HasDeliveried },
             { "Targets", Dic_Int_Int2BsonArr(quest.Targets) }
@@ -907,7 +935,7 @@ public static class Utility
         Equipment itemr = (Equipment)CacheSvc.ItemList[ItemID];
         Equipment item = new Equipment(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.MaxHP, itemr.MaxMP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate,itemr.ExpiredTime,itemr.Stars);
+            itemr.Job, itemr.Level, itemr.Gender, itemr.Defense, itemr.MaxHP, itemr.MaxMP, itemr.Title, itemr.MinDamage, itemr.MaxDamage, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.MagicDefense, itemr.EquipType, itemr.DropRate, itemr.RestRNum, itemr.ExpRate, itemr.ExpiredTime, itemr.Stars);
 
         return item;
     }
@@ -916,7 +944,7 @@ public static class Utility
         Weapon itemr = (Weapon)CacheSvc.ItemList[ItemID];
         Weapon item = new Weapon(itemr.ItemID, itemr.Name, itemr.Type, itemr.Quality, itemr.Description, itemr.Capacity,
             itemr.BuyPrice, itemr.SellPrice, itemr.Sprite, itemr.IsCash, itemr.Cantransaction, 1, itemr.Level, itemr.MinDamage, itemr.MaxDamage, itemr.AttSpeed, itemr.Range, itemr.Property, itemr.Attack, itemr.Strength, itemr.Agility, itemr.Intellect,
-            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum,itemr.Additional,itemr.Stars,itemr.AdditionalLevel,itemr.ExpiredTime);
+            itemr.Job, itemr.Accuracy, itemr.Avoid, itemr.Critical, itemr.WeapType, itemr.DropRate, itemr.RestRNum, itemr.Additional, itemr.Stars, itemr.AdditionalLevel, itemr.ExpiredTime);
         return item;
     }
     public static EtcItem GetEtcItemByID(int ItemID)

@@ -1148,7 +1148,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f3f5888b9f7a7479f23837831ee3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scores: 
+  Names:
+  - {fileID: 898301487}
+  - {fileID: 898301486}
+  - {fileID: 898301485}
+  - {fileID: 898301484}
+  - {fileID: 898301483}
+  - {fileID: 898301482}
+  - {fileID: 898301481}
+  - {fileID: 898301480}
+  - {fileID: 898301479}
+  - {fileID: 898301478}
+  Scores:
+  - {fileID: 898301477}
+  - {fileID: 898301476}
+  - {fileID: 898301475}
+  - {fileID: 898301474}
+  - {fileID: 898301473}
+  - {fileID: 898301472}
+  - {fileID: 898301471}
+  - {fileID: 898301470}
+  - {fileID: 898301469}
+  - {fileID: 898301467}
+  GameScores: 
   ScoreIndex: 0
   TotalScore: 0
   ArrowImg: {fileID: 1233845555}
@@ -1204,26 +1226,6 @@ MonoBehaviour:
   GoodAni: {fileID: 1361733093}
   BadAni: {fileID: 293551612}
   MissAni: {fileID: 182931886}
-  Name0: {fileID: 898301487}
-  Name1: {fileID: 898301486}
-  Name2: {fileID: 898301485}
-  Name3: {fileID: 898301484}
-  Name4: {fileID: 898301483}
-  Name5: {fileID: 898301482}
-  Name6: {fileID: 898301481}
-  Name7: {fileID: 898301480}
-  Name8: {fileID: 898301479}
-  Name9: {fileID: 898301478}
-  Score0: {fileID: 898301477}
-  Score1: {fileID: 898301476}
-  Score2: {fileID: 898301475}
-  Score3: {fileID: 898301474}
-  Score4: {fileID: 898301473}
-  Score5: {fileID: 898301472}
-  Score6: {fileID: 898301471}
-  Score7: {fileID: 898301470}
-  Score8: {fileID: 898301469}
-  Score9: {fileID: 898301467}
   MenuWnd: {fileID: 1212787428}
   IntroWnd: {fileID: 698305362}
   ScoreWnd: {fileID: 354980699}

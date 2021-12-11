@@ -330,8 +330,18 @@ public class UISystem : SystemRoot
 
     public void OpenMiniGameSetting()
     {
-        dialogueWnd.LockAllBtn();
-        miniGameSettingWnd.OpenWnd();
+        
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        if (CanSetMiniGameSchedule())
+        {
+            dialogueWnd.LockAllBtn();
+            miniGameSettingWnd.OpenWnd();
+        }
+        else
+        {
+            dialogueWnd.ActivateAllBtn();
+            GameRoot.AddTips("請先完成剩餘課程喔!");
+        }
     }
     public void OpenCloseOptionWnd()
     {
@@ -399,6 +409,27 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         QuestWnd.gameObject.SetActive(false);
     }
+
     #endregion
 
+    private bool CanSetMiniGameSchedule()
+    {
+        bool result = false;
+        if (GameRoot.Instance.ActivePlayer.MiniGameArr == null) result = true;
+        else
+        {
+            if (GameRoot.Instance.ActivePlayer.MiniGameArr.Length > 0)
+            {
+                bool IsAllZero = true;
+                for (int i = 0; i < GameRoot.Instance.ActivePlayer.MiniGameArr.Length; i++)
+                {
+                    if (GameRoot.Instance.ActivePlayer.MiniGameArr[i] > 0)
+                        IsAllZero = false;
+                }
+                if (IsAllZero)
+                    result = true;
+            }
+        }
+        return result;
+    }
 }

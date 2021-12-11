@@ -19,9 +19,9 @@ public class MiniMap : MonoBehaviour
 
     public void UpdateMiniMap()
     {
-        if (GameRoot.Instance.MainPlayerControl != null && GameRoot.Instance.MainPlayerControl.gameObject != null)
+        if (PlayerInputController.Instance.entityController != null && PlayerInputController.Instance.entityController.gameObject != null)
         {
-            Vector3 mainCharacterpos = GameRoot.Instance.MainPlayerControl.transform.localPosition;
+            Vector3 mainCharacterpos = PlayerInputController.Instance.entityController.transform.localPosition;
             Player.transform.localPosition = mainCharacterpos / 10.0f;
 
 

@@ -14,24 +14,14 @@ public class DialogueWnd : WindowRoot
     public int CurrentNPCID;
     protected override void InitWnd()
     {
-        QuestBtn.gameObject.SetActive(false);
-        ClassBtn.gameObject.SetActive(false);
-        Class2Btn.gameObject.SetActive(false);
-        QuizBtn.gameObject.SetActive(false);
-        BuyBtn.gameObject.SetActive(false);
-        SellBtn.gameObject.SetActive(false);
-        LockerBtn.gameObject.SetActive(false);
-        MailBoxBtn.gameObject.SetActive(false);
-        MiniGameBtn.gameObject.SetActive(false);
-        StrenthenBtn.gameObject.SetActive(false);
-        QuestBtns.SetActive(false);
+        var btns = NPCFunctionBtns.GetComponentsInChildren<Button>();
+        foreach (var btn in btns)
+        {
+            btn.gameObject.SetActive(false);
+        }
         NPCFunctionBtns.SetActive(true);
-        AcceptBtn.gameObject.SetActive(false);
-        DeclineBtn.gameObject.SetActive(false);
-        UIDeliveryIntro.gameObject.SetActive(false);
-        UIKillIntro.gameObject.SetActive(false);
-        UIItemIntro.gameObject.SetActive(false);
-        CloseBtn.gameObject.SetActive(false);
+        ExitBtn.gameObject.SetActive(true);
+        QuestBtns.SetActive(false);
         base.InitWnd();
 
     }
@@ -75,6 +65,7 @@ public class DialogueWnd : WindowRoot
     public Button MailBoxBtn;
     public Button StrenthenBtn;
     public Button MiniGameBtn;
+    public Button ExitBtn;
 
 
     public void SetNPC(int NpcId)
@@ -87,7 +78,6 @@ public class DialogueWnd : WindowRoot
         SetSprite(NpcImage, "NPC/" + npcCfg.Sprite);
         NpcImage.SetNativeSize();
         //調位置
-        //PECommon.Log((18 + (NpcImage.rectTransform.rect.width * 0.15f)).ToString());
         NpcImage.transform.localPosition = new Vector2(-400 + (NpcImage.rectTransform.rect.width * 0.15f), NpcImage.transform.localPosition.y);
 
         foreach (var item in npcCfg.Functions)
@@ -101,10 +91,11 @@ public class DialogueWnd : WindowRoot
                     break;
                 case 2:
                     ClassBtn.gameObject.SetActive(true);
+                    SetClassName1(NpcId);
                     break;
                 case 3:
                     Class2Btn.gameObject.SetActive(true);
-
+                    SetClassName2(NpcId);
                     break;
                 case 4:
                     QuizBtn.gameObject.SetActive(true);
@@ -133,6 +124,47 @@ public class DialogueWnd : WindowRoot
     public void ImportNpcShopItems()
     {
         ShopWnd.Instance.GetSellItemList(CurrentNPCID);
+    }
+
+    private void SetClassName1(int NPCID)
+    {
+        switch (NPCID)
+        {
+            case 1004:
+                ClassBtn.GetComponentInChildren<Text>().text = "一眼瞬間";
+                break;
+            case 1005:
+                ClassBtn.GetComponentInChildren<Text>().text = "擊中靶子";
+                break;
+            case 1006:
+                ClassBtn.GetComponentInChildren<Text>().text = "魔法拼圖";
+                break;
+            case 1007:
+                ClassBtn.GetComponentInChildren<Text>().text = "擊破木板";
+                break;
+            default:
+                break;
+        }
+    }
+    private void SetClassName2(int NPCID)
+    {
+        switch (NPCID)
+        {
+            case 1004:
+                Class2Btn.GetComponentInChildren<Text>().text = "緊急情況";
+                break;
+            case 1005:
+                Class2Btn.GetComponentInChildren<Text>().text = "閃躲之達人";
+                break;
+            case 1006:
+                Class2Btn.GetComponentInChildren<Text>().text = "擊落目標";
+                break;
+            case 1007:
+                Class2Btn.GetComponentInChildren<Text>().text = "木人對練";
+                break;
+            default:
+                break;
+        }
     }
     public void EnterMiniGame()
     {

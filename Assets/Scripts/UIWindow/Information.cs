@@ -534,23 +534,26 @@ public class Information : WindowRoot
     {
         Player pd = GameRoot.Instance.ActivePlayer;
         //人物頭上數字
-        if (GameRoot.Instance.MainPlayerControl != null)
+        if (PlayerInputController.Instance.entityController != null)
         {
             if (pd.HP > UpdateHP)
             {
                 //扣血
-                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
+                PlayerInputController.Instance.entityController.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
             else if (pd.HP < UpdateHP)
             {
                 //補血
-                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.HP - UpdateHP, 2);
+                PlayerInputController.Instance.entityController.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
         }
         if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
         {
             pd.HP = UpdateHP;
-            GameRoot.Instance.MainPlayerControl.entity.nEntity.HP = UpdateHP;
+            if (PlayerInputController.Instance.entityController != null)
+            {
+                PlayerInputController.Instance.entityController.entity.nEntity.HP = UpdateHP;
+            }
         }
         txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
         HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
@@ -561,17 +564,17 @@ public class Information : WindowRoot
     public void UpdateMp(int UpdateMP)
     {
         Player pd = GameRoot.Instance.ActivePlayer;
-        if (GameRoot.Instance.MainPlayerControl != null)
+        if (PlayerInputController.Instance.entityController != null)
         {
             if (pd.MP > UpdateMP)
             {
                 //扣魔
-                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(UpdateMP - pd.MP, 3);
+                PlayerInputController.Instance.entityController.GenerateDamageNum(UpdateMP - pd.MP, 3);
             }
             else if (pd.MP < UpdateMP)
             {
                 //補魔
-                GameRoot.Instance.MainPlayerControl.GenerateDamageNum(pd.MP - UpdateMP, 3);
+                PlayerInputController.Instance.entityController.GenerateDamageNum(pd.MP - UpdateMP, 3);
             }
         }
         if (UpdateMP <= BattleSys.Instance.FinalAttribute.MAXMP)

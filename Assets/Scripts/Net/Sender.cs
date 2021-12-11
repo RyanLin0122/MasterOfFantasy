@@ -237,7 +237,7 @@ public class MiniGameRequestSender : BaseSender
 
 public class MiniGameScoreReqSender : BaseSender
 {
-    public MiniGameScoreReqSender(int MiniGameID, int Score, int SwordPoint, int ArcheryPoint, int MagicPoint, int TheologyPoint)
+    public MiniGameScoreReqSender(int MiniGameID, int Score, int SwordPoint, int ArcheryPoint, int MagicPoint, int TheologyPoint, int CardID, bool IsRecycle, bool IsSuccess, int Difficulty)
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -247,10 +247,14 @@ public class MiniGameScoreReqSender : BaseSender
                 CharacterName = GameRoot.Instance.ActivePlayer.Name,
                 MiniGameID = MiniGameID,
                 Score = Score,
-                SwordPoint = SwordPoint,
-                ArcheryPoint = ArcheryPoint,
-                MagicPoint = MagicPoint,
-                TheologyPoint = TheologyPoint
+                SwordPoint = GameRoot.Instance.ActivePlayer.MiniGameRatio * SwordPoint,
+                ArcheryPoint = GameRoot.Instance.ActivePlayer.MiniGameRatio * ArcheryPoint,
+                MagicPoint = GameRoot.Instance.ActivePlayer.MiniGameRatio * MagicPoint,
+                TheologyPoint = GameRoot.Instance.ActivePlayer.MiniGameRatio * TheologyPoint,
+                IsRecycle = IsRecycle,
+                ItemID = CardID,
+                IsSuccess = IsSuccess,
+                Difficulty = Difficulty
             }
         };
         base.SendMsg(msg);
@@ -841,7 +845,7 @@ public class PickUpSender : BaseSender
             }
         };
         base.SendMsg(msg);
-    } 
+    }
 }
 
 public class ConsumableSender : BaseSender
@@ -858,7 +862,7 @@ public class ConsumableSender : BaseSender
                 HP = -1,
                 MP = -1,
                 IsSuccess = false,
-                RestNum = item.Count-1,
+                RestNum = item.Count - 1,
                 InventoryID = InventoryID,
                 InventoryPosition = InventoryPosition
             }
@@ -890,7 +894,7 @@ public class SubmitQuestSender : BaseSender
         ProtoMsg msg = new ProtoMsg
         {
             MessageType = 67,
-            questSubmitRequest = new QuestSubmitRequest 
+            questSubmitRequest = new QuestSubmitRequest
             {
                 quest_id = QuestID
             }

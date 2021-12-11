@@ -9,7 +9,7 @@ using System.Reflection;
 
 
 public class KungFuGameManager : MiniGameManager
-{    
+{
     #region MenuUI
     public GameObject MenuWnd;
     public GameObject IntroWnd;
@@ -74,8 +74,11 @@ public class KungFuGameManager : MiniGameManager
     public void ShowDifficulty()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.LargeBtn);
-        MenuWnd.SetActive(false);
-        DifficultyWnd.SetActive(true);
+        if (GotoMiniGame.Instance.CanPlay(6))
+        {
+            MenuWnd.SetActive(false);
+            DifficultyWnd.SetActive(true);
+        }
     }
     public void SetEasy()
     {
@@ -115,7 +118,7 @@ public class KungFuGameManager : MiniGameManager
     public void Exit()
     {
         MainCitySys.Instance.TransferToAnyMap(1007, new Vector2(-355, -185));
-    } 
+    }
     private void Init() //選擇完難度後調用
     {
         StartCoroutine(timer3());
@@ -137,14 +140,14 @@ public class KungFuGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 30.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 20, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 0, 20, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 1: //Normal
@@ -153,14 +156,14 @@ public class KungFuGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 40.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 30, 0, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 30, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
                 break;
             case 2: //Hard
@@ -169,16 +172,16 @@ public class KungFuGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 50.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(5, TotalScore, 0, 0, 50, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 0, 50, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    //GotoMiniGame.Instance.ReportScore(4, TotalScore, 0, 0, 10, 0);
+                    GotoMiniGame.Instance.ReportScore(6, TotalScore, 0, 0, 10, 0, false, Difficalty);
                 }
-                break;            
+                break;
         }
     }
     #endregion
@@ -205,7 +208,7 @@ public class KungFuGameManager : MiniGameManager
     public float HorizontalPower { get; set; }
     public float PeriodOfHorizontalPower = 3f;
     public int GameIndex = 0;
-    public int[] GameScores = new int[5] { 0,0,0,0,0};
+    public int[] GameScores = new int[5] { 0, 0, 0, 0, 0 };
     public Text[] GameScoreTxts = new Text[5];
     public int TotalScore = 0;
     public Text TotalScoreTxt;
@@ -221,7 +224,7 @@ public class KungFuGameManager : MiniGameManager
     public bool IsHorizontalPowerMove = false;
     public bool CursorDircetion = true;
     public bool IsVerticalPowerMove = false;
-    public enum GameState { beforestart, transition, vertical, horizontal, animation, gameover}
+    public enum GameState { beforestart, transition, vertical, horizontal, animation, gameover }
     public GameState CurrentGameState = GameState.beforestart;
 
     public Image[] breds = new Image[10];
@@ -233,7 +236,7 @@ public class KungFuGameManager : MiniGameManager
     public GameObject BarGroup;
     public Sprite[] BredSprites = new Sprite[3];
     public int RestBrokenBreds;
-    public bool[] IsBroken = new bool[10] { false, false, false, false,false,false,false,false,false,false};
+    public bool[] IsBroken = new bool[10] { false, false, false, false, false, false, false, false, false, false };
 
 
     #endregion
@@ -270,7 +273,7 @@ public class KungFuGameManager : MiniGameManager
                 }
                 break;
             case GameState.animation:
-                
+
                 break;
             case GameState.gameover:
                 break;
@@ -288,7 +291,7 @@ public class KungFuGameManager : MiniGameManager
             }
         }
         UpdateAction += add;
-    }   
+    }
     public void StartVerticalPowerMove()
     {
         IsVerticalPowerMove = true;
@@ -312,9 +315,9 @@ public class KungFuGameManager : MiniGameManager
             {
                 VerticalDeltaTime = PeriodOfVerticalPower - VerticalDeltaTime;
                 AudioSvc.Instance.PlayMiniGameUIAudio(Constants.VerticalPower);
-            }         
+            }
         }
-    }    
+    }
     public void StartHorizontalPowerMove()
     {
         IsHorizontalPowerMove = true;
@@ -337,12 +340,12 @@ public class KungFuGameManager : MiniGameManager
             {
                 HorizontalDeltaTime %= PeriodOfHorizontalPower;
                 HorizontalDeltaTime += Time.deltaTime;
-                HorizontalCursor.transform.localPosition = new Vector3(LeftBound + (HorizontalDeltaTime/ PeriodOfHorizontalPower * BarWidth), HorizontalCursor.transform.localPosition.y, HorizontalCursor.transform.localPosition.z);
+                HorizontalCursor.transform.localPosition = new Vector3(LeftBound + (HorizontalDeltaTime / PeriodOfHorizontalPower * BarWidth), HorizontalCursor.transform.localPosition.y, HorizontalCursor.transform.localPosition.z);
                 if (HorizontalDeltaTime >= PeriodOfHorizontalPower)
                 {
                     HorizontalDeltaTime = PeriodOfHorizontalPower - HorizontalDeltaTime;
                     CursorDircetion = !CursorDircetion;
-}
+                }
             }
             else
             {
@@ -358,17 +361,17 @@ public class KungFuGameManager : MiniGameManager
         }
     }
     public void CalculateScore() //每波結束時調用
-    {      
+    {
         float CursorPos = HorizontalCursor.transform.localPosition.x;
         float Width = HorizontalCursor.transform.parent.GetComponent<RectTransform>().rect.width;
-        int CurrentScore = Mathf.RoundToInt( (VerticalPowerImg.fillAmount * 10f) * (Mathf.Abs(10f * (1 - (2f * CursorPos / Width)))));
+        int CurrentScore = Mathf.RoundToInt((VerticalPowerImg.fillAmount * 10f) * (Mathf.Abs(10f * (1 - (2f * CursorPos / Width)))));
         GameScores[GameIndex] = CurrentScore;
         UpdateScoreTxts();
         GameIndex++;
         //繼續下回合
         CurrentGameState = GameState.animation;
         //計時Animation秒開始
-        StartCoroutine(AnimationTimer(Mathf.RoundToInt(CurrentScore/10f)));
+        StartCoroutine(AnimationTimer(Mathf.RoundToInt(CurrentScore / 10f)));
         StartCoroutine(HitTimer(CurrentScore));
         ResetPeriods();
     }
@@ -377,7 +380,7 @@ public class KungFuGameManager : MiniGameManager
         GameScoreTxts[GameIndex].text = GameScores[GameIndex].ToString();
         TotalScore += GameScores[GameIndex];
         TotalScoreTxt.text = TotalScore.ToString();
-    }   
+    }
     private void DelayFinish()
     {
         //繼續下回合
@@ -397,7 +400,7 @@ public class KungFuGameManager : MiniGameManager
         HorizontalDeltaTime = 0f;
         VerticalDeltaTime = 0f;
         CurrentRestTime = TotalRestTime;
-        HorizontalCursor.transform.localPosition = new Vector3(-HorizontalCursor.transform.parent.GetComponent<RectTransform>().rect.width/2, HorizontalCursor.transform.localPosition.y, HorizontalCursor.transform.localPosition.z);
+        HorizontalCursor.transform.localPosition = new Vector3(-HorizontalCursor.transform.parent.GetComponent<RectTransform>().rect.width / 2, HorizontalCursor.transform.localPosition.y, HorizontalCursor.transform.localPosition.z);
         VerticalPowerImg.fillAmount = 0f;
     }
     private void ResetPeriods()
@@ -405,7 +408,7 @@ public class KungFuGameManager : MiniGameManager
         switch (Difficalty)
         {
             case 0: //Easy
-                PeriodOfHorizontalPower = GenerateRandomFloat(1.8f,2.2f);
+                PeriodOfHorizontalPower = GenerateRandomFloat(1.8f, 2.2f);
                 PeriodOfVerticalPower = GenerateRandomFloat(1.8f, 2.2f);
                 break;
             case 1: //Normal
@@ -429,7 +432,7 @@ public class KungFuGameManager : MiniGameManager
     {
         CurrentRestTime = TotalRestTime;
         GameTimeTxt.text = CurrentRestTime.ToString();
-        if(CurrentGameState == GameState.vertical)
+        if (CurrentGameState == GameState.vertical)
         {
             StopVerticalPowerMove();
             CurrentGameState = GameState.horizontal;
@@ -437,7 +440,7 @@ public class KungFuGameManager : MiniGameManager
             OpenHorizontalPowerEffect();
             StartHorizontalPowerMove();
         }
-        else if(CurrentGameState == GameState.horizontal)
+        else if (CurrentGameState == GameState.horizontal)
         {
             StopHorizontalPowerMove();
             OpenTheHandEffect();
@@ -509,14 +512,14 @@ public class KungFuGameManager : MiniGameManager
             }
             GameObject left = Instantiate(Resources.Load<GameObject>("Prefabs/SmogEffect_Left"), new Vector3(0f, 500, 0f), Quaternion.identity, SlabGroup.transform);
             GameObject right = Instantiate(Resources.Load<GameObject>("Prefabs/SmogEffect_Right"), new Vector3(0f, 500, 0f), Quaternion.identity, SlabGroup.transform);
-            right.transform.localPosition = new Vector3(52.3f, 12+breds[index].transform.localPosition.y, 0f);
+            right.transform.localPosition = new Vector3(52.3f, 12 + breds[index].transform.localPosition.y, 0f);
             left.transform.localPosition = new Vector3(-49f, 12 + breds[index].transform.localPosition.y, 0f);
-        } 
+        }
     }
-    public void OpenHitEffect(int score )
+    public void OpenHitEffect(int score)
     {
-        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/SlabHitEffect"), new Vector3(1.3f,89.3f,0f), Quaternion.identity, canvas.transform);
-        
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/SlabHitEffect"), new Vector3(1.3f, 89.3f, 0f), Quaternion.identity, canvas.transform);
+
         go.transform.localPosition = new Vector3(1.3f, 89.3f, 0f);
         AudioSvc.Instance.PlayMiniGameUIAudio(Constants.HitBred);
         //先算要爆幾顆
@@ -592,7 +595,7 @@ public class KungFuGameManager : MiniGameManager
     {
         OpenTheHandEffect();
         CloseTheBar();
-        yield return new WaitForSeconds((float)HowManySlab/5f+1.5f);
+        yield return new WaitForSeconds((float)HowManySlab / 5f + 1.5f);
         AnimationFinish();
     }
     private void UpdateRestTime()
