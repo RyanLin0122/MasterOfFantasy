@@ -152,10 +152,11 @@ class MOFServerHandler : ChannelHandlerAdapter
                     Task MiniGameTask = miniGameHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 24: //聊天請求
-                    ProcessChatReq(session, msg);
+                    ChatHandler chatHandler = new ChatHandler();
+                    Task chatTask = chatHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 40: //玩家動作
-                    GetMap(session).ProcessPlayerAction(msg);
+                    MapSvc.GetMap(session).ProcessPlayerAction(msg);
                     break;
                 case 41: //背包操作
                     KnapsackHandler knapsackHandler = new KnapsackHandler();
@@ -166,13 +167,13 @@ class MOFServerHandler : ChannelHandlerAdapter
                     Task equipmentTask = equipmentHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 43: //回收物品
-                    if (GetMap(session).characters[session.ActivePlayer.Name].RecycleItem(session, msg.recycleItems))
+                    if (MapSvc.GetMap(session).characters[session.ActivePlayer.Name].RecycleItem(session, msg.recycleItems))
                     {
                         session.WriteAndFlush(msg);
                     }
                     break;
                 case 44: //小遊戲設定
-                    if (GetMap(session).characters[session.ActivePlayer.Name].SetMiniGame(msg.miniGameSetting))
+                    if (MapSvc.GetMap(session).characters[session.ActivePlayer.Name].SetMiniGame(msg.miniGameSetting))
                     {
                         session.WriteAndFlush(msg);
                     }
@@ -246,112 +247,6 @@ class MOFServerHandler : ChannelHandlerAdapter
 
     }
 
-    public MOFMap GetMap(ServerSession session)
-    {
-        try
-        {
-            var map = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
-            return map[session.ActivePlayer.MapID];
-        }
-        catch (Exception e)
-        {
-            LogSvc.Error(e.Message + "\n" + e.StackTrace);
-            return null;
-        }
 
-    }
-
-    public void ProcessChatReq(ServerSession session, ProtoMsg msg)
-    {
-        try
-        {
-            ChatRequest chatreq = msg.chatRequest;
-            if (chatreq.Contents[0] == '!')
-            {
-                //GM指令
-                switch (chatreq.Contents)
-                {
-                    case "!Save":
-                        LogSvc.Debug("Save!!!");
-                        GetMap(session).characters[session.ActivePlayer.Name].AsyncSaveCharacter();
-                        GetMap(session).characters[session.ActivePlayer.Name].AsyncSaveAccount();
-                        break;
-                    case "!reward":
-                        LogSvc.Debug("Reward!!!");
-                        RewardSys.Instance.TestSendMailBox(GetMap(session).characters[session.ActivePlayer.Name]);
-                        break;
-                    case "!Gender":
-                        if (GetMap(session).characters[session.ActivePlayer.Name].player.Gender == 0)
-                        {
-                            GetMap(session).characters[session.ActivePlayer.Name].player.Gender = 1;
-                            GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Gender = 1;
-
-                        }
-                        else
-                        {
-                            GetMap(session).characters[session.ActivePlayer.Name].player.Gender = 0;
-                            GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Gender = 0;
-                        }
-                        PlayerEquipments ep = GetMap(session).characters[session.ActivePlayer.Name].player.playerEquipments;
-                        ep.Badge = null;
-                        ep.B_Chest = null;
-                        ep.B_Glove = null;
-                        ep.B_Head = null;
-                        ep.B_Neck = null;
-                        ep.B_Pants = null;
-                        ep.B_Ring1 = null;
-                        ep.B_Ring2 = null;
-                        ep.B_Shield = null;
-                        ep.B_Shoes = null;
-                        ep.B_Weapon = null;
-                        ep.F_Cape = null;
-                        ep.F_ChatBox = null;
-                        ep.F_Chest = null;
-                        ep.F_FaceAcc = null;
-                        ep.F_FaceType = null;
-                        ep.F_Glasses = null;
-                        ep.F_Glove = null;
-                        ep.F_Hairacc = null;
-                        ep.F_HairStyle = null;
-                        ep.F_NameBox = null;
-                        ep.F_Pants = null;
-                        ep.F_Shoes = null;
-                        break;
-                    case "!Level10":
-                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 10;
-                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 10;
-                        break;
-                    case "!Level30":
-                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 30;
-                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 30;
-                        break;
-                    case "!Level50":
-                        GetMap(session).characters[session.ActivePlayer.Name].player.Level = 50;
-                        GetMap(session).characters[session.ActivePlayer.Name].trimedPlayer.Level = 50;
-                        break;
-                    case "!Cbag":
-                        GetMap(session).characters[session.ActivePlayer.Name].player.NotCashKnapsack.Clear();
-                        GetMap(session).characters[session.ActivePlayer.Name].player.CashKnapsack.Clear();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                switch (chatreq.MessageType)
-                {
-                    case 1: //正常講話
-                        GetMap(session).ProcessNormalChat(chatreq.CharacterName, chatreq.Contents);
-                        break;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            LogSvc.Error(e.Message);
-        }
-
-    }
 }
 

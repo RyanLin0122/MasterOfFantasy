@@ -79,6 +79,7 @@ namespace PEProtocal
         ///68:完成任務回應
         ///69:放棄任務請求
         ///70:放棄任務回應
+        ///71:伺服器公告
         ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
@@ -245,7 +246,8 @@ namespace PEProtocal
         public QuestAbandonRequest questAbandonRequest { get; set; }
         [ProtoMember(82, IsRequired = false)]
         public QuestAbandonResponse questAbandonResponse { get; set; }
-
+        [ProtoMember(83, IsRequired = false)]
+        public ServerAnnouncement serverAnnouncement { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -613,6 +615,10 @@ namespace PEProtocal
         public List<NEntity> MapPlayerEntities { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public ConcurrentDictionary<int, DropItem> DropItems { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public string ServerAnnouncement { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public float AnnouncementValidTime { get; set; }
     };
 
     //地圖增加一名玩家通知
@@ -1770,5 +1776,14 @@ namespace PEProtocal
         public int MP { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public Item item { get; set; }
+    }
+
+    [ProtoContract]
+    public class ServerAnnouncement
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string Announcement { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public float ValidTime { get; set; }
     }
 }

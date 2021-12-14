@@ -105,7 +105,9 @@ public class MOFMap
                         weather = this.weather,
                         Monsters = mons,
                         MapPlayerEntities = PlayerEntities,
-                        DropItems = AllDropItems
+                        DropItems = AllDropItems,
+                        ServerAnnouncement = ServerRoot.Instance.Announcement,
+                        AnnouncementValidTime = ServerRoot.Instance.AnnouncementValidTime
                     }
                 };
                 session.WriteAndFlush(outmsg);

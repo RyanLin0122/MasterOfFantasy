@@ -167,6 +167,9 @@ public class NetSvc : MonoBehaviour
             case 70:
                 DoAbandonQuestResponse(msg);
                 break;
+            case 71:
+                DoServerAnnouncement(msg);
+                break;
         }
     }
 
@@ -232,6 +235,7 @@ public class NetSvc : MonoBehaviour
         LoginSys.Instance.selectCharacterWnd.SetWndState(false);
         MainCitySys.Instance.EnterMap(msg.enterGameRsp);
         BattleSys.Instance.HotKeyManager.ReadHotKey();
+        UISystem.Instance.SetServerAnnouncement(msg.enterGameRsp.ServerAnnouncement, msg.enterGameRsp.AnnouncementValidTime);
     }
     public void DoToOtherMapRsp(ProtoMsg msg)
     {
@@ -654,6 +658,14 @@ public class NetSvc : MonoBehaviour
         else
         {
             UISystem.Instance.AddMessageQueue("放棄任務封包為空");
+        }
+    }
+
+    public void DoServerAnnouncement(ProtoMsg msg)
+    {
+        if (msg.serverAnnouncement != null)
+        {
+            UISystem.Instance.SetServerAnnouncement(msg.serverAnnouncement.Announcement, msg.serverAnnouncement.ValidTime);
         }
     }
 }

@@ -35,7 +35,19 @@ public class MapSvc : Singleton<MapSvc>
         }
         return null;
     }
-
+    public static MOFMap GetMap(ServerSession session)
+    {
+        try
+        {
+            var map = Instance.Maps[session.ActiveServer][session.ActiveChannel];
+            return map[session.ActivePlayer.MapID];
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e.Message + "\n" + e.StackTrace);
+            return null;
+        }
+    }
     public void OnMapEntitySync(ProtoMsg msg, ServerSession session)
     {
         Maps[0][session.ActiveChannel][session.ActivePlayer.MapID].UpdateEntity(msg);

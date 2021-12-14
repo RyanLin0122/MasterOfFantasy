@@ -50,6 +50,7 @@ public class UISystem : SystemRoot
     public QuestWnd QuestWnd;
     public UICalender UICalender;
     public LearnMajorSkillWnd LearnMajorSkillWnd;
+    public ServerAnouncement serverAnouncement;
 
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
@@ -192,11 +193,11 @@ public class UISystem : SystemRoot
         transationWnd.SetWndState(false);
         transationWnd.IsOpen = false;
     }
-    public void OpenTransationWnd(string PlayerName , string OtherName)
+    public void OpenTransationWnd(string PlayerName, string OtherName)
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         transationWnd.SetWndState();
-        transationWnd.SetNames(PlayerName,OtherName);
+        transationWnd.SetNames(PlayerName, OtherName);
         transationWnd.IsOpen = true;
     }
     public void CloseCommunityWnd()
@@ -332,7 +333,7 @@ public class UISystem : SystemRoot
 
     public void OpenMiniGameSetting()
     {
-        
+
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         if (CanSetMiniGameSchedule())
         {
@@ -444,5 +445,17 @@ public class UISystem : SystemRoot
             }
         }
         return result;
+    }
+
+    public void SetServerAnnouncement(string msg, float time)
+    {
+        if ((!string.IsNullOrEmpty(msg)) && time > 0)
+        {
+            this.serverAnouncement.SetAnnouncement(msg, time);
+        }
+        else
+        {
+            this.serverAnouncement.gameObject.SetActive(false);
+        }
     }
 }
