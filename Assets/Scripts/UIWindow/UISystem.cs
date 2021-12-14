@@ -49,6 +49,7 @@ public class UISystem : SystemRoot
     public Transform BuffIconsContainer;
     public QuestWnd QuestWnd;
     public UICalender UICalender;
+    public LearnMajorSkillWnd LearnMajorSkillWnd;
 
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
@@ -294,6 +295,7 @@ public class UISystem : SystemRoot
         CloseInfo2();
         CloseLocker2();
         CloseMailbox2();
+        CloseDialogueWnd();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         learnSkillWnd.Init();
         learnSkillWnd.SetWndState(true);
@@ -408,6 +410,17 @@ public class UISystem : SystemRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         QuestWnd.gameObject.SetActive(false);
+    }
+
+    public void OpenLearnMajorWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        LearnMajorSkillWnd.SetWndState(true);
+    }
+    public void CloseLearnMajorWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        LearnMajorSkillWnd.SetWndState(false);
     }
 
     #endregion

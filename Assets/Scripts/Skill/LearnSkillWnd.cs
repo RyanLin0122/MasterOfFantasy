@@ -202,38 +202,45 @@ public class LearnSkillWnd : WindowRoot
         SkillInfo info = ResSvc.Instance.SkillDic[learn.SkillID];
         if (learn.IsSuccess)
         {
-            if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(learn.SkillID))
+            if (learn.SkillID > 100) //一般職業技能
             {
-                GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillID = learn.SkillID;
-                GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillLevel += 1;
-                GameRoot.Instance.ActivePlayer.SwordPoint -= info.SwordPoint[learn.Level - 1];
-                GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[learn.Level - 1];
-                GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[learn.Level - 1];
-                GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[learn.Level - 1];
-                PlayerInputController.Instance.entityController.SkillDict[learn.SkillID].Level += 1;
-            }
-            else
-            {
-                GameRoot.Instance.ActivePlayer.Skills.Add(learn.SkillID, new SkillData
+                if (GameRoot.Instance.ActivePlayer.Skills.ContainsKey(learn.SkillID))
                 {
-                    SkillID = learn.SkillID,
-                    SkillLevel = 1
-                });
-                GameRoot.Instance.ActivePlayer.SwordPoint -= info.SwordPoint[0];
-                GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[0];
-                GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[0];
-                GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[0];
-                Skill skill = new Skill(info);
-                skill.Level = 1;
-                PlayerController Controller = PlayerInputController.Instance.entityController;
-                Controller.SkillDict[info.SkillID] = skill;
-                Controller.SkillDict[info.SkillID].CD = 0;
-                Controller.SkillDict[info.SkillID].Owner = Controller;
-                BattleSys.Instance.InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
-                BattleSys.Instance.InitAllBuffAttribute();
-                BattleSys.Instance.InitFinalAttribute();
+                    GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillID = learn.SkillID;
+                    GameRoot.Instance.ActivePlayer.Skills[learn.SkillID].SkillLevel += 1;
+                    GameRoot.Instance.ActivePlayer.SwordPoint -= info.SwordPoint[learn.Level - 1];
+                    GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[learn.Level - 1];
+                    GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[learn.Level - 1];
+                    GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[learn.Level - 1];
+                    PlayerInputController.Instance.entityController.SkillDict[learn.SkillID].Level += 1;
+                }
+                else
+                {
+                    GameRoot.Instance.ActivePlayer.Skills.Add(learn.SkillID, new SkillData
+                    {
+                        SkillID = learn.SkillID,
+                        SkillLevel = 1
+                    });
+                    GameRoot.Instance.ActivePlayer.SwordPoint -= info.SwordPoint[0];
+                    GameRoot.Instance.ActivePlayer.ArcheryPoint -= info.ArcheryPoint[0];
+                    GameRoot.Instance.ActivePlayer.MagicPoint -= info.MagicPoint[0];
+                    GameRoot.Instance.ActivePlayer.TheologyPoint -= info.TheologyPoint[0];
+                    Skill skill = new Skill(info);
+                    skill.Level = 1;
+                    PlayerController Controller = PlayerInputController.Instance.entityController;
+                    Controller.SkillDict[info.SkillID] = skill;
+                    Controller.SkillDict[info.SkillID].CD = 0;
+                    Controller.SkillDict[info.SkillID].Owner = Controller;
+                    BattleSys.Instance.InitNegativeAttribute(PlayerInputController.Instance.entityController.SkillDict);
+                    BattleSys.Instance.InitAllBuffAttribute();
+                    BattleSys.Instance.InitFinalAttribute();
+                }
+                Init();
             }
-            Init();
+            else if (learn.SkillID > 0 && learn.SkillID < 100)
+            {
+                UISystem.Instance.LearnMajorSkillWnd.ProcessLearnMajorSkill(learn);
+            }
         }
         else
         {

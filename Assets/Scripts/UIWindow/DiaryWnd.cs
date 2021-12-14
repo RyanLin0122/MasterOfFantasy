@@ -59,6 +59,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
 
     public DiaryTrancriptWnd Transcipt;
     public DiaryOtherWnd diaryOther;
+    public DiaryMajorWnd major;
 
     public void PressTranscript()
     {
@@ -122,6 +123,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         MonsterPVPBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         BadgeBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         OtherBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
+        
     }
     public void PressMajor()
     {
@@ -142,6 +144,7 @@ public class DiaryWnd : WindowRoot, IStackWnd, IMultiLanguageWnd
         MonsterPVPBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         BadgeBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
         OtherBtn.GetComponent<Image>().sprite = ButtonSpriteBlack;
+        major.InitMajor();
     }
     public void PressHonor()
     {
