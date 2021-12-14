@@ -17,7 +17,7 @@ public class MOFMap
     private byte channel;
     public float[] playerBornPos, TransferPosL, TransferPosR;
     public int returnMapId, mapid;
-    public bool IsVillage, Islimited, clock, personalShop, dropsDisabled = false;
+    public bool IsVillage, Islimited, IsIndoor, clock, personalShop, dropsDisabled = false;
     public string mapName, Location, SceneName = "";
     private static readonly string obj = "lock";
 
@@ -27,7 +27,7 @@ public class MOFMap
     public MOFMap(int mapid, int channel, int returnMapId,
         float recoveryTime, string mapName, string Location, string SceneName,
         float[] PlayerBornPos, bool Islimited,
-        bool IsVillage, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points)
+        bool IsVillage, bool IsIndoor, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points)
     {
         this.mapid = mapid;
         this.channel = (byte)channel;
@@ -39,6 +39,7 @@ public class MOFMap
         this.playerBornPos = PlayerBornPos;
         this.Islimited = Islimited;
         this.IsVillage = IsVillage;
+        this.IsIndoor = IsIndoor;
         this.monsternum = MonsterMax;
         this.MonsterPoints = points;
         this.Battle = new Battle(this);
@@ -91,7 +92,7 @@ public class MOFMap
                         mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
                     }
                 }
-                
+
                 ProtoMsg outmsg = new ProtoMsg
                 {
                     MessageType = 12,
@@ -467,7 +468,7 @@ public class MOFMap
             BornTimer += Time.deltaTime;
             if (BornTimer >= MonsterBornTime) MonstersBorn();
             this.Battle.Update();
-            SyncMapUpdate();            
+            SyncMapUpdate();
         }
         UpdateDropItems();
     }
@@ -522,7 +523,7 @@ public class MOFMap
     }
     public void UpdateDropItems()
     {
-        if(this.AllDropItems!=null && this.AllDropItems.Count > 0)
+        if (this.AllDropItems != null && this.AllDropItems.Count > 0)
         {
             List<int> NeedRemove = new List<int>();
             foreach (var kv in AllDropItems)
@@ -586,29 +587,32 @@ public class MOFMap
     public WeatherType weather = WeatherType.Normal;
     public void AssignWeather(int weather)
     {
-        if (weather < 8)
+        if (!IsIndoor)
         {
-            this.weather = WeatherType.Normal;
-        }
-        switch (weather)
-        {
-            case 8:
-                this.weather = WeatherType.Snow;
-                break;
-            case 9:
-                this.weather = WeatherType.LittleRain;
-                break;
-            case 10:
-                this.weather = WeatherType.MiddleRain;
-                break;
-            case 11:
-                this.weather = WeatherType.StrongRain;
-                break;
-            default:
+            if (weather < 8)
+            {
                 this.weather = WeatherType.Normal;
-                break;
-        }
-        WeatherBroadcast();
+            }
+            switch (weather)
+            {
+                case 8:
+                    this.weather = WeatherType.Snow;
+                    break;
+                case 9:
+                    this.weather = WeatherType.LittleRain;
+                    break;
+                case 10:
+                    this.weather = WeatherType.MiddleRain;
+                    break;
+                case 11:
+                    this.weather = WeatherType.StrongRain;
+                    break;
+                default:
+                    this.weather = WeatherType.Normal;
+                    break;
+            }
+            WeatherBroadcast();
+        }       
     }
     public void WeatherBroadcast()
     {

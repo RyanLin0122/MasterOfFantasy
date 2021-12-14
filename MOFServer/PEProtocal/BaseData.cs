@@ -28,6 +28,8 @@ namespace PEProtocal
         public int BornTime;
         [ProtoMember(10, IsRequired = false)]
         public Dictionary<int, float[]> NPC_Positions;
+        [ProtoMember(11, IsRequired = false)]
+        public bool IsIndoor;
     }
     [ProtoContract]
     public class NpcConfig

@@ -547,19 +547,21 @@ public class Information : WindowRoot
                 PlayerInputController.Instance.entityController.GenerateDamageNum(pd.HP - UpdateHP, 2);
             }
         }
-        if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
+        if (BattleSys.Instance.FinalAttribute != null)
         {
-            pd.HP = UpdateHP;
-            if (PlayerInputController.Instance.entityController != null)
+            if (UpdateHP <= BattleSys.Instance.FinalAttribute.MAXHP)
             {
-                PlayerInputController.Instance.entityController.entity.nEntity.HP = UpdateHP;
+                pd.HP = UpdateHP;
+                if (PlayerInputController.Instance.entityController != null)
+                {
+                    PlayerInputController.Instance.entityController.entity.nEntity.HP = UpdateHP;
+                }
             }
-        }
-        txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
-        HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
-        HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
-        GameRoot.Instance.UpdatePlayerHp((int)BattleSys.Instance.FinalAttribute.MAXHP);
-
+            txtHP.text = pd.HP + " / " + BattleSys.Instance.FinalAttribute.MAXHP;
+            HpImg.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+            HpImg2.fillAmount = (float)(((double)pd.HP) / BattleSys.Instance.FinalAttribute.MAXHP);
+            GameRoot.Instance.UpdatePlayerHp((int)BattleSys.Instance.FinalAttribute.MAXHP);
+        }       
     }
     public void UpdateMp(int UpdateMP)
     {

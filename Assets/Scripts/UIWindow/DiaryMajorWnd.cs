@@ -71,7 +71,7 @@ public class DiaryMajorWnd : MonoBehaviour
         {
             foreach (var skill in GameRoot.Instance.ActivePlayer.Skills)
             {
-                if (skill.Key > 0 && skill.Key <= 30 && skill.Value.SkillLevel > 0)
+                if (skill.Key > 30 && skill.Key <= 60 && skill.Value.SkillLevel > 0)
                 {
                     ShowList.Add(skill.Key);
                 }
@@ -112,7 +112,7 @@ public class DiaryMajorWnd : MonoBehaviour
         {
             foreach (var skill in GameRoot.Instance.ActivePlayer.Skills)
             {
-                if (skill.Key > 30 && skill.Key <= 60 && skill.Value.SkillLevel > 0)
+                if (skill.Key > 0 && skill.Key <= 30 && skill.Value.SkillLevel > 0)
                 {
                     ShowList.Add(skill.Key);
                 }

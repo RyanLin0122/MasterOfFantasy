@@ -79,7 +79,7 @@ public class MapSvc : Singleton<MapSvc>
             }
             int ID = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
             float[] playerBornPos = new float[] { 0, 0 };
-            bool IsVillage = false, Islimited = false;
+            bool IsVillage = false, Islimited = false; bool IsIndoor = false;
             string mapName = "", Location = "", SceneName = "";
             int monsternum = 0, recoverytime = 0;
             ConcurrentDictionary<int, MonsterPoint> Points = new ConcurrentDictionary<int, MonsterPoint>();
@@ -132,6 +132,18 @@ public class MapSvc : Singleton<MapSvc>
                             monsternum = Convert.ToInt32(e.InnerText);
                         }
                         break;
+                    case "IsIndoor":
+                        {
+                            if (e.InnerText == "0")
+                            {
+                                IsIndoor = false;
+                            }
+                            else
+                            {
+                                IsIndoor = true;
+                            }
+                        }
+                        break;
                     case "BornTime":
                         {
                             recoverytime = Convert.ToInt32(e.InnerText);
@@ -154,7 +166,7 @@ public class MapSvc : Singleton<MapSvc>
                         break;
                 }
             }
-            MOFMap map = new MOFMap(ID, Channel, 1000, recoverytime, mapName, Location, SceneName, playerBornPos, Islimited, IsVillage, monsternum, Points);
+            MOFMap map = new MOFMap(ID, Channel, 1000, recoverytime, mapName, Location, SceneName, playerBornPos, Islimited, IsVillage, IsIndoor, monsternum, Points);
             Result.Add(ID, map);
         }
         return Result;

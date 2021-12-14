@@ -258,7 +258,8 @@ public class LearnMajorSkillWnd : WindowRoot
             }
 
             //更新技能視窗和日記專攻視窗
-
+            UISystem.Instance.diaryWnd.major.InitMajor();
+            SkillWnd.Instance.InitSkillWnd();
         }
     }
 }
