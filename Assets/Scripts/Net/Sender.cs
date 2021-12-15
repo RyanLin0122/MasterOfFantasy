@@ -918,3 +918,20 @@ public class AbandonQuestSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class ChangeChannelSender : BaseSender
+{
+    public ChangeChannelSender(int Channel)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 72,
+            changeChannelOperation = new ChangeChannelOperation
+            {
+                Result = false,
+                Channel = Channel
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

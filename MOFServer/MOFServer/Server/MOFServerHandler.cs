@@ -238,6 +238,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     QuestAbandonHandler questAbandonHandler = new QuestAbandonHandler();
                     Task AbandonTask = questAbandonHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 72: //切換頻道
+                    ChangeChannelHandler changeChannelHandler = new ChangeChannelHandler();
+                    Task channelTask = changeChannelHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

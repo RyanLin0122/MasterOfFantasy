@@ -80,7 +80,7 @@ namespace PEProtocal
         ///69:放棄任務請求
         ///70:放棄任務回應
         ///71:伺服器公告
-        ///
+        ///72:換頻道
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -248,6 +248,8 @@ namespace PEProtocal
         public QuestAbandonResponse questAbandonResponse { get; set; }
         [ProtoMember(83, IsRequired = false)]
         public ServerAnnouncement serverAnnouncement { get; set; }
+        [ProtoMember(84, IsRequired = false)]
+        public ChangeChannelOperation changeChannelOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1785,5 +1787,14 @@ namespace PEProtocal
         public string Announcement { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public float ValidTime { get; set; }
+    }
+
+    [ProtoContract]
+    public class ChangeChannelOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int Channel { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public bool Result{ get; set; }
     }
 }

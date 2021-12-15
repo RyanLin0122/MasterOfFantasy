@@ -85,21 +85,15 @@ public class ChangeChannelUI : WindowRoot
     {
         if (ChoosedChannel != GameRoot.Instance.ActiveChannel)
         {
-            Debug.Log("換頻囉");
-            GameRoot.Instance.ActiveChannel = ChoosedChannel;
-
-            NetSvc.Instance.InitSvc();
-
+            new ChangeChannelSender(ChoosedChannel);
             
             Thread task = new Thread(change =>{
                 Thread.Sleep(1000);
 
-                GameRoot.AddTips("換頻囉~");
+                UISystem.Instance.AddMessageQueue("切換頻道");
                 return;
             });
             task.Start();
-
-
             this.SetWndState(false);
         }
         else

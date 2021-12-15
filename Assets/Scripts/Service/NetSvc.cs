@@ -170,6 +170,9 @@ public class NetSvc : MonoBehaviour
             case 71:
                 DoServerAnnouncement(msg);
                 break;
+            case 72:
+                DoChangeChannelRsp(msg);
+                break;
         }
     }
 
@@ -666,6 +669,19 @@ public class NetSvc : MonoBehaviour
         if (msg.serverAnnouncement != null)
         {
             UISystem.Instance.SetServerAnnouncement(msg.serverAnnouncement.Announcement, msg.serverAnnouncement.ValidTime);
+        }
+    }
+
+    public void DoChangeChannelRsp(ProtoMsg msg)
+    {
+        if (msg.changeChannelOperation != null && msg.changeChannelOperation.Result && msg.toOtherMapRsp != null)
+        {
+            GameRoot.Instance.ActiveChannel = msg.changeChannelOperation.Channel;
+            DoToOtherMapRsp(msg);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue("換頻失敗");
         }
     }
 }

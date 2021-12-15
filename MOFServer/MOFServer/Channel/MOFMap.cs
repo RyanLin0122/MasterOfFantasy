@@ -169,6 +169,62 @@ public class MOFMap
             AddPlayer(characters[CharacterName].trimedPlayer);
         }
     }
+
+    public void DoChangeChannnel(MOFCharacter character, MOFMap lastmap, ProtoMsg req)
+    {
+        try
+        {
+            string CharacterName = character.player.Name;
+            var Position = new float[] { character.nEntity.Position.X, character.nEntity.Position.Y };
+            characters.TryAdd(CharacterName, character);
+            lastmap.RemovePlayer(CharacterName);
+            characters[CharacterName].player.MapID = mapid;
+            characters[CharacterName].trimedPlayer.MapID = mapid;
+            characters[CharacterName].mofMap = this;
+            characters[CharacterName].trimedPlayer.Position = Position;
+           
+            //蒐集所有人資料
+            MapStart();
+            List<TrimedPlayer> PlayerCollection = new List<TrimedPlayer>();
+            List<NEntity> PlayerEntities = new List<NEntity>();
+            foreach (var chr in characters.Values)
+            {
+                PlayerCollection.Add(chr.trimedPlayer);
+                PlayerEntities.Add(chr.nEntity);
+            }
+            //回傳資料
+            Dictionary<int, SerializedMonster> mons = new Dictionary<int, SerializedMonster>();
+            foreach (var id in MonsterPoints.Keys)
+            {
+                if (MonsterPoints[id].monster != null && MonsterPoints[id].monster.status != MonsterStatus.Death)
+                {
+                    mons.Add(MonsterPoints[id].monster.nEntity.Id, MonsterPointToSerielizedMonster(MonsterPoints[id]));
+                }
+            }
+            req.MessageType = 72;
+            req.changeChannelOperation.Result = true;
+            req.toOtherMapRsp = new ToOtherMapRsp
+            {
+                MapPlayers = PlayerCollection,
+                IsCalculater = false,
+                MapID = mapid,
+                Position = Position,
+                weather = this.weather,
+                Monsters = mons,
+                CharacterName = character.player.Name,
+                MapPlayerEntities = PlayerEntities,
+                DropItems = AllDropItems
+            };
+            character.session.WriteAndFlush(req);
+            AddPlayer(character.trimedPlayer);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e.Message);
+        }
+        
+    }
+
     public void AddPlayer(TrimedPlayer player)
     {
         if (characters.Count != 0)
