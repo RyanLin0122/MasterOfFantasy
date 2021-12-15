@@ -23,13 +23,21 @@ public class KnapsackSlot : ItemSlot
     /// <param name="eventData"></param>
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (!KnapsackWnd.Instance.IsForge && !KnapsackWnd.Instance.IsSell && !KnapsackWnd.Instance.IsTransaction && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen)
+        if (!KnapsackWnd.Instance.IsForge && !KnapsackWnd.Instance.IsTransaction && !LockerWnd.Instance.IsOpen && !MailBoxWnd.Instance.IsOpen && !KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf)
         {
             //按右鍵使用物品
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 UseItem();
                 DragSystem.Instance.RemoveDragObject();
+            }
+        }
+
+        if (KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf)
+        {
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                KnapsackWnd.Instance.sellItemWnd.ReceiveItem(GetItem());
             }
         }
     }
@@ -114,6 +122,7 @@ public class KnapsackSlot : ItemSlot
     /// </summary>
     public override void PickUpItem()
     {
+        if (KnapsackWnd.Instance.sellItemWnd.IsSelling) return;
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
         GameObject obj = GetComponentInChildren<ItemUI>().gameObject;
         obj.transform.SetParent(InventorySys.Instance.transform);
@@ -130,7 +139,7 @@ public class KnapsackSlot : ItemSlot
         //先判斷是不是從背包內來的
         if (data.Source == 1)
         {
-            if (TransationWnd.Instance.gameObject.activeSelf||StrengthenWnd.Instance.gameObject.activeSelf)
+            if (TransationWnd.Instance.gameObject.activeSelf || StrengthenWnd.Instance.gameObject.activeSelf || KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf)
             {
                 UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
                 if (PickedUpItem.IsCash)
@@ -148,7 +157,7 @@ public class KnapsackSlot : ItemSlot
                 Dictionary<int, Item> ck = GameRoot.Instance.ActivePlayer.CashKnapsack != null ? GameRoot.Instance.ActivePlayer.CashKnapsack : new Dictionary<int, Item>();
                 Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack != null ? GameRoot.Instance.ActivePlayer.NotCashKnapsack : new Dictionary<int, Item>();
                 Item currentItem = GetItem();
-                
+
                 if (currentItem.ItemID == PickedUpItem.ItemID)
                 {
                     //補充數量
@@ -233,7 +242,7 @@ public class KnapsackSlot : ItemSlot
                     new KnapsackSender(4, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
                 }
                 DragSystem.Instance.RemoveDragObject();
-            }   
+            }
         }
         else //不是從背包來的，可能是倉庫、信箱或商店之類
         {
@@ -291,7 +300,7 @@ public class KnapsackSlot : ItemSlot
                     }
                 }
                 DragSystem.Instance.RemoveDragObject();
-            }      
+            }
         }
         else
         {
@@ -541,6 +550,6 @@ public class KnapsackSlot : ItemSlot
                 new MailBoxSender(3, Items, new int[] { PickedUpItem.Position }, new int[] { SlotPosition });
             }
             DragSystem.Instance.RemoveDragObject();
-        }  
+        }
     }
 }

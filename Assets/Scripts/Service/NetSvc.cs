@@ -173,6 +173,9 @@ public class NetSvc : MonoBehaviour
             case 72:
                 DoChangeChannelRsp(msg);
                 break;
+            case 74:
+                DoSellItemRsp(msg);
+                break;
         }
     }
 
@@ -682,6 +685,15 @@ public class NetSvc : MonoBehaviour
         else
         {
             UISystem.Instance.AddMessageQueue("換頻失敗");
+        }
+    }
+
+    public void DoSellItemRsp(ProtoMsg msg)
+    {
+        if (msg.sellItemRsp == null) return;
+        else
+        {
+            KnapsackWnd.Instance.ProcessSellItem(msg.sellItemRsp);
         }
     }
 }

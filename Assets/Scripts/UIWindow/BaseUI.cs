@@ -264,6 +264,7 @@ public class BaseUI : WindowRoot
 
     public void OpenNpcDialogue(int id)
     {
+        if (KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf) return;
         UISystem.Instance.CloseEquipWnd2();
         UISystem.Instance.CloseKnapsack2();
         UISystem.Instance.CloseLocker2();

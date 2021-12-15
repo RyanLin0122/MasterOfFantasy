@@ -382,6 +382,9 @@ public class DialogueWnd : WindowRoot
         {
             new SubmitQuestSender(CurrentQuest.Info.quest_id);
         }
+        UIDeliveryIntro.gameObject.SetActive(false);
+        UIKillIntro.gameObject.SetActive(false);
+        UIItemIntro.gameObject.SetActive(false);
         UISystem.Instance.CloseDialogueWnd();
     }
 

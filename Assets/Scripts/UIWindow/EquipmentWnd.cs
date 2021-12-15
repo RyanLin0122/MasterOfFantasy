@@ -111,6 +111,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     }
     public void OpenAndPush()
     {
+        if (KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf) return;
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         SetWndState();
         IsOpen = true;

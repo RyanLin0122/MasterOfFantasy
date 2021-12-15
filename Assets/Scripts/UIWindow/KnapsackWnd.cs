@@ -34,12 +34,12 @@ public class KnapsackWnd : Inventory, IStackWnd
     public Color Txtcolor;
     public bool IsForge = false;
     public bool IsTransaction = false;
-    public bool IsSell = false;
     public bool IsLocker = false;
     public bool IsMailBox = false;
     public bool HasInitialized = false;
     public int CurrentPage = 0;
 
+    public SellItemWnd sellItemWnd; 
 
     protected override void InitWnd()
     {
@@ -571,6 +571,58 @@ public class KnapsackWnd : Inventory, IStackWnd
         }
     }
 
+    public void ProcessSellItem(SellItemRsp sr)
+    {
+        if (!sr.Result)
+        {
+            GameRoot.AddTips("販賣失敗");
+        }
+        else
+        {
+            Dictionary<int, Item> knapsack = null;
+            if (sr.DeleteItemPos != -1)
+            {
+                KnapsackSlot slot = null;
+                if (sr.DeleteIsCash)
+                {
+                    knapsack = GameRoot.Instance.ActivePlayer.CashKnapsack;
+                    slot = FindCashSlot(sr.DeleteItemPos);
+                }
+                else 
+                {
+                    knapsack = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+                    slot = FindSlot(sr.DeleteItemPos);
+                }
+                
+                knapsack.Remove(sr.DeleteItemPos);
+                if(slot.transform.childCount > 0)
+                {
+                    slot.RemoveItemUI();
+                }
+            }
+            else
+            {
+                if (sr.OverrideItem != null)
+                {
+                    KnapsackSlot slot = null;
+                    if (sr.OverrideItem.IsCash)
+                    {
+                        knapsack = GameRoot.Instance.ActivePlayer.CashKnapsack;
+                        slot = FindCashSlot(sr.OverrideItem.Position);
+                    }
+                    else
+                    {
+                        knapsack = GameRoot.Instance.ActivePlayer.CashKnapsack;
+                        slot = FindSlot(sr.OverrideItem.Position);
+                    }
+                    knapsack[sr.OverrideItem.Position] = sr.OverrideItem;
+                    slot.StoreItem(sr.OverrideItem);
+                }
+            }
+            GameRoot.Instance.ActivePlayer.Ribi = sr.CurrentRibi;
+            RibiTxt.text = sr.CurrentRibi.ToString("N0");
+        }
+    }
     public bool IsInKnapsack(int ItemID, int Amount = 1)
     {
         if (InventorySys.Instance.ItemList.ContainsKey(ItemID))
@@ -751,6 +803,10 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     public void KeyBoardCommand()
     {
+        if (sellItemWnd.gameObject.activeSelf) return;
+        if (MailBoxWnd.Instance.gameObject.activeSelf) return;
+        if (LockerWnd.Instance.gameObject.activeSelf) return;
+
         if (Controllable())
         {
             if (IsOpen)
@@ -768,6 +824,14 @@ public class KnapsackWnd : Inventory, IStackWnd
 
     }
 
+    public void OpenSellWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
+        OpenAndPush();
+        IsOpen = true;
+        UISystem.Instance.CloseDialogueWnd();
+        this.sellItemWnd.Init();
+    }
 
     public bool Controllable()
     {

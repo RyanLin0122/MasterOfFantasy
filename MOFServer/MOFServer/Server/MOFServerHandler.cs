@@ -242,6 +242,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     ChangeChannelHandler changeChannelHandler = new ChangeChannelHandler();
                     Task channelTask = changeChannelHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 73: //賣東西
+                    SellItemHandler sellItemHandler = new SellItemHandler();
+                    Task sellTask = sellItemHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

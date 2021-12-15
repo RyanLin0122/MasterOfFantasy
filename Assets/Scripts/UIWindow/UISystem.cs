@@ -226,6 +226,7 @@ public class UISystem : SystemRoot
     }
     public void OpenLockerWnd()
     {
+        if (Knapsack.sellItemWnd.gameObject.activeSelf) return;
         CloseEquipWnd2();
         dialogueWnd.LockAllBtn();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
@@ -246,6 +247,7 @@ public class UISystem : SystemRoot
     }
     public void OpenMailBoxWnd()
     {
+        if (Knapsack.sellItemWnd.gameObject.activeSelf) return;
         CloseEquipWnd2();
         dialogueWnd.LockAllBtn();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);

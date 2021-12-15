@@ -935,3 +935,22 @@ public class ChangeChannelSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class SellItemSender : BaseSender
+{
+    public SellItemSender(bool IsCash, int ItemID, int Count, int Position)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 73,
+            sellItemReq = new SellItemReq
+            {
+                IsCash = IsCash,
+                ItemID = ItemID,
+                Count = Count,
+                Position = Position
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

@@ -81,6 +81,8 @@ namespace PEProtocal
         ///70:放棄任務回應
         ///71:伺服器公告
         ///72:換頻道
+        ///73:賣東西請求
+        ///74:賣東西回應
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -250,6 +252,10 @@ namespace PEProtocal
         public ServerAnnouncement serverAnnouncement { get; set; }
         [ProtoMember(84, IsRequired = false)]
         public ChangeChannelOperation changeChannelOperation { get; set; }
+        [ProtoMember(85, IsRequired = false)]
+        public SellItemReq sellItemReq { get; set; }
+        [ProtoMember(86, IsRequired = false)]
+        public SellItemRsp sellItemRsp { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1796,5 +1802,33 @@ namespace PEProtocal
         public int Channel { get; set; }
         [ProtoMember(2, IsRequired = false)]
         public bool Result{ get; set; }
+    }
+
+    [ProtoContract]
+    public class SellItemReq
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public bool IsCash { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int ItemID { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Count { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int Position { get; set; }
+    }
+
+    [ProtoContract]
+    public class SellItemRsp
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int DeleteItemPos { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public Item OverrideItem { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public long CurrentRibi { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public bool DeleteIsCash { get; set; }
     }
 }

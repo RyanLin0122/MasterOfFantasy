@@ -87,26 +87,6 @@ public class MailBoxWnd : Inventory
         Txtcolor = RibiTxt.color;
 
     }
-    public void openCloseWnd()
-    {
-
-        if (IsOpen == true)
-        {
-            UISystem.Instance.CloseMailBoxWnd();
-            KnapsackWnd.Instance.CloseAndPop();
-            UISystem.Instance.Knapsack.IsOpen = false;
-            InventorySys.Instance.HideToolTip();
-            IsOpen = false;
-
-        }
-        else
-        {
-            UISystem.Instance.OpenMailBoxWnd();
-            KnapsackWnd.Instance.CloseAndPop();
-            UISystem.Instance.Knapsack.IsOpen = true;
-            IsOpen = true;
-        }
-    }
     public void ClickCloseBtn()
     {
         UISystem.Instance.CloseMailBoxWnd();
