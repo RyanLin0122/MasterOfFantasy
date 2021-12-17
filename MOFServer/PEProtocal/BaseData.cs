@@ -1000,6 +1000,71 @@ namespace PEProtocal
         [ProtoMember(3, IsRequired = false)]
         public List<string> Killers { get; set; }
     }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum GuildTitle
+    {
+        None,
+        President,
+        VicePresident,
+        Common
+    }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum GuildApplyResult
+    {
+        None,
+        Accept,
+        Reject
+    }
+
+    [ProtoContract]
+    public class NGuildInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string GuildName { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string GuildLeaderName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public string Notice { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int MemberCount { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public List<NGuildMemberInfo> MembersInfo { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public List<NGuildApplyInfo> AppliesInfo { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public long CreateTime { get; set; }
+    }
+
+    [ProtoContract]
+    public class NGuildMemberInfo
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string MemberName { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public GuildTitle Title { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int Job { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int Level { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int CurrentChannel { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int CurrentMap { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public long JoinTime { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public long LastOnlineTime { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public bool IsOnline { get; set; }
+    }
+
+    [ProtoContract]
+    public class NGuildApplyInfo
+    {
+
+    }
 }
 
 
