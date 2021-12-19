@@ -954,3 +954,21 @@ public class SellItemSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class TidyUpSender : BaseSender
+{
+    public TidyUpSender(int InventoryID)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 75,
+            tidyUpOperation = new TidyUpOperation
+            {
+                InventoryID = InventoryID,
+                Result = false,
+                Inventory = null
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

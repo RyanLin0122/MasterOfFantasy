@@ -1063,7 +1063,14 @@ namespace PEProtocal
     [ProtoContract]
     public class NGuildApplyInfo
     {
-
+        [ProtoMember(1, IsRequired = false)]
+        public string CharacterName { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public string GuildName { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int State { get; set; }
     }
 }
 

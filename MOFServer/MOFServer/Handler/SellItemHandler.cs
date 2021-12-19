@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PEProtocal;
 
 
-public class SellItemHandler:GameHandler
+public class SellItemHandler : GameHandler
 {
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
@@ -39,7 +39,7 @@ public class SellItemHandler:GameHandler
 
         //驗證ID
         Item KnapsackItem = null;
-        if(Knapsack.TryGetValue(Position, out KnapsackItem))
+        if (Knapsack.TryGetValue(Position, out KnapsackItem))
         {
             if (KnapsackItem.ItemID != ItemID)
             {
@@ -65,13 +65,13 @@ public class SellItemHandler:GameHandler
         bool DeleteIsCash = IsCash;
         int DeletePos = -1;
         Item OverrideItem = null;
-        if(Count == KnapsackItem.Count)
+        if (Count == KnapsackItem.Count)
         {
             SellRibi = KnapsackItem.Count * KnapsackItem.SellPrice;
             DeletePos = KnapsackItem.Position;
             Knapsack.Remove(DeletePos);
         }
-        if(Count < KnapsackItem.Count)
+        if (Count < KnapsackItem.Count)
         {
             SellRibi = Count * KnapsackItem.SellPrice;
             KnapsackItem.Count -= Count;
@@ -79,7 +79,7 @@ public class SellItemHandler:GameHandler
         }
 
         session.ActivePlayer.Ribi += SellRibi;
-        
+
         ProtoMsg rsp = new ProtoMsg
         {
             MessageType = 74,

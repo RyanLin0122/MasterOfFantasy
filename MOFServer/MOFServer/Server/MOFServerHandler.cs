@@ -246,6 +246,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     SellItemHandler sellItemHandler = new SellItemHandler();
                     Task sellTask = sellItemHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 75: //整理東西
+                    TidyKnapsackHandler tidyKnapsackHandler = new TidyKnapsackHandler();
+                    Task tidyTask = tidyKnapsackHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

@@ -20,6 +20,7 @@ public class Inventory : WindowRoot
             Debug.Log("物品id不存在");
             return false;
         }
+        if (item is Weapon || item is Equipment) item.Count = 1;
         if (item.Capacity == 1)
         {
             if (!item.IsCash)

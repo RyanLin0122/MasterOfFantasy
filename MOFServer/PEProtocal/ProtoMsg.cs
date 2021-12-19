@@ -83,6 +83,7 @@ namespace PEProtocal
         ///72:換頻道
         ///73:賣東西請求
         ///74:賣東西回應
+        ///75:整理東西
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -256,6 +257,9 @@ namespace PEProtocal
         public SellItemReq sellItemReq { get; set; }
         [ProtoMember(86, IsRequired = false)]
         public SellItemRsp sellItemRsp { get; set; }
+        [ProtoMember(87, IsRequired = false)]
+        public TidyUpOperation tidyUpOperation { get; set; }
+
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1784,6 +1788,17 @@ namespace PEProtocal
         public int MP { get; set; }
         [ProtoMember(8, IsRequired = false)]
         public Item item { get; set; }
+    }
+
+    [ProtoContract]
+    public class TidyUpOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public int InventoryID { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public Dictionary<int, Item> Inventory { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public bool Result { get; set; }
     }
 
     [ProtoContract]

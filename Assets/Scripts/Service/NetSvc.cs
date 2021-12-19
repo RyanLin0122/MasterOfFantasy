@@ -176,6 +176,9 @@ public class NetSvc : MonoBehaviour
             case 74:
                 DoSellItemRsp(msg);
                 break;
+            case 75:
+                DoTidyUpRsp(msg);
+                break;
         }
     }
 
@@ -694,6 +697,58 @@ public class NetSvc : MonoBehaviour
         else
         {
             KnapsackWnd.Instance.ProcessSellItem(msg.sellItemRsp);
+        }
+    }
+
+    public void DoTidyUpRsp(ProtoMsg msg)
+    {
+        if (msg.tidyUpOperation != null)
+        {
+            if (msg.tidyUpOperation.Result)
+            {
+                if (msg.tidyUpOperation.Inventory != null)
+                {
+                    switch (msg.tidyUpOperation.InventoryID)
+                    {
+                        case 1:
+                            GameRoot.Instance.ActivePlayer.NotCashKnapsack = msg.tidyUpOperation.Inventory;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                for (int j = 1; j < 25; j++)
+                                {
+                                    var slot = KnapsackWnd.Instance.slotLists[i][j-1];
+                                    slot.RemoveItemUI();
+                                    Item item = null;
+                                    if(GameRoot.Instance.ActivePlayer.NotCashKnapsack.TryGetValue(i * 24 + j, out item))
+                                    {
+                                        slot.StoreItem(item);
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            GameRoot.Instance.ActivePlayer.CashKnapsack = msg.tidyUpOperation.Inventory;
+                            for (int j = 1; j < 25; j++)
+                            {
+                                var slot = KnapsackWnd.Instance.slotLists[3][j-1];
+                                slot.RemoveItemUI();
+                                Item item = null;
+                                if (GameRoot.Instance.ActivePlayer.CashKnapsack.TryGetValue(j, out item))
+                                {
+                                    slot.StoreItem(item);
+                                }                               
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }
+            else
+            {
+                GameRoot.AddTips("整理失敗");
+            }
         }
     }
 }

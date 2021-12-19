@@ -206,6 +206,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         if (item.Capacity == 1)
         {
             KnapsackSlot slot = null;
+            if (item is Weapon || item is Equipment) item.Count = 1;
             if (!item.IsCash)
             {
                 slot = FindEmptySlot_NotCash();
@@ -235,6 +236,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         else
         {
             KnapsackSlot slot = null;
+            if (item is Weapon || item is Equipment) item.Count = 1;
             if (!item.IsCash)
             {
                 slot = FindSameIdSlot_NotCash(item);
@@ -621,6 +623,19 @@ public class KnapsackWnd : Inventory, IStackWnd
             }
             GameRoot.Instance.ActivePlayer.Ribi = sr.CurrentRibi;
             RibiTxt.text = sr.CurrentRibi.ToString("N0");
+        }
+    }
+
+    public void PressTidyUp()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        if(CurrentPage == 4)
+        {
+            new TidyUpSender(2);
+        }
+        else
+        {
+            new TidyUpSender(1);
         }
     }
     public bool IsInKnapsack(int ItemID, int Amount = 1)
