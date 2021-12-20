@@ -58,6 +58,7 @@ public class MainCitySys : SystemRoot
         if (GameRoot.Instance.ActivePlayer.CashKnapsack == null) GameRoot.Instance.ActivePlayer.CashKnapsack = new Dictionary<int, Item>();
         if (GameRoot.Instance.ActivePlayer.BadgeCollection == null) GameRoot.Instance.ActivePlayer.BadgeCollection = new List<int>();
         if (GameRoot.Instance.ActivePlayer.TitleCollection == null) GameRoot.Instance.ActivePlayer.TitleCollection = new List<int>();
+        UISystem.Instance.WindowsContainer.gameObject.SetActive(true);
         UISystem.Instance.equipmentWnd.InitEquipWndWhenLogin();
         GameRoot.Instance.ActivePlayer.MiniGameArr = null;
         MapCfg mapData = resSvc.GetMapCfgData(rsp.MapID);

@@ -149,6 +149,13 @@ public static class Utility
             Manufactures = BsonArr2IntList(data["Manufactures"].AsBsonArray),
             MonsterKillHistory = BsonArr2Dic_int_int(data["MonsterKillHistory"].AsBsonArray),
             TeamID = data["TeamID"].AsInt32,
+            BattleWinTimes = data["BattleWinTimes"].AsInt32,
+            BattleLoseTimes = data["BattleLoseTimes"].AsInt32,
+            PVPRank = data["PVPRank"].AsInt32,
+            PVPWinTimes = data["PVPWinTimes"].AsInt32,
+            PVPLoseTime = data["PVPLoseTime"].AsInt32,
+            PVPPoints = data["PVPPoints"].AsInt32,
+            CriticalBar = (float)data["CriticalBar"].AsDouble,
         };
         return player;
     }
@@ -474,7 +481,14 @@ public static class Utility
                     { "HotKeys", HotKeyList2BsonArr(player.Hotkeys)},
                     { "Manufactures", IntList2BsonArray(player.Manufactures)},
                     { "MonsterKillHistory", Dic_Int_Int2BsonArr(player.MonsterKillHistory) },
-                    { "TeamID", player.TeamID}
+                    { "TeamID", player.TeamID},
+                    { "BattleWinTimes", player.BattleWinTimes},
+                    { "BattleLoseTimes", player.BattleLoseTimes},
+                    { "PVPRank", player.PVPRank},
+                    { "PVPWinTimes", player.PVPWinTimes},
+                    { "PVPLoseTime", player.PVPLoseTime},
+                    { "PVPPoints", player.PVPPoints},
+                    { "CriticalBar", player.CriticalBar},
         };
         return bson;
     }

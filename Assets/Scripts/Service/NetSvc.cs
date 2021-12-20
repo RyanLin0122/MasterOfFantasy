@@ -179,6 +179,9 @@ public class NetSvc : MonoBehaviour
             case 75:
                 DoTidyUpRsp(msg);
                 break;
+            case 76:
+                DoOtherProfile(msg);
+                break;
         }
     }
 
@@ -749,6 +752,18 @@ public class NetSvc : MonoBehaviour
             {
                 GameRoot.AddTips("整理失敗");
             }
+        }
+    }
+
+    public void DoOtherProfile(ProtoMsg msg)
+    {
+        if (msg.otherProfileOperation != null)
+        {
+            UISystem.Instance.OpenOtherProfileWnd(msg.otherProfileOperation);
+        }
+        else
+        {
+            UISystem.Instance.AddMessageQueue("無法瀏覽");
         }
     }
 }

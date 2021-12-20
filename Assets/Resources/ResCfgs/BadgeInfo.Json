@@ -1,40 +1,39 @@
 ﻿[
   {
-    "JobID": 2,
-    "Skills": {
-      "Skill0": {
-        "ID": 5,
-        "Name": "精密之射擊",
-        "IsActive": false,
-        "Des": "透過修煉可以精密的射擊",
-        "Icon": "Archer_Skill3"
-      },
-      "Skill1": {
-        "ID": 6,
-        "Name": "弓術之修煉",
-        "IsActive": false,
-        "Des": "使弓箭之攻擊力提升",
-        "Icon": "Archer_Skill4"
-      },
-      "Skill2": {
-        "ID": 7,
-        "Name": "突風弓箭",
-        "IsActive": true,
-        "IsBuff": false,
-        "IsSpecified": true,
-        "Des": "借用風的力量射出更強力之弓箭",
-        "Icon": "Archer_Skill1"
-      },
-      "Skill3": {
-        "ID": 8,
-        "Name": "縮地法",
-        "IsActive": true,
-        "IsBuff": false,
-        "IsSpecified": false,
-        "Des": "使一定的期間內增加跑步速度",
-        "Icon": "Archer_Skill2"
-      }
-    }
+    "ItemID": 1,
+    "Name": "新生勳章",
+    "Quality": "Common",
+    "Des": "給新生專用的勳章",
+    "Capacity": 1,
+    "BuyPrice": 12000,
+    "SellPrice": 5420,
+    "Sprite": "Equipment/Armor/Lv.25 Fighter Armor (Pants)",
+    "IsCash": 0,
+    "CanTransaction": 1,
+    "Type": "Equipment",
+    "Attack": 0,
+    "Strength": 0,
+    "Agility": 0,
+    "Intellect": 0,
+    "Job": 1,
+    "Level": 24,
+    "Gender": 2,
+    "Defense": 19,
+    "HP": 0,
+    "MP": 0,
+    "Title": "",
+    "MinDamage": 0,
+    "MaxDamage": 0,
+    "Accuracy": 0,
+    "Avoid": 0,
+    "Critical": 0,
+    "MagicDefense": 0,
+    "EquipmentType": "Pant",
+    "DropRate": 1,
+    "RestRNum": 7,
+    "ExpRate": 1,
+    "ExpiredTime": -1,
+    "Stars": 0
   }
-  
+
 ]

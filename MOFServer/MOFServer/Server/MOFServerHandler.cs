@@ -225,6 +225,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     TidyKnapsackHandler tidyKnapsackHandler = new TidyKnapsackHandler();
                     Task tidyTask = tidyKnapsackHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 76: //他人情報
+                    OtherInfoHandler otherInfoHandler = new OtherInfoHandler();
+                    Task OtherProfileTask = otherInfoHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

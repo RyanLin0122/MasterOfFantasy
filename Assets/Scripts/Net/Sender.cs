@@ -973,3 +973,18 @@ public class TidyUpSender : BaseSender
         base.SendMsg(msg);
     }
 }
+public class OtherProfileSender : BaseSender
+{
+    public OtherProfileSender(string Name)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 76,
+            otherProfileOperation = new OtherProfileOperation
+            {
+                Name = Name
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

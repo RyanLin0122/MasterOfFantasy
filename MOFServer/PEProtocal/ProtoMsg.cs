@@ -84,6 +84,8 @@ namespace PEProtocal
         ///73:賣東西請求
         ///74:賣東西回應
         ///75:整理東西
+        ///76:他人情報
+        ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -259,6 +261,8 @@ namespace PEProtocal
         public SellItemRsp sellItemRsp { get; set; }
         [ProtoMember(87, IsRequired = false)]
         public TidyUpOperation tidyUpOperation { get; set; }
+        [ProtoMember(88, IsRequired = false)]
+        public OtherProfileOperation otherProfileOperation { get; set; }
 
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
@@ -364,82 +368,6 @@ namespace PEProtocal
         public string PrivateKey { get; set; }
         [ProtoMember(7, IsRequired = false)]
         public AccountData accountData { get; set; }
-    }
-    [ProtoContract]
-    public class AccountData
-    {
-        [ProtoMember(1, IsRequired = false)]
-        public string Account { get; set; }
-        [ProtoMember(2, IsRequired = false)]
-        public string Password { get; set; }
-        [ProtoMember(3, IsRequired = false)]
-        public long Cash { get; set; }
-        [ProtoMember(4, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer1 { get; set; }
-        [ProtoMember(5, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer2 { get; set; }
-        [ProtoMember(6, IsRequired = false)]
-        public Dictionary<int, Item> LockerServer3 { get; set; }
-        [ProtoMember(7, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelFashionServer1 { get; set; }
-        [ProtoMember(8, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelOtherServer1 { get; set; }
-        [ProtoMember(9, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelFashionServer2 { get; set; }
-        [ProtoMember(10, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelOtherServer2 { get; set; }
-        [ProtoMember(11, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelFashionServer3 { get; set; }
-        [ProtoMember(12, IsRequired = false)]
-        public Dictionary<int, Item> CashShopBuyPanelOtherServer3 { get; set; }
-        [ProtoMember(13, IsRequired = false)]
-        public Dictionary<int, string> Friends { get; set; }
-        [ProtoMember(14, IsRequired = false)]
-        public Dictionary<int, string> BlockedPeople { get; set; }
-        [ProtoMember(15, IsRequired = false)]
-        public int GMLevel { get; set; }
-        [ProtoMember(16, IsRequired = false)]
-        public string LastLoginTime { get; set; }
-        [ProtoMember(17, IsRequired = false)]
-        public string LastLogoutTime { get; set; }
-        [ProtoMember(18, IsRequired = false)]
-        public long LockerServer1Ribi { get; set; }
-        [ProtoMember(19, IsRequired = false)]
-        public long LockerServer2Ribi { get; set; }
-        [ProtoMember(20, IsRequired = false)]
-        public long LockerServer3Ribi { get; set; }
-
-        public Dictionary<int, Item> GetNewBuyPanelFashionS1()
-        {
-            CashShopBuyPanelFashionServer1 = new Dictionary<int, Item>();
-            return CashShopBuyPanelFashionServer1;
-        }
-        public Dictionary<int, Item> GetNewBuyPanelFashionS2()
-        {
-            CashShopBuyPanelFashionServer2 = new Dictionary<int, Item>();
-            return CashShopBuyPanelFashionServer2;
-        }
-        public Dictionary<int, Item> GetNewBuyPanelFashionS3()
-        {
-            CashShopBuyPanelFashionServer3 = new Dictionary<int, Item>();
-            return CashShopBuyPanelFashionServer3;
-        }
-
-        public Dictionary<int, Item> GetNewBuyPanelOtherS1()
-        {
-            CashShopBuyPanelOtherServer1 = new Dictionary<int, Item>();
-            return CashShopBuyPanelOtherServer1;
-        }
-        public Dictionary<int, Item> GetNewBuyPanelOtherS2()
-        {
-            CashShopBuyPanelOtherServer2 = new Dictionary<int, Item>();
-            return CashShopBuyPanelOtherServer2;
-        }
-        public Dictionary<int, Item> GetNewBuyPanelOtherS3()
-        {
-            CashShopBuyPanelOtherServer3 = new Dictionary<int, Item>();
-            return CashShopBuyPanelOtherServer3;
-        }
     }
 
 
@@ -1847,5 +1775,38 @@ namespace PEProtocal
         public bool DeleteIsCash { get; set; }
     }
 
-
+    [ProtoContract]
+    public class OtherProfileOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public string Name { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public int Job { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public int CurrentBadge { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public int Level { get; set; }
+        [ProtoMember(5, IsRequired = false)]
+        public int Grade { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public string Title { get; set; }
+        [ProtoMember(7, IsRequired = false)]
+        public string Guild { get; set; }
+        [ProtoMember(8, IsRequired = false)]
+        public int BattleWinTimes { get; set; }
+        [ProtoMember(9, IsRequired = false)]
+        public int BattleLoseTimes { get; set; }
+        [ProtoMember(10, IsRequired = false)]
+        public int PVPRank { get; set; }
+        [ProtoMember(11, IsRequired = false)]
+        public int PVPWinTimes { get; set; }
+        [ProtoMember(12, IsRequired = false)]
+        public int PVPLoseTimes { get; set; }
+        [ProtoMember(13, IsRequired = false)]
+        public int PVPPoints { get; set; }
+        [ProtoMember(14, IsRequired = false)]
+        public PlayerEquipments PlayerEquipments { get; set; }
+        [ProtoMember(15, IsRequired = false)]
+        public int Gender { get; set; }
+    }
 }

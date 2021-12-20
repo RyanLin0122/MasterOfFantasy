@@ -65,6 +65,7 @@ public class CreateWnd : WindowRoot
         };
         Demo.SetAllEquipment(TempData);
         illustration.SetGenderAge(true, false, TempData);
+        ClickMagicianBtn();
     }
 
     //UI事件

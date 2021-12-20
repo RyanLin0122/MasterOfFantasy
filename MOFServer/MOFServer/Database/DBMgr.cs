@@ -69,7 +69,9 @@ public class DBMgr
                     {"BlockedPeople", new BsonArray() },
                     {"LockerRibiServer1", 0L },
                     {"LockerRibiServer2", 0L },
-                    {"LockerRibiServer3", 0L }
+                    {"LockerRibiServer3", 0L },
+                    {"LastSignMonth", 0 },
+                    {"LastSignDate", 0 }
             };
             CacheSvc.Instance.AccountTempData.TryAdd(msg.Account, doc);
             AccCollection.InsertOne(doc);
@@ -161,7 +163,14 @@ public class DBMgr
                     { "HotKeys", new BsonArray()},
                     { "Manufactures",new BsonArray()},
                     { "MonsterKillHistory",new BsonArray()},
-                    { "TeamID",-1}
+                    { "TeamID",-1},
+                    { "BattleWinTimes", 0},
+                    { "BattleLoseTimes", 0},
+                    { "PVPRank", 0},
+                    { "PVPWinTimes", 0},
+                    { "PVPLoseTime", 0},
+                    { "PVPPoints", 0},
+                    { "CriticalBar", 0f},
                  };
             var filter = Builders<BsonDocument>.Filter.Eq("Account", Account);
             var update = Builders<BsonDocument>.Update.Push("Players", bd
@@ -348,7 +357,9 @@ public class DBMgr
                 .Set("BlockedPeople", new BsonArray())
                 .Set("LockerRibiServer1", data.LockerServer1Ribi)
                 .Set("LockerRibiServer2", data.LockerServer2Ribi)
-                .Set("LockerRibiServer3", data.LockerServer3Ribi);
+                .Set("LockerRibiServer3", data.LockerServer3Ribi)
+                .Set("LastSignMonth", data.LastSignMonth)
+                .Set("LastSignDate", data.LastSignDate);
             AccCollection.UpdateOneAsync(filter, update);
         }
         );

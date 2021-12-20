@@ -1504,4 +1504,63 @@ public class Constants
                 return "N/A";
         }
     }
+
+    public static string GetPVPRankName(int Rank)
+    {
+        switch (Rank)
+        {
+            case 1:
+                return "銅牌V";
+            case 2:
+                return "銅牌IV";
+            case 3:
+                return "銅牌III";
+            case 4:
+                return "銅牌II";
+            case 5:
+                return "銅牌I";
+            case 6:
+                return "銅牌V";
+            case 7:
+                return "銀牌IV";
+            case 8:
+                return "銀牌III";
+            case 9:
+                return "銀牌II";
+            case 10:
+                return "銀牌I";
+            case 11:
+                return "金牌V";
+            case 12:
+                return "金牌IV";
+            case 13:
+                return "金牌III";
+            case 14:
+                return "金牌II";
+            case 15:
+                return "金牌I";
+            case 16:
+                return "白金V";
+            case 17:    
+                return "白金IV";
+            case 18:    
+                return "白金III";
+            case 19:    
+                return "白金II";
+            case 20:    
+                return "白金I";
+            case 21:
+                return "鑽石V";
+            case 22:
+                return "鑽石IV";
+            case 23:
+                return "鑽石III";
+            case 24:
+                return "鑽石II";
+            case 25:
+                return "鑽石I";
+            default:
+                return "N/A";
+        }
+    }
 }

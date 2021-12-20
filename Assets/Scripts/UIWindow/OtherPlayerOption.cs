@@ -71,4 +71,13 @@ public class OtherPlayerOption : WindowRoot, IPointerExitHandler, IPointerEnterH
             new TransactionSender(1, OtherName);
         }      
     }
+
+    public void ClickInfoBtn()
+    {
+        UISystem.Instance.CloseOtherPlayOption();
+        if (!string.IsNullOrEmpty(OtherName))
+        {
+            new OtherProfileSender(OtherName);
+        }
+    }
 }

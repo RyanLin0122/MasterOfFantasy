@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PEProtocal;
 
 public class UISystem : SystemRoot
 {
@@ -51,10 +52,16 @@ public class UISystem : SystemRoot
     public UICalender UICalender;
     public LearnMajorSkillWnd LearnMajorSkillWnd;
     public ServerAnouncement serverAnouncement;
-
+    public OtherProfileWnd OtherProfileWnd;
+    public Transform WindowsContainer;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
 
+    public void PutLastLayer(Transform t)
+    {
+        t.SetParent(WindowsContainer);
+        t.SetAsLastSibling();
+    }
     public void Push(IStackWnd wnd)
     {
         lock (stackLock)
@@ -110,6 +117,7 @@ public class UISystem : SystemRoot
         CloseEquipWnd2();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         InfoWnd.SetWndState(true);
+        PutLastLayer(InfoWnd.transform);
     }
     public void CloseInfo2()
     {
@@ -129,6 +137,7 @@ public class UISystem : SystemRoot
         shopWnd.SetWndState();
         shopWnd.IsOpen = true;
         baseUI.SetWndState(false);
+        PutLastLayer(shopWnd.transform);
     }
     public void CloseShopWnd()
     {
@@ -157,6 +166,7 @@ public class UISystem : SystemRoot
         cashShopWnd.SetWndState();
         cashShopWnd.IsOpen = true;
         GameRoot.Instance.InUI = true;
+        PutLastLayer(cashShopWnd.transform);
     }
 
     public void CloseStrengthenWnd()
@@ -164,6 +174,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         strengthenWnd.SetWndState(false);
         strengthenWnd.IsOpen = false;
+        
     }
     public void OpenStrengthenWnd()
     {
@@ -173,6 +184,7 @@ public class UISystem : SystemRoot
         strengthenWnd.IsOpen = true;
         baseUI.CloseNpcDialogue();
         GameRoot.Instance.InUI = false;
+        PutLastLayer(strengthenWnd.transform);
     }
     public void CloseMGFWnd()
     {
@@ -185,6 +197,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         mGFWnd.SetWndState();
         mGFWnd.IsOpen = true;
+        PutLastLayer(mGFWnd.transform);
     }
     public void CloseTransationWnd()
     {
@@ -199,6 +212,7 @@ public class UISystem : SystemRoot
         transationWnd.SetWndState();
         transationWnd.SetNames(PlayerName, OtherName);
         transationWnd.IsOpen = true;
+        PutLastLayer(transationWnd.transform);
     }
     public void CloseCommunityWnd()
     {
@@ -211,6 +225,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         communityWnd.SetWndState();
         communityWnd.IsOpen = true;
+        PutLastLayer(communityWnd.transform);
     }
     public void ClosePetWnd()
     {
@@ -223,6 +238,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         petWnd.SetWndState();
         petWnd.IsOpen = true;
+        PutLastLayer(petWnd.transform);
     }
     public void OpenLockerWnd()
     {
@@ -232,6 +248,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         lockerWnd.SetWndState();
         lockerWnd.IsOpen = true;
+        PutLastLayer(lockerWnd.transform);
     }
     public void CloseLocker2()
     {
@@ -254,6 +271,7 @@ public class UISystem : SystemRoot
         MailBoxWnd.SetWndState();
         MailBoxWnd.IsOpen = true;
         Knapsack.OpenAndPush();
+        PutLastLayer(MailBoxWnd.transform);
     }
     public void CloseMailbox2()
     {
@@ -282,6 +300,7 @@ public class UISystem : SystemRoot
         CloseMailbox2();
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         menuUI.SetWndState(true);
+        PutLastLayer(menuUI.transform);
     }
     public void CloseMenuUI2()
     {
@@ -302,6 +321,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         learnSkillWnd.Init();
         learnSkillWnd.SetWndState(true);
+        PutLastLayer(learnSkillWnd.transform);
     }
     public void CloseLearnSkillUI()
     {
@@ -347,6 +367,7 @@ public class UISystem : SystemRoot
             dialogueWnd.ActivateAllBtn();
             GameRoot.AddTips("請先完成剩餘課程喔!");
         }
+        PutLastLayer(miniGameSettingWnd.transform);
     }
     public void OpenCloseOptionWnd()
     {
@@ -364,6 +385,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
         menuUI.SetWndState(false);
         optionWnd.SetWndState(true);
+        PutLastLayer(optionWnd.transform);
     }
     public void CloseOption()
     {
@@ -408,6 +430,7 @@ public class UISystem : SystemRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         QuestWnd.gameObject.SetActive(true);
+        PutLastLayer(QuestWnd.transform);
     }
     public void CloseQuestWnd()
     {
@@ -419,6 +442,7 @@ public class UISystem : SystemRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         LearnMajorSkillWnd.SetWndState(true);
+        PutLastLayer(LearnMajorSkillWnd.transform);
     }
     public void CloseLearnMajorWnd()
     {
@@ -453,11 +477,19 @@ public class UISystem : SystemRoot
     {
         if ((!string.IsNullOrEmpty(msg)) && time > 0)
         {
-            this.serverAnouncement.SetAnnouncement(msg, time);
+            this.serverAnouncement.SetAnnouncement(msg, time * 100);
         }
         else
         {
             this.serverAnouncement.gameObject.SetActive(false);
         }
+    }
+
+    public void OpenOtherProfileWnd(OtherProfileOperation otherProfile )
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        this.OtherProfileWnd.SetText(otherProfile);
+        this.OtherProfileWnd.gameObject.SetActive(true);
+        PutLastLayer(OtherProfileWnd.transform);
     }
 }
