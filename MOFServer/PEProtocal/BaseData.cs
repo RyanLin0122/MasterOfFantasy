@@ -30,6 +30,14 @@ namespace PEProtocal
         public Dictionary<int, float[]> NPC_Positions;
         [ProtoMember(11, IsRequired = false)]
         public bool IsIndoor;
+        [ProtoMember(12, IsRequired = false)]
+        public string BGM;
+        [ProtoMember(13, IsRequired = false)]
+        public string Embi;
+        [ProtoMember(14, IsRequired = false)]
+        public string BG2;
+        [ProtoMember(15, IsRequired = false)]
+        public string BG3;
     }
     [ProtoContract]
     public class NpcConfig

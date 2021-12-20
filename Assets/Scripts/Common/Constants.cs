@@ -42,7 +42,7 @@ public class Constants
         return result;
     }
     #endregion 
-    #region
+    #region 角色動畫
     public static int GetAnimSpeed(PlayerAniType state)
     {
         switch (state)
@@ -937,19 +937,6 @@ public class Constants
     public const string BGCard = "bg_minigame_03";
     public const string BGLogin = "bg_opening";
     public const string BGMiddleField = "bg_middlefield2";
-    public const string BGribiTown = "bg_ribitown";
-    public const string BGribiTown2 = "bg_ribitown2";
-    public const string BGGreenLawn = "bg_westfield";
-
-    //背景音效名稱2
-    public const string EmbiRibi = "embi_ribi";
-    public const string EmbiSchool = "embi_school";
-    public const string EmbiShop = "embi_shop";
-    public const string EmbiSmith = "embi_smith";
-    public const string EmbiPub = "embi_pub";
-    public const string EmbiDock = "embi_dock";
-    public const string EmbiGuild = "embi_guild";
-    public const string EmbiGreenLawn = "embi_west";
     //登入按鈕音效
     public const string UILoginBtn = "ui_se_button_large";
     //升級音效
@@ -1074,89 +1061,29 @@ public class Constants
     //透過地圖id取得BGM
     public static string GetBGMByMap(int MapID)
     {
-        switch (MapID)
+        string BGM = "";
+        MapCfg cfg = null;
+        if (ResSvc.Instance.mapCfgDataDic.TryGetValue(MapID, out cfg))
         {
-            case 1000:
-                return "";
-            case 1001:
-                return BGribiTown2;
-            case 1002:
-                return "";
-            case 1006:
-                return "";
-            case 1007:
-                return "";
-            case 1008:
-                return "";
-            case 1009:
-                return "";
-            case 1004:
-                return BGribiTown;
-            case 1005:
-                return BGribiTown;
-            case 1010:
-                return BGribiTown2;
-            case 1011:
-                return BGribiTown2;
-            case 1012:
-                return "";
-            case 1013:
-                return BGribiTown;
-            case 1014:
-                return "";
-            case 1015:
-                return "";
-            case 1016:
-                return "";
-            case 1017:
-                return "";
-            case 2001:
-                return BGGreenLawn;
+            if (!string.IsNullOrEmpty(cfg.Embi))
+            {
+                BGM = cfg.Embi;
+            }
         }
-        return BGLogin;
+        return BGM;
     }
     public static string GetEmbiByMap(int MapID)
     {
-        switch (MapID)
+        string str = "";
+        MapCfg cfg = null;
+        if (ResSvc.Instance.mapCfgDataDic.TryGetValue(MapID, out cfg))
         {
-            case 1000:
-                return EmbiRibi;
-            case 1001:
-                return EmbiSchool;
-            case 1002:
-                return EmbiRibi;
-            case 1006:
-                return EmbiSchool;
-            case 1007:
-                return EmbiSchool;
-            case 1008:
-                return EmbiSchool;
-            case 1009:
-                return EmbiSchool;
-            case 1004:
-                return EmbiRibi;
-            case 1005:
-                return EmbiDock;
-            case 1010:
-                return EmbiRibi;
-            case 1011:
-                return EmbiRibi;
-            case 1012:
-                return EmbiPub;
-            case 1013:
-                return "";
-            case 1014:
-                return EmbiGuild;
-            case 1015:
-                return EmbiShop;
-            case 1016:
-                return EmbiSmith;
-            case 1017:
-                return EmbiShop;
-            case 2001:
-                return EmbiGreenLawn;
+            if (!string.IsNullOrEmpty(cfg.Embi))
+            {
+                str = cfg.Embi;
+            }
         }
-        return "";
+        return str;
     }
     //職業代碼
     public static string SetJobName(int JobID)

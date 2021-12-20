@@ -273,7 +273,7 @@ public class ResSvc : MonoBehaviour
         return null;
     }
     #region Map
-    private Dictionary<int, MapCfg> mapCfgDataDic = new Dictionary<int, MapCfg>();
+    public Dictionary<int, MapCfg> mapCfgDataDic = new Dictionary<int, MapCfg>();
     private void InitMapCfg(string path)
     {
         TextAsset xml = Resources.Load<TextAsset>(path);
@@ -378,6 +378,22 @@ public class ResSvc : MonoBehaviour
                                     mc.NPC_Positions[NPCID] = pos;
                                 }
                             }
+                            break;
+                        case "BGM":
+                            mc.BGM = e.InnerText;
+
+                            break;
+                        case "Embi":
+                            mc.Embi = e.InnerText;
+
+                            break;
+                        case "BG2":
+                            mc.BG2 = e.InnerText;
+
+                            break;
+                        case "BG3":
+                            mc.BG3 = e.InnerText;
+
                             break;
                     }
                 }
