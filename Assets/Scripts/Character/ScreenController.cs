@@ -151,9 +151,5 @@ public class ScreenController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F11))
-        {
-            GameRoot.Instance.LogOut();
-        }
     }
 }

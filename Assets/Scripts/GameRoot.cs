@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using PEProtocal;
 using UnityEngine.UI;
+using System.Threading;
+using System.Threading.Tasks;
+using System;
+
 public class GameRoot : MonoBehaviour
 {
     //Properties...
@@ -58,7 +62,7 @@ public class GameRoot : MonoBehaviour
         login.EnterLoginWnd();
         CanInput = true;
         InUI = false;
-
+        Application.wantsToQuit += WantsToQuit;
 
     }
     private void Start()
@@ -111,9 +115,29 @@ public class GameRoot : MonoBehaviour
     }
 
     //遊戲中下線
+    bool quitGame = false;
+
+    bool WantsToQuit()
+    {
+        return quitGame; // 當quitGame為true時則會離開遊戲.
+    }
+    void OnApplicationQuit()
+    {
+        if (Input.GetKey(KeyCode.F4))
+        {
+            quitGame = false;
+        }
+        else
+        {
+            LogOut();
+            quitGame = true;
+        }
+    }
     public void LogOut()
     {
-        new LogoutSender(ActivePlayer.Name);
+        new LogoutSender(GameRoot.Instance.ActivePlayer.Name);
+        quitGame = true;
+        Application.Quit();
     }
     #region Utility
     private void ClearUIRoot()

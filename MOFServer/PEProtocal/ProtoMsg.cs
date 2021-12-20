@@ -1816,7 +1816,7 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public int Channel { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public bool Result{ get; set; }
+        public bool Result { get; set; }
     }
 
     [ProtoContract]
@@ -1846,4 +1846,6 @@ namespace PEProtocal
         [ProtoMember(5, IsRequired = false)]
         public bool DeleteIsCash { get; set; }
     }
+
+
 }

@@ -195,15 +195,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                 };
                 session.AccountData = accountData;
                 //存下帳號資料進CacheSvc
-                if (CacheSvc.Instance.AccountDataDict.ContainsKey(accountData.Account))
-                {
-                    CacheSvc.Instance.AccountDataDict.TryAdd(accountData.Account,accountData);
-                }
-                else
-                {
-                    CacheSvc.Instance.AccountDataDict[accountData.Account] = accountData;
-
-                }
+                CacheSvc.Instance.AccountDataDict[accountData.Account] = accountData;
                 session.WriteAndFlush(outmsg,false);
                 return true;
             }

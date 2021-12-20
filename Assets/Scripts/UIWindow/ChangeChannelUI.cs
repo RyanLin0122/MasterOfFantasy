@@ -88,13 +88,12 @@ public class ChangeChannelUI : WindowRoot
             new ChangeChannelSender(ChoosedChannel);
             
             Thread task = new Thread(change =>{
-                Thread.Sleep(1000);
-
-                UISystem.Instance.AddMessageQueue("切換頻道");
+                Thread.Sleep(1000);               
                 return;
             });
             task.Start();
             this.SetWndState(false);
+            UISystem.Instance.AddMessageQueue("切換頻道");
         }
         else
         {

@@ -85,33 +85,8 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
                 case 9:
                     Console.WriteLine("收到登出請求");
-                    if (msg.logoutReq.ActiveCharacterName != "") //從遊戲中登出
-                    {
-                        NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;
-                        if (CacheSvc.Instance.AccountTempData.ContainsKey(msg.logoutReq.Account))
-                        {
-                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);
-                        }
-                        if (maps[session.ActivePlayer.MapID].characters.ContainsKey(msg.logoutReq.ActiveCharacterName))
-                        {
-                            maps[session.ActivePlayer.MapID].RemovePlayer(msg.logoutReq.ActiveCharacterName);
-                        }
-                        session.Close();
-                        NetSvc.Instance.sessionMap.RemoveSession(msg.logoutReq.SessionID);
-                    }
-                    else //從登入系統中登出
-                    {
-                        if (session.ActiveChannel != -1 && session.ActiveServer != -1)
-                        {
-                            NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;
-                        }
-                        if (CacheSvc.Instance.AccountTempData.ContainsKey(msg.logoutReq.Account))
-                        {
-                            CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);
-                        }
-                        session.Close();
-                        NetSvc.Instance.sessionMap.RemoveSession(msg.logoutReq.SessionID);
-                    }
+                    LogoutHandler logoutHandler = new LogoutHandler();
+                    Task logoutTask = logoutHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 11: //收到進入遊戲
                     maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];

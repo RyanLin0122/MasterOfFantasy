@@ -127,7 +127,7 @@ public class DeleteSender : BaseSender
 
 public class LogoutSender : BaseSender
 {
-    public LogoutSender(string CharacterName = "")
+    public LogoutSender(string Name = "")
     {
         ProtoMsg msg = new ProtoMsg
         {
@@ -137,7 +137,8 @@ public class LogoutSender : BaseSender
             {
                 Account = GameRoot.Instance.Account,
                 SessionID = NetSvc.Instance.NettySession.sessionID,
-                ActiveCharacterName = CharacterName
+                ActiveCharacterName = string.IsNullOrEmpty(Name) ? Name : GameRoot.Instance.ActivePlayer.Name,
+                LogoutTime = System.DateTime.Now.ToString("MM-dd-HH-mm-yyyy")
             }
         };
         base.SendMsg(msg);
