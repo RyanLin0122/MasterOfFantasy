@@ -216,9 +216,11 @@ public class MainCitySys : SystemRoot
         player.GetComponent<Transform>().SetAsLastSibling();
         UISystem.Instance.equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
         UISystem.Instance.equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+
         if (PlayerName == GameRoot.Instance.ActivePlayer.Name)
         {
             player.GetComponent<ScreenController>().enabled = true;
+            mainPlayerCtrl.GetComponent<ScreenController>().LoadBackGround();
         }
     }
 

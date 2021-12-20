@@ -85,16 +85,30 @@ public class ChatHandler : GameHandler
                         break;
                 }
                 string[] Commend = chatreq.Contents.Split(' ');
+                //飛到
+                if (Commend[0] == "!To")
+                {
+                    int MapID = Convert.ToInt32(Commend[1]);
+                    msg.toOtherMapReq = new ToOtherMapReq
+                    {
+                        CharacterName = session.ActivePlayer.Name,
+                        LastMapID = session.ActivePlayer.MapID,
+                        Position = new float[] { 0, 0 },
+                        MapID = MapID
+                    };
+                    var maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
+                    maps[msg.toOtherMapReq.MapID].DoToOtherMapReq(msg, session);
+                }
 
                 //伺服器公告
-                if(Commend[0] == "!Ann")
+                if (Commend[0] == "!Ann")
                 {
-                    if(Commend.Length == 2)
+                    if (Commend.Length == 2)
                     {
                         ServerRoot.Instance.Announcement = Commend[1];
                         ServerRoot.Instance.AnnouncementValidTime = 360;
                     }
-                    else if(Commend.Length >= 2)
+                    else if (Commend.Length >= 2)
                     {
                         ServerRoot.Instance.Announcement = Commend[1];
                         ServerRoot.Instance.AnnouncementValidTime = Convert.ToInt32(Commend[2]);
@@ -145,6 +159,6 @@ public class ChatHandler : GameHandler
             stream.Dispose();
         }
         return result;
-    } 
+    }
 }
 
