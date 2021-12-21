@@ -20,7 +20,7 @@ public class Constants
     private const string ColorBlue = "<color=#00B4FFFF>";
     private const string ColorYellow = "<color=#FFFF00FF>";
     private const string ColorEnd = "</color>";
-    public static Color BrownColor = new Vector4(77,22,2,255);
+    public static Color BrownColor = new Vector4(77, 22, 2, 255);
     public static string Color(string str, TxtColor c)
     {
         string result = "";
@@ -229,13 +229,13 @@ public class Constants
             default:
                 return 0;
         }
-        
+
     }
     public static float GetMonsterAnimTime(int MonsterID, MonsterAniType aniType)
     {
-        return ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSprite.Count/ ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSpeed;
+        return ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSprite.Count / ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSpeed;
     }
-    
+
     public static int[] GetAnimOrder(PlayerAniType state, EquipAnimType Type)
     {
         int[] Orders = new int[GetAnimLength(state)];
@@ -1312,7 +1312,7 @@ public class Constants
                 return 200;
             case 4:
                 return 200;
-            
+
             case 101:
                 return 150;
             case 102:
@@ -1321,7 +1321,7 @@ public class Constants
                 return 200;
             case 104:
                 return 200;
-            
+
             case 201:
                 return 170;
             case 202:
@@ -1338,7 +1338,7 @@ public class Constants
                 return 220;
             case 208:
                 return 220;
-            
+
             case 301:
                 return 170;
             case 302:
@@ -1402,7 +1402,7 @@ public class Constants
                 ImgPath = "Map/Ribi Town Logo";
                 break;
 
-            
+
         }
         return Resources.Load<Sprite>(ImgPath);
     }
@@ -1468,13 +1468,13 @@ public class Constants
                 return "金牌I";
             case 16:
                 return "白金V";
-            case 17:    
+            case 17:
                 return "白金IV";
-            case 18:    
+            case 18:
                 return "白金III";
-            case 19:    
+            case 19:
                 return "白金II";
-            case 20:    
+            case 20:
                 return "白金I";
             case 21:
                 return "鑽石V";
@@ -1489,5 +1489,22 @@ public class Constants
             default:
                 return "N/A";
         }
+    }
+
+    public static int GetNearestTownID(int CurrentMapID)
+    {
+        if (CurrentMapID <= 3000)
+            return 1000;
+        if (CurrentMapID > 3000 && CurrentMapID < 4000)
+            return 3010;
+        if (CurrentMapID > 4000 && CurrentMapID < 5000)
+            return 4016;
+        if (CurrentMapID > 5000 && CurrentMapID < 6000)
+            return 5014;
+        if (CurrentMapID > 6000 && CurrentMapID < 7000)
+            return 6008;
+        if (CurrentMapID > 7000 && CurrentMapID < 8000)
+            return 7001;
+        return 1000;
     }
 }

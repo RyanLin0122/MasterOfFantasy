@@ -927,7 +927,7 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public string CharacterName { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public bool FaceDir { get; set; }
+        public long RestExp { get; set; }
     }
 
     [ProtoContract]
@@ -936,7 +936,7 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public string CharacterName { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public string IsSamePlace { get; set; }
+        public int ReliveMethod { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public int TownID { get; set; }
     }
@@ -947,13 +947,15 @@ namespace PEProtocal
         [ProtoMember(1, IsRequired = false)]
         public string CharacterName { get; set; }
         [ProtoMember(2, IsRequired = false)]
-        public string IsSamePlace { get; set; }
+        public int ReliveMethod { get; set; }
         [ProtoMember(3, IsRequired = false)]
         public int UpdateHp { get; set; }
         [ProtoMember(4, IsRequired = false)]
         public int UpdateMp { get; set; }
         [ProtoMember(5, IsRequired = false)]
-        public int UpdateExp { get; set; }
+        public int TownID { get; set; }
+        [ProtoMember(6, IsRequired = false)]
+        public int UpdateCash { get; set; }
     }
 
     [ProtoContract(EnumPassthru = false)]

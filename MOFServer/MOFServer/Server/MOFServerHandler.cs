@@ -130,6 +130,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     ChatHandler chatHandler = new ChatHandler();
                     Task chatTask = chatHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 38: //復活請求
+                    ReliveHandler reliveHandler = new ReliveHandler();
+                    Task reliveTask = reliveHandler.ProcessMsgAsync(msg, session);
+                    break;
                 case 40: //玩家動作
                     MapSvc.GetMap(session).ProcessPlayerAction(msg);
                     break;

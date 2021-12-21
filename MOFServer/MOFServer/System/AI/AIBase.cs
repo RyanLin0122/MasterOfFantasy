@@ -53,6 +53,11 @@ public class AIBase
             this.Owner.entityStatus = EntityStatus.Idle;
             return;
         }
+        if (this.Target.status == PlayerStatus.Death)
+        {
+            this.Owner.entityStatus = EntityStatus.Idle;
+            return;
+        }
         if (IsAttackAni || IsHurtAni) return;
         if (this.Owner.status == MonsterStatus.Frozen || this.Owner.status == MonsterStatus.Faint) return;
         if (!TryCastSkill())

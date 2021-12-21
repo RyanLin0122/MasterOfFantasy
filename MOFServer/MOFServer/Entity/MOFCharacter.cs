@@ -676,6 +676,7 @@ public class MOFCharacter : Entity
         if (HP <= 0)
         {
             HP = 0;
+            Death();
         }
         if (HP >= FinalAttribute.MAXHP)
         {
@@ -685,7 +686,26 @@ public class MOFCharacter : Entity
         this.trimedPlayer.HP = HP;
         this.nEntity.HP = HP;
     }
-
+    private void Death()
+    {
+        if(this.status != PlayerStatus.Death)
+        {
+            this.status = PlayerStatus.Death;
+            long MaxExp = ServerConstants.GetRequiredExp(player.Level);
+            long RestExp = (player.Exp - (0.05f * MaxExp) >= 0) ? (long)(player.Exp - (0.05f * MaxExp)) : 0L;
+            player.Exp = RestExp;
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 37,
+                playerDeath = new PlayerDeath
+                {
+                    CharacterName = player.Name,
+                    RestExp = RestExp
+                }
+            };
+            mofMap.BroadCastMassege(msg);
+        }      
+    }
     public void AddExp(int Exp)
     {
         if (player.Level == 119) { player.Exp = 0; return; }

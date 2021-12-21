@@ -1004,3 +1004,21 @@ public class ShipSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class ReliveSender : BaseSender
+{
+    public ReliveSender(int ReliveMethod, int Town = -1)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 38,
+            playerReliveReq = new PlayerReliveReq
+            {
+                CharacterName = GameRoot.Instance.ActivePlayer.Name,
+                ReliveMethod = ReliveMethod,
+                TownID = Town == -1 ? GameRoot.Instance.ActivePlayer.MapID : Town
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

@@ -139,6 +139,22 @@ public class PlayerController : EntityController
         }
     }
     #endregion
+
+    public void Death()
+    {
+        this.entity.nEntity.HP = 0;
+        PlayDeath();
+        GetComponent<ScreenController>().canCtrl = false;
+    }
+    public void Relive(int HP, int MP)
+    {
+        PlayIdle();
+        GetComponent<ScreenController>().canCtrl = true;
+        IsDeath = false;
+        this.entity.nEntity.HP = HP;
+        this.entity.nEntity.MP = MP;
+        SetHpBar(this.entity.nEntity.MaxHP, HP);
+    }
     public override void DoDamage(DamageInfo damage, ActiveSkillInfo active)
     {
         base.DoDamage(damage, active);
@@ -515,6 +531,7 @@ public class PlayerController : EntityController
     }
     public void PlayDeath()
     {
+        Debug.Log("Play Death");
         IsDeath = true;
         ShoesCtrl.PlayAni(PlayerAniType.Death, false);
         FaceCtrl.PlayAni(PlayerAniType.Death, false);

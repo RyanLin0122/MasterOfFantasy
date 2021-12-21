@@ -723,6 +723,7 @@ public class BattleSys : SystemRoot
                 {
                     continue;
                 }
+                if (kv.Value == null || kv.Value.gameObject == null) continue;
                 if (CheckInRange(IsPlayerDirRight, PlayerInputController.Instance.entityController, kv.Value, SearchRange, SearchShape))
                 {
                     MonstersInRange.Add(kv.Value);
@@ -1439,6 +1440,8 @@ public class BattleSys : SystemRoot
 
     public void ClearMonsters()
     {
+        CurrentBattleTarget = null;
+        CurrentTarget = null;
         Monsters.Clear();
     }
     #endregion

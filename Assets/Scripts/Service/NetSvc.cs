@@ -104,6 +104,9 @@ public class NetSvc : MonoBehaviour
             case 37:
                 DoPlayerDeath(msg);
                 break;
+            case 39:
+                DoPlayerRelive(msg);
+                break;
             case 40:
                 DoPlayerAction(msg);
                 break;
@@ -405,28 +408,67 @@ public class NetSvc : MonoBehaviour
     }
     public void DoPlayerDeath(ProtoMsg msg)
     {
-        /*
         PlayerDeath death = msg.playerDeath;
         print("收到死亡封包" + death.CharacterName);
         if (death.CharacterName == GameRoot.Instance.ActivePlayer.Name)
         {
             //自己死掉
-            GameRoot.Instance.PlayerControl.Death();
+            PlayerInputController.Instance.entityController.Death();
+            UISystem.Instance.OpenDeathWnd();
+            GameRoot.Instance.ActivePlayer.Exp = death.RestExp;
+            UISystem.Instance.baseUI.RefreshExpUI(death.RestExp, GameRoot.Instance.ActivePlayer.Level);
+            GameRoot.Instance.ActivePlayer.HP = 0;
         }
         else
         {
-            
             //別人死掉
-            if (GameRoot.Instance.otherPlayers.ContainsKey(death.CharacterName))
+            PlayerController controller = null;
+            if(BattleSys.Instance.Players.TryGetValue(death.CharacterName, out controller))
             {
-                if (GameRoot.Instance.otherPlayers[death.CharacterName] != null)
-                {
-                    OtherPlayerTask task = new OtherPlayerTask(GameRoot.Instance.otherPlayers[death.CharacterName],2,death.FaceDir);
-                    GameRoot.Instance.otherPlayers[death.CharacterName].Actions.Enqueue(task);
-                }                
-            }          
+                controller.Death();
+            }
         }
-        */
+    }
+    public void DoPlayerRelive(ProtoMsg msg)
+    {
+        if (msg.playerReliveRsp == null) return;
+        PlayerReliveRsp reliveRsp = msg.playerReliveRsp;
+        if(reliveRsp.CharacterName == GameRoot.Instance.ActivePlayer.Name)
+        {
+            switch (reliveRsp.ReliveMethod)
+            {
+                case 0:
+                    GameRoot.Instance.ActivePlayer.HP = reliveRsp.UpdateHp;
+                    if (PlayerInputController.Instance.entityController != null)
+                    {
+                        PlayerInputController.Instance.entityController.entity.nEntity.HP = reliveRsp.UpdateHp;
+                        UISystem.Instance.InfoWnd.RefreshHPMP();
+                    }
+                    break;
+                case 1:
+                    GameRoot.Instance.ActivePlayer.HP = reliveRsp.UpdateHp;
+                    if (PlayerInputController.Instance.entityController != null)
+                    {
+                        PlayerInputController.Instance.entityController.entity.nEntity.HP = reliveRsp.UpdateHp;
+                        PlayerInputController.Instance.entityController.Relive(reliveRsp.UpdateHp, reliveRsp.UpdateMp);
+                        UISystem.Instance.InfoWnd.RefreshHPMP();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            PlayerController controller = null;
+            if(BattleSys.Instance.Players.TryGetValue(reliveRsp.CharacterName, out controller))
+            {
+                if (controller != null)
+                {
+                    controller.Relive(reliveRsp.UpdateHp, reliveRsp.UpdateMp);
+                }
+            }
+        }
     }
     public void DoPlayerAction(ProtoMsg msg)
     {
