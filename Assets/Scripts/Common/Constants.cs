@@ -1065,9 +1065,9 @@ public class Constants
         MapCfg cfg = null;
         if (ResSvc.Instance.mapCfgDataDic.TryGetValue(MapID, out cfg))
         {
-            if (!string.IsNullOrEmpty(cfg.Embi))
+            if (!string.IsNullOrEmpty(cfg.BGM))
             {
-                BGM = cfg.Embi;
+                BGM = cfg.BGM;
             }
         }
         return BGM;
