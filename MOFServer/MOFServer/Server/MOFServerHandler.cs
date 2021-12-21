@@ -229,6 +229,10 @@ class MOFServerHandler : ChannelHandlerAdapter
                     OtherInfoHandler otherInfoHandler = new OtherInfoHandler();
                     Task OtherProfileTask = otherInfoHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 77: //坐船
+                    ShipHandler shipHandler = new ShipHandler();
+                    Task shipTask = shipHandler.ProcessMsgAsync(msg, session);
+                    break;
             }
         }
         catch (Exception ex)

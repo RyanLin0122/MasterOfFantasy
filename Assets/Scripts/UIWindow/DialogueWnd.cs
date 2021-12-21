@@ -55,6 +55,7 @@ public class DialogueWnd : WindowRoot
             item.enabled = true;
         }
     }
+    public Button ShipBtn;
     public Button ManuFactureBtn;
     public Button LearnSkillBtn;
     public Button LearnMajorSkillBtn;
@@ -86,7 +87,7 @@ public class DialogueWnd : WindowRoot
         foreach (var item in npcCfg.Functions)
         {
             //根據NPC擁有的功能加載不同按紐
-            //任務1 , 學習課程2 , 學習課程3 , 考試4 , 購買5 , 販賣6 , 倉庫7, 郵箱8, 強化裝備9, 小遊戲設定10, 製作裝備11, 學技能12, 學專攻13
+            //任務1 , 學習課程2 , 學習課程3 , 考試4 , 購買5 , 販賣6 , 倉庫7, 郵箱8, 強化裝備9, 小遊戲設定10, 製作裝備11, 學技能12, 學專攻13, 坐船14
             switch (item)
             {
                 case 1:
@@ -130,7 +131,9 @@ public class DialogueWnd : WindowRoot
                 case 13:
                     LearnMajorSkillBtn.gameObject.SetActive(true);
                     break;
-
+                case 14:
+                    ShipBtn.gameObject.SetActive(true);
+                    break;
             }
         }
     }

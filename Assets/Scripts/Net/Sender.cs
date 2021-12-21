@@ -988,3 +988,19 @@ public class OtherProfileSender : BaseSender
         base.SendMsg(msg);
     }
 }
+
+public class ShipSender : BaseSender
+{
+    public ShipSender(ShipDestination destination)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 77,
+            shipOperation = new ShipOperation
+            {
+                Destination = destination
+            }
+        };
+        base.SendMsg(msg);
+    }
+}

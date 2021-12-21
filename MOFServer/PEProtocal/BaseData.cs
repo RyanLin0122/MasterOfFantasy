@@ -1174,6 +1174,17 @@ namespace PEProtocal
         [ProtoMember(4, IsRequired = false)]
         public int State { get; set; }
     }
+
+    [ProtoContract(EnumPassthru = false)]
+    public enum ShipDestination
+    {
+        [ProtoEnum]
+        Ribi,
+        [ProtoEnum]
+        Arnos,
+        [ProtoEnum]
+        Posedin
+    }
 }
 
 

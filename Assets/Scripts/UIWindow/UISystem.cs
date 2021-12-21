@@ -53,6 +53,7 @@ public class UISystem : SystemRoot
     public LearnMajorSkillWnd LearnMajorSkillWnd;
     public ServerAnouncement serverAnouncement;
     public OtherProfileWnd OtherProfileWnd;
+    public ShipWnd shipWnd;
     public Transform WindowsContainer;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
@@ -449,7 +450,13 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         LearnMajorSkillWnd.SetWndState(false);
     }
-
+    public void OpenShipWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        PutLastLayer(shipWnd.transform);
+        shipWnd.gameObject.SetActive(true);
+        shipWnd.Init();
+    }
     #endregion
 
     private bool CanSetMiniGameSchedule()

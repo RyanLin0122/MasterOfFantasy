@@ -182,6 +182,9 @@ public class NetSvc : MonoBehaviour
             case 76:
                 DoOtherProfile(msg);
                 break;
+            case 77:
+                DoShipRsp(msg);
+                break;
         }
     }
 
@@ -719,10 +722,10 @@ public class NetSvc : MonoBehaviour
                             {
                                 for (int j = 1; j < 25; j++)
                                 {
-                                    var slot = KnapsackWnd.Instance.slotLists[i][j-1];
+                                    var slot = KnapsackWnd.Instance.slotLists[i][j - 1];
                                     slot.RemoveItemUI();
                                     Item item = null;
-                                    if(GameRoot.Instance.ActivePlayer.NotCashKnapsack.TryGetValue(i * 24 + j, out item))
+                                    if (GameRoot.Instance.ActivePlayer.NotCashKnapsack.TryGetValue(i * 24 + j, out item))
                                     {
                                         slot.StoreItem(item);
                                     }
@@ -733,13 +736,13 @@ public class NetSvc : MonoBehaviour
                             GameRoot.Instance.ActivePlayer.CashKnapsack = msg.tidyUpOperation.Inventory;
                             for (int j = 1; j < 25; j++)
                             {
-                                var slot = KnapsackWnd.Instance.slotLists[3][j-1];
+                                var slot = KnapsackWnd.Instance.slotLists[3][j - 1];
                                 slot.RemoveItemUI();
                                 Item item = null;
                                 if (GameRoot.Instance.ActivePlayer.CashKnapsack.TryGetValue(j, out item))
                                 {
                                     slot.StoreItem(item);
-                                }                               
+                                }
                             }
                             break;
                         default:
@@ -764,6 +767,17 @@ public class NetSvc : MonoBehaviour
         else
         {
             UISystem.Instance.AddMessageQueue("無法瀏覽");
+        }
+    }
+    public void DoShipRsp(ProtoMsg msg)
+    {
+        if (msg.shipOperation != null)
+        {
+            ShipOperation so = msg.shipOperation;
+            if (!so.Result && !string.IsNullOrEmpty(so.ErrorMsg)) 
+            {
+                GameRoot.AddTips(so.ErrorMsg);
+            }
         }
     }
 }

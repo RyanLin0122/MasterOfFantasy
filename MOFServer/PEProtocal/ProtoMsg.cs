@@ -85,6 +85,7 @@ namespace PEProtocal
         ///74:賣東西回應
         ///75:整理東西
         ///76:他人情報
+        ///77:坐船
         ///
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
@@ -263,6 +264,8 @@ namespace PEProtocal
         public TidyUpOperation tidyUpOperation { get; set; }
         [ProtoMember(88, IsRequired = false)]
         public OtherProfileOperation otherProfileOperation { get; set; }
+        [ProtoMember(89, IsRequired = false)]
+        public ShipOperation shipOperation { get; set; }
 
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
@@ -1809,4 +1812,19 @@ namespace PEProtocal
         [ProtoMember(15, IsRequired = false)]
         public int Gender { get; set; }
     }
+
+    [ProtoContract]
+    public class ShipOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public ShipDestination Destination { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public long UpdateRibi { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+    }
+    
+
 }
