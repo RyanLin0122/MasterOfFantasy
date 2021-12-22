@@ -194,9 +194,9 @@ namespace LitJson
             }
 
             set {
-                if (! (key is String))
-                    throw new ArgumentException (
-                        "The key has to be a string");
+                //if (! (key is String))
+                    //throw new ArgumentException (
+                    //    "The key has to be a string");
 
                 JsonData data = ToJsonData (value);
 
@@ -366,8 +366,8 @@ namespace LitJson
                 return;
             }
 
-            throw new ArgumentException (
-                "Unable to wrap the given object with JsonData");
+            //throw new ArgumentException (
+            //    "Unable to wrap the given object with JsonData");
         }
 
         public JsonData (string str)
@@ -409,45 +409,45 @@ namespace LitJson
         #region Explicit Conversions
         public static explicit operator Boolean (JsonData data)
         {
-            if (data.type != JsonType.Boolean)
-                throw new InvalidCastException (
-                    "Instance of JsonData doesn't hold a double");
+            //if (data.type != JsonType.Boolean)
+                //throw new InvalidCastException (
+                //    "Instance of JsonData doesn't hold a double");
 
             return data.inst_boolean;
         }
 
         public static explicit operator Double (JsonData data)
         {
-            if (data.type != JsonType.Double)
-                throw new InvalidCastException (
-                    "Instance of JsonData doesn't hold a double");
+            //if (data.type != JsonType.Double)
+            //    throw new InvalidCastException (
+            //        "Instance of JsonData doesn't hold a double");
 
             return data.inst_double;
         }
 
         public static explicit operator Int32 (JsonData data)
         {
-            if (data.type != JsonType.Int)
-                throw new InvalidCastException (
-                    "Instance of JsonData doesn't hold an int");
+            //if (data.type != JsonType.Int)
+            //    throw new InvalidCastException (
+            //        "Instance of JsonData doesn't hold an int");
 
             return data.inst_int;
         }
 
         public static explicit operator Int64 (JsonData data)
         {
-            if (data.type != JsonType.Long)
-                throw new InvalidCastException (
-                    "Instance of JsonData doesn't hold an int");
+            //if (data.type != JsonType.Long)
+            //    throw new InvalidCastException (
+            //       "Instance of JsonData doesn't hold an int");
 
             return data.inst_long;
         }
 
         public static explicit operator String (JsonData data)
         {
-            if (data.type != JsonType.String)
-                throw new InvalidCastException (
-                    "Instance of JsonData doesn't hold a string");
+            //if (data.type != JsonType.String)
+            //    throw new InvalidCastException (
+            //       "Instance of JsonData doesn't hold a string");
 
             return data.inst_string;
         }
@@ -520,45 +520,45 @@ namespace LitJson
         #region IJsonWrapper Methods
         bool IJsonWrapper.GetBoolean ()
         {
-            if (type != JsonType.Boolean)
-                throw new InvalidOperationException (
-                    "JsonData instance doesn't hold a boolean");
+            //if (type != JsonType.Boolean)
+            //    throw new InvalidOperationException (
+            //        "JsonData instance doesn't hold a boolean");
 
             return inst_boolean;
         }
 
         double IJsonWrapper.GetDouble ()
         {
-            if (type != JsonType.Double)
-                throw new InvalidOperationException (
-                    "JsonData instance doesn't hold a double");
+            //if (type != JsonType.Double)
+            //    throw new InvalidOperationException (
+            //        "JsonData instance doesn't hold a double");
 
             return inst_double;
         }
 
         int IJsonWrapper.GetInt ()
         {
-            if (type != JsonType.Int)
-                throw new InvalidOperationException (
-                    "JsonData instance doesn't hold an int");
+            //if (type != JsonType.Int)
+            //    throw new InvalidOperationException (
+            //        "JsonData instance doesn't hold an int");
 
             return inst_int;
         }
 
         long IJsonWrapper.GetLong ()
         {
-            if (type != JsonType.Long)
-                throw new InvalidOperationException (
-                    "JsonData instance doesn't hold a long");
+            //if (type != JsonType.Long)
+            //    throw new InvalidOperationException (
+            //        "JsonData instance doesn't hold a long");
 
             return inst_long;
         }
 
         string IJsonWrapper.GetString ()
         {
-            if (type != JsonType.String)
-                throw new InvalidOperationException (
-                    "JsonData instance doesn't hold a string");
+            //if (type != JsonType.String)
+            //    throw new InvalidOperationException (
+            //        "JsonData instance doesn't hold a string");
 
             return inst_string;
         }

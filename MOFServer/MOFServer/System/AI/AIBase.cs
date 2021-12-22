@@ -48,61 +48,76 @@ public class AIBase
     }
     private void UpdateBattle()
     {
-        if (this.Target == null)
+        try
         {
-            this.Owner.entityStatus = EntityStatus.Idle;
-            return;
-        }
-        if (this.Target.status == PlayerStatus.Death)
-        {
-            this.Owner.entityStatus = EntityStatus.Idle;
-            return;
-        }
-        if (IsAttackAni || IsHurtAni) return;
-        if (this.Owner.status == MonsterStatus.Frozen || this.Owner.status == MonsterStatus.Faint) return;
-        if (!TryCastSkill())
-        {
-            if (!TryCastNormal())
+            if (this.Target == null)
             {
-                FollowTarget();
+                this.Owner.entityStatus = EntityStatus.Idle;
+                return;
+            }
+            if (this.Target.status == PlayerStatus.Death)
+            {
+                this.Owner.entityStatus = EntityStatus.Idle;
+                return;
+            }
+            if (IsAttackAni || IsHurtAni) return;
+            if (this.Owner.status == MonsterStatus.Frozen || this.Owner.status == MonsterStatus.Faint) return;
+            if (!TryCastSkill())
+            {
+                if (!TryCastNormal())
+                {
+                    FollowTarget();
+                }
+                else
+                {
+                    StartAttackAni();
+                }
             }
             else
             {
                 StartAttackAni();
             }
         }
-        else
+        catch (Exception e)
         {
-            StartAttackAni();
-        }
+            LogSvc.Error(e);
+        }        
     }
 
     private bool TryCastSkill()
     {
         if (this.Target != null)
         {
-            SkillCastInfo CastSkill = new SkillCastInfo
+            try
             {
-                CasterID = this.Owner.nEntity.Id,
-                CasterType = SkillCasterType.Monster,
-                TargetType = SkillTargetType.Player,
-                Result = SkillResult.OK,
-                TargetID = null,
-                TargetName = new string[] { Target.nEntity.EntityName }
-            };
-            BattleContext context = new BattleContext(this.Owner.mofMap.Battle, CastSkill)
-            {
-                Target = new List<Entity> { this.Target },
-                Caster = this.Owner,
-            };
-            Skill skill = this.Owner.FindSkill(context, SkillType.Skill);
-            if (skill != null)
-            {
-                context.CastSkill.SkillID = skill.Info.SkillID;
-                skill.Cast(context, CastSkill);
-                this.Owner.StopMove();
-                return true;
+                SkillCastInfo CastSkill = new SkillCastInfo
+                {
+                    CasterID = this.Owner.nEntity.Id,
+                    CasterType = SkillCasterType.Monster,
+                    TargetType = SkillTargetType.Player,
+                    Result = SkillResult.OK,
+                    TargetID = null,
+                    TargetName = new string[] { Target.nEntity.EntityName }
+                };
+                BattleContext context = new BattleContext(this.Owner.mofMap.Battle, CastSkill)
+                {
+                    Target = new List<Entity> { this.Target },
+                    Caster = this.Owner,
+                };
+                Skill skill = this.Owner.FindSkill(context, SkillType.Skill);
+                if (skill != null)
+                {
+                    context.CastSkill.SkillID = skill.Info.SkillID;
+                    skill.Cast(context, CastSkill);
+                    this.Owner.StopMove();
+                    return true;
+                }
             }
+            catch (Exception e)
+            {
+                LogSvc.Error(e);
+            }
+            
         }
         return false;
     }
@@ -111,31 +126,39 @@ public class AIBase
     {
         if (this.Target != null)
         {
-            SkillCastInfo CastSkill = new SkillCastInfo
+            try
             {
-                CasterID = this.Owner.nEntity.Id,
-                CasterType = SkillCasterType.Monster,
-                TargetType = SkillTargetType.Player,
-                Result = SkillResult.OK,
-                TargetID = null,
-                TargetName = new string[] { Target.nEntity.EntityName }
-            };
-            BattleContext context = new BattleContext(this.Owner.mofMap.Battle, CastSkill)
-            {
-                Target = new List<Entity> { this.Target },
-                Caster = this.Owner,
-            };
-            if (normalSkill != null)
-            {
-                context.CastSkill.SkillID = 0;
-                SkillResult result = normalSkill.CanCast(context);
-                if (result == SkillResult.OK)
+                SkillCastInfo CastSkill = new SkillCastInfo
                 {
-                    normalSkill.Cast(context, CastSkill);
-                    this.Owner.StopMove();
-                    return true;
+                    CasterID = this.Owner.nEntity.Id,
+                    CasterType = SkillCasterType.Monster,
+                    TargetType = SkillTargetType.Player,
+                    Result = SkillResult.OK,
+                    TargetID = null,
+                    TargetName = new string[] { Target.nEntity.EntityName }
+                };
+                BattleContext context = new BattleContext(this.Owner.mofMap.Battle, CastSkill)
+                {
+                    Target = new List<Entity> { this.Target },
+                    Caster = this.Owner,
+                };
+                if (normalSkill != null)
+                {
+                    context.CastSkill.SkillID = 0;
+                    SkillResult result = normalSkill.CanCast(context);
+                    if (result == SkillResult.OK)
+                    {
+                        normalSkill.Cast(context, CastSkill);
+                        this.Owner.StopMove();
+                        return true;
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                LogSvc.Error(e);
+            }
+            
         }
         return false;
     }

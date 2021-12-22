@@ -239,9 +239,9 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
             }
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            LogSvc.Error(ex.Message + ex.Source + ex.StackTrace + ex.InnerException);
+            LogSvc.Error(e);
         }
 
     }

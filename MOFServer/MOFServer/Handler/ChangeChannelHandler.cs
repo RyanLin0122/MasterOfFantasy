@@ -28,7 +28,7 @@ public class ChangeChannelHandler : GameHandler
         catch (Exception e )
         {
             SendErrorBack(session, msg);
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
         
     }

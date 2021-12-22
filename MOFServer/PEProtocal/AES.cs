@@ -138,9 +138,9 @@ public class AES
     /// <param name="EncryptKey">加密密钥</param>
     public static byte[] AESEncrypt(byte[] EncryptByte, string EncryptKey)
     {
-        if (EncryptByte.Length == 0) { throw (new Exception("明文不得为空")); }
-        if (string.IsNullOrEmpty(EncryptKey)) { throw (new Exception("密钥不得为空")); }
-        byte[] m_strEncrypt;
+        if (EncryptByte.Length == 0) { Console.WriteLine("明文不得为空"); }
+        if (string.IsNullOrEmpty(EncryptKey)) { Console.WriteLine("密钥不得为空"); }
+        byte[] m_strEncrypt = null;
         byte[] m_btIV = Convert.FromBase64String("Rkb4jvUy/ye7Cd7k89QQgQ==");
         byte[] m_salt = Convert.FromBase64String("gsf4jvkyhye5/d7k8OrLgM==");
         Rijndael m_AESProvider = Rijndael.Create();
@@ -156,10 +156,10 @@ public class AES
             m_stream.Close(); m_stream.Dispose();
             m_csstream.Close(); m_csstream.Dispose();
         }
-        catch (IOException ex) { throw ex; }
-        catch (CryptographicException ex) { throw ex; }
-        catch (ArgumentException ex) { throw ex; }
-        catch (Exception ex) { throw ex; }
+        catch (IOException ex) { Console.WriteLine(ex); }
+        catch (CryptographicException ex) { Console.WriteLine(ex); }
+        catch (ArgumentException ex) { Console.WriteLine(ex); }
+        catch (Exception ex) { Console.WriteLine(ex); }
         finally { m_AESProvider.Clear(); }
         return m_strEncrypt;
     }
@@ -182,9 +182,9 @@ public class AES
     /// <param name="DecryptKey">解密密钥</param>
     public static byte[] AESDecrypt(byte[] DecryptByte, string DecryptKey)
     {
-        if (DecryptByte.Length == 0) { throw (new Exception("密文不得为空")); }
-        if (string.IsNullOrEmpty(DecryptKey)) { throw (new Exception("密钥不得为空")); }
-        byte[] m_strDecrypt;
+        if (DecryptByte.Length == 0) { Console.WriteLine("密文不得为空"); }
+        if (string.IsNullOrEmpty(DecryptKey)) { Console.WriteLine("密钥不得为空"); }
+        byte[] m_strDecrypt = null;
         byte[] m_btIV = Convert.FromBase64String("Rkb4jvUy/ye7Cd7k89QQgQ==");
         byte[] m_salt = Convert.FromBase64String("gsf4jvkyhye5/d7k8OrLgM==");
         Rijndael m_AESProvider = Rijndael.Create();
@@ -200,10 +200,10 @@ public class AES
             m_stream.Close(); m_stream.Dispose();
             m_csstream.Close(); m_csstream.Dispose();
         }
-        catch (IOException ex) { Console.WriteLine(ex.Message); throw ex; }
-        catch (CryptographicException ex) { Console.WriteLine(ex.Message); throw ex; }
-        catch (ArgumentException ex) { Console.WriteLine(ex.Message); throw ex; }
-        catch (Exception ex) { Console.WriteLine(ex.Message); throw ex; }
+        catch (IOException ex) { Console.WriteLine(ex.Message); }
+        catch (CryptographicException ex) { Console.WriteLine(ex.Message); }
+        catch (ArgumentException ex) { Console.WriteLine(ex.Message); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
         finally { m_AESProvider.Clear(); }
         return m_strDecrypt;
     }

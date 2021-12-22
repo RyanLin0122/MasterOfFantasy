@@ -26,369 +26,384 @@ public class QuestManager
 
     public void AcceptQuest(QuestAcceptRequest qa)
     {
-        QuestDefine define;
-        Item deliveryItem = null;
-        if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
+        try
         {
-            bool result = false;
-            //判斷條件
-            switch (define.Target)
+            QuestDefine define;
+            Item deliveryItem = null;
+            if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
             {
-                case QuestTarget.None:
-                    return;
-                case QuestTarget.Kill:
-                    result = true;
-                    break;
-                case QuestTarget.Item:
-                    result = true;
-                    break;
-                case QuestTarget.Delivery:
-                    #region 配送任務
-                    Item item = null;
-                    if (CacheSvc.ItemList.TryGetValue(define.TargetIDs[0], out item))
-                    {
-                        if (item.IsCash)
+                bool result = false;
+                //判斷條件
+                switch (define.Target)
+                {
+                    case QuestTarget.None:
+                        return;
+                    case QuestTarget.Kill:
+                        result = true;
+                        break;
+                    case QuestTarget.Item:
+                        result = true;
+                        break;
+                    case QuestTarget.Delivery:
+                        #region 配送任務
+                        Item item = null;
+                        if (CacheSvc.ItemList.TryGetValue(define.TargetIDs[0], out item))
                         {
-                            int EmptyPosition = this.Owner.GetCashKnapsackEmptyPosition(item.ItemID, define.TargetNum[0]);
-                            if (EmptyPosition != -1)
+                            if (item.IsCash)
                             {
-                                //有空格可放
-                                result = true;
-                                Item existItem = null;
-                                if (this.Owner.player.CashKnapsack.TryGetValue(EmptyPosition, out existItem))
+                                int EmptyPosition = this.Owner.GetCashKnapsackEmptyPosition(item.ItemID, define.TargetNum[0]);
+                                if (EmptyPosition != -1)
                                 {
-                                    if (existItem != null)
+                                    //有空格可放
+                                    result = true;
+                                    Item existItem = null;
+                                    if (this.Owner.player.CashKnapsack.TryGetValue(EmptyPosition, out existItem))
                                     {
-                                        this.Owner.player.CashKnapsack[EmptyPosition].Count += define.TargetNum[0];
-                                        this.Owner.player.CashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        if (existItem != null)
+                                        {
+                                            this.Owner.player.CashKnapsack[EmptyPosition].Count += define.TargetNum[0];
+                                            this.Owner.player.CashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        }
+                                        else
+                                        {
+                                            this.Owner.player.CashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
+                                            this.Owner.player.CashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        }
                                     }
                                     else
                                     {
                                         this.Owner.player.CashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
                                         this.Owner.player.CashKnapsack[EmptyPosition].Position = EmptyPosition;
                                     }
+                                    deliveryItem = this.Owner.player.CashKnapsack[EmptyPosition];
                                 }
                                 else
                                 {
-                                    this.Owner.player.CashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
-                                    this.Owner.player.CashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                    ProtoMsg rsp = new ProtoMsg
+                                    {
+                                        MessageType = 66,
+                                        questAcceptResponse = new QuestAcceptResponse
+                                        {
+                                            Result = false,
+                                            quest = null,
+                                            ErrorMsg = "[87]背包空間不足"
+                                        }
+                                    };
+                                    this.Owner.session.WriteAndFlush(rsp);
                                 }
-                                deliveryItem = this.Owner.player.CashKnapsack[EmptyPosition];
                             }
                             else
                             {
-                                ProtoMsg rsp = new ProtoMsg
+                                int EmptyPosition = this.Owner.GetNotCashKnapsackEmptyPosition(item.ItemID);
+                                if (EmptyPosition != -1)
                                 {
-                                    MessageType = 66,
-                                    questAcceptResponse = new QuestAcceptResponse
+                                    //有空格可放
+                                    result = true;
+                                    Item existItem = null;
+                                    if (this.Owner.player.NotCashKnapsack.TryGetValue(EmptyPosition, out existItem))
                                     {
-                                        Result = false,
-                                        quest = null,
-                                        ErrorMsg = "[87]背包空間不足"
-                                    }
-                                };
-                                this.Owner.session.WriteAndFlush(rsp);
-                            }
-                        }
-                        else
-                        {
-                            int EmptyPosition = this.Owner.GetNotCashKnapsackEmptyPosition(item.ItemID);
-                            if (EmptyPosition != -1)
-                            {
-                                //有空格可放
-                                result = true;
-                                Item existItem = null;
-                                if (this.Owner.player.NotCashKnapsack.TryGetValue(EmptyPosition, out existItem))
-                                {
-                                    if (existItem != null)
-                                    {
-                                        this.Owner.player.NotCashKnapsack[EmptyPosition].Count += define.TargetNum[0];
-                                        this.Owner.player.NotCashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        if (existItem != null)
+                                        {
+                                            this.Owner.player.NotCashKnapsack[EmptyPosition].Count += define.TargetNum[0];
+                                            this.Owner.player.NotCashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        }
+                                        else
+                                        {
+                                            this.Owner.player.NotCashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
+                                            this.Owner.player.NotCashKnapsack[EmptyPosition].Position = EmptyPosition;
+                                        }
                                     }
                                     else
                                     {
                                         this.Owner.player.NotCashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
                                         this.Owner.player.NotCashKnapsack[EmptyPosition].Position = EmptyPosition;
                                     }
+                                    deliveryItem = this.Owner.player.NotCashKnapsack[EmptyPosition];
                                 }
                                 else
                                 {
-                                    this.Owner.player.NotCashKnapsack[EmptyPosition] = Utility.GetItemCopyByID(item.ItemID);
-                                    this.Owner.player.NotCashKnapsack[EmptyPosition].Position = EmptyPosition;
-                                }
-                                deliveryItem = this.Owner.player.NotCashKnapsack[EmptyPosition];
-                            }
-                            else
-                            {
-                                ProtoMsg rsp = new ProtoMsg
-                                {
-                                    MessageType = 66,
-                                    questAcceptResponse = new QuestAcceptResponse
+                                    ProtoMsg rsp = new ProtoMsg
                                     {
-                                        Result = false,
-                                        quest = null,
-                                        ErrorMsg = "[130]背包空間不足"
-                                    }
-                                };
-                                this.Owner.session.WriteAndFlush(rsp);
+                                        MessageType = 66,
+                                        questAcceptResponse = new QuestAcceptResponse
+                                        {
+                                            Result = false,
+                                            quest = null,
+                                            ErrorMsg = "[130]背包空間不足"
+                                        }
+                                    };
+                                    this.Owner.session.WriteAndFlush(rsp);
+                                }
+                            }
+                        }
+                        #endregion
+                        break;
+                    default:
+                        break;
+                }
+
+                //滿足條件可以接取
+                if (result)
+                {
+                    LogSvc.Info("[146]接取任務");
+                    NQuest quest = GetNewNQuest(qa.quest_id);
+                    this.Owner.player.ProcessingQuests.Add(quest);
+                    ProtoMsg rsp = new ProtoMsg
+                    {
+                        MessageType = 66,
+                        questAcceptResponse = new QuestAcceptResponse
+                        {
+                            Result = true,
+                            quest = quest,
+                            ErrorMsg = "",
+                            DeliveryItem = deliveryItem
+                        }
+                    };
+                    if (define.Target == QuestTarget.Kill && define.TargetIDs != null && define.TargetIDs.Count > 0)
+                    {
+                        for (int i = 0; i < define.TargetIDs.Count; i++)
+                        {
+                            quest.Targets[define.TargetIDs[i]] = 0;
+                        }
+                        for (int i = 0; i < define.TargetIDs.Count; i++)
+                        {
+                            if (!KillQuestProgress.ContainsKey(define.TargetIDs[i]))
+                            {
+                                KillQuestProgress[define.TargetIDs[i]] = new List<NQuest>();
+                                KillQuestProgress[define.TargetIDs[i]].Add(quest);
                             }
                         }
                     }
-                    #endregion
-                    break;
-                default:
-                    break;
-            }
+                    this.Owner.session.WriteAndFlush(rsp);
 
-            //滿足條件可以接取
-            if (result)
+                    //this.Owner.AsyncSaveCharacter();
+                }
+            }
+            else
             {
-                LogSvc.Info("[146]接取任務");
-                NQuest quest = GetNewNQuest(qa.quest_id);
-                this.Owner.player.ProcessingQuests.Add(quest);
                 ProtoMsg rsp = new ProtoMsg
                 {
                     MessageType = 66,
                     questAcceptResponse = new QuestAcceptResponse
                     {
-                        Result = true,
-                        quest = quest,
-                        ErrorMsg = "",
-                        DeliveryItem = deliveryItem
+                        Result = false,
+                        quest = null,
+                        ErrorMsg = "[173]接取失敗"
                     }
                 };
-                if (define.Target == QuestTarget.Kill && define.TargetIDs != null && define.TargetIDs.Count > 0)
-                {
-                    for (int i = 0; i < define.TargetIDs.Count; i++)
-                    {
-                        quest.Targets[define.TargetIDs[i]] = 0;
-                    }
-                    for (int i = 0; i < define.TargetIDs.Count; i++)
-                    {
-                        if (!KillQuestProgress.ContainsKey(define.TargetIDs[i]))
-                        {
-                            KillQuestProgress[define.TargetIDs[i]] = new List<NQuest>();
-                            KillQuestProgress[define.TargetIDs[i]].Add(quest);
-                        }
-                    }
-                }
                 this.Owner.session.WriteAndFlush(rsp);
-
-                //this.Owner.AsyncSaveCharacter();
             }
         }
-        else
+        catch (Exception e)
         {
-            ProtoMsg rsp = new ProtoMsg
-            {
-                MessageType = 66,
-                questAcceptResponse = new QuestAcceptResponse
-                {
-                    Result = false,
-                    quest = null,
-                    ErrorMsg = "[173]接取失敗"
-                }
-            };
-            this.Owner.session.WriteAndFlush(rsp);
+            LogSvc.Error(e);
         }
+        
     }
 
     public void SubmitQuest(QuestSubmitRequest qs)
     {
-        List<Item> RecycleItems = new List<Item>();
-        List<int> DeletePos = new List<int>();
-        List<bool> DeleteIsCash = new List<bool>();
-        QuestDefine define;
-        if (CacheSvc.Instance.QuestDic.TryGetValue(qs.quest_id, out define))
+        try
         {
-            var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qs.quest_id).FirstOrDefault();
-            if (nQuest != null)
+            List<Item> RecycleItems = new List<Item>();
+            List<int> DeletePos = new List<int>();
+            List<bool> DeleteIsCash = new List<bool>();
+            QuestDefine define;
+            if (CacheSvc.Instance.QuestDic.TryGetValue(qs.quest_id, out define))
             {
-                bool result = false;
-                if (nQuest.status == QuestStatus.InProgress)
+                var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qs.quest_id).FirstOrDefault();
+                if (nQuest != null)
                 {
-                    //解任務邏輯
-                    switch (define.Target)
+                    bool result = false;
+                    if (nQuest.status == QuestStatus.InProgress)
                     {
-                        case QuestTarget.None:
-                            break;
-                        case QuestTarget.Kill:
-                            bool IsKillEnough = true;
-                            for (int i = 0; i < define.TargetIDs.Count; i++)
-                            {
-                                if (nQuest.Targets[define.TargetIDs[i]] < define.TargetNum[i])
+                        //解任務邏輯
+                        switch (define.Target)
+                        {
+                            case QuestTarget.None:
+                                break;
+                            case QuestTarget.Kill:
+                                bool IsKillEnough = true;
+                                for (int i = 0; i < define.TargetIDs.Count; i++)
                                 {
-                                    IsKillEnough = false;
+                                    if (nQuest.Targets[define.TargetIDs[i]] < define.TargetNum[i])
+                                    {
+                                        IsKillEnough = false;
+                                    }
                                 }
-                            }
-                            if (IsKillEnough)
-                            {
+                                if (IsKillEnough)
+                                {
+                                    nQuest.status = QuestStatus.Completed;
+                                    result = true;
+                                }
+                                break;
+                            case QuestTarget.Item:
+                                //確認東西有沒有在背包
+                                List<bool> IsItemsExist = new List<bool>();
+                                List<int> ItemIDs = define.TargetIDs;
+
+
+                                for (int i = 0; i < ItemIDs.Count; i++)
+                                {
+                                    if (this.Owner.HasItem(ItemIDs[i], define.TargetNum[i]))
+                                    {
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        SubmitFail("[215]道具不足，無法完成");
+                                        return;
+                                    }
+                                }
+                                if (!IsRewardKnapsackEnough(nQuest))
+                                {
+                                    SubmitFail("[221]背包空間不足，無法領取獎勵");
+                                    return;
+                                }
+                                //回收
+                                for (int i = 0; i < ItemIDs.Count; i++)
+                                {
+                                    var rc = this.Owner.RecycleItem(ItemIDs[i], define.TargetNum[i]);
+                                    RecycleItems = RecycleItems.Concat(rc.Item1).ToList();
+                                    DeletePos = DeletePos.Concat(rc.Item2).ToList();
+                                    DeleteIsCash = DeleteIsCash.Concat(rc.Item3).ToList();
+                                }
                                 nQuest.status = QuestStatus.Completed;
                                 result = true;
-                            }
-                            break;
-                        case QuestTarget.Item:
-                            //確認東西有沒有在背包
-                            List<bool> IsItemsExist = new List<bool>();
-                            List<int> ItemIDs = define.TargetIDs;
-
-
-                            for (int i = 0; i < ItemIDs.Count; i++)
-                            {
-                                if (this.Owner.HasItem(ItemIDs[i], define.TargetNum[i]))
+                                break;
+                            case QuestTarget.Delivery:
+                                if (!nQuest.HasDeliveried) //配送給目標對象
                                 {
-                                    continue;
-                                }
-                                else
-                                {
-                                    SubmitFail("[215]道具不足，無法完成");
+                                    //確認東西有沒有在背包
+                                    Item existItem = null;
+                                    bool IsExist = false;
+                                    int ItemID = define.TargetIDs[0];
+                                    bool IsCash = CacheSvc.ItemList[ItemID].IsCash;
+                                    if (IsCash)
+                                    {
+                                        foreach (var kv in this.Owner.player.CashKnapsack)
+                                        {
+                                            if (kv.Value != null && kv.Value.ItemID == ItemID)
+                                            {
+                                                kv.Value.Position = kv.Key;
+                                                IsExist = true;
+                                                existItem = kv.Value;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (var kv in this.Owner.player.NotCashKnapsack)
+                                        {
+                                            if (kv.Value != null && kv.Value.ItemID == ItemID)
+                                            {
+                                                kv.Value.Position = kv.Key;
+                                                IsExist = true;
+                                                existItem = kv.Value;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //有就回收
+                                    if (IsExist)
+                                    {
+                                        nQuest.HasDeliveried = true;
+                                        nQuest.status = QuestStatus.Completed;
+                                        ProtoMsg deliveryRsp = new ProtoMsg
+                                        {
+                                            MessageType = 68,
+                                            questSubmitResponse = new QuestSubmitResponse
+                                            {
+                                                Result = true,
+                                                quest = nQuest,
+                                                ErrorMsg = "",
+                                                DeleteIsCashs = new List<bool>() { existItem.IsCash },
+                                                DeletePositions = new List<int>() { existItem.Position }
+                                            }
+                                        };
+                                        if (IsCash) this.Owner.player.CashKnapsack.Remove(existItem.Position);
+                                        else this.Owner.player.NotCashKnapsack.Remove(existItem.Position);
+                                        this.Owner.session.WriteAndFlush(deliveryRsp);
+                                        //this.Owner.AsyncSaveCharacter();
+                                    }
+                                    else
+                                    {
+                                        SubmitFail("[292]缺少任務道具");
+                                        return;
+                                    }
                                     return;
                                 }
-                            }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    if (nQuest.status == QuestStatus.Completed)
+                    {
+                        if (define.Target == QuestTarget.Delivery && nQuest.HasDeliveried)
+                        {
                             if (!IsRewardKnapsackEnough(nQuest))
                             {
-                                SubmitFail("[221]背包空間不足，無法領取獎勵");
+                                SubmitFail("[308]背包空間不足，無法領取獎勵");
                                 return;
                             }
-                            //回收
-                            for (int i = 0; i < ItemIDs.Count; i++)
-                            {
-                                var rc = this.Owner.RecycleItem(ItemIDs[i], define.TargetNum[i]);
-                                RecycleItems = RecycleItems.Concat(rc.Item1).ToList();
-                                DeletePos = DeletePos.Concat(rc.Item2).ToList();
-                                DeleteIsCash = DeleteIsCash.Concat(rc.Item3).ToList();
-                            }
-                            nQuest.status = QuestStatus.Completed;
                             result = true;
-                            break;
-                        case QuestTarget.Delivery:
-                            if (!nQuest.HasDeliveried) //配送給目標對象
-                            {
-                                //確認東西有沒有在背包
-                                Item existItem = null;
-                                bool IsExist = false;
-                                int ItemID = define.TargetIDs[0];
-                                bool IsCash = CacheSvc.ItemList[ItemID].IsCash;
-                                if (IsCash)
-                                {
-                                    foreach (var kv in this.Owner.player.CashKnapsack)
-                                    {
-                                        if (kv.Value != null && kv.Value.ItemID == ItemID)
-                                        {
-                                            kv.Value.Position = kv.Key;
-                                            IsExist = true;
-                                            existItem = kv.Value;
-                                            break;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    foreach (var kv in this.Owner.player.NotCashKnapsack)
-                                    {
-                                        if (kv.Value != null && kv.Value.ItemID == ItemID)
-                                        {
-                                            kv.Value.Position = kv.Key;
-                                            IsExist = true;
-                                            existItem = kv.Value;
-                                            break;
-                                        }
-                                    }
-                                }
-                                //有就回收
-                                if (IsExist)
-                                {
-                                    nQuest.HasDeliveried = true;
-                                    nQuest.status = QuestStatus.Completed;
-                                    ProtoMsg deliveryRsp = new ProtoMsg
-                                    {
-                                        MessageType = 68,
-                                        questSubmitResponse = new QuestSubmitResponse
-                                        {
-                                            Result = true,
-                                            quest = nQuest,
-                                            ErrorMsg = "",
-                                            DeleteIsCashs = new List<bool>() { existItem.IsCash },
-                                            DeletePositions = new List<int>() { existItem.Position }
-                                        }
-                                    };
-                                    if (IsCash) this.Owner.player.CashKnapsack.Remove(existItem.Position);
-                                    else this.Owner.player.NotCashKnapsack.Remove(existItem.Position);
-                                    this.Owner.session.WriteAndFlush(deliveryRsp);
-                                    //this.Owner.AsyncSaveCharacter();
-                                }
-                                else
-                                {
-                                    SubmitFail("[292]缺少任務道具");
-                                    return;
-                                }
-                                return;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                if (nQuest.status == QuestStatus.Completed)
-                {
-                    if (define.Target == QuestTarget.Delivery && nQuest.HasDeliveried)
-                    {
-                        if (!IsRewardKnapsackEnough(nQuest))
-                        {
-                            SubmitFail("[308]背包空間不足，無法領取獎勵");
-                            return;
                         }
-                        result = true;
-                    }
-                    if (result)
-                    {
-                        //發獎勵
-                        this.Owner.player.Ribi += define.RewardRibi; //直接覆蓋
-                        this.Owner.player.Honor += define.RewardHonerPoint; //直接覆蓋
-                        if (!this.Owner.player.BadgeCollection.Contains(define.RewardBadge)) this.Owner.player.BadgeCollection.Add(define.RewardBadge);
-                        this.Owner.AddExp((int)define.RewardExp);
-                        if (!this.Owner.player.TitleCollection.Contains(define.RewardTitle)) this.Owner.player.TitleCollection.Add(define.RewardTitle);
-                        nQuest.status = QuestStatus.Finished;
-                        ProtoMsg rsp = new ProtoMsg
+                        if (result)
                         {
-                            MessageType = 68,
-                            questSubmitResponse = new QuestSubmitResponse
+                            //發獎勵
+                            this.Owner.player.Ribi += define.RewardRibi; //直接覆蓋
+                            this.Owner.player.Honor += define.RewardHonerPoint; //直接覆蓋
+                            if (!this.Owner.player.BadgeCollection.Contains(define.RewardBadge)) this.Owner.player.BadgeCollection.Add(define.RewardBadge);
+                            this.Owner.AddExp((int)define.RewardExp);
+                            if (!this.Owner.player.TitleCollection.Contains(define.RewardTitle)) this.Owner.player.TitleCollection.Add(define.RewardTitle);
+                            nQuest.status = QuestStatus.Finished;
+                            ProtoMsg rsp = new ProtoMsg
                             {
-                                Result = true,
-                                quest = nQuest,
-                                ErrorMsg = "",
-                                RecycleItems = RecycleItems,
-                                DeleteIsCashs = DeleteIsCash,
-                                DeletePositions = DeletePos,
-                                RewardExp = define.RewardExp,
-                                RewardRibi = this.Owner.player.Ribi,
-                                RewardHonerPoint = this.Owner.player.Honor,
-                                RewardTitle = define.RewardTitle,
-                                RewardBadge = define.RewardBadge,
-                                RewardItems = RewardItem(nQuest)
-                            }
-                        };
-                        this.Owner.session.WriteAndFlush(rsp);
-                        //判斷是否清除殺怪計數器
-                        TryToRemoveKillCounter(define);
-                        //this.Owner.AsyncSaveCharacter();
-                    }
-                    else
-                    {
-                        SubmitFail("[337]解任務失敗");
+                                MessageType = 68,
+                                questSubmitResponse = new QuestSubmitResponse
+                                {
+                                    Result = true,
+                                    quest = nQuest,
+                                    ErrorMsg = "",
+                                    RecycleItems = RecycleItems,
+                                    DeleteIsCashs = DeleteIsCash,
+                                    DeletePositions = DeletePos,
+                                    RewardExp = define.RewardExp,
+                                    RewardRibi = this.Owner.player.Ribi,
+                                    RewardHonerPoint = this.Owner.player.Honor,
+                                    RewardTitle = define.RewardTitle,
+                                    RewardBadge = define.RewardBadge,
+                                    RewardItems = RewardItem(nQuest)
+                                }
+                            };
+                            this.Owner.session.WriteAndFlush(rsp);
+                            //判斷是否清除殺怪計數器
+                            TryToRemoveKillCounter(define);
+                            //this.Owner.AsyncSaveCharacter();
+                        }
+                        else
+                        {
+                            SubmitFail("[337]解任務失敗");
+                        }
                     }
                 }
-            }
-            else
-            {
-                SubmitFail("[343]解任務失敗");
+                else
+                {
+                    SubmitFail("[343]解任務失敗");
+                }
             }
         }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+            
+        }        
     }
 
     private void SubmitFail(string error)
     {
-        LogSvc.Error(error);
         ProtoMsg rsp = new ProtoMsg
         {
             MessageType = 68,
@@ -404,42 +419,49 @@ public class QuestManager
 
     public void AbandonQuest(QuestAbandonRequest qa)
     {
-        QuestDefine define;
-        if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
+        try
         {
-            var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qa.quest_id).FirstOrDefault();
-            if (nQuest != null)
+            QuestDefine define;
+            if (CacheSvc.Instance.QuestDic.TryGetValue(qa.quest_id, out define))
             {
-                if (nQuest.status != QuestStatus.Finished)
+                var nQuest = this.Owner.player.ProcessingQuests.Where(q => q.quest_id == qa.quest_id).FirstOrDefault();
+                if (nQuest != null)
                 {
-                    if (define.Target == QuestTarget.Kill)
+                    if (nQuest.status != QuestStatus.Finished)
                     {
-                        TryToRemoveKillCounter(define);
-                    }
-                    this.Owner.player.ProcessingQuests.Remove(nQuest);
-                    ProtoMsg rsp = new ProtoMsg
-                    {
-                        MessageType = 70,
-                        questAbandonResponse = new QuestAbandonResponse
+                        if (define.Target == QuestTarget.Kill)
                         {
-                            Result = true,
-                            quest = nQuest,
-                            ErrorMsg = ""
+                            TryToRemoveKillCounter(define);
                         }
-                    };
-                    this.Owner.session.WriteAndFlush(rsp);
-                }
-                else
-                {
-                    AbandonFail("任務已完成，無法放棄");
+                        this.Owner.player.ProcessingQuests.Remove(nQuest);
+                        ProtoMsg rsp = new ProtoMsg
+                        {
+                            MessageType = 70,
+                            questAbandonResponse = new QuestAbandonResponse
+                            {
+                                Result = true,
+                                quest = nQuest,
+                                ErrorMsg = ""
+                            }
+                        };
+                        this.Owner.session.WriteAndFlush(rsp);
+                    }
+                    else
+                    {
+                        AbandonFail("任務已完成，無法放棄");
+                    }
                 }
             }
+
         }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }        
     }
 
     private void AbandonFail(string error)
-    {
-        LogSvc.Error(error);
+    {        
         ProtoMsg rsp = new ProtoMsg
         {
             MessageType = 70,

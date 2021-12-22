@@ -144,7 +144,7 @@ public class ChatHandler : GameHandler
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
     }
 

@@ -8,61 +8,68 @@ public class HotKeyHandler : GameHandler
 {
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
-        HotKeyOperation req = msg.hotKeyOperation;
-        if (req == null)
+        try
         {
-            return;
-        }
-        var HotKeyDataList = session.ActivePlayer.Hotkeys;
-        if(HotKeyDataList == null)
-        {
-            session.ActivePlayer.Hotkeys = new List<HotkeyData>();
-        }
-        switch (req.OperationType)
-        {
-            case 1: //新增快捷鍵
-                if (req.NewHotKeyData != null)
-                {
-                    if (HotKeyDataList.Count > 0)
+            HotKeyOperation req = msg.hotKeyOperation;
+            if (req == null)
+            {
+                return;
+            }
+            var HotKeyDataList = session.ActivePlayer.Hotkeys;
+            if (HotKeyDataList == null)
+            {
+                session.ActivePlayer.Hotkeys = new List<HotkeyData>();
+            }
+            switch (req.OperationType)
+            {
+                case 1: //新增快捷鍵
+                    if (req.NewHotKeyData != null)
                     {
-                        int index = -1;
-                        int OldIndex = -1; 
-                        for (int i = 0; i < HotKeyDataList.Count; i++)
+                        if (HotKeyDataList.Count > 0)
                         {
-                            if(req.NewHotKeyData.PageIndex == HotKeyDataList[i].PageIndex && req.NewHotKeyData.KeyCode == HotKeyDataList[i].KeyCode)
+                            int index = -1;
+                            int OldIndex = -1;
+                            for (int i = 0; i < HotKeyDataList.Count; i++)
                             {
-                                index = i;
-                            }
-                            if (req.OldHotKeyData != null)
-                            {
-                                if (HotKeyDataList[i].PageIndex == req.NewHotKeyData.PageIndex && HotKeyDataList[i].KeyCode != req.NewHotKeyData.KeyCode
-                                && HotKeyDataList[i].HotKeyState == req.NewHotKeyData.HotKeyState && HotKeyDataList[i].ID == req.NewHotKeyData.ID)
+                                if (req.NewHotKeyData.PageIndex == HotKeyDataList[i].PageIndex && req.NewHotKeyData.KeyCode == HotKeyDataList[i].KeyCode)
                                 {
-                                    OldIndex = i;
+                                    index = i;
                                 }
-                            }
+                                if (req.OldHotKeyData != null)
+                                {
+                                    if (HotKeyDataList[i].PageIndex == req.NewHotKeyData.PageIndex && HotKeyDataList[i].KeyCode != req.NewHotKeyData.KeyCode
+                                    && HotKeyDataList[i].HotKeyState == req.NewHotKeyData.HotKeyState && HotKeyDataList[i].ID == req.NewHotKeyData.ID)
+                                    {
+                                        OldIndex = i;
+                                    }
+                                }
 
-                        }
-                        if(index == -1)
-                        {
-                            HotKeyDataList.Add(req.NewHotKeyData);
+                            }
+                            if (index == -1)
+                            {
+                                HotKeyDataList.Add(req.NewHotKeyData);
+                            }
+                            else
+                            {
+                                HotKeyDataList[index] = req.NewHotKeyData;
+                            }
+                            if (OldIndex != -1)
+                            {
+                                HotKeyDataList.RemoveAt(OldIndex);
+                            }
                         }
                         else
                         {
-                            HotKeyDataList[index] = req.NewHotKeyData;
-                        }
-                        if (OldIndex != -1)
-                        {
-                            HotKeyDataList.RemoveAt(OldIndex);
+                            HotKeyDataList.Add(req.NewHotKeyData);
                         }
                     }
-                    else
-                    {
-                        HotKeyDataList.Add(req.NewHotKeyData);
-                    }
-                }
-                session.WriteAndFlush(msg);
-                break;
+                    session.WriteAndFlush(msg);
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
         }
     }
 }

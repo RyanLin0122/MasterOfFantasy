@@ -85,301 +85,351 @@ public class Battle //戰鬥類，一個地圖綁定一個
         this.PickUPResults.Clear();
         this.InventoryIDs.Clear();
         this.InventoryPositions.Clear();
-        if (this.Actions.Count > 0) //1幀只處理10個技能請求
+        try
         {
-            List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
-            for (int i = 0; i < this.Actions.Count; i++)
+            if (this.Actions.Count > 0) //1幀只處理10個技能請求
             {
-                if (i >= 10) break;
-                SkillCastInfo skillCast = null;
-                this.Actions.TryDequeue(out skillCast);
-                if (skillCast != null)
+                List<SkillCastInfo> WillExecute = new List<SkillCastInfo>();
+                for (int i = 0; i < this.Actions.Count; i++)
                 {
-                    WillExecute.Add(skillCast);
+                    if (i >= 10) break;
+                    SkillCastInfo skillCast = null;
+                    this.Actions.TryDequeue(out skillCast);
+                    if (skillCast != null)
+                    {
+                        WillExecute.Add(skillCast);
+                    }
+                }
+                if (WillExecute.Count > 0)
+                {
+                    foreach (var skillCast in WillExecute)
+                    {
+                        this.ExecuteAction(skillCast);
+                    }
                 }
             }
-            if (WillExecute.Count > 0)
+            if (this.PickUpRequests.Count > 0)
             {
-                foreach (var skillCast in WillExecute)
+                List<PickUpRequest> WillExecute = new List<PickUpRequest>();
+                for (int i = 0; i < this.PickUpRequests.Count; i++)
                 {
-                    this.ExecuteAction(skillCast);
+                    if (i >= 30) break;
+                    PickUpRequest pickup = null;
+                    this.PickUpRequests.TryDequeue(out pickup);
+                    if (pickup != null)
+                    {
+                        WillExecute.Add(pickup);
+                    }
+                }
+                if (WillExecute.Count > 0)
+                {
+                    foreach (var pickup in WillExecute)
+                    {
+                        this.ExecutePickUpAction(pickup);
+                    }
                 }
             }
+            this.UpdateUnits();
+            this.BroadcastBattleMessages();
+            this.SendExp();
+
         }
-        if (this.PickUpRequests.Count > 0)
+        catch (System.Exception e)
         {
-            List<PickUpRequest> WillExecute = new List<PickUpRequest>();
-            for (int i = 0; i < this.PickUpRequests.Count; i++)
-            {
-                if (i >= 30) break;
-                PickUpRequest pickup = null;
-                this.PickUpRequests.TryDequeue(out pickup);
-                if (pickup != null)
-                {
-                    WillExecute.Add(pickup);
-                }
-            }
-            if (WillExecute.Count > 0)
-            {
-                foreach (var pickup in WillExecute)
-                {
-                    this.ExecutePickUpAction(pickup);
-                }
-            }
+            LogSvc.Error(e);
         }
-        this.UpdateUnits();
-        this.BroadcastBattleMessages();
-        this.SendExp();
+        
     }
     private void UpdateUnits()
     {
-        //System.Console.WriteLine("UpdateUnits ThreadID: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-        this.DeathPool.Clear();
-        if (AllPlayers.Count > 0)
+        try
         {
-            foreach (var kv in AllPlayers)
+            this.DeathPool.Clear();
+            if (AllPlayers.Count > 0)
             {
-                kv.Value.Update();
+                foreach (var kv in AllPlayers)
+                {
+                    kv.Value.Update();
+                }
+            }
+            if (AllMonsters.Count > 0)
+            {
+                foreach (var kv in AllMonsters)
+                {
+                    kv.Value.Update();
+                    if (kv.Value.IsDeath) this.DeathPool.Add(kv.Key, kv.Value);
+                }
+            }
+            if (DeathPool.Count > 0)
+            {
+                foreach (var entity in DeathPool.Values)
+                {
+                    LeaveBattle(entity);
+                }
             }
         }
-        if (AllMonsters.Count > 0)
+        catch (System.Exception e)
         {
-            foreach (var kv in AllMonsters)
-            {
-                kv.Value.Update();
-                if (kv.Value.IsDeath) this.DeathPool.Add(kv.Key, kv.Value);
-            }
-        }
-        if (DeathPool.Count > 0)
-        {
-            foreach (var entity in DeathPool.Values)
-            {
-                LeaveBattle(entity);
-            }
-        }
+            LogSvc.Error(e);
+        }       
     }
     public void SendExp()
     {
-        foreach (var kv in this.ExpRecord)
+        try
         {
-            MOFCharacter character = null;
-            if (this.mofMap.characters.TryGetValue(kv.Key, out character))
+            foreach (var kv in this.ExpRecord)
             {
-                character.AddExp(kv.Value);
+                MOFCharacter character = null;
+                if (this.mofMap.characters.TryGetValue(kv.Key, out character))
+                {
+                    character.AddExp(kv.Value);
+                }
             }
         }
+        catch (System.Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
     }
     private void ExecuteAction(SkillCastInfo skillCast)
     {
-        BattleContext context = new BattleContext(this, skillCast);
-        if (skillCast.CasterType == SkillCasterType.Player)
+        try
         {
-            MOFCharacter Caster = null;
-            this.mofMap.characters.TryGetValue(skillCast.CasterName, out Caster);
-            if (Caster != null)
+            BattleContext context = new BattleContext(this, skillCast);
+            if (skillCast.CasterType == SkillCasterType.Player)
             {
-                context.Caster = Caster;
-                JoinBattle(context.Caster);
-            }
-        }
-        else if (skillCast.CasterType == SkillCasterType.Monster)
-        {
-            AbstractMonster Caster = null;
-            this.mofMap.Monsters.TryGetValue(skillCast.CasterID, out Caster);
-            if (Caster != null)
-            {
-                context.Caster = Caster;
-                JoinBattle(context.Caster);
-            }
-        }
-        List<Entity> FinalTargets = new List<Entity>();
-        if (skillCast.TargetType == SkillTargetType.Player)
-        {
-            string[] TargetName = skillCast.TargetName;
-            if (mofMap.characters.Count > 0 && TargetName.Length > 0)
-            {
-                foreach (var Name in TargetName)
+                MOFCharacter Caster = null;
+                this.mofMap.characters.TryGetValue(skillCast.CasterName, out Caster);
+                if (Caster != null)
                 {
-                    MOFCharacter chr = null;
-                    Entity entity = null;
-                    if (!entity.IsDeath)
+                    context.Caster = Caster;
+                    JoinBattle(context.Caster);
+                }
+            }
+            else if (skillCast.CasterType == SkillCasterType.Monster)
+            {
+                AbstractMonster Caster = null;
+                this.mofMap.Monsters.TryGetValue(skillCast.CasterID, out Caster);
+                if (Caster != null)
+                {
+                    context.Caster = Caster;
+                    JoinBattle(context.Caster);
+                }
+            }
+            List<Entity> FinalTargets = new List<Entity>();
+            if (skillCast.TargetType == SkillTargetType.Player)
+            {
+                string[] TargetName = skillCast.TargetName;
+                if (mofMap.characters.Count > 0 && TargetName.Length > 0)
+                {
+                    foreach (var Name in TargetName)
                     {
-                        mofMap.characters.TryGetValue(Name, out chr);
-                        if (chr != null)
+                        MOFCharacter chr = null;
+                        Entity entity = null;
+                        if (!entity.IsDeath)
                         {
-                            //人物沒死
-                            //檢查人物位置是否在範圍內
-                            FinalTargets.Add(chr);
+                            mofMap.characters.TryGetValue(Name, out chr);
+                            if (chr != null)
+                            {
+                                //人物沒死
+                                //檢查人物位置是否在範圍內
+                                FinalTargets.Add(chr);
+                            }
                         }
                     }
-                }
-                context.Target = FinalTargets;
-                if (context.Target != null && context.Target.Count > 0)
-                {
-                    foreach (var entity in context.Target)
+                    context.Target = FinalTargets;
+                    if (context.Target != null && context.Target.Count > 0)
                     {
-                        JoinBattle(entity);
-                    }
-                };
-            }
-            int[] FinalTarget = new int[FinalTargets.Count];
-            for (int i = 0; i < FinalTargets.Count; i++)
-            {
-                FinalTarget[i] = FinalTargets[i].nEntity.Id;
-            }
-            skillCast.TargetID = FinalTarget;
-        }
-        else if (skillCast.TargetType == SkillTargetType.Monster || skillCast.TargetType == SkillTargetType.Position) //攻擊目標為怪物
-        {
-            int[] TargetID = skillCast.TargetID;
-            if (mofMap.Monsters.Count > 0 && TargetID.Length > 0)
-            {
-                foreach (var ID in TargetID)
-                {
-                    AbstractMonster mon = null;
-                    Entity entity = null;
-                    DeathPool.TryGetValue(ID, out entity);
-                    if (entity == null)
-                    {
-                        mofMap.Monsters.TryGetValue(ID, out mon);
-                        if (mon != null)
+                        foreach (var entity in context.Target)
                         {
-                            //怪物沒死
-                            //檢查怪物位置是否在範圍內
-                            FinalTargets.Add(mon);
+                            JoinBattle(entity);
+                        }
+                    };
+                }
+                int[] FinalTarget = new int[FinalTargets.Count];
+                for (int i = 0; i < FinalTargets.Count; i++)
+                {
+                    FinalTarget[i] = FinalTargets[i].nEntity.Id;
+                }
+                skillCast.TargetID = FinalTarget;
+            }
+            else if (skillCast.TargetType == SkillTargetType.Monster || skillCast.TargetType == SkillTargetType.Position) //攻擊目標為怪物
+            {
+                int[] TargetID = skillCast.TargetID;
+                if (mofMap.Monsters.Count > 0 && TargetID.Length > 0)
+                {
+                    foreach (var ID in TargetID)
+                    {
+                        AbstractMonster mon = null;
+                        Entity entity = null;
+                        DeathPool.TryGetValue(ID, out entity);
+                        if (entity == null)
+                        {
+                            mofMap.Monsters.TryGetValue(ID, out mon);
+                            if (mon != null)
+                            {
+                                //怪物沒死
+                                //檢查怪物位置是否在範圍內
+                                FinalTargets.Add(mon);
+                            }
                         }
                     }
-                }
-                context.Target = FinalTargets;
-                if (context.Target != null && context.Target.Count > 0)
-                {
-                    foreach (var entity in context.Target)
+                    context.Target = FinalTargets;
+                    if (context.Target != null && context.Target.Count > 0)
                     {
-                        JoinBattle(entity);
-                    }
-                };
+                        foreach (var entity in context.Target)
+                        {
+                            JoinBattle(entity);
+                        }
+                    };
+                }
+                int[] FinalTarget = new int[FinalTargets.Count];
+                for (int i = 0; i < FinalTargets.Count; i++)
+                {
+                    FinalTarget[i] = FinalTargets[i].nEntity.Id;
+                }
+                skillCast.TargetID = FinalTarget;
             }
-            int[] FinalTarget = new int[FinalTargets.Count];
-            for (int i = 0; i < FinalTargets.Count; i++)
+            context.CastSkill = skillCast;
+
+            //找到Skill，Cast
+            if (skillCast.CasterType == SkillCasterType.Player)
             {
-                FinalTarget[i] = FinalTargets[i].nEntity.Id;
+                mofMap.characters[skillCast.CasterName].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
             }
-            skillCast.TargetID = FinalTarget;
+            else
+            {
+                mofMap.Monsters[skillCast.CasterID].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
+            }
         }
-        context.CastSkill = skillCast;
-
-        //找到Skill，Cast
-        if (skillCast.CasterType == SkillCasterType.Player)
+        catch (System.Exception e)
         {
-            mofMap.characters[skillCast.CasterName].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
+            LogSvc.Error(e);
         }
-        else
-        {
-            mofMap.Monsters[skillCast.CasterID].skillManager.ActiveSkills[skillCast.SkillID].Cast(context, skillCast);
-        }
-
     }
     private void ExecutePickUpAction(PickUpRequest request)
     {
-        this.PickUpUUIDs.Add(request.ItemUUID);
-        this.PickUpCharacterNames.Add(request.CharacterName);
-        this.InventoryIDs.Add(request.InventoryID);
-        this.InventoryPositions.Add(request.InventoryPosition);
-
-        bool Result = false;
-        //判斷行不行撿取
-        DropItem drop = null;
-        if (mofMap.AllDropItems.TryGetValue(request.ItemUUID, out drop))
+        try
         {
-            if (drop != null)
+            this.PickUpUUIDs.Add(request.ItemUUID);
+            this.PickUpCharacterNames.Add(request.CharacterName);
+            this.InventoryIDs.Add(request.InventoryID);
+            this.InventoryPositions.Add(request.InventoryPosition);
+
+            bool Result = false;
+            //判斷行不行撿取
+            DropItem drop = null;
+            if (mofMap.AllDropItems.TryGetValue(request.ItemUUID, out drop))
             {
-                MOFCharacter character = null;
-                if (mofMap.characters.TryGetValue(request.CharacterName, out character))
+                if (drop != null)
                 {
-                    if (drop.Type == DropItemType.Money)
+                    MOFCharacter character = null;
+                    if (mofMap.characters.TryGetValue(request.CharacterName, out character))
                     {
-                        character.player.Ribi += drop.Money;
-                        character.trimedPlayer.Ribi += drop.Money;
-                        Result = true;
-                        this.mofMap.AllDropItems.Remove(request.ItemUUID);
-                        LogSvc.Info("UUID: " + request.ItemUUID + "成功撿錢 + " + drop.Money);
-                    }
-                    else //撿取道具
-                    {
-                        Item item = drop.Item;
-                        if (item != null)
+                        if (drop.Type == DropItemType.Money)
                         {
-                            switch (request.InventoryID)
-                            {
-                                case 1:
-                                    if (item.IsCash)
-                                    {
-                                        Dictionary<int, Item> ck = character.player.CashKnapsack;
-                                        if (ck == null) character.player.CashKnapsack = new Dictionary<int, Item>();
-                                        Item existItem = null;
-                                        if (ck.TryGetValue(request.InventoryPosition, out existItem))
-                                        {
-                                            existItem.Count += 1;
-                                        }
-                                        else
-                                        {
-                                            item.Count = 1;
-                                            item.Position = request.InventoryPosition;
-                                            ck[request.InventoryPosition] = item;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Dictionary<int, Item> nk = character.player.NotCashKnapsack;
-                                        if (nk == null) character.player.NotCashKnapsack = new Dictionary<int, Item>();
-                                        Item existItem = null;
-                                        if (nk.TryGetValue(request.InventoryPosition, out existItem))
-                                        {
-                                            existItem.Count += 1;
-                                        }
-                                        else
-                                        {
-                                            item.Count = 1;
-                                            item.Position = request.InventoryPosition;
-                                            nk[request.InventoryPosition] = item;
-                                        }
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
+                            character.player.Ribi += drop.Money;
+                            character.trimedPlayer.Ribi += drop.Money;
                             Result = true;
                             this.mofMap.AllDropItems.Remove(request.ItemUUID);
-                            LogSvc.Info("UUID: " + request.ItemUUID + "成功撿取");
+                            LogSvc.Info("UUID: " + request.ItemUUID + "成功撿錢 + " + drop.Money);
+                        }
+                        else //撿取道具
+                        {
+                            Item item = drop.Item;
+                            if (item != null)
+                            {
+                                switch (request.InventoryID)
+                                {
+                                    case 1:
+                                        if (item.IsCash)
+                                        {
+                                            Dictionary<int, Item> ck = character.player.CashKnapsack;
+                                            if (ck == null) character.player.CashKnapsack = new Dictionary<int, Item>();
+                                            Item existItem = null;
+                                            if (ck.TryGetValue(request.InventoryPosition, out existItem))
+                                            {
+                                                existItem.Count += 1;
+                                            }
+                                            else
+                                            {
+                                                item.Count = 1;
+                                                item.Position = request.InventoryPosition;
+                                                ck[request.InventoryPosition] = item;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Dictionary<int, Item> nk = character.player.NotCashKnapsack;
+                                            if (nk == null) character.player.NotCashKnapsack = new Dictionary<int, Item>();
+                                            Item existItem = null;
+                                            if (nk.TryGetValue(request.InventoryPosition, out existItem))
+                                            {
+                                                existItem.Count += 1;
+                                            }
+                                            else
+                                            {
+                                                item.Count = 1;
+                                                item.Position = request.InventoryPosition;
+                                                nk[request.InventoryPosition] = item;
+                                            }
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                Result = true;
+                                this.mofMap.AllDropItems.Remove(request.ItemUUID);
+                                LogSvc.Info("UUID: " + request.ItemUUID + "成功撿取");
+                            }
                         }
                     }
                 }
             }
+            this.PickUPResults.Add(Result);
         }
-        this.PickUPResults.Add(Result);
+        catch (System.Exception e)
+        {
+            LogSvc.Error(e);
+        }       
     }
     public void JoinBattle(Entity entity)
     {
-        if (entity is MOFCharacter)
+        try
         {
-            AllPlayers[((MOFCharacter)entity).player.Name] = entity;
+            if (entity is MOFCharacter)
+            {
+                AllPlayers[((MOFCharacter)entity).player.Name] = entity;
+            }
+            else if (entity is AbstractMonster)
+            {
+                AllMonsters[((AbstractMonster)entity).nEntity.Id] = entity;
+            }
         }
-        else if (entity is AbstractMonster)
+        catch (System.Exception e)
         {
-            AllMonsters[((AbstractMonster)entity).nEntity.Id] = entity;
+            LogSvc.Error(e);
         }
     }
     public void LeaveBattle(IEntity entity)
     {
-        if (entity is MOFCharacter)
+        try
         {
-            MOFCharacter Chr = (MOFCharacter)entity;
-            if (AllPlayers.ContainsKey(Chr.CharacterName)) AllPlayers.Remove(Chr.CharacterName);
+            if (entity is MOFCharacter)
+            {
+                MOFCharacter Chr = (MOFCharacter)entity;
+                AllPlayers.Remove(Chr.CharacterName);
+            }
+            else if (entity is AbstractMonster)
+            {
+                AbstractMonster monster = (AbstractMonster)entity;
+                AllMonsters.Remove(monster.nEntity.Id);
+            }
         }
-        else if (entity is AbstractMonster)
+        catch (System.Exception e)
         {
-            AbstractMonster monster = (AbstractMonster)entity;
-            if (AllMonsters.ContainsKey(monster.nEntity.Id)) AllMonsters.Remove(monster.nEntity.Id);
+            LogSvc.Error(e);
         }
     }
     internal void ProcessBattleRequest(ServerSession session, SkillCastRequest request)
@@ -398,7 +448,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
         catch (System.Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
     }
     internal void ProcessPickUpRequest(ServerSession session, PickUpRequest request)
@@ -417,32 +467,40 @@ public class Battle //戰鬥類，一個地圖綁定一個
         }
         catch (System.Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
     }
     internal List<Entity> FindUnitsInRange(NVector3 pos, SkillRangeShape shape, float[] range, SkillTargetType targetType)
     {
         List<Entity> result = new List<Entity>();
-        if (targetType == SkillTargetType.Monster)
+        try
         {
-            foreach (var unit in this.AllMonsters)
+            if (targetType == SkillTargetType.Monster)
             {
-                if (unit.Value.Distance(pos) < range[1])
+                foreach (var unit in this.AllMonsters)
                 {
-                    result.Add(unit.Value);
+                    if (unit.Value.Distance(pos) < range[1])
+                    {
+                        result.Add(unit.Value);
+                    }
+                }
+            }
+            else if (targetType == SkillTargetType.Player)
+            {
+                foreach (var unit in this.AllPlayers)
+                {
+                    if (unit.Value.Distance(pos) < range[1])
+                    {
+                        result.Add(unit.Value);
+                    }
                 }
             }
         }
-        else if (targetType == SkillTargetType.Player)
+        catch (System.Exception e)
         {
-            foreach (var unit in this.AllPlayers)
-            {
-                if (unit.Value.Distance(pos) < range[1])
-                {
-                    result.Add(unit.Value);
-                }
-            }
+            LogSvc.Error(e);
         }
+
         return result;
     }
     public void AssignExp(Dictionary<string, int> DamageRecord, MonsterInfo monsterInfo)
@@ -556,6 +614,6 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             LogSvc.Info(e.Message);
         }
-        
+
     }
 }

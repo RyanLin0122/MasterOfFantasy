@@ -608,46 +608,53 @@ public class MOFCharacter : Entity
     #endregion
     public MOFCharacter(float[] position, MOFMap map, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
     {
-        this.player = player;
-        this.player.MiniGameArr = null;
-        if (this.player.CashKnapsack == null) this.player.CashKnapsack = new Dictionary<int, Item>();
-        if (this.player.NotCashKnapsack == null) this.player.NotCashKnapsack = new Dictionary<int, Item>();
-        if (this.player.BadgeCollection == null) this.player.BadgeCollection = new List<int>();
-        if (this.player.TitleCollection == null) this.player.TitleCollection = new List<int>();
-        if (this.player.MonsterKillHistory == null) this.player.MonsterKillHistory = new Dictionary<int, int>();
-        InitSkill();
-        InitBuffs();
-        InitAllAtribute();
-        this.CharacterName = player.Name;
-        this.nEntity = new NEntity
+        try
         {
-            Speed = FinalAttribute.RunSpeed,
-            EntityName = this.player.Name,
-            FaceDirection = true,
-            Position = new NVector3(position[0], position[1], 200),
-            Type = EntityType.Player,
-            Direction = new NVector3(1, 0, 0),
-            HP = player.HP,
-            MP = player.MP,
-            MaxHP = (int)FinalAttribute.MAXHP,
-            MaxMP = (int)FinalAttribute.MAXMP,
-            IsRun = false
-        };
-        this.channel = channel;
-        this.session = session;
-        this.mofMap = map;
-        this.trimedPlayer = tp;
-        this.IsRun = IsRun;
-        this.questManager = new QuestManager(this);
+            this.player = player;
+            this.player.MiniGameArr = null;
+            if (this.player.CashKnapsack == null) this.player.CashKnapsack = new Dictionary<int, Item>();
+            if (this.player.NotCashKnapsack == null) this.player.NotCashKnapsack = new Dictionary<int, Item>();
+            if (this.player.BadgeCollection == null) this.player.BadgeCollection = new List<int>();
+            if (this.player.TitleCollection == null) this.player.TitleCollection = new List<int>();
+            if (this.player.MonsterKillHistory == null) this.player.MonsterKillHistory = new Dictionary<int, int>();
+            InitSkill();
+            InitBuffs();
+            InitAllAtribute();
+            this.CharacterName = player.Name;
+            this.nEntity = new NEntity
+            {
+                Speed = FinalAttribute.RunSpeed,
+                EntityName = this.player.Name,
+                FaceDirection = true,
+                Position = new NVector3(position[0], position[1], 200),
+                Type = EntityType.Player,
+                Direction = new NVector3(1, 0, 0),
+                HP = player.HP,
+                MP = player.MP,
+                MaxHP = (int)FinalAttribute.MAXHP,
+                MaxMP = (int)FinalAttribute.MAXMP,
+                IsRun = false
+            };
+            this.channel = channel;
+            this.session = session;
+            this.mofMap = map;
+            this.trimedPlayer = tp;
+            this.IsRun = IsRun;
+            this.questManager = new QuestManager(this);
 
-        if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
-        {
-            CacheSvc.Instance.MOFCharacterDict.TryAdd(player.Name, this);
+            if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
+            {
+                CacheSvc.Instance.MOFCharacterDict.TryAdd(player.Name, this);
+            }
+            else
+            {
+                CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
+            }
         }
-        else
+        catch (Exception e)
         {
-            CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
-        }
+            LogSvc.Error(e);
+        }       
     }
     public override void Update()
     {
@@ -688,87 +695,118 @@ public class MOFCharacter : Entity
     }
     private void Death()
     {
-        if(this.status != PlayerStatus.Death)
+        try
         {
-            this.status = PlayerStatus.Death;
-            long MaxExp = ServerConstants.GetRequiredExp(player.Level);
-            long RestExp = (player.Exp - (0.05f * MaxExp) >= 0) ? (long)(player.Exp - (0.05f * MaxExp)) : 0L;
-            player.Exp = RestExp;
-            ProtoMsg msg = new ProtoMsg
+            if (this.status != PlayerStatus.Death)
             {
-                MessageType = 37,
-                playerDeath = new PlayerDeath
+                this.status = PlayerStatus.Death;
+                long MaxExp = ServerConstants.GetRequiredExp(player.Level);
+                long RestExp = (player.Exp - (0.05f * MaxExp) >= 0) ? (long)(player.Exp - (0.05f * MaxExp)) : 0L;
+                player.Exp = RestExp;
+                ProtoMsg msg = new ProtoMsg
                 {
-                    CharacterName = player.Name,
-                    RestExp = RestExp
-                }
-            };
-            mofMap.BroadCastMassege(msg);
-        }      
+                    MessageType = 37,
+                    playerDeath = new PlayerDeath
+                    {
+                        CharacterName = player.Name,
+                        RestExp = RestExp
+                    }
+                };
+                mofMap.BroadCastMassege(msg);
+            }
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+            
     }
     public void AddExp(int Exp)
     {
-        if (player.Level == 119) { player.Exp = 0; return; }
-        long LevelUpExp = ServerConstants.GetRequiredExp(player.Level);
-        if (player.Exp + Exp >= LevelUpExp)
+        try
         {
-            player.Level += 1;
-            trimedPlayer.Level += 1;
-            player.MAXHP += 15;
-            player.MAXMP += 12;
-            player.RestPoint += 5;
-            InitAllAtribute();
-            long NextLevelUpExp = ServerConstants.GetRequiredExp(player.Level);
-            if ((Exp - LevelUpExp) >= NextLevelUpExp)
+            if (player.Level == 119) { player.Exp = 0; return; }
+            long LevelUpExp = ServerConstants.GetRequiredExp(player.Level);
+            if (player.Exp + Exp >= LevelUpExp)
             {
-                player.Exp = NextLevelUpExp - 1;
+                player.Level += 1;
+                trimedPlayer.Level += 1;
+                player.MAXHP += 15;
+                player.MAXMP += 12;
+                player.RestPoint += 5;
+                InitAllAtribute();
+                long NextLevelUpExp = ServerConstants.GetRequiredExp(player.Level);
+                if ((Exp - LevelUpExp) >= NextLevelUpExp)
+                {
+                    player.Exp = NextLevelUpExp - 1;
+                }
+                else
+                {
+                    player.Exp = player.Exp + Exp - LevelUpExp;
+                }
+                ProtoMsg msg = new ProtoMsg
+                {
+                    MessageType = 33,
+                    levelUp = new LevelUp
+                    {
+                        CharacterName = CharacterName,
+                        Level = player.Level,
+                        RestExp = player.Exp
+                    }
+                };
+                this.mofMap.BroadCastMassege(msg);
             }
             else
             {
-                player.Exp = player.Exp + Exp - LevelUpExp;
+                player.Exp += Exp;
             }
-            ProtoMsg msg = new ProtoMsg
-            {
-                MessageType = 33,
-                levelUp = new LevelUp
-                {
-                    CharacterName = CharacterName,
-                    Level = player.Level,
-                    RestExp = player.Exp
-                }
-            };
-            this.mofMap.BroadCastMassege(msg);
         }
-        else
+        catch (Exception e)
         {
-            player.Exp += Exp;
+            LogSvc.Error(e);
         }
+        
     }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {
-        player.Att += ap.Att;
-        player.Strength += ap.Strength;
-        player.Agility += ap.Agility;
-        player.Intellect += ap.Intellect;
-        player.RestPoint = ap.RestPoint;
+        try
+        {
+            player.Att += ap.Att;
+            player.Strength += ap.Strength;
+            player.Agility += ap.Agility;
+            player.Intellect += ap.Intellect;
+            player.RestPoint = ap.RestPoint;
 
-        trimedPlayer.Att += ap.Att;
-        trimedPlayer.Strength += ap.Strength;
-        trimedPlayer.Agility += ap.Agility;
-        trimedPlayer.Intellect += ap.Intellect;
+            trimedPlayer.Att += ap.Att;
+            trimedPlayer.Strength += ap.Strength;
+            trimedPlayer.Agility += ap.Agility;
+            trimedPlayer.Intellect += ap.Intellect;
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }        
     }
     public override void InitSkill()
     {
-        base.InitSkill();
-        //增加普攻
-        skillManager.AddSkill(new Skill(-2, 1, this));
-        skillManager.AddSkill(new Skill(-3, 1, this));
-        skillManager.AddSkill(new Skill(-4, 1, this));
-        skillManager.AddSkill(new Skill(-5, 1, this));
-        skillManager.AddSkill(new Skill(-7, 1, this));
-        skillManager.AddSkill(new Skill(-8, 1, this));
-        skillManager.AddSkill(new Skill(-10, 1, this));
-        skillManager.AddSkill(new Skill(-12, 1, this));
+        try
+        {
+            base.InitSkill();
+            //增加普攻
+            skillManager.AddSkill(new Skill(-2, 1, this));
+            skillManager.AddSkill(new Skill(-3, 1, this));
+            skillManager.AddSkill(new Skill(-4, 1, this));
+            skillManager.AddSkill(new Skill(-5, 1, this));
+            skillManager.AddSkill(new Skill(-7, 1, this));
+            skillManager.AddSkill(new Skill(-8, 1, this));
+            skillManager.AddSkill(new Skill(-10, 1, this));
+            skillManager.AddSkill(new Skill(-12, 1, this));
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
     }
     public bool SetMiniGame(MiniGameSetting setting)
     {
@@ -804,54 +842,62 @@ public class MOFCharacter : Entity
     }
     public bool RecycleItem(ServerSession session, RecycleItems rc)
     {
-        var ItemIDs = rc.ItemID;
-        var Amounts = rc.Amount;
-        var Positions = rc.Positions;
-        switch (rc.InventoryType)
+        try
         {
-            case 0: //knapsack
-                var NotCashKnapsack = session.ActivePlayer.NotCashKnapsack;
-                var CashKnapsack = session.ActivePlayer.CashKnapsack;
-                for (int i = 0; i < ItemIDs.Count; i++)
-                {
-                    bool IsCash = CacheSvc.ItemList[ItemIDs[i]].IsCash;
-                    if (IsCash && CashKnapsack.ContainsKey(Positions[i]))
+            var ItemIDs = rc.ItemID;
+            var Amounts = rc.Amount;
+            var Positions = rc.Positions;
+            switch (rc.InventoryType)
+            {
+                case 0: //knapsack
+                    var NotCashKnapsack = session.ActivePlayer.NotCashKnapsack;
+                    var CashKnapsack = session.ActivePlayer.CashKnapsack;
+                    for (int i = 0; i < ItemIDs.Count; i++)
                     {
-                        if (CashKnapsack[Positions[i]].ItemID == ItemIDs[i])
+                        bool IsCash = CacheSvc.ItemList[ItemIDs[i]].IsCash;
+                        if (IsCash && CashKnapsack.ContainsKey(Positions[i]))
                         {
-                            if (CashKnapsack[Positions[i]].Count - Amounts[i] > 0)
+                            if (CashKnapsack[Positions[i]].ItemID == ItemIDs[i])
                             {
-                                CashKnapsack[Positions[i]].Count -= Amounts[i];
+                                if (CashKnapsack[Positions[i]].Count - Amounts[i] > 0)
+                                {
+                                    CashKnapsack[Positions[i]].Count -= Amounts[i];
+
+                                }
+                                else
+                                {
+                                    CashKnapsack.Remove(Positions[i]);
+                                }
 
                             }
-                            else
+                        }
+                        else if (!IsCash && NotCashKnapsack.ContainsKey(Positions[i]))
+                        {
+                            if (NotCashKnapsack[Positions[i]].ItemID == ItemIDs[i])
                             {
-                                CashKnapsack.Remove(Positions[i]);
-                            }
+                                if (NotCashKnapsack[Positions[i]].Count - Amounts[i] > 0)
+                                {
+                                    NotCashKnapsack[Positions[i]].Count -= Amounts[i];
 
+                                }
+                                else
+                                {
+                                    NotCashKnapsack.Remove(Positions[i]);
+                                }
+
+                            }
                         }
                     }
-                    else if (!IsCash && NotCashKnapsack.ContainsKey(Positions[i]))
-                    {
-                        if (NotCashKnapsack[Positions[i]].ItemID == ItemIDs[i])
-                        {
-                            if (NotCashKnapsack[Positions[i]].Count - Amounts[i] > 0)
-                            {
-                                NotCashKnapsack[Positions[i]].Count -= Amounts[i];
-
-                            }
-                            else
-                            {
-                                NotCashKnapsack.Remove(Positions[i]);
-                            }
-
-                        }
-                    }
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
         return true;
     }
 

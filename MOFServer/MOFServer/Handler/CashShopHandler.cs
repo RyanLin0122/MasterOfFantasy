@@ -159,7 +159,7 @@ public class CashShopHandler : GameHandler
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
 
     }
@@ -315,7 +315,7 @@ public class CashShopHandler : GameHandler
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
     }
     public void SendErrorBack(int errorType, ServerSession session)

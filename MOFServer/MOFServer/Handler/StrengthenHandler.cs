@@ -6,57 +6,65 @@ public class StrengthenHandler : GameHandler
 {
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
-        StrengthenRequest req = msg.strengthenRequest;
-        if (req == null)
+        try
         {
-            SendErrorBack(1, session);
-            return;
-        }
-        //收到封包後處理狀況
-        //1. 放強化物品(武器)在空的slot上面
-        //2. 放強化物品(武器)在有東西的slot上面
-        //3. 放石頭進slot
-        //4. 取消強化
-        //7. 放強化物品(裝備)在空的slot上面
-        //8. 放強化物品(裝備)在有東西的slot上面
-        //9. 放石頭進slot
+            StrengthenRequest req = msg.strengthenRequest;
+            if (req == null)
+            {
+                SendErrorBack(1, session);
+                return;
+            }
+            //收到封包後處理狀況
+            //1. 放強化物品(武器)在空的slot上面
+            //2. 放強化物品(武器)在有東西的slot上面
+            //3. 放石頭進slot
+            //4. 取消強化
+            //7. 放強化物品(裝備)在空的slot上面
+            //8. 放強化物品(裝備)在有東西的slot上面
+            //9. 放石頭進slot
 
-        switch (req.OperationType)
-        {
-            case 1:
-                PutStrengthenItemInEmptySlot(req, session);
-                break;
-            case 2:
-                PutStrengthenItemInSlot(req, session);
-                break;
-            case 3:
-                PutStoneInSlot(req, session);
-                break;
-            case 4:
-                EndStrengthen(req, session);
-                break;
-            case 5:
-                OpenStrengthen(req, session);
-                break;
-            case 6:
-                ProcessStrengthen(req, session);
-                break;
-            case 7:
-                PutStrengthenItemInEmptySlot(req, session);
-                break;
-            case 8:
-                PutStrengthenItemInSlot(req, session);
-                break;
-            case 9:
-                PutStoneInSlot(req, session);
-                break;
-            case 10:
-                TakeOffStone(req, session);
-                break;
-            case 11:
-                TakeOffWeaponEquipment(req, session);
-                break;
+            switch (req.OperationType)
+            {
+                case 1:
+                    PutStrengthenItemInEmptySlot(req, session);
+                    break;
+                case 2:
+                    PutStrengthenItemInSlot(req, session);
+                    break;
+                case 3:
+                    PutStoneInSlot(req, session);
+                    break;
+                case 4:
+                    EndStrengthen(req, session);
+                    break;
+                case 5:
+                    OpenStrengthen(req, session);
+                    break;
+                case 6:
+                    ProcessStrengthen(req, session);
+                    break;
+                case 7:
+                    PutStrengthenItemInEmptySlot(req, session);
+                    break;
+                case 8:
+                    PutStrengthenItemInSlot(req, session);
+                    break;
+                case 9:
+                    PutStoneInSlot(req, session);
+                    break;
+                case 10:
+                    TakeOffStone(req, session);
+                    break;
+                case 11:
+                    TakeOffWeaponEquipment(req, session);
+                    break;
+            }
         }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+
     }
     public void OpenStrengthen(StrengthenRequest req, ServerSession session)
     {
@@ -64,303 +72,370 @@ public class StrengthenHandler : GameHandler
     }
     public void PutStrengthenItemInEmptySlot(StrengthenRequest req, ServerSession session)
     {
-        //準備強化、強化武器放進strengthen、把強化武器從背包刪掉        
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item = req.item;
-        Item strengthenItem = null;
-        if (req.OperationType == 1)
-            strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)req.item);
-        else
-            strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)req.item);
+        try
+        {
+            //準備強化、強化武器放進strengthen、把強化武器從背包刪掉        
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item = req.item;
+            Item strengthenItem = null;
+            if (req.OperationType == 1)
+                strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)req.item);
+            else
+                strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)req.item);
 
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
-        RemoveItemInKnap(req.item, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
+            RemoveItemInKnap(req.item, session);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
     public void TakeOffStone(StrengthenRequest req, ServerSession session)
     {
-        Item stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
-        AddItemInKnap(stone, session);
-
-        //CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
+            Item stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
+            AddItemInKnap(stone, session);
+
+            //CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.
+            ProtoMsg msg = new ProtoMsg
             {
-                OperationType = 7,
-                Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
-            }
-        };
-        session.WriteAndFlush(msg);
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 7,
+                    Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+                }
+            };
+            session.WriteAndFlush(msg);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
     public void TakeOffWeaponEquipment(StrengthenRequest req, ServerSession session)
     {
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
+            ProtoMsg msg = new ProtoMsg
             {
-                OperationType = 8,
-                Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
-            }
-        };
-        session.WriteAndFlush(msg);
-        RemoveItemInKnap(req.item, session);
-        Item Item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
-        AddItemInKnap(Item, session);
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 8,
+                    Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+                }
+            };
+            session.WriteAndFlush(msg);
+            RemoveItemInKnap(req.item, session);
+            Item Item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
+            AddItemInKnap(Item, session);
 
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = null;
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
-        if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = null;
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+            if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+            {
+                AddItemInKnap(CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone, session);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+            }
+        }
+        catch (Exception e)
         {
-            AddItemInKnap(CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone, session);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+            LogSvc.Error(e);
         }
     }
 
     public void PutStrengthenItemInSlot(StrengthenRequest req, ServerSession session)
     {
-        //傳回前端:換強化武器、清掉石頭、強化文字
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
+            //傳回前端:換強化武器、清掉石頭、強化文字
+            ProtoMsg msg = new ProtoMsg
             {
-                OperationType = 3,
-                Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 3,
+                    Stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone
+                }
+            };
+            session.WriteAndFlush(msg);
+            //新武器放進strengthen、並從背包刪除，把原strengthen武器放進背包
+            //如果有強化石、把強化石放回背包
+            RemoveItemInKnap(req.item, session);
+            Item Item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
+            AddItemInKnap(Item, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item = req.item;
+            Item strengthenItem = null;
+            if (req.OperationType == 2)
+                strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)req.item);
+            else
+                strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)req.item);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+            if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+            {
+                AddItemInKnap(CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone, session);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
             }
-        };
-        session.WriteAndFlush(msg);
-        //新武器放進strengthen、並從背包刪除，把原strengthen武器放進背包
-        //如果有強化石、把強化石放回背包
-        RemoveItemInKnap(req.item, session);
-        Item Item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
-        AddItemInKnap(Item, session);
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item = req.item;
-        Item strengthenItem = null;
-        if (req.OperationType == 2)
-            strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)req.item);
-        else
-            strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)req.item);
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
-        if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
-        {
-            AddItemInKnap(CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone, session);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
         }
-
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
 
     public void EndStrengthen(StrengthenRequest req, ServerSession session)
     {
-        //把除了強化後武器外的東西丟回背包
-
-        Item item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
-        Item stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
-
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
-            {
-                OperationType = 4,
-                Stone = stone,
-                item = item
-            }
-        };
-        session.WriteAndFlush(msg);
-        if (stone != null)
-            AddItemInKnap(stone, session);
-        if (item != null)
-            AddItemInKnap(item, session); 
-        CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = null;
+            //把除了強化後武器外的東西丟回背包
+            Item item = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item;
+            Item stone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
 
+            ProtoMsg msg = new ProtoMsg
+            {
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 4,
+                    Stone = stone,
+                    item = item
+                }
+            };
+            session.WriteAndFlush(msg);
+            if (stone != null)
+                AddItemInKnap(stone, session);
+            if (item != null)
+                AddItemInKnap(item, session);
+            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = null;
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
     public void PutStoneInSlot(StrengthenRequest req, ServerSession session)
     {
-        if(req.OperationType == 3 )
+        try
         {
-            Item strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
-
-            if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+            if (req.OperationType == 3)
             {
-                //原本的石頭還回去，放新的進strengthen
-                Item CurrentStone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
-                AddItemInKnap(CurrentStone, session);
-                ConsumeItem(req.item, session);
-                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
-                Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-                WeaponStrengthen(strengthen);
-                ProtoMsg msg = new ProtoMsg
+                Item strengthenItem = Utility.TransReflection<Weapon, Weapon>((Weapon)CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
+
+                if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
                 {
-                    MessageType = 53,
-                    strengthenResponse = new StrengthenResponse
+                    //原本的石頭還回去，放新的進strengthen
+                    Item CurrentStone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
+                    AddItemInKnap(CurrentStone, session);
+                    ConsumeItem(req.item, session);
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
+                    Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+                    WeaponStrengthen(strengthen);
+                    ProtoMsg msg = new ProtoMsg
                     {
-                        OperationType = 2,
-                        Effect = strengthen.description,
-                        strengthenItem = strengthen.StrengthenItem,
-                        Stone = CurrentStone
-                    }
-                };
-                session.WriteAndFlush(msg);
+                        MessageType = 53,
+                        strengthenResponse = new StrengthenResponse
+                        {
+                            OperationType = 2,
+                            Effect = strengthen.description,
+                            strengthenItem = strengthen.StrengthenItem,
+                            Stone = CurrentStone
+                        }
+                    };
+                    session.WriteAndFlush(msg);
 
 
+                }
+                else
+                {
+                    ConsumeItem(req.item, session);
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
+                    Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+                    WeaponStrengthen(strengthen);
+                    ProtoMsg msg = new ProtoMsg
+                    {
+                        MessageType = 53,
+                        strengthenResponse = new StrengthenResponse
+                        {
+                            OperationType = 1,
+                            Effect = strengthen.description,
+                            strengthenItem = strengthen.StrengthenItem,
+                        }
+                    };
+                    session.WriteAndFlush(msg);
+
+                }
             }
             else
             {
-                ConsumeItem(req.item, session);
-                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
-                Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-                WeaponStrengthen(strengthen);
-                ProtoMsg msg = new ProtoMsg
-                {
-                    MessageType = 53,
-                    strengthenResponse = new StrengthenResponse
-                    {
-                        OperationType = 1,
-                        Effect = strengthen.description,
-                        strengthenItem = strengthen.StrengthenItem,
-                    }
-                };
-                session.WriteAndFlush(msg);
+                Item strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
 
+                if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
+                {
+                    //原本的石頭還回去，放新的進strengthen
+                    Item CurrentStone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
+                    AddItemInKnap(CurrentStone, session);
+                    ConsumeItem(req.item, session);
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
+                    Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+
+                    EquipmentStrengthen(strengthen);
+                    ProtoMsg msg = new ProtoMsg
+                    {
+                        MessageType = 53,
+                        strengthenResponse = new StrengthenResponse
+                        {
+                            OperationType = 2,
+                            Effect = strengthen.description,
+                            strengthenItem = strengthen.StrengthenItem,
+                            Stone = CurrentStone
+                        }
+                    };
+                    session.WriteAndFlush(msg);
+
+                }
+                else
+                {
+                    ConsumeItem(req.item, session);
+                    CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
+                    Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+                    EquipmentStrengthen(strengthen);
+                    ProtoMsg msg = new ProtoMsg
+                    {
+                        MessageType = 53,
+                        strengthenResponse = new StrengthenResponse
+                        {
+                            OperationType = 1,
+                            Effect = strengthen.description,
+                            strengthenItem = strengthen.StrengthenItem,
+                        }
+                    };
+                    session.WriteAndFlush(msg);
+
+                }
             }
         }
-        else
+        catch (Exception e)
         {
-            Item strengthenItem = Utility.TransReflection<Equipment, Equipment>((Equipment)CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Item);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.StrengthenItem = strengthenItem;
-
-            if (CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone != null)
-            {
-                //原本的石頭還回去，放新的進strengthen
-                Item CurrentStone = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone;
-                AddItemInKnap(CurrentStone, session);
-                ConsumeItem(req.item, session);
-                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
-                Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-
-                EquipmentStrengthen(strengthen);
-                ProtoMsg msg = new ProtoMsg
-                {
-                    MessageType = 53,
-                    strengthenResponse = new StrengthenResponse
-                    {
-                        OperationType = 2,
-                        Effect = strengthen.description,
-                        strengthenItem = strengthen.StrengthenItem,
-                        Stone = CurrentStone
-                    }
-                };
-                session.WriteAndFlush(msg);
-
-            }
-            else
-            {
-                ConsumeItem(req.item, session);
-                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = req.item;
-                Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-                EquipmentStrengthen(strengthen);
-                ProtoMsg msg = new ProtoMsg
-                {
-                    MessageType = 53,
-                    strengthenResponse = new StrengthenResponse
-                    {
-                        OperationType = 1,
-                        Effect = strengthen.description,
-                        strengthenItem = strengthen.StrengthenItem,
-                    }
-                };
-                session.WriteAndFlush(msg);
-
-            }
+            LogSvc.Error(e);
         }
     }
 
     public void ProcessStrengthen(StrengthenRequest req, ServerSession session)
     {
-        Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-        double p = (double)strengthen.Probablity / 100;
-        Random random = new Random((int)DateTime.Now.Ticks);
-        double number = random.NextDouble();
-        bool IsSuccess = number < p;
+        try
+        {
+            Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+            double p = (double)strengthen.Probablity / 100;
+            Random random = new Random((int)DateTime.Now.Ticks);
+            double number = random.NextDouble();
+            bool IsSuccess = number < p;
 
-        if(IsSuccess)
-        {
-            StrengthenSucceed(req, session);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = new Strengthen();
+            if (IsSuccess)
+            {
+                StrengthenSucceed(req, session);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen = new Strengthen();
+            }
+            else
+            {
+                Strengthenfail(req, session);
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
+                CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+            }
+            session.ActivePlayer.Ribi -= strengthen.Ribi; //扣錢
         }
-        else
+        catch (Exception e)
         {
-            Strengthenfail(req, session);
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.description = "";
-            CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen.Stone = null;
+            LogSvc.Error(e);
         }
-        session.ActivePlayer.Ribi -= strengthen.Ribi; //扣錢
     }
     public void StrengthenSucceed(StrengthenRequest req, ServerSession session)
     {
-        //強化成功 並把強化裝備放進背包
-        Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
+            //強化成功 並把強化裝備放進背包
+            Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+            ProtoMsg msg = new ProtoMsg
             {
-                OperationType = 5,
-                strengthenItem = strengthen.StrengthenItem,
-                Ribi = strengthen.Ribi
-            }
-        };
-        session.WriteAndFlush(msg);
-        AddItemInKnap(strengthen.StrengthenItem, session);
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 5,
+                    strengthenItem = strengthen.StrengthenItem,
+                    Ribi = strengthen.Ribi
+                }
+            };
+            session.WriteAndFlush(msg);
+            AddItemInKnap(strengthen.StrengthenItem, session);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
 
     public void Strengthenfail(StrengthenRequest req, ServerSession session)
     {
-        //強化失敗 並把原本裝備放進背包 
-        Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
-        ProtoMsg msg = new ProtoMsg
+        try
         {
-            MessageType = 53,
-            strengthenResponse = new StrengthenResponse
+            //強化失敗 並把原本裝備放進背包 
+            Strengthen strengthen = CacheSvc.Instance.MOFCharacterDict[session.ActivePlayer.Name].strengthen;
+            ProtoMsg msg = new ProtoMsg
             {
-                OperationType = 6,
-                Ribi = strengthen.Ribi
-            }
-        };
-        session.WriteAndFlush(msg);
+                MessageType = 53,
+                strengthenResponse = new StrengthenResponse
+                {
+                    OperationType = 6,
+                    Ribi = strengthen.Ribi
+                }
+            };
+            session.WriteAndFlush(msg);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
     }
 
 
     public void RemoveItemInKnap(Item item, ServerSession session)
     {
         Dictionary<int, Item> knapsack = session.ActivePlayer.NotCashKnapsack;
-        knapsack.Remove(item.Position);
+        if (knapsack != null)
+            knapsack.Remove(item.Position);
     }
     public void AddItemInKnap(Item item, ServerSession session)
     {
         Dictionary<int, Item> knapsack = session.ActivePlayer.NotCashKnapsack;
-        if (knapsack.ContainsKey(item.Position))
+        if (knapsack != null)
         {
-            knapsack[item.Position].Count += 1;
-        }
-        else
-            knapsack[item.Position] = item;
+            if (knapsack.ContainsKey(item.Position))
+            {
+                knapsack[item.Position].Count += 1;
+            }
+            else
+                knapsack[item.Position] = item;
+        }        
     }
     public void ConsumeItem(Item item, ServerSession session)
     {
         Dictionary<int, Item> knapsack = session.ActivePlayer.NotCashKnapsack;
-        if (item.Count > 1)
+        if (knapsack != null)
         {
-            knapsack[item.Position].Count -= 1;
-        }
-        else
-        {
-            knapsack.Remove(item.Position);
+            if (item.Count > 1)
+            {
+                knapsack[item.Position].Count -= 1;
+            }
+            else
+            {
+                knapsack.Remove(item.Position);
+            }
         }
     }
     public void SendErrorBack(int errorType, ServerSession session)
@@ -372,16 +447,16 @@ public class StrengthenHandler : GameHandler
     {
         Item stone = strengthen.Stone;
         Weapon weapon = (Weapon)strengthen.StrengthenItem;
-        DamageStrengthen(strengthen);      
+        DamageStrengthen(strengthen);
         switch (weapon.WeapType)
         {
             case WeaponType.Sword:
             case WeaponType.Axe:
-                AttStrngthen(weapon,strengthen);
+                AttStrngthen(weapon, strengthen);
                 break;
             case WeaponType.Bow:
                 AgilityStrngthen(weapon, strengthen);
-                break;          
+                break;
             case WeaponType.Crossbow:
             case WeaponType.Dagger:
                 Accuract2Strngthen(weapon, strengthen);
@@ -420,11 +495,11 @@ public class StrengthenHandler : GameHandler
         Weapon clean = (Weapon)CacheSvc.ItemList[weapon.ItemID];
         weapon.Attack = clean.Attack + Attribute1[(int)weapon.Quality];
         int lastlevel = 0;
-        if((int)weapon.Quality != 0)
+        if ((int)weapon.Quality != 0)
         {
             lastlevel = Attribute1[(int)weapon.Quality - 1];
         }
-        strengthen.description += $"\n攻擊屬性 + {Attribute1[(int)weapon.Quality]- lastlevel}";
+        strengthen.description += $"\n攻擊屬性 + {Attribute1[(int)weapon.Quality] - lastlevel}";
     }
     //智力屬性增加
     public void IntStrngthen(Weapon weapon, Strengthen strengthen)
@@ -496,7 +571,7 @@ public class StrengthenHandler : GameHandler
         {
             lastlevel = Attribute3[(int)weapon.Quality - 1];
         }
-        strengthen.description += $"致命性機率 + {Attribute3[(int)weapon.Quality]- lastlevel} %";
+        strengthen.description += $"致命性機率 + {Attribute3[(int)weapon.Quality] - lastlevel} %";
     }
     //距離(書)
     public void RangeStrngthen(Weapon weapon, Strengthen strengthen)
@@ -508,7 +583,7 @@ public class StrengthenHandler : GameHandler
         {
             lastlevel = Attribute5[(int)weapon.Quality - 1];
         }
-        strengthen.description += $"致命性機率 + {Attribute5[(int)weapon.Quality]-lastlevel} %";
+        strengthen.description += $"致命性機率 + {Attribute5[(int)weapon.Quality] - lastlevel} %";
     }
     public void EquipmentStrengthen(Strengthen strengthen)
     {
@@ -569,7 +644,7 @@ public class StrengthenHandler : GameHandler
         {
             ribi = (long)(3000 * Math.Pow(2, level) - (150 * level));
         }
-        return ribi * ((int)(weapon.Quality)+1);
+        return ribi * ((int)(weapon.Quality) + 1);
     }
 
     public long CostRibiforEq(Equipment equipment, Item stone)
@@ -594,7 +669,7 @@ public class StrengthenHandler : GameHandler
     }
     public void DamageAtrengthenType1(Strengthen strengthen)
     {
-        
+
         //短劍、刀劍、雙手劍、鈍器、斧頭、槍、弓、鎗、法杖
         Weapon clean = (Weapon)CacheSvc.ItemList[strengthen.Item.ItemID];
         float probability;
@@ -616,7 +691,7 @@ public class StrengthenHandler : GameHandler
         ((Weapon)strengthen.StrengthenItem).MaxDamage = (int)(clean.MaxDamage * (1 + probability));
         ((Weapon)strengthen.StrengthenItem).MinDamage = (int)(clean.MinDamage * (1 + probability));
 
-        
+
     }
     public void DamageAtrengthenType2(Strengthen strengthen)
     {
@@ -627,7 +702,7 @@ public class StrengthenHandler : GameHandler
         ((Weapon)strengthen.StrengthenItem).MinDamage = (int)(clean.MinDamage * (1 + probability));
         strengthen.description = $"強化效果 :攻擊力上升 {5} % \n";
     }
-    public List<int> Attribute1 = new List<int>{1, 2, 4,8,10,12};//智力(法杖)、敏捷(弓)、攻擊(斧頭、刀劍)、命中率(鎗)
+    public List<int> Attribute1 = new List<int> { 1, 2, 4, 8, 10, 12 };//智力(法杖)、敏捷(弓)、攻擊(斧頭、刀劍)、命中率(鎗)
     public List<int> Attribute2 = new List<int> { 2, 4, 7, 12, 15, 18 };//命中率(短劍、石弓)、閃避率(鈍器、雙劍) 防禦力(盾牌)
     public List<float> Attribute3 = new List<float> { 0.5f, 1, 2, 4, 6, 8 };//致命性機率(雙手劍、十字架)
     public List<int> Attribute4 = new List<int> { 1, 2, 3, 4, 5, 6 };//防具加主屬各1

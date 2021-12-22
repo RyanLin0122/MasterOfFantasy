@@ -182,10 +182,9 @@ public class DBMgr
             ((CacheSvc.Instance.AccountTempData[Account]))["Players"] = ba;
             InsertNameData(Info.name);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-
-            throw;
+            LogSvc.Error(e);
         }
     }
     public BsonDocument DeletePlayer(string Account, string PlayerName)
@@ -263,38 +262,49 @@ public class DBMgr
 
     public bool SyncSaveCharacter(string acc, Player player)
     {
-        BsonDocument bd = Utility.Player2Bson(player);
-        var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
-        var Result = cursor.ToList();
-        BsonDocument AccountData;
-        if (Result.Count == 0)
+        try
         {
-            Console.WriteLine("沒有此帳號");
-        };
-        AccountData = Result[0];
-        var Players = AccountData["Players"].AsBsonArray;
-        int index = 0;
-        for (int i = 0; i < Players.Count; i++)
-        {
-            if (Players[i]["Name"] == player.Name)
+            BsonDocument bd = Utility.Player2Bson(player);
+            var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
+            var Result = cursor.ToList();
+            BsonDocument AccountData;
+            if (Result.Count == 0)
             {
-                index = i;
+                Console.WriteLine("沒有此帳號");
+            };
+            AccountData = Result[0];
+            var Players = AccountData["Players"].AsBsonArray;
+            int index = 0;
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (Players[i]["Name"] == player.Name)
+                {
+                    index = i;
+                }
             }
-        }
-        Players[index] = bd;
-        AccountData["Players"] = Players;
-        //UpdatePlayer
+            Players[index] = bd;
+            AccountData["Players"] = Players;
+            //UpdatePlayer
 
-        var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
-        var update = Builders<BsonDocument>.Update.Set("Players", Players);
-        AccCollection.UpdateOne(filter, update);
+            var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
+            var update = Builders<BsonDocument>.Update.Set("Players", Players);
+            AccCollection.UpdateOne(filter, update);
+        }
+        catch (Exception e)
+        {
+
+            LogSvc.Error(e);
+        }
+
         return true;
     }
 
     public async Task AsyncSaveCharacter(string acc, Player player)
     {
-        var factory = ServerRoot.Instance.taskFactory;
-        Task task = factory.StartNew(() =>
+        try
+        {
+            var factory = ServerRoot.Instance.taskFactory;
+            Task task = factory.StartNew(() =>
             {
                 BsonDocument bd = Utility.Player2Bson(player);
                 var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
@@ -316,54 +326,66 @@ public class DBMgr
                 }
                 Players[index] = bd;
                 AccountData["Players"] = Players;
-                //UpdatePlayer
 
                 var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
                 var update = Builders<BsonDocument>.Update.Set("Players", Players);
                 AccCollection.UpdateOneAsync(filter, update);
             }
-        );
-        await task;
+            );
+            await task;
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }       
         LogSvc.Info("Save Character " + player.Name + " Complete!");
     }
     public async Task AsyncSaveAccount(string acc, AccountData data)
     {
-        LogSvc.Info("準備儲存帳號: " + acc);
-        var factory = ServerRoot.Instance.taskFactory;
-        Task task = factory.StartNew(() =>
+        try
         {
-            var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
-            var Result = cursor.ToList();
-            BsonDocument AccountData;
-            if (Result.Count == 0)
+            LogSvc.Info("準備儲存帳號: " + acc);
+            var factory = ServerRoot.Instance.taskFactory;
+            Task task = factory.StartNew(() =>
             {
-                Console.WriteLine("沒有此帳號");
-            };
-            AccountData = Result[0];
-            var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
-            var update = Builders<BsonDocument>.Update.Set("GMLevel", data.GMLevel).Set("Cash", data.Cash)
-                .Set("LastLoginTime", data.LastLoginTime)
-                .Set("LastLogoutTime", data.LastLogoutTime)
-                .Set("LockerServer1", Utility.Dic_Int_Item2BsonArr(data.LockerServer1))
-                .Set("LockerServer2", Utility.Dic_Int_Item2BsonArr(data.LockerServer2))
-                .Set("LockerServer3", Utility.Dic_Int_Item2BsonArr(data.LockerServer3))
-                .Set("CashShopBuyPanelFashionServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer1))
-                .Set("CashShopBuyPanelFashionServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer2))
-                .Set("CashShopBuyPanelFashionServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer3))
-                .Set("CashShopBuyPanelOtherServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer1))
-                .Set("CashShopBuyPanelOtherServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer2))
-                .Set("CashShopBuyPanelOtherServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer3))
-                .Set("Friends", new BsonArray())
-                .Set("BlockedPeople", new BsonArray())
-                .Set("LockerRibiServer1", data.LockerServer1Ribi)
-                .Set("LockerRibiServer2", data.LockerServer2Ribi)
-                .Set("LockerRibiServer3", data.LockerServer3Ribi)
-                .Set("LastSignMonth", data.LastSignMonth)
-                .Set("LastSignDate", data.LastSignDate);
-            AccCollection.UpdateOneAsync(filter, update);
+                var cursor = AccCollection.Find(new BsonDocument { { "Account", acc } }).ToCursor();
+                var Result = cursor.ToList();
+                BsonDocument AccountData;
+                if (Result.Count == 0)
+                {
+                    Console.WriteLine("沒有此帳號");
+                };
+                AccountData = Result[0];
+                var filter = Builders<BsonDocument>.Filter.Eq("Account", acc);
+                var update = Builders<BsonDocument>.Update.Set("GMLevel", data.GMLevel).Set("Cash", data.Cash)
+                    .Set("LastLoginTime", data.LastLoginTime)
+                    .Set("LastLogoutTime", data.LastLogoutTime)
+                    .Set("LockerServer1", Utility.Dic_Int_Item2BsonArr(data.LockerServer1))
+                    .Set("LockerServer2", Utility.Dic_Int_Item2BsonArr(data.LockerServer2))
+                    .Set("LockerServer3", Utility.Dic_Int_Item2BsonArr(data.LockerServer3))
+                    .Set("CashShopBuyPanelFashionServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer1))
+                    .Set("CashShopBuyPanelFashionServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer2))
+                    .Set("CashShopBuyPanelFashionServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelFashionServer3))
+                    .Set("CashShopBuyPanelOtherServer1", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer1))
+                    .Set("CashShopBuyPanelOtherServer2", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer2))
+                    .Set("CashShopBuyPanelOtherServer3", Utility.Dic_Int_Item2BsonArr(data.CashShopBuyPanelOtherServer3))
+                    .Set("Friends", new BsonArray())
+                    .Set("BlockedPeople", new BsonArray())
+                    .Set("LockerRibiServer1", data.LockerServer1Ribi)
+                    .Set("LockerRibiServer2", data.LockerServer2Ribi)
+                    .Set("LockerRibiServer3", data.LockerServer3Ribi)
+                    .Set("LastSignMonth", data.LastSignMonth)
+                    .Set("LastSignDate", data.LastSignDate);
+                AccCollection.UpdateOneAsync(filter, update);
+            }
+            );
+            await task;
         }
-        );
-        await task;
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
         LogSvc.Info("Save Account " + data.Account + " Complete!");
     }
     #region 小遊戲相關
@@ -371,30 +393,38 @@ public class DBMgr
     public async Task<Dictionary<string, int>[]> QueryMiniGameRanking()
     {
         Dictionary<string, int>[] ranking = new Dictionary<string, int>[8];
-        var factory = ServerRoot.Instance.taskFactory;
-        Task task = factory.StartNew(() =>
-        {
-            var cursor = MinigameRanking.Find(new BsonDocument { { "Query", "q" } }).ToCursor();
-            var Result = cursor.ToList();
-            var names = Result[0]["Games"].AsBsonArray.ToList();
-            List<BsonArray> s = new List<BsonArray>();
-            foreach (var item in names)
+        try
+        {           
+            var factory = ServerRoot.Instance.taskFactory;
+            Task task = factory.StartNew(() =>
             {
-                s.Add(item.AsBsonArray);
-            }
-
-            for (int i = 0; i < 8; i++)
-            {
-                ranking[i] = new Dictionary<string, int>();
-
-                for (int j = 0; j < 10; j++)
+                var cursor = MinigameRanking.Find(new BsonDocument { { "Query", "q" } }).ToCursor();
+                var Result = cursor.ToList();
+                var names = Result[0]["Games"].AsBsonArray.ToList();
+                List<BsonArray> s = new List<BsonArray>();
+                foreach (var item in names)
                 {
-                    BsonDocument obj = (s[i])[j].AsBsonDocument;
-                    ranking[i].Add(obj.GetElement(0).Name, Convert.ToInt32(obj.GetElement(0).Value));
+                    s.Add(item.AsBsonArray);
                 }
-            }
-        });
-        await task;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    ranking[i] = new Dictionary<string, int>();
+
+                    for (int j = 0; j < 10; j++)
+                    {
+                        BsonDocument obj = (s[i])[j].AsBsonDocument;
+                        ranking[i].Add(obj.GetElement(0).Name, Convert.ToInt32(obj.GetElement(0).Value));
+                    }
+                }
+            });
+            await task;
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
         return ranking;
     }
 
@@ -431,14 +461,11 @@ public class DBMgr
             await task;
             LogSvc.Info("Update minigame ranking complete!");
         }
-        catch (MongoException exception)
+        catch (MongoException e)
         {
-            Console.WriteLine(exception.Message);
+            LogSvc.Error(e);
         }
     }
     #endregion
 
-    #region 任務相關
-
-    #endregion
 }

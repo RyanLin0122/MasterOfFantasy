@@ -9,44 +9,52 @@ public class TidyKnapsackHandler : GameHandler
 {
     protected override void Process(ProtoMsg msg, ServerSession session)
     {
-        TidyUpOperation to = msg.tidyUpOperation;
-        if (to == null)
+        try
         {
-            return;
-        }
-        Dictionary<int, Item> Knapsack = null;
-        switch (to.InventoryID)
-        {
-            case 1:
-                Knapsack = session.ActivePlayer.NotCashKnapsack;
-                break;
-            case 2:
-                Knapsack = session.ActivePlayer.CashKnapsack;
-                break;
+            TidyUpOperation to = msg.tidyUpOperation;
+            if (to == null)
+            {
+                return;
+            }
+            Dictionary<int, Item> Knapsack = null;
+            switch (to.InventoryID)
+            {
+                case 1:
+                    Knapsack = session.ActivePlayer.NotCashKnapsack;
+                    break;
+                case 2:
+                    Knapsack = session.ActivePlayer.CashKnapsack;
+                    break;
 
-            default:
-                break;
-        }
-        if (Knapsack == null)
-        {
-            SendErrorBack(session, msg);
-        }
-        var result = UpdateInventory(Knapsack);
-        switch (to.InventoryID)
-        {
-            case 1:
-                session.ActivePlayer.NotCashKnapsack = result;
-                break;
-            case 2:
-                session.ActivePlayer.CashKnapsack = result;
-                break;
+                default:
+                    break;
+            }
+            if (Knapsack == null)
+            {
+                SendErrorBack(session, msg);
+            }
+            var result = UpdateInventory(Knapsack);
+            switch (to.InventoryID)
+            {
+                case 1:
+                    session.ActivePlayer.NotCashKnapsack = result;
+                    break;
+                case 2:
+                    session.ActivePlayer.CashKnapsack = result;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+            to.Result = true;
+            to.Inventory = result;
+            session.WriteAndFlush(msg);
         }
-        to.Result = true;
-        to.Inventory = result;
-        session.WriteAndFlush(msg);
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
     }
 
     public void SendErrorBack(ServerSession session, ProtoMsg msg)
@@ -57,74 +65,80 @@ public class TidyKnapsackHandler : GameHandler
 
     public Dictionary<int, Item> UpdateInventory(Dictionary<int, Item> inventory)
     {
-        Dictionary<int, Item> result = new Dictionary<int, Item>();
-        if (inventory != null && inventory.Count > 0)
+        try
         {
-            List<int> ItemIds = new List<int>();
-            List<int> Capacity = new List<int>();
-            List<int> Count = new List<int>();
-            int resultPointer = 1;
-            foreach (var kv in inventory)
+            Dictionary<int, Item> result = new Dictionary<int, Item>();
+            if (inventory != null && inventory.Count > 0)
             {
-                if (kv.Value != null)
+                List<int> ItemIds = new List<int>();
+                List<int> Capacity = new List<int>();
+                List<int> Count = new List<int>();
+                int resultPointer = 1;
+                foreach (var kv in inventory)
                 {
-                    if (!(kv.Value is Weapon || kv.Value is Equipment))
+                    if (kv.Value != null)
                     {
-                        int RestNum = kv.Value.Count;
-                        bool Ready = false;
-                        for (int i = 0; i < ItemIds.Count; i++)
+                        if (!(kv.Value is Weapon || kv.Value is Equipment))
                         {
-                            if (kv.Value.ItemID == ItemIds[i])
+                            int RestNum = kv.Value.Count;
+                            bool Ready = false;
+                            for (int i = 0; i < ItemIds.Count; i++)
                             {
-                                Ready = true;
-                                Count[i] += kv.Value.Count;
+                                if (kv.Value.ItemID == ItemIds[i])
+                                {
+                                    Ready = true;
+                                    Count[i] += kv.Value.Count;
+                                }
+                            }
+                            if (!Ready)
+                            {
+                                ItemIds.Add(kv.Value.ItemID);
+                                Count.Add(kv.Value.Count);
+                                Capacity.Add(kv.Value.Capacity);
                             }
                         }
-                        if (!Ready)
+                        else
                         {
-                            ItemIds.Add(kv.Value.ItemID);
-                            Count.Add(kv.Value.Count);
-                            Capacity.Add(kv.Value.Capacity);
+                            kv.Value.Position = resultPointer;
+                            result[resultPointer] = kv.Value;
+                            resultPointer++;
                         }
                     }
-                    else
-                    {
-                        kv.Value.Position = resultPointer;
-                        result[resultPointer] = kv.Value;
-                        resultPointer++;
-                    }
                 }
-            }
-            for (int i = 0; i < ItemIds.Count; i++)
-            {
-                int RestNum = Count[i];
-                int NeedSlots = (int)Math.Ceiling((float)Count[i] / Capacity[i]);
-                for (int j = 0; j < NeedSlots; j++)
+                for (int i = 0; i < ItemIds.Count; i++)
                 {
-                    if (RestNum < Capacity[i])
+                    int RestNum = Count[i];
+                    int NeedSlots = (int)Math.Ceiling((float)Count[i] / Capacity[i]);
+                    for (int j = 0; j < NeedSlots; j++)
                     {
-                        Item item = Utility.GetItemCopyByID(ItemIds[i]);
-                        item.Position = resultPointer;
-                        item.Count = RestNum;
-                        result[resultPointer] = item;
-                        RestNum -= RestNum;
-                        resultPointer++;
-                    }
-                    else
-                    {
-                        RestNum -= Capacity[i];
-                        Item item = Utility.GetItemCopyByID(ItemIds[i]);
-                        item.Position = resultPointer;
-                        item.Count = Capacity[i];
-                        result[resultPointer] = item;
-                        resultPointer++;
+                        if (RestNum < Capacity[i])
+                        {
+                            Item item = Utility.GetItemCopyByID(ItemIds[i]);
+                            item.Position = resultPointer;
+                            item.Count = RestNum;
+                            result[resultPointer] = item;
+                            RestNum -= RestNum;
+                            resultPointer++;
+                        }
+                        else
+                        {
+                            RestNum -= Capacity[i];
+                            Item item = Utility.GetItemCopyByID(ItemIds[i]);
+                            item.Position = resultPointer;
+                            item.Count = Capacity[i];
+                            result[resultPointer] = item;
+                            resultPointer++;
+                        }
                     }
                 }
             }
+            return result;
         }
-
-
-        return result;
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        return null;
     }
 }
 

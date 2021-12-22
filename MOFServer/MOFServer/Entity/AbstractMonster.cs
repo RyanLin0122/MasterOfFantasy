@@ -16,58 +16,72 @@ public class AbstractMonster : Entity
     public AIAgent AI;
     public override void OnDeath(bool IsDelay = false)
     {
-        IsDeath = true;
-        this.status = MonsterStatus.Death;
-        this.mofMap.Battle.LeaveBattle(this);
-        this.mofMap.Monsters.Remove(nEntity.Id);
-        MonsterPoint.monster = null;
-        mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
-        if (PlayerDamageRecord.Count > 0)
+        try
         {
-            List<string> KillerNames = new List<string>();
-            foreach (var name in PlayerDamageRecord.Keys)
+            IsDeath = true;
+            this.status = MonsterStatus.Death;
+            this.mofMap.Battle.LeaveBattle(this);
+            this.mofMap.Monsters.Remove(nEntity.Id);
+            MonsterPoint.monster = null;
+            mofMap.Battle.AssignExp(PlayerDamageRecord, Info);
+            if (PlayerDamageRecord.Count > 0)
             {
-                MOFCharacter character = null;
-                if(this.mofMap.characters.TryGetValue(name, out character))
+                List<string> KillerNames = new List<string>();
+                foreach (var name in PlayerDamageRecord.Keys)
                 {
-                    character.AddMonsterKillNum(this.MonsterID);
+                    MOFCharacter character = null;
+                    if (this.mofMap.characters.TryGetValue(name, out character))
+                    {
+                        character.AddMonsterKillNum(this.MonsterID);
+                    }
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        KillerNames.Add(name);
+                    }
                 }
-                if (!string.IsNullOrEmpty(name))
-                {
-                    KillerNames.Add(name);
-                }
-            }
-            mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, KillerNames);
-            if (KillerNames.Count > 0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
-        }
-        else
-        {
-            mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, null);
-        }
-    }
-    public override void DoDamage(DamageInfo damage, string CasterName = "")
-    {
-        int AccumulateDamage = 0;
-        foreach (var num in damage.Damage)
-        {
-            int HP = this.nEntity.HP - num;
-            if (HP <= 0)
-            {
-                AccumulateDamage += this.nEntity.HP;
-                HP = 0;
-                this.nEntity.HP = HP;
-                if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
-                OnDeath(damage.IsDelay);
-                return;
+                mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, KillerNames);
+                if (KillerNames.Count > 0) mofMap.DropItems(Info, KillerNames, nEntity.Position);
             }
             else
             {
-                AccumulateDamage += num;
-                this.nEntity.HP = HP;
-                Ondamage(damage, mofMap.characters[CasterName]);
+                mofMap.Battle.AddDeathMonsterUUID(nEntity.Id, IsDelay, null);
             }
         }
-        if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }       
+    }
+    public override void DoDamage(DamageInfo damage, string CasterName = "")
+    {
+        try
+        {
+            int AccumulateDamage = 0;
+            foreach (var num in damage.Damage)
+            {
+                int HP = this.nEntity.HP - num;
+                if (HP <= 0)
+                {
+                    AccumulateDamage += this.nEntity.HP;
+                    HP = 0;
+                    this.nEntity.HP = HP;
+                    if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
+                    OnDeath(damage.IsDelay);
+                    return;
+                }
+                else
+                {
+                    AccumulateDamage += num;
+                    this.nEntity.HP = HP;
+                    Ondamage(damage, mofMap.characters[CasterName]);
+                }
+            }
+            if (CasterName != "") AddDamgageRecord(CasterName, AccumulateDamage);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }       
     }
     private void Ondamage(DamageInfo damage, MOFCharacter source)
     {
@@ -174,27 +188,41 @@ public class AbstractMonster : Entity
     }
     public override void Update()
     {
-        base.Update();
-        this.UpdateMovement();
-        this.AI.Update();
+        try
+        {
+            base.Update();
+            this.UpdateMovement();
+            this.AI.Update();
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }       
     }
     public NVector3 moveTarget;
     private void UpdateMovement()
     {
-        if (status == MonsterStatus.Moving)
+        try
         {
-            status = MonsterStatus.Moving;
-            if (this.Distance(this.moveTarget) < 50)
+            if (status == MonsterStatus.Moving)
             {
-                this.StopMove();
-            }
-            if (this.nEntity.Speed > 0)
-            {
-                float Z = this.nEntity.Position.Z;
-                this.nEntity.Position += this.nEntity.Direction * this.nEntity.Speed * Time.deltaTime;
-                this.nEntity.Position.Z = Z;
+                status = MonsterStatus.Moving;
+                if (this.Distance(this.moveTarget) < 50)
+                {
+                    this.StopMove();
+                }
+                if (this.nEntity.Speed > 0)
+                {
+                    float Z = this.nEntity.Position.Z;
+                    this.nEntity.Position += this.nEntity.Direction * this.nEntity.Speed * Time.deltaTime;
+                    this.nEntity.Position.Z = Z;
+                }
             }
         }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }       
     }
 
     internal void StopMove()

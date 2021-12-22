@@ -16,9 +16,9 @@ public static class LogSvc
         LogSetting.Info(s);
     }
 
-    public static void Error(string s)
+    public static void Error(Exception s)
     {
-        LogSetting.Error(s);
+        LogSetting.Error(s.Source + ", " + s.StackTrace + ", " + s.Message);
     }
 
     public static void Debug(string s)

@@ -85,7 +85,7 @@ public class ReliveHandler : GameHandler
         }
         catch (Exception e)
         {
-            LogSvc.Error("Relive[31]" + e.Message);
+            LogSvc.Error(e);
         }
     }
 }

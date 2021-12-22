@@ -31,7 +31,7 @@ public class MapSvc : Singleton<MapSvc>
         }
         catch (Exception e)
         {
-            LogSvc.Error("Map doesn't exist. " + e.Message);
+            LogSvc.Error(e);
         }
         return null;
     }
@@ -44,7 +44,7 @@ public class MapSvc : Singleton<MapSvc>
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message + "\n" + e.StackTrace);
+            LogSvc.Error(e);
             return null;
         }
     }

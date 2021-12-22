@@ -54,7 +54,7 @@ public class ShipHandler : GameHandler
         catch (Exception e)
         {
             SendErrorBack(session, msg, "[29] Unknown error");
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
 
     }

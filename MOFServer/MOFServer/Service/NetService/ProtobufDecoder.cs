@@ -12,6 +12,7 @@ public class ProtobufDecoder : ByteToMessageDecoder
         //Console.WriteLine("1. start to decode, input capacity: " + input.Capacity + " readerindex: " + input.ReaderIndex + " Readable bytes: " + input.ReadableBytes);
         //讀取包頭長度
         #region Header Length
+        if (input == null) return;
         input.MarkReaderIndex();
 
         if (input.ReadableBytes < 4 || input.ReadableBytes < 0)
@@ -101,7 +102,7 @@ public class ProtobufDecoder : ByteToMessageDecoder
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
         
         if (outmsg != null)

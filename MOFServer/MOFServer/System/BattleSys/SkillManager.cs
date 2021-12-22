@@ -55,20 +55,35 @@ public class SkillManager
     }
     public Skill GetNegativeSkill(int SkillID)
     {
-        if (this.NegativeSkills.ContainsKey(SkillID))
+        try
         {
-            return NegativeSkills[SkillID];
+            if (this.NegativeSkills.ContainsKey(SkillID))
+            {
+                return NegativeSkills[SkillID];
+            }
         }
-        LogSvc.Error("該對象無此被動技能");
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+        
         return null;
     }
     public Skill GetSkill(int SkillID)
     {
-        if (this.ActiveSkills.ContainsKey(SkillID))
+        try
         {
-            return ActiveSkills[SkillID];
+            if (this.ActiveSkills.ContainsKey(SkillID))
+            {
+                return ActiveSkills[SkillID];
+            }
+            
         }
-        LogSvc.Error("該對象無此技能");
+        catch (Exception e)
+        {
+           LogSvc.Error(e);
+        }
+        
         return null;
     }
     public void Update()

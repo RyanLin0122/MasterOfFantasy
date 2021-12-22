@@ -50,7 +50,7 @@ public class OtherInfoHandler : GameHandler
         }
         catch (Exception e)
         {
-            LogSvc.Error(e.Message);
+            LogSvc.Error(e);
         }
         
     }
