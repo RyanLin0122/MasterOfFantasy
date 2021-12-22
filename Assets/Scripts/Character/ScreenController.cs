@@ -185,6 +185,7 @@ public class ScreenController : MonoBehaviour
                 string ThirdBG = cfg.BG3;
                 if (!string.IsNullOrEmpty(SecondBG))
                 {
+                    this.UpBound += 300;
                     this.SecondBG = (Instantiate(Resources.Load("Prefabs/SecondBG"), this.background.parent) as GameObject).transform;
                     this.SecondBG.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Map/Map Background/" + SecondBG);
                     this.BG2RightBound = background.position.x + background.GetComponent<SpriteRenderer>().bounds.size.x / 2 - this.SecondBG.GetComponent<SpriteRenderer>().bounds.size.x / 2;
@@ -238,7 +239,7 @@ public class ScreenController : MonoBehaviour
                 float CalX = Mathf.Clamp(BG2LeftBound + RatioX * (BG2RightBound - BG2LeftBound), BG2LeftBound, BG2RightBound);
                 float X = Mathf.Clamp(CalX, BG2LeftBound, BG2RightBound);
                 float CalY = Mathf.Clamp(BG2DownBound + RatioY * (BG2UpBound - BG2DownBound), BG2DownBound, BG2UpBound);
-                float Y = Mathf.Clamp(CalY, BG2DownBound, BG2UpBound);
+                float Y = Mathf.Clamp(CalY, BG2DownBound, BG2UpBound) + 150f;
                 SecondBG.position = new Vector2(X, Y);
                 if (transform.position.x < (MapLeft + cam_x / 2)) SecondBG.position = new Vector2(BG2LeftBound, Y);
                 if (transform.position.x > (MapRight - cam_x / 2)) SecondBG.position = new Vector2(BG2RightBound, Y);

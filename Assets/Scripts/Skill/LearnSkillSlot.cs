@@ -62,7 +62,7 @@ public class LearnSkillSlot : MonoBehaviour, IPointerDownHandler
         Player player = GameRoot.Instance.ActivePlayer;
         UnChoose();
         if (player.SwordPoint >= info.SwordPoint[SkillLevel - 1] && player.ArcheryPoint >= info.ArcheryPoint[SkillLevel - 1]
-            && player.MagicPoint >= info.MagicPoint[SkillLevel - 1] && player.TheologyPoint >= info.MagicPoint[SkillLevel - 1] && player.Level >= info.RequiredLevel[SkillLevel - 1])
+            && player.MagicPoint >= info.MagicPoint[SkillLevel - 1] && player.TheologyPoint >= info.TheologyPoint[SkillLevel - 1] && player.Level >= info.RequiredLevel[SkillLevel - 1])
         {
             DisabledImg.gameObject.SetActive(false);
             IsEnable = true;

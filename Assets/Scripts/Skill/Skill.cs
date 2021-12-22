@@ -181,7 +181,10 @@ public class Skill
         }
         else
         {
-            UISystem.Instance.AddMessageQueue(Tools.SkillResult2String(result));
+            if (this.Info.SkillID > 0)
+            {
+                UISystem.Instance.AddMessageQueue(Tools.SkillResult2String(result));
+            }
         }
     }
     public void CastAOE_Position()

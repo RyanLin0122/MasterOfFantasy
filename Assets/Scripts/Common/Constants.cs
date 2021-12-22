@@ -1401,7 +1401,9 @@ public class Constants
             case "RibiTown":
                 ImgPath = "Map/Ribi Town Logo";
                 break;
-
+            case "Poseidon":
+                ImgPath = "Map/Poseidos Logo";
+                break;
 
         }
         return Resources.Load<Sprite>(ImgPath);
