@@ -37,13 +37,10 @@ public class PowerSys : Singleton<PowerSys>
                         chr.trimedPlayer.HP += AddHp;
                         chr.nEntity.HP += AddHp;
                     }
-                    if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
+                    if (chr != null && chr.session != null)
                     {
                         ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.player.HP, UpdateMp = chr.player.MP } };
-                        if (CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session != null)
-                        {
-                            CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session.WriteAndFlush(msg);
-                        }
+                        chr.session.WriteAndFlush(msg);
                     }
                 }
             }
@@ -64,18 +61,18 @@ public class PowerSys : Singleton<PowerSys>
                     {
                         chr.player.MP = (int)chr.FinalAttribute.MAXMP;
                         chr.trimedPlayer.MP = (int)chr.FinalAttribute.MAXMP;
-                        chr.nEntity.HP = (int)chr.FinalAttribute.MAXMP;
+                        chr.nEntity.MP = (int)chr.FinalAttribute.MAXMP;
                     }
                     else
                     {
                         chr.player.MP += AddMp;
                         chr.trimedPlayer.MP += AddMp;
-                        chr.nEntity.HP += AddMp;
+                        chr.nEntity.MP += AddMp;
                     }
-                    if (CacheSvc.Instance.MOFCharacterDict.ContainsKey(chr.player.Name))
+                    if (chr != null && chr.session!=null)
                     {
                         ProtoMsg msg = new ProtoMsg { MessageType = 35, updateHpMp = new UpdateHpMp { UpdateHp = chr.nEntity.HP, UpdateMp = chr.nEntity.MP } };
-                        CacheSvc.Instance.MOFCharacterDict[chr.player.Name].session.WriteAndFlush(msg);
+                        chr.session.WriteAndFlush(msg);
                     }
                 }
             }
