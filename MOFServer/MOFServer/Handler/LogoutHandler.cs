@@ -24,6 +24,10 @@ public class LogoutHandler : GameHandler
                     character.AsyncSaveAccount();
                     character.AsyncSaveCharacter();
                     CacheSvc.Instance.MOFCharacterDict.Remove(session.ActivePlayer.Name);
+                    if (character.AutoSaveTaskID != -1)
+                    {
+                        TimerSvc.Instance.DeleteTimeTask(character.AutoSaveTaskID);
+                    }                   
                 }
 
                 NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;

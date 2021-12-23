@@ -176,6 +176,7 @@ public class MOFMap
                 session.WriteAndFlush(outmsg);
 
                 AddPlayer(characters[CharacterName].trimedPlayer);
+                this.Battle.JoinBattle(characters[CharacterName]);
             }
             catch (Exception e)
             {
@@ -241,6 +242,7 @@ public class MOFMap
             };
             character.session.WriteAndFlush(req);
             AddPlayer(character.trimedPlayer);
+            this.Battle.JoinBattle(characters[CharacterName]);
         }
         catch (Exception e)
         {

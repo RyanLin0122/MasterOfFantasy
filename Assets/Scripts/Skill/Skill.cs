@@ -29,7 +29,7 @@ public class Skill
     #region Skill WorkFlow 技能總流程
     public SkillResult CanCast() //判斷能不能使用技能
     {
-        ActiveSkillInfo active = (ActiveSkillInfo)Info;
+        ActiveSkillInfo active = Info as ActiveSkillInfo;
         if (CD > 0)
         {
             return SkillResult.CoolDown;
@@ -38,6 +38,8 @@ public class Skill
         {
             return SkillResult.Invalid;
         }
+        if (GameRoot.Instance.ActivePlayer.playerEquipments == null || GameRoot.Instance.ActivePlayer.playerEquipments.B_Weapon == null) return SkillResult.WeaponInvalid;
+        if(!active.RequiredWeapon.Contains(GameRoot.Instance.ActivePlayer.playerEquipments.B_Weapon.WeapType)) return SkillResult.WeaponInvalid;
         if (active.TargetType == SkillTargetType.BuffOnly) return SkillResult.OK;
         if (Owner is PlayerController)
         {

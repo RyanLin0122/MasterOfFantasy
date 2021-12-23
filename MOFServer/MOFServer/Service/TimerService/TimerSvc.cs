@@ -62,7 +62,21 @@ public class TimerSvc : Singleton<TimerSvc>
     {
         return (long)pt.GetMillisecondsTime();
     }
-
+    public void DeleteTimeTask(int tid)
+    {
+        if (tid == -1)
+        {
+            return;
+        }
+        try
+        {
+            pt.DeleteTimeTask(tid);
+        }
+        catch (Exception e)
+        {
+            LogSvc.Error(e);
+        }
+    }
 
     #region DateTime Timer
     private Dictionary<(int, int, int, int), TimeSpan> TimeSpanDic = new Dictionary<(int, int, int, int), TimeSpan>();

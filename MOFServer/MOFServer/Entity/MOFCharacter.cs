@@ -16,6 +16,7 @@ public class MOFCharacter : Entity
     public Strengthen strengthen;
     public QuestManager questManager;
     public PlayerStatus status = PlayerStatus.Normal;
+    public int AutoSaveTaskID = -1;
     #region Attribute
     public PlayerAttribute BasicAttribute;
     public void InitAllAtribute() //不包含Buff
@@ -642,19 +643,14 @@ public class MOFCharacter : Entity
             this.IsRun = IsRun;
             this.questManager = new QuestManager(this);
 
-            if (!CacheSvc.Instance.MOFCharacterDict.ContainsKey(player.Name))
-            {
-                CacheSvc.Instance.MOFCharacterDict.TryAdd(player.Name, this);
-            }
-            else
-            {
-                CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
-            }
+            CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
+            this.AutoSaveTaskID = TimerSvc.Instance.AddTimeTask((t) => { this.AsyncSaveAccount(); this.AsyncSaveCharacter(); }, 90, PETimeUnit.Second, 0);
+
         }
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     public override void Update()
     {
@@ -719,7 +715,7 @@ public class MOFCharacter : Entity
         {
             LogSvc.Error(e);
         }
-            
+
     }
     public void AddExp(int Exp)
     {
@@ -765,7 +761,7 @@ public class MOFCharacter : Entity
         {
             LogSvc.Error(e);
         }
-        
+
     }
     public void AddPropertyPoint(AddPropertyPoint ap)
     {
@@ -785,7 +781,7 @@ public class MOFCharacter : Entity
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }        
+        }
     }
     public override void InitSkill()
     {
@@ -806,7 +802,7 @@ public class MOFCharacter : Entity
         {
             LogSvc.Error(e);
         }
-        
+
     }
     public bool SetMiniGame(MiniGameSetting setting)
     {
@@ -897,7 +893,7 @@ public class MOFCharacter : Entity
         {
             LogSvc.Error(e);
         }
-        
+
         return true;
     }
 
