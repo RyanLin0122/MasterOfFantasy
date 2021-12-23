@@ -106,6 +106,10 @@ public class UISystem : SystemRoot
     }
     public void PressEsc()
     {
+        if (dialogueWnd.gameObject.activeSelf)
+        {
+            CloseDialogueWnd();
+        }
         Pop();
     }
 

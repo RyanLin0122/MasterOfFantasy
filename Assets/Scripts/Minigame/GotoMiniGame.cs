@@ -87,11 +87,8 @@ public class GotoMiniGame : SystemRoot
                     case 4:
                         CardID = 12003;
                         break;
-                    default:
-                        CardID = 12001;
-                        break;
                 }
-                if (InventorySys.Instance.HasItem(CardID, 1))
+                if (CardID !=-1 && InventorySys.Instance.HasItem(CardID, 1))
                 {
                     bool IsAferAllZero = true;
                     for (int i = 1; i < GameRoot.Instance.ActivePlayer.MiniGameArr.Length; i++)

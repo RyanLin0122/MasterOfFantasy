@@ -373,7 +373,7 @@ public class PuzzleGameManager : MiniGameManager
                     Win_Point.text = 30.ToString();
                     Score = Mathf.FloorToInt(-(5.0f / 3) * GameTimer + 500);
                     Win_Score.text = Score.ToString();
-                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 30, 0, 0, true, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(4, Score, 0, 0, 30, 0, true, Difficalty);
                 }
                 else //Failed
                 {

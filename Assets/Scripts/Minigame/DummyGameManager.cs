@@ -137,14 +137,14 @@ public class DummyGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 30.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 0, 20, 0, true, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 20, 0, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 0, 10, 0, false, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 10, 0, 0, 0, false, Difficalty);
                 }
                 break;
             case 1: //Normal
@@ -153,14 +153,14 @@ public class DummyGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 40.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 30, 0, 0, true, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 30, 0, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 0, 10, 0, false, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 10, 0, 0, 0, false, Difficalty);
                 }
                 break;
             case 2: //Hard
@@ -169,14 +169,14 @@ public class DummyGameManager : MiniGameManager
                     SuccessWnd.SetActive(true);
                     Win_Point.text = 50.ToString();
                     Win_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 0, 50, 0, true, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 50, 0, 0, 0, true, Difficalty);
                 }
                 else //Failed
                 {
                     FailedWnd.SetActive(true);
                     Lose_Point.text = 10.ToString();
                     Lose_Score.text = TotalScore.ToString();
-                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 0, 0, 10, 0, false, Difficalty);
+                    GotoMiniGame.Instance.ReportScore(7, TotalScore, 10, 0, 0, 0, false, Difficalty);
                 }
                 break;
         }
