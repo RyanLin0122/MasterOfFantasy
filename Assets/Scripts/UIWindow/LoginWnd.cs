@@ -95,12 +95,13 @@ public class LoginWnd : WindowRoot
             else
             {
                 GameRoot.AddTips("帳號與密碼不得小於6個字XD");
+                GameRoot.Instance.WindowUnlock();
             }
         }
         else
         {
             GameRoot.AddTips("帳號或密碼不可空白");
-
+            GameRoot.Instance.WindowUnlock();
         }
 
     }

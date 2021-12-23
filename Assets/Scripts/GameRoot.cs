@@ -116,7 +116,7 @@ public class GameRoot : MonoBehaviour
     }
 
     //遊戲中下線
-    bool quitGame = false;
+    bool quitGame = true;
 
     bool WantsToQuit()
     {
@@ -124,15 +124,7 @@ public class GameRoot : MonoBehaviour
     }
     void OnApplicationQuit()
     {
-        if (Input.GetKey(KeyCode.F4))
-        {
-            quitGame = false;
-        }
-        else
-        {
-            LogOut();
-            quitGame = true;
-        }
+        LogOut();
     }
     public void LogOut()
     {

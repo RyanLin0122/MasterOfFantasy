@@ -57,7 +57,7 @@ public class ScreenController : MonoBehaviour
         UpdateBG();
         if (canCtrl)
         {
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 if (!GameRoot.Instance.HasOpenedWnd.ContainsKey("MapWnd"))
                 {
@@ -86,10 +86,6 @@ public class ScreenController : MonoBehaviour
                 }
 
             }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                UISystem.Instance.baseUI.AddExp(100000000);
-            }
             if (Input.GetKeyDown(KeyCode.C))
             {
                 UISystem.Instance.InfoWnd.openCloseWnd();
@@ -109,10 +105,6 @@ public class ScreenController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 EquipmentWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                UISystem.Instance.OpenLearnSkillUI();
             }
             if (Input.GetKeyDown(KeyCode.D))
             {

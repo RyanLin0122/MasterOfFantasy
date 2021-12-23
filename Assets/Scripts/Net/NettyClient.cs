@@ -46,7 +46,7 @@ public class NettyClient
                  pipeline.AddLast(new ProtobufEncoder());
                  pipeline.AddLast(new LoginResponseHandler());
              }));
-            Task<IChannel> channel = b.ConnectAsync(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8051));
+            Task<IChannel> channel = b.ConnectAsync(new IPEndPoint(IPAddress.Parse("1.160.124.52"), 8051));
             List<Task<IChannel>> tasks = new List<Task<IChannel>>();
             tasks.Add(channel);
             IChannel ChannelResult = (await Task.WhenAny(tasks)).Result;
@@ -60,11 +60,13 @@ public class NettyClient
             else
             {
                 Debug.Log("連接失敗");
+                GameRoot.Instance.WindowUnlock();
             }           
         }
         catch (System.Exception e)
         {
             Debug.Log("連接失敗 " + e.Message);
+            GameRoot.Instance.WindowUnlock();
         }
     }
  

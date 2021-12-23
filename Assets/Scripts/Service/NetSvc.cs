@@ -427,6 +427,10 @@ public class NetSvc : MonoBehaviour
             {
                 controller.Death();
             }
+            else
+            {
+                Debug.Log("無此角色");
+            }
         }
     }
     public void DoPlayerRelive(ProtoMsg msg)
