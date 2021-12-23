@@ -496,8 +496,8 @@ public class MOFMap
     #endregion
     #region 生怪相關
     int MonsterSpawnUUID = 0;
-    public float MonsterBornTime = 10f;
-    public float BornTimer = 0;
+    public float MonsterBornTime = 30f;
+    public float BornTimer = 20;
     public void MonstersBorn()
     {
         try
