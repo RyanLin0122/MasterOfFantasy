@@ -99,6 +99,19 @@ public class ChatHandler : GameHandler
                     var maps = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel];
                     maps[msg.toOtherMapReq.MapID].DoToOtherMapReq(msg, session);
                 }
+                if (Commend[0] == "!Lo")
+                {
+                    string Name = Commend[1];
+                    MOFCharacter character = null;
+                    if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(Name, out character))
+                    {
+                        CacheSvc.Instance.AccountDataDict.Remove(character.session.AccountData.Account);
+                        CacheSvc.Instance.MOFCharacterDict.Remove(character.player.Name);
+                        MapSvc.GetMap(character.session).RemovePlayer(Name);
+                        character.session.Close();
+                        NetSvc.Instance.sessionMap.RemoveSession(character.session.SessionID);                       
+                    }
+                }
 
                 //伺服器公告
                 if (Commend[0] == "!Ann")

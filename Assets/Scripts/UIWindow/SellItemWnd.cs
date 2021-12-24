@@ -84,6 +84,10 @@ public class SellItemWnd : MonoBehaviour
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         ConfirmWnd.gameObject.SetActive(false);
+        if (NumberWnd.gameObject.activeSelf)
+        {
+            NumberWnd.gameObject.SetActive(false);
+        }
         if (this.CurrentSellItem != null)
         {
             if (CurrentSellItem.IsCash)

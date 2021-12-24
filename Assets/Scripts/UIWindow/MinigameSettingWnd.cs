@@ -119,10 +119,6 @@ public class MinigameSettingWnd : WindowRoot
             {
                 rd.Add(12003, 1);
             }
-            if (rd.Count > 0)
-            {
-                InventorySys.RecycleItemsInKnapsack(rd);
-            }
         }
         else
         {

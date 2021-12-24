@@ -30,6 +30,12 @@ class HeartBeatServerHandler : IdleStateHandler
                 {
                     CacheSvc.Instance.AccountTempData.Remove(session.Account);
                 }
+                MOFCharacter chr = null;
+                if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out chr))
+                {
+                    chr.AsyncSaveAccount();
+                    chr.AsyncSaveCharacter();
+                }
                 CacheSvc.Instance.MOFCharacterDict.Remove(session.ActivePlayer.Name);
                 session.Close();
                 NetSvc.Instance.sessionMap.RemoveSession(session.SessionID);

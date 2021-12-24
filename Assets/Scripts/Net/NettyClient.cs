@@ -46,7 +46,7 @@ public class NettyClient
                  pipeline.AddLast(new ProtobufEncoder());
                  pipeline.AddLast(new LoginResponseHandler());
              }));
-            Task<IChannel> channel = b.ConnectAsync(new IPEndPoint(IPAddress.Parse("1.160.124.52"), 8051));
+            Task<IChannel> channel = b.ConnectAsync(new IPEndPoint(IPAddress.Parse("1.160.119.60"), 8051));
             List<Task<IChannel>> tasks = new List<Task<IChannel>>();
             tasks.Add(channel);
             IChannel ChannelResult = (await Task.WhenAny(tasks)).Result;

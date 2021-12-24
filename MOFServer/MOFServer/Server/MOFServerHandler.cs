@@ -103,7 +103,15 @@ class MOFServerHandler : ChannelHandlerAdapter
                     }
                     else //舊角色
                     {
-                        maps[msg.enterGameReq.MapID].DoEnterGameReq(msg, session);
+                        if (msg.enterGameReq.MapID < 1000)
+                        {
+                            maps[1000].DoEnterGameReq(msg, session);
+                        }
+                        else
+                        {
+                            maps[msg.enterGameReq.MapID].DoEnterGameReq(msg, session);
+                        }
+                        
                     }
                     break;
                 case 14: //移動角色

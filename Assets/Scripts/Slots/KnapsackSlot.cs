@@ -126,7 +126,7 @@ public class KnapsackSlot : ItemSlot
         AudioSvc.Instance.PlayUIAudio(Constants.PickUpItem);
         GameObject obj = GetComponentInChildren<ItemUI>().gameObject;
         obj.transform.SetParent(InventorySys.Instance.transform);
-        Destroy(obj);
+        DestroyImmediate(obj);
     }
 
     /// <summary>
