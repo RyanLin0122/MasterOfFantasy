@@ -77,7 +77,14 @@ public class LoginWnd : WindowRoot
                     PlayerPrefs.SetString("Pass", pass);
 
                     //ask for login request
-                    LoginSender sender = new LoginSender(acct, pass, macs[0], GetPublicIpAddress());
+                    if (macs != null && macs.Count > 0)
+                    {
+                        LoginSender sender = new LoginSender(acct, pass, macs[0], GetPublicIpAddress());
+                    }
+                    else
+                    {
+                        LoginSender sender = new LoginSender(acct, pass, "NoMac", GetPublicIpAddress());
+                    }
                     GameRoot.Instance.Account = acct;
                     GameRoot.Instance.Password = pass;
                 }
@@ -86,7 +93,14 @@ public class LoginWnd : WindowRoot
                     PlayerPrefs.SetString("Acct", "");
                     PlayerPrefs.SetString("Pass", "");
 
-                    LoginSender sender = new LoginSender(acct, pass, macs[0], GetPublicIpAddress());
+                    if (macs != null && macs.Count > 0)
+                    {
+                        LoginSender sender = new LoginSender(acct, pass, macs[0], GetPublicIpAddress());
+                    }
+                    else
+                    {
+                        LoginSender sender = new LoginSender(acct, pass, "NoMac", GetPublicIpAddress());
+                    }
                     GameRoot.Instance.Account = acct;
                     GameRoot.Instance.Password = pass;
                 }
