@@ -8,12 +8,11 @@ public class PlayerController : EntityController
 {
     public ScreenController screenCtrl;
     public GameObject NameBox;
-    public GameObject ChatBox;
-    public Image ChatBoxImg;
-    public Text ChatBoxTxt;
     public Text TitleText;
     public Image HpBar;
     public Text GuildText;
+    public ChatBox ChatBox;
+    public GameObject ChatTxt;
     public Sprite[] DustSprites;
     public bool IsRun = false;
     void Awake()
@@ -85,16 +84,17 @@ public class PlayerController : EntityController
         yield return new WaitForSeconds(5);
         if (ChatBoxSeconds == 1)
         {
-            ChatBoxTxt.text = "";
-            ChatBox.SetActive(false);
+            ChatBox.gameObject.SetActive(false);
+            ChatTxt.gameObject.SetActive(false);
         }
         ChatBoxSeconds -= 1;
 
     }
     public void ShowChatBox(string txt)
     {
-        ChatBoxTxt.text = txt;
-        ChatBox.SetActive(true);
+        ChatTxt.gameObject.SetActive(true);
+        ChatBox.SetText(txt);
+        ChatBox.gameObject.SetActive(true);
         try
         {
             StartCoroutine(CloseChatBox());
@@ -103,12 +103,10 @@ public class PlayerController : EntityController
         {
             Debug.Log(e.ToString());
         }
-
     }
-    public void SetChatBoxSprite(Sprite sprite)
+    public void SetChatBoxSprite(int ChatBoxID)
     {
-        ChatBoxImg.sprite = sprite;
-
+        this.ChatBox.SetSprite(ChatBoxID);
     }
 
     public void SetNameBox(bool IsHighLight = false)
@@ -325,6 +323,9 @@ public class PlayerController : EntityController
                 HairFrontCtrl.LoadSprite(ResSvc.Instance.GetEquipSpritePath(id)[0]);
                 HairBackCtrl.LoadSprite(ResSvc.Instance.GetEquipSpritePath(id)[1]);
                 break;
+            case EquipmentType.ChatBox:
+                ChatBox.SetSprite(id);
+                break;
         }
         PlayIdle();
     }
@@ -353,7 +354,9 @@ public class PlayerController : EntityController
                 HairFrontCtrl.LoadDefaultSprite(Gender);
                 HairBackCtrl.LoadDefaultSprite(Gender);
                 break;
-
+            case EquipmentType.ChatBox:
+                ChatBox.SetSprite(0);
+                break;
         }
         PlayIdle();
     }
@@ -671,6 +674,7 @@ public class PlayerController : EntityController
         SetEquipment(pd, Gender, EquipmentType.Gloves);
         SetEquipment(pd, Gender, EquipmentType.HairStyle);
         SetFace(pd, Gender);
+        SetEquipment(pd, Gender, EquipmentType.ChatBox);
     }
     public void SetEquipment(PlayerEquipments pd, int Gender, EquipmentType Type)
     {
@@ -819,6 +823,12 @@ public class PlayerController : EntityController
                     ChangeDefaultEquipment(Gender, EquipmentType.HairStyle);
                     //顯示默認髮型
                 }
+                break;
+            case EquipmentType.ChatBox:
+                if (pd.F_ChatBox != null)
+                {
+                    ChatBox.SetSprite(pd.F_ChatBox.ItemID);
+                }               
                 break;
         }
     }

@@ -246,8 +246,12 @@ public class EquipmentWnd : Inventory, IStackWnd
             }
         }
         PlayerInputController.Instance.entityController.SetNameBox();
+        if (GameRoot.Instance.ActivePlayer.playerEquipments.F_ChatBox != null)
+        {
+            PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
+        }
         illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
-        if(equips!=null && equips.B_Weapon!=null) UpdateAttackRange(equips.B_Weapon);
+        if (equips != null && equips.B_Weapon != null) UpdateAttackRange(equips.B_Weapon);
     }
     public void PutOn(Item item)
     {
@@ -544,6 +548,10 @@ public class EquipmentWnd : Inventory, IStackWnd
             BattleSys.Instance.InitAllAtribute();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
             PlayerInputController.Instance.entityController.SetNameBox();
+            if (GameRoot.Instance.ActivePlayer.playerEquipments.F_ChatBox != null)
+            {
+                PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
+            }
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
         }
