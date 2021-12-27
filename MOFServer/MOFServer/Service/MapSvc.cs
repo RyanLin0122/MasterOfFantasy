@@ -58,13 +58,13 @@ public class MapSvc : Singleton<MapSvc>
     {
         foreach (var channel in Maps[0].Values)
         {
-            taskFactory.StartNew(()=> 
+            taskFactory.StartNew(() =>
             {
                 foreach (var map in channel.Values)
                 {
                     map.Update();
                 }
-            });                  
+            });
         }
     }
     private void LoadAllMaps()
@@ -91,6 +91,7 @@ public class MapSvc : Singleton<MapSvc>
             }
             int ID = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
             float[] playerBornPos = new float[] { 0, 0 };
+            float[] MonsterRegion = new float[] { 0, 0, 0, 0 };
             bool IsVillage = false, Islimited = false; bool IsIndoor = false;
             string mapName = "", Location = "", SceneName = "";
             int monsternum = 0, recoverytime = 0;
@@ -159,7 +160,6 @@ public class MapSvc : Singleton<MapSvc>
                     case "BornTime":
                         {
                             recoverytime = Convert.ToInt32(e.InnerText);
-
                         }
                         break;
                     case "MonsterPoints":
@@ -168,17 +168,22 @@ public class MapSvc : Singleton<MapSvc>
                         {
                             string[] t1 = total[j].Split(new char[] { '#' });
                             int MonID = Convert.ToInt32(t1[0]);
-                            MonsterPoint p = new MonsterPoint { 
-                                MonsterID = MonID, 
-                                 };
+                            MonsterPoint p = new MonsterPoint
+                            {
+                                MonsterID = MonID,
+                            };
                             string[] t2 = t1[1].Split(new char[] { ',' });
                             p.InitialPos = new float[] { (float)Convert.ToDouble(t2[0]), (float)Convert.ToDouble(t2[1]) };
                             Points.TryAdd(j, p);
                         }
                         break;
+                    case "MonsterRegion":
+                        string[] regionArr = e.InnerText.Split(',');
+                        MonsterRegion = new float[] { float.Parse(regionArr[0]), float.Parse(regionArr[1]), float.Parse(regionArr[2]), float.Parse(regionArr[3]) };
+                        break;
                 }
             }
-            MOFMap map = new MOFMap(ID, Channel, 1000, recoverytime, mapName, Location, SceneName, playerBornPos, Islimited, IsVillage, IsIndoor, monsternum, Points);
+            MOFMap map = new MOFMap(ID, Channel, 1000, recoverytime, mapName, Location, SceneName, playerBornPos, Islimited, IsVillage, IsIndoor, monsternum, Points, MonsterRegion);
             Result.Add(ID, map);
         }
         return Result;

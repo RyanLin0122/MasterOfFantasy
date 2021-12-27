@@ -15,7 +15,8 @@ public class MOFMap
     public ConcurrentDictionary<string, MOFCharacter> characters = new ConcurrentDictionary<string, MOFCharacter>();
     public float monsternum, recoveryTime;
     private byte channel;
-    public float[] playerBornPos, TransferPosL, TransferPosR;
+    public float[] playerBornPos;
+    public float[] MonsterRegion;
     public int returnMapId, mapid;
     public bool IsVillage, Islimited, IsIndoor, clock, personalShop, dropsDisabled = false;
     public string mapName, Location, SceneName = "";
@@ -27,7 +28,7 @@ public class MOFMap
     public MOFMap(int mapid, int channel, int returnMapId,
         float recoveryTime, string mapName, string Location, string SceneName,
         float[] PlayerBornPos, bool Islimited,
-        bool IsVillage, bool IsIndoor, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points)
+        bool IsVillage, bool IsIndoor, int MonsterMax, ConcurrentDictionary<int, MonsterPoint> points, float[] MonsterRegion)
     {
         this.mapid = mapid;
         this.channel = (byte)channel;
@@ -44,6 +45,7 @@ public class MOFMap
         this.MonsterPoints = points;
         this.Battle = new Battle(this);
         this.Monsters = new ConcurrentDictionary<int, AbstractMonster>();
+        this.MonsterRegion = MonsterRegion;
     }
 
     #region 新增移除人物相關
@@ -546,6 +548,7 @@ public class MOFMap
                             MonsterPositions.Add(MonsterSpawnUUID, pos);
                             MonsterIds.Add(MonsterSpawnUUID, MonsterPoints[i].MonsterID);
                             Monsters.TryAdd(monster.nEntity.Id, monster);
+                            this.Battle.JoinBattle(monster);
                             Counter++;
                         }
                     }

@@ -1087,6 +1087,10 @@ public static class Utility
     #endregion
 
     #region Extension
+    public static float Clamp(float value, float min, float max)
+    {
+        return value >= max ? max : (value <= min ? min : value);
+    }
     public static void Remove<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> self, TKey key) where TValue : class
     {
         TValue value = null;

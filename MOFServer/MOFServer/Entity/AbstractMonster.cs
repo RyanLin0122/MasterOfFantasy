@@ -207,10 +207,10 @@ public class AbstractMonster : Entity
             if (status == MonsterStatus.Moving)
             {
                 status = MonsterStatus.Moving;
-                if (this.Distance(this.moveTarget) < 50)
-                {
-                    this.StopMove();
-                }
+                //if (this.Distance(this.moveTarget) < 10)
+                //{
+                //    this.StopMove();
+                //}
                 if (this.nEntity.Speed > 0)
                 {
                     float Z = this.nEntity.Position.Z;
@@ -232,6 +232,7 @@ public class AbstractMonster : Entity
         this.nEntity.Speed = 0;
         this.mofMap.StopMonsters.Add(this.nEntity);
     }
+
 
     public void FreezeMonster()
     {

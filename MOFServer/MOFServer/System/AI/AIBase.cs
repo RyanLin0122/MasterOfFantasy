@@ -33,6 +33,11 @@ public class AIBase
         if (IsHurtValid)
         {
             this.Owner.StopMove();
+            if (this.IsWander)
+            {
+                this.IsWander = false;
+            }
+            this.Owner.entityStatus = EntityStatus.InBattle;
             IsHurtAni = true;
             var Ani = this.Owner.Info.MonsterAniDic[MonsterAniType.Hurt];
             TimerSvc.Instance.AddTimeTask((t) => { IsHurtAni = false; }, Ani.AnimSprite.Count / Ani.AnimSpeed, PETimeUnit.Second);
@@ -41,6 +46,10 @@ public class AIBase
 
     internal void Update()
     {
+        if(this.Owner.entityStatus == EntityStatus.Idle)
+        {
+            this.CheckWander();
+        }
         if (this.Owner.entityStatus == EntityStatus.InBattle)
         {
             this.UpdateBattle();
@@ -55,6 +64,12 @@ public class AIBase
                 this.Owner.entityStatus = EntityStatus.Idle;
                 return;
             }
+            if(this.Target.mofMap != this.Owner.mofMap)
+            {
+                this.Target = null;
+                this.Owner.entityStatus = EntityStatus.Idle;
+                return;
+            }
             if (this.Target.status == PlayerStatus.Death)
             {
                 this.Owner.entityStatus = EntityStatus.Idle;
@@ -62,26 +77,30 @@ public class AIBase
             }
             if (IsAttackAni || IsHurtAni) return;
             if (this.Owner.status == MonsterStatus.Frozen || this.Owner.status == MonsterStatus.Faint) return;
-            if (!TryCastSkill())
+            if (this.Target != null)
             {
-                if (!TryCastNormal())
+                if (!TryCastSkill())
                 {
-                    FollowTarget();
+                    if (!TryCastNormal())
+                    {
+                        FollowTarget();
+                    }
+                    else
+                    {
+                        StartAttackAni();
+                    }
                 }
                 else
                 {
                     StartAttackAni();
                 }
             }
-            else
-            {
-                StartAttackAni();
-            }
+            
         }
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }        
+        }
     }
 
     private bool TryCastSkill()
@@ -117,7 +136,7 @@ public class AIBase
             {
                 LogSvc.Error(e);
             }
-            
+
         }
         return false;
     }
@@ -158,7 +177,7 @@ public class AIBase
             {
                 LogSvc.Error(e);
             }
-            
+
         }
         return false;
     }
@@ -181,5 +200,63 @@ public class AIBase
         var Ani = this.Owner.Info.MonsterAniDic[MonsterAniType.Attack];
         TimerSvc.Instance.AddTimeTask((t) => { IsAttackAni = false; }, Ani.AnimSprite.Count / Ani.AnimSpeed, PETimeUnit.Second);
     }
+
+
+    public bool IsWander;
+    public float MaxWanderDistance = 900f;
+    public NVector3 WanderDestination = null;
+    protected virtual void TryWander()
+    {
+        if (IsWander || IsAttackAni || IsHurtAni || !(this.Owner.status == MonsterStatus.Normal) || this.Owner.entityStatus == EntityStatus.InBattle) return;
+        double prob = RandomSys.Instance.NextDouble();
+        if (prob < 0.02)
+        {
+            StartWander();
+        }
+    }
+
+    protected virtual void StartWander()
+    {
+        float[] Boundary = this.Owner.mofMap.MonsterRegion;
+        if (Boundary != null && Boundary.Length > 0 && Boundary[0] != 0)
+        {
+            this.IsWander = true;
+            double wanderDistance = MaxWanderDistance * RandomSys.Instance.NextDouble();
+            double Angle = 2 * Math.PI * RandomSys.Instance.NextDouble();
+            NVector3 destination = this.Owner.nEntity.Position + new NVector3((float)(wanderDistance * Math.Cos(Angle)), (float)(wanderDistance * Math.Sin(Angle)), 0);
+            destination.X = Utility.Clamp(destination.X, Boundary[2], Boundary[3]);
+            destination.Y = Utility.Clamp(destination.Y, Boundary[1], Boundary[0]);
+            this.WanderDestination = destination;
+            this.Owner.MoveTo(destination);
+        }
+    }
+
+    protected virtual void CheckWander()
+    {
+        if (this.IsWander)
+        {
+            var distance = this.Owner.Distance(this.WanderDestination);
+            if (distance > 10)
+            {
+                this.Owner.MoveTo(this.WanderDestination);
+            }
+            else
+            {
+                this.CancelWander();
+            }
+        }
+        else
+        {
+            TryWander();
+        }
+    }
+    protected virtual void CancelWander()
+    {
+        this.IsWander = false;
+        this.Owner.StopMove();
+        this.Owner.entityStatus = EntityStatus.Idle;
+    }
+
+
 }
 
