@@ -27,7 +27,7 @@ public class Bullet
         this.hitInfo = hitInfo;
         this.active = active;
         this.speed = active.BulletSpeed;
-        double distance = skill.Owner.Distance(target.nEntity.Position);
+        double distance = skill.Owner.DistanceOfEntity(target);
         if (TimeMode)
         {
             duration = (float)distance / active.BulletSpeed;
@@ -56,7 +56,7 @@ public class Bullet
     public void UpdatePos()
     {
         float radius = 50;
-        double distance = skill.Owner.Distance(target.nEntity.Position);
+        double distance = skill.Owner.DistanceOfEntity(target);
         if (distance > radius)
         {
             float delta = speed * Time.deltaTime;

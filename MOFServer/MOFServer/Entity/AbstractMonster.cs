@@ -50,7 +50,7 @@ public class AbstractMonster : Entity
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     public override void DoDamage(DamageInfo damage, string CasterName = "")
     {
@@ -81,7 +81,7 @@ public class AbstractMonster : Entity
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     private void Ondamage(DamageInfo damage, MOFCharacter source)
     {
@@ -117,7 +117,7 @@ public class AbstractMonster : Entity
             IsSetup = false,
             IsStun = false,
             Buff = -1,
-            Range = new float[] { 0, 100, 90 },
+            Range = new float[] { 0, 0.5f * this.Radius, 90 },
             Sound = null,
             AniOffset = null,
             Action = PlayerAniType.None,
@@ -166,6 +166,7 @@ public class AbstractMonster : Entity
         return cancast;
     }
 
+    public NVector3 MoveDestination = null;
     internal void MoveTo(NVector3 position)
     {
         if (Info == null) return;
@@ -173,9 +174,29 @@ public class AbstractMonster : Entity
         {
             status = MonsterStatus.Moving;
         }
-        this.moveTarget = position;
-        var dist = this.moveTarget - this.nEntity.Position;
+        this.MoveDestination = position;
+        var dist = this.MoveDestination - this.nEntity.Position;
         this.nEntity.Direction = dist.normalized;
+        this.nEntity.Speed = Info.Speed;
+        if (nEntity.Direction.X > 0)
+        {
+            this.nEntity.FaceDirection = true;
+        }
+        else
+        {
+            this.nEntity.FaceDirection = false;
+        }
+    }
+    internal void MoveTo(Entity entity)
+    {
+        if (Info == null) return;
+        if (status == MonsterStatus.Normal)
+        {
+            status = MonsterStatus.Moving;
+        }
+        this.moveTarget = entity;
+        var dist = this.DistanceOfEntity(entity);
+        this.nEntity.Direction = (this.moveTarget.nEntity.Position - this.nEntity.Position).normalized;
         this.nEntity.Speed = Info.Speed;
         if (nEntity.Direction.X > 0)
         {
@@ -197,9 +218,9 @@ public class AbstractMonster : Entity
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
-    public NVector3 moveTarget;
+    public Entity moveTarget;
     private void UpdateMovement()
     {
         try
@@ -222,13 +243,14 @@ public class AbstractMonster : Entity
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
 
     internal void StopMove()
     {
         status = MonsterStatus.Normal;
-        this.moveTarget = NVector3.zero;
+        this.MoveDestination = null;
+        this.moveTarget = null;
         this.nEntity.Speed = 0;
         this.mofMap.StopMonsters.Add(this.nEntity);
     }

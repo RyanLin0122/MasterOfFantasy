@@ -115,6 +115,8 @@ namespace PEProtocal
         public string AttackSound { get; set; }
         public string DeathSound { get; set; }
         public string Description { get; set; }
+        public bool IsFly { get; set; }
+        public float Radius { get; set; }
     }
     public class MonsterAnimation
     {

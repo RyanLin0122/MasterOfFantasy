@@ -621,6 +621,7 @@ public class MOFCharacter : Entity
             InitSkill();
             InitBuffs();
             InitAllAtribute();
+            this.Radius = 21.2f;
             this.CharacterName = player.Name;
             this.nEntity = new NEntity
             {

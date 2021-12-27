@@ -20,7 +20,7 @@ public class ChatBox : MonoBehaviour
         float Y_Scale = (this.Img.sprite.rect.height + border[1] + border[3]) / this.Img.sprite.rect.height;
         //Debug.Log("Y_Scale: " + Y_Scale);
 
-        this.Img.rectTransform.sizeDelta = 11f / 3 * new Vector2(this.text.rectTransform.rect.width * X_Scale, this.text.rectTransform.rect.height * Y_Scale);
+        this.Img.rectTransform.sizeDelta = 10f/3* new Vector2(this.text.rectTransform.rect.width * X_Scale, this.text.rectTransform.rect.height * Y_Scale);
         this.Img.transform.position = this.text.transform.position;
     }
     public void SetSprite(int ChatBoxID)

@@ -46,7 +46,7 @@ public class AIBase
 
     internal void Update()
     {
-        if(this.Owner.entityStatus == EntityStatus.Idle)
+        if (this.Owner.entityStatus == EntityStatus.Idle)
         {
             this.CheckWander();
         }
@@ -64,7 +64,7 @@ public class AIBase
                 this.Owner.entityStatus = EntityStatus.Idle;
                 return;
             }
-            if(this.Target.mofMap != this.Owner.mofMap)
+            if (this.Target.mofMap != this.Owner.mofMap)
             {
                 this.Target = null;
                 this.Owner.entityStatus = EntityStatus.Idle;
@@ -95,7 +95,7 @@ public class AIBase
                     StartAttackAni();
                 }
             }
-            
+
         }
         catch (Exception e)
         {
@@ -183,10 +183,14 @@ public class AIBase
     }
     private void FollowTarget()
     {
-        var distance = this.Owner.Distance(this.Target.nEntity.Position);
-        if (distance > ((ActiveSkillInfo)normalSkill.Info).Range[1] - 30)
+        LogSvc.Debug("Monster: " + this.Owner.nEntity.Position.X + " " + this.Owner.nEntity.Position.Y + " Radius: " + this.Owner.Radius);
+        LogSvc.Debug("Target: " + this.Target.nEntity.Position.X + " " + this.Target.nEntity.Position.Y + " Radius: " + this.Target.Radius);
+        var distance = this.Owner.DistanceOfEntity(this.Target);
+        LogSvc.Debug(distance.ToString());
+        LogSvc.Debug("Attack Range: " + (normalSkill.Info as ActiveSkillInfo).Range[1].ToString());
+        if (distance > ((normalSkill.Info as ActiveSkillInfo).Range[1] - 5))
         {
-            this.Owner.MoveTo(this.Target.nEntity.Position);
+            this.Owner.MoveTo(this.Target);
         }
         else
         {
@@ -236,7 +240,7 @@ public class AIBase
         if (this.IsWander)
         {
             var distance = this.Owner.Distance(this.WanderDestination);
-            if (distance > 10)
+            if (distance > 1)
             {
                 this.Owner.MoveTo(this.WanderDestination);
             }

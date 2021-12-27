@@ -363,6 +363,8 @@ public class CacheSvc
                 string AttackSound = jo["AttackSound"].str;
                 string DeathSound = jo["DeathSound"].str;
                 float speed = jo["Speed"].n;
+                float Radius = (float)(jo["FloatRadius"].n);
+                bool IsFly = jo["IsFly"].b;
                 Dictionary<int, float> DropItems = new Dictionary<int, float>();
                 string drop = jo["Drop"].str;
                 string[] drops = drop.Split(new char[] { '_' });
@@ -418,7 +420,9 @@ public class CacheSvc
                     MonsterAniDic = AnimationDic,
                     AttackSound = AttackSound,
                     DeathSound = DeathSound,
-                    Speed = speed
+                    Speed = speed,
+                    IsFly = IsFly,
+                    Radius = Radius
                 };
                 MonsterInfoDic.Add(monsterID, info);
             }

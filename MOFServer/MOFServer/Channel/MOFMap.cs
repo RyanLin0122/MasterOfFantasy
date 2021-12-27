@@ -124,7 +124,7 @@ public class MOFMap
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     public void DoToOtherMapReq(ProtoMsg msg, ServerSession session)
     {
@@ -184,7 +184,7 @@ public class MOFMap
             {
                 LogSvc.Error(e);
             }
-            
+
         }
     }
 
@@ -372,7 +372,7 @@ public class MOFMap
             catch (Exception e)
             {
                 LogSvc.Error(e);
-            }            
+            }
         }
     }
     //收到同步請求
@@ -404,7 +404,7 @@ public class MOFMap
         {
             LogSvc.Error(e);
         }
-        
+
     }
     private void SendEntityUpdate(ProtoMsg msg)
     {
@@ -456,7 +456,7 @@ public class MOFMap
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }      
+        }
     }
     public bool IsStop = true;
     public void MapStart()
@@ -542,9 +542,10 @@ public class MOFMap
                             monster.MonsterPoint = MonsterPoints[i];
                             monster.MonsterID = MonsterPoints[i].MonsterID;
                             monster.Info = info;
+                            monster.Radius = info.Radius * 18;
                             monster.InitSkill();
                             monster.InitBuffs();
-                            monster.mofMap = this;
+                            monster.mofMap = this;                            
                             MonsterPositions.Add(MonsterSpawnUUID, pos);
                             MonsterIds.Add(MonsterSpawnUUID, MonsterPoints[i].MonsterID);
                             Monsters.TryAdd(monster.nEntity.Id, monster);
@@ -571,7 +572,7 @@ public class MOFMap
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }      
+        }
     }
 
     #endregion
@@ -643,7 +644,7 @@ public class MOFMap
         {
             LogSvc.Error(e);
         }
-        
+
     }
     public void UpdateDropItems()
     {
@@ -671,7 +672,7 @@ public class MOFMap
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }        
+        }
     }
     public SerializedMonster MonsterPointToSerielizedMonster(MonsterPoint point)
     {
@@ -696,7 +697,7 @@ public class MOFMap
         {
             LogSvc.Error(e);
         }
-        return null;      
+        return null;
     }
     #endregion
 
@@ -727,7 +728,7 @@ public class MOFMap
         catch (Exception e)
         {
             LogSvc.Error(e);
-        }        
+        }
     }
 
     public WeatherType weather = WeatherType.Normal;

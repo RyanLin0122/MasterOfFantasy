@@ -92,7 +92,7 @@ public class Skill
         if (!active.IsMultiple && !active.IsAOE) //單一敵人，且不是AOE
         {
             if (context.Target == null || context.Target.Count == 0) return SkillResult.TargetInvalid;
-            if (!CheckRange(active.Shape, active.Range, ((Entity)Owner).nEntity.Position, ((Entity)context.Target[0]).nEntity.Position))
+            if (!CheckRange(active.Shape, active.Range, (Owner as Entity), context.Target[0] as Entity))
             {
                 return SkillResult.OutOfRange;
             }
@@ -369,7 +369,7 @@ public class Skill
         }
     }
     //判斷敵人是否在技能有效範圍內
-    public bool CheckRange(SkillRangeShape Shape, float[] Range, NVector3 CasterPosition, NVector3 TargetPosition)
+    public bool CheckRange(SkillRangeShape Shape, float[] Range, Entity Caster, Entity Target)
     {
         bool FaceDir = this.Owner.nEntity.FaceDirection;
         NVector3 EntityPos = new NVector3(this.Owner.nEntity.Position.X, this.Owner.nEntity.Position.Y, this.Owner.nEntity.Position.Z);
@@ -386,39 +386,39 @@ public class Skill
                 {
                     EntityPos.X -= Range[0];
                 }
-                float radius = (TargetPosition - EntityPos).magnitude;
+                double radius = Caster.DistanceOfEntity(Target);
                 if (radius > Range[1]) return false;
                 return true;
             case SkillRangeShape.Rect:
                 if (FaceDir)
                 {
                     EntityPos.X += Range[0];
-                    if (TargetPosition.X < EntityPos.X) return false;
-                    NVector3 Distance = TargetPosition - EntityPos;
-                    if (Distance.magnitude > Range[1]) return false;
+                    if (Target.nEntity.Position.X < EntityPos.X) return false;
+                    double Distance = Caster.DistanceOfEntity(Target);
+                    if (Distance > Range[1]) return false;
                 }
                 else
                 {
                     EntityPos.X -= Range[0];
-                    if (TargetPosition.X > EntityPos.X) return false;
-                    NVector3 Distance = TargetPosition - EntityPos;
-                    if (Distance.magnitude > Range[1]) return false;
+                    if (Target.nEntity.Position.X > EntityPos.X) return false;
+                    double Distance = Caster.DistanceOfEntity(Target);
+                    if (Distance > Range[1]) return false;
                 }
                 return true;
             case SkillRangeShape.Sector:
                 if (FaceDir)
                 {
                     EntityPos.X += Range[0];
-                    if (TargetPosition.X < EntityPos.X) return false;
-                    NVector3 Distance = TargetPosition - EntityPos;
-                    if (Distance.magnitude > Range[1]) return false;
+                    if (Target.nEntity.Position.X < EntityPos.X) return false;
+                    double Distance = Caster.DistanceOfEntity(Target);
+                    if (Distance > Range[1]) return false;
                 }
                 else
                 {
                     EntityPos.X -= Range[0];
-                    if (TargetPosition.X > EntityPos.X) return false;
-                    NVector3 Distance = TargetPosition - EntityPos;
-                    if (Distance.magnitude > Range[1]) return false;
+                    if (Target.nEntity.Position.X > EntityPos.X) return false;
+                    double Distance = Caster.DistanceOfEntity(Target);
+                    if (Distance > Range[1]) return false;
                 }
                 return true;
             default:

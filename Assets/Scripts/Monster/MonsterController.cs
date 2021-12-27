@@ -240,8 +240,8 @@ public class MonsterController : EntityController
             case EntityEvent.None:
                 break;
             case EntityEvent.Idle:
-                IsMoving = false;
-                this.rb.velocity = Vector2.zero;
+                //IsMoving = false;
+                //this.rb.velocity = Vector2.zero;
                 if(!IsFrozen) PlayAni(MonsterAniType.Idle, true);
                 break;
             case EntityEvent.Move:
@@ -282,7 +282,8 @@ public class MonsterController : EntityController
                     else
                     {
                         this.rb.velocity = entity.nEntity.Speed * dirUnit;
-                        SetFaceDirection(this.rb.velocity.x > 0);
+                        //SetFaceDirection(this.rb.velocity.x > 0);
+                        SetFaceDirection(entity.nEntity.FaceDirection);
                     }
 
                 }

@@ -19,6 +19,7 @@ public class Entity : IEntity
     public EffectManager effectManager;
     public MOFMap mofMap;
     public NEntity nEntity;
+    public float Radius;
     public EntityStatus entityStatus = EntityStatus.Idle;
     public virtual void Update()
     {
@@ -27,7 +28,7 @@ public class Entity : IEntity
     }
     public virtual void InitSkill()
     {
-        skillManager = new SkillManager(this);       
+        skillManager = new SkillManager(this);
     }
     public void InitBuffs()
     {
@@ -66,7 +67,12 @@ public class Entity : IEntity
     }
     internal double Distance(NVector3 pos)
     {
-        return Math.Sqrt(Math.Pow(this.nEntity.Position.X - pos.X, 2) + Math.Pow(this.nEntity.Position.Y - pos.Y, 2));
+        return Math.Sqrt(Math.Pow(this.nEntity.Position.X - pos.X, 2) + Math.Pow(this.nEntity.Position.Y - pos.Y, 2)) - this.Radius;
+    }
+
+    internal double DistanceOfEntity(Entity entity)
+    {
+        return Math.Sqrt(Math.Pow(this.nEntity.Position.X - entity.nEntity.Position.X, 2) + Math.Pow(this.nEntity.Position.Y - entity.nEntity.Position.Y, 2)) - this.Radius - entity.Radius;
     }
 
     public virtual void AddBuff(BattleContext context, BuffDefine buffDefine)
