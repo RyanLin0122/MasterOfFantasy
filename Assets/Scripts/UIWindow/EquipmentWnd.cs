@@ -548,10 +548,7 @@ public class EquipmentWnd : Inventory, IStackWnd
             BattleSys.Instance.InitAllAtribute();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
             PlayerInputController.Instance.entityController.SetNameBox();
-            if (GameRoot.Instance.ActivePlayer.playerEquipments.F_ChatBox != null)
-            {
-                PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
-            }
+            PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
         }

@@ -43,7 +43,8 @@ public class PlayerController : EntityController
             transform.localScale = new Vector3(1, 1, 1);
             DamageContainer.transform.localScale = new Vector3(Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
             NameBox.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
-            ChatBox.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
+            ChatBox.transform.localScale = new Vector3(0.3f * transform.localScale.x, 0.3f, 1);
+            ChatTxt.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
             Shadow.localScale = new Vector3(100 * transform.localScale.x, 100, 1);
             HpBar.transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
             TitleText.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
@@ -54,7 +55,8 @@ public class PlayerController : EntityController
             transform.localScale = new Vector3(-1, 1, 1);
             DamageContainer.transform.localScale = new Vector3(-Mathf.Abs(DamageContainer.transform.localScale.x), DamageContainer.transform.localScale.y, DamageContainer.transform.localScale.z);
             NameBox.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
-            ChatBox.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
+            ChatBox.transform.localScale = new Vector3(0.3f * transform.localScale.x, 0.3f, 1);
+            ChatTxt.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
             Shadow.localScale = new Vector3(100 * transform.localScale.x, 100, 1);
             HpBar.transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
             TitleText.transform.localScale = new Vector3(transform.localScale.x, 1, 1);
@@ -828,7 +830,11 @@ public class PlayerController : EntityController
                 if (pd.F_ChatBox != null)
                 {
                     ChatBox.SetSprite(pd.F_ChatBox.ItemID);
-                }               
+                }
+                else
+                {
+                    ChatBox.SetSprite(0);
+                }
                 break;
         }
     }

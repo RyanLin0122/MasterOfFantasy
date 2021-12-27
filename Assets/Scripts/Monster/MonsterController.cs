@@ -369,7 +369,6 @@ public class MonsterController : EntityController
         {
             return;
         }
-        Debug.Log("ID: "+entity.nEntity.Id + " , Play: "+ type.ToString());
         IsLoop = isloop;
         if (!IsFrozen)
         {

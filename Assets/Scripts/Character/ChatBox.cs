@@ -6,6 +6,7 @@ public class ChatBox : MonoBehaviour
 {
     public Text text;
     public Image Img;
+    private Vector2 OriginalPos = new Vector2(0, 21.56f);
     public void SetText(string str)
     {
         this.text.text = str;
@@ -16,11 +17,23 @@ public class ChatBox : MonoBehaviour
         //Debug.Log("SpriteWidth:" + this.Img.sprite.rect.width);
         float X_Scale = (this.Img.sprite.rect.width + border[0] + border[2]) / this.Img.sprite.rect.width;
         //Debug.Log("X_Scale: " + X_Scale);
-        
+
         float Y_Scale = (this.Img.sprite.rect.height + border[1] + border[3]) / this.Img.sprite.rect.height;
         //Debug.Log("Y_Scale: " + Y_Scale);
 
-        this.Img.rectTransform.sizeDelta = 10f/3* new Vector2(this.text.rectTransform.rect.width * X_Scale, this.text.rectTransform.rect.height * Y_Scale);
+        this.Img.rectTransform.sizeDelta = new Vector2(4 * this.text.rectTransform.rect.width * X_Scale, 4.5f * this.text.rectTransform.rect.height * Y_Scale);
+        if (this.text.rectTransform.rect.height > 25 && this.text.rectTransform.rect.height < 40)
+        {
+            this.text.transform.localPosition = OriginalPos + new Vector2(0, 17);
+        }
+        else if (this.text.rectTransform.rect.height >= 40)
+        {
+            this.text.transform.localPosition = OriginalPos + new Vector2(0, 40);
+        }
+        else
+        {
+            this.text.transform.localPosition = OriginalPos;
+        }
         this.Img.transform.position = this.text.transform.position;
     }
     public void SetSprite(int ChatBoxID)
