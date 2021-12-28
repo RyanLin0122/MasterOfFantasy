@@ -245,9 +245,16 @@ public class MonsterController : EntityController
                 //this.rb.velocity = Vector2.zero;
                 if (!IsFrozen) 
                 {
-                    if(FrameIndex >= AnimLength)
+                    if(Type == MonsterAniType.Walk)
                     {
                         PlayAni(MonsterAniType.Idle, true);
+                    }
+                    else
+                    {
+                        if (FrameIndex >= AnimLength)
+                        {
+                            PlayAni(MonsterAniType.Idle, true);
+                        }
                     }
                 }
                 break;
