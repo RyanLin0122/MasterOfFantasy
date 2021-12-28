@@ -21,7 +21,7 @@ public class OtherInfoHandler : GameHandler
             {
                 if(character!=null && character.player != null)
                 {
-                    var player = session.ActivePlayer;
+                    var player = character.player;
                     pr.Name = player.Name;
                     pr.Job = player.Job;
                     pr.CurrentBadge = player.CurrentBadge;

@@ -36,7 +36,7 @@ public class OtherProfileWnd : MonoSingleton<OtherProfileWnd>
         if (otherProfile != null)
         {
             NameTxt.text = otherProfile.Name;
-            JobTxt.text = otherProfile.Job.ToString();
+            JobTxt.text = Constants.SetJobName(otherProfile.Job);
             LevelTxt.text = otherProfile.Level.ToString();
             GradeTxt.text = otherProfile.Grade.ToString();
             TitleTxt.text = otherProfile.Title;
