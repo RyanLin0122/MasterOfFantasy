@@ -193,7 +193,7 @@ public class Skill
                 if (this.SkillTime >= active.ContiDurations[this.Level - 1])
                 {
                     this.status = SkillStatus.None;
-                    LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
+                    //LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
                 }
             }
             else if (active.IsDOT || active.IsShoot)
@@ -203,7 +203,7 @@ public class Skill
                 {
                     if (this.SkillTime > active.HitTimes[this.Hit])
                     {
-                        Console.WriteLine("[188] Hit = " + Hit);
+                        //Console.WriteLine("[188] Hit = " + Hit);
                         this.DoHit();
                     }
                 }
@@ -212,7 +212,7 @@ public class Skill
                     if (!active.IsShoot)
                     {
                         this.status = SkillStatus.None;
-                        LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
+                        //LogSvc.Info("Skill[" + active.SkillName + "].UpdateSkill Finish");
                     }
                 }
             }
@@ -229,7 +229,7 @@ public class Skill
                     if (finish && this.Hit >= active.HitTimes.Count)
                     {
                         this.status = SkillStatus.None;
-                        LogSvc.Info("子彈技能刷新完畢");
+                        //LogSvc.Info("子彈技能刷新完畢");
                     }
                 }
             }
@@ -432,10 +432,10 @@ public class Skill
         DamageInfo result = null;
         if (Target != null)
         {
-            if (skillCast.CasterType == SkillCasterType.Player)
+            if (skillCast.CasterType == SkillCasterType.Player)//玩家釋放技能
             {
                 bool IsCtrt = IsCrit((this.Owner as MOFCharacter).FinalAttribute.Critical);
-                if (Target is MOFCharacter)
+                if (Target is MOFCharacter) //玩家打玩家
                 {
                     MOFCharacter target = Target as MOFCharacter;
                     DamageInfo damage = new DamageInfo
@@ -450,13 +450,15 @@ public class Skill
                     };
                     result = damage;
                 }
-                else
+                else //玩家打怪物
                 {
                     AbstractMonster Monster = Target as AbstractMonster;
+                    bool IsTurtle = false;
+                    if (Monster.Info.MonsterID < 0) IsTurtle = true;
                     DamageInfo damage = new DamageInfo
                     {
                         EntityID = Target.nEntity.Id,
-                        Damage = CalculateDamage(true, IsCtrt, Monster.Info.Level, Monster.Info.Avoid, null),
+                        Damage = CalculateDamage(true, IsCtrt, Monster.Info.Level, Monster.Info.Avoid, null, IsTurtle),
                         will_Dead = false,
                         IsMonster = true,
                         IsCritical = IsCtrt,
@@ -464,7 +466,7 @@ public class Skill
                     };
                     result = damage;
                 }
-            } //玩家釋放技能
+            } 
             else //怪物釋放技能
             {
                 MOFCharacter targetPlayer = (Target as MOFCharacter);
@@ -484,7 +486,7 @@ public class Skill
         }
         return result;
     }
-    public int[] CalculateDamage(bool IsPlayer, bool IsCritical, int TargetLevel, float TargetAvoid, PlayerAttribute Final)
+    public int[] CalculateDamage(bool IsPlayer, bool IsCritical, int TargetLevel, float TargetAvoid, PlayerAttribute Final, bool IsTurtle = false)
     {
         ActiveSkillInfo active = Info as ActiveSkillInfo;
         int Times = active.Times[this.Level - 1];
@@ -514,7 +516,14 @@ public class Skill
                         }
 
                         //根據玩家現在的數值計算傷害
-                        Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
+                        if (!IsTurtle)
+                        {
+                            Damages[i] = (int)(d_AfterCritical * active.Damage[this.Level - 1]);
+                        }
+                        else
+                        {
+                            Damages[i] = 1;
+                        }
                     }
                     return Damages;
                 }

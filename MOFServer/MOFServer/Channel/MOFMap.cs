@@ -21,7 +21,7 @@ public class MOFMap
     public bool IsVillage, Islimited, IsIndoor, clock, personalShop, dropsDisabled = false;
     public string mapName, Location, SceneName = "";
     private static readonly string obj = "lock";
-
+    private bool IsNewMap = true;
     public ConcurrentDictionary<int, MonsterPoint> MonsterPoints;
     public ConcurrentDictionary<int, AbstractMonster> Monsters;
     public Battle Battle;
@@ -55,6 +55,8 @@ public class MOFMap
     {
         try
         {
+            this.ClearTimer = 0;
+            this.IsNewMap = false;
             BsonArray ba = CacheSvc.Instance.AccountTempData[session.Account]["Players"] as BsonArray;
             BsonDocument pd;
             for (int i = 0; i < ba.Count; i++)
@@ -132,6 +134,8 @@ public class MOFMap
         {
             try
             {
+                this.ClearTimer = 0;
+                this.IsNewMap = false;
                 string CharacterName = msg.toOtherMapReq.CharacterName;
                 MOFMap LastMap = MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][msg.toOtherMapReq.LastMapID];
                 characters.TryAdd(CharacterName, LastMap.characters[CharacterName]);
@@ -192,6 +196,8 @@ public class MOFMap
     {
         try
         {
+            this.ClearTimer = 0;
+            this.IsNewMap = false;
             string CharacterName = character.player.Name;
             var Position = new float[] { character.nEntity.Position.X, character.nEntity.Position.Y };
             characters.TryAdd(CharacterName, character);
@@ -462,6 +468,8 @@ public class MOFMap
     public void MapStart()
     {
         IsStop = false;
+        this.IsNewMap = false;
+        this.ClearTimer = 0;
     }
     public void MapStop()
     {
@@ -589,6 +597,11 @@ public class MOFMap
             SyncMapUpdate();
         }
         UpdateDropItems();
+        if(this.characters.Count == 0 && !IsNewMap)
+        {
+            ClearTimer += Time.deltaTime;
+            CheckClearMap();
+        }
     }
     public ConcurrentDictionary<int, DropItem> AllDropItems = new ConcurrentDictionary<int, DropItem>();
     public int DropItemUUID = 0;
@@ -788,5 +801,27 @@ public class MOFMap
         }
     }
 
+
+    #region 地圖自動清理
+    private float ClearTimer = 0;
+    private void CheckClearMap()
+    {
+        if (this.characters.Count == 0 && ClearTimer > 900)
+        {
+            LogSvc.Info("時間到，清空地圖: " + this.mapid);
+            this.AllDropItems.Clear();
+            if(this.MonsterPoints!=null && this.MonsterPoints.Count > 0)
+            {
+                foreach (var kv in this.MonsterPoints)
+                {
+                    kv.Value.monster = null;
+                }
+                this.Monsters.Clear();
+                this.Battle.Init();
+            }
+            this.ClearTimer = 0;
+        }
+    }
+    #endregion
 }
 

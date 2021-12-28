@@ -220,7 +220,8 @@ public class MonsterController : EntityController
             case SkillProperty.Ice:
                 IsFrozen = true;
                 PlayAni(MonsterAniType.Frozen, false);
-                TimerSvc.Instance.AddTimeTask((t) => { 
+                TimerSvc.Instance.AddTimeTask((t) =>
+                {
                     IsFrozen = false;
                     if (IsMoving) PlayAni(MonsterAniType.Walk, true);
                     else PlayAni(MonsterAniType.Idle, true);
@@ -242,7 +243,13 @@ public class MonsterController : EntityController
             case EntityEvent.Idle:
                 //IsMoving = false;
                 //this.rb.velocity = Vector2.zero;
-                if(!IsFrozen) PlayAni(MonsterAniType.Idle, true);
+                if (!IsFrozen) 
+                {
+                    if(FrameIndex >= AnimLength)
+                    {
+                        PlayAni(MonsterAniType.Idle, true);
+                    }
+                }
                 break;
             case EntityEvent.Move:
                 IsMoving = true;

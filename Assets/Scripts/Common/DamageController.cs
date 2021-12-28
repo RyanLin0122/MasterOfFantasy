@@ -12,8 +12,16 @@ public class DamageController : MonoBehaviour
     {
         if (mode == 1)
         {
-            CritalImg0.SetActive(true);
-            CritalImg1.SetActive(true);
+            if (num > 0)
+            {
+                CritalImg0.SetActive(true);
+                CritalImg1.SetActive(true);
+            }
+            else
+            {
+                CritalImg0.SetActive(false);
+                CritalImg1.SetActive(false);
+            }
         }
         else
         {
