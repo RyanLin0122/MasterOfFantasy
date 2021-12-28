@@ -138,7 +138,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             LogSvc.Error(e);
         }
-        
+
     }
     private void UpdateUnits()
     {
@@ -171,7 +171,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         catch (System.Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     public void SendExp()
     {
@@ -190,7 +190,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             LogSvc.Error(e);
         }
-        
+
     }
     private void ExecuteAction(SkillCastInfo skillCast)
     {
@@ -392,7 +392,7 @@ public class Battle //戰鬥類，一個地圖綁定一個
         catch (System.Exception e)
         {
             LogSvc.Error(e);
-        }       
+        }
     }
     public void JoinBattle(Entity entity)
     {
@@ -400,11 +400,11 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             if (entity is MOFCharacter)
             {
-                AllPlayers[((MOFCharacter)entity).player.Name] = entity;
+                AllPlayers[(entity as MOFCharacter).player.Name] = entity;
             }
             else if (entity is AbstractMonster)
             {
-                AllMonsters[((AbstractMonster)entity).nEntity.Id] = entity;
+                AllMonsters[(entity as AbstractMonster).nEntity.Id] = entity;
             }
         }
         catch (System.Exception e)
@@ -418,12 +418,15 @@ public class Battle //戰鬥類，一個地圖綁定一個
         {
             if (entity is MOFCharacter)
             {
-                MOFCharacter Chr = (MOFCharacter)entity;
-                AllPlayers.Remove(Chr.CharacterName);
+                MOFCharacter Chr = entity as MOFCharacter;
+                if (Chr != null && this.AllPlayers.ContainsKey(Chr.player.Name))
+                {
+                    AllPlayers.Remove(Chr.CharacterName);
+                }                
             }
             else if (entity is AbstractMonster)
             {
-                AbstractMonster monster = (AbstractMonster)entity;
+                AbstractMonster monster = entity as AbstractMonster;
                 AllMonsters.Remove(monster.nEntity.Id);
             }
         }

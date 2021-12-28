@@ -311,7 +311,11 @@ public class MOFMap
                     {
                         characters[Name] = null;
                         characters.TryRemove(Name, out deleteCharacter);
-                    }
+                        if (deleteCharacter != null)
+                        {
+                            this.Battle.LeaveBattle(deleteCharacter);
+                        }
+                    }                    
                     if (characters.Count == 0)
                     {
                         //地圖暫停

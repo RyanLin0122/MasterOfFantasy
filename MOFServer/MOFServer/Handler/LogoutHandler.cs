@@ -21,31 +21,14 @@ public class LogoutHandler : GameHandler
                 MOFCharacter character = null;
                 if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out character))
                 {
-                    character.AsyncSaveAccount();
-                    character.AsyncSaveCharacter();
-                    CacheSvc.Instance.MOFCharacterDict.Remove(session.ActivePlayer.Name);
-                    if (character.AutoSaveTaskID != -1)
-                    {
-                        TimerSvc.Instance.DeleteTimeTask(character.AutoSaveTaskID);
-                    }                   
+                    character.Logout();              
                 }
-
                 NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;
                 MongoDB.Bson.BsonDocument bson = null;
                 if (CacheSvc.Instance.AccountTempData.TryGetValue(msg.logoutReq.Account, out bson))
                 {
                     CacheSvc.Instance.AccountTempData.Remove(msg.logoutReq.Account);
                 }
-
-                MOFMap map = MapSvc.GetMap(session);
-                if (map != null)
-                {
-                    if (map.characters.ContainsKey(msg.logoutReq.ActiveCharacterName))
-                    {
-                        map.RemovePlayer(msg.logoutReq.ActiveCharacterName);
-                    }
-                }
-
                 session.Close();
                 NetSvc.Instance.sessionMap.RemoveSession(msg.logoutReq.SessionID);
             }

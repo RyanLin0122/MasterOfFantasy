@@ -643,7 +643,14 @@ public class MOFCharacter : Entity
             this.trimedPlayer = tp;
             this.IsRun = IsRun;
             this.questManager = new QuestManager(this);
-
+            MOFCharacter oldCharacter = null;
+            if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(player.Name, out oldCharacter))
+            {
+                if (oldCharacter != null)
+                {
+                    oldCharacter.Logout();
+                }
+            }
             CacheSvc.Instance.MOFCharacterDict[player.Name] = this;
             this.AutoSaveTaskID = TimerSvc.Instance.AddTimeTask((t) => { this.AsyncSaveAccount(); this.AsyncSaveCharacter(); }, 90, PETimeUnit.Second, 0);
 
@@ -898,6 +905,17 @@ public class MOFCharacter : Entity
         return true;
     }
 
+    public void Logout()
+    {
+        AsyncSaveCharacter();
+        AsyncSaveAccount();
+        TimerSvc.Instance.DeleteTimeTask(AutoSaveTaskID);
+        if (this.mofMap.characters.ContainsKey(this.player.Name))
+        {
+            this.mofMap.RemovePlayer(this.player.Name);
+        }
+        CacheSvc.Instance.MOFCharacterDict.Remove(this.player.Name);
+    }
     public bool SyncSaveCharacter()
     {
         return CacheSvc.Instance.SyncSaveCharacter(session.Account, player);

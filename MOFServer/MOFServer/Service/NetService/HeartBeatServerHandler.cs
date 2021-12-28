@@ -22,26 +22,25 @@ class HeartBeatServerHandler : IdleStateHandler
         {
             if ( session.ActivePlayer!= null) //從遊戲中登出
             {
-                if (MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][session.ActivePlayer.MapID].characters.ContainsKey(session.ActivePlayer.Name))
+                MOFCharacter character = null;
+                if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out character))
                 {
-                    MapSvc.Instance.Maps[session.ActiveServer][session.ActiveChannel][session.ActivePlayer.MapID].RemovePlayer(session.ActivePlayer.Name);
+                    character.Logout();
                 }
-                if (CacheSvc.Instance.AccountTempData.ContainsKey(session.Account))
+                NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;
+                MongoDB.Bson.BsonDocument bson = null;
+                if (CacheSvc.Instance.AccountTempData.TryGetValue(session.Account, out bson))
                 {
                     CacheSvc.Instance.AccountTempData.Remove(session.Account);
                 }
-                MOFCharacter chr = null;
-                if(CacheSvc.Instance.MOFCharacterDict.TryGetValue(session.ActivePlayer.Name, out chr))
-                {
-                    chr.AsyncSaveAccount();
-                    chr.AsyncSaveCharacter();
-                }
-                CacheSvc.Instance.MOFCharacterDict.Remove(session.ActivePlayer.Name);
-                session.Close();
                 NetSvc.Instance.sessionMap.RemoveSession(session.SessionID);
             }
             else //從登入系統中登出
             {
+                if (session.ActiveChannel != -1 && session.ActiveServer != -1)
+                {
+                    NetSvc.Instance.ChannelsNum[session.ActiveChannel * session.ActiveServer] -= 1;
+                }
                 if (CacheSvc.Instance.AccountTempData.ContainsKey(session.Account))
                 {
                     CacheSvc.Instance.AccountTempData.Remove(session.Account);
