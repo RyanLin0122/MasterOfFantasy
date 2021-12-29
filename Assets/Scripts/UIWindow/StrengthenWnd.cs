@@ -197,7 +197,7 @@ public class StrengthenWnd : Inventory
 
     public void CostRibi(long ribi)
     {
-        GameRoot.Instance.ActivePlayer.Ribi += ribi;
+        GameRoot.Instance.ActivePlayer.Ribi -= ribi;
         KnapsackWnd.Instance.RibiTxt.text = GameRoot.Instance.ActivePlayer.Ribi.ToString("N0");
     }
 

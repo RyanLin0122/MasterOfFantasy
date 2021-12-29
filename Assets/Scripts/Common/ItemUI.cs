@@ -47,7 +47,7 @@ public class ItemUI : MonoBehaviour
     }
     public void SetAmount(int amount)
     {
-        this.Item.Count = amount;
+        //this.Item.Count = amount;
         this.Count = amount;
         //update ui 
         if (Item.Capacity > 1 && Item.Count > 1)
