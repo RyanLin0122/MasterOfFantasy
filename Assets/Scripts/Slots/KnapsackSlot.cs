@@ -260,7 +260,7 @@ public class KnapsackSlot : ItemSlot
         if (data.Source == 1)
         {
             Item PickedUpItem = (Item)data.Content;
-            if (TransationWnd.Instance.gameObject.activeSelf || StrengthenWnd.Instance.gameObject.activeSelf)
+            if (TransationWnd.Instance.gameObject.activeSelf || StrengthenWnd.Instance.gameObject.activeSelf || KnapsackWnd.Instance.sellItemWnd.gameObject.activeSelf)
             {
                 UISystem.Instance.AddMessageQueue("現在不能移動物品位置");
                 if (PickedUpItem.IsCash)

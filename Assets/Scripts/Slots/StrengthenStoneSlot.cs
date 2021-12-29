@@ -37,7 +37,7 @@ public class StrengthenStoneSlot : ItemSlot
         {
             //把手上物品放進新格子
             Item PickedUpItem = (Item)data.Content;
-            
+
             if (StrengthenWnd.Instance.RegisterStrengthenItem!=null)
             {
                 if(IsStone(PickedUpItem))
