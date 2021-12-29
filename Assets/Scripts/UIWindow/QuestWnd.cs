@@ -4,17 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
 
-public class QuestWnd : MonoBehaviour
+public class QuestWnd : WindowRoot, IStackWnd
 {
+    public static QuestWnd Instance;
     public GameObject itemPrefab;
 
     public TabView Tabs;
     public ListView QuestList;
-
+    public bool IsOpen = false;
     public QuestWndInfo questInfo;
 
     private bool showAvailableList = false;
 
+    public void Init()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         this.QuestList.onItemSelected += this.OnQuestSelected;
@@ -77,5 +82,37 @@ public class QuestWnd : MonoBehaviour
     {
         UIQuestItem questItem = item as UIQuestItem;
         this.questInfo.SetQuestInfo(questItem.quest);
+    }
+
+
+    public void OpenAndPush()
+    {
+
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
+        SetWndState();
+        IsOpen = true;
+        UISystem.Instance.Push(this);
+
+    }
+    public void CloseAndPop()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
+        SetWndState(false);
+        IsOpen = false;
+        UISystem.Instance.ForcePop(this);
+    }
+
+    public void KeyBoardCommand()
+    {
+        if (IsOpen)
+        {
+            CloseAndPop();
+            IsOpen = false;
+        }
+        else
+        {
+            OpenAndPush();
+            IsOpen = true;
+        }
     }
 }

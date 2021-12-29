@@ -110,6 +110,10 @@ public class ScreenController : MonoBehaviour
             {
                 DiaryWnd.Instance.KeyBoardCommand();
             }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                QuestWnd.Instance.KeyBoardCommand();
+            }
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 GuideWnd.Instance.KeyBoardCommand();

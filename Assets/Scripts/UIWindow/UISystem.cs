@@ -15,6 +15,7 @@ public class UISystem : SystemRoot
         lockerWnd.InitLocker();
         MailBoxWnd.InitMailBox();
         UICalender.Init();
+        QuestWnd.Init();
         base.InitSys();
     }
 

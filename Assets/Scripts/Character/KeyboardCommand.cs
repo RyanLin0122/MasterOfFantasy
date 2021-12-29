@@ -8,12 +8,13 @@ public class KeyboardCommand
     public Action Command_I = () => { };
     public Action Command_E = () => { };
     public Action Command_D = () => { };
-
+    public Action Command_Q = () => { };
     public void SetDefault()
     {
         Command_I = () => KnapsackWnd.Instance.KeyBoardCommand();
         Command_E = () => EquipmentWnd.Instance.KeyBoardCommand();
         Command_D = () => DiaryWnd.Instance.KeyBoardCommand();
+        Command_Q = () => QuestWnd.Instance.KeyBoardCommand();
     }
     public void LoadLocalCommand()
     {
