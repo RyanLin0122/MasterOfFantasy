@@ -623,6 +623,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public void PressTidyUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        if (StrengthenWnd.Instance.gameObject.activeSelf || MGFWnd.Instance.gameObject.activeSelf || TransationWnd.Instance.gameObject.activeSelf) return;
         if (CurrentPage == 4)
         {
             new TidyUpSender(2);
