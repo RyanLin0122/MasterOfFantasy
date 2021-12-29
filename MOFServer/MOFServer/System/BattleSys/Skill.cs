@@ -180,7 +180,7 @@ public class Skill
         ActiveSkillInfo active = (ActiveSkillInfo)this.Info;
         //LogSvc.Info("Skill[" + active.SkillName + "] Update skill");
         this.SkillTime += Time.deltaTime;
-        Console.WriteLine(active.ContiDurations != null);
+        //Console.WriteLine(active.ContiDurations != null);
         if (active.IsAttack)
         {
             if (active.IsContinue)

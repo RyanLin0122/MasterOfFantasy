@@ -183,11 +183,11 @@ public class AIBase
     }
     private void FollowTarget()
     {
-        LogSvc.Debug("Monster: " + this.Owner.nEntity.Position.X + " " + this.Owner.nEntity.Position.Y + " Radius: " + this.Owner.Radius);
-        LogSvc.Debug("Target: " + this.Target.nEntity.Position.X + " " + this.Target.nEntity.Position.Y + " Radius: " + this.Target.Radius);
+        //LogSvc.Debug("Monster: " + this.Owner.nEntity.Position.X + " " + this.Owner.nEntity.Position.Y + " Radius: " + this.Owner.Radius);
+        //LogSvc.Debug("Target: " + this.Target.nEntity.Position.X + " " + this.Target.nEntity.Position.Y + " Radius: " + this.Target.Radius);
         var distance = this.Owner.DistanceOfEntity(this.Target);
-        LogSvc.Debug(distance.ToString());
-        LogSvc.Debug("Attack Range: " + (normalSkill.Info as ActiveSkillInfo).Range[1].ToString());
+        //LogSvc.Debug(distance.ToString());
+        //LogSvc.Debug("Attack Range: " + (normalSkill.Info as ActiveSkillInfo).Range[1].ToString());
         if (distance > ((normalSkill.Info as ActiveSkillInfo).Range[1] - 5))
         {
             this.Owner.MoveTo(this.Target);
