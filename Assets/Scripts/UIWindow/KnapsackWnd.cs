@@ -39,7 +39,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public bool HasInitialized = false;
     public int CurrentPage = 0;
 
-    public SellItemWnd sellItemWnd; 
+    public SellItemWnd sellItemWnd;
 
     protected override void InitWnd()
     {
@@ -176,7 +176,7 @@ public class KnapsackWnd : Inventory, IStackWnd
                 }
                 else
                 {
-                    FindCashSlot(item.Position).StoreItem(item);                              
+                    FindCashSlot(item.Position).StoreItem(item);
                 }
             }
         }
@@ -478,7 +478,7 @@ public class KnapsackWnd : Inventory, IStackWnd
         #endregion
         return false;
     }
-    
+
     public void ProcessKnapsackExchage(KnapsackOperation ko)
     {
         Dictionary<int, Item> nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
@@ -494,29 +494,17 @@ public class KnapsackWnd : Inventory, IStackWnd
             ko.items[0].Position = ko.NewPosition[0];
             if (!ko.items[0].IsCash)
             {
-                if (nk.ContainsKey(ko.NewPosition[0]))
-                {
-                    nk[ko.NewPosition[0]] = ko.items[0];
-                }
-                else
-                {
-                    nk.Add(ko.NewPosition[0], ko.items[0]);
-                }
-                nk.Remove(ko.OldPosition[0]);
+                nk[ko.NewPosition[0]] = ko.items[0];
+                nk.Remove(ko.OldPosition[0]);                
                 FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]]);
+                DestroyImmediate(FindSlot(ko.OldPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
             }
             else
             {
-                if (ck.ContainsKey(ko.NewPosition[0]))
-                {
-                    ck[ko.NewPosition[0]] = ko.items[0];
-                }
-                else
-                {
-                    ck.Add(ko.NewPosition[0], ko.items[0]);
-                }
-                ck.Remove(ko.OldPosition[0]);
+                ck[ko.NewPosition[0]] = ko.items[0];
+                ck.Remove(ko.OldPosition[0]);                
                 FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]]);
+                DestroyImmediate(FindCashSlot(ko.OldPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
             }
 
         }
@@ -534,7 +522,10 @@ public class KnapsackWnd : Inventory, IStackWnd
                     nk[ko.NewPosition[0]].Position = ko.NewPosition[0];
                     nk[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-
+                    if (FindSlot(ko.OldPosition[0]).transform.childCount > 0)
+                    {
+                        DestroyImmediate(FindSlot(ko.OldPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+                    }
                     FindSlot(ko.OldPosition[0]).StoreItem(nk[ko.OldPosition[0]]);
                     FindSlot(ko.NewPosition[0]).StoreItem(nk[ko.NewPosition[0]]);
                 }
@@ -546,7 +537,10 @@ public class KnapsackWnd : Inventory, IStackWnd
                     ck[ko.NewPosition[0]].Position = ko.NewPosition[0];
                     ck[ko.OldPosition[0]].Position = ko.OldPosition[0];
                     DestroyImmediate(FindCashSlot(ko.NewPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
-
+                    if (FindCashSlot(ko.OldPosition[0]).transform.childCount > 0)
+                    {
+                        DestroyImmediate(FindCashSlot(ko.OldPosition[0]).gameObject.GetComponentInChildren<ItemUI>().gameObject);
+                    }
                     FindCashSlot(ko.OldPosition[0]).StoreItem(ck[ko.OldPosition[0]]);
                     FindCashSlot(ko.NewPosition[0]).StoreItem(ck[ko.NewPosition[0]]);
                 }
@@ -590,14 +584,14 @@ public class KnapsackWnd : Inventory, IStackWnd
                     knapsack = GameRoot.Instance.ActivePlayer.CashKnapsack;
                     slot = FindCashSlot(sr.DeleteItemPos);
                 }
-                else 
+                else
                 {
                     knapsack = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
                     slot = FindSlot(sr.DeleteItemPos);
                 }
-                
+
                 knapsack.Remove(sr.DeleteItemPos);
-                if(slot.transform.childCount > 0)
+                if (slot.transform.childCount > 0)
                 {
                     slot.RemoveItemUI();
                 }
@@ -629,7 +623,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public void PressTidyUp()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        if(CurrentPage == 4)
+        if (CurrentPage == 4)
         {
             new TidyUpSender(2);
         }
@@ -721,7 +715,7 @@ public class KnapsackWnd : Inventory, IStackWnd
     public int GetAmountofGroup(int ItemID, int Amount)
     {
         Dictionary<int, Item> nk = null;
-        if(GameRoot.Instance.ActivePlayer.NotCashKnapsack !=null && GameRoot.Instance.ActivePlayer.NotCashKnapsack.Count>0)
+        if (GameRoot.Instance.ActivePlayer.NotCashKnapsack != null && GameRoot.Instance.ActivePlayer.NotCashKnapsack.Count > 0)
         {
             nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
             int TotalAmount = 0;
