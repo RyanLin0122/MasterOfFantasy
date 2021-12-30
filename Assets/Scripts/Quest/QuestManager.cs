@@ -502,10 +502,32 @@ public class QuestManager : MonoSingleton<QuestManager>
                 if (quest.Define.Target == QuestTarget.Kill)
                 {
                     bool result = true;
+
+                    //WalkAround
+                    List<int> needRemove = new List<int>();
+                    foreach (var kv in quest.Info.Targets)
+                    {
+                        if (kv.Key < 1000) needRemove.Add(kv.Key);
+                    }
+                    if (needRemove.Count > 0)
+                    {
+                        foreach (var id in needRemove)
+                        {
+                            quest.Info.Targets.Remove(id);
+                        }
+                    }
                     for (int i = 0; i < quest.Define.TargetIDs.Count; i++)
                     {
-                        if (quest.Info.Targets[quest.Define.TargetIDs[i]] < quest.Define.TargetNum[i]) result = false;
+                        if (quest.Info.Targets.ContainsKey(quest.Define.TargetIDs[i]))
+                        {
+                            if (quest.Info.Targets[quest.Define.TargetIDs[i]] < quest.Define.TargetNum[i]) result = false;
+                        }
+                        else
+                        {
+                            quest.Info.Targets.Add(quest.Define.TargetIDs[i], 0);
+                        }
                     }
+                    //WalkAround
                     if (result) quest.Info.status = QuestStatus.Completed;
                     else quest.Info.status = QuestStatus.InProgress;
                 }

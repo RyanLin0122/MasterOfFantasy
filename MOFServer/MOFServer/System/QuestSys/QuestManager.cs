@@ -175,7 +175,6 @@ public class QuestManager
                         }
                     }
                     this.Owner.session.WriteAndFlush(rsp);
-
                     //this.Owner.AsyncSaveCharacter();
                 }
             }
@@ -226,6 +225,7 @@ public class QuestManager
                                 bool IsKillEnough = true;
                                 for (int i = 0; i < define.TargetIDs.Count; i++)
                                 {
+                                    if (!nQuest.Targets.ContainsKey(define.TargetIDs[i])) continue;
                                     if (nQuest.Targets[define.TargetIDs[i]] < define.TargetNum[i])
                                     {
                                         IsKillEnough = false;

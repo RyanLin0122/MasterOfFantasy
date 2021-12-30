@@ -133,127 +133,131 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     private bool PickUpLock = false;
     public void Update()
     {
-        HotKeySlot hotKeySlot = null;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (GameRoot.Instance.ActivePlayer != null)
         {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha1, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha2, out hotKeySlot);
-        }
+            HotKeySlot hotKeySlot = null;
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha1, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha2, out hotKeySlot);
+            }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha3, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha4, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha5, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha6, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha7, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha8, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha9, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-        {
-            if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                GeneralNPC npc = null;
-                foreach (var item in BattleSys.Instance.MapNPCs)
-                {
-                    if ((item.transform.localPosition - entityController.transform.localPosition).magnitude < 200)
-                    {
-                        npc = item;
-                    }
-                }
-                if (npc != null)
-                {
-                    npc.LoadDialogue();
-                }
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha3, out hotKeySlot);
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CommonAttack();
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            new RunSender();
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (!PickUpLock)
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                BattleSys.Instance.PickUpRequest();
-                PickUpLock = true;
-                TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.15, PETimeUnit.Second, 1);
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha4, out hotKeySlot);
             }
-        }
-        if (hotKeySlot != null)
-        {
-            var dict = Instance.entityController.SkillDict;
-            if (hotKeySlot.State == HotKeyState.Skill)
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-                if (dict != null)
-                {
-                    if (!PlayerInputController.Instance.IsLockMove)
-                    {
-                        dict[hotKeySlot.data.ID].Cast();
-                    }
-                }
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha5, out hotKeySlot);
             }
-            if (hotKeySlot.State == HotKeyState.Consumable)
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
-                bool IsCash = InventorySys.Instance.ItemList[hotKeySlot.data.ID].IsCash;
-                if (IsCash)
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha6, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha7, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha8, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha9, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+            {
+                if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
                 {
-                    var ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
-                    if (ck == null || ck.Count < 1) return;
-                    foreach (var kv in ck)
+                    GeneralNPC npc = null;
+                    foreach (var item in BattleSys.Instance.MapNPCs)
                     {
-                        if (kv.Value.ItemID == hotKeySlot.data.ID)
+                        if ((item.transform.localPosition - entityController.transform.localPosition).magnitude < 200)
                         {
-                            KnapsackWnd.Instance.FindCashSlot(kv.Key).UseItem();
-                            return;
+                            npc = item;
+                        }
+                    }
+                    if (npc != null)
+                    {
+                        npc.LoadDialogue();
+                    }
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                CommonAttack();
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                new RunSender();
+            }
+            else if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (!PickUpLock)
+                {
+                    BattleSys.Instance.PickUpRequest();
+                    PickUpLock = true;
+                    TimerSvc.Instance.AddTimeTask((L) => { PickUpLock = false; }, 0.15, PETimeUnit.Second, 1);
+                }
+            }
+            if (hotKeySlot != null)
+            {
+                var dict = Instance.entityController.SkillDict;
+                if (hotKeySlot.State == HotKeyState.Skill)
+                {
+                    if (dict != null)
+                    {
+                        if (!PlayerInputController.Instance.IsLockMove)
+                        {
+                            dict[hotKeySlot.data.ID].Cast();
                         }
                     }
                 }
-                else
+                if (hotKeySlot.State == HotKeyState.Consumable)
                 {
-                    var nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
-                    if (nk == null || nk.Count < 1) return;
-                    foreach (var kv in nk)
+                    bool IsCash = InventorySys.Instance.ItemList[hotKeySlot.data.ID].IsCash;
+                    if (IsCash)
                     {
-                        if (kv.Value.ItemID == hotKeySlot.data.ID)
+                        var ck = GameRoot.Instance.ActivePlayer.CashKnapsack;
+                        if (ck == null || ck.Count < 1) return;
+                        foreach (var kv in ck)
                         {
-                            KnapsackWnd.Instance.FindSlot(kv.Key).UseItem();
-                            return;
+                            if (kv.Value.ItemID == hotKeySlot.data.ID)
+                            {
+                                KnapsackWnd.Instance.FindCashSlot(kv.Key).UseItem();
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var nk = GameRoot.Instance.ActivePlayer.NotCashKnapsack;
+                        if (nk == null || nk.Count < 1) return;
+                        foreach (var kv in nk)
+                        {
+                            if (kv.Value.ItemID == hotKeySlot.data.ID)
+                            {
+                                KnapsackWnd.Instance.FindSlot(kv.Key).UseItem();
+                                return;
+                            }
                         }
                     }
                 }
             }
         }
+        
     }
     public void CommonAttack()
     {

@@ -522,8 +522,12 @@ public class DialogueWnd : WindowRoot
             case QuestTarget.None:
                 break;
             case QuestTarget.Kill:
+                UIKillIntro.gameObject.SetActive(true);
+                UIKillIntro.SetQuestIntro(quest, IsSuccess);
                 break;
             case QuestTarget.Item:
+                UIItemIntro.gameObject.SetActive(true);
+                UIItemIntro.SetQuestIntro(quest, IsSuccess);
                 break;
             case QuestTarget.Delivery:
                 UIDeliveryIntro.gameObject.SetActive(true);
