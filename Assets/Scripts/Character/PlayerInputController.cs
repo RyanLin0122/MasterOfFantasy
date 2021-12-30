@@ -177,6 +177,26 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
             {
                 BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Alpha0, out hotKeySlot);
             }
+            else if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Delete, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.End))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.End, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.PageDown))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.PageDown, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Insert))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Insert, out hotKeySlot);
+            }
+            else if (Input.GetKeyDown(KeyCode.Home))
+            {
+                BattleSys.Instance.HotKeyManager.HotKeySlots.TryGetValue(KeyCode.Home, out hotKeySlot);
+            }
             else if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
             {
                 if (BattleSys.Instance.MapNPCs != null && BattleSys.Instance.MapNPCs.Count > 0)
