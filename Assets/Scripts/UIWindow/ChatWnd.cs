@@ -190,7 +190,28 @@ public class ChatWnd : WindowRoot
                 }
             }
         }
+        string[] Commend = s.Split(' ');
+        if (Commend[0] == "!Reset")
+        {
+            if (GameRoot.Instance.ActivePlayer != null)
+            {
+                int restPoint = 10 + (GameRoot.Instance.ActivePlayer.Level - 1) * 5;
+                GameRoot.Instance.ActivePlayer.Att = 4;
+                GameRoot.Instance.ActivePlayer.Strength = 4;
+                GameRoot.Instance.ActivePlayer.Agility = 4;
+                GameRoot.Instance.ActivePlayer.Intellect = 4;
+                GameRoot.Instance.ActivePlayer.RestPoint = restPoint;
+                BattleSys.Instance.InitAllAtribute();
+                UISystem.Instance.InfoWnd.RefreshIInfoUI();
+            }
+        }
+        if (Commend[0] == "!Point")
+        {
+            GameRoot.Instance.ActivePlayer.SwordPoint += 1000;
+            GameRoot.Instance.ActivePlayer.ArcheryPoint += 1000;
+            GameRoot.Instance.ActivePlayer.MagicPoint += 1000;
+            GameRoot.Instance.ActivePlayer.TheologyPoint += 1000;
+        }
+
     }
-
-
 }
