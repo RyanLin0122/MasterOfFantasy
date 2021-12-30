@@ -245,7 +245,14 @@ public class EquipmentWnd : Inventory, IStackWnd
                 }
             }
         }
-        PlayerInputController.Instance.entityController.SetNameBox();
+        if (Equipments.ContainsKey(12))
+        {
+            PlayerInputController.Instance.entityController.SetNameBox(Equipments[12]);
+        }
+        else
+        {
+            PlayerInputController.Instance.entityController.SetNameBox(null);
+        }
         if (GameRoot.Instance.ActivePlayer.playerEquipments.F_ChatBox != null)
         {
             PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
@@ -547,7 +554,14 @@ public class EquipmentWnd : Inventory, IStackWnd
             UISystem.Instance.InfoWnd.SetIllustration();
             BattleSys.Instance.InitAllAtribute();
             UISystem.Instance.InfoWnd.RefreshIInfoUI();
-            PlayerInputController.Instance.entityController.SetNameBox();
+            if (GameRoot.Instance.ActivePlayer.playerEquipments.F_NameBox != null)
+            {
+                PlayerInputController.Instance.entityController.SetNameBox(GameRoot.Instance.ActivePlayer.playerEquipments.F_NameBox);
+            }
+            else
+            {
+                PlayerInputController.Instance.entityController.SetNameBox(null);
+            }
             PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
             Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
             InventorySys.Instance.HideToolTip();
@@ -557,7 +571,15 @@ public class EquipmentWnd : Inventory, IStackWnd
             if (eo.OtherPlayerEquipments == null) return;
             PlayerController controller = null;
             BattleSys.Instance.Players.TryGetValue(eo.PlayerName, out controller);
-            controller.SetAllEquipment(eo.OtherPlayerEquipments, eo.OtherGender);
+            if (controller != null)
+            {
+                controller.SetAllEquipment(eo.OtherPlayerEquipments, eo.OtherGender);
+                if (eo.OtherPlayerEquipments != null)
+                {
+                    controller.SetNameBox(eo.OtherPlayerEquipments.F_NameBox);
+                }
+            }
+            
         }
     }
     /// <summary>

@@ -204,7 +204,10 @@ public class MainCitySys : SystemRoot
         PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
         mainPlayerCtrl.Name = PlayerName;
         mainPlayerCtrl.SetTitle(GameRoot.Instance.ActivePlayer.Title);
-        mainPlayerCtrl.SetNameBox();
+        if (GameRoot.Instance.ActivePlayer.playerEquipments != null)
+        {
+            mainPlayerCtrl.SetNameBox(GameRoot.Instance.ActivePlayer.playerEquipments.F_NameBox);
+        }       
         PlayerInputController.Instance.Init(
             nEntity,
             mainPlayerCtrl
@@ -241,7 +244,10 @@ public class MainCitySys : SystemRoot
             PlayerController OtherPlayerCtrl = player.GetComponent<PlayerController>();
             OtherPlayerCtrl.Name = add.Name;
             OtherPlayerCtrl.SetTitle(add.Title);
-            OtherPlayerCtrl.SetNameBox();
+            if (add.playerEquipments != null)
+            {
+                OtherPlayerCtrl.SetNameBox(add.playerEquipments.F_NameBox);
+            }           
             OtherPlayerCtrl.Init();
             OtherPlayerCtrl.entity = new Character
             (nEntity);

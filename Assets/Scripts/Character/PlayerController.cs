@@ -111,22 +111,14 @@ public class PlayerController : EntityController
         this.ChatBox.SetSprite(ChatBoxID);
     }
 
-    public void SetNameBox(bool IsHighLight = false)
+    public void SetNameBox(Item NameBoxItem, bool IsHighLight = false)
     {
         Namebox namebox = GetComponent<Namebox>();
-        PlayerEquipments equipments = GameRoot.Instance.ActivePlayer.playerEquipments;
         if (Name != null)
         {
-            if (equipments != null)
+            if (NameBoxItem != null)
             {
-                if (equipments.F_NameBox == null)
-                {
-                    namebox.SetNameBox(Name, 0);
-                }
-                else
-                {
-                    namebox.SetNameBox(Name, equipments.F_NameBox.ItemID);
-                }
+                namebox.SetNameBox(Name, NameBoxItem.ItemID);
             }
             else
             {
