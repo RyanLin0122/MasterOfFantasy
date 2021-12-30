@@ -474,6 +474,11 @@ public class ShopWnd : Inventory
     }
     public void PressCheck()
     {
+        if(BuyAmount < 1)
+        {
+            GameRoot.AddTips("數量不得小於1");
+            return;
+        }
         BuyPanelMask.raycastTarget = false;
         CloseBtn.interactable = true;
         HelpBtn.interactable = true; ;

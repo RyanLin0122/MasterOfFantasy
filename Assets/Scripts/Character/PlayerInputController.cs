@@ -36,7 +36,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
-                if (!IsLockMove)
+                if (!IsLockMove && !UISystem.Instance.dialogueWnd.gameObject.activeSelf && !UISystem.Instance.deathWnd.gameObject.activeSelf)
                 {
                     entityController.IsMoving = true;
                     state = PlayerStatus.Move;
@@ -133,7 +133,7 @@ public class PlayerInputController : MonoSingleton<PlayerInputController>
     private bool PickUpLock = false;
     public void Update()
     {
-        if (GameRoot.Instance.ActivePlayer != null)
+        if (GameRoot.Instance.ActivePlayer != null && !UISystem.Instance.deathWnd.gameObject.activeSelf)
         {
             HotKeySlot hotKeySlot = null;
             if (Input.GetKeyDown(KeyCode.Alpha1))

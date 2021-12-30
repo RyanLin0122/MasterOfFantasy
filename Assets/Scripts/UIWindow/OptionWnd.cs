@@ -99,7 +99,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
     public Text Option_EffectSound_Text;
     public Text Option_MonsterSound_Text;
 
-    public Text Option_AllowParty_Text; 
+    public Text Option_AllowParty_Text;
     public Text Option_AllowTransaction_Text;
     public Text Option_AllowGuild_Text;
     public Text Option_AllowBuddy_Text;
@@ -199,7 +199,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         {
             GameRoot.Instance.AccountOption = GenerateDefaultOption();
             SetupOptionUI(GameRoot.Instance.AccountOption);
-            
+
         }
         GeneralPanel.SetActive(true);
         ImagePanel.SetActive(false);
@@ -228,7 +228,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
                 Dic = ResSvc.Instance.Tra_ChineseStrings;
                 break;
         }
-        GeneralBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>"+Dic["Option_GeneralBtn_Text"] +"</color>";
+        GeneralBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>" + Dic["Option_GeneralBtn_Text"] + "</color>";
         ImageBtn.GetComponentInChildren<Text>().text = Dic["Option_ImageBtn_Text"];
         SoundBtn.GetComponentInChildren<Text>().text = Dic["Option_SoundBtn_Text"];
         SocialBtn.GetComponentInChildren<Text>().text = Dic["Option_SocialBtn_Text"];
@@ -367,7 +367,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
                 break;
         }
         GeneralBtn.GetComponentInChildren<Text>().text = Dic["Option_GeneralBtn_Text"];
-        ImageBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>"+Dic["Option_ImageBtn_Text"]+"</color>";
+        ImageBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>" + Dic["Option_ImageBtn_Text"] + "</color>";
         SoundBtn.GetComponentInChildren<Text>().text = Dic["Option_SoundBtn_Text"];
         SocialBtn.GetComponentInChildren<Text>().text = Dic["Option_SocialBtn_Text"];
         GeneralBtn.GetComponentInChildren<Text>().color = BrownColor;
@@ -406,7 +406,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         }
         GeneralBtn.GetComponentInChildren<Text>().text = Dic["Option_GeneralBtn_Text"];
         ImageBtn.GetComponentInChildren<Text>().text = Dic["Option_ImageBtn_Text"];
-        SoundBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>"+ Dic["Option_SoundBtn_Text"] + "</color>";
+        SoundBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>" + Dic["Option_SoundBtn_Text"] + "</color>";
         SocialBtn.GetComponentInChildren<Text>().text = Dic["Option_SocialBtn_Text"];
         ImageBtn.GetComponentInChildren<Text>().color = BrownColor;
         GeneralBtn.GetComponentInChildren<Text>().color = BrownColor;
@@ -445,7 +445,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         GeneralBtn.GetComponentInChildren<Text>().text = Dic["Option_GeneralBtn_Text"];
         ImageBtn.GetComponentInChildren<Text>().text = Dic["Option_ImageBtn_Text"];
         SoundBtn.GetComponentInChildren<Text>().text = Dic["Option_SoundBtn_Text"];
-        SocialBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>"+ Dic["Option_SocialBtn_Text"] + "</color>";
+        SocialBtn.GetComponentInChildren<Text>().text = "<color=#ffffff>" + Dic["Option_SocialBtn_Text"] + "</color>";
         ImageBtn.GetComponentInChildren<Text>().color = BrownColor;
         SoundBtn.GetComponentInChildren<Text>().color = BrownColor;
         GeneralBtn.GetComponentInChildren<Text>().color = BrownColor;
@@ -469,7 +469,7 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         if (GameRoot.Instance.AccountOption.Language != TempData.Language)
         {
             ChangeLanguage();
-        }       
+        }
         GameRoot.Instance.AccountOption = TempData;
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         SetWndState(false);
@@ -505,10 +505,10 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         {
             opt.ImageQuality = 1;
         }
-        else if (HighQualityToggle.isOn) 
+        else if (HighQualityToggle.isOn)
         {
             opt.ImageQuality = 2;
-        } 
+        }
         opt.IsAntiAliasing = AntiAliasingToggle.isOn;
         opt.IsVsync = VsyncToggle.isOn;
         opt.Language = LanguageDropDown.value;
@@ -585,11 +585,11 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
             default:
                 break;
         }
-        
+
         AntiAliasingToggle.isOn = true;
         VsyncToggle.isOn = false;
     }
-    
+
     public MOFOption GenerateDefaultOption()
     {
         return new MOFOption
@@ -694,6 +694,17 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         }
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         UpdateSoundData();
+        if (BattleSys.Instance.MapCanvas != null)
+        {
+            var monsters = BattleSys.Instance.MapCanvas.GetComponentsInChildren<MonsterController>();
+            if (monsters != null && monsters.Length > 0)
+            {
+                foreach (var monster in monsters)
+                {
+                    monster.GetComponent<AudioSource>().volume = MonsterSoundSlider.value;
+                }
+            }
+        }
     }
     public void SetBGVolume()
     {
@@ -718,7 +729,17 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
     }
     public void SetMonsterVolume()
     {
-        //ToDO
+        if (BattleSys.Instance.MapCanvas != null)
+        {
+            var monsters = BattleSys.Instance.MapCanvas.GetComponentsInChildren<MonsterController>();
+            if (monsters != null && monsters.Length > 0)
+            {
+                foreach (var monster in monsters)
+                {
+                    monster.GetComponent<AudioSource>().volume = MonsterSoundSlider.value;
+                }
+            }
+        }
         UpdateSoundData();
     }
     public void UpdateSoundData()
@@ -732,9 +753,10 @@ public class OptionWnd : WindowRoot, IMultiLanguageWnd
         GameRoot.Instance.AccountOption.UIVolume = UISoundSlider.value;
         GameRoot.Instance.AccountOption.EffectVolume = EffectSoundSlider.value;
         GameRoot.Instance.AccountOption.MonsterVolume = MonsterSoundSlider.value;
+        AudioSvc.Instance.MonsterVolume = MonsterSoundSlider.value;
     }
 
-    
+
     #endregion
 }
 

@@ -55,7 +55,7 @@ public class ScreenController : MonoBehaviour
         Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), MapCamera.transform.position.z);
         MapCamera.transform.position = tempPosition; //攝影機座標 = 玩家座標
         UpdateBG();
-        if (canCtrl)
+        if (canCtrl && !UISystem.Instance.deathWnd.gameObject.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -76,15 +76,21 @@ public class ScreenController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (UISystem.Instance.stack.Count > 0)
+                if (UISystem.Instance.dialogueWnd.gameObject.activeSelf)
                 {
-                    UISystem.Instance.PressEsc();
+                    UISystem.Instance.CloseDialogueWnd();
                 }
                 else
                 {
-                    UISystem.Instance.menuUI.openCloseWnd();
+                    if (UISystem.Instance.stack.Count > 0)
+                    {
+                        UISystem.Instance.PressEsc();
+                    }
+                    else
+                    {
+                        UISystem.Instance.menuUI.openCloseWnd();
+                    }
                 }
-
             }
             if (Input.GetKeyDown(KeyCode.C))
             {

@@ -890,6 +890,8 @@ public class CashShopWnd : Inventory
         Dictionary<int, Item> FashionPanel = null;
         Dictionary<int, Item> OtherPanel = null;
         AccountData data = GameRoot.Instance.AccountData;
+        data.Cash -= rsp.TotalPrice;
+        CashText.text = data.Cash.ToString("N0");
         switch (GameRoot.Instance.ActiveServer)
         {
             case 0:

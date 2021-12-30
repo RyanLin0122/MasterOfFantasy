@@ -165,14 +165,12 @@ public class UISystem : SystemRoot
         cashShopWnd.ClearPanel();
         cashShopWnd.SetWndState(false);
         cashShopWnd.IsOpen = false;
-        GameRoot.Instance.InUI = false;
     }
     public void OpenCashShopWnd()
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowOpen);
         cashShopWnd.SetWndState();
         cashShopWnd.IsOpen = true;
-        GameRoot.Instance.InUI = true;
         PutLastLayer(cashShopWnd.transform);
     }
 
@@ -190,7 +188,6 @@ public class UISystem : SystemRoot
         strengthenWnd.SetWndState();
         strengthenWnd.IsOpen = true;
         baseUI.CloseNpcDialogue();
-        GameRoot.Instance.InUI = false;
         PutLastLayer(strengthenWnd.transform);
     }
     public void CloseMGFWnd()
@@ -357,7 +354,6 @@ public class UISystem : SystemRoot
     {
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         baseUI.CloseNpcDialogue();
-        GameRoot.Instance.InUI = false;
     }
 
     public void OpenMiniGameSetting()

@@ -24,7 +24,6 @@ public abstract class NPC : MonoBehaviour, INPC
     public void LoadDialogue()
     {
         UISystem.Instance.baseUI.OpenNpcDialogue(NPCID);
-        GameRoot.Instance.InUI = true;
     }
 
     public void SetQuestStatus()

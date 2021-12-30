@@ -116,6 +116,6 @@ public class CustomInputField : InputField
     }
     public bool InputFieldAvaliable()
     {
-        return GameRoot.Instance.CanInput && !(GameRoot.Instance.InUI);
+        return GameRoot.Instance.CanInput;
     }
 }

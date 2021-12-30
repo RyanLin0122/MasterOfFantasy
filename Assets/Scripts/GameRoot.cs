@@ -25,7 +25,6 @@ public class GameRoot : MonoBehaviour
     public static GameRoot Instance = null;
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
     public bool CanInput;
-    public bool InUI;
     public string ScreenSavingFolder = "C:/Users/";
 
     public MOFOption AccountOption = null;
@@ -62,7 +61,6 @@ public class GameRoot : MonoBehaviour
         //Entering LoginScene and Loading UIs
         login.EnterLoginWnd();
         CanInput = true;
-        InUI = false;
         Application.wantsToQuit += WantsToQuit;
 
     }

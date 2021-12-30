@@ -141,6 +141,7 @@ public class CashShopHandler : GameHandler
                     EmptyOtherPointer++; ;
                 }
             }
+            CacheSvc.Instance.AccountDataDict[session.AccountData.Account].Cash -= TotalPrice;
             //回傳
             ProtoMsg rsp = new ProtoMsg
             {

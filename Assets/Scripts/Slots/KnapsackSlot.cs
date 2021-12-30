@@ -48,7 +48,7 @@ public class KnapsackSlot : ItemSlot
     public void UseItem()
     {
         //穿裝或喝水
-        if (DragSystem.IsPickedItem == false && transform.childCount > 0)
+        if (DragSystem.IsPickedItem == false && transform.childCount > 0 && !UISystem.Instance.deathWnd.gameObject.activeSelf)
         {
             ItemUI currentItemUI = transform.GetChild(0).GetComponent<ItemUI>();
             InventorySys.Instance.HideToolTip();

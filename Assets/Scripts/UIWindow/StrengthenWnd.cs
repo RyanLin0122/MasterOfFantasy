@@ -109,6 +109,7 @@ public class StrengthenWnd : Inventory
     
     public void PressStrengthenBtn()
     {
+        LockButton();
         MessageBox.Show("確定要強化嗎?", MessageBoxType.Confirm,() => { 
             img1.SetActive(true);TimerSvc.Instance.AddTimeTask(SetProgress, 100, PETimeUnit.Millisecond, 25);
         });
