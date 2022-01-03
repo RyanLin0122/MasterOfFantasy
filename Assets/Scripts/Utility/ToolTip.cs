@@ -29,11 +29,16 @@ public class ToolTip : MonoBehaviour
 
     public void Show(string text)
     {
+        this.gameObject.SetActive(true);
         toolTipText.text = text;
         contentText.text = text;
         targetAlpha = 1;
         LayoutRebuilder.ForceRebuildLayoutImmediate(transform.GetComponent<RectTransform>());
         RectTransform rect = GetComponent<RectTransform>();
+        if(MainCitySys.Instance.MainCanvas != null && MainCitySys.Instance.MainCanvas.worldCamera == null)
+        {
+            MainCitySys.Instance.MainCanvas.worldCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        }
         if (MainCitySys.Instance.MainCanvas != null && MainCitySys.Instance.MainCanvas.worldCamera != null)
         {
             //Camera.main.ScreenPointToRay(Input.mousePosition)
@@ -73,6 +78,7 @@ public class ToolTip : MonoBehaviour
     }
     public void Hide()
     {
+        this.gameObject.SetActive(false);
         targetAlpha = 0;
     }
     public void SetLocalPosition(Vector3 position)
