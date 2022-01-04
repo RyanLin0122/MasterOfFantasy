@@ -88,8 +88,8 @@ public class Information : WindowRoot
         txtTitle.text = player.Title;
         txtHP.text = player.HP + " / " + attr.MAXHP;
         txtMP.text = player.MP + " / " + attr.MAXMP;
-        HpText.text = player.HP.ToString();//畫面左上角血量文字
-        MpText.text = player.MP.ToString();//畫面左上角魔力文字
+        HpText.text = player.HP + " / " + attr.MAXHP;//畫面左上角血量文字
+        MpText.text = player.MP + " / " + attr.MAXMP;//畫面左上角魔力文字
         HpImg.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
         MpImg.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
         HpImg2.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
@@ -116,8 +116,8 @@ public class Information : WindowRoot
         PlayerAttribute attr = BattleSys.Instance.FinalAttribute;
         txtHP.text = player.HP + " / " + attr.MAXHP;
         txtMP.text = player.MP + " / " + attr.MAXMP;
-        HpText.text = player.HP.ToString();//畫面左上角血量文字
-        MpText.text = player.MP.ToString();//畫面左上角魔力文字
+        HpText.text = player.HP + " / " + attr.MAXHP;//畫面左上角血量文字
+        MpText.text = player.MP + " / " + attr.MAXMP;//畫面左上角魔力文字
         HpImg.fillAmount = (float)(((double)player.HP) / attr.MAXHP);
         MpImg.fillAmount = (float)(((double)player.MP) / attr.MAXMP);
         HpImg2.fillAmount = (float)(((double)player.HP) / attr.MAXHP);

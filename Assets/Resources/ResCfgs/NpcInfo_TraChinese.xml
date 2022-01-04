@@ -1,904 +1,904 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <item ID="1001">
-    <NpcName>蘿拉</NpcName>
-    <Function>1,5,6,9,10</Function>
-    <Sprite>NPC_Laura</Sprite>
-    <Age>16</Age>
-    <BloodType>AB</BloodType>
-    <Height>167</Height>
-    <Weight>48</Weight>
-    <Job>阿卡戴米的介紹員</Job>
-    <Hobby>散步</Hobby>
-    <Trick>哄愛哭的孩子</Trick>
-    <Personality>比較年紀上較為成熟.活潑及人際關係很好.</Personality>
-    <Motto>時常親切及和藹!</Motto>
-    <Dot>NPC Laura Dot</Dot>
-    <Map>1000</Map>
-    <FixedText>你好，年輕人！你來參加考試嗎？我希望你在參加考試時一定要小心，因為考試不是免費的。如果你放棄考試，你將不會成為有用的人，所以你必須保持活躍，好嗎？</FixedText>
-  </item>
-  <item ID="1002">
-    <NpcName>珍</NpcName>
-    <Function>1,7,8</Function>
-    <Sprite>NPC_Jane</Sprite>
-    <Age>17</Age>
-    <BloodType>O</BloodType>
-    <Height>165</Height>
-    <Weight>52</Weight>
-    <Job>宿舍及事物箱管理人</Job>
-    <Hobby>慢跑</Hobby>
-    <Trick>踹男生</Trick>
-    <Personality>雖然很善良及柔順但隨著情況也會變得非常粗暴的</Personality>
-    <Motto>整理清理是每天的事情. </Motto>
-    <Dot>NPC Jane Dot</Dot>
-    <Map>1000</Map>
-    <FixedText>你好，歡迎。你今天好嗎？你想把東西留給我嗎？</FixedText>
-  </item>
-  <item ID="1004">
-    <NpcName>麗內亞</NpcName>
-    <Function>1,2,3</Function>
-    <Sprite>NPC_Linea</Sprite>
-    <Age>28</Age>
-    <BloodType>A</BloodType>
-    <Height>167</Height>
-    <Weight>秘密\</Weight>
-    <Job>阿卡戴米的神學教官</Job>
-    <Hobby>照顧孩子</Hobby>
-    <Trick>可以轉很久的呼拉圈</Trick>
-    <Personality>沉靜及首先會替別人著想. 信仰心非常深.</Personality>
-    <Motto>為了神來生活.</Motto>
-    <Dot>NPC Linea Dot</Dot>
-    <Map>1009</Map>
-    <FixedText>歡迎光臨！這裡是牧師修練的地方。如果你不是牧師，那就走吧！你不能參加本堂課。努力學習和練習，以便以後成為一個成功的人。</FixedText>
-  </item>
-  <item ID="1005">
-    <NpcName>霍克</NpcName>
-    <Function>1,2,3</Function>
-    <Sprite>NPC_Hawkeye</Sprite>
-    <Age>34</Age>
-    <BloodType>A</BloodType>
-    <Height>175</Height>
-    <Weight>69</Weight>
-    <Job>阿卡戴米的弓術教官</Job>
-    <Hobby>幫助不幸的人</Hobby>
-    <Trick>一邊跑著一邊射弓箭</Trick>
-    <Personality>安靜及沉靜的個性.慎重地思考來行動.</Personality>
-    <Motto>在所有的事情上集中吧! </Motto>
-    <Dot>NPC Hawkeye Dot</Dot>
-    <Map>1007</Map>
-    <FixedText>歡迎光臨！這裡是射箭訓練的地方。如果你不是弓箭手，那就走吧！你不能參加此課程。努力學習和練習，以後再成為一個成功的人。</FixedText>
-  </item>
-  <item ID="1006">
-    <NpcName>齊丹</NpcName>
-    <Function>1,2,3</Function>
-    <Sprite>NPC_Keydan</Sprite>
-    <Age>32</Age>
-    <BloodType>B</BloodType>
-    <Height>172</Height>
-    <Weight>65</Weight>
-    <Job>阿卡戴米的魔法教官</Job>
-    <Hobby>研究魔法古書</Hobby>
-    <Trick>速記咒文</Trick>
-    <Personality>理性及冷靜而透澈很會挑剔.非常固執且獨善其身.</Personality>
-    <Motto>經常以理性來思考吧!. </Motto>
-    <Dot>NPC Keydan Dot</Dot>
-    <Map>1008</Map>
-    <FixedText>歡迎光臨！這裡是訓練魔術師的地方。如果你不是魔術師，那就走吧！你不能參加此課程。努力學習和練習，以後再成為一個成功的人。</FixedText>
-  </item>
-  <item ID="1007">
-    <NpcName>普茲</NpcName>
-    <Function>1,2,3</Function>
-    <Sprite>NPC_Buzz</Sprite>
-    <Age>38</Age>
-    <BloodType>A</BloodType>
-    <Height>186</Height>
-    <Weight>80</Weight>
-    <Job>阿卡戴米劍術教官</Job>
-    <Hobby>搜集及管理刀劍</Hobby>
-    <Trick>三段接連著砍</Trick>
-    <Personality>粗暴的態度與不一樣地很深照顧的心情,每一件事情是積極的.</Personality>
-    <Motto>基礎必定要堅故才能變得更強. </Motto>
-    <Dot>NPC Buzz Dot</Dot>
-    <Map>1007</Map>
-    <FixedText>歡迎光臨！這裡是訓練戰士的地方。如果你不是戰士，那就走吧！你不能參加這堂課。努力學習和練習，以後才能成為一個成功的人。</FixedText>
-  </item>
-  <item ID="1008">
-    <NpcName>路斯特</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Nostel</Sprite>
-    <Age>32</Age>
-    <BloodType>A</BloodType>
-    <Height>161</Height>
-    <Weight>50</Weight>
-    <Job>阿卡戴米的校監</Job>
-    <Hobby>出心算及猜謎</Hobby>
-    <Trick>解開困難的問題</Trick>
-    <Personality>文靜及冷靜</Personality>
-    <Motto>克服世代間的差異吧!</Motto>
-    <Dot>NPC Nostel Dot</Dot>
-    <Map>1000</Map>
-    <FixedText>你好！如果你想參加考試，請去找蘿拉。</FixedText>
-  </item>
-  <item ID="1009">
-    <NpcName>克魯諾</NpcName>
-    <Function>1,4,12,13</Function>
-    <Sprite>NPC_Cruno</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>178</Height>
-    <Weight>69</Weight>
-    <Job>阿卡戴米的校長</Job>
-    <Hobby>下西洋琪</Hobby>
-    <Trick>在所有方面都非常卓越</Trick>
-    <Personality>平常是以溫柔態度來對待人及愛孩子</Personality>
-    <Motto>不放棄的話就會成功. </Motto>
-    <Dot>NPC Cruno Dot</Dot>
-    <Map>1001</Map>
-    <FixedText>歡迎光臨！我是阿卡戴米學院的負責人。我能為你提供幫助嗎？如果你想換工作或學習特殊技能，請找我。</FixedText>
-  </item>
-  <item ID="1010">
-    <NpcName>尤莉</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Yuffie</Sprite>
-    <Age>13</Age>
-    <BloodType>A</BloodType>
-    <Height>160</Height>
-    <Weight>40</Weight>
-    <Job>利比村莊的導引員</Job>
-    <Hobby>干涉別人的事情</Hobby>
-    <Trick>抓草</Trick>
-    <Personality>活潑且喜歡人們.比起看到本人更囉嗦.</Personality>
-    <Motto>親切地對待所有的人吧!. </Motto>
-    <Dot>NPC Yuffie Dot</Dot>
-    <Map>1004</Map>
-    <FixedText>嗨..你在想什麼..？我怎麼知道..？我在你的臉上看到了另外一個表情..我能為你做些什麼..？</FixedText>
-  </item>
-  <item ID="1011">
-    <NpcName>莎拉嘉德</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Seriza</Sprite>
-    <Age>24</Age>
-    <BloodType>A</BloodType>
-    <Height>166</Height>
-    <Weight>52</Weight>
-    <Job>祭司</Job>
-    <Hobby>取字</Hobby>
-    <Trick>快速說話</Trick>
-    <Personality>是安靜及沉靜的個性.記憶力非常好.</Personality>
-    <Motto>書是內心的糧食. </Motto>
-    <Dot>NPC Seriza Dot</Dot>
-    <Map>1004</Map>
-    <FixedText>您好〜我真的很喜歡講故事，這就是為什麼我經常告訴鎮上的孩子們。孩子們真的很喜歡聽故事。他們想再次聽故事嗎？</FixedText>
-  </item>
-  <item ID="1012">
-    <NpcName>露西</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Rosy</Sprite>
-    <Age>16</Age>
-    <BloodType>O</BloodType>
-    <Height>165</Height>
-    <Weight>43</Weight>
-    <Job>雜貨店的藥材商主人</Job>
-    <Hobby>搜集美麗的瓶子</Hobby>
-    <Trick>商品褡配銷售</Trick>
-    <Personality>社交性卓越與樂天性 性格經常笑著來生活</Personality>
-    <Motto>即使辛苦的時候也是笑吧! </Motto>
-    <Dot>NPC Rosy Dot</Dot>
-    <Map>1015</Map>
-    <FixedText>歡迎光臨！你是第一次來這裡嗎？怎麼樣？只是為了旅行嗎？很久以前我選擇過著流浪的生活，我想住某個地方，現在最好流浪。那是錯誤的想法，正在尋找東西嗎？</FixedText>
-  </item>
-  <item ID="1013">
-    <NpcName>麗歐娜</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Rinoa</Sprite>
-    <Age>28</Age>
-    <BloodType>B</BloodType>
-    <Height>164</Height>
-    <Weight>秘密</Weight>
-    <Job>雜貨店手工藝品商主人</Job>
-    <Hobby>囉嗦</Hobby>
-    <Trick>強賣商品</Trick>
-    <Personality>雖然活潑但有些傲慢的性格.心底像米蟲一般無法趕走.</Personality>
-    <Motto>愛情的事情也是要努力去做吧! </Motto>
-    <Dot>NPC Rinoa Dot</Dot>
-    <Map>1015</Map>
-    <FixedText>你好，你好嗎？！你知道我賣的是什麼？我賣貴重物品。看似很貴，但是這個物品非常有用。</FixedText>
-  </item>
-  <item ID="1014">
-    <NpcName>佩伊</NpcName>
-    <Function>1,9</Function>
-    <Sprite>NPC_Fei</Sprite>
-    <Age>17</Age>
-    <BloodType>B</BloodType>
-    <Height>172</Height>
-    <Weight>65</Weight>
-    <Job>鐵匠鋪武器商人</Job>
-    <Hobby>弄彎手臂再伸直</Hobby>
-    <Trick>製作鐵鎚???</Trick>
-    <Personality> 雖是活潑個性但在有關自己的事情上很固執</Personality>
-    <Motto>在我份內的事會做到最好. </Motto>
-    <Dot>NPC Fei Dot</Dot>
-    <Map>1016</Map>
-    <FixedText>我能為你提供什麼幫助？？您想要一種適合你的武器嗎？？好吧，請選擇一種適合你需求的武器！！</FixedText>
-  </item>
-  <item ID="1015">
-    <NpcName>奧斯華</NpcName>
-    <Function>1,11</Function>
-    <Sprite>NPC_Osvall</Sprite>
-    <Age>42</Age>
-    <BloodType>O</BloodType>
-    <Height>170</Height>
-    <Weight>92</Weight>
-    <Job>鐵匠鋪的防禦商人</Job>
-    <Hobby>仰望著遠山</Hobby>
-    <Trick>坐著打瞌睡</Trick>
-    <Personality>給自己的事情會全力以赴去做,屬於勤勉派.</Personality>
-    <Motto>努力生活的話希望會來臨. </Motto>
-    <Dot>NPC Osvall Dot</Dot>
-    <Map>1016</Map>
-    <FixedText>你能幫我嗎？？需要一件合適的裝甲來幫助你與怪物戰鬥……！</FixedText>
-  </item>
-  <item ID="1016">
-    <NpcName>貝爾丁</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Verdin</Sprite>
-    <Age>33</Age>
-    <BloodType>AB</BloodType>
-    <Height>180</Height>
-    <Weight>82</Weight>
-    <Job>酒店主人</Job>
-    <Hobby>調酒</Hobby>
-    <Trick>討取帳款</Trick>
-    <Personality>計算很快且錢會算清楚</Personality>
-    <Motto>酒只賣給成年人. </Motto>
-    <Dot>NPC Verdin Dot</Dot>
-    <Map>1012</Map>
-    <FixedText>很高興認識你！您來這裡學習？</FixedText>
-  </item>
-  <item ID="1017">
-    <NpcName>菲利浦</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Philip</Sprite>
-    <Age>25</Age>
-    <BloodType>O</BloodType>
-    <Height>178</Height>
-    <Weight>72</Weight>
-    <Job>盜賊行幫長</Job>
-    <Hobby>在月夜時體操</Hobby>
-    <Trick>沒有出聲音來跑步</Trick>
-    <Personality>與普通的人很難相處. 想要成為義賊.</Personality>
-    <Motto>成為正直的人吧!. </Motto>
-    <Dot>NPC Philip Dot</Dot>
-    <Map>1014</Map>
-    <FixedText>你是誰..！！ 此房間僅適用於獲得許可的人。</FixedText>
-  </item>
-  <item ID="1018">
-    <NpcName>飛龍</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>1010</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="1019">
-    <NpcName>路菲</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>1017</Map>
-    <FixedText>您好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="1020">
-    <NpcName>科士克</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Kosaka</Sprite>
-    <Age>15</Age>
-    <BloodType>AB</BloodType>
-    <Height>152</Height>
-    <Weight>41</Weight>
-    <Job>管理寵物的家及黑暗進行者秘密要員</Job>
-    <Hobby>打珠子</Hobby>
-    <Trick>打新槍</Trick>
-    <Personality>不像孩子是毒蛇的</Personality>
-    <Motto>寶貴自己的寵物吧!</Motto>
-    <Dot>NPC Kosaka Dot</Dot>
-    <Map>1017</Map>
-    <FixedText>嘿..歡迎光臨，我是科士克。如果你對寵物有疑問，請找我</FixedText>
-  </item>
-  <item ID="1021">
-    <NpcName>哈洛克</NpcName>
-    <Function>1,14</Function>
-    <Sprite>NPC_Harlock</Sprite>
-    <Age>38</Age>
-    <BloodType>A</BloodType>
-    <Height>182</Height>
-    <Weight>76</Weight>
-    <Job>船長</Job>
-    <Hobby>釣魚</Hobby>
-    <Trick>長距離的遊泳</Trick>
-    <Personality>強烈的眼光,直斷的個性地步. 意想不到的熱血派.</Personality>
-    <Motto>成為征服海的人吧.</Motto>
-    <Dot>NPC Harlock Dot</Dot>
-    <Map>1005</Map>
-    <FixedText>你好，海上的天氣非常晴朗。你想在海洋中航行嗎？你可以在另一邊遇到很多冒險</FixedText>
-  </item>
-  <item ID="1022">
-    <NpcName>安娜</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Anna</Sprite>
-    <Age>16</Age>
-    <BloodType>AB</BloodType>
-    <Height>167</Height>
-    <Weight>48</Weight>
-    <Job>婚禮籌辦人</Job>
-    <Hobby>祝福新人</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>給予想結婚的情侶很大的幫助.</Personality>
-    <Motto>時常親切及和藹!</Motto>
-    <Dot>NPC Laura Dot</Dot>
-    <Map>1000</Map>
-    <FixedText>你好。很高興認識你。問我有關婚姻的任何事情。婚姻對你的生活很重要。如果你結婚了，以後你會得到一對非常漂亮的戒指，你知道嗎。</FixedText>
-  </item>
-  <item ID="2001">
-    <NpcName>廢礦警備隊長</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>29</Age>
-    <BloodType>AB</BloodType>
-    <Height>178</Height>
-    <Weight>75</Weight>
-    <Job>廢礦監視塔警備隊長</Job>
-    <Hobby>欣賞觀象</Hobby>
-    <Trick>自己會喃喃自語</Trick>
-    <Personality>力以赴來保護廢礦監視塔</Personality>
-    <Motto>我的生命就是保護同伴 </Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>2012</Map>
-    <FixedText>嗨，我是廢礦警備隊隊長。保護廢礦哨所不受傷害是我的職責。我能幫助你嗎？</FixedText>
-  </item>
-  <item ID="2002">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>2012</Map>
-    <FixedText>你好，我可以幫助您出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="2003">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>2012</Map>
-    <FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
-  </item>
-  <item ID="2004">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>2012</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="2005">
-    <NpcName>德古拉</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Dracula</Sprite>
-    <Age>16</Age>
-    <BloodType>AB</BloodType>
-    <Height>167</Height>
-    <Weight>48</Weight>
-    <Job>城主</Job>
-    <Hobby>鑑賞美術品</Hobby>
-    <Trick>作畫及寫小說</Trick>
-    <Personality>為了脫離吸血的命運垂死掙扎的善良魔族</Personality>
-    <Motto>不要再吸血了. </Motto>
-    <Dot>NPC Dracula Dot</Dot>
-    <Map>-1</Map>
-    <FixedText>你好，你一定是那個著名學院的學生嗎？哈哈哈..我一定不會弄錯。我是德古拉。我是幽靈城堡的守護者。如果你想在這裡訓練，要小心。這裡的敵人非常危險。</FixedText>
-  </item>
-  <item ID="3001">
-    <NpcName>平原警備隊長</NpcName>
-    <Function>1,5,6</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>28</Age>
-    <BloodType>A</BloodType>
-    <Height>180</Height>
-    <Weight>79</Weight>
-    <Job>平原監視塔警備隊長</Job>
-    <Hobby>多樣化搜集</Hobby>
-    <Trick>望著遠方</Trick>
-    <Personality>全力以赴來保護平原廢礦監視塔</Personality>
-    <Motto>我的生命就是保護同伴.</Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>3010</Map>
-    <FixedText>你好，我是平原警備隊隊長。我的職責是防止平原哨所受到傷害。我能幫助你嗎？</FixedText>
-  </item>
-  <item ID="3002">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>3010</Map>
-    <FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="3003">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>3010</Map>
-    <FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
-  </item>
-  <item ID="3004">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>3010</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="3005">
-    <NpcName>拉波</NpcName>
-    <Function>1,5,6,14</Function>
-    <Sprite>NPC_Ralph</Sprite>
-    <Age>46</Age>
-    <BloodType>A</BloodType>
-    <Height>175</Height>
-    <Weight>75</Weight>
-    <Job>高級武器商人</Job>
-    <Hobby>辱罵怪物</Hobby>
-    <Trick>提起力器</Trick>
-    <Personality>性情很粗暴.非常憎惡怪物.</Personality>
-    <Motto>讓怪物滅種!</Motto>
-    <Dot>NPC Ralph Dot</Dot>
-    <Map>3010</Map>
-    <FixedText>嗨，歡迎光臨！我是拉波你想要什麼？你想要其他武器，你可以選擇想要的武器。</FixedText>
-  </item>
-  <item ID="3006">
-    <NpcName>羅蘭德</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Roland</Sprite>
-    <Age>52</Age>
-    <BloodType>O</BloodType>
-    <Height>184</Height>
-    <Weight>81</Weight>
-    <Job>司令官</Job>
-    <Hobby>模擬戰術對決</Hobby>
-    <Trick>建立戰略</Trick>
-    <Personality>剛直及勤勉</Personality>
-    <Motto>以前的領土必定要收復回來 </Motto>
-    <Dot>NPC Roland Dot</Dot>
-    <Map>3017</Map>
-    <FixedText>歡迎來到指揮中心！我是羅蘭。我的工作是使人類戰勝惡魔和邪惡生物。你在這裡做什麼？說吧！</FixedText>
-  </item>
-  <item ID="3007">
-    <NpcName>羅雲</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Louie</Sprite>
-    <Age>25</Age>
-    <BloodType>O</BloodType>
-    <Height>164</Height>
-    <Weight>48</Weight>
-    <Job>補給官</Job>
-    <Hobby>整理補給倉庫</Hobby>
-    <Trick>計算數字</Trick>
-    <Personality>責任感很強</Personality>
-    <Motto>物資不能不足 </Motto>
-    <Dot>NPC Louie Dot</Dot>
-    <Map>3017</Map>
-    <FixedText>進來。我是羅雲。我是軍隊的補給衛兵。為此，我需要大量補給。您可以用一些物品換錢。</FixedText>
-  </item>
-  <item ID="3008">
-    <NpcName>巴比都</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Babidu</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>164</Height>
-    <Weight>84</Weight>
-    <Job>大咒術師</Job>
-    <Hobby>獵補魚</Hobby>
-    <Trick>占術</Trick>
-    <Personality>很小心且[很沉靜. 愛好和平.</Personality>
-    <Motto>為了種族的安危來生活. </Motto>
-    <Dot>NPC Babidu Dot</Dot>
-    <Map>3008</Map>
-    <FixedText>嗯..你是人類嗎?嗯..你是人類..我是鼬鼠。一個叫巴比都的人。嗯..你是來這裡幫助我的嗎?</FixedText>
-  </item>
-  <item ID="4001">
-    <NpcName>西部警衛隊長</NpcName>
-    <Function>1,5,6</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>27</Age>
-    <BloodType>A</BloodType>
-    <Height>182</Height>
-    <Weight>76</Weight>
-    <Job>西部監視塔警備隊長</Job>
-    <Hobby>打獵</Hobby>
-    <Trick>劍道</Trick>
-    <Personality>全力以赴來保護西部監視塔</Personality>
-    <Motto>我的生命就是保護同伴. </Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>3014</Map>
-    <FixedText>是的！我是西部警衛隊隊長。防止西部不受傷害是我的職責。我可以幫助你嗎？</FixedText>
-  </item>
-  <item ID="4002">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>3014</Map>
-    <FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="4003">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>3014</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="4004">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>3014</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="4005">
-    <NpcName>雨林警備隊長</NpcName>
-    <Function>1,5,6</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>27</Age>
-    <BloodType>O</BloodType>
-    <Height>178</Height>
-    <Weight>70</Weight>
-    <Job>雨林監視塔警備隊長</Job>
-    <Hobby>給樹木澆水</Hobby>
-    <Trick>劈材霸氣</Trick>
-    <Personality>全力以赴來保護雨林監視塔</Personality>
-    <Motto>我的生命就是保護同伴 </Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>4016</Map>
-    <FixedText>歡迎年輕人。但是，為什麼你要來這裡冒險……？據我所知，森林裡有這麼多怪物！！！如果你沒有準備的話。 ，穿過森林是非常困難的。</FixedText>
-  </item>
-  <item ID="4006">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>4016</Map>
-    <FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="4007">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>4016</Map>
-    <FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
-  </item>
-  <item ID="4008">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>4016</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="5001">
-    <NpcName>北部警備隊長</NpcName>
-    <Function>1,5,6</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>30</Age>
-    <BloodType>O</BloodType>
-    <Height>183</Height>
-    <Weight>80</Weight>
-    <Job>北部前哨基地警備隊長</Job>
-    <Hobby>激烈戰鬥</Hobby>
-    <Trick>打架</Trick>
-    <Personality>全力以赴來北部前哨基地</Personality>
-    <Motto>我的生命就是保護同伴</Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>5014</Map>
-    <FixedText>嗨..好久不見了..我從來沒有想過，現在你已經接近完美了..繼續努力工作..嗯，您想加入我們嗎..？</FixedText>
-  </item>
-  <item ID="5002">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>5014</Map>
-    <FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="5003">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>5014</Map>
-    <FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
-  </item>
-  <item ID="5004">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>5014</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="6001">
-    <NpcName>火山警備隊長</NpcName>
-    <Function>1,5,6</Function>
-    <Sprite>NPC_Guard</Sprite>
-    <Age>26</Age>
-    <BloodType>A</BloodType>
-    <Height>185</Height>
-    <Weight>82</Weight>
-    <Job>火山監視塔警備隊長</Job>
-    <Hobby>雕刻</Hobby>
-    <Trick>鋪平石頭</Trick>
-    <Personality>全力以赴來保護火山監視塔</Personality>
-    <Motto>我的生命就是保護同伴  </Motto>
-    <Dot>NPC Guard Dot</Dot>
-    <Map>6008</Map>
-    <FixedText>你是誰？？你是學院的學生。你看到那座高山……？那座山被稱為火山，裡面有很多怪物。其中有火焰果凍</FixedText>
-  </item>
-  <item ID="6002">
-    <NpcName>路菲</NpcName>
-    <Function>1,17</Function>
-    <Sprite>NPC_Runpei</Sprite>
-    <Age>35</Age>
-    <BloodType>AB</BloodType>
-    <Height>169</Height>
-    <Weight>82</Weight>
-    <Job>代銷管理人</Job>
-    <Hobby>喜愛多樣的好美食</Hobby>
-    <Trick>快速計算</Trick>
-    <Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
-    <Motto>透過試鍊累積財富. </Motto>
-    <Dot>NPC Runpei Dot</Dot>
-    <Map>6008</Map>
-    <FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
-  </item>
-  <item ID="6003">
-    <NpcName>流浪商人</NpcName>
-    <Function>5,6</Function>
-    <Sprite>NPC_Merchant</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>165</Height>
-    <Weight>秘密</Weight>
-    <Job>流浪商人</Job>
-    <Hobby>未曉</Hobby>
-    <Trick>快走及快跑</Trick>
-    <Personality>比別人更快移動精常準備要做生意.</Personality>
-    <Motto>努力跑吧!</Motto>
-    <Dot>NPC Merchant Dot</Dot>
-    <Map>6008</Map>
-    <FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
-  </item>
-  <item ID="6004">
-    <NpcName>飛龍</NpcName>
-    <Function>15,16</Function>
-    <Sprite>NPC_Dragon</Sprite>
-    <Age>N/A</Age>
-    <BloodType>N/A</BloodType>
-    <Height>N/A</Height>
-    <Weight>N/A</Weight>
-    <Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
-    <Hobby>N/A</Hobby>
-    <Trick>N/A</Trick>
-    <Personality>N/A</Personality>
-    <Motto>N/A</Motto>
-    <Dot>NPC Dragon Dot</Dot>
-    <Map>6008</Map>
-    <FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
-  </item>
-  <item ID="6005">
-    <NpcName>夏洛特</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Charlote</Sprite>
-    <Age>?</Age>
-    <BloodType>A</BloodType>
-    <Height>173</Height>
-    <Weight>?</Weight>
-    <Job>古代王國的王子科學家</Job>
-    <Hobby>製作化工藥品</Hobby>
-    <Trick>製作馬刀器</Trick>
-    <Personality>因為自己製作有關馬刀器的事情感到後悔 .</Personality>
-    <Motto>跟著所發現的危險. </Motto>
-    <Dot>NPC Charlote Dot</Dot>
-    <Map>6013</Map>
-    <FixedText>你好，我已經很長時間沒見過人類了！你是因為我給克魯諾院長的信息而來的？所以你來幫我把受機器統治的神社專家帶走嗎，那就好!我一直在等著他，終於有了幫助，如果您可以擊敗這座神殿，格拉托斯就會佔領它，這意味著我可以再次佔領這座神廟。</FixedText>
-  </item>
-  <item ID="7001">
-    <NpcName>克丁哈以德</NpcName>
-    <Function>1</Function>
-    <Sprite>NPC_Hyde</Sprite>
-    <Age>?</Age>
-    <BloodType>?</BloodType>
-    <Height>184</Height>
-    <Weight>?</Weight>
-    <Job>成為幽靈的船長</Job>
-    <Hobby>修理輸送管</Hobby>
-    <Trick>解開繩子</Trick>
-    <Personality>可以為了大的犧牲小的強人精神力的擁有者</Personality>
-    <Motto>在海邊生活然後死去\. </Motto>
-    <Dot>NPC Hyde Dot</Dot>
-    <Map>7001</Map>
-    <FixedText>歡迎來到幽靈船！我是深海閻王過去俘虜的一艘船的船長。他俘獲了我的追隨者和我的船。你知道嗎？被俘的水手成了他的奴隸！他還燒掉了我的船。我不想成為他的奴隸。求求你，幫助我們。</FixedText>
-  </item>
-  <item ID="7002">
-    <NpcName>哈洛克</NpcName>
-    <Function>1,14</Function>
-    <Sprite>NPC_Harlock</Sprite>
-    <Age>38</Age>
-    <BloodType>A</BloodType>
-    <Height>182</Height>
-    <Weight>76</Weight>
-    <Job>船長</Job>
-    <Hobby>釣魚</Hobby>
-    <Trick>長距離的遊泳</Trick>
-    <Personality>強烈的眼光,直斷的個性地步. 意想不到的熱血派.</Personality>
-    <Motto>成為征服海的人吧.</Motto>
-    <Dot>NPC Harlock Dot</Dot>
-    <Map>7001</Map>
-    <FixedText>你好，海上的天氣非常晴朗。你想在海洋中航行嗎？？你可以在另一邊遇到很多冒險</FixedText>
-  </item>
+	<item ID="1001">
+		<NpcName>蘿拉</NpcName>
+		<Function>1,5,6,9,10</Function>
+		<Sprite>NPC_Laura</Sprite>
+		<Age>16</Age>
+		<BloodType>AB</BloodType>
+		<Height>167</Height>
+		<Weight>48</Weight>
+		<Job>阿卡戴米的介紹員</Job>
+		<Hobby>散步</Hobby>
+		<Trick>哄愛哭的孩子</Trick>
+		<Personality>比較年紀上較為成熟.活潑及人際關係很好.</Personality>
+		<Motto>時常親切及和藹!</Motto>
+		<Dot>NPC Laura Dot</Dot>
+		<Map>1000</Map>
+		<FixedText>你好，年輕人！你來參加考試嗎？我希望你在參加考試時一定要小心，因為考試不是免費的。如果你放棄考試，你將不會成為有用的人，所以你必須保持活躍，好嗎？</FixedText>
+	</item>
+	<item ID="1002">
+		<NpcName>珍</NpcName>
+		<Function>1,7,8</Function>
+		<Sprite>NPC_Jane</Sprite>
+		<Age>17</Age>
+		<BloodType>O</BloodType>
+		<Height>165</Height>
+		<Weight>52</Weight>
+		<Job>宿舍及事物箱管理人</Job>
+		<Hobby>慢跑</Hobby>
+		<Trick>踹男生</Trick>
+		<Personality>雖然很善良及柔順但隨著情況也會變得非常粗暴的</Personality>
+		<Motto>整理清理是每天的事情. </Motto>
+		<Dot>NPC Jane Dot</Dot>
+		<Map>1000</Map>
+		<FixedText>你好，歡迎。你今天好嗎？你想把東西留給我嗎？</FixedText>
+	</item>
+	<item ID="1004">
+		<NpcName>麗內亞</NpcName>
+		<Function>1,2,3</Function>
+		<Sprite>NPC_Linea</Sprite>
+		<Age>28</Age>
+		<BloodType>A</BloodType>
+		<Height>167</Height>
+		<Weight>秘密\</Weight>
+		<Job>阿卡戴米的神學教官</Job>
+		<Hobby>照顧孩子</Hobby>
+		<Trick>可以轉很久的呼拉圈</Trick>
+		<Personality>沉靜及首先會替別人著想. 信仰心非常深.</Personality>
+		<Motto>為了神來生活.</Motto>
+		<Dot>NPC Linea Dot</Dot>
+		<Map>1009</Map>
+		<FixedText>歡迎光臨！這裡是牧師修練的地方。如果你不是牧師，那就走吧！你不能參加本堂課。努力學習和練習，以便以後成為一個成功的人。</FixedText>
+	</item>
+	<item ID="1005">
+		<NpcName>霍克</NpcName>
+		<Function>1,2,3</Function>
+		<Sprite>NPC_Hawkeye</Sprite>
+		<Age>34</Age>
+		<BloodType>A</BloodType>
+		<Height>175</Height>
+		<Weight>69</Weight>
+		<Job>阿卡戴米的弓術教官</Job>
+		<Hobby>幫助不幸的人</Hobby>
+		<Trick>一邊跑著一邊射弓箭</Trick>
+		<Personality>安靜及沉靜的個性.慎重地思考來行動.</Personality>
+		<Motto>在所有的事情上集中吧! </Motto>
+		<Dot>NPC Hawkeye Dot</Dot>
+		<Map>1007</Map>
+		<FixedText>歡迎光臨！這裡是射箭訓練的地方。如果你不是弓箭手，那就走吧！你不能參加此課程。努力學習和練習，以後再成為一個成功的人。</FixedText>
+	</item>
+	<item ID="1006">
+		<NpcName>齊丹</NpcName>
+		<Function>1,2,3</Function>
+		<Sprite>NPC_Keydan</Sprite>
+		<Age>32</Age>
+		<BloodType>B</BloodType>
+		<Height>172</Height>
+		<Weight>65</Weight>
+		<Job>阿卡戴米的魔法教官</Job>
+		<Hobby>研究魔法古書</Hobby>
+		<Trick>速記咒文</Trick>
+		<Personality>理性及冷靜而透澈很會挑剔.非常固執且獨善其身.</Personality>
+		<Motto>經常以理性來思考吧!. </Motto>
+		<Dot>NPC Keydan Dot</Dot>
+		<Map>1008</Map>
+		<FixedText>歡迎光臨！這裡是訓練魔術師的地方。如果你不是魔術師，那就走吧！你不能參加此課程。努力學習和練習，以後再成為一個成功的人。</FixedText>
+	</item>
+	<item ID="1007">
+		<NpcName>普茲</NpcName>
+		<Function>1,2,3</Function>
+		<Sprite>NPC_Buzz</Sprite>
+		<Age>38</Age>
+		<BloodType>A</BloodType>
+		<Height>186</Height>
+		<Weight>80</Weight>
+		<Job>阿卡戴米劍術教官</Job>
+		<Hobby>搜集及管理刀劍</Hobby>
+		<Trick>三段接連著砍</Trick>
+		<Personality>粗暴的態度與不一樣地很深照顧的心情,每一件事情是積極的.</Personality>
+		<Motto>基礎必定要堅故才能變得更強. </Motto>
+		<Dot>NPC Buzz Dot</Dot>
+		<Map>1007</Map>
+		<FixedText>歡迎光臨！這裡是訓練戰士的地方。如果你不是戰士，那就走吧！你不能參加這堂課。努力學習和練習，以後才能成為一個成功的人。</FixedText>
+	</item>
+	<item ID="1008">
+		<NpcName>路斯特</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Nostel</Sprite>
+		<Age>32</Age>
+		<BloodType>A</BloodType>
+		<Height>161</Height>
+		<Weight>50</Weight>
+		<Job>阿卡戴米的校監</Job>
+		<Hobby>出心算及猜謎</Hobby>
+		<Trick>解開困難的問題</Trick>
+		<Personality>文靜及冷靜</Personality>
+		<Motto>克服世代間的差異吧!</Motto>
+		<Dot>NPC Nostel Dot</Dot>
+		<Map>1000</Map>
+		<FixedText>你好！如果你想參加考試，請去找蘿拉。</FixedText>
+	</item>
+	<item ID="1009">
+		<NpcName>克魯諾</NpcName>
+		<Function>1,4,12,13</Function>
+		<Sprite>NPC_Cruno</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>178</Height>
+		<Weight>69</Weight>
+		<Job>阿卡戴米的校長</Job>
+		<Hobby>下西洋琪</Hobby>
+		<Trick>在所有方面都非常卓越</Trick>
+		<Personality>平常是以溫柔態度來對待人及愛孩子</Personality>
+		<Motto>不放棄的話就會成功. </Motto>
+		<Dot>NPC Cruno Dot</Dot>
+		<Map>1001</Map>
+		<FixedText>歡迎光臨！我是阿卡戴米學院的負責人。我能為你提供幫助嗎？如果你想換工作或學習特殊技能，請找我。</FixedText>
+	</item>
+	<item ID="1010">
+		<NpcName>尤莉</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Yuffie</Sprite>
+		<Age>13</Age>
+		<BloodType>A</BloodType>
+		<Height>160</Height>
+		<Weight>40</Weight>
+		<Job>利比村莊的導引員</Job>
+		<Hobby>干涉別人的事情</Hobby>
+		<Trick>抓草</Trick>
+		<Personality>活潑且喜歡人們.比起看到本人更囉嗦.</Personality>
+		<Motto>親切地對待所有的人吧!. </Motto>
+		<Dot>NPC Yuffie Dot</Dot>
+		<Map>1004</Map>
+		<FixedText>嗨..你在想什麼..？我怎麼知道..？我在你的臉上看到了另外一個表情..我能為你做些什麼..？</FixedText>
+	</item>
+	<item ID="1011">
+		<NpcName>莎拉嘉德</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Seriza</Sprite>
+		<Age>24</Age>
+		<BloodType>A</BloodType>
+		<Height>166</Height>
+		<Weight>52</Weight>
+		<Job>祭司</Job>
+		<Hobby>取字</Hobby>
+		<Trick>快速說話</Trick>
+		<Personality>是安靜及沉靜的個性.記憶力非常好.</Personality>
+		<Motto>書是內心的糧食. </Motto>
+		<Dot>NPC Seriza Dot</Dot>
+		<Map>1004</Map>
+		<FixedText>您好〜我真的很喜歡講故事，這就是為什麼我經常告訴鎮上的孩子們。孩子們真的很喜歡聽故事。他們想再次聽故事嗎？</FixedText>
+	</item>
+	<item ID="1012">
+		<NpcName>露西</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Rosy</Sprite>
+		<Age>16</Age>
+		<BloodType>O</BloodType>
+		<Height>165</Height>
+		<Weight>43</Weight>
+		<Job>雜貨店的藥材商主人</Job>
+		<Hobby>搜集美麗的瓶子</Hobby>
+		<Trick>商品褡配銷售</Trick>
+		<Personality>社交性卓越與樂天性 性格經常笑著來生活</Personality>
+		<Motto>即使辛苦的時候也是笑吧! </Motto>
+		<Dot>NPC Rosy Dot</Dot>
+		<Map>1015</Map>
+		<FixedText>歡迎光臨！你是第一次來這裡嗎？怎麼樣？只是為了旅行嗎？很久以前我選擇過著流浪的生活，我想住某個地方，現在最好流浪。那是錯誤的想法，正在尋找東西嗎？</FixedText>
+	</item>
+	<item ID="1013">
+		<NpcName>麗歐娜</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Rinoa</Sprite>
+		<Age>28</Age>
+		<BloodType>B</BloodType>
+		<Height>164</Height>
+		<Weight>秘密</Weight>
+		<Job>雜貨店手工藝品商主人</Job>
+		<Hobby>囉嗦</Hobby>
+		<Trick>強賣商品</Trick>
+		<Personality>雖然活潑但有些傲慢的性格.心底像米蟲一般無法趕走.</Personality>
+		<Motto>愛情的事情也是要努力去做吧! </Motto>
+		<Dot>NPC Rinoa Dot</Dot>
+		<Map>1015</Map>
+		<FixedText>你好，你好嗎？！你知道我賣的是什麼？我賣貴重物品。看似很貴，但是這個物品非常有用。</FixedText>
+	</item>
+	<item ID="1014">
+		<NpcName>佩伊</NpcName>
+		<Function>1,9</Function>
+		<Sprite>NPC_Fei</Sprite>
+		<Age>17</Age>
+		<BloodType>B</BloodType>
+		<Height>172</Height>
+		<Weight>65</Weight>
+		<Job>鐵匠鋪武器商人</Job>
+		<Hobby>弄彎手臂再伸直</Hobby>
+		<Trick>製作鐵鎚???</Trick>
+		<Personality> 雖是活潑個性但在有關自己的事情上很固執</Personality>
+		<Motto>在我份內的事會做到最好. </Motto>
+		<Dot>NPC Fei Dot</Dot>
+		<Map>1016</Map>
+		<FixedText>我能為你提供什麼幫助？？您想要一種適合你的武器嗎？？好吧，請選擇一種適合你需求的武器！！</FixedText>
+	</item>
+	<item ID="1015">
+		<NpcName>奧斯華</NpcName>
+		<Function>1,11</Function>
+		<Sprite>NPC_Osvall</Sprite>
+		<Age>42</Age>
+		<BloodType>O</BloodType>
+		<Height>170</Height>
+		<Weight>92</Weight>
+		<Job>鐵匠鋪的防禦商人</Job>
+		<Hobby>仰望著遠山</Hobby>
+		<Trick>坐著打瞌睡</Trick>
+		<Personality>給自己的事情會全力以赴去做,屬於勤勉派.</Personality>
+		<Motto>努力生活的話希望會來臨. </Motto>
+		<Dot>NPC Osvall Dot</Dot>
+		<Map>1016</Map>
+		<FixedText>你能幫我嗎？？需要一件合適的裝甲來幫助你與怪物戰鬥……！</FixedText>
+	</item>
+	<item ID="1016">
+		<NpcName>貝爾丁</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Verdin</Sprite>
+		<Age>33</Age>
+		<BloodType>AB</BloodType>
+		<Height>180</Height>
+		<Weight>82</Weight>
+		<Job>酒店主人</Job>
+		<Hobby>調酒</Hobby>
+		<Trick>討取帳款</Trick>
+		<Personality>計算很快且錢會算清楚</Personality>
+		<Motto>酒只賣給成年人. </Motto>
+		<Dot>NPC Verdin Dot</Dot>
+		<Map>1012</Map>
+		<FixedText>很高興認識你！您來這裡學習？</FixedText>
+	</item>
+	<item ID="1017">
+		<NpcName>菲利浦</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Philip</Sprite>
+		<Age>25</Age>
+		<BloodType>O</BloodType>
+		<Height>178</Height>
+		<Weight>72</Weight>
+		<Job>盜賊行幫長</Job>
+		<Hobby>在月夜時體操</Hobby>
+		<Trick>沒有出聲音來跑步</Trick>
+		<Personality>與普通的人很難相處. 想要成為義賊.</Personality>
+		<Motto>成為正直的人吧!. </Motto>
+		<Dot>NPC Philip Dot</Dot>
+		<Map>1014</Map>
+		<FixedText>你是誰..！！ 此房間僅適用於獲得許可的人。</FixedText>
+	</item>
+	<item ID="1018">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>1010</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="1019">
+		<NpcName>路菲</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>1017</Map>
+		<FixedText>您好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="1020">
+		<NpcName>科士克</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Kosaka</Sprite>
+		<Age>15</Age>
+		<BloodType>AB</BloodType>
+		<Height>152</Height>
+		<Weight>41</Weight>
+		<Job>管理寵物的家及黑暗進行者秘密要員</Job>
+		<Hobby>打珠子</Hobby>
+		<Trick>打新槍</Trick>
+		<Personality>不像孩子是毒蛇的</Personality>
+		<Motto>寶貴自己的寵物吧!</Motto>
+		<Dot>NPC Kosaka Dot</Dot>
+		<Map>1017</Map>
+		<FixedText>嘿..歡迎光臨，我是科士克。如果你對寵物有疑問，請找我</FixedText>
+	</item>
+	<item ID="1021">
+		<NpcName>哈洛克</NpcName>
+		<Function>1,14</Function>
+		<Sprite>NPC_Harlock</Sprite>
+		<Age>38</Age>
+		<BloodType>A</BloodType>
+		<Height>182</Height>
+		<Weight>76</Weight>
+		<Job>船長</Job>
+		<Hobby>釣魚</Hobby>
+		<Trick>長距離的遊泳</Trick>
+		<Personality>強烈的眼光,直斷的個性地步. 意想不到的熱血派.</Personality>
+		<Motto>成為征服海的人吧.</Motto>
+		<Dot>NPC Harlock Dot</Dot>
+		<Map>1005</Map>
+		<FixedText>你好，海上的天氣非常晴朗。你想在海洋中航行嗎？你可以在另一邊遇到很多冒險</FixedText>
+	</item>
+	<item ID="1022">
+		<NpcName>安娜</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Anna</Sprite>
+		<Age>16</Age>
+		<BloodType>AB</BloodType>
+		<Height>167</Height>
+		<Weight>48</Weight>
+		<Job>婚禮籌辦人</Job>
+		<Hobby>祝福新人</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>給予想結婚的情侶很大的幫助.</Personality>
+		<Motto>時常親切及和藹!</Motto>
+		<Dot>NPC Laura Dot</Dot>
+		<Map>1000</Map>
+		<FixedText>你好。很高興認識你。問我有關婚姻的任何事情。婚姻對你的生活很重要。如果你結婚了，以後你會得到一對非常漂亮的戒指，你知道嗎。</FixedText>
+	</item>
+	<item ID="2001">
+		<NpcName>廢礦警備隊長</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>29</Age>
+		<BloodType>AB</BloodType>
+		<Height>178</Height>
+		<Weight>75</Weight>
+		<Job>廢礦監視塔警備隊長</Job>
+		<Hobby>欣賞觀象</Hobby>
+		<Trick>自己會喃喃自語</Trick>
+		<Personality>力以赴來保護廢礦監視塔</Personality>
+		<Motto>我的生命就是保護同伴 </Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>2012</Map>
+		<FixedText>嗨，我是廢礦警備隊隊長。保護廢礦哨所不受傷害是我的職責。我能幫助你嗎？</FixedText>
+	</item>
+	<item ID="2002">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>2012</Map>
+		<FixedText>你好，我可以幫助您出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="2003">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>2012</Map>
+		<FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
+	</item>
+	<item ID="2004">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>2012</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="2005">
+		<NpcName>德古拉</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Dracula</Sprite>
+		<Age>16</Age>
+		<BloodType>AB</BloodType>
+		<Height>167</Height>
+		<Weight>48</Weight>
+		<Job>城主</Job>
+		<Hobby>鑑賞美術品</Hobby>
+		<Trick>作畫及寫小說</Trick>
+		<Personality>為了脫離吸血的命運垂死掙扎的善良魔族</Personality>
+		<Motto>不要再吸血了. </Motto>
+		<Dot>NPC Dracula Dot</Dot>
+		<Map>-1</Map>
+		<FixedText>你好，你一定是那個著名學院的學生嗎？哈哈哈..我一定不會弄錯。我是德古拉。我是幽靈城堡的守護者。如果你想在這裡訓練，要小心。這裡的敵人非常危險。</FixedText>
+	</item>
+	<item ID="3001">
+		<NpcName>平原警備隊長</NpcName>
+		<Function>1,5,6</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>28</Age>
+		<BloodType>A</BloodType>
+		<Height>180</Height>
+		<Weight>79</Weight>
+		<Job>平原監視塔警備隊長</Job>
+		<Hobby>多樣化搜集</Hobby>
+		<Trick>望著遠方</Trick>
+		<Personality>全力以赴來保護平原廢礦監視塔</Personality>
+		<Motto>我的生命就是保護同伴.</Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>3010</Map>
+		<FixedText>你好，我是平原警備隊隊長。我的職責是防止平原哨所受到傷害。我能幫助你嗎？</FixedText>
+	</item>
+	<item ID="3002">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>3010</Map>
+		<FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="3003">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>3010</Map>
+		<FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
+	</item>
+	<item ID="3004">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>3010</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="3005">
+		<NpcName>拉波</NpcName>
+		<Function>1,5,6,14</Function>
+		<Sprite>NPC_Ralph</Sprite>
+		<Age>46</Age>
+		<BloodType>A</BloodType>
+		<Height>175</Height>
+		<Weight>75</Weight>
+		<Job>高級武器商人</Job>
+		<Hobby>辱罵怪物</Hobby>
+		<Trick>提起力器</Trick>
+		<Personality>性情很粗暴.非常憎惡怪物.</Personality>
+		<Motto>讓怪物滅種!</Motto>
+		<Dot>NPC Ralph Dot</Dot>
+		<Map>3010</Map>
+		<FixedText>嗨，歡迎光臨！我是拉波你想要什麼？你想要其他武器，你可以選擇想要的武器。</FixedText>
+	</item>
+	<item ID="3006">
+		<NpcName>羅蘭德</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Roland</Sprite>
+		<Age>52</Age>
+		<BloodType>O</BloodType>
+		<Height>184</Height>
+		<Weight>81</Weight>
+		<Job>司令官</Job>
+		<Hobby>模擬戰術對決</Hobby>
+		<Trick>建立戰略</Trick>
+		<Personality>剛直及勤勉</Personality>
+		<Motto>以前的領土必定要收復回來 </Motto>
+		<Dot>NPC Roland Dot</Dot>
+		<Map>3017</Map>
+		<FixedText>歡迎來到指揮中心！我是羅蘭。我的工作是使人類戰勝惡魔和邪惡生物。你在這裡做什麼？說吧！</FixedText>
+	</item>
+	<item ID="3007">
+		<NpcName>羅雲</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Louie</Sprite>
+		<Age>25</Age>
+		<BloodType>O</BloodType>
+		<Height>164</Height>
+		<Weight>48</Weight>
+		<Job>補給官</Job>
+		<Hobby>整理補給倉庫</Hobby>
+		<Trick>計算數字</Trick>
+		<Personality>責任感很強</Personality>
+		<Motto>物資不能不足 </Motto>
+		<Dot>NPC Louie Dot</Dot>
+		<Map>3017</Map>
+		<FixedText>進來。我是羅雲。我是軍隊的補給衛兵。為此，我需要大量補給。您可以用一些物品換錢。</FixedText>
+	</item>
+	<item ID="3008">
+		<NpcName>巴比都</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Babidu</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>164</Height>
+		<Weight>84</Weight>
+		<Job>大咒術師</Job>
+		<Hobby>獵補魚</Hobby>
+		<Trick>占術</Trick>
+		<Personality>很小心且[很沉靜. 愛好和平.</Personality>
+		<Motto>為了種族的安危來生活. </Motto>
+		<Dot>NPC Babidu Dot</Dot>
+		<Map>3008</Map>
+		<FixedText>嗯..你是人類嗎?嗯..你是人類..我是鼬鼠。一個叫巴比都的人。嗯..你是來這裡幫助我的嗎?</FixedText>
+	</item>
+	<item ID="4001">
+		<NpcName>西部警衛隊長</NpcName>
+		<Function>1,5,6</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>27</Age>
+		<BloodType>A</BloodType>
+		<Height>182</Height>
+		<Weight>76</Weight>
+		<Job>西部監視塔警備隊長</Job>
+		<Hobby>打獵</Hobby>
+		<Trick>劍道</Trick>
+		<Personality>全力以赴來保護西部監視塔</Personality>
+		<Motto>我的生命就是保護同伴. </Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>3014</Map>
+		<FixedText>是的！我是西部警衛隊隊長。防止西部不受傷害是我的職責。我可以幫助你嗎？</FixedText>
+	</item>
+	<item ID="4002">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>3014</Map>
+		<FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="4003">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>3014</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="4004">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>3014</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="4005">
+		<NpcName>雨林警備隊長</NpcName>
+		<Function>1,5,6</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>27</Age>
+		<BloodType>O</BloodType>
+		<Height>178</Height>
+		<Weight>70</Weight>
+		<Job>雨林監視塔警備隊長</Job>
+		<Hobby>給樹木澆水</Hobby>
+		<Trick>劈材霸氣</Trick>
+		<Personality>全力以赴來保護雨林監視塔</Personality>
+		<Motto>我的生命就是保護同伴 </Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>4016</Map>
+		<FixedText>歡迎年輕人。但是，為什麼你要來這裡冒險……？據我所知，森林裡有這麼多怪物！！！如果你沒有準備的話。 ，穿過森林是非常困難的。</FixedText>
+	</item>
+	<item ID="4006">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>4016</Map>
+		<FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="4007">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>4016</Map>
+		<FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
+	</item>
+	<item ID="4008">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>4016</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="5001">
+		<NpcName>北部警備隊長</NpcName>
+		<Function>1,5,6</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>30</Age>
+		<BloodType>O</BloodType>
+		<Height>183</Height>
+		<Weight>80</Weight>
+		<Job>北部前哨基地警備隊長</Job>
+		<Hobby>激烈戰鬥</Hobby>
+		<Trick>打架</Trick>
+		<Personality>全力以赴來北部前哨基地</Personality>
+		<Motto>我的生命就是保護同伴</Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>5014</Map>
+		<FixedText>嗨..好久不見了..我從來沒有想過，現在你已經接近完美了..繼續努力工作..嗯，您想加入我們嗎..？</FixedText>
+	</item>
+	<item ID="5002">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>5014</Map>
+		<FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="5003">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>5014</Map>
+		<FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
+	</item>
+	<item ID="5004">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>5014</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="6001">
+		<NpcName>火山警備隊長</NpcName>
+		<Function>1,5,6</Function>
+		<Sprite>NPC_Guard</Sprite>
+		<Age>26</Age>
+		<BloodType>A</BloodType>
+		<Height>185</Height>
+		<Weight>82</Weight>
+		<Job>火山監視塔警備隊長</Job>
+		<Hobby>雕刻</Hobby>
+		<Trick>鋪平石頭</Trick>
+		<Personality>全力以赴來保護火山監視塔</Personality>
+		<Motto>我的生命就是保護同伴  </Motto>
+		<Dot>NPC Guard Dot</Dot>
+		<Map>6008</Map>
+		<FixedText>你是誰？？你是學院的學生。你看到那座高山……？那座山被稱為火山，裡面有很多怪物。其中有火焰果凍</FixedText>
+	</item>
+	<item ID="6002">
+		<NpcName>路菲</NpcName>
+		<Function>1,17</Function>
+		<Sprite>NPC_Runpei</Sprite>
+		<Age>35</Age>
+		<BloodType>AB</BloodType>
+		<Height>169</Height>
+		<Weight>82</Weight>
+		<Job>代銷管理人</Job>
+		<Hobby>喜愛多樣的好美食</Hobby>
+		<Trick>快速計算</Trick>
+		<Personality>損益計算非常分明及正確. 是天份性商人體質的擁有者.</Personality>
+		<Motto>透過試鍊累積財富. </Motto>
+		<Dot>NPC Runpei Dot</Dot>
+		<Map>6008</Map>
+		<FixedText>你好，我可以幫助你出售商品。但是為此，我需要從你的銷售中獲得一點佣金..你想出售什麼項目？</FixedText>
+	</item>
+	<item ID="6003">
+		<NpcName>流浪商人</NpcName>
+		<Function>5,6</Function>
+		<Sprite>NPC_Merchant</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>165</Height>
+		<Weight>秘密</Weight>
+		<Job>流浪商人</Job>
+		<Hobby>未曉</Hobby>
+		<Trick>快走及快跑</Trick>
+		<Personality>比別人更快移動精常準備要做生意.</Personality>
+		<Motto>努力跑吧!</Motto>
+		<Dot>NPC Merchant Dot</Dot>
+		<Map>6008</Map>
+		<FixedText>歡迎戰士..這是你第一次來這裡嗎。？感覺如何..我很久以前一直在旅行..現在我想在一個地方定居..你想購買還是出售？從我這裡買東西？</FixedText>
+	</item>
+	<item ID="6004">
+		<NpcName>飛龍</NpcName>
+		<Function>1,15</Function>
+		<Sprite>NPC_Dragon</Sprite>
+		<Age>N/A</Age>
+		<BloodType>N/A</BloodType>
+		<Height>N/A</Height>
+		<Weight>N/A</Weight>
+		<Job>飛龍就是能夠馬上移動去各監視塔的傳送師</Job>
+		<Hobby>N/A</Hobby>
+		<Trick>N/A</Trick>
+		<Personality>N/A</Personality>
+		<Motto>N/A</Motto>
+		<Dot>NPC Dragon Dot</Dot>
+		<Map>6008</Map>
+		<FixedText>我正在幫助人類。即使我不能戰鬥，我也可以帶你去哨站和天空之城。你想去哪裡？</FixedText>
+	</item>
+	<item ID="6005">
+		<NpcName>夏洛特</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Charlote</Sprite>
+		<Age>?</Age>
+		<BloodType>A</BloodType>
+		<Height>173</Height>
+		<Weight>?</Weight>
+		<Job>古代王國的王子科學家</Job>
+		<Hobby>製作化工藥品</Hobby>
+		<Trick>製作馬刀器</Trick>
+		<Personality>因為自己製作有關馬刀器的事情感到後悔 .</Personality>
+		<Motto>跟著所發現的危險. </Motto>
+		<Dot>NPC Charlote Dot</Dot>
+		<Map>6013</Map>
+		<FixedText>你好，我已經很長時間沒見過人類了！你是因為我給克魯諾院長的信息而來的？所以你來幫我把受機器統治的神社專家帶走嗎，那就好!我一直在等著他，終於有了幫助，如果您可以擊敗這座神殿，格拉托斯就會佔領它，這意味著我可以再次佔領這座神廟。</FixedText>
+	</item>
+	<item ID="7001">
+		<NpcName>克丁哈以德</NpcName>
+		<Function>1</Function>
+		<Sprite>NPC_Hyde</Sprite>
+		<Age>?</Age>
+		<BloodType>?</BloodType>
+		<Height>184</Height>
+		<Weight>?</Weight>
+		<Job>成為幽靈的船長</Job>
+		<Hobby>修理輸送管</Hobby>
+		<Trick>解開繩子</Trick>
+		<Personality>可以為了大的犧牲小的強人精神力的擁有者</Personality>
+		<Motto>在海邊生活然後死去\. </Motto>
+		<Dot>NPC Hyde Dot</Dot>
+		<Map>7001</Map>
+		<FixedText>歡迎來到幽靈船！我是深海閻王過去俘虜的一艘船的船長。他俘獲了我的追隨者和我的船。你知道嗎？被俘的水手成了他的奴隸！他還燒掉了我的船。我不想成為他的奴隸。求求你，幫助我們。</FixedText>
+	</item>
+	<item ID="7002">
+		<NpcName>哈洛克</NpcName>
+		<Function>1,14</Function>
+		<Sprite>NPC_Harlock</Sprite>
+		<Age>38</Age>
+		<BloodType>A</BloodType>
+		<Height>182</Height>
+		<Weight>76</Weight>
+		<Job>船長</Job>
+		<Hobby>釣魚</Hobby>
+		<Trick>長距離的遊泳</Trick>
+		<Personality>強烈的眼光,直斷的個性地步. 意想不到的熱血派.</Personality>
+		<Motto>成為征服海的人吧.</Motto>
+		<Dot>NPC Harlock Dot</Dot>
+		<Map>7001</Map>
+		<FixedText>你好，海上的天氣非常晴朗。你想在海洋中航行嗎？？你可以在另一邊遇到很多冒險</FixedText>
+	</item>
 </root>
