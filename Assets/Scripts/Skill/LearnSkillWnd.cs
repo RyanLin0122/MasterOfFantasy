@@ -104,6 +104,14 @@ public class LearnSkillWnd : WindowRoot
                     Skilltransform.SetParent(LearnSkillContainer);
                     LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
                     learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
+                    var ToolTips = learnSkillSlot.GetComponentsInChildren<SkillToolTip>();
+                    if(ToolTips!=null && ToolTips.Length > 0)
+                    {
+                        foreach (var tooltip in ToolTips)
+                        {
+                            tooltip.SetSkill(ResSvc.Instance.SkillDic[Skill], GameRoot.Instance.ActivePlayer.Skills[Skill].SkillLevel + 1);
+                        }
+                    }
                 }
             }
             else //還沒學
@@ -112,6 +120,14 @@ public class LearnSkillWnd : WindowRoot
                 Skilltransform.SetParent(LearnSkillContainer);
                 LearnSkillSlot learnSkillSlot = Skilltransform.GetComponent<LearnSkillSlot>();
                 learnSkillSlot.SetSkillInfo(ResSvc.Instance.SkillDic[Skill], this, 1);
+                var ToolTips = learnSkillSlot.GetComponentsInChildren<SkillToolTip>();
+                if (ToolTips != null && ToolTips.Length > 0)
+                {
+                    foreach (var tooltip in ToolTips)
+                    {
+                        tooltip.SetSkill(ResSvc.Instance.SkillDic[Skill], 1);
+                    }
+                }
             }
 
 

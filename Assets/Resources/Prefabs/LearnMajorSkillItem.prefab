@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4719587777591123150}
   - component: {fileID: 4719587777591123121}
   - component: {fileID: 4719587777591123151}
+  - component: {fileID: 512577320546108387}
   m_Layer: 0
   m_Name: LearnMajorSkillItem
   m_TagString: Untagged
@@ -96,6 +97,20 @@ MonoBehaviour:
   SkillIcon: {fileID: 4719587779573071970}
   SkillNameTxt: {fileID: 4719587779355055168}
   SelectedBG: {fileID: 4719587778738369418}
+  Intro: {fileID: 0}
+--- !u!114 &512577320546108387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719587777591123123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d00543f5f9c08f498828c3fa6f40786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillLevel: 1
 --- !u!1 &4719587778097259332
 GameObject:
   m_ObjectHideFlags: 0

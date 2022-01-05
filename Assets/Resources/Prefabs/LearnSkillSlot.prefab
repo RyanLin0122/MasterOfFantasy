@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 2674092737551619609}
   - component: {fileID: 339520445313494395}
   - component: {fileID: 1148592344}
+  - component: {fileID: 5052812380197573657}
   m_Layer: 0
   m_Name: LearnSkillSlot
   m_TagString: Untagged
@@ -602,6 +603,19 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 0.41619328, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
+--- !u!114 &5052812380197573657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339520445313494393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d00543f5f9c08f498828c3fa6f40786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillLevel: 1
 --- !u!1 &339520445459987572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1097,7 @@ GameObject:
   - component: {fileID: 3331684060907794698}
   - component: {fileID: 6161952303707677516}
   - component: {fileID: 4880762787984277433}
+  - component: {fileID: 4654206767951812213}
   m_Layer: 0
   m_Name: DisabledImg
   m_TagString: Untagged
@@ -1147,3 +1162,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4654206767951812213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259502596588434800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d00543f5f9c08f498828c3fa6f40786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillLevel: 1

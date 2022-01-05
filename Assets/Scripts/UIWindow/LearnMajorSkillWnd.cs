@@ -220,6 +220,8 @@ public class LearnMajorSkillWnd : WindowRoot
 
         LearnMajorSkillItem item = Instantiate(this.SkillItemPrefab, SkillItemsContainer).GetComponent<LearnMajorSkillItem>();
         item.SetSkill(SkillID, this.Introduction);
+        SkillToolTip skillToolTip = item.GetComponent<SkillToolTip>();
+        skillToolTip.SetSkill(ResSvc.Instance.SkillDic[SkillID], 1);
         return item;
     }
 

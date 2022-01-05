@@ -53,6 +53,8 @@ public class SkillWnd : WindowRoot, IStackWnd
                             SkillGameObject.transform.SetParent(SkillGroup.transform);
                             //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
                             SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                            SkillToolTip skillToolTip = SkillGameObject.GetComponentInChildren<SkillToolTip>();
+                            skillToolTip.SetSkill(info, skill.SkillLevel);
                         }
                     }
                 }
@@ -67,6 +69,8 @@ public class SkillWnd : WindowRoot, IStackWnd
                             SkillGameObject.transform.SetParent(SkillGroup.transform);
                             //SkillGameObject.transform.localPosition = new Vector3(SkillGameObject.transform.localPosition.x, SkillGameObject.transform.localPosition.y, 0);
                             SkillGameObject.GetComponent<SkillSlot>().SetInfo(info, skill.SkillLevel);
+                            SkillToolTip skillToolTip = SkillGameObject.GetComponentInChildren<SkillToolTip>();
+                            skillToolTip.SetSkill(info, skill.SkillLevel);
                         }
                     }
                 }
