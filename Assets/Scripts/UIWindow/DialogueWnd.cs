@@ -55,7 +55,7 @@ public class DialogueWnd : WindowRoot
             item.enabled = true;
         }
     }
-    public Button TaxiBtn;
+    public Button DragonTaxiBtn;
     public Button ShipBtn;
     public Button ManuFactureBtn;
     public Button LearnSkillBtn;
@@ -136,7 +136,7 @@ public class DialogueWnd : WindowRoot
                     ShipBtn.gameObject.SetActive(true);
                     break;
                 case 15:
-                    TaxiBtn.gameObject.SetActive(true);
+                    DragonTaxiBtn.gameObject.SetActive(true);
                     break;
             }
         }

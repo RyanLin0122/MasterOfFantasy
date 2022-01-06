@@ -56,6 +56,7 @@ public class UISystem : SystemRoot
     public OtherProfileWnd OtherProfileWnd;
     public ShipWnd shipWnd;
     public DeathWnd deathWnd;
+    public DragonTaxiWnd dragonTaxiWnd;
     public Transform WindowsContainer;
     private readonly object stackLock = new object();
     public Stack<IStackWnd> stack = new Stack<IStackWnd>();
@@ -465,6 +466,15 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         PutLastLayer(deathWnd.transform);
         deathWnd.gameObject.SetActive(true);
+    }
+
+    //開關飛龍計程車視窗
+    public void OpenDragonTaxiWnd()
+    {
+        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+        PutLastLayer(dragonTaxiWnd.transform);
+        dragonTaxiWnd.gameObject.SetActive(true);
+        //dragonTaxiWnd.Init();
     }
     #endregion
 

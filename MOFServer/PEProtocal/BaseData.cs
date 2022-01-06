@@ -1187,6 +1187,18 @@ namespace PEProtocal
         [ProtoEnum]
         Posedin
     }
+
+    //飛龍計程車用地點分類
+    [ProtoContract(EnumPassthru =false)]
+    public enum DragonTaxiDestination
+    {
+        [ProtoEnum]
+        Ribi,
+        [ProtoEnum]
+        Arnos,
+        [ProtoEnum]
+        Posedin
+    }
 }
 
 

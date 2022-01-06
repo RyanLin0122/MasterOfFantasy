@@ -86,7 +86,7 @@ namespace PEProtocal
         ///75:整理東西
         ///76:他人情報
         ///77:坐船
-        ///
+        ///78:搭飛龍
         [ProtoMember(1, IsRequired = false)]
         public int MessageType { get; set; }
         [ProtoMember(2, IsRequired = false)]
@@ -267,6 +267,7 @@ namespace PEProtocal
         [ProtoMember(89, IsRequired = false)]
         public ShipOperation shipOperation { get; set; }
 
+        public DragonTaxiOperation DragonTaxiOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {
@@ -1828,5 +1829,17 @@ namespace PEProtocal
         public string ErrorMsg { get; set; }
     }
     
-
+    //飛龍計程車
+    [ProtoContract]
+    public class DragonTaxiOperation
+    {
+        [ProtoMember(1, IsRequired = false)]
+        public DragonTaxiDestination Destination { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public bool Result { get; set; }
+        [ProtoMember(3, IsRequired = false)]
+        public long UpdateRibi { get; set; }
+        [ProtoMember(4, IsRequired = false)]
+        public string ErrorMsg { get; set; }
+    }
 }
