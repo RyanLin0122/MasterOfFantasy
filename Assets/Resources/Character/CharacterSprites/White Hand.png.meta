@@ -1,9 +1,132 @@
 fileFormatVersion: 2
 guid: d083c34db3f108645be5eb9ae49d98b4
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: 6486493358861445566
+    second: White Hand_0
+  - first:
+      213: -9088004468372201738
+    second: White Hand_1
+  - first:
+      213: -4929260833878251854
+    second: White Hand_2
+  - first:
+      213: 7418832154147830707
+    second: White Hand_3
+  - first:
+      213: 2618057661534225966
+    second: White Hand_4
+  - first:
+      213: 6725172058014784573
+    second: White Hand_5
+  - first:
+      213: -6905619338404839990
+    second: White Hand_6
+  - first:
+      213: -2746487698920125613
+    second: White Hand_7
+  - first:
+      213: 2109209099329611414
+    second: White Hand_8
+  - first:
+      213: 6765933345849526557
+    second: White Hand_9
+  - first:
+      213: -2633151077433651472
+    second: White Hand_10
+  - first:
+      213: -3263997992905600794
+    second: White Hand_11
+  - first:
+      213: 3096038484431474770
+    second: White Hand_12
+  - first:
+      213: 4235115338830277649
+    second: White Hand_13
+  - first:
+      213: -6576570451451022393
+    second: White Hand_14
+  - first:
+      213: 5026071594982848970
+    second: White Hand_15
+  - first:
+      213: 7381790208645064982
+    second: White Hand_16
+  - first:
+      213: -5002371672796730764
+    second: White Hand_17
+  - first:
+      213: 8491295150394695413
+    second: White Hand_18
+  - first:
+      213: -2582144723266701059
+    second: White Hand_19
+  - first:
+      213: -616472261179748363
+    second: White Hand_20
+  - first:
+      213: 2234581318596982781
+    second: White Hand_21
+  - first:
+      213: -6217233613592943906
+    second: White Hand_22
+  - first:
+      213: 1633676597759810192
+    second: White Hand_23
+  - first:
+      213: 5198778622974179596
+    second: White Hand_24
+  - first:
+      213: -1180001496964553858
+    second: White Hand_25
+  - first:
+      213: 2342538585339313564
+    second: White Hand_26
+  - first:
+      213: 5983563979431029449
+    second: White Hand_27
+  - first:
+      213: 4808406559135995779
+    second: White Hand_28
+  - first:
+      213: 1387580119061485459
+    second: White Hand_29
+  - first:
+      213: -3725990776999639768
+    second: White Hand_30
+  - first:
+      213: 2568537668743260242
+    second: White Hand_31
+  - first:
+      213: -8581434249585764520
+    second: White Hand_32
+  - first:
+      213: -2204300649523826587
+    second: White Hand_33
+  - first:
+      213: -2341580208384414395
+    second: White Hand_34
+  - first:
+      213: 9047902904565760199
+    second: White Hand_35
+  - first:
+      213: 1405035546658285733
+    second: White Hand_36
+  - first:
+      213: -7309982609834465895
+    second: White Hand_37
+  - first:
+      213: -3005223436269559985
+    second: White Hand_38
+  - first:
+      213: 8613654174807465501
+    second: White Hand_39
+  - first:
+      213: 5778439189762406103
+    second: White Hand_40
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +146,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +164,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,11 +178,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,17 +197,881 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: White Hand_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9eddcc757a40a50800000000000000
+      internalID: 6486493358861445566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fe1389161ce0e180800000000000000
+      internalID: -9088004468372201738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b6e07f436fb79bb0800000000000000
+      internalID: -4929260833878251854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb3a3c998cf4f660800000000000000
+      internalID: 7418832154147830707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e26cc357295355420800000000000000
+      internalID: 2618057661534225966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3c9a53fa5c945d50800000000000000
+      internalID: 6725172058014784573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acdbf4c9ccf4a20a0800000000000000
+      internalID: -6905619338404839990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35bc2e54df382e9d0800000000000000
+      internalID: -2746487698920125613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6962092308a654d10800000000000000
+      internalID: 2109209099329611414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d19c455d78c65ed50800000000000000
+      internalID: 6765933345849526557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe41adcb0b257bd0800000000000000
+      internalID: -2633151077433651472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0164d6e13f3b2d0800000000000000
+      internalID: -3263997992905600794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2501a7b199657fa20800000000000000
+      internalID: 3096038484431474770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11c69c946f626ca30800000000000000
+      internalID: 4235115338830277649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_14
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c37ee0c4045bb4a0800000000000000
+      internalID: -6576570451451022393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac932a28c7130c540800000000000000
+      internalID: 5026071594982848970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 619eeb89513617660800000000000000
+      internalID: 7381790208645064982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 94
+        width: 22
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a6970a771049ab0800000000000000
+      internalID: -5002371672796730764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fed54253f327d570800000000000000
+      internalID: 8491295150394695413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_19
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8f9031e016a2cd0800000000000000
+      internalID: -2582144723266701059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_20
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffcf72aeb9d177f0800000000000000
+      internalID: -616472261179748363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_21
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df772b4bed3d20f10800000000000000
+      internalID: 2234581318596982781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_22
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed2ac2008f2f7b9a0800000000000000
+      internalID: -6217233613592943906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_23
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a9757c53cfba610800000000000000
+      internalID: 1633676597759810192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0935400d95c52840800000000000000
+      internalID: 5198778622974179596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_25
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73aff2f3eacf9fe0800000000000000
+      internalID: -1180001496964553858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_26
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9dbbcb9e6e528020800000000000000
+      internalID: 2342538585339313564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_27
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca2fccacb3e90350800000000000000
+      internalID: 5983563979431029449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_28
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38795fc1a44eab240800000000000000
+      internalID: 4808406559135995779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_29
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397dd0e34cca14310800000000000000
+      internalID: 1387580119061485459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8250e84212f9a4cc0800000000000000
+      internalID: -3725990776999639768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_31
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258e6a9a66745a320800000000000000
+      internalID: 2568537668743260242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_32
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 857d112340f98e880800000000000000
+      internalID: -8581434249585764520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_33
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56038f6fc30c861e0800000000000000
+      internalID: -2204300649523826587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_34
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54d692ae439018fd0800000000000000
+      internalID: -2341580208384414395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_35
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c00edcf0cb909d70800000000000000
+      internalID: 9047902904565760199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_36
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a82d5fa260bf7310800000000000000
+      internalID: 1405035546658285733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_37
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995a88adb89bd8a90800000000000000
+      internalID: -7309982609834465895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_38
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4f5972053d4b46d0800000000000000
+      internalID: -3005223436269559985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_39
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1e957bb5d8d98770800000000000000
+      internalID: 8613654174807465501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White Hand_40
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6fbfdd3d3213050800000000000000
+      internalID: 5778439189762406103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: e7e8d4be6377542479d514d75c465b4c
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,9 +1,132 @@
 fileFormatVersion: 2
 guid: 762d9444030a8c44885bad136c156279
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: 26532069710960685
+    second: Hunter Hand (F)_0
+  - first:
+      213: -5353414263836161988
+    second: Hunter Hand (F)_1
+  - first:
+      213: 7603245847106259182
+    second: Hunter Hand (F)_2
+  - first:
+      213: 8012214094298133275
+    second: Hunter Hand (F)_3
+  - first:
+      213: 4432804491092858115
+    second: Hunter Hand (F)_4
+  - first:
+      213: -7553855782259672201
+    second: Hunter Hand (F)_5
+  - first:
+      213: -8512105531964214454
+    second: Hunter Hand (F)_6
+  - first:
+      213: 5151821688625816780
+    second: Hunter Hand (F)_7
+  - first:
+      213: 1755185358932995011
+    second: Hunter Hand (F)_8
+  - first:
+      213: 5088992039180513114
+    second: Hunter Hand (F)_9
+  - first:
+      213: 1544742244272459212
+    second: Hunter Hand (F)_10
+  - first:
+      213: 3259149702536827499
+    second: Hunter Hand (F)_11
+  - first:
+      213: -8777797406051529676
+    second: Hunter Hand (F)_12
+  - first:
+      213: -2408030474861050180
+    second: Hunter Hand (F)_13
+  - first:
+      213: 5465550713947278843
+    second: Hunter Hand (F)_14
+  - first:
+      213: -4450809975267718103
+    second: Hunter Hand (F)_15
+  - first:
+      213: 76496793829262178
+    second: Hunter Hand (F)_16
+  - first:
+      213: 7998944965932009657
+    second: Hunter Hand (F)_17
+  - first:
+      213: 2698010449355328579
+    second: Hunter Hand (F)_18
+  - first:
+      213: 1834471174164148976
+    second: Hunter Hand (F)_19
+  - first:
+      213: -96521194319812682
+    second: Hunter Hand (F)_20
+  - first:
+      213: 4908058498472791572
+    second: Hunter Hand (F)_21
+  - first:
+      213: 9091046866579133053
+    second: Hunter Hand (F)_22
+  - first:
+      213: 5726137230866477672
+    second: Hunter Hand (F)_23
+  - first:
+      213: -3069219775694111072
+    second: Hunter Hand (F)_24
+  - first:
+      213: 2728481099371404591
+    second: Hunter Hand (F)_25
+  - first:
+      213: -773691289398459258
+    second: Hunter Hand (F)_26
+  - first:
+      213: -5366340225837914452
+    second: Hunter Hand (F)_27
+  - first:
+      213: -62735127247201855
+    second: Hunter Hand (F)_28
+  - first:
+      213: 189660337553764076
+    second: Hunter Hand (F)_29
+  - first:
+      213: -5579479374765670812
+    second: Hunter Hand (F)_30
+  - first:
+      213: 6528865501825372513
+    second: Hunter Hand (F)_31
+  - first:
+      213: 4960464246564039288
+    second: Hunter Hand (F)_32
+  - first:
+      213: 4846211822140133571
+    second: Hunter Hand (F)_33
+  - first:
+      213: 787439108218728535
+    second: Hunter Hand (F)_34
+  - first:
+      213: -4806548820677455749
+    second: Hunter Hand (F)_35
+  - first:
+      213: -8592586562794589584
+    second: Hunter Hand (F)_36
+  - first:
+      213: 5631480966814054860
+    second: Hunter Hand (F)_37
+  - first:
+      213: 8139594902639025017
+    second: Hunter Hand (F)_38
+  - first:
+      213: 7353851568194937979
+    second: Hunter Hand (F)_39
+  - first:
+      213: 5276659535813418653
+    second: Hunter Hand (F)_40
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +146,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +164,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,11 +178,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,17 +197,881 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Hunter Hand (F)_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d28174ed6c24e5000800000000000000
+      internalID: 26532069710960685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c384984371ad4b5b0800000000000000
+      internalID: -5353414263836161988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee88bb070d7248960800000000000000
+      internalID: 7603245847106259182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b13b40ba44a113f60800000000000000
+      internalID: 8012214094298133275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 305985ad23c748d30800000000000000
+      internalID: 4432804491092858115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77bb1e520305b2790800000000000000
+      internalID: -7553855782259672201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43b2a42e1deed980800000000000000
+      internalID: -8512105531964214454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc4e1b0c782fe7740800000000000000
+      internalID: 5151821688625816780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cbea2ad8cbab5810800000000000000
+      internalID: 1755185358932995011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5f25280c4bbf9640800000000000000
+      internalID: 5088992039180513114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd466303e6007510800000000000000
+      internalID: 1544742244272459212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6217810363da3d20800000000000000
+      internalID: 3259149702536827499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c04f514cffe2680800000000000000
+      internalID: -8777797406051529676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb687999a05f49ed0800000000000000
+      internalID: -2408030474861050180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_14
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfdc5b6aa6989db40800000000000000
+      internalID: 5465550713947278843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c076da8eb8b32c0800000000000000
+      internalID: -4450809975267718103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26346aebd65cf0100800000000000000
+      internalID: 76496793829262178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 94
+        width: 22
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b8c648f016f10f60800000000000000
+      internalID: 7998944965932009657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34ccd128532417520800000000000000
+      internalID: 2698010449355328579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_19
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f27fbe30d9557910800000000000000
+      internalID: 1834471174164148976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_20
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b765433c7619aef0800000000000000
+      internalID: -96521194319812682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_21
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41ece4a433dec1440800000000000000
+      internalID: 4908058498472791572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_22
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7290ee65f2e92e70800000000000000
+      internalID: 9091046866579133053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_23
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8627fec1973577f40800000000000000
+      internalID: 5726137230866477672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aef52c10e0f765d0800000000000000
+      internalID: -3069219775694111072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_25
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d56609a138dd520800000000000000
+      internalID: 2728481099371404591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_26
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68447991fdb4345f0800000000000000
+      internalID: -773691289398459258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_27
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca6aa072ffde685b0800000000000000
+      internalID: -5366340225837914452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_28
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c9dd71fbbe112ff0800000000000000
+      internalID: -62735127247201855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_29
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cee6fd7721fc1a200800000000000000
+      internalID: 189660337553764076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e397be115b192b0800000000000000
+      internalID: -5579479374765670812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_31
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1619a9e15903b9a50800000000000000
+      internalID: 6528865501825372513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_32
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87aa97953fb17d440800000000000000
+      internalID: 4960464246564039288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_33
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c016f4d9f3314340800000000000000
+      internalID: 4846211822140133571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_34
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750b0a762bb8dea00800000000000000
+      internalID: 787439108218728535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_35
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7092f35055bb4db0800000000000000
+      internalID: -4806548820677455749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_36
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07275deeb0001c880800000000000000
+      internalID: -8592586562794589584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_37
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc9335a3a1a072e40800000000000000
+      internalID: 5631480966814054860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_38
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b11634076a5f070800000000000000
+      internalID: 8139594902639025017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_39
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b746535f9012e0660800000000000000
+      internalID: 7353851568194937979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter Hand (F)_40
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e16d014e57a3940800000000000000
+      internalID: 5276659535813418653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 33757d310add5b54480adfc7770cead5
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

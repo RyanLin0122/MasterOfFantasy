@@ -1,9 +1,132 @@
 fileFormatVersion: 2
 guid: d94fd91471221b540bb4f032db0b354d
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: 2366082348891625977
+    second: Saint Hand (M)_0
+  - first:
+      213: -2392039625684583000
+    second: Saint Hand (M)_1
+  - first:
+      213: -109993719337164267
+    second: Saint Hand (M)_2
+  - first:
+      213: -4189399126523741801
+    second: Saint Hand (M)_3
+  - first:
+      213: -2743628807982246159
+    second: Saint Hand (M)_4
+  - first:
+      213: -3677445575229975360
+    second: Saint Hand (M)_5
+  - first:
+      213: -4742772155023572775
+    second: Saint Hand (M)_6
+  - first:
+      213: -7766566636946168225
+    second: Saint Hand (M)_7
+  - first:
+      213: 9148839558828453992
+    second: Saint Hand (M)_8
+  - first:
+      213: -9169140427974013022
+    second: Saint Hand (M)_9
+  - first:
+      213: 5907225387335831109
+    second: Saint Hand (M)_10
+  - first:
+      213: -4724704594854802070
+    second: Saint Hand (M)_11
+  - first:
+      213: -7171014086884645134
+    second: Saint Hand (M)_12
+  - first:
+      213: 612659805395920441
+    second: Saint Hand (M)_13
+  - first:
+      213: -3810375822983938178
+    second: Saint Hand (M)_14
+  - first:
+      213: 5954833259923903398
+    second: Saint Hand (M)_15
+  - first:
+      213: 3795388606430437417
+    second: Saint Hand (M)_16
+  - first:
+      213: 77511429043618471
+    second: Saint Hand (M)_17
+  - first:
+      213: -1725049830718974679
+    second: Saint Hand (M)_18
+  - first:
+      213: 9073838704845473803
+    second: Saint Hand (M)_19
+  - first:
+      213: -2191835549912865916
+    second: Saint Hand (M)_20
+  - first:
+      213: -6228479946315198928
+    second: Saint Hand (M)_21
+  - first:
+      213: -8402914310183543974
+    second: Saint Hand (M)_22
+  - first:
+      213: -3820370340144847756
+    second: Saint Hand (M)_23
+  - first:
+      213: -7780469659800567946
+    second: Saint Hand (M)_24
+  - first:
+      213: -4415867937151839969
+    second: Saint Hand (M)_25
+  - first:
+      213: 1784576417979290510
+    second: Saint Hand (M)_26
+  - first:
+      213: 4486788325209172181
+    second: Saint Hand (M)_27
+  - first:
+      213: -7996287196388901755
+    second: Saint Hand (M)_28
+  - first:
+      213: 6997890797447090220
+    second: Saint Hand (M)_29
+  - first:
+      213: -8179326440704568629
+    second: Saint Hand (M)_30
+  - first:
+      213: -2001611529471817484
+    second: Saint Hand (M)_31
+  - first:
+      213: -8643471045257817159
+    second: Saint Hand (M)_32
+  - first:
+      213: 267425708548757806
+    second: Saint Hand (M)_33
+  - first:
+      213: -5406749758240717190
+    second: Saint Hand (M)_34
+  - first:
+      213: -1448266181099099584
+    second: Saint Hand (M)_35
+  - first:
+      213: -3593515684773646936
+    second: Saint Hand (M)_36
+  - first:
+      213: 4570615452478023103
+    second: Saint Hand (M)_37
+  - first:
+      213: -1732238274690743651
+    second: Saint Hand (M)_38
+  - first:
+      213: 3312546827263650123
+    second: Saint Hand (M)_39
+  - first:
+      213: -3404805526590247709
+    second: Saint Hand (M)_40
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +146,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +164,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,11 +178,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,17 +197,881 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Saint Hand (M)_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9d10b3c5306d020800000000000000
+      internalID: 2366082348891625977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad796e42a4cdced0800000000000000
+      internalID: -2392039625684583000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51262678b49397ef0800000000000000
+      internalID: -109993719337164267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7997839d0b34cd5c0800000000000000
+      internalID: -4189399126523741801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f690b0b22cace9d0800000000000000
+      internalID: -2743628807982246159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4d597bbb617fcc0800000000000000
+      internalID: -3677445575229975360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d0c4317ad94e2eb0800000000000000
+      internalID: -4742772155023572775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f566c60facc973490800000000000000
+      internalID: -7766566636946168225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860f20b2b1537fe70800000000000000
+      internalID: 9148839558828453992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af8fe66c5ba0c080800000000000000
+      internalID: -9169140427974013022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e4254213eaaf150800000000000000
+      internalID: 5907225387335831109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d060b143a7e6eb0800000000000000
+      internalID: -4724704594854802070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f62bef7ea07b7c90800000000000000
+      internalID: -7171014086884645134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 936a8c4d8da908800800000000000000
+      internalID: 612659805395920441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_14
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7f3e429063de1bc0800000000000000
+      internalID: -3810375822983938178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a31272cc41d3a250800000000000000
+      internalID: 5954833259923903398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920e9d624ddeba430800000000000000
+      internalID: 3795388606430437417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 94
+        width: 22
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a28d2aeb30631100800000000000000
+      internalID: 77511429043618471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 925d52491546f08e0800000000000000
+      internalID: -1725049830718974679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_19
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b08418f0a30cced70800000000000000
+      internalID: 9073838704845473803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_20
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 483ee512e290591e0800000000000000
+      internalID: -2191835549912865916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_21
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03e0d3d1d7eff89a0800000000000000
+      internalID: -6228479946315198928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_22
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b967794f9d26b80800000000000000
+      internalID: -8402914310183543974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_23
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4746a35ba615bfac0800000000000000
+      internalID: -3820370340144847756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ff1ed2118360490800000000000000
+      internalID: -7780469659800567946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_25
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f111707e18fa7b2c0800000000000000
+      internalID: -4415867937151839969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_26
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e83d13c0cc614c810800000000000000
+      internalID: 1784576417979290510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_27
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d86672b536444e30800000000000000
+      internalID: 4486788325209172181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_28
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c3c39392b770190800000000000000
+      internalID: -7996287196388901755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_29
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c201fc69a908d1160800000000000000
+      internalID: 6997890797447090220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc218d720f13d7e80800000000000000
+      internalID: -8179326440704568629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_31
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f8818f3be8d834e0800000000000000
+      internalID: -2001611529471817484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_32
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3980121e83c0880800000000000000
+      internalID: -8643471045257817159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_33
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e291bd9d34616b300800000000000000
+      internalID: 267425708548757806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_34
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7602a6bdbd57f4b0800000000000000
+      internalID: -5406749758240717190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_35
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04a606fd499b6ebe0800000000000000
+      internalID: -1448266181099099584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_36
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ada5422684412ec0800000000000000
+      internalID: -3593515684773646936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_37
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb52dd1b9861e6f30800000000000000
+      internalID: 4570615452478023103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_38
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9209ba877ad5f7e0800000000000000
+      internalID: -1732238274690743651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_39
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b49a5ece9c788fd20800000000000000
+      internalID: 3312546827263650123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Saint Hand (M)_40
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec2d4ab963bfb0d0800000000000000
+      internalID: -3404805526590247709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 390ae2aa92d1428428ee817cac569ee5
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

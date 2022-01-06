@@ -1,9 +1,132 @@
 fileFormatVersion: 2
 guid: ca614136abd56574784146d57d85ebd3
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: 7924662678351636935
+    second: Black Cat Glove_0
+  - first:
+      213: -2469986454021947241
+    second: Black Cat Glove_1
+  - first:
+      213: 2428226445057788836
+    second: Black Cat Glove_2
+  - first:
+      213: -6998865897661241286
+    second: Black Cat Glove_3
+  - first:
+      213: -7759230288569506421
+    second: Black Cat Glove_4
+  - first:
+      213: 3870651780164830789
+    second: Black Cat Glove_5
+  - first:
+      213: -6380750994429081606
+    second: Black Cat Glove_6
+  - first:
+      213: -4851695004979921257
+    second: Black Cat Glove_7
+  - first:
+      213: 2790716585026976933
+    second: Black Cat Glove_8
+  - first:
+      213: 2124454065684331100
+    second: Black Cat Glove_9
+  - first:
+      213: -2725014364583150374
+    second: Black Cat Glove_10
+  - first:
+      213: 4948877101138460007
+    second: Black Cat Glove_11
+  - first:
+      213: 6549469481798912019
+    second: Black Cat Glove_12
+  - first:
+      213: 4552714434637458109
+    second: Black Cat Glove_13
+  - first:
+      213: 6719475534715305224
+    second: Black Cat Glove_14
+  - first:
+      213: 3998571764432567547
+    second: Black Cat Glove_15
+  - first:
+      213: 2854209218350962855
+    second: Black Cat Glove_16
+  - first:
+      213: 5689468073620060807
+    second: Black Cat Glove_17
+  - first:
+      213: -1900813343917909635
+    second: Black Cat Glove_18
+  - first:
+      213: 2118289949167421888
+    second: Black Cat Glove_19
+  - first:
+      213: 8310784054556790871
+    second: Black Cat Glove_20
+  - first:
+      213: -9175803071579148200
+    second: Black Cat Glove_21
+  - first:
+      213: 489101569521292336
+    second: Black Cat Glove_22
+  - first:
+      213: 1360174784859090262
+    second: Black Cat Glove_23
+  - first:
+      213: -88667228475432191
+    second: Black Cat Glove_24
+  - first:
+      213: 5535633295022038889
+    second: Black Cat Glove_25
+  - first:
+      213: 1160119141100075149
+    second: Black Cat Glove_26
+  - first:
+      213: 4110499573405768161
+    second: Black Cat Glove_27
+  - first:
+      213: 7246269069277894739
+    second: Black Cat Glove_28
+  - first:
+      213: 4492350714568989500
+    second: Black Cat Glove_29
+  - first:
+      213: 3407630465067964728
+    second: Black Cat Glove_30
+  - first:
+      213: 1848318832848705081
+    second: Black Cat Glove_31
+  - first:
+      213: 9132826140569263669
+    second: Black Cat Glove_32
+  - first:
+      213: -1040304073524444058
+    second: Black Cat Glove_33
+  - first:
+      213: 4035383302357181873
+    second: Black Cat Glove_34
+  - first:
+      213: 978034729866432763
+    second: Black Cat Glove_35
+  - first:
+      213: 7281692317358755729
+    second: Black Cat Glove_36
+  - first:
+      213: 4690759548705832121
+    second: Black Cat Glove_37
+  - first:
+      213: -6585524295684410223
+    second: Black Cat Glove_38
+  - first:
+      213: 1452732897486982526
+    second: Black Cat Glove_39
+  - first:
+      213: -1032331778055068863
+    second: Black Cat Glove_40
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +146,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +164,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,11 +178,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,17 +197,881 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Black Cat Glove_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 234
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9e1f328be0afd60800000000000000
+      internalID: 7924662678351636935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 233
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 790cef71868d8bdd0800000000000000
+      internalID: -2469986454021947241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_2
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 232
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ab01e3261bc2b120800000000000000
+      internalID: 2428226445057788836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_3
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 232
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a386e433c880fde90800000000000000
+      internalID: -6998865897661241286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_4
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 232
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85ec57a92da15490800000000000000
+      internalID: -7759230288569506421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_5
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 234
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54645f5594157b530800000000000000
+      internalID: 3870651780164830789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 196
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af785d8f6c40377a0800000000000000
+      internalID: -6380750994429081606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_7
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 197
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79e72ad29115bacb0800000000000000
+      internalID: -4851695004979921257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_8
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 196
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5acf25fb2fd9ab620800000000000000
+      internalID: 2790716585026976933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_9
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 196
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5abfb687b39b7d10800000000000000
+      internalID: 2124454065684331100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_10
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 196
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adc3f278fddce2ad0800000000000000
+      internalID: -2725014364583150374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_11
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 197
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d3c62d081fda440800000000000000
+      internalID: 4948877101138460007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 164
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318c2e90bc364ea50800000000000000
+      internalID: 6549469481798912019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 164
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbaeb5038ad7e2f30800000000000000
+      internalID: 4552714434637458109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d32a3c56f504d50800000000000000
+      internalID: 6719475534715305224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_15
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 158
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfcf8eb95d7cd7730800000000000000
+      internalID: 3998571764432567547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_16
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 162
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a8547e69203c9720800000000000000
+      internalID: 2854209218350962855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_17
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 161
+        width: 30
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78abc01a11d05fe40800000000000000
+      internalID: 5689468073620060807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 124
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79537ba554fe95e0800000000000000
+      internalID: -1900813343917909635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_19
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 125
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c9876f4c7da56d10800000000000000
+      internalID: 2118289949167421888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 127
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75096d0b016d55370800000000000000
+      internalID: 8310784054556790871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_21
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 124
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850369dc8bff8a080800000000000000
+      internalID: -9175803071579148200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_22
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 122
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034176e3943a9c600800000000000000
+      internalID: 489101569521292336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_23
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 128
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d28f3a2cf40e210800000000000000
+      internalID: 1360174784859090262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_24
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 89
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103e08f10adf4cef0800000000000000
+      internalID: -88667228475432191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_25
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 89
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96f1d9c172582dc40800000000000000
+      internalID: 5535633295022038889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_26
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 89
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88b6665632991010800000000000000
+      internalID: 1160119141100075149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_27
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 87
+        width: 25
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e9de3a659d6b0930800000000000000
+      internalID: 4110499573405768161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_28
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 91
+        width: 23
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358953d735bef8460800000000000000
+      internalID: 7246269069277894739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_29
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 90
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3b5b546c29085e30800000000000000
+      internalID: 4492350714568989500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_30
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 51
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839dc248ad55a4f20800000000000000
+      internalID: 3407630465067964728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_31
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 54
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9369c978f2c86a910800000000000000
+      internalID: 1848318832848705081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_32
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 49
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e5800bcf05ebe70800000000000000
+      internalID: 9132826140569263669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_33
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 49
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6640f27f4f81091f0800000000000000
+      internalID: -1040304073524444058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_34
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 50
+        width: 21
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5ea8dabbf800830800000000000000
+      internalID: 4035383302357181873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_35
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 53
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf01faba76da29d00800000000000000
+      internalID: 978034729866432763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_36
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 18
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f0cd32594cd0560800000000000000
+      internalID: 7281692317358755729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_37
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 17
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bcf163f4fce81140800000000000000
+      internalID: 4690759548705832121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_38
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 15
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194b6007b848b94a0800000000000000
+      internalID: -6585524295684410223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_39
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 17
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d4c349fd4292410800000000000000
+      internalID: 1452732897486982526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black Cat Glove_40
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 15
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1432ea6a7bb6ca1f0800000000000000
+      internalID: -1032331778055068863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 381c5ecac5a48b74da262c3c2f90e37b
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

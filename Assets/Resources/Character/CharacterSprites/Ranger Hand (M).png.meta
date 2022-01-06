@@ -1,9 +1,132 @@
 fileFormatVersion: 2
 guid: 6f3c39df335387c438c40d5aa5a401f8
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: 6952160044081971247
+    second: Ranger Hand (M)_0
+  - first:
+      213: -911356035498185558
+    second: Ranger Hand (M)_1
+  - first:
+      213: 5785458527574377505
+    second: Ranger Hand (M)_2
+  - first:
+      213: -479900832789233692
+    second: Ranger Hand (M)_3
+  - first:
+      213: 5272919854494711228
+    second: Ranger Hand (M)_4
+  - first:
+      213: 8404125233242152703
+    second: Ranger Hand (M)_5
+  - first:
+      213: 4021123123170823285
+    second: Ranger Hand (M)_6
+  - first:
+      213: 5754268484214265228
+    second: Ranger Hand (M)_7
+  - first:
+      213: -7730603275508579464
+    second: Ranger Hand (M)_8
+  - first:
+      213: -3885021668003504637
+    second: Ranger Hand (M)_9
+  - first:
+      213: 2345875658121977247
+    second: Ranger Hand (M)_10
+  - first:
+      213: -5174194555725869562
+    second: Ranger Hand (M)_11
+  - first:
+      213: 3949959864972293133
+    second: Ranger Hand (M)_12
+  - first:
+      213: 5748970330159708701
+    second: Ranger Hand (M)_13
+  - first:
+      213: -3234844303736445642
+    second: Ranger Hand (M)_14
+  - first:
+      213: -3888045515750824327
+    second: Ranger Hand (M)_15
+  - first:
+      213: 2962515741719955981
+    second: Ranger Hand (M)_16
+  - first:
+      213: -3023512487610700572
+    second: Ranger Hand (M)_17
+  - first:
+      213: 3688494161080790562
+    second: Ranger Hand (M)_18
+  - first:
+      213: -6023183181018720009
+    second: Ranger Hand (M)_19
+  - first:
+      213: -5400027207813526014
+    second: Ranger Hand (M)_20
+  - first:
+      213: -7108741831941840368
+    second: Ranger Hand (M)_21
+  - first:
+      213: 6354508152789225073
+    second: Ranger Hand (M)_22
+  - first:
+      213: 8108951683833737439
+    second: Ranger Hand (M)_23
+  - first:
+      213: -3077582309835734181
+    second: Ranger Hand (M)_24
+  - first:
+      213: -2642859434856471833
+    second: Ranger Hand (M)_25
+  - first:
+      213: 539599845036999877
+    second: Ranger Hand (M)_26
+  - first:
+      213: 3645648329479032308
+    second: Ranger Hand (M)_27
+  - first:
+      213: -7394007235901936276
+    second: Ranger Hand (M)_28
+  - first:
+      213: 3948766128152243135
+    second: Ranger Hand (M)_29
+  - first:
+      213: 3385487978306544828
+    second: Ranger Hand (M)_30
+  - first:
+      213: 47431963723929391
+    second: Ranger Hand (M)_31
+  - first:
+      213: 4133530383234430332
+    second: Ranger Hand (M)_32
+  - first:
+      213: 360792373943504760
+    second: Ranger Hand (M)_33
+  - first:
+      213: -3231009357680039627
+    second: Ranger Hand (M)_34
+  - first:
+      213: 5195461456357202073
+    second: Ranger Hand (M)_35
+  - first:
+      213: 1329145047419249623
+    second: Ranger Hand (M)_36
+  - first:
+      213: -4627900180460662329
+    second: Ranger Hand (M)_37
+  - first:
+      213: -2703728322119690849
+    second: Ranger Hand (M)_38
+  - first:
+      213: -4781548196130854412
+    second: Ranger Hand (M)_39
+  - first:
+      213: -3940334864205066260
+    second: Ranger Hand (M)_40
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -23,6 +146,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -40,7 +164,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,11 +178,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,17 +197,881 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Ranger Hand (M)_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f208b29d9b80b7060800000000000000
+      internalID: 6952160044081971247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aace838a3863a53f0800000000000000
+      internalID: -911356035498185558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12443dec0e31a4050800000000000000
+      internalID: 5785458527574377505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4effe263cbc0759f0800000000000000
+      internalID: -479900832789233692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_4
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbdf248abac2d2940800000000000000
+      internalID: 5272919854494711228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 130
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffe9b476f5371a470800000000000000
+      internalID: 8404125233242152703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57cc4bafc26edc730800000000000000
+      internalID: 4021123123170823285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8511dfe2b44bdf40800000000000000
+      internalID: 5754268484214265228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87307d7874167b490800000000000000
+      internalID: -7730603275508579464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30e94fd6061a51ac0800000000000000
+      internalID: -3885021668003504637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d98996b793e8020800000000000000
+      internalID: 2345875658121977247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 112
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e033337719138b0800000000000000
+      internalID: -5174194555725869562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0439b4c19311d630800000000000000
+      internalID: 3949959864972293133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1afd615e0278cf40800000000000000
+      internalID: 5748970330159708701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_14
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635e714ae368b13d0800000000000000
+      internalID: -3234844303736445642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9762f130433ea0ac0800000000000000
+      internalID: -3888045515750824327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 94
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a88bafe58fc1920800000000000000
+      internalID: 2962515741719955981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 94
+        width: 22
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eca10a69635a06d0800000000000000
+      internalID: -3023512487610700572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ea253a5e9203330800000000000000
+      internalID: 3688494161080790562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_19
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f8954e1fca596ca0800000000000000
+      internalID: -6023183181018720009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_20
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e84d47ddf3f05b0800000000000000
+      internalID: -5400027207813526014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_21
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012a523b7fca85d90800000000000000
+      internalID: -7108741831941840368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_22
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e43515f7fbf2850800000000000000
+      internalID: 6354508152789225073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_23
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 76
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd037b7e798c88070800000000000000
+      internalID: 8108951683833737439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b530737e13b3a45d0800000000000000
+      internalID: -3077582309835734181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_25
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e22712b85da25bd0800000000000000
+      internalID: -2642859434856471833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_26
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4494c333b0d7700800000000000000
+      internalID: 539599845036999877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_27
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd089617d1f79230800000000000000
+      internalID: 3645648329479032308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_28
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6da5651895336990800000000000000
+      internalID: -7394007235901936276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_29
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 58
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbbeb914fd5dcc630800000000000000
+      internalID: 3948766128152243135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb42152116babfe20800000000000000
+      internalID: 3385487978306544828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_31
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2793c4ae1388a000800000000000000
+      internalID: 47431963723929391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_32
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75f8f0bbff3d5930800000000000000
+      internalID: 4133530383234430332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_33
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f8296a0cac10500800000000000000
+      internalID: 360792373943504760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_34
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 539a4899b162923d0800000000000000
+      internalID: -3231009357680039627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_35
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 40
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9989766faacf91840800000000000000
+      internalID: 5195461456357202073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_36
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d3e466e062127210800000000000000
+      internalID: 1329145047419249623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_37
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c11da73e4566cfb0800000000000000
+      internalID: -4627900180460662329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_38
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9594ee7a6d6a7ad0800000000000000
+      internalID: -2703728322119690849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_39
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f9e535df3784adb0800000000000000
+      internalID: -4781548196130854412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Hand (M)_40
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 22
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef48fa515e1159c0800000000000000
+      internalID: -3940334864205066260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 220a5441e2b466c4089dd48d2b7981fc
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

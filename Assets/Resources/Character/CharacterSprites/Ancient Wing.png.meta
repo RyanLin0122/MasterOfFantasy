@@ -1,48 +1,9 @@
 fileFormatVersion: 2
 guid: 6550c4aaca349ee408115ecf8b318a3c
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 5919198663572482556
-    second: Ancient Wing_0
-  - first:
-      213: -3781938982545031438
-    second: Ancient Wing_1
-  - first:
-      213: 1948861197615612974
-    second: Ancient Wing_2
-  - first:
-      213: -73144850367331451
-    second: Ancient Wing_3
-  - first:
-      213: -6869762284433332246
-    second: Ancient Wing_4
-  - first:
-      213: -8285265839027486795
-    second: Ancient Wing_5
-  - first:
-      213: 2258588380632446251
-    second: Ancient Wing_6
-  - first:
-      213: 826791736966601521
-    second: Ancient Wing_7
-  - first:
-      213: 6504338607271952482
-    second: Ancient Wing_8
-  - first:
-      213: 909035952841798163
-    second: Ancient Wing_9
-  - first:
-      213: 7612448213423138730
-    second: Ancient Wing_10
-  - first:
-      213: -5214425174461453912
-    second: Ancient Wing_11
-  - first:
-      213: 3614640669173545673
-    second: Ancient Wing_12
+  fileIDToRecycleName: {}
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -62,7 +23,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -80,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -94,15 +54,11 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
-  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,329 +69,17 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Ancient Wing_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 395
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf96431c2d7352250800000000000000
-      internalID: 5919198663572482556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_1
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 395
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fe733f688ad38bc0800000000000000
-      internalID: -3781938982545031438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_2
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 395
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e24cb680feebb0b10800000000000000
-      internalID: 1948861197615612974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_3
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 395
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 583c4b865232cfef0800000000000000
-      internalID: -73144850367331451
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 289
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae7a9f09993b9a0a0800000000000000
-      internalID: -6869762284433332246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_5
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 289
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bf761bdd92d40d80800000000000000
-      internalID: -8285265839027486795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_6
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 289
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b25fb696a2e185f10800000000000000
-      internalID: 2258588380632446251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_7
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 289
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13b5f1944ba597b00800000000000000
-      internalID: 826791736966601521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 182
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 260cd49708d044a50800000000000000
-      internalID: 6504338607271952482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_9
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 182
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 312b131026b8d9c00800000000000000
-      internalID: 909035952841798163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_10
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 182
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa7a4205159d4a960800000000000000
-      internalID: 7612448213423138730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_11
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 182
-        width: 100
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a9ee585ee3a2a7b0800000000000000
-      internalID: -5214425174461453912
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ancient Wing_12
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 94
-        width: 113
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9caf4c49988c92230800000000000000
-      internalID: 3614640669173545673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 16821cb489cf5d945b6bdf11309d11cd
-    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

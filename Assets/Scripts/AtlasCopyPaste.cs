@@ -28,8 +28,8 @@ public class AtlasCopyPaste : EditorWindow
 
         copyFrom = (Texture2D)EditorGUILayout.ObjectField("範例", copyFrom, typeof(Texture2D), true);
         pasteTo = (Texture2D)EditorGUILayout.ObjectField("目標", pasteTo, typeof(Texture2D), true);
-        Off_X = EditorGUILayout.FloatField("水平位移:", Off_X);
-        Off_Y = EditorGUILayout.FloatField("垂直位移:", Off_Y);
+        //Off_X = EditorGUILayout.FloatField("水平位移:", Off_X);
+        //Off_Y = EditorGUILayout.FloatField("垂直位移:", Off_Y);
 
         EditorGUILayout.Space();
 
@@ -135,7 +135,7 @@ public class AtlasCopyPaste : EditorWindow
             _meta.pivot = new Vector2(_sprites[i].pivot.x / _sprites[i].rect.width, _sprites[i].pivot.y / _sprites[i].rect.height);
             _meta.name = pasteTo.name + "_" + i.ToString();
             _meta.rect = _sprites[i].rect;
-            _meta.rect.position = new Vector2(_sprites[i].rect.position.x, _sprites[i].rect.position.y);
+            _meta.rect.position = new Vector2(_sprites[i].rect.position.x + 10, _sprites[i].rect.position.y -10);
             _meta.border = _sprites[i].border;
 
             _data.Add(_meta);

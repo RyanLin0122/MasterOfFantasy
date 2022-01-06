@@ -209,6 +209,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -240,9 +241,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -264,8 +268,8 @@ TextureImporter:
       name: Archer set (M)_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 486
+        x: 4
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -285,8 +289,8 @@ TextureImporter:
       name: Archer set (M)_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 486
+        x: 68
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -306,8 +310,8 @@ TextureImporter:
       name: Archer set (M)_2
       rect:
         serializedVersion: 2
-        x: 129
-        y: 486
+        x: 132
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -327,8 +331,8 @@ TextureImporter:
       name: Archer set (M)_3
       rect:
         serializedVersion: 2
-        x: 193
-        y: 486
+        x: 196
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -348,8 +352,8 @@ TextureImporter:
       name: Archer set (M)_4
       rect:
         serializedVersion: 2
-        x: 257
-        y: 486
+        x: 260
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -369,8 +373,8 @@ TextureImporter:
       name: Archer set (M)_5
       rect:
         serializedVersion: 2
-        x: 321
-        y: 486
+        x: 324
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -390,8 +394,8 @@ TextureImporter:
       name: Archer set (M)_6
       rect:
         serializedVersion: 2
-        x: 385
-        y: 486
+        x: 388
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -411,8 +415,8 @@ TextureImporter:
       name: Archer set (M)_7
       rect:
         serializedVersion: 2
-        x: 449
-        y: 486
+        x: 452
+        y: 483
         width: 64
         height: 64
       alignment: 9
@@ -432,8 +436,8 @@ TextureImporter:
       name: Archer set (M)_8
       rect:
         serializedVersion: 2
-        x: 1
-        y: 422
+        x: 4
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -453,8 +457,8 @@ TextureImporter:
       name: Archer set (M)_9
       rect:
         serializedVersion: 2
-        x: 65
-        y: 422
+        x: 68
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -474,8 +478,8 @@ TextureImporter:
       name: Archer set (M)_10
       rect:
         serializedVersion: 2
-        x: 129
-        y: 422
+        x: 132
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -495,8 +499,8 @@ TextureImporter:
       name: Archer set (M)_11
       rect:
         serializedVersion: 2
-        x: 193
-        y: 422
+        x: 196
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -516,8 +520,8 @@ TextureImporter:
       name: Archer set (M)_12
       rect:
         serializedVersion: 2
-        x: 257
-        y: 422
+        x: 260
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -537,8 +541,8 @@ TextureImporter:
       name: Archer set (M)_13
       rect:
         serializedVersion: 2
-        x: 321
-        y: 422
+        x: 324
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -558,8 +562,8 @@ TextureImporter:
       name: Archer set (M)_14
       rect:
         serializedVersion: 2
-        x: 385
-        y: 422
+        x: 388
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -579,8 +583,8 @@ TextureImporter:
       name: Archer set (M)_15
       rect:
         serializedVersion: 2
-        x: 449
-        y: 422
+        x: 452
+        y: 419
         width: 64
         height: 64
       alignment: 9
@@ -600,8 +604,8 @@ TextureImporter:
       name: Archer set (M)_16
       rect:
         serializedVersion: 2
-        x: 1
-        y: 358
+        x: 4
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -621,8 +625,8 @@ TextureImporter:
       name: Archer set (M)_17
       rect:
         serializedVersion: 2
-        x: 65
-        y: 358
+        x: 68
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -642,8 +646,8 @@ TextureImporter:
       name: Archer set (M)_18
       rect:
         serializedVersion: 2
-        x: 129
-        y: 358
+        x: 132
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -663,8 +667,8 @@ TextureImporter:
       name: Archer set (M)_19
       rect:
         serializedVersion: 2
-        x: 193
-        y: 358
+        x: 196
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -684,8 +688,8 @@ TextureImporter:
       name: Archer set (M)_20
       rect:
         serializedVersion: 2
-        x: 257
-        y: 358
+        x: 260
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -705,8 +709,8 @@ TextureImporter:
       name: Archer set (M)_21
       rect:
         serializedVersion: 2
-        x: 321
-        y: 358
+        x: 324
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -726,8 +730,8 @@ TextureImporter:
       name: Archer set (M)_22
       rect:
         serializedVersion: 2
-        x: 385
-        y: 358
+        x: 388
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -747,8 +751,8 @@ TextureImporter:
       name: Archer set (M)_23
       rect:
         serializedVersion: 2
-        x: 449
-        y: 358
+        x: 452
+        y: 355
         width: 64
         height: 64
       alignment: 9
@@ -768,8 +772,8 @@ TextureImporter:
       name: Archer set (M)_24
       rect:
         serializedVersion: 2
-        x: 1
-        y: 294
+        x: 4
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -789,8 +793,8 @@ TextureImporter:
       name: Archer set (M)_25
       rect:
         serializedVersion: 2
-        x: 65
-        y: 294
+        x: 68
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -810,8 +814,8 @@ TextureImporter:
       name: Archer set (M)_26
       rect:
         serializedVersion: 2
-        x: 129
-        y: 294
+        x: 132
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -831,8 +835,8 @@ TextureImporter:
       name: Archer set (M)_27
       rect:
         serializedVersion: 2
-        x: 193
-        y: 294
+        x: 196
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -852,8 +856,8 @@ TextureImporter:
       name: Archer set (M)_28
       rect:
         serializedVersion: 2
-        x: 257
-        y: 294
+        x: 260
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -873,8 +877,8 @@ TextureImporter:
       name: Archer set (M)_29
       rect:
         serializedVersion: 2
-        x: 321
-        y: 294
+        x: 324
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -894,8 +898,8 @@ TextureImporter:
       name: Archer set (M)_30
       rect:
         serializedVersion: 2
-        x: 385
-        y: 294
+        x: 388
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -915,8 +919,8 @@ TextureImporter:
       name: Archer set (M)_31
       rect:
         serializedVersion: 2
-        x: 449
-        y: 294
+        x: 452
+        y: 291
         width: 64
         height: 64
       alignment: 9
@@ -936,8 +940,8 @@ TextureImporter:
       name: Archer set (M)_32
       rect:
         serializedVersion: 2
-        x: 1
-        y: 230
+        x: 4
+        y: 227
         width: 64
         height: 64
       alignment: 9
@@ -957,8 +961,8 @@ TextureImporter:
       name: Archer set (M)_33
       rect:
         serializedVersion: 2
-        x: 65
-        y: 230
+        x: 68
+        y: 227
         width: 64
         height: 64
       alignment: 9
@@ -978,8 +982,8 @@ TextureImporter:
       name: Archer set (M)_34
       rect:
         serializedVersion: 2
-        x: 129
-        y: 230
+        x: 132
+        y: 227
         width: 64
         height: 64
       alignment: 9
@@ -999,8 +1003,8 @@ TextureImporter:
       name: Archer set (M)_35
       rect:
         serializedVersion: 2
-        x: 193
-        y: 230
+        x: 196
+        y: 227
         width: 61
         height: 64
       alignment: 9
@@ -1020,8 +1024,8 @@ TextureImporter:
       name: Archer set (M)_36
       rect:
         serializedVersion: 2
-        x: 255
-        y: 230
+        x: 257
+        y: 227
         width: 63
         height: 64
       alignment: 9
@@ -1041,9 +1045,9 @@ TextureImporter:
       name: Archer set (M)_37
       rect:
         serializedVersion: 2
-        x: 318
-        y: 230
-        width: 67
+        x: 321
+        y: 227
+        width: 65
         height: 64
       alignment: 9
       pivot: {x: 0.46, y: 0.45000005}
@@ -1062,9 +1066,9 @@ TextureImporter:
       name: Archer set (M)_38
       rect:
         serializedVersion: 2
-        x: 385
-        y: 230
-        width: 64
+        x: 386
+        y: 227
+        width: 66
         height: 64
       alignment: 9
       pivot: {x: 0.45000005, y: 0.45000005}
@@ -1083,8 +1087,8 @@ TextureImporter:
       name: Archer set (M)_39
       rect:
         serializedVersion: 2
-        x: 449
-        y: 230
+        x: 451
+        y: 227
         width: 64
         height: 64
       alignment: 9
@@ -1104,8 +1108,8 @@ TextureImporter:
       name: Archer set (M)_40
       rect:
         serializedVersion: 2
-        x: 1
-        y: 166
+        x: 4
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1125,8 +1129,8 @@ TextureImporter:
       name: Archer set (M)_41
       rect:
         serializedVersion: 2
-        x: 65
-        y: 166
+        x: 68
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1146,8 +1150,8 @@ TextureImporter:
       name: Archer set (M)_42
       rect:
         serializedVersion: 2
-        x: 129
-        y: 166
+        x: 132
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1167,8 +1171,8 @@ TextureImporter:
       name: Archer set (M)_43
       rect:
         serializedVersion: 2
-        x: 193
-        y: 166
+        x: 196
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1188,8 +1192,8 @@ TextureImporter:
       name: Archer set (M)_44
       rect:
         serializedVersion: 2
-        x: 257
-        y: 166
+        x: 261
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1209,8 +1213,8 @@ TextureImporter:
       name: Archer set (M)_45
       rect:
         serializedVersion: 2
-        x: 321
-        y: 166
+        x: 324
+        y: 163
         width: 64
         height: 64
       alignment: 9
@@ -1230,10 +1234,10 @@ TextureImporter:
       name: Archer set (M)_46
       rect:
         serializedVersion: 2
-        x: 385
+        x: 388
         y: 166
         width: 64
-        height: 64
+        height: 58
       alignment: 9
       pivot: {x: 0.4100001, y: 0.46000004}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1251,10 +1255,10 @@ TextureImporter:
       name: Archer set (M)_47
       rect:
         serializedVersion: 2
-        x: 449
+        x: 452
         y: 166
         width: 64
-        height: 64
+        height: 58
       alignment: 9
       pivot: {x: 0.44000006, y: 0.45000005}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1272,8 +1276,8 @@ TextureImporter:
       name: Archer set (M)_48
       rect:
         serializedVersion: 2
-        x: 1
-        y: 102
+        x: 4
+        y: 99
         width: 64
         height: 64
       alignment: 9
@@ -1293,10 +1297,10 @@ TextureImporter:
       name: Archer set (M)_49
       rect:
         serializedVersion: 2
-        x: 65
+        x: 68
         y: 102
         width: 64
-        height: 64
+        height: 58
       alignment: 9
       pivot: {x: 0.4100001, y: 0.48000002}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1314,8 +1318,8 @@ TextureImporter:
       name: Archer set (M)_50
       rect:
         serializedVersion: 2
-        x: 129
-        y: 102
+        x: 132
+        y: 99
         width: 64
         height: 64
       alignment: 9
@@ -1335,8 +1339,8 @@ TextureImporter:
       name: Archer set (M)_51
       rect:
         serializedVersion: 2
-        x: 193
-        y: 102
+        x: 196
+        y: 99
         width: 64
         height: 64
       alignment: 9
@@ -1356,8 +1360,8 @@ TextureImporter:
       name: Archer set (M)_52
       rect:
         serializedVersion: 2
-        x: 257
-        y: 102
+        x: 260
+        y: 99
         width: 64
         height: 64
       alignment: 9
@@ -1377,12 +1381,12 @@ TextureImporter:
       name: Archer set (M)_53
       rect:
         serializedVersion: 2
-        x: 321
-        y: 102
-        width: 64
+        x: 325
+        y: 99
+        width: 58
         height: 64
       alignment: 9
-      pivot: {x: 0.47000003, y: 0.46000004}
+      pivot: {x: 0.50488704, y: 0.45999956}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1398,12 +1402,12 @@ TextureImporter:
       name: Archer set (M)_54
       rect:
         serializedVersion: 2
-        x: 385
-        y: 102
+        x: 384
+        y: 101
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.3900001, y: 0.51}
+      pivot: {x: 0.44993782, y: 0.48243117}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1419,10 +1423,10 @@ TextureImporter:
       name: Archer set (M)_55
       rect:
         serializedVersion: 2
-        x: 449
-        y: 102
+        x: 452
+        y: 96
         width: 64
-        height: 64
+        height: 70
       alignment: 9
       pivot: {x: 0.5, y: 0.52}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1440,8 +1444,8 @@ TextureImporter:
       name: Archer set (M)_56
       rect:
         serializedVersion: 2
-        x: 1
-        y: 38
+        x: 4
+        y: 35
         width: 64
         height: 64
       alignment: 9
@@ -1461,10 +1465,10 @@ TextureImporter:
       name: Archer set (M)_57
       rect:
         serializedVersion: 2
-        x: 65
-        y: 38
+        x: 68
+        y: 32
         width: 64
-        height: 64
+        height: 70
       alignment: 9
       pivot: {x: 0.47000003, y: 0.52}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1482,8 +1486,8 @@ TextureImporter:
       name: Archer set (M)_58
       rect:
         serializedVersion: 2
-        x: 129
-        y: 38
+        x: 132
+        y: 35
         width: 64
         height: 64
       alignment: 9
@@ -1503,8 +1507,8 @@ TextureImporter:
       name: Archer set (M)_59
       rect:
         serializedVersion: 2
-        x: 193
-        y: 38
+        x: 196
+        y: 35
         width: 64
         height: 64
       alignment: 9
@@ -1524,8 +1528,8 @@ TextureImporter:
       name: Archer set (M)_60
       rect:
         serializedVersion: 2
-        x: 257
-        y: 38
+        x: 260
+        y: 35
         width: 64
         height: 64
       alignment: 9
@@ -1545,8 +1549,8 @@ TextureImporter:
       name: Archer set (M)_61
       rect:
         serializedVersion: 2
-        x: 321
-        y: 38
+        x: 324
+        y: 35
         width: 91
         height: 64
       alignment: 9
