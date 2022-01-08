@@ -4,25 +4,25 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: Blue Eyes & Handsome Face (M)_0
+    second: Blue Eyes Handsome Face (M)_0
   - first:
       213: 21300002
-    second: Blue Eyes & Handsome Face (M)_1
+    second: Blue Eyes Handsome Face (M)_1
   - first:
       213: 21300004
-    second: Blue Eyes & Handsome Face (M)_2
+    second: Blue Eyes Handsome Face (M)_2
   - first:
       213: 21300006
-    second: Blue Eyes & Handsome Face (M)_3
+    second: Blue Eyes Handsome Face (M)_3
   - first:
       213: 21300008
-    second: Blue Eyes & Handsome Face (M)_4
+    second: Blue Eyes Handsome Face (M)_4
   - first:
       213: 21300010
-    second: Blue Eyes & Handsome Face (M)_5
+    second: Blue Eyes Handsome Face (M)_5
   - first:
       213: 21300012
-    second: Blue Eyes & Handsome Face (M)_6
+    second: Blue Eyes Handsome Face (M)_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,6 +44,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -75,9 +76,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -96,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_0
+      name: Blue Eyes Handsome Face (M)_0
       rect:
         serializedVersion: 2
         x: 4
@@ -104,7 +108,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -117,7 +121,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_1
+      name: Blue Eyes Handsome Face (M)_1
       rect:
         serializedVersion: 2
         x: 46
@@ -125,7 +129,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +142,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_2
+      name: Blue Eyes Handsome Face (M)_2
       rect:
         serializedVersion: 2
         x: 88
@@ -146,7 +150,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +163,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_3
+      name: Blue Eyes Handsome Face (M)_3
       rect:
         serializedVersion: 2
         x: 4
@@ -167,7 +171,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +184,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_4
+      name: Blue Eyes Handsome Face (M)_4
       rect:
         serializedVersion: 2
         x: 47
@@ -188,7 +192,7 @@ TextureImporter:
         width: 34
         height: 32
       alignment: 0
-      pivot: {x: 17, y: 16}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_5
+      name: Blue Eyes Handsome Face (M)_5
       rect:
         serializedVersion: 2
         x: 89
@@ -209,7 +213,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +226,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Blue Eyes & Handsome Face (M)_6
+      name: Blue Eyes Handsome Face (M)_6
       rect:
         serializedVersion: 2
         x: 5
@@ -230,7 +234,7 @@ TextureImporter:
         width: 33
         height: 36
       alignment: 0
-      pivot: {x: 16.5, y: 18}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
