@@ -1005,6 +1005,23 @@ public class ShipSender : BaseSender
     }
 }
 
+public class DragonTaxiSender : BaseSender
+{
+    public DragonTaxiSender(DragonTaxiDestination destination)
+    {
+        ProtoMsg msg = new ProtoMsg
+        {
+            MessageType = 78,
+            dragonTaxiOperation = new DragonTaxiOperation
+            {
+                Destination = destination
+            }
+        };
+        base.SendMsg(msg);
+    }
+}
+
+
 public class ReliveSender : BaseSender
 {
     public ReliveSender(int ReliveMethod, int Town = -1)

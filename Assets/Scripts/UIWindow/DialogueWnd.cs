@@ -559,5 +559,4 @@ public class DialogueWnd : WindowRoot
     }
     #endregion
 
-
 }

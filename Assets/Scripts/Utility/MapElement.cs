@@ -10,9 +10,9 @@ public class MapElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public int MapID;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(GameRoot.Instance.AccountOption.Language <2)
+        if (GameRoot.Instance.AccountOption.Language <2)
         {
-            InventorySys.Instance.ShowToolTip("Hi");
+            InventorySys.Instance.ShowToolTip(MapName);
         }
         else if(GameRoot.Instance.AccountOption.Language >= 2)
         {

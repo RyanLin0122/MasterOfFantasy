@@ -3,29 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PEProtocal;
+using UnityEngine.EventSystems;
 
 public class DragonTaxiWnd : MonoSingleton<DragonTaxiWnd>
 {
     public Button Rabi_Island;
     public Button[] Rabi_BnL;
     public Image[] RibiDisableImgL;
+    public Image[] RibiToolTipL;
     public void Init()
     {
-        foreach(Button R in Rabi_BnL)
-        {
-            R.interactable = true;
-        }
-        foreach(Image R in RibiDisableImgL)
-        {
-            R.gameObject.SetActive(false);
-        }
+        #region 初始化
+        Rabi_Island.gameObject.SetActive(false); //利比島飛龍計程車地圖
+       
+
+
+        #endregion
         if (GameRoot.Instance.ActivePlayer != null)
         {
             int mapID = GameRoot.Instance.ActivePlayer.MapID;
 
             if (mapID < 7000) //在利比島
             {
-               switch(mapID)
+                Rabi_Island.gameObject.SetActive(true);
+                foreach (Button RB in Rabi_BnL)
+                {
+                    RB.interactable = true;
+                }
+                foreach (Image RI in RibiDisableImgL)
+                {
+                    RI.gameObject.SetActive(false);
+                }
+                foreach (Image RI in RibiToolTipL)
+                {
+                    RI.gameObject.SetActive(false);
+
+                }
+                switch (mapID)
                 {
                     case 1010://旅者之路
                         {
@@ -33,11 +47,19 @@ public class DragonTaxiWnd : MonoSingleton<DragonTaxiWnd>
                             RibiDisableImgL[0].gameObject.SetActive(true);
                             break;
                         }
+                    case 2012://廢礦監視塔
+                        {
+                            Rabi_BnL[1].interactable = false;
+                            RibiDisableImgL[1].gameObject.SetActive(true);
+                            break;
+                        }
+                    case 3015://西部監視塔
+                        {
+                            Rabi_BnL[2].interactable = false;
+                            RibiDisableImgL[2].gameObject.SetActive(true);
+                            break;
+                        }
                 }
-
-
-                //Rabi_Island.interactable = false;
-                //RibiDisableImg.gameObject.SetActive(true);
             }
             //else if(mapID>7000 && mapID < 8000) //在幽靈船
             //{
@@ -52,13 +74,33 @@ public class DragonTaxiWnd : MonoSingleton<DragonTaxiWnd>
         this.gameObject.SetActive(false);
     }
 
-    public void PressPosedinBtn()
+    //點選飛龍計程車地圖上的傳送地點事件
+    public void PressPosedinPosition(GameObject temp)
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.MiddleBtn);
-        UISystem.Instance.CloseDialogueWnd();
+        InventorySys.Instance.HideToolTip();
+        Debug.Log("This : " + this.gameObject.name);
         this.gameObject.SetActive(false);
-        new ShipSender(ShipDestination.Posedin);
-    }
+       
+        switch(temp.GetComponent<MapElement>().MapID)
+        {
+            case 1010://旅者之路
+                {
+                    new DragonTaxiSender(DragonTaxiDestination.TravellerWay);
+                    break;
+                }
+            case 2012://廢礦監視塔
+                {
+                    new DragonTaxiSender(DragonTaxiDestination.MinePost);
+                    break;
+                }
+            case 3015://西部監視塔
+                {
+                    new DragonTaxiSender(DragonTaxiDestination.WestPost);
+                    break;
+                }
+        }
 
+
+    }
 
 }

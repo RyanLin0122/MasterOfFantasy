@@ -267,7 +267,8 @@ namespace PEProtocal
         [ProtoMember(89, IsRequired = false)]
         public ShipOperation shipOperation { get; set; }
 
-        public DragonTaxiOperation DragonTaxiOperation { get; set; }
+        [ProtoMember(90, IsRequired = false)]
+        public DragonTaxiOperation dragonTaxiOperation { get; set; }
         //Serialize
         public void SerializeToStream<T>(T data, Stream stream)
         {

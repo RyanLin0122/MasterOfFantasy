@@ -1192,12 +1192,14 @@ namespace PEProtocal
     [ProtoContract(EnumPassthru =false)]
     public enum DragonTaxiDestination
     {
+        //Rabi
         [ProtoEnum]
-        Ribi,
+        TravellerWay,
         [ProtoEnum]
-        Arnos,
+        MinePost,
         [ProtoEnum]
-        Posedin
+        WestPost,
+        //
     }
 }
 

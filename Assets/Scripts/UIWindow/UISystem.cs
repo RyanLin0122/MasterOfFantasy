@@ -474,7 +474,7 @@ public class UISystem : SystemRoot
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
         PutLastLayer(dragonTaxiWnd.transform);
         dragonTaxiWnd.gameObject.SetActive(true);
-        //dragonTaxiWnd.Init();
+        dragonTaxiWnd.Init(); 
     }
     #endregion
 

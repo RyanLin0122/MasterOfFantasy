@@ -47,7 +47,7 @@ public class ToolTip : MonoBehaviour
             Vector2 StartPos = maincam.ViewportToWorldPoint(new Vector2(0, 0));//左下
             Vector2 EndPos = maincam.ViewportToWorldPoint(new Vector2(1, 1));//右上
 
-            float offset = 3f;
+            float offset = 20f;
             //ToolTip 的Pivot在右下角
             if (mousepos.x > (StartPos.x + EndPos.x) / 2) //在右邊
             {

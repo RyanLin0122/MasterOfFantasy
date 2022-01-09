@@ -245,6 +245,12 @@ class MOFServerHandler : ChannelHandlerAdapter
                     ShipHandler shipHandler = new ShipHandler();
                     Task shipTask = shipHandler.ProcessMsgAsync(msg, session);
                     break;
+                case 78: //飛龍計程車
+                    DragonTaxiHandler dragonTaxi = new DragonTaxiHandler();
+                    Task dragonTaxiTask = dragonTaxi.ProcessMsgAsync(msg, session);
+                    break;
+
+
             }
         }
         catch (Exception e)
