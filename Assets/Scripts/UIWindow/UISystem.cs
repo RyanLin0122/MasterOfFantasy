@@ -353,6 +353,7 @@ public class UISystem : SystemRoot
 
     public void CloseDialogueWnd()
     {
+        dragonTaxiWnd.IsPortalSelect = false;//重置飛龍傳送按鈕狀態
         AudioSvc.Instance.PlayUIAudio(Constants.WindowClose);
         baseUI.CloseNpcDialogue();
     }
@@ -468,13 +469,22 @@ public class UISystem : SystemRoot
         deathWnd.gameObject.SetActive(true);
     }
 
+
     //開關飛龍計程車視窗
     public void OpenDragonTaxiWnd()
     {
-        AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
-        PutLastLayer(dragonTaxiWnd.transform);
-        dragonTaxiWnd.gameObject.SetActive(true);
-        dragonTaxiWnd.Init(); 
+        if (dragonTaxiWnd.IsPortalSelect)
+        {
+            AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+            dragonTaxiWnd.StartPost();
+        }
+        else
+        {
+            AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);
+            PutLastLayer(dragonTaxiWnd.transform);
+            dragonTaxiWnd.gameObject.SetActive(true);
+            dragonTaxiWnd.Init();
+        }
     }
     #endregion
 
