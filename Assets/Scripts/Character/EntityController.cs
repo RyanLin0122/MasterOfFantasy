@@ -19,10 +19,13 @@ public class EntityController : MonoBehaviour
     public bool AttackAniLock = false;
     public void Init()
     {
-        rb = this.GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true;
-        this.buffManager = new BuffManager(this);
-        this.effectManager = new EffectManager(this);
+        if (GameRoot.Instance.InGame && transform.parent.gameObject.name != "EquipmentWnd" && transform.parent.gameObject.name != "CashShopWnd")
+        {
+            rb = this.GetComponent<Rigidbody2D>();
+            rb.freezeRotation = true;
+            this.buffManager = new BuffManager(this);
+            this.effectManager = new EffectManager(this);
+        }
     }
     public virtual void SetFaceDirection(bool FaceDir)
     {

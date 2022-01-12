@@ -37,7 +37,7 @@ public class EquipmentWnd : Inventory, IStackWnd
     public Sprite PanelSprite2;
     public Illustration illustration;
     public Toggle toggle;
-    public CharacterDemo Demo;
+    public PlayerController Demo;
     public bool IsOutlook = true;
     public bool IsPutOff = false;
     public bool HasInitialized = false;
@@ -116,7 +116,7 @@ public class EquipmentWnd : Inventory, IStackWnd
         SetWndState();
         IsOpen = true;
         UISystem.Instance.Push(this);
-        Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
+        Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender);
     }
 
     public void CloseAndPop()
@@ -548,8 +548,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     break;
             }
             PlayChanegeEquipmentAudio(eo.EquipmentPosition);
-            SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-            SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
+            SetupMyEquipmentsAnimation(GameRoot.Instance.ActivePlayer);
             illustration.SetGenderAge(IsOutlook, IsPutOff, GameRoot.Instance.ActivePlayer);
             UISystem.Instance.InfoWnd.SetIllustration();
             BattleSys.Instance.InitAllAtribute();
@@ -563,7 +562,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                 PlayerInputController.Instance.entityController.SetNameBox(null);
             }
             PlayerInputController.Instance.entityController.SetEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender, EquipmentType.ChatBox);
-            Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer);
+            Demo.SetAllEquipment(GameRoot.Instance.ActivePlayer.playerEquipments, GameRoot.Instance.ActivePlayer.Gender);
             InventorySys.Instance.HideToolTip();
         }
         else //其他人換裝
@@ -579,7 +578,7 @@ public class EquipmentWnd : Inventory, IStackWnd
                     controller.SetNameBox(eo.OtherPlayerEquipments.F_NameBox);
                 }
             }
-            
+
         }
     }
     /// <summary>
@@ -781,288 +780,12 @@ public class EquipmentWnd : Inventory, IStackWnd
 
     #region Equipment Animator
 
-    public void SetupAllEquipmentAnimation(Player playerData)
+    public void SetupMyEquipmentsAnimation(Player playerData)
     {
-        SetupEquipmentAnimation(playerData, EquipmentType.Shoes);
-        SetupEquipmentAnimation(playerData, EquipmentType.Chest);
-        SetupEquipmentAnimation(playerData, EquipmentType.Pant);
-        SetupEquipmentAnimation(playerData, EquipmentType.Gloves);
-        SetupEquipmentAnimation(playerData, EquipmentType.HairStyle);
-        SetupFaceAnimation(playerData);
-    }
-    public void SetupEquipmentAnimation(Player pd, EquipmentType Type)
-    {
-        PlayerController Ctrl = PlayerInputController.Instance.entityController;
-        switch (Type)
+        if (PlayerInputController.Instance.entityController != null)
         {
-            case EquipmentType.Shoes:
-                Ctrl.ShoesCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest == null) //沒有時裝衣服
-                {
-                    if (!IsPutOff) //如果沒按脫掉
-                    {
-                        if (pd.playerEquipments.F_Shoes != null)
-                        {
-                            //顯示鞋子點裝
-                            Ctrl.ChangeEquipment(pd.playerEquipments.F_Shoes.ItemID, Type);
-                            return;
-                        }
-                        else
-                        {
-                            if (pd.playerEquipments.B_Shoes != null)
-                            {
-                                //顯示鞋子
-                                Ctrl.ChangeEquipment(pd.playerEquipments.B_Shoes.ItemID, Type);
-                                return;
-                            }
-                            else
-                            {
-                                Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Shoes);
-                                //顯示無鞋子
-                            }
-                        }
-                    }
-
-                    else //按脫掉
-                    {
-                        //關閉鞋子
-                        Ctrl.ShoesCtrl.gameObject.SetActive(false);
-                    }
-                }
-                else //有穿時裝衣服
-                {
-                    if (pd.playerEquipments.F_Chest.ItemID <= 7000) //如果不是套裝
-                    {
-                        if (!IsPutOff) //如果沒按脫掉
-                        {
-                            if (pd.playerEquipments.F_Shoes != null)
-                            {
-                                //顯示鞋子點裝
-                                Ctrl.ChangeEquipment(pd.playerEquipments.F_Shoes.ItemID, Type);
-                                return;
-                            }
-                            else
-                            {
-                                if (pd.playerEquipments.B_Shoes != null)
-                                {
-                                    //顯示鞋子
-                                    Ctrl.ChangeEquipment(pd.playerEquipments.B_Shoes.ItemID, Type);
-                                    return;
-                                }
-                                else
-                                {
-                                    Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Shoes);
-                                    //顯示無鞋子
-                                }
-                            }
-                        }
-
-                        else //按脫掉
-                        {
-                            //關閉鞋子
-                            Ctrl.ShoesCtrl.gameObject.SetActive(false);
-                        }
-                    }
-                    else //穿套裝
-                    {
-                        //關閉鞋子
-                        Ctrl.ShoesCtrl.gameObject.SetActive(false);
-                    }
-                }
-
-
-                break;
-            case EquipmentType.Chest:
-                Ctrl.UpwearCtrl.gameObject.SetActive(true);
-                Ctrl.SuitCtrl.gameObject.SetActive(false);
-                if (pd.playerEquipments.F_Chest != null) //有時裝衣服
-                {
-                    if (!IsPutOff) //如果沒按脫掉
-                    {
-                        if (pd.playerEquipments.F_Chest.ItemID <= 7000)
-                        {
-                            if (pd.playerEquipments.F_Chest != null)
-                            {
-                                //顯示衣服點裝
-                                Ctrl.ChangeEquipment(pd.playerEquipments.F_Chest.ItemID, Type);
-                                return;
-                            }
-                            else
-                            {
-                                if (pd.playerEquipments.B_Chest != null)
-                                {
-                                    //顯示衣服
-                                    Ctrl.ChangeEquipment(pd.playerEquipments.B_Chest.ItemID, Type);
-                                    return;
-                                }
-                                else
-                                {
-                                    Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Chest);
-                                    //顯示無衣服
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //開套裝
-                            Ctrl.ChangeEquipment(pd.playerEquipments.F_Chest.ItemID, Type);
-                        }
-                    }
-                }
-                else
-                {
-                    Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Chest);
-                }
-                break;
-            case EquipmentType.Pant:
-                Ctrl.DownwearCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest == null) //沒有時裝衣服
-                {
-                    if (!IsPutOff) //如果沒按脫掉
-                    {
-                        if (pd.playerEquipments.F_Pants != null)
-                        {
-                            //顯示褲子點裝
-                            Ctrl.ChangeEquipment(pd.playerEquipments.F_Pants.ItemID, Type);
-                            return;
-                        }
-                        else
-                        {
-                            if (pd.playerEquipments.B_Pants != null)
-                            {
-                                //顯示褲子
-                                Ctrl.ChangeEquipment(pd.playerEquipments.B_Pants.ItemID, Type);
-                                return;
-                            }
-                            else
-                            {
-                                Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Pant);
-                                //顯示無褲子
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //關閉褲子
-                        Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Pant);
-                    }
-                }
-                else
-                {
-                    if (pd.playerEquipments.F_Chest.ItemID <= 7000) //如果不是套裝
-                    {
-                        if (!IsPutOff) //如果沒按脫掉
-                        {
-                            if (pd.playerEquipments.F_Pants != null)
-                            {
-                                //顯示褲子點裝
-                                Ctrl.ChangeEquipment(pd.playerEquipments.F_Pants.ItemID, Type);
-                                return;
-                            }
-                            else
-                            {
-                                if (pd.playerEquipments.B_Pants != null)
-                                {
-                                    //顯示褲子
-                                    Ctrl.ChangeEquipment(pd.playerEquipments.B_Pants.ItemID, Type);
-                                    return;
-                                }
-                            }
-                        }
-                        else //按脫掉
-                        {
-                            //關閉鞋子
-                            Ctrl.ShoesCtrl.gameObject.SetActive(false);
-                        }
-                    }
-                    else //穿套裝
-                    {
-                        //關閉鞋子
-                        Ctrl.ShoesCtrl.gameObject.SetActive(false);
-                    }
-                }
-                break;
-            case EquipmentType.Gloves:
-                Ctrl.HandBackCtrl.gameObject.SetActive(true);
-                Ctrl.HandFrontCtrl.gameObject.SetActive(true);
-                if (pd.playerEquipments.F_Chest != null)
-                {
-                    if (pd.playerEquipments.F_Glove != null)
-                    {
-                        //顯示手套點裝
-                        Ctrl.ChangeEquipment(pd.playerEquipments.F_Glove.ItemID, Type);
-                        return;
-                    }
-                    else
-                    {
-                        if (pd.playerEquipments.B_Glove != null)
-                        {
-                            //顯示手套
-                            Ctrl.ChangeEquipment(pd.playerEquipments.B_Glove.ItemID, Type);
-                            return;
-                        }
-                        else
-                        {
-                            Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.Gloves);
-                            //顯示無手套
-                        }
-                    }
-                }
-                else
-                {
-                    //有穿套裝，關閉手套
-                    Ctrl.HandBackCtrl.gameObject.SetActive(false);
-                    Ctrl.HandFrontCtrl.gameObject.SetActive(false);
-                }
-                break;
-            case EquipmentType.HairStyle:
-                Ctrl.HairBackCtrl.gameObject.SetActive(true);
-                Ctrl.HairFrontCtrl.gameObject.SetActive(true);
-
-                if (pd.playerEquipments.F_HairStyle != null)
-                {
-
-                    Ctrl.ChangeEquipment(pd.playerEquipments.F_HairStyle.ItemID, Type);
-                    return;
-                }
-                else
-                {
-                    Ctrl.ChangeDefaultEquipment(pd.Gender, EquipmentType.HairStyle);
-                    //顯示默認髮型
-                }
-                break;
+            PlayerInputController.Instance.entityController.SetAllEquipment(playerData.playerEquipments, GameRoot.Instance.ActivePlayer.Gender);
         }
-    }
-    public void SetupFaceAnimation(Player pd)
-    {
-        PlayerController Ctrl = PlayerInputController.Instance.entityController;
-        if (pd.Gender == 0)
-        {
-            if (pd.playerEquipments.F_FaceType == null)
-            {
-                Ctrl.ChangeDefaultEquipment(0, EquipmentType.FaceType);
-            }
-            else
-            {
-                Ctrl.ChangeEquipment(pd.playerEquipments.F_FaceType.ItemID, EquipmentType.FaceType);
-            }
-        }
-        else
-        {
-            if (pd.playerEquipments.F_FaceType == null)
-            {
-                Ctrl.ChangeDefaultEquipment(1, EquipmentType.FaceType);
-            }
-            else
-            {
-                Ctrl.ChangeEquipment(pd.playerEquipments.F_FaceType.ItemID, EquipmentType.FaceType);
-            }
-        }
-
-    }
-    public void SetupWeaponAnimation(int weaponID, ItemQuality quality)
-    {
-
     }
     #endregion
 

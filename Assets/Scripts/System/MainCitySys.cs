@@ -36,6 +36,7 @@ public class MainCitySys : SystemRoot
     }
     public void EnterMap(EnterGameRsp rd)
     {
+        GameRoot.Instance.InGame = true;
         LoginMap(rd);
     }
     //進入小遊戲
@@ -217,9 +218,7 @@ public class MainCitySys : SystemRoot
         StartCoroutine(Timer(player.GetComponent<ScreenController>()));
         GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
         player.GetComponent<Transform>().SetAsLastSibling();
-        UISystem.Instance.equipmentWnd.SetupAllEquipmentAnimation(GameRoot.Instance.ActivePlayer);
-        UISystem.Instance.equipmentWnd.SetupFaceAnimation(GameRoot.Instance.ActivePlayer);
-
+        UISystem.Instance.equipmentWnd.SetupMyEquipmentsAnimation(GameRoot.Instance.ActivePlayer);
         if (PlayerName == GameRoot.Instance.ActivePlayer.Name)
         {
             player.GetComponent<ScreenController>().enabled = true;

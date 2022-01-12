@@ -108,6 +108,8 @@ public class Constants
                 return "Character/CharacterSprites/Default Brown Hair (F) 2";
             case EquipAnimType.HairFront:
                 return "Character/CharacterSprites/Default Brown Hair (F) 1";
+            case EquipAnimType.Glasses:
+                return "Character/CharacterSprites/Good Glasses";
         }
         return "";
     }
@@ -137,6 +139,8 @@ public class Constants
                 return "Character/CharacterSprites/Default Brown Hair (F) 2";
             case EquipAnimType.HairFront:
                 return "Character/CharacterSprites/Default Brown Hair (F) 1";
+            case EquipAnimType.Glasses:
+                return "Character/CharacterSprites/Good Glasses";
         }
         return "";
     }
@@ -166,6 +170,8 @@ public class Constants
                 return "Character/CharacterSprites/0c0000ec_hear_01_02.gi";
             case EquipAnimType.HairFront:
                 return "Character/CharacterSprites/Default Brown Hair (M)";
+            case EquipAnimType.Glasses:
+                return "Character/CharacterSprites/Good Glasses";
         }
         return "";
     }
@@ -216,21 +222,7 @@ public class Constants
         return ((float)GetAnimLength(state)) / GetAnimSpeed(state);
     }
 
-    public static float GetAnimTimeByID(int AnimID)
-    {
-        switch (AnimID)
-        {
-            case 0:
-                return GetAnimTime(PlayerAniType.Hurt);
-            case 1:
-                return GetAnimTime(PlayerAniType.Death);
-            case 2:
-                return GetAnimTime(PlayerAniType.BowAttack);
-            default:
-                return 0;
-        }
 
-    }
     public static float GetMonsterAnimTime(int MonsterID, MonsterAniType aniType)
     {
         return ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSprite.Count / ResSvc.Instance.MonsterInfoDic[MonsterID].MonsterAniDic[aniType].AnimSpeed;
@@ -572,6 +564,47 @@ public class Constants
                         return new int[] { 35, 36, 37, 38 };
                     case PlayerAniType.CrossbowAttack:
                         return new int[] { 53, 54, 55, 56 };
+                }
+                break;
+            case EquipAnimType.Glasses:
+                switch (state)
+                {
+                    case PlayerAniType.None:
+                        return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+                    case PlayerAniType.Idle:
+                        return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+                    case PlayerAniType.Walk:
+                        return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+                    case PlayerAniType.Run:
+                        return new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+                    case PlayerAniType.Hurt:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.Death:
+                        return new int[] { 1, 1, 1, 1, 1, 1, 1, 1 };
+                    case PlayerAniType.DaggerAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.DownAttack1:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.DownAttack2:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.HorizontalAttack1:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.HorizontalAttack2:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.UpperAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.BowAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.CrossbowAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.MagicAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.ClericAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    case PlayerAniType.SlashAttack:
+                        return new int[] { 0, 0, 0, 0 };
+                    default:
+                        break;
                 }
                 break;
         }
@@ -920,6 +953,47 @@ public class Constants
                     case PlayerAniType.ClericAttack:
                         return new Vector2[] { new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0) };
 
+                }
+                break;
+            case EquipAnimType.Glasses:
+                switch (state)
+                {
+                    case PlayerAniType.None:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.Idle:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.Walk:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.Run:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.Hurt:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.Death:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.DaggerAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.DownAttack1:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.DownAttack2:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.HorizontalAttack1:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.HorizontalAttack2:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.UpperAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.BowAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.CrossbowAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.MagicAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.ClericAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    case PlayerAniType.SlashAttack:
+                        return new Vector2[] { new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f), new Vector2(0.074f, -0.074f) };
+                    default:
+                        break;
                 }
                 break;
         }
@@ -1374,18 +1448,6 @@ public class Constants
                 return 220;
             default:
                 return 150;
-        }
-
-    }
-
-    public static int GetCommonAttackAnimID(WeaponType weapon)
-    {
-        switch (weapon)
-        {
-            case WeaponType.Bow:
-                return 3;
-            default:
-                return 0;
         }
 
     }

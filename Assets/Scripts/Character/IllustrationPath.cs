@@ -57,6 +57,7 @@ public class IllustrationPath : MonoBehaviour
                     continue;
                 }
                 int ID = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
+                //Debug.Log(ID.ToString());
                 List<Sprite> Sp = new List<Sprite>();
                 List<Vector4> OS = new List<Vector4>();
                 List<string> TempPath = new List<string>();

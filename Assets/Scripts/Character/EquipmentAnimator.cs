@@ -109,22 +109,8 @@ public class EquipmentAnimator : MonoBehaviour
     }
     public void AddSpriteArray(PlayerAniType state)
     {
-        if (!AllSpriteArray.ContainsKey(state))
-        {
-            AllSpriteArray.Add(state, GenSpriteArray(state, Type));
-        }
-        else
-        {
-            AllSpriteArray[state] = GenSpriteArray(state, Type);
-        }
-        if (!AllSpritePos.ContainsKey(state))
-        {
-            AllSpritePos.Add(state, GenSpritePos(state, Type));
-        }
-        else
-        {
-            AllSpritePos[state] = GenSpritePos(state, Type);
-        }
+        AllSpriteArray[state] = GenSpriteArray(state, Type);
+        AllSpritePos[state] = GenSpritePos(state, Type);
     }
     public Vector2[] GenSpritePos(PlayerAniType state, EquipAnimType Type)
     {
@@ -261,5 +247,6 @@ public enum EquipAnimType
     Face,
     HairFront,
     HairBack,
+    Glasses
 }
 

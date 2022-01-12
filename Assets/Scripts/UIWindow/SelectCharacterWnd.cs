@@ -14,9 +14,9 @@ public class SelectCharacterWnd : WindowRoot {
     public Text NameText1;
     public Text NameText2;
     public Text NameText3;
-    public CharacterDemo Demo1;
-    public CharacterDemo Demo2;
-    public CharacterDemo Demo3;
+    public PlayerController Demo1;
+    public PlayerController Demo2;
+    public PlayerController Demo3;
     public GameObject Effect1;
     public GameObject Effect2;
     public GameObject Effect3;
@@ -77,7 +77,7 @@ public class SelectCharacterWnd : WindowRoot {
                 Demo1.gameObject.SetActive(true);
                 Demo2.gameObject.SetActive(false);
                 Demo3.gameObject.SetActive(false);
-                Demo1.SetAllEquipment(players[0]);
+                Demo1.SetAllEquipment(players[0].playerEquipments, players[0].Gender);
                 break;
             case 2:
                 SetText(LevelText1, players[0].Level);
@@ -93,8 +93,8 @@ public class SelectCharacterWnd : WindowRoot {
                 Demo1.gameObject.SetActive(true);
                 Demo2.gameObject.SetActive(true);
                 Demo3.gameObject.SetActive(false);
-                Demo1.SetAllEquipment(players[0]);
-                Demo2.SetAllEquipment(players[1]);
+                Demo1.SetAllEquipment(players[0].playerEquipments, players[0].Gender);
+                Demo2.SetAllEquipment(players[1].playerEquipments, players[1].Gender);
                 break;
             case 3:
                 SetText(LevelText1, players[0].Level);
@@ -110,9 +110,9 @@ public class SelectCharacterWnd : WindowRoot {
                 Demo1.gameObject.SetActive(true);
                 Demo2.gameObject.SetActive(true);
                 Demo3.gameObject.SetActive(true);
-                Demo1.SetAllEquipment(players[0]);
-                Demo2.SetAllEquipment(players[1]);
-                Demo3.SetAllEquipment(players[2]);
+                Demo1.SetAllEquipment(players[0].playerEquipments, players[0].Gender);
+                Demo2.SetAllEquipment(players[1].playerEquipments, players[1].Gender);
+                Demo3.SetAllEquipment(players[2].playerEquipments, players[2].Gender);
                 break;
         }
 

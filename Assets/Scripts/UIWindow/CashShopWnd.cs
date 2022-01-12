@@ -45,7 +45,7 @@ public class CashShopWnd : Inventory
     public GameObject ButtonGroup;
     public Transform BuyItemsTransform;
     public Illustration illustration;
-    public CharacterDemo Demo;
+    public PlayerController Demo;
     public bool IsPutOff = false;
 
     public string cata;
@@ -445,7 +445,7 @@ public class CashShopWnd : Inventory
         //°eÂ§
 
         //§R°£ÁÊª«¨®
-        ItemUI.DeleteBtn.onClick.AddListener(()=>DeleteFromCart(cartItem));
+        ItemUI.DeleteBtn.onClick.AddListener(() => DeleteFromCart(cartItem));
     }
     public void PressAdd2CartBtn(int ItemID, int Order, int SellPrice, int Quantity)
     {
@@ -458,7 +458,7 @@ public class CashShopWnd : Inventory
             sellPrice = SellPrice,
             order = Order
         };
-        if(GameRoot.Instance.ActivePlayer.Cart == null)
+        if (GameRoot.Instance.ActivePlayer.Cart == null)
         {
             GameRoot.Instance.ActivePlayer.Cart = new List<CartItem>();
         }
@@ -694,7 +694,7 @@ public class CashShopWnd : Inventory
     public void ResetIllustrationAndDemo()
     {
         illustration.SetGenderAge(true, IsPutOff, TryOnPlayer);
-        Demo.SetAllEquipment(TryOnPlayer);
+        Demo.SetAllEquipment(TryOnPlayer.playerEquipments, TryOnPlayer.Gender);
     }
     public void PutOffAll()
     {
@@ -852,7 +852,7 @@ public class CashShopWnd : Inventory
     public void DeleteFromCart(CartItem item)
     {
         GameRoot.Instance.ActivePlayer.Cart.Remove(item);
-        new CashShopSender(7,GameRoot.Instance.ActivePlayer.Cart);
+        new CashShopSender(7, GameRoot.Instance.ActivePlayer.Cart);
         ClearCartUI();
         SetCartItems();
         AudioSvc.Instance.PlayUIAudio(Constants.SmallBtn);

@@ -17,146 +17,152 @@ public class ScreenController : MonoBehaviour
     public float cam_y = -1;
     private void Awake()
     {
-        MapCamera = Camera.main;
-        Offset = MapCamera.transform.position;
-        this.background = GameObject.FindGameObjectWithTag("MapBackground").transform;
-        float bound_x = background.GetComponent<Renderer>().bounds.size.x;
-        float bound_y = background.GetComponent<Renderer>().bounds.size.y;
-
-        Vector3 vector = MapCamera.ScreenToWorldPoint(new Vector2(MapCamera.pixelWidth, MapCamera.pixelHeight)) - MapCamera.ScreenToWorldPoint(Vector2.zero);
-        this.cam_x = vector.x;
-        this.cam_y = vector.y;
-        Debug.Log(cam_x + ", " + cam_y);
-
-        UpBound = (bound_y - cam_y) / 2.0f;
-        DownBound = -UpBound;
-        if (UpBound < DownBound)
+        if (GameRoot.Instance.InGame)
         {
-            UpBound = 0;
-            DownBound = 0;
-        }
+            MapCamera = Camera.main;
+            Offset = MapCamera.transform.position;
+            this.background = GameObject.FindGameObjectWithTag("MapBackground").transform;
+            float bound_x = background.GetComponent<Renderer>().bounds.size.x;
+            float bound_y = background.GetComponent<Renderer>().bounds.size.y;
 
-        RightBound = (bound_x - cam_x) / 2.0f;
-        LeftBound = -RightBound;
-        if (RightBound < LeftBound)
-        {
-            RightBound = 0;
-            LeftBound = 0;
-        }
-        MapRight = background.transform.position.x + background.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        MapLeft = background.transform.position.x - background.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        MapDown = background.transform.position.y - background.GetComponent<SpriteRenderer>().bounds.size.y / 2;
-        MapUp = background.transform.position.y + background.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+            Vector3 vector = MapCamera.ScreenToWorldPoint(new Vector2(MapCamera.pixelWidth, MapCamera.pixelHeight)) - MapCamera.ScreenToWorldPoint(Vector2.zero);
+            this.cam_x = vector.x;
+            this.cam_y = vector.y;
+            Debug.Log(cam_x + ", " + cam_y);
+
+            UpBound = (bound_y - cam_y) / 2.0f;
+            DownBound = -UpBound;
+            if (UpBound < DownBound)
+            {
+                UpBound = 0;
+                DownBound = 0;
+            }
+
+            RightBound = (bound_x - cam_x) / 2.0f;
+            LeftBound = -RightBound;
+            if (RightBound < LeftBound)
+            {
+                RightBound = 0;
+                LeftBound = 0;
+            }
+            MapRight = background.transform.position.x + background.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+            MapLeft = background.transform.position.x - background.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+            MapDown = background.transform.position.y - background.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+            MapUp = background.transform.position.y + background.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        }      
     }
     private void Update()
     {
-        float tempx = transform.position.x;
-        float tempy = transform.position.y;
-        Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), MapCamera.transform.position.z);
-        MapCamera.transform.position = tempPosition; //攝影機座標 = 玩家座標
-        UpdateBG();
-        if (canCtrl && !UISystem.Instance.deathWnd.gameObject.activeSelf)
+        if (GameRoot.Instance.InGame)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            float tempx = transform.position.x;
+            float tempy = transform.position.y;
+            Vector3 tempPosition = new Vector3(Mathf.Clamp(tempx, LeftBound, RightBound), Mathf.Clamp(tempy, DownBound, UpBound), MapCamera.transform.position.z);
+            MapCamera.transform.position = tempPosition; //攝影機座標 = 玩家座標
+            UpdateBG();
+            if (canCtrl && !UISystem.Instance.deathWnd.gameObject.activeSelf)
             {
-                if (!GameRoot.Instance.HasOpenedWnd.ContainsKey("MapWnd"))
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    MapWnd wnd = ResSvc.Instance.LoadPrefab(PathDefine.MapWnd, KnapsackWnd.Instance.transform.parent, Vector3.zero, true).GetComponent<MapWnd>();
-                    wnd.OpenAndPush();
-                    wnd.transform.localPosition = Vector3.zero;
-                    GameRoot.Instance.HasOpenedWnd.Add("MapWnd", wnd);
-                }
-                else
-                {
-                    MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
-                    wnd.CloseAndPop();
-                    GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");
-
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (UISystem.Instance.dialogueWnd.gameObject.activeSelf)
-                {
-                    UISystem.Instance.CloseDialogueWnd();
-                }
-                else
-                {
-                    if (UISystem.Instance.stack.Count > 0)
+                    if (!GameRoot.Instance.HasOpenedWnd.ContainsKey("MapWnd"))
                     {
-                        UISystem.Instance.PressEsc();
+                        MapWnd wnd = ResSvc.Instance.LoadPrefab(PathDefine.MapWnd, KnapsackWnd.Instance.transform.parent, Vector3.zero, true).GetComponent<MapWnd>();
+                        wnd.OpenAndPush();
+                        wnd.transform.localPosition = Vector3.zero;
+                        GameRoot.Instance.HasOpenedWnd.Add("MapWnd", wnd);
                     }
                     else
                     {
-                        UISystem.Instance.menuUI.openCloseWnd();
+                        MapWnd wnd = ((MapWnd)GameRoot.Instance.HasOpenedWnd["MapWnd"]);
+                        wnd.CloseAndPop();
+                        GameRoot.Instance.HasOpenedWnd.Remove("MapWnd");
+
                     }
                 }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (UISystem.Instance.dialogueWnd.gameObject.activeSelf)
+                    {
+                        UISystem.Instance.CloseDialogueWnd();
+                    }
+                    else
+                    {
+                        if (UISystem.Instance.stack.Count > 0)
+                        {
+                            UISystem.Instance.PressEsc();
+                        }
+                        else
+                        {
+                            UISystem.Instance.menuUI.openCloseWnd();
+                        }
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    UISystem.Instance.InfoWnd.openCloseWnd();
+                }
+                if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    UISystem.Instance.menuUI.OpenCloseKeyBind();
+                }
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    KnapsackWnd.Instance.KeyBoardCommand();
+                }
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    UISystem.Instance.OpenCloseOptionWnd();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    EquipmentWnd.Instance.KeyBoardCommand();
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    DiaryWnd.Instance.KeyBoardCommand();
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    QuestWnd.Instance.KeyBoardCommand();
+                }
+                if (Input.GetKeyDown(KeyCode.F1))
+                {
+                    GuideWnd.Instance.KeyBoardCommand();
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    SkillSys.Instance.skillWnd.KeyBoardCommand();
+                }
             }
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.ScrollLock)) //截圖
             {
-                UISystem.Instance.InfoWnd.openCloseWnd();
+                Debug.Log("ScreenShot");
+                string name = DateTime.Now.ToString("yyyy'_'MM'_'dd'_'HH'_'mm'_'ss");
+                string str = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + name + ".png";
+                str = str.Replace("\\", "/");
+                try
+                {
+                    Debug.Log(str);
+                    ScreenCapture.CaptureScreenshot(str);
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e.Message);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                UISystem.Instance.menuUI.OpenCloseKeyBind();
-            }
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                KnapsackWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                UISystem.Instance.OpenCloseOptionWnd();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EquipmentWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                DiaryWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                QuestWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                GuideWnd.Instance.KeyBoardCommand();
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SkillSys.Instance.skillWnd.KeyBoardCommand();
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.ScrollLock)) //截圖
-        {
-            Debug.Log("ScreenShot");
-            string name = DateTime.Now.ToString("yyyy'_'MM'_'dd'_'HH'_'mm'_'ss");
-            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/" + name + ".png";
-            str = str.Replace("\\", "/");
-            try
-            {
-                Debug.Log(str);
-                ScreenCapture.CaptureScreenshot(str);
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
-        }
 
-        if (UISystem.Instance.baseUI.Input.InputFieldAvaliable())
-        {
-
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (UISystem.Instance.baseUI.Input.InputFieldAvaliable())
             {
-                if (!UISystem.Instance.baseUI.Input.isSelect)
-                    UISystem.Instance.baseUI.Input.ActivateChat();
-                else UISystem.Instance.baseUI.Input.EndEdit();
-            }
-        }
 
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+                {
+                    if (!UISystem.Instance.baseUI.Input.isSelect)
+                        UISystem.Instance.baseUI.Input.ActivateChat();
+                    else UISystem.Instance.baseUI.Input.EndEdit();
+                }
+            }
+
+        }
     }
     float MapRight;
     float MapLeft;

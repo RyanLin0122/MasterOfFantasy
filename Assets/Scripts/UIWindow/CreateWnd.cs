@@ -31,7 +31,7 @@ public class CreateWnd : WindowRoot
     public int Strengthpoint = 4;
     public int Agilitypoint = 4;
     public int Intellectpoint = 4;
-    public CharacterDemo Demo;
+    public PlayerController Demo;
     public int SelectedJob = 1;
     public bool isNameExist = true;
     public Illustration illustration;
@@ -63,7 +63,7 @@ public class CreateWnd : WindowRoot
                 F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021)
             },
         };
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments,TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
         ClickMagicianBtn();
     }
@@ -288,7 +288,7 @@ public class CreateWnd : WindowRoot
             TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3013);
             TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021);
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkHairBtn()
@@ -350,7 +350,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3001);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkUpwearDown()
@@ -404,7 +404,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Chest = (Equipment)InventorySys.Instance.GetNewItemByID(3003);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkDownwearUp()
@@ -458,7 +458,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3009);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkDownwearDown()
@@ -512,7 +512,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Pants = (Equipment)InventorySys.Instance.GetNewItemByID(3011);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkShoesUp()
@@ -566,7 +566,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3017);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ClkShoesDown()
@@ -620,7 +620,7 @@ public class CreateWnd : WindowRoot
                 TempData.playerEquipments.F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3019);
             }
         }
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     public void ResetOutlook()
@@ -647,7 +647,7 @@ public class CreateWnd : WindowRoot
                 F_Shoes = (Equipment)InventorySys.Instance.GetNewItemByID(3021)
             },
         };
-        Demo.SetAllEquipment(TempData);
+        Demo.SetAllEquipment(TempData.playerEquipments, TempData.Gender);
         illustration.SetGenderAge(true, false, TempData);
     }
     #endregion

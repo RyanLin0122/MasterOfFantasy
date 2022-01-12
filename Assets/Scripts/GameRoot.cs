@@ -26,7 +26,7 @@ public class GameRoot : MonoBehaviour
     public Dictionary<string, WindowRoot> HasOpenedWnd = new Dictionary<string, WindowRoot>();
     public bool CanInput;
     public string ScreenSavingFolder = "C:/Users/";
-
+    public bool InGame = false;
     public MOFOption AccountOption = null;
 
     //初始化

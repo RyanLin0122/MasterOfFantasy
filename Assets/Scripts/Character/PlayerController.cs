@@ -272,6 +272,7 @@ public class PlayerController : EntityController
     public EquipmentAnimator HandBackCtrl;
     public EquipmentAnimator HandFrontCtrl;
     public EquipmentAnimator SuitCtrl;
+    public EquipmentAnimator GlassesCtrl;
     public void ChangeEquipment(int id, EquipmentType equipType)
     {
         switch (equipType)
@@ -320,6 +321,9 @@ public class PlayerController : EntityController
             case EquipmentType.ChatBox:
                 ChatBox.SetSprite(id);
                 break;
+            case EquipmentType.Glasses:
+                GlassesCtrl.LoadSprite(ResSvc.Instance.GetEquipSpritePath(id)[0]);
+                break;
         }
         PlayIdle();
     }
@@ -351,6 +355,9 @@ public class PlayerController : EntityController
             case EquipmentType.ChatBox:
                 ChatBox.SetSprite(0);
                 break;
+            case EquipmentType.Glasses:
+                GlassesCtrl.LoadDefaultSprite(Gender);
+                break;
         }
         PlayIdle();
     }
@@ -365,6 +372,7 @@ public class PlayerController : EntityController
         HandBackCtrl.Init();
         HandFrontCtrl.Init();
         SuitCtrl.Init();
+        GlassesCtrl.Init();
     }
     public void PlayPlayerAni(PlayerAniType aniType)
     {
@@ -438,6 +446,7 @@ public class PlayerController : EntityController
             HandBackCtrl.PlayAni(PlayerAniType.Idle, true);
             HandFrontCtrl.PlayAni(PlayerAniType.Idle, true);
             SuitCtrl.PlayAni(PlayerAniType.Idle, true);
+            GlassesCtrl.PlayAni(PlayerAniType.Run, true);
         }
     }
     public void PlayWalk()
@@ -451,6 +460,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.Walk, true);
         HandFrontCtrl.PlayAni(PlayerAniType.Walk, true);
         SuitCtrl.PlayAni(PlayerAniType.Walk, true);
+        GlassesCtrl.PlayAni(PlayerAniType.Run, true);
     }
     public void PlayRun()
     {
@@ -463,6 +473,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.Run, true);
         HandFrontCtrl.PlayAni(PlayerAniType.Run, true);
         SuitCtrl.PlayAni(PlayerAniType.Run, true);
+        GlassesCtrl.PlayAni(PlayerAniType.Run, true);
     }
     public void PlayDagger()
     {
@@ -478,6 +489,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.DaggerAttack, false);
     }
     public void PlaySlash()
     {
@@ -493,6 +505,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.SlashAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.SlashAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.SlashAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.SlashAttack, false);
     }
     public void PlayUpper()
     {
@@ -508,6 +521,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.UpperAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.UpperAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.UpperAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.UpperAttack, false);
     }
     public void PlayHurt()
     {
@@ -520,6 +534,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.Hurt, false);
         HandFrontCtrl.PlayAni(PlayerAniType.Hurt, false);
         SuitCtrl.PlayAni(PlayerAniType.Hurt, false);
+        GlassesCtrl.PlayAni(PlayerAniType.Hurt, false);
     }
     public void ReLive()
     {
@@ -539,6 +554,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.Death, false);
         HandFrontCtrl.PlayAni(PlayerAniType.Death, false);
         SuitCtrl.PlayAni(PlayerAniType.Death, false);
+        GlassesCtrl.PlayAni(PlayerAniType.Death, false);
     }
     public void PlayMagic()
     {
@@ -554,6 +570,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.MagicAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.MagicAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.MagicAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.MagicAttack, false);
     }
     public void PlayCleric()
     {
@@ -569,6 +586,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.ClericAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.ClericAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.ClericAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.ClericAttack, false);
     }
     public void PlayBow()
     {
@@ -584,6 +602,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.BowAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.BowAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.BowAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.BowAttack, false);
     }
     public void PlayCrossbow()
     {
@@ -599,6 +618,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
         HandFrontCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
         SuitCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
+        GlassesCtrl.PlayAni(PlayerAniType.CrossbowAttack, false);
     }
     public void PlayDown1()
     {
@@ -614,6 +634,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.DownAttack1, false);
         HandFrontCtrl.PlayAni(PlayerAniType.DownAttack1, false);
         SuitCtrl.PlayAni(PlayerAniType.DownAttack1, false);
+        GlassesCtrl.PlayAni(PlayerAniType.DownAttack1, false);
     }
     public void PlayDown2()
     {
@@ -629,6 +650,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.DownAttack2, false);
         HandFrontCtrl.PlayAni(PlayerAniType.DownAttack2, false);
         SuitCtrl.PlayAni(PlayerAniType.DownAttack2, false);
+        GlassesCtrl.PlayAni(PlayerAniType.DownAttack2, false);
     }
     public void PlayHorizon1()
     {
@@ -644,6 +666,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
         HandFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
         SuitCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
+        GlassesCtrl.PlayAni(PlayerAniType.HorizontalAttack1, false);
     }
     public void PlayHorizon2()
     {
@@ -659,6 +682,7 @@ public class PlayerController : EntityController
         HandBackCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
         HandFrontCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
         SuitCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
+        GlassesCtrl.PlayAni(PlayerAniType.HorizontalAttack2, false);
     }
     public void SetAllEquipment(PlayerEquipments pd, int Gender)
     {
@@ -669,6 +693,7 @@ public class PlayerController : EntityController
         SetEquipment(pd, Gender, EquipmentType.HairStyle);
         SetFace(pd, Gender);
         SetEquipment(pd, Gender, EquipmentType.ChatBox);
+        SetEquipment(pd, Gender, EquipmentType.Glasses);
     }
     public void SetEquipment(PlayerEquipments pd, int Gender, EquipmentType Type)
     {
@@ -828,6 +853,19 @@ public class PlayerController : EntityController
                     ChatBox.SetSprite(0);
                 }
                 break;
+            case EquipmentType.Glasses:
+                GlassesCtrl.gameObject.SetActive(true);
+                if (pd.F_Glasses != null)
+                {
+                    ChangeEquipment(pd.F_Glasses.ItemID, Type);
+                    return;
+                }
+                else
+                {
+                    ChangeDefaultEquipment(Gender, EquipmentType.Glasses);
+                    GlassesCtrl.gameObject.SetActive(false);
+                }
+                break;
         }
     }
     public void SetFace(PlayerEquipments pd, int Gender)
@@ -874,6 +912,7 @@ public class PlayerController : EntityController
     public SpriteRenderer WeaponSprite;
     public SpriteRenderer CapeSprite;
     public SpriteRenderer ShadowSprite;
+    public SpriteRenderer GlassSprite;
     public float SortingOrderOffset = 24;
     private void SetSortingOrders()
     {
@@ -891,6 +930,7 @@ public class PlayerController : EntityController
         WeaponSprite.sortingOrder = LayerNum + 5;
         CapeSprite.sortingOrder = LayerNum + 0;
         ShadowSprite.sortingOrder = LayerNum + 1;
+        GlassSprite.sortingOrder = LayerNum + 4;
     }
     int SortingSorderNum = 0;
     public override void Update()
