@@ -72,6 +72,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                 }
             };
             session.WriteAndFlush(Errormsg1,false);
+            LogSvc.Info("帳號使用中");
             return false;
         }
 
@@ -213,6 +214,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
                         ErrorCode = "密碼錯誤囉!"
                     }
                 };
+                LogSvc.Info("密碼錯誤");
                 session.WriteAndFlush(Errormsg2,false);
                 return false;
             }

@@ -200,6 +200,7 @@ public class MainCitySys : SystemRoot
         Camera mainCam = Camera.main;
         if(MapCanvas == null) MapCanvas = GameObject.Find("Canvas2").GetComponent<Canvas>();
         if(MainCanvas == null) MainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
         MainCanvas.GetComponent<Canvas>().worldCamera = mainCam;
         GameObject player = resSvc.LoadPrefab(PathDefine.MainCharacter, MapCanvas.transform, new Vector3(position.x, position.y, 200f));
         PlayerController mainPlayerCtrl = player.GetComponent<PlayerController>();
@@ -214,16 +215,17 @@ public class MainCitySys : SystemRoot
             mainPlayerCtrl
         );
         mainPlayerCtrl.IsRun = nEntity.IsRun;
-        BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
-        StartCoroutine(Timer(player.GetComponent<ScreenController>()));
-        GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
-        player.GetComponent<Transform>().SetAsLastSibling();
-        UISystem.Instance.equipmentWnd.SetupMyEquipmentsAnimation(GameRoot.Instance.ActivePlayer);
         if (PlayerName == GameRoot.Instance.ActivePlayer.Name)
         {
             player.GetComponent<ScreenController>().enabled = true;
             mainPlayerCtrl.GetComponent<ScreenController>().LoadBackGround();
         }
+        BattleSys.Instance.Players.Add(mainPlayerCtrl.Name, mainPlayerCtrl);
+        StartCoroutine(Timer(player.GetComponent<ScreenController>()));
+        GameRoot.Instance.NearCanvas.worldCamera = MainCanvas.GetComponent<Canvas>().worldCamera;
+        player.GetComponent<Transform>().SetAsLastSibling();
+        UISystem.Instance.equipmentWnd.SetupMyEquipmentsAnimation(GameRoot.Instance.ActivePlayer);
+        
     }
 
     public void LoadMonster()

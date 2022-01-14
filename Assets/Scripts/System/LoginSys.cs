@@ -112,6 +112,7 @@ public class LoginSys : SystemRoot
     public void EnterGame(bool istrain, bool isnew)
     {
         GameRoot.Instance.WindowLock();
+        serverWnd.gameObject.SetActive(false);
         if (isnew) //新手
         {
             if (!istrain) //直接去利比村

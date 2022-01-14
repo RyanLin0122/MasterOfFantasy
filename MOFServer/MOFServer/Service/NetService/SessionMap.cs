@@ -46,8 +46,52 @@ public class SessionMap
     {
         if (map.ContainsKey(sessionID))
         {
+            try
+            {
+                ServerSession existSession = map[sessionID];
+                if (existSession != null)
+                {
+                    if (existSession.ActivePlayer != null)
+                    {
+                        MOFCharacter chr = null;
+                        if (CacheSvc.Instance.MOFCharacterDict.TryGetValue(existSession.ActivePlayer.Name, out chr))
+                        {
+                            if (chr != null)
+                            {
+                                chr.Logout();
+                                MongoDB.Bson.BsonDocument bson = null;
+                                if (CacheSvc.Instance.AccountTempData.TryGetValue(Account, out bson))
+                                {
+                                    CacheSvc.Instance.AccountTempData.Remove(Account);
+                                }
+                                existSession.Close();
+                                NetSvc.Instance.sessionMap.RemoveSession(existSession.SessionID);
+                            }
+                            else
+                            {
+                                if (existSession.ActiveChannel != -1 && existSession.ActiveServer != -1)
+                                {
+                                    NetSvc.Instance.ChannelsNum[existSession.ActiveChannel * existSession.ActiveServer] -= 1;
+                                }
+                                MongoDB.Bson.BsonDocument bson = null;
+                                if (CacheSvc.Instance.AccountTempData.TryGetValue(Account, out bson))
+                                {
+                                    CacheSvc.Instance.AccountTempData.Remove(Account);
+                                }
+                                existSession.Close();
+                                NetSvc.Instance.sessionMap.RemoveSession(existSession.SessionID);
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                LogSvc.Error(e);
+            }
             return true;
         }
+        /*
         foreach (var session in map.Values)
         {
             if (session.Account == Account)
@@ -55,6 +99,7 @@ public class SessionMap
                 return true;
             }
         }
+        */
         return false;
     }
 

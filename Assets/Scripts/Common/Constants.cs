@@ -10,8 +10,8 @@ public enum TxtColor
 public class Constants
 {
     #region Server相關
-    public const int MagicNumber = 77777;
-    public const int Version = 50;
+    public const int MagicNumber = 88888;
+    public const int Version = 51;
     public const string PUBLIC_KEY = "HaveFun";
     #endregion
     #region 顏色

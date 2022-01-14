@@ -702,7 +702,12 @@ public class PlayerController : EntityController
         {
             case EquipmentType.Shoes:
                 ShoesCtrl.gameObject.SetActive(true);
-                if (pd.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest != null && pd.F_Chest.ItemID > 7000)
+                {
+                    //有穿套裝，關閉鞋子
+                    ShoesCtrl.gameObject.SetActive(false);                 
+                }
+                else
                 {
                     if (pd.F_Shoes != null)
                     {
@@ -725,16 +730,16 @@ public class PlayerController : EntityController
                         }
                     }
                 }
-                else
-                {
-                    //有穿套裝，關閉鞋子
-                    ShoesCtrl.gameObject.SetActive(false);
-                }
                 break;
             case EquipmentType.Chest:
                 UpwearCtrl.gameObject.SetActive(true);
                 SuitCtrl.gameObject.SetActive(false);
-                if (pd.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest != null && pd.F_Chest.ItemID > 7000)
+                {
+                    //開套裝
+                    ChangeEquipment(pd.F_Chest.ItemID, Type);
+                }
+                else
                 {
                     if (pd.F_Chest != null)
                     {
@@ -757,15 +762,15 @@ public class PlayerController : EntityController
                         }
                     }
                 }
-                else
-                {
-                    //開套裝
-                    ChangeEquipment(pd.F_Chest.ItemID, Type);
-                }
                 break;
             case EquipmentType.Pant:
                 DownwearCtrl.gameObject.SetActive(true);
-                if (pd.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest != null && pd.F_Chest.ItemID > 7000)
+                {
+                    //有穿套裝，關閉褲子
+                    DownwearCtrl.gameObject.SetActive(false);                  
+                }
+                else
                 {
                     if (pd.F_Pants != null)
                     {
@@ -788,16 +793,17 @@ public class PlayerController : EntityController
                         }
                     }
                 }
-                else
-                {
-                    //有穿套裝，關閉褲子
-                    DownwearCtrl.gameObject.SetActive(false);
-                }
                 break;
             case EquipmentType.Gloves:
                 HandBackCtrl.gameObject.SetActive(true);
                 HandFrontCtrl.gameObject.SetActive(true);
-                if (pd.F_Chest.ItemID <= 7000)
+                if (pd.F_Chest != null && pd.F_Chest.ItemID > 7000)
+                {
+                    //有穿套裝，關閉手套
+                    HandBackCtrl.gameObject.SetActive(false);
+                    HandFrontCtrl.gameObject.SetActive(false);
+                }
+                else
                 {
                     if (pd.F_Glove != null)
                     {
@@ -819,12 +825,6 @@ public class PlayerController : EntityController
                             //顯示無手套
                         }
                     }
-                }
-                else
-                {
-                    //有穿套裝，關閉手套
-                    HandBackCtrl.gameObject.SetActive(false);
-                    HandFrontCtrl.gameObject.SetActive(false);
                 }
                 break;
             case EquipmentType.HairStyle:

@@ -19,8 +19,8 @@ class ServerConstants
     public const int MaxCharacters = 3000;
     public const int GameServerNum = 3;
     public const int channelNum = 10;
-    public const int MagicNumber = 77777;
-    public const int Version = 50;
+    public const int MagicNumber = 88888;
+    public const int Version = 51;
     public const string PublicKey = "HaveFun";
     public const string PrivateKey = "y5(9=8@nV$;G";
     public const string DBconnStr = "mongodb+srv://admin:edei5262@devops-sxe0y.mongodb.net/MOF?authSource=admin&replicaSet=DevOps-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true";

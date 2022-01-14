@@ -46,6 +46,7 @@ public class SelectCharacterWnd : WindowRoot {
         Demo1.gameObject.SetActive(true);
         Demo2.gameObject.SetActive(true);
         Demo3.gameObject.SetActive(true);
+        data = players;
         switch (players.Count)
         {
             case 0:
@@ -116,7 +117,7 @@ public class SelectCharacterWnd : WindowRoot {
                 break;
         }
 
-        data = players;
+        
 
     }
 
