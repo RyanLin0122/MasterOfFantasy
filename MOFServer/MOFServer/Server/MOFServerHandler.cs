@@ -8,7 +8,7 @@ using System.ComponentModel.Design;
 
 class MOFServerHandler : ChannelHandlerAdapter
 {
-    public override void ChannelRead(IChannelHandlerContext context, object message)
+    public override async void ChannelRead(IChannelHandlerContext context, object message)
     {
         try
         {
@@ -49,7 +49,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                         if (CacheSvc.Instance.CreatePlayerData(msg.CreateRequest) != null)
                         {
                             session.WriteAndFlush(new ProtoMsg { MessageType = 6, CreateResponse = player });
-                            CacheSvc.Instance.InsertNewPlayer2DB(msg.Account, msg.CreateRequest);
+                            await CacheSvc.Instance.InsertNewPlayer2DBAsync(msg.Account, msg.CreateRequest);
                         }
                         else
                         {
@@ -61,7 +61,7 @@ class MOFServerHandler : ChannelHandlerAdapter
 
                 case 7:
                     Console.WriteLine("收到刪角消息");
-                    if (CacheSvc.Instance.DeletePlayer(msg.Account, msg.deleteRequest.CharacterName) != null)
+                    if (await CacheSvc.Instance.DeletePlayerAsync(msg.Account, msg.deleteRequest.CharacterName) != null)
                     {
                         if (CacheSvc.Instance.CharacterNames.Contains(msg.deleteRequest.CharacterName))
                         {
@@ -149,7 +149,7 @@ class MOFServerHandler : ChannelHandlerAdapter
 
                     break;
                 case 22: //小遊戲分數回報
-                    CacheSvc.Instance.ReportScore(session.ActivePlayer.Name, msg.miniGameScoreReq.Score, msg.miniGameScoreReq.MiniGameID);
+                    await CacheSvc.Instance.ReportScoreAsync(session.ActivePlayer.Name, msg.miniGameScoreReq.Score, msg.miniGameScoreReq.MiniGameID);
                     session.ActivePlayer.SwordPoint += msg.miniGameScoreReq.SwordPoint;
                     session.ActivePlayer.ArcheryPoint += msg.miniGameScoreReq.ArcheryPoint;
                     session.ActivePlayer.MagicPoint += msg.miniGameScoreReq.MagicPoint;
@@ -198,7 +198,7 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
                 case 41: //背包操作
                     KnapsackHandler knapsackHandler = new KnapsackHandler();
-                    Task KnapsackTask = knapsackHandler.ProcessMsgAsync(msg, session);
+                    await knapsackHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 42: //裝備操作
                     CacheSvc.Instance.ProcessEquipmentPkg(msg, session);
@@ -217,15 +217,15 @@ class MOFServerHandler : ChannelHandlerAdapter
                     break;
                 case 46: //商城請求
                     CashShopHandler cashShopHandler = new CashShopHandler();
-                    Task CashShopTask = cashShopHandler.ProcessMsgAsync(msg, session);
+                    await cashShopHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 48: //交易請求
                     TransactionHandler transactionHandler = new TransactionHandler();
-                    Task TransactionTask = transactionHandler.ProcessMsgAsync(msg, session);
+                    await transactionHandler.ProcessMsgAsync(msg, session);
                     break;
                 case 50: //倉庫操作
                     LockerHandler lockerHandler = new LockerHandler();
-                    Task lockerTask = lockerHandler.ProcessMsgAsync(msg, session);
+                    await lockerHandler.ProcessMsgAsync(msg, session);
                     break;
             }
         }
@@ -341,4 +341,3 @@ class MOFServerHandler : ChannelHandlerAdapter
 
     }
 }
-
