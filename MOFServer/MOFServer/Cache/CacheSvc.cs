@@ -31,22 +31,21 @@ public class CacheSvc
         ParseMonsterJson();
         ParseCashShopItems();
         dbMgr = DBMgr.Instance;
-        Task task = ServerRoot.Instance.taskFactory.StartNew(() => dbMgr.Init());
-        await task;
+        await dbMgr.InitAsync();
         LogSvc.Info("CacheSvc Init Done!");
     }
-    public void QueryDataFromDB()
+    public async Task QueryDataFromDBAsync()
     {
-        CharacterNames = dbMgr.QueryNames().Result;
-        MiniGame_Records = dbMgr.QueryMiniGameRanking().Result;
+        CharacterNames = await dbMgr.QueryNamesAsync();
+        MiniGame_Records = await dbMgr.QueryMiniGameRankingAsync();
     }
-    public Tuple<bool, BsonDocument> QueryAccount(string Account)
+    public Task<Tuple<bool, BsonDocument>> QueryAccountAsync(string Account)
     {
-        return dbMgr.QueryAccountData(Account);
+        return dbMgr.QueryAccountDataAsync(Account);
     }
-    public void InsertNewAccount(ProtoMsg msg)
+    public Task InsertNewAccountAsync(ProtoMsg msg)
     {
-        dbMgr.InsertNewAccount(msg);
+        return dbMgr.InsertNewAccountAsync(msg);
     }
 
     public async Task AsyncSaveCharacter(string acc, Player player)
@@ -120,18 +119,18 @@ public class CacheSvc
         }
         return null;
     }
-    public void InsertNewPlayer2DB(string Account, CreateInfo info)
+    public Task InsertNewPlayer2DBAsync(string Account, CreateInfo info)
     {
         if (!CharacterNames.Contains(info.name))
         {
             CharacterNames.Add(info.name);
         }
-        dbMgr.InsertNewPlayer(Account, info);
+        return dbMgr.InsertNewPlayerAsync(Account, info);
     }
-    public BsonDocument DeletePlayer(string Account, string PlayerName)
+    public async Task<BsonDocument> DeletePlayerAsync(string Account, string PlayerName)
     {
-        dbMgr.DeleteNameData(PlayerName);
-        return dbMgr.DeletePlayer(Account, PlayerName);
+        await dbMgr.DeleteNameDataAsync(PlayerName);
+        return await dbMgr.DeletePlayerAsync(Account, PlayerName);
     }
 
     public MOFCharacter MakeCharacter(float[] position, int MapID, int channel, ServerSession session, Player player, TrimedPlayer tp, int MoveState, bool IsRun)
@@ -167,7 +166,7 @@ public class CacheSvc
     public Dictionary<string, int>[] MiniGame_Records;
 
     //完成小遊戲回報
-    public void ReportScore(string Name, int Score, int GameID)
+    public async Task ReportScoreAsync(string Name, int Score, int GameID)
     {
 
         lock (MiniGame_Records)
@@ -216,7 +215,7 @@ public class CacheSvc
         //回傳刪除道具
 
         //Update DataBase
-        dbMgr.UpdateMiniGameRanking(MiniGame_Records[GameID], GameID);
+        await dbMgr.UpdateMiniGameRankingAsync(MiniGame_Records[GameID], GameID);
 
         //資料庫刪除道具
 

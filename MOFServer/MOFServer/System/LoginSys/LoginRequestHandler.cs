@@ -6,7 +6,7 @@ using MongoDB.Bson;
 
 public class LoginRequestHandler : ChannelHandlerAdapter
 {
-    public override void ChannelRead(IChannelHandlerContext context, object message)
+    public override async void ChannelRead(IChannelHandlerContext context, object message)
     {
         if (message == null)
         {
@@ -21,9 +21,8 @@ public class LoginRequestHandler : ChannelHandlerAdapter
         if (msg.MessageType == 1)
         {
             ServerSession session = new ServerSession(context.Channel, msg.loginRequest.Account, msg.loginRequest.Password, msg.loginRequest.MAC, msg.loginRequest.IPAddress);
-            Task<bool> LoginRequestProcessor = Task.Run(() => ProcessLoginLogic(session,msg));
-            Task.WhenAll(LoginRequestProcessor).Wait();
-            if (LoginRequestProcessor.Result)
+            bool loginSucceeded = await ProcessLoginLogicAsync(session, msg);
+            if (loginSucceeded)
             {
                 context.Channel.Pipeline.Remove(this);
                 session.channel.Pipeline.AddLast(new HeartBeatServerHandler());
@@ -37,9 +36,9 @@ public class LoginRequestHandler : ChannelHandlerAdapter
         }
         base.ChannelRead(context,message);
     }
-    private bool ProcessLoginLogic(ServerSession session, ProtoMsg msg)
+    private async Task<bool> ProcessLoginLogicAsync(ServerSession session, ProtoMsg msg)
     {
-        bool IsValidUser = CheckUser(msg, session);
+        bool IsValidUser = await CheckUserAsync(msg, session);
         if (!IsValidUser)
         {
             //登入失敗
@@ -54,7 +53,7 @@ public class LoginRequestHandler : ChannelHandlerAdapter
         }
         return true;
     }
-    private bool CheckUser(ProtoMsg msg, ServerSession session)
+    private async Task<bool> CheckUserAsync(ProtoMsg msg, ServerSession session)
     {
         //檢查重複登入
         if (NetSvc.Instance.sessionMap.HasLogin(session.SessionID, msg.Account))
@@ -76,11 +75,11 @@ public class LoginRequestHandler : ChannelHandlerAdapter
         }
 
         //檢查database
-        var check = CacheSvc.Instance.QueryAccount(msg.Account);
-        if(check.Item1 == false)
+        var check = await CacheSvc.Instance.QueryAccountAsync(msg.Account);
+        if (check.Item1 == false)
         {
             //無此帳號，默認新增新帳號
-            CacheSvc.Instance.InsertNewAccount(msg);
+            await CacheSvc.Instance.InsertNewAccountAsync(msg);
             session.Bind();
             var accountData = new AccountData
             {
@@ -233,4 +232,3 @@ public class LoginRequestHandler : ChannelHandlerAdapter
         context.CloseAsync();
     }
 }
-
